@@ -1,6 +1,8 @@
 ﻿# PyNeuTube
+[[**Code**](https://github.com/YunZhixi98/pyNeuTube)]
+[[**Paper**]()]
 
-PyNeuTube is a Python reimplementation of the NeuTube tracing workflow for 3D microscopy volumes. This repository is being prepared as a reusable open-source package with three priorities:
+PyNeuTube is a Python reimplementation of the **NeuTube** ([[Code](https://github.com/tingzhao/neutube)] [[Paper](https://doi.org/10.1523/ENEURO.0049-14.2014)]) tracing workflow for 3D microscopy volumes. This repository is being prepared as a reusable open-source package with three priorities:
 
 - compiled, reproducible tracing performance through mandatory Cython-backed extensions,
 - a small stable public API for scripting and downstream reuse,
