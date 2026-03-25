@@ -28,6 +28,7 @@ from pyneutube.core.processing.filtering import (
 from pyneutube.tracers.pyNeuTube.chains_to_morphology import ChainConnector
 from pyneutube.tracers.pyNeuTube.seeds import Seed, Seeds
 from pyneutube.tracers.pyNeuTube.tracing import SegmentChain, SegmentChains, TracingSegment
+from pyneutube.visualization import save_overlay_figure
 
 SUPPORTED_IMAGE_SUFFIXES = (
     ".tif",
@@ -53,6 +54,7 @@ class TracingResult:
     chains: SegmentChains
     neuron: Neuron | None = None
     output_swc: Path | None = None
+    output_visualization: Path | None = None
     signal_image: np.ndarray | None = None
     binary_image: np.ndarray | None = None
     skipped: bool = False
@@ -114,16 +116,18 @@ def _skipped_trace_result(
     )
 
 
-def _chain_coords(chains: SegmentChains) -> np.ndarray:
-    coords = [chain.to_coords() for chain in chains if len(chain) > 0]
-    if not coords:
-        return np.empty((0, 3), dtype=np.float64)
-    return np.concatenate(coords, axis=0)
-
-
 def _matches_suffix(path: Path, suffixes: Sequence[str]) -> bool:
     lower_name = path.name.lower()
     return any(lower_name.endswith(suffix.lower()) for suffix in suffixes)
+
+
+def _visualization_output_path(
+    image_path: Path,
+    visualization_dir: str | Path | None,
+) -> Path | None:
+    if visualization_dir is None:
+        return None
+    return Path(visualization_dir) / f"{image_path.name}.png"
 
 
 def preprocess_volume(
@@ -193,7 +197,6 @@ def _trace_volume_internal(
     max_seeds: int | None = None,
     connect_chains: bool = True,
     filter_chains: bool = True,
-    debug_dir: str | Path = "debug",
     return_intermediates: bool = False,
 ) -> TracingResult:
     resolved_n_jobs = _resolve_n_jobs(n_jobs)
@@ -219,7 +222,7 @@ def _trace_volume_internal(
     neuron = None
     if connect_chains:
         t0 = perf_counter()
-        connector = ChainConnector(debug=verbose >= 2, debug_dir=str(debug_dir), verbose=verbose)
+        connector = ChainConnector(verbose=verbose)
         neuron = connector.reconstruct(chains, signal_image)
         _time_step(verbose, "reconstruct", t0)
 
@@ -239,7 +242,7 @@ def trace_file(
     *,
     dataset: str | None = None,
     output_swc: str | Path | None = None,
-    output_overlay: str | Path | None = None,
+    visualization_dir: str | Path | None = None,
     n_jobs: int = 1,
     verbose: int = 1,
     overwrite: bool = False,
@@ -250,7 +253,7 @@ def trace_file(
         image_path,
         dataset=dataset,
         output_swc=output_swc,
-        output_overlay=output_overlay,
+        visualization_dir=visualization_dir,
         n_jobs=n_jobs,
         verbose=verbose,
         overwrite=overwrite,
@@ -264,7 +267,7 @@ def _trace_file_internal(
     *,
     dataset: str | None = None,
     output_swc: str | Path | None = None,
-    output_overlay: str | Path | None = None,
+    visualization_dir: str | Path | None = None,
     n_jobs: int = 1,
     verbose: int = 1,
     overwrite: bool = False,
@@ -272,17 +275,16 @@ def _trace_file_internal(
     max_seeds: int | None = None,
     connect_chains: bool = True,
     filter_chains: bool = True,
-    debug_dir: str | Path = "debug",
     return_intermediates: bool = False,
 ) -> TracingResult:
     image_path = Path(image_path)
     output_swc_path = Path(output_swc) if output_swc is not None else None
-    output_overlay_path = Path(output_overlay) if output_overlay is not None else None
+    output_visualization_path = _visualization_output_path(image_path, visualization_dir)
     existing_output = None
     if output_swc_path is not None and output_swc_path.exists():
         existing_output = output_swc_path
-    elif output_overlay_path is not None and output_overlay_path.exists():
-        existing_output = output_overlay_path
+    elif output_visualization_path is not None and output_visualization_path.exists():
+        existing_output = output_visualization_path
 
     if existing_output is not None and not overwrite:
         exists_policy = _resolve_on_exists(on_exists, default="error")
@@ -311,7 +313,6 @@ def _trace_file_internal(
         max_seeds=max_seeds,
         connect_chains=connect_chains,
         filter_chains=filter_chains,
-        debug_dir=debug_dir,
         return_intermediates=return_intermediates,
     )
     result.image_path = image_path
@@ -322,29 +323,40 @@ def _trace_file_internal(
         result.output_swc = output_swc_path
         result.neuron.save_swc(result.output_swc, verbose=verbose)
 
-    if output_overlay is not None:
-        from pyneutube.visualization import save_overlay_figure
-
-        overlay_coords = (
-            result.neuron.coords if result.neuron is not None else _chain_coords(result.chains)
-        )
-        if overlay_coords.size == 0:
-            raise ValueError("No coordinates are available for overlay export.")
-        save_overlay_figure(image, overlay_coords, output_overlay_path, title=image_path.name)
-        _vprint(verbose, f"Overlay saved to {output_overlay}")
+    if output_visualization_path is not None:
+        if result.neuron is not None:
+            result.output_visualization = save_overlay_figure(
+                image,
+                result.neuron,
+                output_visualization_path,
+                title=image_path.name,
+            )
+        else:
+            chain_coords = [chain.to_coords() for chain in result.chains if len(chain) > 0]
+            if chain_coords:
+                coords = np.concatenate(chain_coords, axis=0)
+                result.output_visualization = save_overlay_figure(
+                    image,
+                    coords,
+                    output_visualization_path,
+                    title=image_path.name,
+                )
+            else:
+                raise ValueError("No coordinates are available for visualization export.")
 
     return result
 
 
 def _trace_file_worker(
-    payload: tuple[str, str, int, int],
+    payload: tuple[str, str, str | None, int, int],
 ) -> dict[str, object]:
-    input_path, output_swc, n_jobs, verbose = payload
+    input_path, output_swc, visualization_dir, n_jobs, verbose = payload
     started_at = perf_counter()
     try:
         result = trace_file(
             input_path,
             output_swc=output_swc,
+            visualization_dir=visualization_dir,
             n_jobs=n_jobs,
             verbose=verbose,
         )
@@ -401,6 +413,7 @@ def trace_files(
     input_paths: Sequence[str | Path],
     output_dir: str | Path,
     *,
+    visualization_dir: str | Path | None = None,
     batch_n_jobs: int = 1,
     trace_n_jobs: int = 1,
     verbose: int = 1,
@@ -436,12 +449,16 @@ def trace_files(
     )
 
     completed_outputs: list[Path] = []
-    jobs: list[tuple[str, str, int, int]] = []
+    jobs: list[tuple[str, str, str | None, int, int]] = []
     for image_path in image_paths:
         output_swc = output_dir / f"{image_path.name}.swc"
-        if output_swc.exists() and not overwrite:
+        output_visualization = _visualization_output_path(image_path, visualization_dir)
+        has_existing_output = output_swc.exists() or (
+            output_visualization is not None and output_visualization.exists()
+        )
+        if has_existing_output and not overwrite:
             if exists_policy == "error":
-                raise _overwrite_error(output_swc, mode="batch")
+                raise _overwrite_error(output_swc if output_swc.exists() else output_visualization, mode="batch")
             completed_outputs.append(output_swc)
             _append_manifest_record(manifest, _skip_existing_record(image_path, output_swc))
             _vprint(
@@ -453,6 +470,7 @@ def trace_files(
             (
                 str(image_path),
                 str(output_swc),
+                None if visualization_dir is None else str(visualization_dir),
                 resolved_trace_n_jobs,
                 max(verbose - 1, 0),
             )
@@ -519,6 +537,7 @@ def trace_directory(
     output_dir: str | Path,
     *,
     suffixes: Sequence[str] = SUPPORTED_IMAGE_SUFFIXES,
+    visualization_dir: str | Path | None = None,
     batch_n_jobs: int = 1,
     trace_n_jobs: int = 1,
     verbose: int = 1,
@@ -536,6 +555,7 @@ def trace_directory(
     return trace_files(
         image_paths,
         output_dir,
+        visualization_dir=visualization_dir,
         batch_n_jobs=batch_n_jobs,
         trace_n_jobs=trace_n_jobs,
         verbose=verbose,
@@ -559,5 +579,3 @@ __all__ = [
     "trace_files",
     "trace_directory",
 ]
-
-

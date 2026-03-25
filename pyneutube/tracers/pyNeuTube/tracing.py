@@ -346,7 +346,6 @@ class SegmentChain:
     def __init__(
         self,
         segments: Union[List[TracingSegment], TracingSegment, None] = None,
-        debug_seed_coord: np.ndarray = None,
     ):
         """
         Parameters
@@ -354,8 +353,6 @@ class SegmentChain:
         segments : list[TracingSegment] | TracingSegment
         """
         self._segments: List[TracingSegment] = []
-
-        self._debug_seed_coord = debug_seed_coord
 
         if isinstance(segments, TracingSegment):
             self._segments = [segments]
@@ -637,15 +634,6 @@ class SegmentChain:
         """
         """
         self._check_chain_init_status(trace_mask)
-        debug_seed_coord = self._segments[0].center_coord
-        debug_seed_ori_coord = self._debug_seed_coord
-        x,y,z = debug_seed_coord.astype(int)
-        debug = False
-        # if 110<debug_seed_coord[0]<130 and 200<debug_seed_coord[1]<230 and 30<debug_seed_coord[2]<40:
-        # if ((x==125) and (y==211) and (z==32)):
-        #     import matplotlib.pyplot as plt
-        #     debug = True
-        # else: return
         # forward trace
         while self._trace_status[1] == TraceStatus.NORMAL and len(self) < self._max_seg_num:
             new_seg = self._init_next_seg(side='tail')
@@ -656,20 +644,6 @@ class SegmentChain:
                 self.append(new_seg)
             else:
                 break
-
-            if debug:
-                plt.figure()
-                plt.imshow(signal_image.max(axis=0), cmap='gray', origin='lower')
-                for seg in self:
-                    plt.scatter(seg.start_coord[0], seg.start_coord[1], color='red', s=10, alpha=0.6, zorder=11, marker='^')
-                    plt.scatter(seg.center_coord[0], seg.center_coord[1], color='orange', s=10, alpha=0.6, zorder=11, marker='^')
-                    plt.scatter(seg.end_coord[0], seg.end_coord[1], color='yellow', s=10, alpha=0.6, zorder=11, marker='^')
-
-                plt.scatter(self.to_coords()[:,0], self.to_coords()[:,1], color='red',alpha=0.6,zorder=11)
-                plt.scatter(debug_seed_coord[0], debug_seed_coord[1], color='blue',alpha=0.6,zorder=11)
-                plt.scatter(debug_seed_ori_coord[0], debug_seed_ori_coord[1], color='green',marker='*', alpha=0.6,zorder=11)
-                plt.title(len(self))
-                plt.show()
 
             self._check_chain_status(trace_mask, 'tail')
 
@@ -686,20 +660,6 @@ class SegmentChain:
                     self.insert(0, new_seg)
                 else:
                     break
-
-                if debug:
-                    plt.figure()
-                    plt.imshow(signal_image.max(axis=0), cmap='gray')
-                    for seg in self:
-                        plt.scatter(seg.start_coord[0], seg.start_coord[1], color='red', s=10, alpha=0.6, zorder=11, marker='^')
-                        plt.scatter(seg.center_coord[0], seg.center_coord[1], color='orange', s=10, alpha=0.6, zorder=11, marker='^')
-                        plt.scatter(seg.end_coord[0], seg.end_coord[1], color='yellow', s=10, alpha=0.6, zorder=11, marker='^')
-
-                    plt.scatter(self.to_coords()[:,0], self.to_coords()[:,1], color='red',alpha=0.6,zorder=11)
-                    plt.scatter(debug_seed_coord[0], debug_seed_coord[1], color='blue',alpha=0.6,zorder=11)
-                    plt.scatter(debug_seed_ori_coord[0], debug_seed_ori_coord[1], color='green',marker='*', alpha=0.6,zorder=11)
-                    plt.title(len(self))
-                    plt.show()
 
                 self._check_chain_status(trace_mask, 'head')
         
@@ -777,7 +737,7 @@ class SegmentChains:
     def generate_neuron_trace(self, seeds, signal_image: np.ndarray, *, max_seeds: int | None = None, verbose: int = 1):
         seed_iterable = islice(seeds, max_seeds) if max_seeds is not None else seeds
         for seed in tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1):
-            chain = SegmentChain(seed.seg.copy(), seed.coord)
+            chain = SegmentChain(seed.seg.copy())
             chain.generate_chain_trace(signal_image, self.trace_mask)
             # ensure the chain is long enough
             if chain.path_length >= self._min_chain_length or \
@@ -886,4 +846,3 @@ def test_seg_turn_2(seg1: TracingSegment, seg2: TracingSegment, max_angle: float
         angle = 2 * np.pi - angle
 
     return angle > max_angle
-

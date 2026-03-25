@@ -8,10 +8,8 @@ Conversion of SegmentChains to a unified morphology (digitalized neuron tree).
 
 from math import exp
 from typing import List
-from copy import deepcopy
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 from pyneutube.core.io.swc_parser import Neuron
 from pyneutube.core.processing.swc_utils import (
@@ -19,7 +17,6 @@ from pyneutube.core.processing.swc_utils import (
     merge_close_point, remove_overshoot,
     remove_subtrees_by_length, optimal_downsample
     )
-from pyneutube.core.visualization import image_enhancer
 
 from .geometry import (
     seg_to_seg_surface, seg_to_seg_dist,
@@ -56,7 +53,7 @@ def _clone_connect_segment(seg):
 
 class ChainConnector:
 
-    def __init__(self, debug=False, debug_dir='./debug', verbose: int = 1):
+    def __init__(self, verbose: int = 1):
         
         # 
         self.conn_list: List[Neurocomp_Conn] = []
@@ -71,8 +68,6 @@ class ChainConnector:
         self.sp_test = True
         self.interpolate = True
 
-        self.debug = debug
-        self.debug_dir = debug_dir
         self.verbose = verbose
 
     def _vprint(self, message: str) -> None:
@@ -252,47 +247,6 @@ class ChainConnector:
                 path.append(idx)
 
 
-        # fig, ax = plt.subplots(1, 1, figsize=(10, 10))
-        # ax.imshow(signal_image[sgw.range[4]:sgw.range[5]].max(axis=0), 'gray')
-
-        # bbox = plt.Rectangle(
-        #     (sgw.range[0], sgw.range[2]),
-        #     abs(sgw.range[1] - sgw.range[0]),
-        #     abs(sgw.range[3] - sgw.range[2]),
-        #     fill=False, color='dodgerblue', linestyle='--'
-        # )
-        # ax.add_patch(bbox)
-
-        # chain1_coords = chain1.to_coords()
-        # for i in range(len(chain1_coords) - 1):
-        #     x0, y0, _ = chain1_coords[i]
-        #     x1, y1, _ = chain1_coords[i + 1]
-        #     ax.arrow(
-        #         x0, y0, x1 - x0, y1 - y0,
-        #         length_includes_head=True, head_width=2, head_length=3,
-        #         fc='green', ec='green'
-        #     )
-
-        # ax.scatter(pos[0], pos[1], c='orange', s=30, zorder=11)
-        # ax.scatter(start_pos[0], start_pos[1], c='pink', s=30, zorder=11)
-        # ax.scatter(end_pos[0], end_pos[1], c='limegreen', s=30, zorder=11)
-
-        # chain2_coords = chain.to_coords()
-        # for i in range(len(chain2_coords) - 1):
-        #     x0, y0, _ = chain2_coords[i]
-        #     x1, y1, _ = chain2_coords[i + 1]
-        #     ax.arrow(
-        #         x0, y0, x1 - x0, y1 - y0,
-        #         length_includes_head=True, head_width=2, head_length=3,
-        #         fc='red', ec='red'
-        #     )
-        # print(path)
-        # path_offset_unravel = np.unravel_index(path, signal_image.shape)
-        # ax.scatter(path_offset_unravel[2],path_offset_unravel[1], 
-        #            c='yellow', marker='o',s=20, zorder=11, edgecolor='black', linewidth=1, alpha=0.7)
-        
-        # plt.show()
-
         return path
 
 
@@ -344,45 +298,14 @@ class ChainConnector:
 
         return gdist
 
-    def show_chains_debug(self, chains: SegmentChains, signal_image: np.ndarray, figname: str, enhance: bool = True):
-        plt.figure(figsize=(10,10))
-        depth, height, width = signal_image.shape[:3]
-
-        img2d = signal_image.max(axis=0)
-        if enhance:
-            # Enhance the image for better visualization
-            img2d = image_enhancer.soft_standardize(img2d, k_sigma=1.5)
-        
-        plt.imshow(img2d, cmap='gray', origin='lower')
-        for chain in chains:
-            chain_coords = chain.to_coords()
-            for i in range(len(chain_coords) - 1):
-                x0, y0, _ = chain_coords[i]
-                x1, y1, _ = chain_coords[i + 1]
-                plt.plot([x0, x1], [y0, y1],'dodgerblue', alpha=0.75)
-
-        plt.xlim(0, width)
-        plt.ylim(0, height)
-        plt.tight_layout()
-        plt.savefig(figname, dpi=300)
-        plt.close()
-
- 
     def reconstruct(self, chains: SegmentChains, signal_image: np.ndarray):
         self.prepare_chain_conn(chains, signal_image)
         self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
-        
-        if self.debug:  # saving intermediate results for debug
-            self.show_chains_debug(chains, signal_image, figname='connected_chains.png')
 
         self.remove_redundant_edges()
         self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
 
         self.crossover_test(chains)
-
-        # from core.visualization.debug_vis import inspect_chain_graph
-        # for i in range(len(self.conn_list)):
-        #     inspect_chain_graph(signal_image, edge=self.graph.edges[i], chains=chains, conn=self.conn_list[i], debug=True)
 
         circle_list, circle_conn_list, circle_comp_list = self.chains_to_circles(chains)
 
@@ -400,8 +323,6 @@ class ChainConnector:
         
         if nchains > 500:
             self.sp_test = False
-        
-        #self.sp_test = True # debug
         
         for i, chain1 in enumerate(chains):
             for j, chain2 in enumerate(chains):
@@ -720,22 +641,11 @@ class ChainConnector:
         
         return circle_graph, circle_conn_list, circle_comp_list
 
-    def save_swc_debug(self, neuron, swc_name):
-        if self.debug:
-            neuron.save_swc(f'{self.debug_dir}/{swc_name}')
-    
     def circles_to_tree(self, circle_graph: Graph, circle_conn_list: List[Neurocomp_Conn], circle_comp_list: List[Circle], signal_image):
         if not circle_comp_list:
             return None
         
         circle_graph.weights = [circle_conn_list[i].cost for i in range(circle_graph.nedge)]
-
-        # fig,axs = plt.subplots(1,2,figsize=(10,10))
-        # axs[0].imshow(signal_image.max(axis=0), cmap='gray')
-        # for (u, v) in circle_graph.edges:
-        #     x0, y0, _ = circle_comp_list[u].center
-        #     x1, y1, _ = circle_comp_list[v].center
-        #     axs[0].plot([x0, x1], [y0, y1])
 
         import networkx as nx
         G = nx.Graph()
@@ -746,51 +656,36 @@ class ChainConnector:
         tree = nx.minimum_spanning_tree(G, weight='weight')
         self._vprint(f"{tree.number_of_nodes()} {tree.number_of_edges()}")
 
-        # axs[1].imshow(signal_image.max(axis=0), cmap='gray')
-        # for (u, v) in tree.edges:
-        #     x0, y0, _ = circle_comp_list[u].center
-        #     x1, y1, _ = circle_comp_list[v].center
-        #     axs[1].plot([x0, x1], [y0, y1])
-        # plt.show()
-
         circle_graph.weights = None
 
-        import time # temporary for debug
+        import time
 
         neuron = Neuron()
         t0 = time.time()
         neuron.from_graph(tree, circle_comp_list)
         self._vprint(f'--> from_graph [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc.swc')
         
         t0 = time.time()
         remove_zigzag(neuron)
         self._vprint(f'--> remove_zigzag [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc_rm_zigzag.swc')
 
         t0 = time.time()
         tune_branch(neuron)
         self._vprint(f'--> tune_branch [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned.swc')
 
         remove_spur(neuron)
         self._vprint(f'--> remove_spur [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur.swc')
 
         merge_close_point(neuron, 0.01)
         self._vprint(f'--> merge close point [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged.swc')
     
         remove_overshoot(neuron)
         self._vprint(f'--> remove overshoot [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged_rm_overshoot.swc')
 
         optimal_downsample(neuron)
         self._vprint(f'--> downsample [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged_rm_overshoot_opt_ds.swc')
 
         remove_subtrees_by_length(neuron, verbose=self.verbose)
         self._vprint(f'--> remove subtrees by length [length={neuron.length}]: {time.time() - t0:.5f}')
-        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged_rm_overshoot_opt_ds_rm_subtree.swc')
 
         return neuron

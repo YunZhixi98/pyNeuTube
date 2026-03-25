@@ -32,11 +32,12 @@ requirements:
     - fast-histogram >=0.14
     - edt >=2.4
     - matplotlib >=3.8
+    - nibabel >=5.3
 
 about:
   home: https://github.com/fkxyyds/pyneutube
   summary: Python reimplementation of the NeuTube tracing workflow.
-  license: MIT
+  license: BSD-3-Clause
   license_file: LICENSE
 
 test:

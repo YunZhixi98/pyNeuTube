@@ -186,44 +186,11 @@ class Seed:
         return f"Seed(coord={self.coord.tolist()}, value={self.value:.3f}, score={self.score:.3f})"
 
     def score_seed(self, image: np.ndarray) -> None:
-
-        # import matplotlib.pyplot as plt
-        # intensity = image[self.coord[2],self.coord[1],self.coord[0]]
-        # if intensity>50:
-        #     fig,axs=plt.subplots(1,4,figsize=(12,4))
-        # else:
-        #     axs=[None]*4
-        # def inspect_seed(ax):
-        #     if ax is None: return
-        #     if zleft < 0: zleft = 0
-        #     if zright > image.shape[0]: zright = image.shape[0]
-        #     ax.imshow(image[int(zleft):int(zright),...].mean(axis=0),cmap='gray')
-        #     ax.scatter(self.seg.start_coord[0], self.seg.start_coord[1], c='red', s=10)
-        #     ax.scatter(self.seg.center_coord[0], self.seg.center_coord[1], c='yellow', s=10)
-        #     ax.scatter(self.seg.end_coord[0], self.seg.end_coord[1], c='green', s=10)
-        #     ax.set_xlim(self.seg.center_coord[0] - 20, self.seg.center_coord[0] + 20)
-        #     ax.set_ylim(self.seg.center_coord[1] - 20, self.seg.center_coord[1] + 20)
-        # inspect_seed(axs[0])
-        # inspect_seg(image, self.seg, MexicanHatFilter()(self.seg), debug=True)
-        # print(self.seg.center_coord, self.seg.score)
         self.seg.centroid_shift(image)
-        # inspect_seed(axs[1])
-        # inspect_seg(image, self.seg, MexicanHatFilter()(self.seg), debug=True)
-        # print(self.seg.center_coord, self.seg.score)
         self.seg.orientation_grid_search(image)
-        # inspect_seed(axs[2])
-        # inspect_seg(image, self.seg, MexicanHatFilter(max_dist2=1)(self.seg), debug=True)
-        # print(self.seg.center_coord, self.seg.score)
         for _ in range(3):
             self.seg.centroid_shift(image)
-        # inspect_seed(axs[3])
-        # if intensity>50: plt.show()
-        # inspect_seg(image, self.seg, MexicanHatFilter()(self.seg), debug=True)
-        # print(self.seg.center_coord, self.seg.score)
-        # fit and update parameters and the best score
         self.seg.fit_segment(image)
-        # inspect_seg(image, self.seg, MexicanHatFilter()(self.seg), debug=True)
-        # print(self.seg.center_coord, self.seg.score)
 
         self.score = self.seg.score
 
@@ -485,4 +452,3 @@ class Seeds:
         self._sort_seeds()
 
         return
-

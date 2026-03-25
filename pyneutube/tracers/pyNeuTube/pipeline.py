@@ -10,7 +10,10 @@ def parse_args(argv=None):
     )
     parser.add_argument("input_path", help="Input image file or directory.")
     parser.add_argument("--output-swc", help="SWC output path for a single image.")
-    parser.add_argument("--output-overlay", help="Overlay image path for a single image.")
+    parser.add_argument(
+        "--visualization-dir",
+        help="Optional directory for lightweight PNG overlays. Disabled by default.",
+    )
     parser.add_argument("--output-dir", help="Output directory for batch SWC files.")
     parser.add_argument("--manifest-path", help="Optional JSONL run log for batch mode.")
     parser.add_argument("--dataset", help="Dataset path for HDF5 input files, if needed.")
@@ -55,8 +58,6 @@ def main(argv=None):
     input_path = Path(args.input_path)
 
     if input_path.is_dir():
-        if args.output_overlay:
-            raise ValueError("`--output-overlay` is only supported for single-image tracing.")
         if args.output_swc:
             raise ValueError("`--output-swc` is only supported for single-image tracing.")
         if args.dataset:
@@ -67,6 +68,7 @@ def main(argv=None):
         outputs = trace_directory(
             input_path,
             args.output_dir,
+            visualization_dir=args.visualization_dir,
             batch_n_jobs=args.batch_n_jobs,
             trace_n_jobs=args.trace_n_jobs,
             verbose=args.verbose,
@@ -86,7 +88,7 @@ def main(argv=None):
         input_path,
         dataset=args.dataset,
         output_swc=output_swc,
-        output_overlay=args.output_overlay,
+        visualization_dir=args.visualization_dir,
         n_jobs=args.n_jobs,
         verbose=args.verbose,
         overwrite=args.overwrite,

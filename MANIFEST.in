@@ -1,6 +1,5 @@
 include README.md
 include LICENSE
-include CHANGELOG.md
 include CITATION.cff
 include pyproject.toml
 include setup.py
@@ -8,20 +7,15 @@ include Cython_setup.py
 include MANIFEST.in
 include requirements.txt
 include environment.yml
-include key_features.md
-include RELEASE_PREP.md
 
 graft conda-recipe
-graft core
 graft docs
 graft examples
 graft pyneutube
-graft scripts
 graft tests
-graft tracers
+graft tools
 
-recursive-include core *.pyx *.pxd *.c
-recursive-include tracers *.pyx *.c
+recursive-include pyneutube *.pyx *.pxd *.c
 recursive-include tests *.py
 
 include examples/data/reference_volume.nii.gz
@@ -37,7 +31,6 @@ prune .wheelhouse
 prune debug
 prune examples/converted
 
-exclude examples/reference_overlay.png
 exclude examples/reference_trace_smoke.png
 exclude examples/reference_trace_smoke.swc
 exclude tracers/pyNeuTube/filters_tmp_backup.pyx

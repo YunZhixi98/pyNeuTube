@@ -303,9 +303,6 @@ def local_max_filter(image: np.ndarray) -> np.ndarray:
     img_padding = np.pad(image, ((1, 1), (1, 1), (1, 1)), mode='constant', constant_values=0)
     loc_max_mask = (img_padding != 0).astype(np.uint8)
     loc_max_mask = Stack_Locmax_Region(img_padding, loc_max_mask)
-    #print(f'min,max,mean,median,std: {loc_max_mask.min()}, {loc_max_mask.max()},   # debug only
-    #        {np.median(loc_max_mask)}, {loc_max_mask.std()}')
-    #np.save('optimized_local_max.npy', loc_max_mask)
 
     return loc_max_mask
 
@@ -435,7 +432,6 @@ def connectivity_filter(image: np.ndarray, min_neighbors: int,
     threshold = (min_neighbors * actual_neighbors) / n_neighbors
     
     mask = ((binary_image > 0) & (neighbor_count >= threshold)).astype(np.uint8)
-    #np.save('optimized_connectivity_mask.npy', mask)   # debug only!
             
     return mask
 

@@ -164,8 +164,6 @@ __marimo__/
 
 # Project-specific generated files
 *.pkl
-tmp.tif
-connected_chains.png
 build_ext.log
 build_meta.log
 .build_meta/
@@ -176,8 +174,4 @@ build_meta.log
 .wheelhouse/
 debug/
 *.jsonl
-examples/converted/
-examples/reference_overlay.png
-examples/reference_trace_smoke.png
-examples/reference_trace_smoke.swc
 tests/
