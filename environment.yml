@@ -1,0 +1,25 @@
+name: pyneutube-dev
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - pip
+  - numpy>=2.0
+  - scipy>=1.10
+  - tifffile>=2024.2.12
+  - networkx>=3.2
+  - tqdm>=4.66
+  - fast-histogram>=0.14
+  - edt>=2.4
+  - matplotlib>=3.8
+  - h5py>=3.11
+  - nibabel>=5.3
+  - pynrrd>=1.0
+  - pytest>=8.2
+  - pytest-cov>=5.0
+  - ruff>=0.6
+  - build>=1.2
+  - twine>=5.1
+  - cython>=3.0
+  - pip:
+      - -e .[io,visualization]

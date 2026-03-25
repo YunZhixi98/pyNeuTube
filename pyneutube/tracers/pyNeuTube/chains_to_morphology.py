@@ -1,0 +1,796 @@
+# tracers/pyNeuTube/chains_to_morphology.py
+
+"""
+chains_to_morphology.py
+
+Conversion of SegmentChains to a unified morphology (digitalized neuron tree).
+"""
+
+from math import exp
+from typing import List
+from copy import deepcopy
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+from pyneutube.core.io.swc_parser import Neuron
+from pyneutube.core.processing.swc_utils import (
+    remove_zigzag, remove_spur, tune_branch, 
+    merge_close_point, remove_overshoot,
+    remove_subtrees_by_length, optimal_downsample
+    )
+from pyneutube.core.visualization import image_enhancer
+
+from .geometry import (
+    seg_to_seg_surface, seg_to_seg_dist,
+    seg_chain_dist_upper_bound,
+    point_to_chain_surface,
+    point_in_chain_index, closest_circle
+    )
+from .config import ConnectorType, Defaults
+from .stack_graph_utils import Graph
+from .stack_graph import StackGraph, graph_edge_index, graph_update_edge_table, graph_expand_edge_table, GraphWorkspace
+from .neuron_structures import Neurocomp_Conn, Circle
+from .tracing import SegmentChain, SegmentChains
+from .tracing_utils import label_tracing_mask
+from .chain_utils import get_chain_side_bright_point, get_inner_chain_range, interpolate_chain
+
+
+def _clone_connect_segment(seg):
+    new_seg = seg.__class__.__new__(seg.__class__)
+    new_seg.radius = seg.radius
+    new_seg.length = seg.length
+    new_seg.theta = seg.theta
+    new_seg.psi = seg.psi
+    new_seg.scale = seg.scale
+    new_seg.start_coord = seg.start_coord.copy()
+    new_seg.center_coord = seg.center_coord.copy()
+    new_seg.end_coord = seg.end_coord.copy()
+    new_seg.dir_v = seg.dir_v.copy()
+    new_seg.trace_direction = seg.trace_direction
+    new_seg.score = seg.score
+    new_seg.mean_intensity = seg.mean_intensity
+    new_seg.ball_radius = None
+    return new_seg
+
+
+class ChainConnector:
+
+    def __init__(self, debug=False, debug_dir='./debug', verbose: int = 1):
+        
+        # 
+        self.conn_list: List[Neurocomp_Conn] = []
+        self.graph = Graph()
+
+        self.gw = GraphWorkspace()
+
+        # Connection_Test_Workspace
+        # self.hook_spot = -1
+        # self.dist = Defaults.SEG_LENGTH * 10.0
+        self.dist_thresh = Defaults.SEG_LENGTH
+        self.sp_test = True
+        self.interpolate = True
+
+        self.debug = debug
+        self.debug_dir = debug_dir
+        self.verbose = verbose
+
+    def _vprint(self, message: str) -> None:
+        if self.verbose:
+            print(message)
+
+        # # Neurocomp_Conn
+        # self.mode = ConnectorType.NEUROCOMP_CONN_HL
+        # self.info = np.array([0, 0], dtype=np.uint8)
+        # self.pos = np.empty(3, dtype=np.float64)  # point to surface min sdist intersection
+        # self.ort = np.empty(3, dtype=np.float64)
+        # self.cost = None
+        # self.min_sdist = None  # distance between point and segment surface
+        # self.min_pdist = None  # distance between two line segments
+
+    def connect_test(
+        self,
+        chain1: SegmentChain,
+        chain2: SegmentChain,
+        signal_image,
+        conn: Neurocomp_Conn,
+    ):
+        n_chain1 = len(chain1)
+        n_chain2 = len(chain2)
+        if n_chain1 == 0 or n_chain2 == 0:
+            return False
+
+        head = _clone_connect_segment(chain1[0])
+        tail = _clone_connect_segment(chain1[-1])
+        tail.flip_segment()
+        if len(chain1) >= 1:
+            head.length = 2.0
+            tail.length = 2.0
+
+        min_sdist = min(
+            seg_chain_dist_upper_bound(chain2, head),
+            seg_chain_dist_upper_bound(chain2, tail),
+        )
+
+        max_radius = 0
+        for seg in chain2._segments + [head, tail]:
+            max_radius = max(max_radius, seg.radius)
+        if min_sdist > 2*np.sqrt(max_radius**2+((Defaults.SEG_LENGTH-1)/2)**2)+self.dist_thresh:
+            conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
+            conn.cost = 10.0
+            return False
+
+        min_pdist = -1.0  # this is weired, which means the re-check of planar distance is not used.
+        head_ball_radius = head._set_ball_radius()
+        tail_ball_radius = tail._set_ball_radius()
+        for i, seg in enumerate(chain2._segments):
+            seg_ball_radius = seg.ball_radius
+            if seg_ball_radius is None:
+                seg_ball_radius = seg._set_ball_radius()
+
+            if (np.linalg.norm(seg.center_coord - head.center_coord) - seg_ball_radius - head_ball_radius) < min_sdist:
+                surface_dist, tmp_intersection_p = seg_to_seg_surface(head, seg)
+                update = False
+                if surface_dist < min_sdist:
+                    min_sdist = surface_dist
+                    conn.min_pdist = seg_to_seg_dist(head, seg)
+                    update = True
+                elif surface_dist == min_sdist:
+                    tmp_pdist = seg_to_seg_dist(head, seg)
+                    if tmp_pdist < min_pdist:
+                        conn.min_pdist = tmp_pdist
+                        update = True
+
+                if update:
+                    conn.info[0] = 0
+                    conn.info[1] = i
+                    conn.pos = tmp_intersection_p
+
+            if (np.linalg.norm(seg.center_coord - tail.center_coord) - seg_ball_radius - tail_ball_radius) < min_sdist:
+                surface_dist, tmp_intersection_p = seg_to_seg_surface(tail, seg)
+                update = False
+                if surface_dist < min_sdist:
+                    min_sdist = surface_dist
+                    conn.min_pdist = seg_to_seg_dist(tail, seg)
+                    update = True
+                elif surface_dist == min_sdist:
+                    tmp_pdist = seg_to_seg_dist(tail, seg)
+                    if tmp_pdist < min_pdist:
+                        conn.min_pdist = tmp_pdist
+                        update = True
+
+                if update:
+                    conn.info[0] = 1
+                    conn.info[1] = i
+                    conn.pos = tmp_intersection_p
+
+        conn.min_sdist = min_sdist
+
+        if conn.min_sdist>self.dist_thresh:
+            conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
+            conn.cost = 10.0
+            return False
+        
+        if conn.info[0] == 0:
+            conn.ort = head.dir_v
+        else:
+            conn.ort = -tail.dir_v  # Previously, tail has been flipped
+
+        return True
+
+    
+    def get_shortest_path(self, chain1: SegmentChain, chain2: SegmentChain, signal_image: np.ndarray, sgw: StackGraph) -> List[int]:
+        """
+        chain1: source chain
+        chain2: target chain
+        """        
+
+        bright_point = get_chain_side_bright_point(chain1, signal_image, 'head')
+        dist, intersection_point, min_idx = point_to_chain_surface(bright_point, chain2)
+        chain1_seg = chain1[0]  # need a copy?
+
+        tmp_bright_point = get_chain_side_bright_point(chain1, signal_image, 'tail')
+        tmpdist, tmp_intersection_point, tmp_min_idx = point_to_chain_surface(tmp_bright_point, chain2)
+
+        if tmpdist < dist:
+            bright_point = tmp_bright_point
+            dist = tmpdist
+            intersection_point = tmp_intersection_point
+            min_idx = tmp_min_idx
+            chain1_seg = chain1[-1]
+
+        if np.any(bright_point < 0) or np.any((bright_point+1) > signal_image.shape):
+            return []
+        
+        sgw.update_stack_graph_workspace_by_seg_chain(chain1_seg, chain2, signal_image)
+
+        start_index, end_index = get_inner_chain_range(chain2, min_idx, intersection_point)
+
+        return self.get_shortest_path_pt(bright_point, chain2, start_index, end_index, signal_image, sgw, chain1)
+
+    def get_shortest_path_pt(self, pos, chain, start_index, end_index, signal_image, sgw: StackGraph, chain1) -> List[int]:
+
+        seg_index = int((start_index + end_index) / 2)
+        locseg = chain[seg_index]
+        start_pos = np.rint(pos).astype(int)
+
+        pos = locseg.center_coord
+
+        end_pos = np.rint(pos).astype(int)
+
+        if sgw.sp_option != 1:
+            if sgw.group_mask is None:
+                sgw.group_mask = np.zeros(signal_image.shape, dtype=np.uint8)
+            for i in range(start_index, end_index + 1):
+                label_tracing_mask(chain[i], sgw.group_mask, dilate=True)
+            
+            tmpcoords = [chain[end_index].start_coord, chain[end_index].end_coord]
+            last_chain_bbox = np.array([np.min(tmpcoords, axis=0), np.max(tmpcoords, axis=0)])
+            x1, y1, z1 = np.floor(last_chain_bbox[0]-1).astype(int)
+            x2, y2, z2 = np.ceil(last_chain_bbox[1]+1).astype(int)
+            sgw.set_range(int(start_pos[0]), x1, int(start_pos[1]), y1, int(start_pos[2]), z1)
+            sgw.update_range(x2, y2, z2)
+        
+        sgw.expand_range(np.full(3, 10))
+        sgw.validate_range(signal_image.shape[2], signal_image.shape[1], signal_image.shape[0])
+
+        start_pos = np.clip(start_pos, [0, 0, 0], [signal_image.shape[2]-1, signal_image.shape[1]-1, signal_image.shape[0]-1])
+        end_pos = np.clip(end_pos, [0, 0, 0], [signal_image.shape[2]-1, signal_image.shape[1]-1, signal_image.shape[0]-1])
+
+        if np.sum(np.square(start_pos-end_pos)) < 1e+5:
+            offset_path = sgw.stack_route(signal_image, start_pos, end_pos)
+        else:
+            self._vprint('too far')
+            raise NotImplementedError
+        
+        path = []
+        nvoxels = signal_image.size
+
+        for i in range(len(offset_path)):
+            idx = offset_path[i]
+            if idx>=0 and idx<nvoxels:
+                path.append(idx)
+
+
+        # fig, ax = plt.subplots(1, 1, figsize=(10, 10))
+        # ax.imshow(signal_image[sgw.range[4]:sgw.range[5]].max(axis=0), 'gray')
+
+        # bbox = plt.Rectangle(
+        #     (sgw.range[0], sgw.range[2]),
+        #     abs(sgw.range[1] - sgw.range[0]),
+        #     abs(sgw.range[3] - sgw.range[2]),
+        #     fill=False, color='dodgerblue', linestyle='--'
+        # )
+        # ax.add_patch(bbox)
+
+        # chain1_coords = chain1.to_coords()
+        # for i in range(len(chain1_coords) - 1):
+        #     x0, y0, _ = chain1_coords[i]
+        #     x1, y1, _ = chain1_coords[i + 1]
+        #     ax.arrow(
+        #         x0, y0, x1 - x0, y1 - y0,
+        #         length_includes_head=True, head_width=2, head_length=3,
+        #         fc='green', ec='green'
+        #     )
+
+        # ax.scatter(pos[0], pos[1], c='orange', s=30, zorder=11)
+        # ax.scatter(start_pos[0], start_pos[1], c='pink', s=30, zorder=11)
+        # ax.scatter(end_pos[0], end_pos[1], c='limegreen', s=30, zorder=11)
+
+        # chain2_coords = chain.to_coords()
+        # for i in range(len(chain2_coords) - 1):
+        #     x0, y0, _ = chain2_coords[i]
+        #     x1, y1, _ = chain2_coords[i + 1]
+        #     ax.arrow(
+        #         x0, y0, x1 - x0, y1 - y0,
+        #         length_includes_head=True, head_width=2, head_length=3,
+        #         fc='red', ec='red'
+        #     )
+        # print(path)
+        # path_offset_unravel = np.unravel_index(path, signal_image.shape)
+        # ax.scatter(path_offset_unravel[2],path_offset_unravel[1], 
+        #            c='yellow', marker='o',s=20, zorder=11, edgecolor='black', linewidth=1, alpha=0.7)
+        
+        # plt.show()
+
+        return path
+
+
+    def validate_shortest_path(self, path: list, chain, signal_image: np.ndarray, sgw: StackGraph, conn: Neurocomp_Conn):
+
+        path_length = len(path)
+        if path_length == 0:
+            conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
+            gdist = 0.0
+            return gdist
+        
+        gdist = sgw.value  # (geodesic) shortest path distance (with weighted cost -- image intensity)
+
+        dark_count = 0
+        bright_count = 0
+        hit_index = 0  # hit_index is: chain_seg_index + 1
+        if path_length >= 5:
+            
+            for i in range(path_length):
+                if hit_index < 3:
+                    coord = np.array(np.unravel_index(path[i], signal_image.shape))
+                    if conn.info[0] == 0:
+                        hit_index = point_in_chain_index(coord, chain)
+                    else:
+                        hit_index = point_in_chain_index(coord, chain[::-1])
+                
+                intensity = signal_image[coord[0], coord[1], coord[2]]
+                if intensity == 0 or intensity < sgw.argv[3]-sgw.argv[4]:
+                    dark_count+=1
+                else:
+                    bright_count+=1
+            
+            if (dark_count >= 2 and dark_count >= bright_count) or dark_count >= 5 or hit_index >= 3:
+                conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
+            else:
+                if dark_count+ bright_count >= 2:
+                    prev_coord = np.unravel_index(path[path_length - 2], signal_image.shape)
+                    count = 0
+                    conn.ort = np.zeros(3, dtype=np.float64)
+                    for i in range(path_length - 3, -1, -1):
+                        coord = np.array(np.unravel_index(path[i], signal_image.shape))
+                        conn.ort += prev_coord - coord
+                        prev_coord = coord
+                        count += 1
+                        if count >= 5:
+                            break
+                    conn.ort = conn.ort / np.linalg.norm(conn.ort)
+
+
+        return gdist
+
+    def show_chains_debug(self, chains: SegmentChains, signal_image: np.ndarray, figname: str, enhance: bool = True):
+        plt.figure(figsize=(10,10))
+        depth, height, width = signal_image.shape[:3]
+
+        img2d = signal_image.max(axis=0)
+        if enhance:
+            # Enhance the image for better visualization
+            img2d = image_enhancer.soft_standardize(img2d, k_sigma=1.5)
+        
+        plt.imshow(img2d, cmap='gray', origin='lower')
+        for chain in chains:
+            chain_coords = chain.to_coords()
+            for i in range(len(chain_coords) - 1):
+                x0, y0, _ = chain_coords[i]
+                x1, y1, _ = chain_coords[i + 1]
+                plt.plot([x0, x1], [y0, y1],'dodgerblue', alpha=0.75)
+
+        plt.xlim(0, width)
+        plt.ylim(0, height)
+        plt.tight_layout()
+        plt.savefig(figname, dpi=300)
+        plt.close()
+
+ 
+    def reconstruct(self, chains: SegmentChains, signal_image: np.ndarray):
+        self.prepare_chain_conn(chains, signal_image)
+        self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
+        
+        if self.debug:  # saving intermediate results for debug
+            self.show_chains_debug(chains, signal_image, figname='connected_chains.png')
+
+        self.remove_redundant_edges()
+        self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
+
+        self.crossover_test(chains)
+
+        # from core.visualization.debug_vis import inspect_chain_graph
+        # for i in range(len(self.conn_list)):
+        #     inspect_chain_graph(signal_image, edge=self.graph.edges[i], chains=chains, conn=self.conn_list[i], debug=True)
+
+        circle_list, circle_conn_list, circle_comp_list = self.chains_to_circles(chains)
+
+        return self.circles_to_tree(circle_list, circle_conn_list, circle_comp_list, signal_image)
+
+
+    def prepare_chain_conn(self, chains: SegmentChains, signal_image: np.ndarray):
+        """
+        Construct a neuronal tree (in SWC format) for given SegmentChains
+        """
+        nchains = len(chains)
+        self.graph.nvertex = nchains
+        if nchains == 0:
+            return None
+        
+        if nchains > 500:
+            self.sp_test = False
+        
+        #self.sp_test = True # debug
+        
+        for i, chain1 in enumerate(chains):
+            for j, chain2 in enumerate(chains):
+                if i==j: continue
+                conn = Neurocomp_Conn(
+                    mode=ConnectorType.NEUROCOMP_CONN_HL,
+                    info=np.array([0, 0], dtype=int),
+                    pos=np.empty(3, dtype=np.float64),
+                    ort=np.empty(3, dtype=np.float64),
+                    cost=0.0,
+                    min_pdist=-1.0,
+                    min_sdist=-1.0
+                )
+                is_possible_connect = self.connect_test(chain1, chain2, signal_image, conn)
+                if is_possible_connect:
+                    if conn.min_sdist > 2.0 and self.sp_test == True:
+                        # initialize StackGraph
+                        sgw = StackGraph(conn=26)
+                        sgw.signal_mask = None  # possibly is None
+                        sgw.including_signal_border = True
+                        path = self.get_shortest_path(chain1, chain2, signal_image, sgw)
+                        gdist = self.validate_shortest_path(path, chain1, signal_image, sgw, conn)
+                        conn.cost = 1.0 / (1.0 + exp((-conn.min_sdist + gdist) / 100.0))
+                    else:
+                        conn.cost = 1.0 / (1.0 + exp(-conn.min_sdist / 100.0))
+                    
+                if conn.mode == ConnectorType.NEUROCOMP_CONN_NONE:
+                    continue
+                else:
+                    if self.interpolate:
+                        if conn.mode == ConnectorType.NEUROCOMP_CONN_HL:
+                            index, conn.pos = interpolate_chain(chain2, conn.pos, conn.ort)
+                            if index is not None:
+                                conn.info[1] = index
+                            else:
+                                if conn.info[1] == 0:
+                                    conn.info[1] = 0
+                                    conn.mode = ConnectorType.NEUROCOMP_CONN_LINK
+                                elif conn.info[1] == len(chain2)-1:
+                                    conn.info[1] = 1
+                                    conn.mode = ConnectorType.NEUROCOMP_CONN_LINK
+
+                # go on
+                if conn.info[1] <= 0:
+                    conn.mode = ConnectorType.NEUROCOMP_CONN_LINK
+                    conn.info[1] = 0
+                elif conn.info[1] >= len(chain2) - 1:
+                    conn.mode = ConnectorType.NEUROCOMP_CONN_LINK
+                    conn.info[1] = 1
+
+                conn_existed = False
+                if i > j:
+                    if self.graph.nedge > 0:
+                        edge_idx = graph_edge_index(j, i, self.gw)
+                        if edge_idx is not None:
+                            if conn.mode == ConnectorType.NEUROCOMP_CONN_LINK:
+                                if self.conn_list[edge_idx].info[0] == conn.info[1]:
+                                    conn_existed = True
+                            elif self.conn_list[edge_idx].mode == ConnectorType.NEUROCOMP_CONN_LINK:
+                                if self.conn_list[edge_idx].info[1] == conn.info[0]:
+                                    conn_existed = True
+                            if conn_existed:
+                                if self.conn_list[edge_idx].cost > conn.cost:
+                                    self.conn_list[edge_idx] = conn
+                                    self.graph.edges[edge_idx][0] = i
+                                    self.graph.edges[edge_idx][1] = j
+                                    graph_update_edge_table(self.graph, self.gw)
+                if not conn_existed:
+                    self.graph.add_edge(i, j)
+                    self.conn_list.append(conn)
+                    graph_expand_edge_table(i, j, self.graph.nedge - 1, self.gw)
+
+                    
+    def remove_redundant_edges(self):
+        nedge = self.graph.nedge
+        conn_list = self.conn_list
+        edge_mask = np.zeros(nedge, dtype=np.uint8)
+
+        # Set edge mask to 2 for link connection, 1 for hook-loop connection and 0 for no connection
+        for i in range(nedge):
+            if conn_list[i].mode == ConnectorType.NEUROCOMP_CONN_LINK:
+                edge_mask[i] = 2
+            elif conn_list[i].mode == ConnectorType.NEUROCOMP_CONN_HL:
+                edge_mask[i] = 1
+            else:
+                edge_mask[i] = 0
+        
+        # Remove duplicated hook-loops by keeping the one with smaller cost
+        for i in range(nedge):
+            if edge_mask[i] == 1:
+                for j in range(i+1, nedge):
+                    if edge_mask[j] == 1:
+                        if self.graph.edges[i][0] == self.graph.edges[j][1] and \
+                            self.graph.edges[i][1] == self.graph.edges[j][0]:
+                            if conn_list[i].cost < conn_list[j].cost:
+                                edge_mask[j] = 0
+                            else:
+                                edge_mask[i] = 0
+
+        # Keep the smallest edge for multiple-loop connections
+        for i in range(nedge):
+            if edge_mask[i] == 1:
+                for j in range(i+1, nedge):
+                    if edge_mask[j] == 1:
+                        if self.graph.edges[i][0] == self.graph.edges[j][0] and \
+                            conn_list[i].info[0] == conn_list[j].info[0]:
+                            if conn_list[i].cost < conn_list[j].cost:
+                                edge_mask[j] = 0
+                            else:
+                                edge_mask[i] = 0
+
+        # Move the edges into a compact array
+        # nedge = 0
+        new_conn_list = []
+        new_edges = []
+        # new_nedge = 0
+        for i in range(nedge):
+            if edge_mask[i] > 0:
+                # if i != nedge:
+                #     self.graph.edges[nedge][0] = self.graph.edges[i][0]
+                #     self.graph.edges[nedge][1] = self.graph.edges[i][1]
+                #     conn_list[nedge] = deepcopy(conn_list[i])
+                #     new_nedge += 1
+                new_conn_list.append(conn_list[i])
+                new_edges.append(self.graph.edges[i])
+
+        self.graph.nedge = len(new_conn_list)
+        self.graph.edges = new_edges
+        # self.graph.nedge = new_nedge
+        self.conn_list = new_conn_list
+    
+    def crossover_test(self, chains):
+        nconn = self.graph.nedge
+        ncomp = self.graph.nvertex
+
+        status = np.zeros(nconn, dtype=np.uint8)
+        
+        dist_thresh = 20.0
+
+        for i in range(ncomp):
+            head_link_number = 0
+            tail_link_number = 0
+
+            head_link_index = []
+            tail_link_index = []
+            link_type = [0, 0]
+
+            for j in range(nconn):
+                if self.graph.edges[j][0] == i:
+                    if self.conn_list[j].info[0] == 0:
+                        if self.conn_list[j].mode == ConnectorType.NEUROCOMP_CONN_HL:
+                            if self.conn_list[j].min_sdist < dist_thresh:
+                                head_link_index.append(j)
+                                head_link_number += 1
+                        else:
+                            head_link_index.append(j)
+                            head_link_number += 1
+                            if self.conn_angle(j, chains) < np.pi/4.0 and self.conn_list[j].min_sdist < dist_thresh:
+                                link_type[0] = 1
+                    else:
+                        if self.conn_list[j].mode == ConnectorType.NEUROCOMP_CONN_HL:
+                            if self.conn_list[j].min_sdist < dist_thresh:
+                                tail_link_index.append(j)
+                                tail_link_number += 1
+                        else:
+                            tail_link_index.append(j)
+                            tail_link_number += 1
+                            if self.conn_angle(j, chains) < np.pi/4.0 and self.conn_list[j].min_sdist < dist_thresh:
+                                link_type[1] = 1
+                
+                if self.graph.edges[j][1] == i and self.conn_list[j].mode == ConnectorType.NEUROCOMP_CONN_LINK:
+                    if self.conn_list[j].info[1] == 0:
+                        head_link_index.append(j)
+                        head_link_number += 1
+                        if self.conn_angle(j, chains) < np.pi/4.0 and self.conn_list[j].min_sdist < dist_thresh:
+                            link_type[0] = 1
+                    else:
+                        tail_link_index.append(j)
+                        tail_link_number += 1
+                        if self.conn_angle(j, chains) < np.pi/4.0 and self.conn_list[j].min_sdist < dist_thresh:
+                            link_type[1] = 1
+                
+            if link_type[0] == 1:
+                if head_link_number > 1:
+                    for j in range(head_link_number):
+                        if self.conn_list[head_link_index[j]].mode == ConnectorType.NEUROCOMP_CONN_HL:
+                            status[head_link_index[j]] = 1
+            elif link_type[1] == 1:
+                if tail_link_number > 1:
+                    for j in range(tail_link_number):
+                        if self.conn_list[tail_link_index[j]].mode == ConnectorType.NEUROCOMP_CONN_HL:
+                            status[tail_link_index[j]] = 1
+        for i in range(nconn):
+            if status[i] == 1:
+                self.conn_list[i].cost += 1.0
+
+        return
+
+    def conn_angle(self, index, chains):
+        if self.conn_list[index].mode == ConnectorType.NEUROCOMP_CONN_NONE:
+            return -1.0
+    
+        chain1 = chains[self.graph.edges[index][0]]
+        chain2 = chains[self.graph.edges[index][1]]
+
+        if chain1 is None or chain2 is None:
+            return -1.0
+
+        mode = self.conn_list[index].mode
+
+        if mode == ConnectorType.NEUROCOMP_CONN_HL:
+            if self.conn_list[index].info[0] == 0:
+                seg1 = chain1[0].copy()
+                seg1.flip_segment()
+            else:
+                seg1 = chain1[-1].copy()
+
+            seg2 = chain2[self.conn_list[index].info[1]].copy()
+
+        elif mode == ConnectorType.NEUROCOMP_CONN_LINK:
+            if self.conn_list[index].info[0] == 0:
+                seg1 = chain1[0].copy()
+                seg1.flip_segment()
+            else:
+                seg1 = chain1[-1].copy()
+
+            if self.conn_list[index].info[1] == 0:
+                seg2 = chain2[0].copy()
+            else:
+                seg2 = chain2[-1].copy()
+                seg2.flip_segment()
+
+        angle = np.arccos(np.clip(np.dot(seg1.dir_v, seg2.dir_v), -1.0, 1.0))
+
+        return angle
+    
+
+    def chains_to_circles(self, chains):
+        
+        nchain = len(chains)
+        nedge = self.graph.nedge
+
+        start_id = np.empty(nchain+1, dtype=int)
+
+        # initialize circle representation workspace
+        ncomp = 0
+        for i in range(nchain):
+            start_id[i] = ncomp
+            length = len(chains[i])
+            assert length > 0, "Chain is empty"
+            ncomp += length + 2
+        ncomp *= 5
+
+        circle_graph = Graph()
+        circle_conn_list: List[Neurocomp_Conn] = []
+        circle_comp_list: List[Circle] = []
+        # ------------------------------------------
+
+        def chain_to_circle(chain: SegmentChain):
+            chain_coords, chain_indices = chain.to_coords(return_indices=True)
+            n_chain_coords = len(chain_coords)
+
+            coord_index = 0
+            circle_list = []
+            for i_seg, seg in enumerate(chain):
+                # coord = chain_coords[coord_index]
+                while coord_index < n_chain_coords:
+                    coord_chain_idx = chain_indices[coord_index]
+                    if coord_chain_idx == i_seg:
+                        circle = Circle(chain_coords[coord_index], seg.radius*seg.scale, seg.theta, seg.psi)
+                        circle_list.append(circle)
+
+                        coord_index += 1
+                    else:
+                        break
+
+            return circle_list
+        
+        for i_chain in range(nchain):
+            chain = chains[i_chain]
+            circle_list = chain_to_circle(chain)
+            circle_comp_list.extend(circle_list)
+            n_circle_list = len(circle_list)
+            for i in range(n_circle_list-1):
+                circle_conn_list.append(Neurocomp_Conn(mode=ConnectorType.NEUROCOMP_CONN_LINK, 
+                                                       info=np.array([0, 0], dtype=int), 
+                                                       cost=0.0,
+                                                       pos=None, min_sdist=None, min_pdist=None, ort=None))
+                circle_graph.add_edge(start_id[i_chain]+i, start_id[i_chain]+i+1)
+
+            ncomp += n_circle_list
+            start_id[i_chain + 1] = start_id[i_chain] + n_circle_list
+
+        circle_graph.nvertex = ncomp
+
+        id_ = [0, 0]
+        for i in range(nedge):
+            index1 = self.graph.edges[i][0]
+            index2 = self.graph.edges[i][1]
+
+            conn2 = self.conn_list[i]
+
+            if conn2.mode == ConnectorType.NEUROCOMP_CONN_LINK or conn2.mode == ConnectorType.NEUROCOMP_CONN_HL:
+                if conn2.info[0] == 0:
+                    id_[0] = start_id[index1]  # chain head circle
+                else:
+                    id_[0] = start_id[index1 + 1] - 1  # chain tail circle
+
+                id_[1] = closest_circle(circle_comp_list[start_id[index2]: start_id[index2 + 1]], start_id[index2 + 1] - start_id[index2], conn2.pos) + start_id[index2]
+            
+            conn = Neurocomp_Conn(mode=ConnectorType.NEUROCOMP_CONN_LINK, 
+                                  info=np.array([0, 1], dtype=int), cost=conn2.cost,
+                                  pos=None, min_sdist=None, min_pdist=None, ort=None)
+            circle_graph.add_edge(id_[0], id_[1])
+            circle_conn_list.append(conn)
+        
+        return circle_graph, circle_conn_list, circle_comp_list
+
+    def save_swc_debug(self, neuron, swc_name):
+        if self.debug:
+            neuron.save_swc(f'{self.debug_dir}/{swc_name}')
+    
+    def circles_to_tree(self, circle_graph: Graph, circle_conn_list: List[Neurocomp_Conn], circle_comp_list: List[Circle], signal_image):
+        if not circle_comp_list:
+            return None
+        
+        circle_graph.weights = [circle_conn_list[i].cost for i in range(circle_graph.nedge)]
+
+        # fig,axs = plt.subplots(1,2,figsize=(10,10))
+        # axs[0].imshow(signal_image.max(axis=0), cmap='gray')
+        # for (u, v) in circle_graph.edges:
+        #     x0, y0, _ = circle_comp_list[u].center
+        #     x1, y1, _ = circle_comp_list[v].center
+        #     axs[0].plot([x0, x1], [y0, y1])
+
+        import networkx as nx
+        G = nx.Graph()
+        G.add_nodes_from(range(len(circle_comp_list)))
+        for i, (u, v) in enumerate(circle_graph.edges):
+            G.add_edge(u, v, weight=circle_graph.weights[i])
+        self._vprint(f"{G.number_of_nodes()} {G.number_of_edges()}")
+        tree = nx.minimum_spanning_tree(G, weight='weight')
+        self._vprint(f"{tree.number_of_nodes()} {tree.number_of_edges()}")
+
+        # axs[1].imshow(signal_image.max(axis=0), cmap='gray')
+        # for (u, v) in tree.edges:
+        #     x0, y0, _ = circle_comp_list[u].center
+        #     x1, y1, _ = circle_comp_list[v].center
+        #     axs[1].plot([x0, x1], [y0, y1])
+        # plt.show()
+
+        circle_graph.weights = None
+
+        import time # temporary for debug
+
+        neuron = Neuron()
+        t0 = time.time()
+        neuron.from_graph(tree, circle_comp_list)
+        self._vprint(f'--> from_graph [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc.swc')
+        
+        t0 = time.time()
+        remove_zigzag(neuron)
+        self._vprint(f'--> remove_zigzag [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc_rm_zigzag.swc')
+
+        t0 = time.time()
+        tune_branch(neuron)
+        self._vprint(f'--> tune_branch [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned.swc')
+
+        remove_spur(neuron)
+        self._vprint(f'--> remove_spur [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur.swc')
+
+        merge_close_point(neuron, 0.01)
+        self._vprint(f'--> merge close point [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged.swc')
+    
+        remove_overshoot(neuron)
+        self._vprint(f'--> remove overshoot [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged_rm_overshoot.swc')
+
+        optimal_downsample(neuron)
+        self._vprint(f'--> downsample [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged_rm_overshoot_opt_ds.swc')
+
+        remove_subtrees_by_length(neuron, verbose=self.verbose)
+        self._vprint(f'--> remove subtrees by length [length={neuron.length}]: {time.time() - t0:.5f}')
+        self.save_swc_debug(neuron, 'my_swc_rm_zigzag_tuned_rm_spur_merged_rm_overshoot_opt_ds_rm_subtree.swc')
+
+        return neuron

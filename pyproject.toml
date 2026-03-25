@@ -1,0 +1,108 @@
+[build-system]
+requires = ["setuptools>=77", "wheel", "numpy>=2.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyneutube"
+dynamic = ["version"]
+description = "Python reimplementation of the NeuTube tracing workflow."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+  { name = "PyNeuTube contributors" },
+]
+keywords = ["neuron tracing", "microscopy", "swc", "neuroscience", "image analysis"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Image Processing",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "tifffile>=2024.2.12",
+  "networkx>=3.2",
+  "tqdm>=4.66",
+  "fast-histogram>=0.14",
+  "edt>=2.4",
+  "matplotlib>=3.8",
+  "nibabel>=5.3",
+]
+
+[project.optional-dependencies]
+io = [
+  "h5py>=3.11",
+  "pynrrd>=1.0",
+]
+visualization = [
+  "seaborn>=0.13",
+  "sympy>=1.12",
+  "trimesh>=4.0",
+]
+test = [
+  "pytest>=8.2",
+  "pytest-cov>=5.0",
+  "h5py>=3.11",
+  "nibabel>=5.3",
+  "pynrrd>=1.0",
+]
+dev = [
+  "build>=1.2",
+  "ruff>=0.6",
+  "twine>=5.1",
+  "cython>=3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/fkxyyds/pyneutube"
+Source = "https://github.com/fkxyyds/pyneutube"
+Issues = "https://github.com/fkxyyds/pyneutube/issues"
+
+[project.scripts]
+pyneutube-trace = "pyneutube.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "pyneutube._version.__version__" }
+
+[tool.setuptools]
+include-package-data = false
+packages = [
+  "pyneutube",
+  "pyneutube.core",
+  "pyneutube.core.io",
+  "pyneutube.core.processing",
+  "pyneutube.core.visualization",
+  "pyneutube.tracers",
+  "pyneutube.tracers.pyNeuTube",
+]
+
+[tool.setuptools.package-data]
+"pyneutube.core.processing" = ["*.pyx", "*.pxd"]
+"pyneutube.tracers.pyNeuTube" = ["*.pyx"]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["__pycache__/*", "*.py[cod]", "*.c", "*.cpp"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+markers = [
+  "integration: requires local reference assets",
+]
+python_files = ["test_*.py"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pyneutube"]

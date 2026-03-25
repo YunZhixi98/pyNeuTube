@@ -1,0 +1,171 @@
+
+from math import floor
+from typing import Tuple, Callable, Literal, Optional
+
+import numpy as np
+
+from pyneutube.core.processing.sampling import sample_voxels
+
+from .filters import MexicanHatFilter
+from .tracing import SegmentChain
+from .config import Defaults, TraceDirection
+from .geometry import segment_segment_distance
+
+
+def get_inner_chain_range(chain: SegmentChain, chain_idx: int, ref_coord: np.ndarray, 
+                          dist_threshold: float = Defaults.SEG_LENGTH*2.5) -> Tuple[int, int]:
+    """ tz_locseg_chain.c: static void locseg_chain_point_range(...) """
+    accum_dist = 0.0  # accumulated distance from ref_coord
+    start_idx = chain_idx  # current index in chain
+    n_chain = len(chain)
+
+    while start_idx >= 0 and accum_dist < dist_threshold:
+        cur_seg = chain[start_idx]
+        accum_dist += np.linalg.norm(cur_seg.start_coord - ref_coord)
+        start_idx -= 1
+    if start_idx < 0:
+        start_idx = 0
+
+    accum_dist = 0.0
+    end_idx = chain_idx + 1
+
+    while end_idx < n_chain and accum_dist < dist_threshold:
+        cur_seg = chain[end_idx]
+        accum_dist += np.linalg.norm(cur_seg.end_coord - ref_coord)
+        end_idx += 1
+    if end_idx >= n_chain:
+        end_idx = n_chain - 1
+
+    return start_idx, end_idx
+
+
+def get_chain_min_seg_score(chain: SegmentChain, signal_image: np.ndarray, 
+                            score_func: Callable[[np.ndarray, np.ndarray], float]) -> float:
+    min_score = np.inf
+    seg_filter = MexicanHatFilter()
+    for seg in chain.segments:
+        coords_3d, _, weights_3d = seg_filter(seg)
+        intensities = sample_voxels(signal_image, coords_3d)
+        score = score_func(intensities, weights_3d)
+        min_score = min(min_score, score)
+
+    return min_score
+
+
+def get_chain_side_bright_point(chain: SegmentChain, signal_image: np.ndarray, 
+                                side: Literal['head', 'tail']) -> np.ndarray:
+    if side == 'head':
+        seg = chain.segments[0]
+        coords = seg.start_coord + seg.dir_v * np.arange(0, floor((seg.length-1)/2)+1, 1).reshape(-1, 1)
+    else:
+        seg = chain.segments[-1]
+        coords = seg.end_coord - seg.dir_v * np.arange(0, floor((seg.length-1)/2)+1, 1).reshape(-1, 1)
+
+    intensities = sample_voxels(signal_image, coords)
+    idx = np.argmax(intensities)
+
+    return coords[idx]
+
+
+def interpolate_chain(chain: SegmentChain, ref_point: np.ndarray, ort: Optional[np.ndarray] = None) -> Tuple[int, np.ndarray]:
+    """
+    linear interpolation of chain by given coord
+    """
+    coords, coords_seg_indices = chain.to_coords(return_indices=True)
+    coords_num = len(coords)
+
+    if coords_num == 1:
+        raise ValueError("Chain has only one segment.")        
+    
+    min_index = None
+    min_dist = np.inf
+
+    closest1 = None
+    index = None
+
+    if ort is None:
+        raise NotImplementedError
+    else:
+        start = ref_point - ort * 5.0
+        end = ref_point + ort * 5.0
+
+        for i in range(coords_num-1):
+            start_pos = coords[i]
+            end_pos = coords[i+1]
+
+            tmp_min_dist, tmp_closest1, _ = segment_segment_distance(start_pos, end_pos, start, end)
+            
+            if tmp_min_dist < min_dist:
+                min_dist = tmp_min_dist
+                min_index = i
+                closest1 = tmp_closest1
+                interp_lambda = np.linalg.norm(closest1 - start_pos) / np.linalg.norm(end_pos - start_pos)
+
+    if interp_lambda > 0.0 and interp_lambda < 1.0:
+        start_pos = coords[min_index]
+        end_pos = coords[min_index+1]
+
+        length = np.linalg.norm(end_pos - start_pos)
+        
+        if length * interp_lambda < 1.0 and interp_lambda <= 0.5:
+            interp_lambda = 0.0
+        elif length * (1.0 - interp_lambda) < 1.0 and interp_lambda >= 0.5:
+            interp_lambda = 1.0
+        else:
+            if min_index == 0:
+                if length * interp_lambda < 3.0:
+                    interp_lambda = 0.0
+            elif min_index == coords_num-2:
+                if length * (1.0 - interp_lambda) < 3.0:
+                    interp_lambda = 1.0
+
+    if interp_lambda > 0.0 and interp_lambda < 1.0:
+        if closest1 is None:
+            closest1 = start_pos + (end_pos - start_pos) * interp_lambda
+
+        start_seg_idx = coords_seg_indices[min_index]
+        end_seg_idx = coords_seg_indices[min_index+1]
+        prev_seg = chain.segments[start_seg_idx]
+
+        if start_seg_idx == end_seg_idx:
+            if prev_seg.length > 1.0:
+                interp_seg = prev_seg.copy()
+                if interp_seg.trace_direction == TraceDirection.BOTH:
+                    interp_seg.trace_direction = TraceDirection.BACKWARD
+                prev_seg.length = (prev_seg.length - 1) * (1-interp_lambda) + 1
+                prev_seg._set_coordinate(prev_seg.end_coord, 'end')  # nonstandard operation for a private method
+                
+                interp_seg.length = (interp_seg.length - 1) * interp_lambda + 1
+                interp_seg._set_coordinate(interp_seg.start_coord, 'start')
+
+                chain.insert(start_seg_idx, interp_seg)
+                index = start_seg_idx
+        else:
+            r1 = chain[start_seg_idx].radius
+            r2 = chain[end_seg_idx].radius
+            interp_seg = prev_seg.copy()
+            if interp_seg.trace_direction == TraceDirection.BOTH:
+                interp_seg.trace_direction = TraceDirection.FORWARD
+            interp_seg.length = 1.0
+            interp_seg._set_coordinate(closest1, 'start')
+            if r1 != r2:
+                interp_seg.radius = r1 + (r2 - r1) * interp_lambda
+            
+            chain.insert(end_seg_idx, interp_seg)
+            index = end_seg_idx
+        
+        interp_pos = interp_seg.start_coord
+
+    else:
+        if interp_lambda == 0.0:
+            interp_pos = coords[min_index]
+        else:
+            interp_pos = coords[min_index+1]
+
+    return index, interp_pos
+
+
+            
+            
+                
+

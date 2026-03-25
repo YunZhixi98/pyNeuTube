@@ -1,0 +1,55 @@
+{% set name = "pyneutube" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python >=3.10
+    - pip
+    - setuptools >=68
+    - wheel
+    - numpy >=2.0
+  run:
+    - python >=3.10
+    - numpy >=1.24
+    - scipy >=1.10
+    - tifffile >=2024.2.12
+    - networkx >=3.2
+    - tqdm >=4.66
+    - fast-histogram >=0.14
+    - edt >=2.4
+    - matplotlib >=3.8
+
+about:
+  home: https://github.com/fkxyyds/pyneutube
+  summary: Python reimplementation of the NeuTube tracing workflow.
+  license: MIT
+  license_file: LICENSE
+
+test:
+  imports:
+    - pyneutube
+    - pyneutube.tracing
+    - pyneutube.cli
+    - pyneutube.core.processing.local_maximum
+    - pyneutube.core.processing.sampling
+    - pyneutube.core.processing.transform
+    - pyneutube.tracers.pyNeuTube.filters
+    - pyneutube.tracers.pyNeuTube.geometry_accel
+    - pyneutube.tracers.pyNeuTube.seg_utils
+    - pyneutube.tracers.pyNeuTube.stack_graph_utils
+  commands:
+    - pyneutube-trace --help

@@ -180,3 +180,4 @@ examples/converted/
 examples/reference_overlay.png
 examples/reference_trace_smoke.png
 examples/reference_trace_smoke.swc
+tests/

@@ -1,0 +1,889 @@
+﻿# tracers/pyNeuTube/tracing.py
+
+"""
+tracing.py
+
+Definition of tracing segments and utilities of tracing.
+"""
+
+from functools import lru_cache
+from itertools import islice
+from typing import Callable, List, Tuple, Literal, Union
+from tqdm import tqdm
+from math import exp, sqrt
+
+import numpy as np
+from scipy.optimize import minimize
+
+from pyneutube.core.math_utils import get_bounding_box
+from pyneutube.core.processing.sampling import sample_voxels
+from pyneutube.core.processing.transform import rotate_by_theta_psi, normalize_euler_zx
+
+from .config import TraceStatus, Defaults, TraceDirection
+from .tracing_base import BaseTracingSegment
+from .filters import MexicanHatFilter, correlation_score, mean_intensity_score
+from .seg_utils import set_coordinates, set_orientation
+from .geometry import point_in_seg
+from .optimization import optimize_segment, SegmentOptimizer
+from .tracing_utils import label_tracing_mask
+# from filters0 import correlation_score, mean_intensity_score
+
+
+_SEG_FILTER = MexicanHatFilter()
+_ORIENTATION_SEG_FILTER = MexicanHatFilter(max_dist2=0.81)
+_MULTI_TRIAL_THETA_OFFSETS = (0.0, np.pi / 8, -np.pi / 8, np.pi / 16, -np.pi / 16)
+_MULTI_TRIAL_PSI_OFFSETS = (0.0, np.pi / 4, -np.pi / 4, np.pi / 8, -np.pi / 8)
+
+
+@lru_cache(maxsize=16)
+def _orientation_search_schedule(length: float) -> tuple[tuple[float, tuple[float, ...]], ...]:
+    schedule = []
+    for theta in np.arange(0.1, np.pi * 0.75, 0.2):
+        psi_step = 2.0 / length / np.sin(theta)
+        psi_values = tuple(float(value) for value in np.arange(0, 2 * np.pi, psi_step))
+        schedule.append((float(theta), psi_values))
+    return tuple(schedule)
+
+
+@lru_cache(maxsize=4096)
+def _cached_orientation_vector(theta: float, psi: float) -> tuple[float, float, float]:
+    direction = set_orientation(theta, psi)
+    return (float(direction[0]), float(direction[1]), float(direction[2]))
+
+
+class TracingSegment(BaseTracingSegment):
+    def __init__(self, radius: float, coord: np.ndarray, length: float = Defaults.SEG_LENGTH, 
+                 theta: float = 0.0, psi: float = 0.0, 
+                 scale: float = 1.0, 
+                 alignment: Literal['center', 'start', 'end'] = 'center',
+                 direction = None):
+        """
+        Initialize a tracing segment.
+        A segment is a cylinder in 3D space with a specified radius, length, and orientation.
+
+        Parameters
+        ----------
+        radius : float
+            Radius of the segment.
+        coord : np.ndarray
+            Position of the segment in 3D space as a numpy array of shape (3,).
+        length : float
+            Length of the segment. Defaults to 11.
+        theta : float
+            Rotation angle along x-axis (counter-clockwise) of the segment in radians. Defaults to 0.0. Range: [0, 蟺].
+        psi : float
+            Rotation angle along z-axis (counter-clockwise) of the segment in radians. Defaults to 0.0. Range: [0, 2蟺].
+        scale : float
+            Scale factor to control the cross-sectional shape of the segment. Defaults to 1.0.
+            If scale=1.0, the cross-section is a circle. If scale鈮?.0, the cross-section is an ellipse,
+            where x = y * scale.
+        alignment : str: 'center' | 'start' | 'end'
+            Alignment of the segment with respect to the position.
+        """
+        self.radius = radius
+        self.length = length
+        # self.theta, self.psi = normalize_euler_zx(theta, psi)
+        self.theta, self.psi = theta%(2*np.pi), psi%(2*np.pi)
+        self.scale = scale
+
+        self.start_coord = None  # start position
+        self.center_coord = None
+        self.end_coord = None
+        self.dir_v = None  # direction vector (unit vector used for rotation)
+
+        self.trace_direction = direction
+
+        self._set_orientation()
+        self._set_coordinate(coord, alignment=alignment)
+
+        self.score = -1
+        self.mean_intensity = None
+
+        # for NeuronReconstruction
+        self.ball_radius = None
+
+    def _set_coordinate(self, coord: np.ndarray, alignment: Literal['center', 'start', 'end']) -> None:
+        """
+        Set the **start** position of the segment in 3D space.
+        
+        Parameters
+        ----------
+        coord : np.ndarray
+            Position of the segment in 3D space as a numpy array of shape (3,).
+        alignment : str: 'center' | 'start' | 'end'
+            Alignment of the segment with respect to the position.
+            Defaults to 'center'.
+        """
+        coord = np.asarray(coord, dtype=np.float64)
+        self.start_coord, self.center_coord, self.end_coord = set_coordinates(coord, self.dir_v, self.length, alignment)
+        
+    def _set_orientation(self) -> None:
+        """
+        Update the direction vector of the segment in 3D space.
+        """
+        self.dir_v = np.asarray(
+            _cached_orientation_vector(float(self.theta), float(self.psi)),
+            dtype=np.float64,
+        )
+
+        return
+    
+    def _set_ball_radius(self) -> float:
+        """
+        compute ball radius for NeuronReconstruction primary distance filter
+        """
+        ball_radius = sqrt((self.radius * max(self.scale, 1.0))**2 + (self.length)**2) / 2 # note this is self.length not self.length/2
+        self.ball_radius = ball_radius
+
+        return ball_radius
+    
+    def copy(self) -> "TracingSegment":
+
+        new_seg = self.__class__(
+            radius=self.radius,
+            coord=self.start_coord,
+            length=self.length,
+            theta=self.theta,
+            psi=self.psi,
+            scale=self.scale,
+            alignment='start'
+        )
+
+        new_seg.trace_direction = self.trace_direction
+
+        new_seg.score = self.score
+        new_seg.mean_intensity = self.mean_intensity
+        
+        return new_seg
+
+
+    def flip_segment(self) -> None:
+        """
+        Flip the segment direction.
+        """
+        self.dir_v = -self.dir_v
+        self._set_coordinate(self.end_coord, alignment='start')
+        # self.theta, self.psi = normalize_euler_zx(np.pi - self.theta, self.psi + np.pi)
+        self.theta, self.psi = (np.pi - self.theta) % (2*np.pi), (self.psi + np.pi) % (2*np.pi)
+        # self.theta += np.pi  # C source code
+
+        return
+    
+    def centroid_shift(self, image: np.ndarray) -> None:
+        """
+        Perform mean shift using filtered value of image intensity
+        """
+        coords_3d, _, weights_3d = _SEG_FILTER(self)
+        intensities = sample_voxels(image, coords_3d)
+        coords_3d_weights = intensities * weights_3d
+        if np.sum(coords_3d_weights) != 0:
+            centroid = np.average(coords_3d, weights=coords_3d_weights, axis=0)
+            self._set_coordinate(centroid, 'center')
+
+        return
+    
+    def orientation_grid_search(self, image: np.ndarray) -> None:
+        """
+        Brute-force search initial orientation of the TracingSegment.
+        """
+        best_score = -np.inf
+        best_theta, best_psi = self.theta, self.psi
+        center_coord = self.center_coord.copy()
+
+        
+        # backup: zx's solution
+        # thetas = np.arccos(np.linspace(-1, 1, num=12, endpoint=False))  # uniform sampling on the surface of sphere
+        # total_sin_theta = np.sum(np.sin(thetas))
+        # for theta in thetas:
+        #     Ni = max(1, int(np.round(400 * np.sin(theta) / total_sin_theta)))
+        #     psis = np.linspace(0, 2*np.pi, num=Ni, endpoint=False)
+        #     for psi in psis:
+
+        for theta, psi_values in _orientation_search_schedule(float(self.length)):
+            for psi in psi_values:
+                self.theta, self.psi = theta, psi
+                self._set_orientation()
+                self._set_coordinate(center_coord, 'center')
+
+                coords_3d, _, weights_3d = _ORIENTATION_SEG_FILTER(self)
+
+                intensities = sample_voxels(image, coords_3d)
+                score = correlation_score(intensities, weights_3d)
+
+                if score > best_score:
+                    best_score = score
+                    best_theta, best_psi = theta, psi
+
+        self.theta, self.psi = best_theta, best_psi
+        self._set_orientation()
+        self._set_coordinate(center_coord, 'center')
+
+        return
+
+    def length_search(self, image: np.ndarray) -> None:
+        """
+        Brute-force search length of the TracingSegment on the side.
+        """
+        for length in np.linspace(self.length, 0, num=round(self.length) + 1, endpoint=True):
+            coords_2d, _, weights_2d = _SEG_FILTER(self, is_2d=True, z=float(length))
+            coords_2d = np.asarray(coords_2d)
+            weights_2d = np.asarray(weights_2d)
+            coords_2d += self.start_coord
+            intensities = sample_voxels(image, coords_2d)
+            score = correlation_score(intensities, weights_2d)
+            if score > 0.5:
+                self.length = length
+                break
+        self._set_coordinate(self.start_coord, 'start')
+        return
+
+    def fit_segment(self, image: np.ndarray,
+                    score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = correlation_score,
+                    multi_trials: bool = False) -> bool:
+
+        if multi_trials:
+            thetas = [self.theta + offset for offset in _MULTI_TRIAL_THETA_OFFSETS]
+            psis = [self.psi + offset for offset in _MULTI_TRIAL_PSI_OFFSETS]
+
+            tmpseg = self.copy()
+            i = 0
+            for theta in thetas:
+                for psi in psis:
+                    x_init = [self.radius, theta, psi, self.scale]
+                    tmpseg.theta, tmpseg.psi = x_init[1:3]
+                    tmpseg._set_orientation()   # LYF: not sure if it is required. Fix later if not necessary
+                    score, _ = tmpseg.score_segment(image, [correlation_score, mean_intensity_score])
+                    if i == 0:
+                        max_score = score
+                        max_x = x_init
+                    elif score > max_score:
+                        max_score = score
+                        max_x = x_init
+                    i += 1
+        else:
+            max_x = [self.radius, self.theta, self.psi, self.scale]
+
+        max_params = optimize_segment(self, image, score_func, var_init=max_x)
+
+        if max_params.success:
+            self.radius, self.theta, self.psi, self.scale = max_params.x
+        self.score, self.mean_intensity = self.score_segment(image, [correlation_score, mean_intensity_score])
+
+        # success = SegmentOptimizer(image, score_func=score_func).fit(self)
+        self._set_orientation()
+        self._set_coordinate(self.start_coord, 'start')
+
+        return max_params.success
+
+    def score_segment(self, image: np.ndarray, 
+                      score_func: Union[List[Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]]],
+                                        Callable[[np.ndarray, np.ndarray], 
+                                        Union[np.ndarray, float]]] = correlation_score) -> Union[float, List[float]]:
+        """
+        """
+        coords_3d, _, weights_3d = _SEG_FILTER(self)
+        intensities = sample_voxels(image, coords_3d)
+        scores = []
+        if isinstance(score_func, list):
+            for func in score_func:
+                scores.append(func(intensities, weights_3d))
+            return scores
+        else:
+            score = score_func(intensities, weights_3d)
+            return score
+    
+    def get_norm_min_score(self, min_score: float) -> float:
+        """
+
+        """
+        norm_min_score = min_score * (1.0 + 1.0 / (2.0 + exp(4.0 - self.radius * sqrt(self.scale))))
+
+        return norm_min_score
+
+    
+    def _dilate_segment(self, ratio: float = 1.5, diff: float = 0.0, max_diff: float = 3.0) -> None:
+        """
+        Dilate the segment's radius and adjust its scale factor.
+
+        Parameters
+        ----------
+        ratio : float
+            Multiplicative factor to apply to the radius
+        diff : float
+            Additive factor to apply to the radius
+        max_diff : float
+            Maximum allowed additive change to the radius
+
+        Notes
+        -----
+        The dilation affects both the y-radius (radius) and x-radius (radius * scale).
+        The scale factor is updated to maintain the elliptical proportions.
+        """
+
+        rby = self.radius
+        rbx = self.radius * self.scale
+        nrby = rby * ratio + diff
+        nrbx = rbx * ratio + diff
+
+        if max_diff > 0:
+            nrbx = min(nrbx, rbx + max_diff)
+            nrby = min(nrby, rby + max_diff)
+
+        self.scale = nrbx / nrby
+        self.radius = nrby
+
+        return
+    
+    def __repr__(self):
+        return f"TracingSegment(radius={self.radius:.3f}, coord={self.start_coord}, length={self.length:.3f}, theta={self.theta:.3f}, psi={self.psi:.3f}, scale={self.scale:.3f})"
+
+    
+class SegmentChain:
+    """
+    A chain of connected TracingSegment objects (e.g. one branch of a neuron).
+    Enforces that each segment's start == the previous segment's end.
+    """
+    def __init__(
+        self,
+        segments: Union[List[TracingSegment], TracingSegment, None] = None,
+        debug_seed_coord: np.ndarray = None,
+    ):
+        """
+        Parameters
+        ----------
+        segments : list[TracingSegment] | TracingSegment
+        """
+        self._segments: List[TracingSegment] = []
+
+        self._debug_seed_coord = debug_seed_coord
+
+        if isinstance(segments, TracingSegment):
+            self._segments = [segments]
+        elif isinstance(segments, list):
+            self._segments = list(segments)
+
+        # control the tracing process of the head and tail of the chain
+        self._trace_status = [TraceStatus.NORMAL, TraceStatus.NORMAL]
+        self._trace_step = Defaults.TRACE_STEP
+        self._stop_seg_trace_score = Defaults.STOP_SEG_TRACE_SCORE
+        self._max_seg_num = Defaults.MAX_SEG_NUM
+
+        self.mean_intensity = None
+        self.mean_score = None
+
+    def append(self, segment: TracingSegment):
+        """
+        Append a segment to the end of the chain.
+        """
+        if not isinstance(segment, TracingSegment):
+            raise TypeError("Can only add TracingSegment objects")
+        self._segments.append(segment)
+
+    def insert(self, idx: int, segment: TracingSegment):
+        """
+        Insert a segment at position `idx` in the chain and re-validate connectivity.
+        """
+        self._segments.insert(idx, segment)
+
+    @property
+    def segments(self) -> List[TracingSegment]:
+        """Get a copy of the internal list of segments."""
+        return list(self._segments)
+
+    def to_coords(self, orientation: Literal['xyz', 'zyx'] = 'xyz', return_indices: bool = False) -> np.ndarray:
+        """
+        Return an array of 3D coordinates representing the startpoints of the segment chain.
+        (including the endpoint of the last segment)
+
+        Parameters
+        ----------
+        orientation : 'xyz' or 'zyx'
+            Axis order for output coordinates.
+
+        Returns
+        -------
+        np.ndarray
+            Array of shape (N+1, 3), where N is the number of segments. `N+1` includes the tip node.
+        """
+        n = len(self)
+        if n == 0:
+            if return_indices:
+                return [], []
+            else:
+                return []
+
+        if orientation not in ('xyz', 'zyx'):
+            raise ValueError("Orientation must be 'xyz' or 'zyx'.")
+
+
+        # coords = np.empty((n + 1, 3), dtype=np.float64)
+        # for i, seg in enumerate(self._segments):
+        #     c = seg.start_coord
+        #     coords[i] = c
+        # last_seg = self._segments[-1]
+        # end = last_seg.start_coord + last_seg.length * last_seg.dir_v
+        # coords[-1] = end
+
+        coords = []
+        coords_seg_indices = []
+        if n == 1:
+            coords = np.array([self._segments[0].start_coord,
+                               self._segments[0].end_coord], dtype=np.float64)
+            coords_seg_indices = np.array([0, 0], dtype=int)
+            
+        else:
+            pass_forward = True if self._segments[0].trace_direction == TraceDirection.BACKWARD else False
+            for i, seg in enumerate(self._segments):
+                if seg.trace_direction == TraceDirection.BACKWARD:
+                    if i==0:
+                        coords.append(seg.start_coord)
+                        coords_seg_indices.append(i)
+                    coords.append(seg.end_coord)
+                    coords_seg_indices.append(i)
+                elif seg.trace_direction == TraceDirection.FORWARD:
+                    if pass_forward and i!=n-1:
+                        pass_forward = False
+                        continue
+                    coords.append(seg.start_coord)
+                    coords_seg_indices.append(i)
+                    if i==n-1:
+                        coords.append(seg.end_coord)
+                        coords_seg_indices.append(i)
+                else:
+                    if i==0:
+                        coords.append(seg.start_coord)
+                        coords_seg_indices.append(i)
+
+            coords = np.array(coords, dtype=np.float64)
+            coords_seg_indices = np.array(coords_seg_indices, dtype=int)
+
+        if orientation == 'zyx':
+            if len(coords) != 0:
+                coords = coords[:, ::-1]
+
+        if return_indices:
+            return coords, coords_seg_indices
+        
+        return coords
+    
+    
+    @property
+    def path_length(self) -> float:
+        coords = self.to_coords()
+        if len(coords) <= 1:
+            return 0
+        return np.sum(np.linalg.norm(coords[1:] - coords[:-1], axis=1))
+
+    def _check_chain_status(self, trace_mask: np.ndarray, 
+                            side: Literal['head', 'tail', 'both'],
+                            ) -> None:
+        """
+        check segment trace status on one sides from:
+            1) voxel traced or not
+            2) out of image bound
+            3) seg score (need delete this segment)
+            4) new seg forms loop
+            5) new seg intensity extremely decreases (inspired by Sujun)
+        """
+
+        def _check_side(side_idx: int) -> None:
+    
+            if side_idx == 0:
+                seg_idx = 0
+                seg = self._segments[seg_idx]
+                coord = seg.start_coord[::-1]
+                coord_round = np.round(coord).astype(int)
+            else:
+                seg_idx = -1
+                seg = self._segments[seg_idx]
+                coord = seg.end_coord[::-1]
+                coord_round = np.round(coord).astype(int)
+            
+            if len(self) >= 2:
+                if np.any(coord < 0) or np.any((coord+1) > trace_mask.shape):
+                    self._trace_status[side_idx] = TraceStatus.OUT_OF_BOUND
+                elif trace_mask[coord_round[0], coord_round[1], coord_round[2]] == 1:
+                    self._trace_status[side_idx] = TraceStatus.VOXEL_TRACED
+            
+            if side!='both':  # 'both' is somehow an initial check for seed's seg.
+                if seg.score < seg.get_norm_min_score(self._stop_seg_trace_score):
+                    self._trace_status[side_idx] = TraceStatus.LOW_SCORE
+                    self._segments.pop(seg_idx)  # delete this segment
+                    # print(f'pop seg_idx={seg_idx} on side={side}, score={seg.score}')
+                    return
+
+                if seg.radius > 25:
+                    raise ValueError(f'pop seg_idx={seg_idx} on side={side}, radius={seg.radius}')
+
+                if len(self) >= 2:
+                    # 
+                    continuous_seg_idx = 1 if side_idx == 0 else -2
+                    cur_seg = self._segments[seg_idx]
+                    seg_prev = self._segments[continuous_seg_idx]
+                    intensity_change = cur_seg.mean_intensity / seg_prev.mean_intensity
+                    if intensity_change < 0.5:
+                        self._trace_status[side_idx] = TraceStatus.SIGNAL_CHANGED
+                        self._segments.pop(seg_idx)
+                        # print(f'pop seg_idx={seg_idx} on side={side}', 'status=signal_changed')
+
+                        return
+                    
+                    """
+                    r1 = seg_prev.radius * sqrt(seg_prev.scale)
+                    r2 = cur_seg.radius * sqrt(cur_seg.scale)
+                    if r2 > 1.0:
+                        ratio = r1 / r2
+                        if ratio > 2.0 or ratio < 0.5:
+                            self._trace_status[side_idx] = TraceStatus.RADIUS_CHANGED
+                            self._segments.pop(seg_idx)
+                            
+                            return 
+                    """
+
+                    #
+                    loop_flag = False
+                    for tmpseg in self._segments[seg_idx+1:len(self)+seg_idx][::1 if side_idx==0 else -1]:
+                        loop_flag = test_seg_overlap(tmpseg, seg, seg2_coord_flag='start' if side_idx==0 else 'end')
+                        if loop_flag:
+                            break
+                        if test_seg_overlap(tmpseg, seg, seg2_coord_flag='center'):
+                            if test_seg_overlap(tmpseg, seg, seg2_coord_flag='end' if side_idx==0 else 'start'):
+                                loop_flag = True
+                                break
+                            elif test_seg_turn(tmpseg, seg, max_angle=np.pi/2):
+                                loop_flag = True
+                                break
+
+                    if loop_flag:
+                        self._trace_status[side_idx] = TraceStatus.LOOP_FORMED
+                        self._segments.pop(seg_idx)
+                        
+            return
+
+        if side in ('tail', 'both'):
+            _check_side(1)
+        if side in ('head', 'both'):
+            _check_side(0)
+            
+        return
+    
+    def _check_chain_init_status(self, trace_mask: np.ndarray) -> None:
+        def _check_side(side_idx: int) -> None:
+    
+            if side_idx == 0:
+                seg_idx = 0
+                pos_ratio = 1/3
+                seg = self._segments[seg_idx]
+                coord_4_hit = np.round(seg.start_coord + seg.dir_v * seg.length * pos_ratio).astype(int)  # coord for hitting traced voxel detection
+                coord_4_bound = seg.start_coord[::-1]
+            else:
+                seg_idx = -1
+                pos_ratio = 2/3
+                seg = self._segments[seg_idx]
+                coord_4_hit = np.round(seg.start_coord + seg.dir_v * seg.length * pos_ratio).astype(int)
+                coord_4_bound = seg.end_coord[::-1]
+            
+            if len(self) >= 2:
+                if trace_mask[coord_4_hit[2], coord_4_hit[1], coord_4_hit[0]] == 1:
+                    self._trace_status[side_idx] = TraceStatus.VOXEL_TRACED
+                
+                if np.any(coord_4_bound < 0) or np.any((coord_4_bound + 1) > trace_mask.shape):
+                    self._trace_status[side_idx] = TraceStatus.OUT_OF_BOUND
+
+            return
+        
+        _check_side(1)
+        _check_side(0)
+            
+        return
+
+
+    def _init_next_seg(self, side: Literal['head', 'tail']) -> TracingSegment:
+        side_idx = 0 if side=='head' else -1
+        side_seg = self._segments[side_idx]
+        new_seg = side_seg.copy()
+        if side=='head':
+            new_seg.flip_segment()
+            new_seg.trace_direction = TraceDirection.BACKWARD
+        else:
+            new_seg.trace_direction = TraceDirection.FORWARD
+        # map to [0, 2*PI] or [0, PI] for angles
+        new_seg.psi = new_seg.psi % (2 * np.pi)
+        new_seg.theta = new_seg.theta % np.pi
+        new_coord = new_seg.start_coord + self._trace_step * new_seg.dir_v * (new_seg.length - 1.0)
+        new_seg._set_coordinate(new_coord, 'start')
+        
+        return new_seg
+
+    def _remove_overlap_sides(self) -> None:
+        if len(self) >= 2:
+            if test_seg_overlap(self._segments[1], self._segments[0], 'sides'):
+                self._segments.pop(0)
+        
+        if len(self) >= 2:
+            if test_seg_overlap(self._segments[-2], self._segments[-1], 'sides'):
+                self._segments.pop(-1)
+
+    def _remove_turn_sides(self) -> None:
+        if len(self) >= 2:
+            if test_seg_turn_2(self._segments[1], self._segments[0], max_angle=1.0):
+                self._segments.pop(0)
+
+        if len(self) >= 2:
+            if test_seg_turn_2(self._segments[-2], self._segments[-1], max_angle=1.0):
+                self._segments.pop(-1)
+
+    def generate_chain_trace(self, signal_image: np.ndarray, trace_mask: np.ndarray) -> None:
+        """
+        """
+        self._check_chain_init_status(trace_mask)
+        debug_seed_coord = self._segments[0].center_coord
+        debug_seed_ori_coord = self._debug_seed_coord
+        x,y,z = debug_seed_coord.astype(int)
+        debug = False
+        # if 110<debug_seed_coord[0]<130 and 200<debug_seed_coord[1]<230 and 30<debug_seed_coord[2]<40:
+        # if ((x==125) and (y==211) and (z==32)):
+        #     import matplotlib.pyplot as plt
+        #     debug = True
+        # else: return
+        # forward trace
+        while self._trace_status[1] == TraceStatus.NORMAL and len(self) < self._max_seg_num:
+            new_seg = self._init_next_seg(side='tail')
+            success = new_seg.fit_segment(signal_image, multi_trials=True)
+            #print(len(self), self[-1],'\n',new_seg,'\n', self._trace_status[1])
+
+            if success:
+                self.append(new_seg)
+            else:
+                break
+
+            if debug:
+                plt.figure()
+                plt.imshow(signal_image.max(axis=0), cmap='gray', origin='lower')
+                for seg in self:
+                    plt.scatter(seg.start_coord[0], seg.start_coord[1], color='red', s=10, alpha=0.6, zorder=11, marker='^')
+                    plt.scatter(seg.center_coord[0], seg.center_coord[1], color='orange', s=10, alpha=0.6, zorder=11, marker='^')
+                    plt.scatter(seg.end_coord[0], seg.end_coord[1], color='yellow', s=10, alpha=0.6, zorder=11, marker='^')
+
+                plt.scatter(self.to_coords()[:,0], self.to_coords()[:,1], color='red',alpha=0.6,zorder=11)
+                plt.scatter(debug_seed_coord[0], debug_seed_coord[1], color='blue',alpha=0.6,zorder=11)
+                plt.scatter(debug_seed_ori_coord[0], debug_seed_ori_coord[1], color='green',marker='*', alpha=0.6,zorder=11)
+                plt.title(len(self))
+                plt.show()
+
+            self._check_chain_status(trace_mask, 'tail')
+
+
+        # backward trace
+        if self._trace_status[0] == TraceStatus.NORMAL:
+            while self._trace_status[0] == TraceStatus.NORMAL and len(self) < self._max_seg_num:
+                new_seg = self._init_next_seg(side='head')
+                success = new_seg.fit_segment(signal_image, multi_trials=True)
+                new_seg.flip_segment()
+                # print(len(self), self[0],'\n',new_seg,'\n', self._trace_status[0])
+
+                if success:
+                    self.insert(0, new_seg)
+                else:
+                    break
+
+                if debug:
+                    plt.figure()
+                    plt.imshow(signal_image.max(axis=0), cmap='gray')
+                    for seg in self:
+                        plt.scatter(seg.start_coord[0], seg.start_coord[1], color='red', s=10, alpha=0.6, zorder=11, marker='^')
+                        plt.scatter(seg.center_coord[0], seg.center_coord[1], color='orange', s=10, alpha=0.6, zorder=11, marker='^')
+                        plt.scatter(seg.end_coord[0], seg.end_coord[1], color='yellow', s=10, alpha=0.6, zorder=11, marker='^')
+
+                    plt.scatter(self.to_coords()[:,0], self.to_coords()[:,1], color='red',alpha=0.6,zorder=11)
+                    plt.scatter(debug_seed_coord[0], debug_seed_coord[1], color='blue',alpha=0.6,zorder=11)
+                    plt.scatter(debug_seed_ori_coord[0], debug_seed_ori_coord[1], color='green',marker='*', alpha=0.6,zorder=11)
+                    plt.title(len(self))
+                    plt.show()
+
+                self._check_chain_status(trace_mask, 'head')
+        
+        if False:
+            # get all parameters distributions
+            scales, radii, psis, thetas = [], [], [], []
+            for seg in self._segments:
+                try:
+                    scales.append(round(seg.scale.item(), 3))
+                    radii.append(round(seg.radius.item(), 3))
+                    psis.append(round(seg.psi.item(), 3))
+                    thetas.append(round(seg.theta.item(), 3))
+                except AttributeError:
+                    scales.append(round(seg.scale, 3))
+                    radii.append(round(seg.radius, 3))
+                    psis.append(round(seg.psi, 3))
+                    thetas.append(round(seg.theta, 3))
+
+            print('scale: ', scales)
+            print('radii: ', radii)
+            print('psi: ', psis)
+            print('theta: ', thetas)
+            print('\n')
+        
+        if len(self) >= 2:
+            if self._trace_status[1] != TraceStatus.VOXEL_TRACED:
+                self._segments[-1].length_search(signal_image)
+            
+            if self._trace_status[0] != TraceStatus.VOXEL_TRACED:
+                self._segments[0].flip_segment()
+                self._segments[0].length_search(signal_image)
+                self._segments[0].flip_segment()
+
+        self._remove_overlap_sides()
+        self._remove_turn_sides()
+
+        return
+        
+    def __len__(self):
+        return len(self._segments)
+
+    def __getitem__(self, idx):
+        return self._segments[idx]
+
+    def __iter__(self):
+        return iter(self._segments)
+
+    def __repr__(self):
+        return f"<SegmentChain: {len(self)} segments>"
+    
+
+class SegmentChains:
+    def __init__(
+        self,
+        chains: Union[List[SegmentChain], SegmentChain, None] = None,
+        image_shape: Tuple[int, int, int] = (0, 0, 0),
+    ):
+        """
+        Parameters
+        ----------
+        chains : list[SegmentChain] | SegmentChain
+        """
+        self._chains: List[SegmentChain] = []
+
+        if isinstance(chains, SegmentChain):
+            self._chains = [chains]
+        elif isinstance(chains, list):
+            self._chains = list(chains)
+
+        self.trace_mask = np.zeros(image_shape, dtype=np.uint8)
+
+        self._min_chain_score = Defaults.MIN_CHAIN_SCORE
+        self._min_chain_length = Defaults.MIN_CHAIN_LENGTH
+
+    def generate_neuron_trace(self, seeds, signal_image: np.ndarray, *, max_seeds: int | None = None, verbose: int = 1):
+        seed_iterable = islice(seeds, max_seeds) if max_seeds is not None else seeds
+        for seed in tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1):
+            chain = SegmentChain(seed.seg.copy(), seed.coord)
+            chain.generate_chain_trace(signal_image, self.trace_mask)
+            # ensure the chain is long enough
+            if chain.path_length >= self._min_chain_length or \
+                (chain._trace_status[0] != TraceStatus.VOXEL_TRACED or chain._trace_status[1] != TraceStatus.VOXEL_TRACED):
+                for seg in chain: 
+                    label_tracing_mask(seg, self.trace_mask, dilate=True)
+                self.append(chain)
+        if verbose:
+            print(f"Number of chains: {len(self)}")
+
+    def filter_chains(self, *, verbose: int = 1):
+        if len(self) > 100:
+            # mean_intensities = []
+            mean_scores = []
+            min_intensity = np.inf
+            for chain in self:
+                intensities = [seg.mean_intensity for seg in chain]
+                scores = [seg.score for seg in chain]
+                chain.mean_intensity = np.mean(intensities)
+                chain.mean_score = np.mean(scores)
+                if (chain.mean_score >= self._min_chain_score) and (chain.mean_intensity < min_intensity):
+                    min_intensity = chain.mean_intensity
+
+                # mean_intensities.append(chain.mean_intensity)
+                mean_scores.append(chain.mean_score)
+
+            # min_intensity = min(mean_intensities) if mean_intensities else np.inf
+            self._chains = [
+                chain for chain, score in zip(self._chains, mean_scores)
+                if (score >= self._min_chain_score) and (chain.mean_intensity >= min_intensity)
+            ]
+            if verbose:
+                print(f"Number of chains after filtering: {len(self)}")
+
+        return
+
+    def append(self, chain: SegmentChain):
+        if not isinstance(chain, SegmentChain):
+            raise TypeError("Can only add SegmentChain objects")
+        self._chains.append(chain)
+
+    def __len__(self):
+        return len(self._chains)
+
+    def __getitem__(self, idx):
+        return self._chains[idx]
+
+    def __iter__(self):
+        return iter(self._chains)
+
+    def __repr__(self):
+        return f"<SegmentChains: {len(self)} chains>"
+
+
+def test_seg_overlap(seg1: TracingSegment, seg2: TracingSegment, seg2_coord_flag: Literal['start', 'center', 'end', 'sides']) -> bool:
+    """
+    test if seg1 is overlapped with seg2
+    """
+    if seg2_coord_flag == 'start':
+        seg2_coords = [seg2.start_coord.copy()]
+    elif seg2_coord_flag == 'center':
+        seg2_coords = [seg2.center_coord.copy()]
+    elif seg2_coord_flag == 'end':
+        seg2_coords = [seg2.end_coord.copy()]
+    elif seg2_coord_flag == 'sides':
+        seg2_coords = [seg2.start_coord.copy(), seg2.end_coord.copy()]
+
+    seg1_start_coord = seg1.start_coord
+    flags = [False, False]
+    for i in range(len(seg2_coords)):
+        # seg2_coords[i] -= seg1_start_coord
+        # seg2_coords[i] = rotate_by_theta_psi(seg2_coords[i], seg1.theta, seg1.psi, inverse=True)
+        # x, y, z = seg2_coords[i]
+        # if z>=-0.5 and z<=seg1.length:
+        #     d2 = (x/seg1.scale)**2 + y**2
+        #     if d2 <= seg1.radius**2:
+        #         flags[i] = True
+        flags[i] = point_in_seg(seg1, seg2_coords[i])
+
+    return all(flags)
+
+
+def test_seg_turn(seg1: TracingSegment, seg2: TracingSegment, max_angle: float = 1) -> bool:
+    """
+    test if the angle between seg1 and seg2 is less than max_angle
+    """
+    seg1_dir_v = seg1.dir_v
+    seg2_dir_v = seg2.dir_v
+    # angle = np.arccos(np.dot(seg1_dir_v, seg2_dir_v) / (np.linalg.norm(seg1_dir_v) * np.linalg.norm(seg2_dir_v)))
+    angle = np.arccos(np.clip(np.dot(seg1_dir_v, seg2_dir_v), -1.0, 1.0))
+
+    return angle > max_angle
+
+def test_seg_turn_2(seg1: TracingSegment, seg2: TracingSegment, max_angle: float) -> bool:
+    """
+    test if the angle between seg1 and seg2 is less than max_angle
+    """
+    seg1_dir_v = seg1.dir_v
+    seg2_dir_v = seg2.dir_v
+
+    cross = np.cross(seg1_dir_v, seg2_dir_v)
+    dot = np.dot(seg1_dir_v, seg2_dir_v)
+    angle = np.arctan2(np.linalg.norm(cross), dot)
+
+    if angle > np.pi:
+        angle = 2 * np.pi - angle
+
+    return angle > max_angle
+

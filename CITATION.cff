@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: PyNeuTube
+message: "If you use PyNeuTube in research, please cite the software and the related application note."
+type: software
+version: 0.1.0
+date-released: 2026-03-24
+license: MIT
+authors:
+  - name: "PyNeuTube contributors"
+repository-code: "https://github.com/YunZhixi98/pyneutube"
+abstract: "PyNeuTube is a Python reimplementation of the NeuTube tracing workflow with default compiled acceleration, multi-format 3D image I/O, and GitHub/PyPI-ready engineering scaffolding."
