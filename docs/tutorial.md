@@ -2,10 +2,10 @@
 
 ## 1. Install
 
-Install the package with development and optional I/O dependencies:
+Install the package:
 
 ```bash
-python -m pip install -e .[dev,test,io]
+python -m pip install .
 ```
 
 If you modify `.pyx` files, regenerate the tracked C sources before release:
@@ -25,8 +25,7 @@ print(image.shape)
 
 Supported input formats:
 
-- default: TIFF, Vaa3D raw, Vaa3D PBD, NIfTI
-- with `pyneutube[io]`: HDF5 and NRRD
+- TIFF, Vaa3D raw, Vaa3D PBD (`.v3dpbd`), HDF5, NIfTI, and NRRD
 
 Saving uses the output suffix to choose a format:
 
@@ -47,6 +46,7 @@ result = trace_file(
     output_swc="reference_trace.swc",
     visualization_dir="visualizations",
     n_jobs=1,
+    timeout=600,
     verbose=1,
     overwrite=False,
 )
@@ -59,11 +59,19 @@ Key runtime controls:
 - `n_jobs`: per-volume parallelism for single-image tracing
 - `batch_n_jobs`: file-level batch parallelism
 - `trace_n_jobs`: per-file parallelism inside each batch worker
+- `timeout`: optional per-image timeout in seconds; `None` disables it
 - `overwrite`: replace existing outputs
 - `verbose`: controls progress logging
 - `visualization_dir`: optional output directory for lightweight PNG overlays
 
 The public tracing entry points intentionally keep this parameter set small. They are designed for stable file- and runtime-level control, not for exposing every internal tracing heuristic. Lower-level tracing constants and reconstruction rules still live in internal modules and may change between revisions, so method-tuning experiments should pin a specific commit and document any internal overrides explicitly.
+
+If you need a staged workflow without dropping to internal modules, the public wrappers are:
+
+- `preprocess_volume`
+- `extract_trace_seeds`
+- `generate_trace_chains`
+- `connect_trace_chains`
 
 ## 4. Preprocess without full tracing
 
@@ -85,13 +93,14 @@ outputs = trace_directory(
     visualization_dir="visualizations",
     batch_n_jobs=4,
     trace_n_jobs=1,
+    trace_timeout=600,
     verbose=1,
     manifest_path="trace_manifest.jsonl",
     overwrite=False,
 )
 ```
 
-Batch tracing separates outer file-level parallelism from per-file tracing parallelism. With `overwrite=False`, existing SWC outputs are skipped. The optional manifest file records completed, failed, and skipped entries in JSONL format.
+Batch tracing separates outer file-level parallelism from per-file tracing parallelism. With `overwrite=False`, existing SWC outputs are skipped. `trace_timeout` applies to each file independently. The optional manifest file records completed, failed, timed-out, and skipped entries in JSONL format.
 
 ## 6. Manual visualization
 

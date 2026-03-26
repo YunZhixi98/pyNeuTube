@@ -312,15 +312,20 @@ class Seeds:
         *,
         seeds_mask: np.ndarray,
         verbose: int = 1,
+        check_timeout=None,
     ) -> int:
         nlabeled = 0
-        for seed in tqdm(
+        for seed_idx, seed in enumerate(
+            tqdm(
             self,
             total=len(self._seeds),
             desc="Scoring seeds",
             unit="seed",
             disable=verbose < 1,
+            )
         ):
+            if check_timeout is not None and seed_idx % 16 == 0:
+                check_timeout("seed scoring")
             if not seeds_mask[tuple(seed.coord[::-1])]:
                 seed.score_seed(image)
                 label_tracing_mask(seed.seg, seeds_mask, dilate=False)
@@ -328,7 +333,14 @@ class Seeds:
                 nlabeled += 1
         return nlabeled
 
-    def score_seeds(self, image: np.ndarray, *, n_jobs: int = 1, verbose: int = 1) -> None:
+    def score_seeds(
+        self,
+        image: np.ndarray,
+        *,
+        n_jobs: int = 1,
+        verbose: int = 1,
+        check_timeout=None,
+    ) -> None:
         """
         Score all seeds in the image.
         """
@@ -338,7 +350,12 @@ class Seeds:
         worker_jobs = min(resolved_n_jobs, len(self._seeds))
 
         if worker_jobs <= 1:
-            nlabeled = self._score_seeds_serial(image, seeds_mask=seeds_mask, verbose=verbose)
+            nlabeled = self._score_seeds_serial(
+                image,
+                seeds_mask=seeds_mask,
+                verbose=verbose,
+                check_timeout=check_timeout,
+            )
         else:
             image_shared = np.ascontiguousarray(image)
             shm = None
@@ -369,6 +386,8 @@ class Seeds:
                             disable=verbose < 1,
                         ) as progress:
                             for scored_batch in scored_batches:
+                                if check_timeout is not None:
+                                    check_timeout("seed scoring")
                                 seeds_batch = self._seeds[seed_offset : seed_offset + len(scored_batch)]
                                 for seed, scored_state in zip(
                                     seeds_batch,
@@ -401,6 +420,7 @@ class Seeds:
                         image,
                         seeds_mask=seeds_mask,
                         verbose=verbose,
+                        check_timeout=check_timeout,
                     )
             finally:
                 if shm is not None:
@@ -432,13 +452,25 @@ class Seeds:
         *,
         n_jobs: int = 1,
         verbose: int = 1,
+        check_timeout=None,
     ):
         t0 = time.time()
+        if check_timeout is not None:
+            check_timeout("seed initialization")
         self._initialize_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
         self._reduce_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
         _vprint(verbose, f"--> seed_init: {time.time() - t0:.6f}s")
-        self.score_seeds(signal_image, n_jobs=n_jobs, verbose=verbose)
+        if check_timeout is not None:
+            check_timeout("seed scoring")
+        self.score_seeds(
+            signal_image,
+            n_jobs=n_jobs,
+            verbose=verbose,
+            check_timeout=check_timeout,
+        )
         _vprint(verbose, f"--> seed_score: {time.time() - t0:.6f}s")
+        if check_timeout is not None:
+            check_timeout("seed filtering")
         self._filter_seeds()
         _vprint(verbose, f"Number of seed after filtering: {len(self)}")
         self._sort_seeds()

@@ -23,17 +23,7 @@ Base install:
 python -m pip install .
 ```
 
-Editable install for local development:
-
-```bash
-python -m pip install -e .[dev,test,io]
-```
-
-Optional extras:
-
-- `io`: HDF5 and NRRD support via `h5py` and `pynrrd`
-- `test`: pytest plus optional I/O test dependencies
-- `dev`: build, lint, packaging, and Cython regeneration tools
+This install includes all supported runtime I/O formats.
 
 ## Supported formats
 
@@ -41,12 +31,9 @@ Default input support:
 
 - TIFF stacks: `.tif`, `.tiff`
 - Vaa3D raw volumes: `.v3draw`, `.raw`
-- Vaa3D PBD-compressed volumes: `.v3dpbd`, `.pbd`
-- NIfTI: `.nii`, `.nii.gz`
-
-Additional input support with `pyneutube[io]`:
-
+- Vaa3D PBD-compressed volumes: `.v3dpbd`
 - HDF5: `.h5`, `.hdf5`
+- NIfTI: `.nii`, `.nii.gz`
 - NRRD: `.nrrd`, `.nhdr`
 
 Current output support:
@@ -67,6 +54,7 @@ result = trace_file(
     output_swc="reference_trace.swc",
     visualization_dir="visualizations",
     n_jobs=1,
+    timeout=600,
     verbose=1,
     overwrite=False,
 )
@@ -84,6 +72,7 @@ outputs = trace_files(
     "swc_outputs",
     batch_n_jobs=4,
     trace_n_jobs=1,
+    trace_timeout=600,
     overwrite=False,
 )
 ```
@@ -98,6 +87,7 @@ outputs = trace_directory(
     "swc_outputs",
     batch_n_jobs=4,
     trace_n_jobs=1,
+    trace_timeout=600,
     verbose=1,
     manifest_path="trace_manifest.jsonl",
     overwrite=False,
@@ -108,7 +98,8 @@ Command line:
 
 ```bash
 pyneutube-trace examples/data/reference_volume.nii.gz --verbose 1
-pyneutube-trace input_volumes --output-dir swc_outputs --visualization-dir visualizations --batch-n-jobs 4 --trace-n-jobs 1
+pyneutube-trace examples/data/reference_volume.nii.gz --timeout 600 --verbose 1
+pyneutube-trace input_volumes --output-dir swc_outputs --visualization-dir visualizations --batch-n-jobs 4 --trace-n-jobs 1 --timeout 600
 ```
 
 ## Lightweight visualization
@@ -133,15 +124,24 @@ save_overlay_figure(
 
 The supported top-level API is:
 
-- `ImageParser`
-- `Neuron`
-- `SUPPORTED_IMAGE_SUFFIXES`
-- `preprocess_volume`
-- `trace_volume`
 - `trace_file`
+- `trace_volume`
 - `trace_files`
 - `trace_directory`
 - `save_overlay_figure`
+- `ImageParser`
+- `Neuron`
+
+The staged public API is:
+
+- `preprocess_volume`
+- `extract_trace_seeds`
+- `generate_trace_chains`
+- `connect_trace_chains`
+
+Additional public utilities:
+
+- `SUPPORTED_IMAGE_SUFFIXES`
 - `subtract_background`
 - `threshold_filter`
 - `triangle_threshold`
@@ -151,7 +151,7 @@ The supported top-level API is:
 
 Modules under `pyneutube.core.*` and `pyneutube.tracers.*` should be treated as internal implementation details unless explicitly documented otherwise.
 
-The high-level tracing API is intentionally narrow: it exposes stable runtime controls such as I/O, parallelism, overwrite policy, and verbosity, but keeps most tracing heuristics internal. This keeps the release surface smaller and easier to maintain, at the cost of not exposing every low-level tracing knob through `trace_volume()` and `trace_file()`. For controlled experiments or method development, inspect the internal tracer modules directly and pin the exact revision you evaluate.
+The high-level tracing API is intentionally narrow: it exposes stable runtime controls such as I/O, parallelism, timeout, overwrite policy, and verbosity, but keeps most tracing heuristics internal. This keeps the release surface smaller and easier to maintain, at the cost of not exposing every low-level tracing knob through `trace_volume()` and `trace_file()`. For controlled experiments or method development, use the staged public API or inspect the internal tracer modules directly and pin the exact revision you evaluate.
 
 ## Examples and developer tools
 

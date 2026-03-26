@@ -33,7 +33,7 @@ from .tracing_utils import label_tracing_mask
 from .chain_utils import get_chain_side_bright_point, get_inner_chain_range, interpolate_chain
 
 
-def postprocess_reconstruction(neuron: Neuron, *, verbose: int = 1) -> Neuron:
+def postprocess_reconstruction(neuron: Neuron, *, verbose: int = 1, check_timeout=None) -> Neuron:
     import time
 
     def _vprint(message: str) -> None:
@@ -41,30 +41,44 @@ def postprocess_reconstruction(neuron: Neuron, *, verbose: int = 1) -> Neuron:
             print(message)
 
     t0 = time.time()
+    if check_timeout is not None:
+        check_timeout("remove_zigzag")
     remove_zigzag(neuron)
     _vprint(f'--> remove_zigzag [length={neuron.length}]: {time.time() - t0:.5f}')
 
     t0 = time.time()
+    if check_timeout is not None:
+        check_timeout("tune_branch")
     tune_branch(neuron)
     _vprint(f'--> tune_branch [length={neuron.length}]: {time.time() - t0:.5f}')
 
     t0 = time.time()
+    if check_timeout is not None:
+        check_timeout("remove_spur")
     remove_spur(neuron)
     _vprint(f'--> remove_spur [length={neuron.length}]: {time.time() - t0:.5f}')
 
     t0 = time.time()
+    if check_timeout is not None:
+        check_timeout("merge_close_point")
     merge_close_point(neuron, 0.01)
     _vprint(f'--> merge close point [length={neuron.length}]: {time.time() - t0:.5f}')
 
     t0 = time.time()
+    if check_timeout is not None:
+        check_timeout("remove_overshoot")
     remove_overshoot(neuron)
     _vprint(f'--> remove overshoot [length={neuron.length}]: {time.time() - t0:.5f}')
 
     t0 = time.time()
+    if check_timeout is not None:
+        check_timeout("optimal_downsample")
     optimal_downsample(neuron)
     _vprint(f'--> downsample [length={neuron.length}]: {time.time() - t0:.5f}')
 
     t0 = time.time()
+    if check_timeout is not None:
+        check_timeout("remove_subtrees_by_length")
     remove_subtrees_by_length(neuron, verbose=verbose)
     _vprint(f'--> remove subtrees by length [length={neuron.length}]: {time.time() - t0:.5f}')
 
@@ -408,21 +422,33 @@ class ChainConnector:
 
         return gdist
 
-    def reconstruct(self, chains: SegmentChains, signal_image: np.ndarray):
-        self.prepare_chain_conn(chains, signal_image)
+    def reconstruct(self, chains: SegmentChains, signal_image: np.ndarray, *, check_timeout=None):
+        self.prepare_chain_conn(chains, signal_image, check_timeout=check_timeout)
         self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
 
+        if check_timeout is not None:
+            check_timeout("remove_redundant_edges")
         self.remove_redundant_edges()
         self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
 
+        if check_timeout is not None:
+            check_timeout("crossover_test")
         self.crossover_test(chains)
 
+        if check_timeout is not None:
+            check_timeout("chains_to_circles")
         circle_list, circle_conn_list, circle_comp_list = self.chains_to_circles(chains)
 
-        return self.circles_to_tree(circle_list, circle_conn_list, circle_comp_list, signal_image)
+        return self.circles_to_tree(
+            circle_list,
+            circle_conn_list,
+            circle_comp_list,
+            signal_image,
+            check_timeout=check_timeout,
+        )
 
 
-    def prepare_chain_conn(self, chains: SegmentChains, signal_image: np.ndarray):
+    def prepare_chain_conn(self, chains: SegmentChains, signal_image: np.ndarray, *, check_timeout=None):
         """
         Construct a neuronal tree (in SWC format) for given SegmentChains
         """
@@ -437,6 +463,8 @@ class ChainConnector:
         broadphase_stats = _chain_broadphase_stats(chains)
 
         for i, chain1 in enumerate(chains):
+            if check_timeout is not None and i % 4 == 0:
+                check_timeout("chain connection")
             chain1_stats = broadphase_stats[i]
             for j, chain2 in enumerate(chains):
                 if i == j:
@@ -764,7 +792,15 @@ class ChainConnector:
         
         return circle_graph, circle_conn_list, circle_comp_list
 
-    def circles_to_tree(self, circle_graph: Graph, circle_conn_list: List[Neurocomp_Conn], circle_comp_list: List[Circle], signal_image):
+    def circles_to_tree(
+        self,
+        circle_graph: Graph,
+        circle_conn_list: List[Neurocomp_Conn],
+        circle_comp_list: List[Circle],
+        signal_image,
+        *,
+        check_timeout=None,
+    ):
         if not circle_comp_list:
             return None
         
@@ -785,6 +821,8 @@ class ChainConnector:
 
         neuron = Neuron()
         t0 = time.time()
+        if check_timeout is not None:
+            check_timeout("from_graph")
         neuron.from_graph(tree, circle_comp_list)
         self._vprint(f'--> from_graph [length={neuron.length}]: {time.time() - t0:.5f}')
-        return postprocess_reconstruction(neuron, verbose=self.verbose)
+        return postprocess_reconstruction(neuron, verbose=self.verbose, check_timeout=check_timeout)

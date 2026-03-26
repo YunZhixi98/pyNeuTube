@@ -732,9 +732,21 @@ class SegmentChains:
         self._min_chain_score = Defaults.MIN_CHAIN_SCORE
         self._min_chain_length = Defaults.MIN_CHAIN_LENGTH
 
-    def generate_neuron_trace(self, seeds, signal_image: np.ndarray, *, max_seeds: int | None = None, verbose: int = 1):
+    def generate_neuron_trace(
+        self,
+        seeds,
+        signal_image: np.ndarray,
+        *,
+        max_seeds: int | None = None,
+        verbose: int = 1,
+        check_timeout=None,
+    ):
         seed_iterable = islice(seeds, max_seeds) if max_seeds is not None else seeds
-        for seed in tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1):
+        for seed_idx, seed in enumerate(
+            tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1)
+        ):
+            if check_timeout is not None and seed_idx % 8 == 0:
+                check_timeout("chain generation")
             chain = SegmentChain(seed.seg.copy())
             chain.generate_chain_trace(signal_image, self.trace_mask)
             # ensure the chain is long enough

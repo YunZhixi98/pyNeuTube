@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from time import perf_counter
+from typing import Callable
 
 import numpy as np
 from scipy.ndimage import binary_dilation, binary_erosion
@@ -36,7 +37,6 @@ SUPPORTED_IMAGE_SUFFIXES = (
     ".v3draw",
     ".raw",
     ".v3dpbd",
-    ".pbd",
     ".h5",
     ".hdf5",
     ".nii",
@@ -61,6 +61,17 @@ class TracingResult:
     skip_reason: str | None = None
 
 
+class TraceTimeoutError(TimeoutError):
+    def __init__(self, timeout_seconds: float, stage: str | None = None) -> None:
+        self.timeout_seconds = float(timeout_seconds)
+        self.stage = stage
+        if stage:
+            message = f"Tracing timed out after {self.timeout_seconds:g} s during {stage}."
+        else:
+            message = f"Tracing timed out after {self.timeout_seconds:g} s."
+        super().__init__(message)
+
+
 def _vprint(verbose: int, message: str) -> None:
     if verbose:
         print(message)
@@ -77,6 +88,25 @@ def _resolve_n_jobs(n_jobs: int) -> int:
     if n_jobs <= 0:
         raise ValueError("`n_jobs` must be a positive integer or -1.")
     return n_jobs
+
+
+def _make_timeout_checker(
+    timeout: float | None,
+) -> tuple[float | None, Callable[[str | None], None]]:
+    if timeout is None:
+        return None, (lambda stage=None: None)
+
+    timeout_seconds = float(timeout)
+    if timeout_seconds <= 0:
+        raise ValueError("`timeout` must be a positive number of seconds or None.")
+
+    deadline = perf_counter() + timeout_seconds
+
+    def _check_timeout(stage: str | None = None) -> None:
+        if perf_counter() > deadline:
+            raise TraceTimeoutError(timeout_seconds, stage)
+
+    return timeout_seconds, _check_timeout
 
 
 def _iso_timestamp() -> str:
@@ -178,12 +208,14 @@ def trace_volume(
     image: np.ndarray,
     *,
     n_jobs: int = 1,
+    timeout: float | None = None,
     verbose: int = 1,
     return_intermediates: bool = False,
 ) -> TracingResult:
     return _trace_volume_internal(
         image,
         n_jobs=n_jobs,
+        timeout=timeout,
         verbose=verbose,
         return_intermediates=return_intermediates,
     )
@@ -193,6 +225,7 @@ def _trace_volume_internal(
     image: np.ndarray,
     *,
     n_jobs: int = 1,
+    timeout: float | None = None,
     verbose: int = 1,
     max_seeds: int | None = None,
     connect_chains: bool = True,
@@ -200,7 +233,11 @@ def _trace_volume_internal(
     return_intermediates: bool = False,
 ) -> TracingResult:
     resolved_n_jobs = _resolve_n_jobs(n_jobs)
+    _, check_timeout = _make_timeout_checker(timeout)
+
+    check_timeout("preprocess_volume")
     signal_image, binary_image, threshold = preprocess_volume(image, verbose=verbose)
+    check_timeout("preprocess_volume")
 
     t0 = perf_counter()
     seeds = Seeds()
@@ -209,22 +246,33 @@ def _trace_volume_internal(
         binary_image,
         n_jobs=resolved_n_jobs,
         verbose=verbose,
+        check_timeout=check_timeout,
     )
     _time_step(verbose, "generate_tracing_seeds", t0)
+    check_timeout("generate_tracing_seeds")
 
     t0 = perf_counter()
     chains = SegmentChains(image_shape=signal_image.shape)
-    chains.generate_neuron_trace(seeds, signal_image, max_seeds=max_seeds, verbose=verbose)
+    chains.generate_neuron_trace(
+        seeds,
+        signal_image,
+        max_seeds=max_seeds,
+        verbose=verbose,
+        check_timeout=check_timeout,
+    )
     if filter_chains:
+        check_timeout("filter_chains")
         chains.filter_chains(verbose=verbose)
     _time_step(verbose, "generate_neuron_trace", t0)
+    check_timeout("generate_neuron_trace")
 
     neuron = None
     if connect_chains:
         t0 = perf_counter()
         connector = ChainConnector(verbose=verbose)
-        neuron = connector.reconstruct(chains, signal_image)
+        neuron = connector.reconstruct(chains, signal_image, check_timeout=check_timeout)
         _time_step(verbose, "reconstruct", t0)
+        check_timeout("reconstruct")
 
     return TracingResult(
         image_path=None,
@@ -244,6 +292,7 @@ def trace_file(
     output_swc: str | Path | None = None,
     visualization_dir: str | Path | None = None,
     n_jobs: int = 1,
+    timeout: float | None = None,
     verbose: int = 1,
     overwrite: bool = False,
     on_exists: str | None = None,
@@ -255,6 +304,7 @@ def trace_file(
         output_swc=output_swc,
         visualization_dir=visualization_dir,
         n_jobs=n_jobs,
+        timeout=timeout,
         verbose=verbose,
         overwrite=overwrite,
         on_exists=on_exists,
@@ -269,6 +319,7 @@ def _trace_file_internal(
     output_swc: str | Path | None = None,
     visualization_dir: str | Path | None = None,
     n_jobs: int = 1,
+    timeout: float | None = None,
     verbose: int = 1,
     overwrite: bool = False,
     on_exists: str | None = None,
@@ -277,6 +328,7 @@ def _trace_file_internal(
     filter_chains: bool = True,
     return_intermediates: bool = False,
 ) -> TracingResult:
+    _, check_timeout = _make_timeout_checker(timeout)
     image_path = Path(image_path)
     output_swc_path = Path(output_swc) if output_swc is not None else None
     output_visualization_path = _visualization_output_path(image_path, visualization_dir)
@@ -303,12 +355,15 @@ def _trace_file_internal(
     parser = ImageParser(image_path, dataset=dataset, verbose=verbose)
 
     t0 = perf_counter()
+    check_timeout("load_image")
     image = parser.load()
     _time_step(verbose, "load_image", t0)
+    check_timeout("load_image")
 
     result = _trace_volume_internal(
         image,
         n_jobs=n_jobs,
+        timeout=timeout,
         verbose=verbose,
         max_seeds=max_seeds,
         connect_chains=connect_chains,
@@ -348,9 +403,9 @@ def _trace_file_internal(
 
 
 def _trace_file_worker(
-    payload: tuple[str, str, str | None, int, int],
+    payload: tuple[str, str, str | None, int, float | None, int],
 ) -> dict[str, object]:
-    input_path, output_swc, visualization_dir, n_jobs, verbose = payload
+    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose = payload
     started_at = perf_counter()
     try:
         result = trace_file(
@@ -358,18 +413,21 @@ def _trace_file_worker(
             output_swc=output_swc,
             visualization_dir=visualization_dir,
             n_jobs=n_jobs,
+            timeout=timeout,
             verbose=verbose,
         )
     except Exception as exc:
+        timed_out = isinstance(exc, TraceTimeoutError)
         return {
             "timestamp_utc": _iso_timestamp(),
-            "status": "failed",
+            "status": "timed_out" if timed_out else "failed",
             "input_path": input_path,
             "output_swc": output_swc,
             "elapsed_seconds": perf_counter() - started_at,
             "error_type": type(exc).__name__,
             "error_message": str(exc),
             "traceback": traceback.format_exc(),
+            "timeout_seconds": exc.timeout_seconds if timed_out else None,
         }
 
     return {
@@ -381,6 +439,7 @@ def _trace_file_worker(
         "error_type": None,
         "error_message": None,
         "traceback": None,
+        "timeout_seconds": None,
     }
 
 
@@ -406,6 +465,7 @@ def _skip_existing_record(input_path: Path, output_swc: Path) -> dict[str, objec
         "error_message": None,
         "traceback": None,
         "reason": "exists",
+        "timeout_seconds": None,
     }
 
 
@@ -416,6 +476,7 @@ def trace_files(
     visualization_dir: str | Path | None = None,
     batch_n_jobs: int = 1,
     trace_n_jobs: int = 1,
+    trace_timeout: float | None = None,
     verbose: int = 1,
     manifest_path: str | Path | None = None,
     overwrite: bool = False,
@@ -449,7 +510,7 @@ def trace_files(
     )
 
     completed_outputs: list[Path] = []
-    jobs: list[tuple[str, str, str | None, int, int]] = []
+    jobs: list[tuple[str, str, str | None, int, float | None, int]] = []
     for image_path in image_paths:
         output_swc = output_dir / f"{image_path.name}.swc"
         output_visualization = _visualization_output_path(image_path, visualization_dir)
@@ -472,6 +533,7 @@ def trace_files(
                 str(output_swc),
                 None if visualization_dir is None else str(visualization_dir),
                 resolved_trace_n_jobs,
+                trace_timeout,
                 max(verbose - 1, 0),
             )
         )
@@ -494,6 +556,18 @@ def trace_files(
                 _vprint(verbose, f"Skipped {input_path.name} -> {output_swc.name}")
             else:
                 _vprint(verbose, f"Skipped {input_path.name}")
+            return
+        if status == "timed_out":
+            timeout_seconds = record.get("timeout_seconds")
+            timeout_suffix = (
+                f" (timeout={float(timeout_seconds):g} s)"
+                if isinstance(timeout_seconds, (int, float))
+                else ""
+            )
+            _vprint(
+                max(verbose, 1),
+                f"Timed out {input_path.name}: {record['error_type']}: {record['error_message']}{timeout_suffix}",
+            )
             return
 
         _vprint(
@@ -525,6 +599,7 @@ def trace_files(
                     "error_type": type(exc).__name__,
                     "error_message": str(exc),
                     "traceback": traceback.format_exc(),
+                    "timeout_seconds": None,
                 }
 
             handle_record(record)
@@ -540,6 +615,7 @@ def trace_directory(
     visualization_dir: str | Path | None = None,
     batch_n_jobs: int = 1,
     trace_n_jobs: int = 1,
+    trace_timeout: float | None = None,
     verbose: int = 1,
     manifest_path: str | Path | None = None,
     overwrite: bool = False,
@@ -558,11 +634,71 @@ def trace_directory(
         visualization_dir=visualization_dir,
         batch_n_jobs=batch_n_jobs,
         trace_n_jobs=trace_n_jobs,
+        trace_timeout=trace_timeout,
         verbose=verbose,
         manifest_path=manifest_path,
         overwrite=overwrite,
         on_exists=on_exists,
     )
+
+
+def extract_trace_seeds(
+    signal_image: np.ndarray,
+    binary_image: np.ndarray,
+    *,
+    n_jobs: int = 1,
+    timeout: float | None = None,
+    verbose: int = 1,
+) -> Seeds:
+    _, check_timeout = _make_timeout_checker(timeout)
+    seeds = Seeds()
+    seeds.generate_tracing_seeds(
+        signal_image,
+        binary_image,
+        n_jobs=_resolve_n_jobs(n_jobs),
+        verbose=verbose,
+        check_timeout=check_timeout,
+    )
+    return seeds
+
+
+def generate_trace_chains(
+    seeds: Seeds,
+    signal_image: np.ndarray,
+    *,
+    max_seeds: int | None = None,
+    filter_chains: bool = True,
+    timeout: float | None = None,
+    verbose: int = 1,
+) -> SegmentChains:
+    _, check_timeout = _make_timeout_checker(timeout)
+    chains = SegmentChains(image_shape=signal_image.shape)
+    chains.generate_neuron_trace(
+        seeds,
+        signal_image,
+        max_seeds=max_seeds,
+        verbose=verbose,
+        check_timeout=check_timeout,
+    )
+    if filter_chains:
+        check_timeout("filter_chains")
+        chains.filter_chains(verbose=verbose)
+    return chains
+
+
+def connect_trace_chains(
+    chains: SegmentChains,
+    signal_image: np.ndarray,
+    *,
+    timeout: float | None = None,
+    verbose: int = 1,
+) -> Neuron:
+    _, check_timeout = _make_timeout_checker(timeout)
+    connector = ChainConnector(verbose=verbose)
+    neuron = connector.reconstruct(chains, signal_image, check_timeout=check_timeout)
+    if neuron is None:
+        raise ValueError("No neuron reconstruction is available.")
+    return neuron
 
 
 __all__ = [
@@ -572,10 +708,17 @@ __all__ = [
     "SegmentChain",
     "SegmentChains",
     "TracingResult",
+    "TraceTimeoutError",
     "SUPPORTED_IMAGE_SUFFIXES",
-    "preprocess_volume",
-    "trace_volume",
     "trace_file",
+    "trace_volume",
     "trace_files",
     "trace_directory",
+    "save_overlay_figure",
+    "ImageParser",
+    "Neuron",
+    "preprocess_volume",
+    "extract_trace_seeds",
+    "generate_trace_chains",
+    "connect_trace_chains",
 ]

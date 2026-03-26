@@ -57,7 +57,7 @@ def _require_optional_dependency(module: Any, dependency_name: str, fmt: str) ->
     if module is None:
         raise ImportError(
             f"Reading {fmt} volumes requires the optional dependency {dependency_name!r}. "
-            f"Install it with `pip install {dependency_name}` or `pip install pyneutube[io]`."
+            f"Install it with `pip install {dependency_name}`."
         )
     return module
 
@@ -80,7 +80,7 @@ def _detect_format(path: Path) -> str:
         return "tiff"
     if name.endswith((".v3draw", ".raw")):
         return "v3draw"
-    if name.endswith((".v3dpbd", ".pbd")):
+    if name.endswith(".v3dpbd"):
         return "v3dpbd"
     if name.endswith((".h5", ".hdf5")):
         return "hdf5"

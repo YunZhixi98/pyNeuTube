@@ -22,4 +22,4 @@ dependencies:
   - twine>=5.1
   - cython>=3.0
   - pip:
-      - -e .[io,visualization]
+      - .

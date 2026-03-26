@@ -24,6 +24,12 @@ def parse_args(argv=None):
         help="CPU workers for tracing one image.",
     )
     parser.add_argument(
+        "--timeout",
+        type=float,
+        default=None,
+        help="Optional per-image timeout in seconds. Disabled by default.",
+    )
+    parser.add_argument(
         "--batch-n-jobs",
         type=int,
         default=1,
@@ -71,6 +77,7 @@ def main(argv=None):
             visualization_dir=args.visualization_dir,
             batch_n_jobs=args.batch_n_jobs,
             trace_n_jobs=args.trace_n_jobs,
+            trace_timeout=args.timeout,
             verbose=args.verbose,
             manifest_path=args.manifest_path,
             overwrite=args.overwrite,
@@ -90,6 +97,7 @@ def main(argv=None):
         output_swc=output_swc,
         visualization_dir=args.visualization_dir,
         n_jobs=args.n_jobs,
+        timeout=args.timeout,
         verbose=args.verbose,
         overwrite=args.overwrite,
         on_exists=args.on_exists,

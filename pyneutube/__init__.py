@@ -14,29 +14,35 @@ from .processing import (
 )
 from .tracing import (
     SUPPORTED_IMAGE_SUFFIXES,
+    connect_trace_chains,
+    extract_trace_seeds,
+    generate_trace_chains,
     preprocess_volume,
-    trace_directory,
     trace_file,
-    trace_files,
     trace_volume,
+    trace_files,
+    trace_directory,
 )
 from .visualization import save_overlay_figure
 
 __all__ = [
     "__version__",
     "trace_file",
+    "trace_volume",
     "trace_files",
     "trace_directory",
-    "trace_volume",
+    "save_overlay_figure",
     "ImageParser",
     "Neuron",
-    "SUPPORTED_IMAGE_SUFFIXES",
     "preprocess_volume",
+    "extract_trace_seeds",
+    "generate_trace_chains",
+    "connect_trace_chains",
+    "SUPPORTED_IMAGE_SUFFIXES",
     "subtract_background",
     "threshold_filter",
     "triangle_threshold",
     "refine_local_max_threshold",
     "local_max_filter",
     "connectivity_filter",
-    "save_overlay_figure",
 ]
