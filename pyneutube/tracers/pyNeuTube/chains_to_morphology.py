@@ -205,14 +205,17 @@ class ChainConnector:
             head.length = 2.0
             tail.length = 2.0
 
+        chain2_segments = chain2._segments
         min_sdist = min(
             seg_chain_dist_upper_bound(chain2, head),
             seg_chain_dist_upper_bound(chain2, tail),
         )
 
-        max_radius = 0
-        for seg in chain2._segments + [head, tail]:
-            max_radius = max(max_radius, seg.radius)
+        max_radius = max(
+            head.radius,
+            tail.radius,
+            max((seg.radius for seg in chain2_segments), default=0.0),
+        )
         if min_sdist > 2*np.sqrt(max_radius**2+((Defaults.SEG_LENGTH-1)/2)**2)+self.dist_thresh:
             conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
             conn.cost = 10.0
@@ -221,12 +224,16 @@ class ChainConnector:
         min_pdist = -1.0
         head_ball_radius = head._set_ball_radius()
         tail_ball_radius = tail._set_ball_radius()
-        for i, seg in enumerate(chain2._segments):
+        head_center = head.center_coord
+        tail_center = tail.center_coord
+        norm = np.linalg.norm
+        for i, seg in enumerate(chain2_segments):
             seg_ball_radius = seg.ball_radius
             if seg_ball_radius is None:
                 seg_ball_radius = seg._set_ball_radius()
 
-            if (np.linalg.norm(seg.center_coord - head.center_coord) - seg_ball_radius - head_ball_radius) < min_sdist:
+            seg_center = seg.center_coord
+            if (norm(seg_center - head_center) - seg_ball_radius - head_ball_radius) < min_sdist:
                 surface_dist, tmp_intersection_p = seg_to_seg_surface(head, seg)
                 update = False
                 if surface_dist < min_sdist:
@@ -244,7 +251,7 @@ class ChainConnector:
                     conn.info[1] = i
                     conn.pos = tmp_intersection_p
 
-            if (np.linalg.norm(seg.center_coord - tail.center_coord) - seg_ball_radius - tail_ball_radius) < min_sdist:
+            if (norm(seg_center - tail_center) - seg_ball_radius - tail_ball_radius) < min_sdist:
                 surface_dist, tmp_intersection_p = seg_to_seg_surface(tail, seg)
                 update = False
                 if surface_dist < min_sdist:
@@ -508,6 +515,7 @@ class ChainConnector:
         nedge = self.graph.nedge
         conn_list = self.conn_list
         edge_mask = np.zeros(nedge, dtype=np.uint8)
+        edges = self.graph.edges
 
         # Set edge mask to 2 for link connection, 1 for hook-loop connection and 0 for no connection
         for i in range(nedge):
@@ -517,49 +525,48 @@ class ChainConnector:
                 edge_mask[i] = 1
             else:
                 edge_mask[i] = 0
-        
-        # Remove duplicated hook-loops by keeping the one with smaller cost
-        for i in range(nedge):
-            if edge_mask[i] == 1:
-                for j in range(i+1, nedge):
-                    if edge_mask[j] == 1:
-                        if self.graph.edges[i][0] == self.graph.edges[j][1] and \
-                            self.graph.edges[i][1] == self.graph.edges[j][0]:
-                            if conn_list[i].cost < conn_list[j].cost:
-                                edge_mask[j] = 0
-                            else:
-                                edge_mask[i] = 0
 
-        # Keep the smallest edge for multiple-loop connections
+        hook_loop_by_edge = {}
         for i in range(nedge):
             if edge_mask[i] == 1:
-                for j in range(i+1, nedge):
-                    if edge_mask[j] == 1:
-                        if self.graph.edges[i][0] == self.graph.edges[j][0] and \
-                            conn_list[i].info[0] == conn_list[j].info[0]:
-                            if conn_list[i].cost < conn_list[j].cost:
-                                edge_mask[j] = 0
-                            else:
-                                edge_mask[i] = 0
+                hook_loop_by_edge.setdefault((edges[i][0], edges[i][1]), []).append(i)
+
+        # Remove duplicated hook-loops by keeping the one with smaller cost.
+        for i in range(nedge):
+            if edge_mask[i] == 1:
+                reverse_candidates = hook_loop_by_edge.get((edges[i][1], edges[i][0]), ())
+                for j in reverse_candidates:
+                    if j <= i or edge_mask[j] != 1:
+                        continue
+                    if conn_list[i].cost < conn_list[j].cost:
+                        edge_mask[j] = 0
+                    else:
+                        edge_mask[i] = 0
+
+        hook_loop_by_source = {}
+        for i in range(nedge):
+            if edge_mask[i] == 1:
+                hook_loop_by_source.setdefault((edges[i][0], conn_list[i].info[0]), []).append(i)
+
+        # Keep the smallest edge for multiple-loop connections.
+        for i in range(nedge):
+            if edge_mask[i] == 1:
+                same_source_candidates = hook_loop_by_source.get((edges[i][0], conn_list[i].info[0]), ())
+                for j in same_source_candidates:
+                    if j <= i or edge_mask[j] != 1:
+                        continue
+                    if conn_list[i].cost < conn_list[j].cost:
+                        edge_mask[j] = 0
+                    else:
+                        edge_mask[i] = 0
 
         # Move the edges into a compact array
-        # nedge = 0
-        new_conn_list = []
-        new_edges = []
-        # new_nedge = 0
-        for i in range(nedge):
-            if edge_mask[i] > 0:
-                # if i != nedge:
-                #     self.graph.edges[nedge][0] = self.graph.edges[i][0]
-                #     self.graph.edges[nedge][1] = self.graph.edges[i][1]
-                #     conn_list[nedge] = deepcopy(conn_list[i])
-                #     new_nedge += 1
-                new_conn_list.append(conn_list[i])
-                new_edges.append(self.graph.edges[i])
+        keep_indices = [i for i in range(nedge) if edge_mask[i] > 0]
+        new_conn_list = [conn_list[i] for i in keep_indices]
+        new_edges = [edges[i] for i in keep_indices]
 
         self.graph.nedge = len(new_conn_list)
         self.graph.edges = new_edges
-        # self.graph.nedge = new_nedge
         self.conn_list = new_conn_list
     
     def crossover_test(self, chains):

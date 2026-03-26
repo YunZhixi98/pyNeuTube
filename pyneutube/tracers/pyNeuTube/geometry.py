@@ -246,7 +246,7 @@ def seg_chain_dist_upper_bound(chain, seg: BaseTracingSegment) -> float:
     min_dist = np.inf
     seg_center_coord = seg.center_coord
 
-    for tmpseg in chain.segments:
+    for tmpseg in chain:
         min_dist = min(min_dist, np.linalg.norm(tmpseg.center_coord - seg_center_coord))
 
     return min_dist
@@ -257,7 +257,7 @@ def point_to_chain_surface(point: np.ndarray, chain) -> tuple[float, np.ndarray,
     intersection_point = None
     min_idx = 0
 
-    for i,seg in enumerate(chain.segments):
+    for i, seg in enumerate(chain):
         dist, tmp_point = point_to_seg_surface(point, seg)
         if dist < min_dist:
             min_dist = dist

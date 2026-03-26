@@ -138,7 +138,6 @@ class TracingSegment(BaseTracingSegment):
         return ball_radius
     
     def copy(self) -> "TracingSegment":
-
         new_seg = self.__class__(
             radius=self.radius,
             coord=self.start_coord,
@@ -796,24 +795,16 @@ def test_seg_overlap(seg1: TracingSegment, seg2: TracingSegment, seg2_coord_flag
     test if seg1 is overlapped with seg2
     """
     if seg2_coord_flag == 'start':
-        seg2_coords = [seg2.start_coord.copy()]
+        seg2_coords = (seg2.start_coord,)
     elif seg2_coord_flag == 'center':
-        seg2_coords = [seg2.center_coord.copy()]
+        seg2_coords = (seg2.center_coord,)
     elif seg2_coord_flag == 'end':
-        seg2_coords = [seg2.end_coord.copy()]
+        seg2_coords = (seg2.end_coord,)
     elif seg2_coord_flag == 'sides':
-        seg2_coords = [seg2.start_coord.copy(), seg2.end_coord.copy()]
+        seg2_coords = (seg2.start_coord, seg2.end_coord)
 
-    seg1_start_coord = seg1.start_coord
     flags = [False, False]
     for i in range(len(seg2_coords)):
-        # seg2_coords[i] -= seg1_start_coord
-        # seg2_coords[i] = rotate_by_theta_psi(seg2_coords[i], seg1.theta, seg1.psi, inverse=True)
-        # x, y, z = seg2_coords[i]
-        # if z>=-0.5 and z<=seg1.length:
-        #     d2 = (x/seg1.scale)**2 + y**2
-        #     if d2 <= seg1.radius**2:
-        #         flags[i] = True
         flags[i] = point_in_seg(seg1, seg2_coords[i])
 
     return all(flags)

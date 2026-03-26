@@ -43,7 +43,7 @@ def get_chain_min_seg_score(chain: SegmentChain, signal_image: np.ndarray,
                             score_func: Callable[[np.ndarray, np.ndarray], float]) -> float:
     min_score = np.inf
     seg_filter = MexicanHatFilter()
-    for seg in chain.segments:
+    for seg in chain:
         coords_3d, _, weights_3d = seg_filter(seg)
         intensities = sample_voxels(signal_image, coords_3d)
         score = score_func(intensities, weights_3d)
@@ -55,10 +55,10 @@ def get_chain_min_seg_score(chain: SegmentChain, signal_image: np.ndarray,
 def get_chain_side_bright_point(chain: SegmentChain, signal_image: np.ndarray, 
                                 side: Literal['head', 'tail']) -> np.ndarray:
     if side == 'head':
-        seg = chain.segments[0]
+        seg = chain[0]
         coords = seg.start_coord + seg.dir_v * np.arange(0, floor((seg.length-1)/2)+1, 1).reshape(-1, 1)
     else:
-        seg = chain.segments[-1]
+        seg = chain[-1]
         coords = seg.end_coord - seg.dir_v * np.arange(0, floor((seg.length-1)/2)+1, 1).reshape(-1, 1)
 
     intensities = sample_voxels(signal_image, coords)
@@ -125,7 +125,7 @@ def interpolate_chain(chain: SegmentChain, ref_point: np.ndarray, ort: Optional[
 
         start_seg_idx = coords_seg_indices[min_index]
         end_seg_idx = coords_seg_indices[min_index+1]
-        prev_seg = chain.segments[start_seg_idx]
+        prev_seg = chain[start_seg_idx]
 
         if start_seg_idx == end_seg_idx:
             if prev_seg.length > 1.0:
@@ -168,4 +168,3 @@ def interpolate_chain(chain: SegmentChain, ref_point: np.ndarray, ort: Optional[
             
             
                 
-
