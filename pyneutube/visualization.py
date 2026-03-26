@@ -26,6 +26,13 @@ def _load_trace(trace: Neuron | np.ndarray | str | Path) -> Neuron | np.ndarray:
     return np.asarray(trace, dtype=float)
 
 
+def _project_overlay_image(volume: np.ndarray, *, log_transform: bool) -> np.ndarray:
+    mip = np.max(np.asarray(volume, dtype=np.float64), axis=0)
+    if log_transform:
+        mip = np.log1p(np.clip(mip, 0, None))
+    return mip
+
+
 def _plot_trace(ax: plt.Axes, trace: Neuron | np.ndarray, *, color: str) -> None:
     if isinstance(trace, Neuron):
         for node in trace.swc:
@@ -52,6 +59,7 @@ def save_overlay_figure(
     color: str = "tab:orange",
     title: str | None = None,
     dpi: int = 200,
+    log_transform: bool = True,
 ) -> Path:
     """Save a maximum-intensity projection overlay for a trace on a 3D volume.
 
@@ -63,10 +71,12 @@ def save_overlay_figure(
     loaded_trace = _load_trace(trace)
     output_path = Path(output_path)
 
-    mip = np.max(np.asarray(volume), axis=0)
+    mip = _project_overlay_image(volume, log_transform=log_transform)
     fig, ax = plt.subplots(figsize=(8, 8), tight_layout=True)
     ax.imshow(mip, cmap="gray", origin="lower")
     _plot_trace(ax, loaded_trace, color=color)
+    ax.set_xlim(0, mip.shape[1])
+    ax.set_ylim(0, mip.shape[0])
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     ax.set_title(title or default_title or output_path.stem)

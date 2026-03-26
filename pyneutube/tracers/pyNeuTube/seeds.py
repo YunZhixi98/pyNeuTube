@@ -243,27 +243,19 @@ class Seeds:
         Initialize seeds based on the local maxima of the distance transformed binary image.
         """
         self._seeds = []
-        # dt_image = distance_transform_edt(binary_image)
-        # LYF: Check which `black_border` setting is closer to original neuTube.
-        # zx: `original neuTube` should be `scipy.distance.distance_transform_edt`
-        # Here I found black_border=False is identical to distance_transform_edt:
-        # --> Total absolute diff for a (256x512x512) image is: 0.0011745794921276254
         dt_image = edt.edt(
             binary_image,
             anisotropy=(1, 1, 1),
             black_border=True,
             parallel=_resolve_n_jobs(n_jobs),
         ).astype(np.float64)
-        # dt_image = np.clip(dt_image**2,0,255)
 
         dt_local_max_mask = maximum_filter_mask(dt_image, verbose=max(verbose - 1, 0))
         coords = np.argwhere(dt_local_max_mask)
 
         coords_values = dt_image[tuple(coords.T)]
 
-        # LYF: I would like to sort the seeds by their radius
-        # arg_idx = np.argsort(coords_values)[::-1]
-        arg_idx = _seed_priority_order(coords, coords_values)
+        arg_idx = np.argsort(np.abs(coords_values - Defaults.MAX_CONF_RADIUS))[::-1]
         for coord, value in zip(coords[arg_idx], coords_values[arg_idx], strict=True):
             self.append(Seed(coord=coord[::-1], value=value))  # xyz-order
         _vprint(verbose, f"{len(self)} seeds found")

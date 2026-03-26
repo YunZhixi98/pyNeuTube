@@ -113,7 +113,7 @@ pyneutube-trace input_volumes --output-dir swc_outputs --visualization-dir visua
 
 ## Lightweight visualization
 
-Visualization is optional and disabled by default during tracing. When `visualization_dir` is set, tracing writes a PNG maximum-intensity projection overlay for each processed image.
+Visualization is optional and disabled by default during tracing. When `visualization_dir` is set, tracing writes a PNG maximum-intensity projection overlay for each processed image. The background image uses a `log1p`-transformed MIP and is clipped to the full image extent.
 
 Manual use is also supported:
 
@@ -150,6 +150,8 @@ The supported top-level API is:
 - `connectivity_filter`
 
 Modules under `pyneutube.core.*` and `pyneutube.tracers.*` should be treated as internal implementation details unless explicitly documented otherwise.
+
+The high-level tracing API is intentionally narrow: it exposes stable runtime controls such as I/O, parallelism, overwrite policy, and verbosity, but keeps most tracing heuristics internal. This keeps the release surface smaller and easier to maintain, at the cost of not exposing every low-level tracing knob through `trace_volume()` and `trace_file()`. For controlled experiments or method development, inspect the internal tracer modules directly and pin the exact revision you evaluate.
 
 ## Examples and developer tools
 

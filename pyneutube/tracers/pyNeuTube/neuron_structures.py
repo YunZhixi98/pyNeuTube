@@ -56,7 +56,6 @@ def initialize_graph(nvertex: int, edge_capacity: int, weighted: bool):
     assert(edge_capacity <= Defaults.Max_Edge_Capacity)
 
     graph = Graph(directed=False, gtype=GraphType.GENERAL_GRAPH, weighted=weighted)
-    #graph.nvertex = nvertex    # LYF: should be zero?
     # graph.edge_capacity = edge_capacity
     # graph.edges = [GraphEdge() for _ in range(edge_capacity)] #np.zeros((edge_capacity, 2), dtype=int)
     # if weighted:

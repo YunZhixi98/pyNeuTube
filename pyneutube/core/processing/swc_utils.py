@@ -5,6 +5,17 @@ import numpy as np
 from pyneutube.core.io.swc_parser import Neuron
 
 
+def _filtered_swc(swc: np.ndarray, nodes_to_remove) -> np.ndarray:
+    mask = np.ones(len(swc), dtype=bool)
+    mask[np.fromiter(nodes_to_remove, dtype=int, count=len(nodes_to_remove))] = False
+    return swc[mask]
+
+
+def _squared_distance(point1, point2):
+    diff = point1 - point2
+    return np.dot(diff, diff)
+
+
 def is_sharp_turn(n1, n2, n3):
     """
     Check if three continuous nodes form a sharp turn (n1->n2->n3).
@@ -28,7 +39,7 @@ def remove_zigzag(neuron: Neuron):
     
     # Initialize DFS with all soma children
     stack = deque()
-    for soma in neuron.get_soma(allow_multiple=True):
+    for soma in neuron.somata:
         soma_idx = nid_hash[soma[0]]
         stack.extend(children_map[soma_idx])
     
@@ -74,7 +85,7 @@ def remove_zigzag(neuron: Neuron):
     
     # Apply deletions
     if nodes_to_remove:
-        swc = np.delete(swc, list(nodes_to_remove), axis=0)
+        swc = _filtered_swc(swc, nodes_to_remove)
         neuron.initialize(swc)
 
 def tune_branch(neuron: Neuron):
@@ -94,7 +105,7 @@ def tune_branch(neuron: Neuron):
     modified = False
     
     # Get soma indices more efficiently
-    soma_indices = {nid_hash[soma[0]] for soma in neuron.get_soma(allow_multiple=True)}
+    soma_indices = {nid_hash[soma[0]] for soma in neuron.somata}
     
     # Process each soma's subtree
     for soma_idx in soma_indices:
@@ -152,9 +163,9 @@ def tune_branch(neuron: Neuron):
             min_dist = np.inf
             new_pid = None
             if not is_sharp_turn(gparent_node, parent_node, cur_node):
-                min_dist = min(min_dist, np.linalg.norm(positions[parent_idx] - positions[gparent_idx]))
+                min_dist = min(min_dist, _squared_distance(positions[parent_idx], positions[gparent_idx]))
             if not is_sharp_turn(ggparent_node, parent_node, cur_node):
-                tmp_dist = np.linalg.norm(positions[parent_idx] - positions[ggparent_idx])
+                tmp_dist = _squared_distance(positions[parent_idx], positions[ggparent_idx])
                 if tmp_dist < min_dist:
                     min_dist = tmp_dist
                     new_pid = ggparent_id
@@ -166,7 +177,7 @@ def tune_branch(neuron: Neuron):
                     break
                 child_node = swc[child_idx]
                 if is_sharp_turn(child_node, parent_node, cur_node):
-                    tmp_dist = np.linalg.norm(positions[parent_idx] - positions[child_idx])
+                    tmp_dist = _squared_distance(positions[parent_idx], positions[child_idx])
                     if tmp_dist < min_dist:
                         min_dist = tmp_dist
                         new_pid = child_node[0]
@@ -202,7 +213,7 @@ def remove_spur(neuron: Neuron):
             nodes_to_remove.add(tip_idx)
 
     if nodes_to_remove:
-        swc = np.delete(swc, list(nodes_to_remove), axis=0)
+        swc = _filtered_swc(swc, nodes_to_remove)
         neuron.initialize(swc)
 
     return
@@ -217,8 +228,9 @@ def merge_close_point(neuron: Neuron, threshold=0.01):
     nodes_to_remove = set()
 
     stack = deque()
+    threshold2 = threshold * threshold
     
-    for soma in neuron.get_soma(allow_multiple=True):
+    for soma in neuron.somata:
         soma_idx = nid_hash[soma[0]]
         stack.extend(children_map[soma_idx])
 
@@ -237,7 +249,7 @@ def merge_close_point(neuron: Neuron, threshold=0.01):
             parent2_node = swc[parent2_idx]
             parent1_children = list(children_map[parent1_idx])  # need a copy or it will be modified
 
-            if np.linalg.norm(parent1_node[2:5]-parent2_node[2:5]) < threshold:
+            if _squared_distance(parent1_node[2:5], parent2_node[2:5]) < threshold2:
                 
                 parent2_nid = parent2_node[0]
                 for child_idx in children_map[parent1_idx]:
@@ -254,7 +266,7 @@ def merge_close_point(neuron: Neuron, threshold=0.01):
                     child1_node = swc[child1_idx]
                     child2_node = swc[child2_idx]
 
-                    if np.linalg.norm(child1_node[2:5]-child2_node[2:5]) < threshold:
+                    if _squared_distance(child1_node[2:5], child2_node[2:5]) < threshold2:
                         child1_nid = child1_node[0]
                         for child_idx in children_map[child2_idx]:
                             swc[child_idx][6] = child1_nid
@@ -264,7 +276,7 @@ def merge_close_point(neuron: Neuron, threshold=0.01):
                         child1_idx = child2_idx
 
     if nodes_to_remove:
-        swc = np.delete(swc, list(nodes_to_remove), axis=0)
+        swc = _filtered_swc(swc, nodes_to_remove)
         neuron.initialize(swc)
 
     return
@@ -286,7 +298,7 @@ def remove_overshoot(neuron: Neuron):
     remove_set = set()
     
     # Get bifurcation points (excluding soma)
-    soma_indices = {nid_hash[soma[0]] for soma in neuron.get_soma(allow_multiple=True)}
+    soma_indices = {nid_hash[soma[0]] for soma in neuron.somata}
     bifur_indices = set(neuron.bifur_indices) - soma_indices
     
     for bifur_idx in bifur_indices:
@@ -331,16 +343,20 @@ def remove_overshoot(neuron: Neuron):
     
     # Apply removals
     if remove_set:
-        swc = np.delete(swc, list(remove_set), axis=0)
+        swc = _filtered_swc(swc, remove_set)
         neuron.initialize(swc)
 
 
 def optimal_downsample(neuron: Neuron):
 
     def _is_node1_within_node2(node1, node2):
-        return node1[5] + np.linalg.norm(node1[2:5] - node2[2:5]) <= node2[5]
+        radius_margin = node2[5] - node1[5]
+        if radius_margin < 0:
+            return False
+        return _squared_distance(node1[2:5], node2[2:5]) <= radius_margin * radius_margin
     def _is_node_overlap(node1, node2):
-        return np.linalg.norm(node1[2:5] - node2[2:5]) < node1[5] + node2[5]
+        radius_sum = node1[5] + node2[5]
+        return _squared_distance(node1[2:5], node2[2:5]) < radius_sum * radius_sum
     def _interpolate_node(node1, node2, ref_node):
         d1 = np.linalg.norm(node1[2:5] - ref_node[2:5])
         d2 = np.linalg.norm(node2[2:5] - ref_node[2:5])
@@ -360,8 +376,8 @@ def optimal_downsample(neuron: Neuron):
         """
         interp_node = _interpolate_node(node1, node2, ref_node)
         size_scale = 1.2
-        if np.linalg.norm(ref_node[2:5] - interp_node[2:5]) * size_scale < interp_node[5]:  # not too far away
-            if ref_node[5] / size_scale < interp_node[5] < ref_node[5] * size_scale:  # reasonable radius
+        if _squared_distance(ref_node[2:5], interp_node[2:5]) * (size_scale * size_scale) < interp_node[5] * interp_node[5]:
+            if ref_node[5] / size_scale < interp_node[5] < ref_node[5] * size_scale:
                 return True
 
         return False
@@ -370,11 +386,10 @@ def optimal_downsample(neuron: Neuron):
         nid_hash = neuron.nidHash
         children_map = neuron.indexChildren
         swc = neuron.swc
-
         nodes_to_remove = set()
 
         stack = deque()
-        for soma in neuron.get_soma(allow_multiple=True):
+        for soma in neuron.somata:
             soma_idx = nid_hash[soma[0]]
             stack.extend(children_map[soma_idx])
 
@@ -390,9 +405,9 @@ def optimal_downsample(neuron: Neuron):
                     stack.extend(children_map[cur_idx])
                     continue
             
+                redundant = False
                 parent2_node = swc[parent2_idx]
                 
-                redundant = False
                 if _is_node1_within_node2(parent1_node, parent2_node) or _is_node1_within_node2(parent1_node, cur_node):
                     redundant = True
 
@@ -409,7 +424,7 @@ def optimal_downsample(neuron: Neuron):
                 stack.extend(children_map[cur_idx])
 
         if nodes_to_remove:
-            swc = np.delete(swc, list(nodes_to_remove), axis=0)
+            swc = _filtered_swc(swc, nodes_to_remove)
             neuron.initialize(swc)
         else:
             break
@@ -460,7 +475,7 @@ def optimal_downsample(neuron: Neuron):
             stack.extend(children_map[cur_idx])
 
     if nodes_to_remove:
-        swc = np.delete(swc, list(nodes_to_remove), axis=0)
+        swc = _filtered_swc(swc, nodes_to_remove)
         neuron.initialize(swc)
 
 

@@ -19,7 +19,7 @@ def parse_args(argv=None):
     parser.add_argument(
         "image_path",
         nargs="?",
-        default="examples/data/reference_volume_lite.nii.gz",
+        default="examples/data/reference_volume.nii.gz",
         help="Input image path to profile.",
     )
     parser.add_argument("--max-seeds", type=int, default=2, help="Optional tracing seed cap.")

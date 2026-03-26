@@ -24,7 +24,7 @@ from .tracing_base import BaseTracingSegment
 from .filters import MexicanHatFilter, correlation_score, mean_intensity_score
 from .seg_utils import set_coordinates, set_orientation
 from .geometry import point_in_seg
-from .optimization import optimize_segment, SegmentOptimizer
+from .optimization import optimize_segment
 from .tracing_utils import label_tracing_mask
 # from filters0 import correlation_score, mean_intensity_score
 
@@ -75,7 +75,7 @@ class TracingSegment(BaseTracingSegment):
             Rotation angle along z-axis (counter-clockwise) of the segment in radians. Defaults to 0.0. Range: [0, 2蟺].
         scale : float
             Scale factor to control the cross-sectional shape of the segment. Defaults to 1.0.
-            If scale=1.0, the cross-section is a circle. If scale鈮?.0, the cross-section is an ellipse,
+            If scale=1.0, the cross-section is a circle. If scale != 1.0, the cross-section is an ellipse,
             where x = y * scale.
         alignment : str: 'center' | 'start' | 'end'
             Alignment of the segment with respect to the position.
@@ -251,7 +251,7 @@ class TracingSegment(BaseTracingSegment):
                 for psi in psis:
                     x_init = [self.radius, theta, psi, self.scale]
                     tmpseg.theta, tmpseg.psi = x_init[1:3]
-                    tmpseg._set_orientation()   # LYF: not sure if it is required. Fix later if not necessary
+                    tmpseg._set_orientation()
                     score, _ = tmpseg.score_segment(image, [correlation_score, mean_intensity_score])
                     if i == 0:
                         max_score = score
@@ -269,7 +269,6 @@ class TracingSegment(BaseTracingSegment):
             self.radius, self.theta, self.psi, self.scale = max_params.x
         self.score, self.mean_intensity = self.score_segment(image, [correlation_score, mean_intensity_score])
 
-        # success = SegmentOptimizer(image, score_func=score_func).fit(self)
         self._set_orientation()
         self._set_coordinate(self.start_coord, 'start')
 

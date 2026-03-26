@@ -33,6 +33,44 @@ from .tracing_utils import label_tracing_mask
 from .chain_utils import get_chain_side_bright_point, get_inner_chain_range, interpolate_chain
 
 
+def postprocess_reconstruction(neuron: Neuron, *, verbose: int = 1) -> Neuron:
+    import time
+
+    def _vprint(message: str) -> None:
+        if verbose:
+            print(message)
+
+    t0 = time.time()
+    remove_zigzag(neuron)
+    _vprint(f'--> remove_zigzag [length={neuron.length}]: {time.time() - t0:.5f}')
+
+    t0 = time.time()
+    tune_branch(neuron)
+    _vprint(f'--> tune_branch [length={neuron.length}]: {time.time() - t0:.5f}')
+
+    t0 = time.time()
+    remove_spur(neuron)
+    _vprint(f'--> remove_spur [length={neuron.length}]: {time.time() - t0:.5f}')
+
+    t0 = time.time()
+    merge_close_point(neuron, 0.01)
+    _vprint(f'--> merge close point [length={neuron.length}]: {time.time() - t0:.5f}')
+
+    t0 = time.time()
+    remove_overshoot(neuron)
+    _vprint(f'--> remove overshoot [length={neuron.length}]: {time.time() - t0:.5f}')
+
+    t0 = time.time()
+    optimal_downsample(neuron)
+    _vprint(f'--> downsample [length={neuron.length}]: {time.time() - t0:.5f}')
+
+    t0 = time.time()
+    remove_subtrees_by_length(neuron, verbose=verbose)
+    _vprint(f'--> remove subtrees by length [length={neuron.length}]: {time.time() - t0:.5f}')
+
+    return neuron
+
+
 def _clone_connect_segment(seg):
     new_seg = seg.__class__.__new__(seg.__class__)
     new_seg.radius = seg.radius
@@ -115,7 +153,7 @@ class ChainConnector:
             conn.cost = 10.0
             return False
 
-        min_pdist = -1.0  # this is weired, which means the re-check of planar distance is not used.
+        min_pdist = -1.0
         head_ball_radius = head._set_ball_radius()
         tail_ball_radius = tail._set_ball_radius()
         for i, seg in enumerate(chain2._segments):
@@ -182,7 +220,7 @@ class ChainConnector:
 
         bright_point = get_chain_side_bright_point(chain1, signal_image, 'head')
         dist, intersection_point, min_idx = point_to_chain_surface(bright_point, chain2)
-        chain1_seg = chain1[0]  # need a copy?
+        chain1_seg = chain1[0]
 
         tmp_bright_point = get_chain_side_bright_point(chain1, signal_image, 'tail')
         tmpdist, tmp_intersection_point, tmp_min_idx = point_to_chain_surface(tmp_bright_point, chain2)
@@ -323,10 +361,11 @@ class ChainConnector:
         
         if nchains > 500:
             self.sp_test = False
-        
+
         for i, chain1 in enumerate(chains):
             for j, chain2 in enumerate(chains):
-                if i==j: continue
+                if i == j:
+                    continue
                 conn = Neurocomp_Conn(
                     mode=ConnectorType.NEUROCOMP_CONN_HL,
                     info=np.array([0, 0], dtype=int),
@@ -341,7 +380,7 @@ class ChainConnector:
                     if conn.min_sdist > 2.0 and self.sp_test == True:
                         # initialize StackGraph
                         sgw = StackGraph(conn=26)
-                        sgw.signal_mask = None  # possibly is None
+                        sgw.signal_mask = None
                         sgw.including_signal_border = True
                         path = self.get_shortest_path(chain1, chain2, signal_image, sgw)
                         gdist = self.validate_shortest_path(path, chain1, signal_image, sgw, conn)
@@ -664,28 +703,4 @@ class ChainConnector:
         t0 = time.time()
         neuron.from_graph(tree, circle_comp_list)
         self._vprint(f'--> from_graph [length={neuron.length}]: {time.time() - t0:.5f}')
-        
-        t0 = time.time()
-        remove_zigzag(neuron)
-        self._vprint(f'--> remove_zigzag [length={neuron.length}]: {time.time() - t0:.5f}')
-
-        t0 = time.time()
-        tune_branch(neuron)
-        self._vprint(f'--> tune_branch [length={neuron.length}]: {time.time() - t0:.5f}')
-
-        remove_spur(neuron)
-        self._vprint(f'--> remove_spur [length={neuron.length}]: {time.time() - t0:.5f}')
-
-        merge_close_point(neuron, 0.01)
-        self._vprint(f'--> merge close point [length={neuron.length}]: {time.time() - t0:.5f}')
-    
-        remove_overshoot(neuron)
-        self._vprint(f'--> remove overshoot [length={neuron.length}]: {time.time() - t0:.5f}')
-
-        optimal_downsample(neuron)
-        self._vprint(f'--> downsample [length={neuron.length}]: {time.time() - t0:.5f}')
-
-        remove_subtrees_by_length(neuron, verbose=self.verbose)
-        self._vprint(f'--> remove subtrees by length [length={neuron.length}]: {time.time() - t0:.5f}')
-
-        return neuron
+        return postprocess_reconstruction(neuron, verbose=self.verbose)

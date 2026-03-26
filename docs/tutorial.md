@@ -63,6 +63,8 @@ Key runtime controls:
 - `verbose`: controls progress logging
 - `visualization_dir`: optional output directory for lightweight PNG overlays
 
+The public tracing entry points intentionally keep this parameter set small. They are designed for stable file- and runtime-level control, not for exposing every internal tracing heuristic. Lower-level tracing constants and reconstruction rules still live in internal modules and may change between revisions, so method-tuning experiments should pin a specific commit and document any internal overrides explicitly.
+
 ## 4. Preprocess without full tracing
 
 ```python
@@ -103,7 +105,7 @@ save_overlay_figure(
 )
 ```
 
-`image` can be either a path or a loaded volume. `trace` can be an SWC path, a `Neuron`, or an `(N, 3)` coordinate array.
+`image` can be either a path or a loaded volume. `trace` can be an SWC path, a `Neuron`, or an `(N, 3)` coordinate array. The rendered background uses a `log1p`-transformed maximum-intensity projection and the axes are fixed to the image shape.
 
 ## 7. Local examples and tools
 

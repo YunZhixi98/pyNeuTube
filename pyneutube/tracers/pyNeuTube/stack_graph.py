@@ -250,7 +250,7 @@ class GraphWorkspace:
         status: Vertex status flags
     """
     # Bitmask fields
-    allocated: int = 0  # LYF: int or List[int]?
+    allocated: int = 0
     ready: int = 0
     
     # Graph dimensions
@@ -374,7 +374,7 @@ class GraphWorkspace:
     def _graph_edges_array(self, graph: Graph) -> np.ndarray:
         return graph.get_edges_array()
 
-    def load_graph(self, graph: Graph) -> list: #LYF: forget which it correspondes to :(
+    def load_graph(self, graph: Graph) -> list:
         """Load graph data into the workspace"""
         self._ensure_workspace_size(graph)
         self.graph_neighbor_list(graph)
@@ -682,7 +682,6 @@ class StackGraph:
         empty_cond = np.zeros(self.conn, dtype=np.uint8)
         cond_buffer = np.empty(self.conn, dtype=np.uint8) if signal_mask is not None else None
 
-        # LYF: batch operation rewritten required, to maximize speed
         # Pre-allocate outside the loop
         unravel_offset2_tmp = np.empty(3, dtype=np.int32)
         offset2_neighbor_tmp = np.empty(26, dtype=np.int64)
@@ -785,7 +784,7 @@ class StackGraph:
             path_indices.append(index)
             end = path[end]
         
-        return path_indices[::-1]  # Reverse to get start->end order    # LYF: is this right?
+        return path_indices[::-1]
 
     def stack_route(self, stack: np.ndarray, start: np.ndarray, end: np.ndarray) -> List:
         if self.gw is None:
@@ -824,7 +823,7 @@ class StackGraph:
         # initialize a StackGraph_W object
         graph = self.stack_graph_w(stack)
 
-        path = self.gw.graph_shortest_path_e(graph, start_index, end_index)    # LYF: see the source in `./c/tz_graph.c`
+        path = self.gw.graph_shortest_path_e(graph, start_index, end_index)
 
         self.value = self.gw.dlist[end_index]   # gw
         
