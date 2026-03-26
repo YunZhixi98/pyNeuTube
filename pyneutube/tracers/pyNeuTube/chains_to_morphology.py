@@ -89,6 +89,71 @@ def _clone_connect_segment(seg):
     return new_seg
 
 
+def _bbox_distance(min1: np.ndarray, max1: np.ndarray, min2: np.ndarray, max2: np.ndarray) -> float:
+    gap = np.maximum(0.0, np.maximum(min2 - max1, min1 - max2))
+    return float(np.linalg.norm(gap))
+
+
+def _chain_broadphase_stats(chains: SegmentChains):
+    stats = []
+    for chain in chains:
+        if len(chain) == 0:
+            stats.append(None)
+            continue
+
+        start_coords = np.asarray([seg.start_coord for seg in chain], dtype=np.float64)
+        end_coords = np.asarray([seg.end_coord for seg in chain], dtype=np.float64)
+        chain_coords = np.vstack((start_coords, end_coords))
+        head_coords = np.vstack(
+            (
+                np.asarray(chain[0].start_coord, dtype=np.float64),
+                np.asarray(chain[0].end_coord, dtype=np.float64),
+            )
+        )
+        tail_coords = np.vstack(
+            (
+                np.asarray(chain[-1].start_coord, dtype=np.float64),
+                np.asarray(chain[-1].end_coord, dtype=np.float64),
+            )
+        )
+        stats.append(
+            {
+                "chain_min": chain_coords.min(axis=0),
+                "chain_max": chain_coords.max(axis=0),
+                "head_min": head_coords.min(axis=0),
+                "head_max": head_coords.max(axis=0),
+                "tail_min": tail_coords.min(axis=0),
+                "tail_max": tail_coords.max(axis=0),
+                "max_radius": max(float(seg.radius) for seg in chain),
+            }
+        )
+
+    return stats
+
+
+def _can_skip_connect_test(chain1_stats, chain2_stats, dist_thresh: float) -> bool:
+    if chain1_stats is None or chain2_stats is None:
+        return True
+
+    min_bbox_dist = min(
+        _bbox_distance(
+            chain1_stats["head_min"],
+            chain1_stats["head_max"],
+            chain2_stats["chain_min"],
+            chain2_stats["chain_max"],
+        ),
+        _bbox_distance(
+            chain1_stats["tail_min"],
+            chain1_stats["tail_max"],
+            chain2_stats["chain_min"],
+            chain2_stats["chain_max"],
+        ),
+    )
+    max_radius = max(chain1_stats["max_radius"], chain2_stats["max_radius"])
+    distance_limit = 2 * np.sqrt(max_radius**2 + ((Defaults.SEG_LENGTH - 1) / 2) ** 2) + dist_thresh
+    return min_bbox_dist > distance_limit
+
+
 class ChainConnector:
 
     def __init__(self, verbose: int = 1):
@@ -362,9 +427,13 @@ class ChainConnector:
         if nchains > 500:
             self.sp_test = False
 
+        broadphase_stats = _chain_broadphase_stats(chains)
+
         for i, chain1 in enumerate(chains):
             for j, chain2 in enumerate(chains):
                 if i == j:
+                    continue
+                if _can_skip_connect_test(broadphase_stats[i], broadphase_stats[j], self.dist_thresh):
                     continue
                 conn = Neurocomp_Conn(
                     mode=ConnectorType.NEUROCOMP_CONN_HL,
