@@ -192,6 +192,8 @@ class ChainConnector:
         chain2: SegmentChain,
         signal_image,
         conn: Neurocomp_Conn,
+        *,
+        chain2_max_radius: float | None = None,
     ):
         n_chain1 = len(chain1)
         n_chain2 = len(chain2)
@@ -211,11 +213,9 @@ class ChainConnector:
             seg_chain_dist_upper_bound(chain2, tail),
         )
 
-        max_radius = max(
-            head.radius,
-            tail.radius,
-            max((seg.radius for seg in chain2_segments), default=0.0),
-        )
+        if chain2_max_radius is None:
+            chain2_max_radius = max((seg.radius for seg in chain2_segments), default=0.0)
+        max_radius = max(head.radius, tail.radius, chain2_max_radius)
         if min_sdist > 2*np.sqrt(max_radius**2+((Defaults.SEG_LENGTH-1)/2)**2)+self.dist_thresh:
             conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
             conn.cost = 10.0
@@ -437,10 +437,12 @@ class ChainConnector:
         broadphase_stats = _chain_broadphase_stats(chains)
 
         for i, chain1 in enumerate(chains):
+            chain1_stats = broadphase_stats[i]
             for j, chain2 in enumerate(chains):
                 if i == j:
                     continue
-                if _can_skip_connect_test(broadphase_stats[i], broadphase_stats[j], self.dist_thresh):
+                chain2_stats = broadphase_stats[j]
+                if _can_skip_connect_test(chain1_stats, chain2_stats, self.dist_thresh):
                     continue
                 conn = Neurocomp_Conn(
                     mode=ConnectorType.NEUROCOMP_CONN_HL,
@@ -451,7 +453,13 @@ class ChainConnector:
                     min_pdist=-1.0,
                     min_sdist=-1.0
                 )
-                is_possible_connect = self.connect_test(chain1, chain2, signal_image, conn)
+                is_possible_connect = self.connect_test(
+                    chain1,
+                    chain2,
+                    signal_image,
+                    conn,
+                    chain2_max_radius=None if chain2_stats is None else chain2_stats["max_radius"],
+                )
                 if is_possible_connect:
                     if conn.min_sdist > 2.0 and self.sp_test == True:
                         # initialize StackGraph
