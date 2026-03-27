@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import subprocess
 import sys
@@ -11,6 +12,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 BUILD_DIST_DIR = REPO_ROOT / "dist"
 DEFAULT_WHEELHOUSE = REPO_ROOT / ".wheelhouse"
 ENV_PREFIX = "pyneutube-wheel"
+CONDA_CMD: list[str] | None = None
 
 
 def run(cmd: list[str], *, cwd: Path | None = None) -> None:
@@ -18,9 +20,28 @@ def run(cmd: list[str], *, cwd: Path | None = None) -> None:
     subprocess.run(cmd, cwd=cwd, check=True)
 
 
+def resolve_conda_command() -> list[str]:
+    conda_exe = os.environ.get("CONDA_EXE")
+    if conda_exe:
+        return [conda_exe]
+
+    for candidate in ("conda", "conda.exe", "conda.bat"):
+        resolved = shutil.which(candidate)
+        if resolved:
+            return [resolved]
+
+    condabin = Path(sys.base_prefix).parent / "condabin"
+    for candidate in ("conda.bat", "conda.exe"):
+        resolved = condabin / candidate
+        if resolved.exists():
+            return [str(resolved)]
+
+    raise RuntimeError("`conda` was not found. Activate a conda shell or set CONDA_EXE.")
+
+
 def require_conda() -> None:
-    if shutil.which("conda") is None:
-        raise RuntimeError("`conda` was not found in PATH.")
+    global CONDA_CMD
+    CONDA_CMD = resolve_conda_command()
 
 
 def env_name(version: str) -> str:
@@ -53,7 +74,7 @@ def parse_args() -> argparse.Namespace:
 
 def conda_env_exists(name: str) -> bool:
     result = subprocess.run(
-        ["conda", "env", "list"],
+        [*CONDA_CMD, "env", "list"],
         check=True,
         capture_output=True,
         text=True,
@@ -64,16 +85,15 @@ def conda_env_exists(name: str) -> bool:
 def create_env(name: str, python_version: str) -> None:
     if conda_env_exists(name):
         raise RuntimeError(f"Conda environment already exists: {name}")
-    run(["conda", "create", "-y", "-n", name, f"python={python_version}"])
+    run([*CONDA_CMD, "create", "-y", "-n", name, f"python={python_version}"])
 
 
 def conda_run(name: str, *args: str) -> None:
-    run(["conda", "run", "--no-capture-output", "-n", name, *args], cwd=REPO_ROOT)
+    run([*CONDA_CMD, "run", "--no-capture-output", "-n", name, *args], cwd=REPO_ROOT)
 
 
-def clean_build_dirs() -> None:
+def clean_build_state() -> None:
     shutil.rmtree(REPO_ROOT / "build", ignore_errors=True)
-    shutil.rmtree(BUILD_DIST_DIR, ignore_errors=True)
 
 
 def collect_artifacts(target_dir: Path) -> None:
@@ -89,7 +109,7 @@ def collect_artifacts(target_dir: Path) -> None:
 def remove_env(name: str) -> None:
     if conda_env_exists(name):
         try:
-            run(["conda", "env", "remove", "-y", "-n", name])
+            run([*CONDA_CMD, "env", "remove", "-y", "-n", name])
         except subprocess.CalledProcessError as exc:
             print(f"Warning: failed to remove conda env {name}: {exc}", file=sys.stderr)
 
@@ -124,7 +144,7 @@ def main() -> int:
                 "Cython",
             )
 
-            clean_build_dirs()
+            clean_build_state()
 
             print(f"==> Building wheel for Python {python_version}")
             conda_run(name, "python", "-m", "build", "--wheel")
@@ -135,7 +155,7 @@ def main() -> int:
             print("==> Collecting artifacts")
             collect_artifacts(wheelhouse)
     finally:
-        clean_build_dirs()
+        clean_build_state()
         for name in created_envs:
             print(f"==> Removing temporary conda env: {name}")
             remove_env(name)
