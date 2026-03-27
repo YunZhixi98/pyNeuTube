@@ -175,3 +175,4 @@ build_meta.log
 debug/
 *.jsonl
 tests/
+Cython_setup_legacy.py

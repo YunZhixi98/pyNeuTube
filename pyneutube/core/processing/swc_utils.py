@@ -420,6 +420,9 @@ def optimal_downsample(neuron: Neuron):
                     for child_idx in children_map[parent1_idx]:
                         swc[child_idx][6] = parent2_nid
                     nodes_to_remove.add(parent1_idx)
+                    remaining_children = [iidx for iidx in children_map[parent2_idx] if iidx != parent1_idx]
+                    children_map[parent2_idx] = remaining_children + children_map[parent1_idx]
+                    children_map[parent1_idx] = []
 
                 stack.extend(children_map[cur_idx])
 
@@ -471,6 +474,9 @@ def optimal_downsample(neuron: Neuron):
                     for child_idx in children_map[parent1_idx]:
                         swc[child_idx][6] = parent2_nid
                     nodes_to_remove.add(parent1_idx)
+                    remaining_children = [iidx for iidx in children_map[parent2_idx] if iidx != parent1_idx]
+                    children_map[parent2_idx] = remaining_children + children_map[parent1_idx]
+                    children_map[parent1_idx] = []
             
             stack.extend(children_map[cur_idx])
 

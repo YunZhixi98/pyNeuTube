@@ -255,7 +255,7 @@ class Seeds:
 
         coords_values = dt_image[tuple(coords.T)]
 
-        arg_idx = np.argsort(np.abs(coords_values - Defaults.MAX_CONF_RADIUS))[::-1]
+        arg_idx = _seed_priority_order(coords, coords_values)
         for coord, value in zip(coords[arg_idx], coords_values[arg_idx], strict=True):
             self.append(Seed(coord=coord[::-1], value=value))  # xyz-order
         _vprint(verbose, f"{len(self)} seeds found")

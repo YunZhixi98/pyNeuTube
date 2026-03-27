@@ -195,7 +195,7 @@ class Neuron(object):
             subgraph = graph.subgraph(c)
             if subgraph.number_of_nodes() == 0:
                 continue
-            root = next(iter(subgraph.nodes()))
+            root = next(iter(subgraph.edges()))[1]
             swc.append([root, i+2] + list(circle_comp_list[root].center) + [circle_comp_list[root].radius, -1])
             for u, v in nx.bfs_edges(subgraph, source=root):
                 circle = circle_comp_list[v]
