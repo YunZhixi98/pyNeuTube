@@ -1,5 +1,13 @@
 from __future__ import annotations
 
+"""
+Deprecated local wheel builder.
+
+This helper is kept only for ad-hoc local builds with temporary conda environments.
+For release-quality wheels, especially Linux manylinux wheels intended for PyPI,
+prefer `cibuildwheel` instead.
+"""
+
 import argparse
 import os
 import shutil
@@ -117,6 +125,9 @@ def remove_env(name: str) -> None:
 def main() -> int:
     args = parse_args()
     require_conda()
+
+    print("WARNING: tools/release/build_wheels_conda.py is deprecated.")
+    print("WARNING: Prefer `python -m cibuildwheel --output-dir wheelhouse` for release builds.")
 
     wheelhouse = Path(args.wheelhouse).resolve()
     wheelhouse.mkdir(parents=True, exist_ok=True)
