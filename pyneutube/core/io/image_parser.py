@@ -12,11 +12,6 @@ import numpy as np
 import tifffile
 
 try:  # Optional runtime dependency.
-    import h5py
-except ImportError:  # pragma: no cover - optional dependency
-    h5py = None
-
-try:  # Optional runtime dependency.
     import nibabel as nib
 except ImportError:  # pragma: no cover - optional dependency
     nib = None
@@ -82,8 +77,6 @@ def _detect_format(path: Path) -> str:
         return "v3draw"
     if name.endswith(".v3dpbd"):
         return "v3dpbd"
-    if name.endswith((".h5", ".hdf5")):
-        return "hdf5"
     if name.endswith((".nii", ".nii.gz")):
         return "nifti"
     if name.endswith((".nrrd", ".nhdr")):
@@ -553,20 +546,6 @@ def _read_v3dpbd_header(path: Path) -> tuple[tuple[int, int, int], np.dtype, dic
     )
 
 
-def _find_first_h5_dataset(handle: Any) -> Any:
-    selected = None
-
-    def visitor(_name: str, obj: Any) -> None:
-        nonlocal selected
-        if selected is None and isinstance(obj, h5py.Dataset):
-            selected = obj
-
-    handle.visititems(visitor)
-    if selected is None:
-        raise ValueError("No HDF5 dataset found in the provided file.")
-    return selected
-
-
 class ImageParser:
     """Load and inspect microscopy volumes across supported file formats."""
 
@@ -574,14 +553,12 @@ class ImageParser:
         self,
         filepath: str | os.PathLike[str],
         *,
-        dataset: str | None = None,
         verbose: int = 0,
     ) -> None:
         self.filepath = Path(filepath)
         if not self.filepath.exists():
             raise FileNotFoundError(f"Image file not found: {self.filepath}")
 
-        self.dataset = dataset
         self.verbose = verbose
         self.format = _detect_format(self.filepath)
         self._metadata: dict[str, Any] = {}
@@ -610,20 +587,6 @@ class ImageParser:
 
         if self.format == "v3dpbd":
             self._shape, self._dtype, self._metadata = _read_v3dpbd_header(self.filepath)
-            return
-
-        if self.format == "hdf5":
-            h5py_module = _require_optional_dependency(h5py, "h5py", "HDF5")
-            with h5py_module.File(self.filepath, "r") as handle:
-                dataset = handle[self.dataset] if self.dataset else _find_first_h5_dataset(handle)
-                self.dataset = dataset.name
-                self._shape = _normalized_shape(tuple(dataset.shape))
-                self._dtype = np.dtype(dataset.dtype)
-                self._metadata = {
-                    "format": "hdf5",
-                    "dataset": self.dataset,
-                    "dataset_shape": tuple(int(dim) for dim in dataset.shape),
-                }
             return
 
         if self.format == "nifti":
@@ -679,13 +642,6 @@ class ImageParser:
         if self.format == "v3dpbd":
             return PBD().load_image(self.filepath)
 
-        if self.format == "hdf5":
-            h5py_module = _require_optional_dependency(h5py, "h5py", "HDF5")
-            with h5py_module.File(self.filepath, "r") as handle:
-                dataset = handle[self.dataset] if self.dataset else _find_first_h5_dataset(handle)
-                self.dataset = dataset.name
-                return _normalized_volume(np.asarray(dataset))
-
         if self.format == "nifti":
             nib_module = _require_optional_dependency(nib, "nibabel", "NIfTI")
             image = nib_module.load(str(self.filepath))
@@ -706,18 +662,13 @@ class ImageParser:
         out_path: str | os.PathLike[str],
         *,
         overwrite: bool = False,
-        dataset: str = "/volume",
         affine: np.ndarray | None = None,
-        compression: str | None = "gzip",
         verbose: int = 0,
     ) -> None:
         """Save a 3D volume, choosing the output format from `out_path` suffix.
 
         Format-specific arguments:
-        - `dataset` is only used for HDF5 outputs and selects the dataset path.
         - `affine` is only used for NIfTI outputs and defaults to the identity matrix.
-        - `compression` is only used for HDF5 outputs and is ignored by TIFF, Vaa3D raw,
-          NIfTI, and NRRD outputs.
         """
         out_path = Path(out_path)
         if out_path.exists() and not overwrite:
@@ -735,13 +686,6 @@ class ImageParser:
         if fmt == "v3draw":
             save_v3draw(volume, out_path)
             _vprint(verbose, f"Saved Vaa3D raw volume to {out_path}")
-            return
-
-        if fmt == "hdf5":
-            h5py_module = _require_optional_dependency(h5py, "h5py", "HDF5")
-            with h5py_module.File(out_path, "w") as handle:
-                handle.create_dataset(dataset, data=volume, compression=compression)
-            _vprint(verbose, f"Saved HDF5 volume to {out_path}")
             return
 
         if fmt == "nifti":
@@ -765,19 +709,14 @@ class ImageParser:
         output_path: str | os.PathLike[str],
         *,
         overwrite: bool = False,
-        dataset: str = "/volume",
         affine: np.ndarray | None = None,
-        compression: str | None = "gzip",
-        input_dataset: str | None = None,
         verbose: int = 0,
     ) -> None:
-        parser = ImageParser(input_path, dataset=input_dataset, verbose=verbose)
+        parser = ImageParser(input_path, verbose=verbose)
         ImageParser.save(
             parser.load(),
             output_path,
             overwrite=overwrite,
-            dataset=dataset,
             affine=affine,
-            compression=compression,
             verbose=verbose,
         )

@@ -42,14 +42,14 @@ print(image.shape)
 
 Supported input formats:
 
-- TIFF, Vaa3D raw, Vaa3D PBD (`.v3dpbd`), HDF5, NIfTI, and NRRD
+- TIFF, Vaa3D raw, Vaa3D PBD (`.v3dpbd`), NIfTI, and NRRD
 
 Saving uses the output suffix to choose a format:
 
 ```python
 from pyneutube import ImageParser
 
-ImageParser.save(image, "volume.h5", dataset="/volume", compression="gzip")
+ImageParser.save(image, "volume.v3draw")
 ImageParser.save(image, "volume.nii.gz")
 ```
 

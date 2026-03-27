@@ -45,7 +45,6 @@ def main(argv=None):
 
     targets = [
         output_dir / f"{stem}.v3draw",
-        output_dir / f"{stem}.h5",
         output_dir / f"{stem}.nii.gz",
     ]
 

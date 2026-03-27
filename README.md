@@ -59,7 +59,6 @@ Default input support:
 - TIFF stacks: `.tif`, `.tiff`
 - Vaa3D raw volumes: `.v3draw`, `.raw`
 - Vaa3D PBD-compressed volumes: `.v3dpbd`
-- HDF5: `.h5`, `.hdf5`
 - NIfTI: `.nii`, `.nii.gz`
 - NRRD: `.nrrd`, `.nhdr`
 

@@ -37,8 +37,6 @@ SUPPORTED_IMAGE_SUFFIXES = (
     ".v3draw",
     ".raw",
     ".v3dpbd",
-    ".h5",
-    ".hdf5",
     ".nii",
     ".nii.gz",
     ".nrrd",
@@ -288,7 +286,6 @@ def _trace_volume_internal(
 def trace_file(
     image_path: str | Path,
     *,
-    dataset: str | None = None,
     output_swc: str | Path | None = None,
     visualization_dir: str | Path | None = None,
     n_jobs: int = 1,
@@ -300,7 +297,6 @@ def trace_file(
 ) -> TracingResult:
     return _trace_file_internal(
         image_path,
-        dataset=dataset,
         output_swc=output_swc,
         visualization_dir=visualization_dir,
         n_jobs=n_jobs,
@@ -315,7 +311,6 @@ def trace_file(
 def _trace_file_internal(
     image_path: str | Path,
     *,
-    dataset: str | None = None,
     output_swc: str | Path | None = None,
     visualization_dir: str | Path | None = None,
     n_jobs: int = 1,
@@ -352,7 +347,7 @@ def _trace_file_internal(
             reason="exists",
         )
 
-    parser = ImageParser(image_path, dataset=dataset, verbose=verbose)
+    parser = ImageParser(image_path, verbose=verbose)
 
     t0 = perf_counter()
     check_timeout("load_image")

@@ -6,6 +6,5 @@ tqdm>=4.66
 fast-histogram>=0.14
 edt>=2.4
 matplotlib>=3.8
-h5py>=3.11
 nibabel>=5.3
 pynrrd>=1.0
