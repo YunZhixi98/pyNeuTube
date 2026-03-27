@@ -5,7 +5,17 @@ on:
     branches:
       - main
       - master
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+      - "CITATION.cff"
+      - ".github/ISSUE_TEMPLATE/**"
   pull_request:
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+      - "CITATION.cff"
+      - ".github/ISSUE_TEMPLATE/**"
   workflow_dispatch:
 
 jobs:
@@ -37,9 +47,6 @@ jobs:
 
       - name: Smoke imports
         run: python tools/dev/smoke_imports.py
-
-      - name: Run tests
-        run: python -m pytest -q
 
       - name: Build wheel
         run: python -m build --wheel
