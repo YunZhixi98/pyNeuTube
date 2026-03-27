@@ -17,13 +17,36 @@ Heavy debug inspection modules are intentionally not part of the release surface
 
 ## Installation
 
-Base install:
+Recommended Python versions: `3.10` to `3.12`.
+
+Install from a local source tree with `pip`:
 
 ```bash
+python -m pip install -r requirements.txt
 python -m pip install .
 ```
 
-This install includes all supported runtime I/O formats.
+Install directly from GitHub source:
+
+```bash
+python -m pip install "git+https://github.com/YunZhixi98/pyNeuTube.git"
+```
+
+Create a `conda` environment from the bundled environment file:
+
+```bash
+conda env create -f environment.yml
+conda activate pyneutube
+```
+
+Build and install a local `conda` package:
+
+```bash
+conda build conda-recipe
+conda install --use-local pyneutube
+```
+
+These install paths include all supported runtime I/O formats.
 
 ## Supported formats
 

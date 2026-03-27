@@ -21,7 +21,7 @@ requirements:
     - pip
     - setuptools >=68
     - wheel
-    - numpy >=2.0
+    - numpy >=1.24
   run:
     - python >=3.10
     - numpy >=1.24
@@ -37,7 +37,7 @@ requirements:
     - pynrrd >=1.0
 
 about:
-  home: https://github.com/fkxyyds/pyneutube
+  home: https://github.com/YunZhixi98/pyNeuTube
   summary: Python reimplementation of the NeuTube tracing workflow.
   license: BSD-3-Clause
   license_file: LICENSE

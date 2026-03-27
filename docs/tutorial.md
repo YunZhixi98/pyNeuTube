@@ -2,10 +2,31 @@
 
 ## 1. Install
 
-Install the package:
+Install from a local source tree with `pip`:
 
 ```bash
+python -m pip install -r requirements.txt
 python -m pip install .
+```
+
+Install from GitHub source:
+
+```bash
+python -m pip install "git+https://github.com/YunZhixi98/pyNeuTube.git"
+```
+
+Create a `conda` environment from the bundled file:
+
+```bash
+conda env create -f environment.yml
+conda activate pyneutube
+```
+
+Build and install a local `conda` package:
+
+```bash
+conda build conda-recipe
+conda install --use-local pyneutube
 ```
 
 If you modify `.pyx` files, regenerate the tracked C sources before release:

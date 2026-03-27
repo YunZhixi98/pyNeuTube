@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=77", "wheel", "numpy>=2.0"]
+requires = ["setuptools>=77", "wheel", "numpy>=1.24"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -39,9 +39,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/fkxyyds/pyneutube"
-Source = "https://github.com/fkxyyds/pyneutube"
-Issues = "https://github.com/fkxyyds/pyneutube/issues"
+Homepage = "https://github.com/YunZhixi98/pyNeuTube"
+Source = "https://github.com/YunZhixi98/pyNeuTube"
+Issues = "https://github.com/YunZhixi98/pyNeuTube/issues"
 
 [project.scripts]
 pyneutube-trace = "pyneutube.cli:main"
