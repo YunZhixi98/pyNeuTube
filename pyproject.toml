@@ -92,4 +92,4 @@ build-verbosity = 1
 test-command = "python -c \"import pyneutube, pyneutube.cli\""
 
 [tool.cibuildwheel.linux]
-manylinux-x86_64-image = "manylinux2014"
+manylinux-x86_64-image = "manylinux_2_28"
