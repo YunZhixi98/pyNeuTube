@@ -508,7 +508,9 @@ class SegmentChain:
                     return
 
                 if seg.radius > 25:
-                    raise ValueError(f'pop seg_idx={seg_idx} on side={side}, radius={seg.radius}')
+                    self._trace_status[side_idx] = TraceStatus.SEG_TOO_THICK
+                    self._segments.pop(seg_idx)
+                    # print(f'pop seg_idx={seg_idx} on side={side}, radius={seg.radius}')
 
                 if len(self) >= 2:
                     # 
