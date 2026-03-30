@@ -511,7 +511,7 @@ def remove_subtrees_by_length(neuron: Neuron, *, verbose: int = 1):
     mean_length = np.mean(subtrees_length)
     new_swc = []
     for i, subtree_nodes in enumerate(subtrees_nodes):
-        if subtrees_length[i] > mean_length:
+        if subtrees_length[i] >= mean_length:
             new_swc.extend(subtree_nodes)
     
     neuron.initialize(new_swc)
