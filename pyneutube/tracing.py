@@ -4,14 +4,18 @@ from __future__ import annotations
 
 import json
 import os
+import pickle
 import traceback
 from collections.abc import Sequence
 from concurrent.futures import ProcessPoolExecutor, as_completed
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from importlib import import_module
 from pathlib import Path
 from time import perf_counter
-from typing import Callable
+from types import ModuleType
+from typing import Any, Callable
 
 import numpy as np
 from scipy.ndimage import binary_dilation, binary_erosion
@@ -27,9 +31,15 @@ from pyneutube.core.processing.filtering import (
     triangle_threshold,
 )
 from pyneutube.tracers.pyNeuTube.chains_to_morphology import ChainConnector
+from pyneutube.tracers.pyNeuTube.config import Defaults as TraceDefaults
+from pyneutube.tracers.pyNeuTube.config import Optimization as TraceOptimization
 from pyneutube.tracers.pyNeuTube.seeds import Seed, Seeds
 from pyneutube.tracers.pyNeuTube.tracing import SegmentChain, SegmentChains, TracingSegment
-from pyneutube.visualization import save_overlay_figure
+from pyneutube.visualization import (
+    save_chain_overlay_figure,
+    save_overlay_figure,
+    save_seed_overlay_figure,
+)
 
 SUPPORTED_IMAGE_SUFFIXES = (
     ".tif",
@@ -53,10 +63,17 @@ class TracingResult:
     neuron: Neuron | None = None
     output_swc: Path | None = None
     output_visualization: Path | None = None
+    output_seed_visualization: Path | None = None
+    output_chain_visualization: Path | None = None
     signal_image: np.ndarray | None = None
     binary_image: np.ndarray | None = None
     skipped: bool = False
     skip_reason: str | None = None
+
+
+@dataclass
+class PreprocessedVolume:
+    threshold: float
 
 
 class TraceTimeoutError(TimeoutError):
@@ -152,23 +169,45 @@ def _matches_suffix(path: Path, suffixes: Sequence[str]) -> bool:
 def _visualization_output_path(
     image_path: Path,
     visualization_dir: str | Path | None,
+    kind: str = "result",
 ) -> Path | None:
     if visualization_dir is None:
         return None
-    return Path(visualization_dir) / f"{image_path.name}.png"
+    return Path(visualization_dir) / kind / f"{image_path.name}.png"
 
 
-def preprocess_volume(
-    image: np.ndarray,
+def _load_image_volume(image: np.ndarray | str | Path) -> np.ndarray:
+    if isinstance(image, (str, Path)):
+        return ImageParser(image).load()
+    return np.asarray(image)
+
+
+def _prepare_signal_image(image: np.ndarray, *, verbose: int = 1) -> np.ndarray:
+    t0 = perf_counter()
+    signal_image = subtract_background(
+        np.ascontiguousarray(np.asarray(image), dtype=np.float64),
+        verbose=max(verbose - 1, 0),
+    )
+    _time_step(verbose, "subtract_background", t0)
+    return signal_image
+
+
+def _build_binary_image(
+    signal_image: np.ndarray,
+    threshold: float,
     *,
     verbose: int = 1,
-) -> tuple[np.ndarray, np.ndarray, float]:
-    signal_image = np.ascontiguousarray(np.asarray(image), dtype=np.float64)
-
+) -> np.ndarray:
     t0 = perf_counter()
-    signal_image = subtract_background(signal_image, verbose=max(verbose - 1, 0))
-    _time_step(verbose, "subtract_background", t0)
+    binary_image = threshold_filter(signal_image, float(threshold))
+    binary_image = connectivity_filter(binary_image, 4, n_neighbors=26)
+    binary_image = binary_dilation(binary_image, structure=np.ones((3, 3, 3)), border_value=0)
+    binary_image = binary_erosion(binary_image, structure=np.ones((3, 3, 3)), border_value=1)
+    _time_step(verbose, "binary_mask", t0)
+    return np.ascontiguousarray(binary_image, dtype=np.uint8)
 
+
+def _estimate_threshold(signal_image: np.ndarray, *, verbose: int = 1) -> float:
     t0 = perf_counter()
     local_max_mask = local_max_filter(signal_image)
     _time_step(verbose, "local_max_filter", t0)
@@ -183,23 +222,89 @@ def preprocess_volume(
             verbose,
             f"triangle_threshold skipped; using constant-value fallback {threshold:.3f}",
         )
-    else:
-        t0 = perf_counter()
-        threshold = float(triangle_threshold(local_max_values))
-        _time_step(verbose, f"triangle_threshold={threshold:.3f}", t0)
-
-        t0 = perf_counter()
-        threshold = float(refine_local_max_threshold(signal_image, threshold))
-        _time_step(verbose, f"refine_local_max_threshold={threshold:.3f}", t0)
+        return threshold
 
     t0 = perf_counter()
-    binary_image = threshold_filter(signal_image, threshold)
-    binary_image = connectivity_filter(binary_image, 4, n_neighbors=26)
-    binary_image = binary_dilation(binary_image, structure=np.ones((3, 3, 3)), border_value=0)
-    binary_image = binary_erosion(binary_image, structure=np.ones((3, 3, 3)), border_value=1)
-    _time_step(verbose, "binary_mask", t0)
+    threshold = float(triangle_threshold(local_max_values))
+    _time_step(verbose, f"triangle_threshold={threshold:.3f}", t0)
 
-    return signal_image, np.ascontiguousarray(binary_image, dtype=np.uint8), threshold
+    t0 = perf_counter()
+    threshold = float(refine_local_max_threshold(signal_image, threshold))
+    _time_step(verbose, f"refine_local_max_threshold={threshold:.3f}", t0)
+    return threshold
+
+
+def _resolve_config_module(config: str | ModuleType | None) -> ModuleType | None:
+    if config is None:
+        return None
+    if isinstance(config, ModuleType):
+        return config
+    if config == "default":
+        return None
+    return import_module(config)
+
+
+def _iter_config_attributes(source: type[Any]) -> list[tuple[str, Any]]:
+    return [
+        (name, value)
+        for name, value in vars(source).items()
+        if not name.startswith("_") and not callable(value)
+    ]
+
+
+@contextmanager
+def _temporary_trace_config(config: str | ModuleType | None):
+    module = _resolve_config_module(config)
+    if module is None:
+        yield
+        return
+
+    overrides: list[tuple[type[Any], str, Any]] = []
+    for source_name, target in (
+        ("Defaults", TraceDefaults),
+        ("Optimization", TraceOptimization),
+    ):
+        source = getattr(module, source_name, None)
+        if source is None:
+            continue
+        for attr_name, attr_value in _iter_config_attributes(source):
+            if hasattr(target, attr_name):
+                overrides.append((target, attr_name, getattr(target, attr_name)))
+                setattr(target, attr_name, attr_value)
+
+    try:
+        yield
+    finally:
+        for target, attr_name, attr_value in reversed(overrides):
+            setattr(target, attr_name, attr_value)
+
+
+def save_trace_stage(stage_data: object, output_path: str | Path) -> Path:
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("wb") as handle:
+        pickle.dump(stage_data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    return output_path
+
+
+def load_trace_stage(input_path: str | Path) -> object:
+    with Path(input_path).open("rb") as handle:
+        return pickle.load(handle)
+
+
+def preprocess_volume(
+    image: np.ndarray,
+    *,
+    verbose: int = 1,
+    output_path: str | Path | None = None,
+) -> tuple[np.ndarray, np.ndarray, float]:
+    signal_image = _prepare_signal_image(image, verbose=verbose)
+    threshold = _estimate_threshold(signal_image, verbose=verbose)
+    binary_image = _build_binary_image(signal_image, threshold, verbose=verbose)
+    if output_path is not None:
+        save_trace_stage(PreprocessedVolume(threshold=threshold), output_path)
+
+    return signal_image, binary_image, threshold
 
 
 def trace_volume(
@@ -209,6 +314,7 @@ def trace_volume(
     timeout: float | None = None,
     verbose: int = 1,
     return_intermediates: bool = False,
+    config: str | ModuleType | None = None,
 ) -> TracingResult:
     return _trace_volume_internal(
         image,
@@ -216,6 +322,7 @@ def trace_volume(
         timeout=timeout,
         verbose=verbose,
         return_intermediates=return_intermediates,
+        config=config,
     )
 
 
@@ -229,58 +336,60 @@ def _trace_volume_internal(
     connect_chains: bool = True,
     filter_chains: bool = True,
     return_intermediates: bool = False,
+    config: str | ModuleType | None = None,
 ) -> TracingResult:
-    resolved_n_jobs = _resolve_n_jobs(n_jobs)
-    _, check_timeout = _make_timeout_checker(timeout)
+    with _temporary_trace_config(config):
+        resolved_n_jobs = _resolve_n_jobs(n_jobs)
+        _, check_timeout = _make_timeout_checker(timeout)
 
-    check_timeout("preprocess_volume")
-    signal_image, binary_image, threshold = preprocess_volume(image, verbose=verbose)
-    check_timeout("preprocess_volume")
+        check_timeout("preprocess_volume")
+        signal_image, binary_image, threshold = preprocess_volume(image, verbose=verbose)
+        check_timeout("preprocess_volume")
 
-    t0 = perf_counter()
-    seeds = Seeds()
-    seeds.generate_tracing_seeds(
-        signal_image,
-        binary_image,
-        n_jobs=resolved_n_jobs,
-        verbose=verbose,
-        check_timeout=check_timeout,
-    )
-    _time_step(verbose, "generate_tracing_seeds", t0)
-    check_timeout("generate_tracing_seeds")
-
-    t0 = perf_counter()
-    chains = SegmentChains(image_shape=signal_image.shape)
-    chains.generate_neuron_trace(
-        seeds,
-        signal_image,
-        max_seeds=max_seeds,
-        verbose=verbose,
-        check_timeout=check_timeout,
-    )
-    if filter_chains:
-        check_timeout("filter_chains")
-        chains.filter_chains(verbose=verbose)
-    _time_step(verbose, "generate_neuron_trace", t0)
-    check_timeout("generate_neuron_trace")
-
-    neuron = None
-    if connect_chains:
         t0 = perf_counter()
-        connector = ChainConnector(verbose=verbose)
-        neuron = connector.reconstruct(chains, signal_image, check_timeout=check_timeout)
-        _time_step(verbose, "reconstruct", t0)
-        check_timeout("reconstruct")
+        seeds = Seeds()
+        seeds.generate_tracing_seeds(
+            signal_image,
+            binary_image,
+            n_jobs=resolved_n_jobs,
+            verbose=verbose,
+            check_timeout=check_timeout,
+        )
+        _time_step(verbose, "generate_tracing_seeds", t0)
+        check_timeout("generate_tracing_seeds")
 
-    return TracingResult(
-        image_path=None,
-        threshold=threshold,
-        seeds=seeds,
-        chains=chains,
-        neuron=neuron,
-        signal_image=signal_image if return_intermediates else None,
-        binary_image=binary_image if return_intermediates else None,
-    )
+        t0 = perf_counter()
+        chains = SegmentChains(image_shape=signal_image.shape)
+        chains.generate_neuron_trace(
+            seeds,
+            signal_image,
+            max_seeds=max_seeds,
+            verbose=verbose,
+            check_timeout=check_timeout,
+        )
+        if filter_chains:
+            check_timeout("filter_chains")
+            chains.filter_chains(verbose=verbose)
+        _time_step(verbose, "generate_neuron_trace", t0)
+        check_timeout("generate_neuron_trace")
+
+        neuron = None
+        if connect_chains:
+            t0 = perf_counter()
+            connector = ChainConnector(verbose=verbose)
+            neuron = connector.reconstruct(chains, signal_image, check_timeout=check_timeout)
+            _time_step(verbose, "reconstruct", t0)
+            check_timeout("reconstruct")
+
+        return TracingResult(
+            image_path=None,
+            threshold=threshold,
+            seeds=seeds,
+            chains=chains,
+            neuron=neuron,
+            signal_image=signal_image if return_intermediates else None,
+            binary_image=binary_image if return_intermediates else None,
+        )
 
 
 def trace_file(
@@ -294,6 +403,7 @@ def trace_file(
     overwrite: bool = False,
     on_exists: str | None = None,
     return_intermediates: bool = False,
+    config: str | ModuleType | None = None,
 ) -> TracingResult:
     return _trace_file_internal(
         image_path,
@@ -305,6 +415,7 @@ def trace_file(
         overwrite=overwrite,
         on_exists=on_exists,
         return_intermediates=return_intermediates,
+        config=config,
     )
 
 
@@ -322,16 +433,23 @@ def _trace_file_internal(
     connect_chains: bool = True,
     filter_chains: bool = True,
     return_intermediates: bool = False,
+    config: str | ModuleType | None = None,
 ) -> TracingResult:
     _, check_timeout = _make_timeout_checker(timeout)
     image_path = Path(image_path)
     output_swc_path = Path(output_swc) if output_swc is not None else None
-    output_visualization_path = _visualization_output_path(image_path, visualization_dir)
+    output_visualization_path = _visualization_output_path(image_path, visualization_dir, "result")
+    output_seed_visualization_path = _visualization_output_path(image_path, visualization_dir, "seeds")
+    output_chain_visualization_path = _visualization_output_path(image_path, visualization_dir, "chains")
     existing_output = None
     if output_swc_path is not None and output_swc_path.exists():
         existing_output = output_swc_path
     elif output_visualization_path is not None and output_visualization_path.exists():
         existing_output = output_visualization_path
+    elif output_seed_visualization_path is not None and output_seed_visualization_path.exists():
+        existing_output = output_seed_visualization_path
+    elif output_chain_visualization_path is not None and output_chain_visualization_path.exists():
+        existing_output = output_chain_visualization_path
 
     if existing_output is not None and not overwrite:
         exists_policy = _resolve_on_exists(on_exists, default="error")
@@ -364,6 +482,7 @@ def _trace_file_internal(
         connect_chains=connect_chains,
         filter_chains=filter_chains,
         return_intermediates=return_intermediates,
+        config=config,
     )
     result.image_path = image_path
 
@@ -372,6 +491,22 @@ def _trace_file_internal(
             raise ValueError("No neuron reconstruction is available for SWC export.")
         result.output_swc = output_swc_path
         result.neuron.save_swc(result.output_swc, verbose=verbose)
+
+    if output_seed_visualization_path is not None and len(result.seeds) > 0:
+        result.output_seed_visualization = save_seed_overlay_figure(
+            image,
+            result.seeds,
+            output_seed_visualization_path,
+            title=f"{image_path.name} seeds",
+        )
+
+    if output_chain_visualization_path is not None and len(result.chains) > 0:
+        result.output_chain_visualization = save_chain_overlay_figure(
+            image,
+            result.chains,
+            output_chain_visualization_path,
+            title=f"{image_path.name} chains",
+        )
 
     if output_visualization_path is not None:
         if result.neuron is not None:
@@ -398,9 +533,9 @@ def _trace_file_internal(
 
 
 def _trace_file_worker(
-    payload: tuple[str, str, str | None, int, float | None, int],
+    payload: tuple[str, str, str | None, int, float | None, int, str | None],
 ) -> dict[str, object]:
-    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose = payload
+    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose, config = payload
     started_at = perf_counter()
     try:
         result = trace_file(
@@ -410,6 +545,7 @@ def _trace_file_worker(
             n_jobs=n_jobs,
             timeout=timeout,
             verbose=verbose,
+            config=config,
         )
     except Exception as exc:
         timed_out = isinstance(exc, TraceTimeoutError)
@@ -476,6 +612,7 @@ def trace_files(
     manifest_path: str | Path | None = None,
     overwrite: bool = False,
     on_exists: str | None = None,
+    config: str | None = None,
 ) -> list[Path]:
     image_paths = [Path(path) for path in input_paths]
     if not image_paths:
@@ -505,16 +642,33 @@ def trace_files(
     )
 
     completed_outputs: list[Path] = []
-    jobs: list[tuple[str, str, str | None, int, float | None, int]] = []
+    jobs: list[tuple[str, str, str | None, int, float | None, int, str | None]] = []
     for image_path in image_paths:
         output_swc = output_dir / f"{image_path.name}.swc"
-        output_visualization = _visualization_output_path(image_path, visualization_dir)
-        has_existing_output = output_swc.exists() or (
-            output_visualization is not None and output_visualization.exists()
+        output_visualization = _visualization_output_path(image_path, visualization_dir, "result")
+        output_seed_visualization = _visualization_output_path(image_path, visualization_dir, "seeds")
+        output_chain_visualization = _visualization_output_path(image_path, visualization_dir, "chains")
+        has_existing_output = output_swc.exists() or any(
+            path is not None and path.exists()
+            for path in (
+                output_visualization,
+                output_seed_visualization,
+                output_chain_visualization,
+            )
         )
         if has_existing_output and not overwrite:
+            existing_path = next(
+                path
+                for path in (
+                    output_swc,
+                    output_visualization,
+                    output_seed_visualization,
+                    output_chain_visualization,
+                )
+                if path is not None and path.exists()
+            )
             if exists_policy == "error":
-                raise _overwrite_error(output_swc if output_swc.exists() else output_visualization, mode="batch")
+                raise _overwrite_error(existing_path, mode="batch")
             completed_outputs.append(output_swc)
             _append_manifest_record(manifest, _skip_existing_record(image_path, output_swc))
             _vprint(
@@ -530,6 +684,7 @@ def trace_files(
                 resolved_trace_n_jobs,
                 trace_timeout,
                 max(verbose - 1, 0),
+                config,
             )
         )
 
@@ -615,6 +770,7 @@ def trace_directory(
     manifest_path: str | Path | None = None,
     overwrite: bool = False,
     on_exists: str | None = None,
+    config: str | None = None,
 ) -> list[Path]:
     input_dir = Path(input_dir)
     image_paths = sorted(
@@ -634,66 +790,124 @@ def trace_directory(
         manifest_path=manifest_path,
         overwrite=overwrite,
         on_exists=on_exists,
+        config=config,
     )
 
 
 def extract_trace_seeds(
-    signal_image: np.ndarray,
-    binary_image: np.ndarray,
+    image: np.ndarray | str | Path,
     *,
+    threshold: float | None = None,
+    binary_image: np.ndarray | None = None,
     n_jobs: int = 1,
     timeout: float | None = None,
     verbose: int = 1,
+    output_path: str | Path | None = None,
+    visualization_path: str | Path | None = None,
+    config: str | ModuleType | None = None,
+    check_timeout: Callable[[str | None], None] | None = None,
 ) -> Seeds:
-    _, check_timeout = _make_timeout_checker(timeout)
-    seeds = Seeds()
-    seeds.generate_tracing_seeds(
-        signal_image,
-        binary_image,
-        n_jobs=_resolve_n_jobs(n_jobs),
-        verbose=verbose,
-        check_timeout=check_timeout,
-    )
-    return seeds
+    with _temporary_trace_config(config):
+        if check_timeout is None:
+            _, check_timeout = _make_timeout_checker(timeout)
+        volume = _load_image_volume(image)
+        signal_image = _prepare_signal_image(volume, verbose=verbose)
+        if binary_image is None:
+            if threshold is None:
+                threshold = _estimate_threshold(signal_image, verbose=verbose)
+                binary_image = _build_binary_image(signal_image, threshold, verbose=verbose)
+            else:
+                binary_image = _build_binary_image(signal_image, threshold, verbose=verbose)
+        else:
+            binary_image = np.ascontiguousarray(np.asarray(binary_image), dtype=np.uint8)
+        seeds = Seeds()
+        seeds.generate_tracing_seeds(
+            signal_image,
+            binary_image,
+            n_jobs=_resolve_n_jobs(n_jobs),
+            verbose=verbose,
+            check_timeout=check_timeout,
+        )
+        if output_path is not None:
+            save_trace_stage(seeds, output_path)
+        if visualization_path is not None:
+            save_seed_overlay_figure(
+                volume,
+                seeds,
+                visualization_path,
+                title=Path(visualization_path).stem,
+            )
+        return seeds
 
 
 def generate_trace_chains(
     seeds: Seeds,
-    signal_image: np.ndarray,
+    image: np.ndarray | str | Path,
     *,
     max_seeds: int | None = None,
     filter_chains: bool = True,
     timeout: float | None = None,
     verbose: int = 1,
+    output_path: str | Path | None = None,
+    visualization_path: str | Path | None = None,
+    config: str | ModuleType | None = None,
+    check_timeout: Callable[[str | None], None] | None = None,
 ) -> SegmentChains:
-    _, check_timeout = _make_timeout_checker(timeout)
-    chains = SegmentChains(image_shape=signal_image.shape)
-    chains.generate_neuron_trace(
-        seeds,
-        signal_image,
-        max_seeds=max_seeds,
-        verbose=verbose,
-        check_timeout=check_timeout,
-    )
-    if filter_chains:
-        check_timeout("filter_chains")
-        chains.filter_chains(verbose=verbose)
-    return chains
+    with _temporary_trace_config(config):
+        if check_timeout is None:
+            _, check_timeout = _make_timeout_checker(timeout)
+        volume = _load_image_volume(image)
+        signal_image = _prepare_signal_image(volume, verbose=verbose)
+        chains = SegmentChains(image_shape=signal_image.shape)
+        chains.generate_neuron_trace(
+            seeds,
+            signal_image,
+            max_seeds=max_seeds,
+            verbose=verbose,
+            check_timeout=check_timeout,
+        )
+        if filter_chains:
+            check_timeout("filter_chains")
+            chains.filter_chains(verbose=verbose)
+        if output_path is not None:
+            save_trace_stage(chains, output_path)
+        if visualization_path is not None:
+            save_chain_overlay_figure(
+                volume,
+                chains,
+                visualization_path,
+                title=Path(visualization_path).stem,
+            )
+        return chains
 
 
 def connect_trace_chains(
     chains: SegmentChains,
-    signal_image: np.ndarray,
+    image: np.ndarray | str | Path,
     *,
     timeout: float | None = None,
     verbose: int = 1,
+    visualization_path: str | Path | None = None,
+    config: str | ModuleType | None = None,
+    check_timeout: Callable[[str | None], None] | None = None,
 ) -> Neuron:
-    _, check_timeout = _make_timeout_checker(timeout)
-    connector = ChainConnector(verbose=verbose)
-    neuron = connector.reconstruct(chains, signal_image, check_timeout=check_timeout)
-    if neuron is None:
-        raise ValueError("No neuron reconstruction is available.")
-    return neuron
+    with _temporary_trace_config(config):
+        if check_timeout is None:
+            _, check_timeout = _make_timeout_checker(timeout)
+        volume = _load_image_volume(image)
+        signal_image = _prepare_signal_image(volume, verbose=verbose)
+        connector = ChainConnector(verbose=verbose)
+        neuron = connector.reconstruct(chains, signal_image, check_timeout=check_timeout)
+        if neuron is None:
+            raise ValueError("No neuron reconstruction is available.")
+        if visualization_path is not None:
+            save_overlay_figure(
+                volume,
+                neuron,
+                visualization_path,
+                title=Path(visualization_path).stem,
+            )
+        return neuron
 
 
 __all__ = [
@@ -703,6 +917,7 @@ __all__ = [
     "SegmentChain",
     "SegmentChains",
     "TracingResult",
+    "PreprocessedVolume",
     "TraceTimeoutError",
     "SUPPORTED_IMAGE_SUFFIXES",
     "trace_file",
@@ -710,10 +925,14 @@ __all__ = [
     "trace_files",
     "trace_directory",
     "save_overlay_figure",
+    "save_seed_overlay_figure",
+    "save_chain_overlay_figure",
     "ImageParser",
     "Neuron",
     "preprocess_volume",
     "extract_trace_seeds",
     "generate_trace_chains",
     "connect_trace_chains",
+    "save_trace_stage",
+    "load_trace_stage",
 ]

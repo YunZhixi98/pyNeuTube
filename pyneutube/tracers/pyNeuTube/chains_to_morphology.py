@@ -424,12 +424,16 @@ class ChainConnector:
 
     def reconstruct(self, chains: SegmentChains, signal_image: np.ndarray, *, check_timeout=None):
         self.prepare_chain_conn(chains, signal_image, check_timeout=check_timeout)
-        self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
+        self._vprint(
+            f"prepare_chain_conn: graph vertices={self.graph.nvertex}, edges={self.graph.nedge}"
+        )
 
         if check_timeout is not None:
             check_timeout("remove_redundant_edges")
         self.remove_redundant_edges()
-        self._vprint(f"{self.graph.nvertex} {self.graph.nedge}")
+        self._vprint(
+            f"remove_redundant_edges: graph vertices={self.graph.nvertex}, edges={self.graph.nedge}"
+        )
 
         if check_timeout is not None:
             check_timeout("crossover_test")
@@ -811,9 +815,13 @@ class ChainConnector:
         G.add_nodes_from(range(len(circle_comp_list)))
         for i, (u, v) in enumerate(circle_graph.edges):
             G.add_edge(u, v, weight=circle_graph.weights[i])
-        self._vprint(f"{G.number_of_nodes()} {G.number_of_edges()}")
+        self._vprint(
+            f"circles_to_tree: graph nodes={G.number_of_nodes()}, edges={G.number_of_edges()}"
+        )
         tree = nx.minimum_spanning_tree(G, weight='weight')
-        self._vprint(f"{tree.number_of_nodes()} {tree.number_of_edges()}")
+        self._vprint(
+            f"minimum_spanning_tree: nodes={tree.number_of_nodes()}, edges={tree.number_of_edges()}"
+        )
 
         circle_graph.weights = None
 

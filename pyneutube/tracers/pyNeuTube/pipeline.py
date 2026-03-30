@@ -12,7 +12,18 @@ def parse_args(argv=None):
     parser.add_argument("--output-swc", help="SWC output path for a single image.")
     parser.add_argument(
         "--visualization-dir",
-        help="Optional directory for lightweight PNG overlays. Disabled by default.",
+        help=(
+            "Optional directory for lightweight PNG overlays. "
+            "Outputs are written to result/, seeds/, and chains/. Disabled by default."
+        ),
+    )
+    parser.add_argument(
+        "--config",
+        default=None,
+        help=(
+            "Optional Python module path for trace config overrides. "
+            "Defaults to the built-in tracer config."
+        ),
     )
     parser.add_argument("--output-dir", help="Output directory for batch SWC files.")
     parser.add_argument("--manifest-path", help="Optional JSONL run log for batch mode.")
@@ -79,6 +90,7 @@ def main(argv=None):
             manifest_path=args.manifest_path,
             overwrite=args.overwrite,
             on_exists=args.on_exists,
+            config=args.config,
         )
         if args.verbose:
             for output in outputs:
@@ -97,6 +109,7 @@ def main(argv=None):
         verbose=args.verbose,
         overwrite=args.overwrite,
         on_exists=args.on_exists,
+        config=args.config,
     )
     if args.verbose and result.output_swc is not None:
         print(result.output_swc)
