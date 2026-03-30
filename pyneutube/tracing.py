@@ -19,6 +19,7 @@ from typing import Any, Callable
 
 import numpy as np
 from scipy.ndimage import binary_dilation, binary_erosion
+from tqdm import tqdm
 
 from pyneutube.core.io.image_parser import ImageParser
 from pyneutube.core.io.swc_parser import Neuron
@@ -641,120 +642,142 @@ def trace_files(
         ),
     )
 
+    show_progress = verbose >= 1
     completed_outputs: list[Path] = []
     jobs: list[tuple[str, str, str | None, int, float | None, int, str | None]] = []
-    for image_path in image_paths:
-        output_swc = output_dir / f"{image_path.name}.swc"
-        output_visualization = _visualization_output_path(image_path, visualization_dir, "result")
-        output_seed_visualization = _visualization_output_path(image_path, visualization_dir, "seeds")
-        output_chain_visualization = _visualization_output_path(image_path, visualization_dir, "chains")
-        has_existing_output = output_swc.exists() or any(
-            path is not None and path.exists()
-            for path in (
-                output_visualization,
-                output_seed_visualization,
-                output_chain_visualization,
-            )
-        )
-        if has_existing_output and not overwrite:
-            existing_path = next(
-                path
+    progress = tqdm(
+        total=len(image_paths),
+        desc="Tracing files",
+        unit="file",
+        disable=not show_progress,
+    )
+    try:
+        for image_path in image_paths:
+            output_swc = output_dir / f"{image_path.name}.swc"
+            output_visualization = _visualization_output_path(image_path, visualization_dir, "result")
+            output_seed_visualization = _visualization_output_path(image_path, visualization_dir, "seeds")
+            output_chain_visualization = _visualization_output_path(image_path, visualization_dir, "chains")
+            has_existing_output = output_swc.exists() or any(
+                path is not None and path.exists()
                 for path in (
-                    output_swc,
                     output_visualization,
                     output_seed_visualization,
                     output_chain_visualization,
                 )
-                if path is not None and path.exists()
             )
-            if exists_policy == "error":
-                raise _overwrite_error(existing_path, mode="batch")
-            completed_outputs.append(output_swc)
-            _append_manifest_record(manifest, _skip_existing_record(image_path, output_swc))
-            _vprint(
-                verbose,
-                f"Skipped {image_path.name} -> {output_swc.name} (exists; use overwrite=True to replace)",
-            )
-            continue
-        jobs.append(
-            (
-                str(image_path),
-                str(output_swc),
-                None if visualization_dir is None else str(visualization_dir),
-                resolved_trace_n_jobs,
-                trace_timeout,
-                max(verbose - 1, 0),
-                config,
-            )
-        )
-
-    def handle_record(record: dict[str, object]) -> None:
-        status = str(record["status"])
-        input_path = Path(str(record["input_path"]))
-        output_swc_value = record["output_swc"]
-        output_swc = Path(str(output_swc_value)) if isinstance(output_swc_value, str) else None
-        _append_manifest_record(manifest, record)
-        if status == "completed":
-            if output_swc is not None:
+            if has_existing_output and not overwrite:
+                existing_path = next(
+                    path
+                    for path in (
+                        output_swc,
+                        output_visualization,
+                        output_seed_visualization,
+                        output_chain_visualization,
+                    )
+                    if path is not None and path.exists()
+                )
+                if exists_policy == "error":
+                    raise _overwrite_error(existing_path, mode="batch")
                 completed_outputs.append(output_swc)
-                _vprint(verbose, f"Completed {input_path.name} -> {output_swc.name}")
-            else:
-                _vprint(verbose, f"Completed {input_path.name}")
-            return
-        if status == "skipped":
-            if output_swc is not None:
-                _vprint(verbose, f"Skipped {input_path.name} -> {output_swc.name}")
-            else:
-                _vprint(verbose, f"Skipped {input_path.name}")
-            return
-        if status == "timed_out":
-            timeout_seconds = record.get("timeout_seconds")
-            timeout_suffix = (
-                f" (timeout={float(timeout_seconds):g} s)"
-                if isinstance(timeout_seconds, (int, float))
-                else ""
+                _append_manifest_record(manifest, _skip_existing_record(image_path, output_swc))
+                if not show_progress:
+                    _vprint(
+                        verbose,
+                        f"Skipped {image_path.name} -> {output_swc.name} (exists; use overwrite=True to replace)",
+                    )
+                progress.update(1)
+                continue
+            jobs.append(
+                (
+                    str(image_path),
+                    str(output_swc),
+                    None if visualization_dir is None else str(visualization_dir),
+                    resolved_trace_n_jobs,
+                    trace_timeout,
+                    0,
+                    config,
+                )
             )
-            _vprint(
+
+        def emit_batch_message(level: int, message: str) -> None:
+            if show_progress:
+                progress.write(message)
+            else:
+                _vprint(level, message)
+
+        def handle_record(record: dict[str, object]) -> None:
+            status = str(record["status"])
+            input_path = Path(str(record["input_path"]))
+            output_swc_value = record["output_swc"]
+            output_swc = Path(str(output_swc_value)) if isinstance(output_swc_value, str) else None
+            _append_manifest_record(manifest, record)
+            if status == "completed":
+                if output_swc is not None:
+                    completed_outputs.append(output_swc)
+                    if not show_progress:
+                        _vprint(verbose, f"Completed {input_path.name} -> {output_swc.name}")
+                elif not show_progress:
+                    _vprint(verbose, f"Completed {input_path.name}")
+                return
+            if status == "skipped":
+                if not show_progress:
+                    if output_swc is not None:
+                        _vprint(verbose, f"Skipped {input_path.name} -> {output_swc.name}")
+                    else:
+                        _vprint(verbose, f"Skipped {input_path.name}")
+                return
+            if status == "timed_out":
+                timeout_seconds = record.get("timeout_seconds")
+                timeout_suffix = (
+                    f" (timeout={float(timeout_seconds):g} s)"
+                    if isinstance(timeout_seconds, (int, float))
+                    else ""
+                )
+                emit_batch_message(
+                    max(verbose, 1),
+                    f"Timed out {input_path.name}: {record['error_type']}: {record['error_message']}{timeout_suffix}",
+                )
+                return
+
+            emit_batch_message(
                 max(verbose, 1),
-                f"Timed out {input_path.name}: {record['error_type']}: {record['error_message']}{timeout_suffix}",
+                f"Failed {input_path.name}: {record['error_type']}: {record['error_message']}",
             )
-            return
 
-        _vprint(
-            max(verbose, 1),
-            f"Failed {input_path.name}: {record['error_type']}: {record['error_message']}",
-        )
+        if not jobs:
+            return sorted(set(completed_outputs))
 
-    if not jobs:
+        if resolved_batch_n_jobs == 1:
+            for job in jobs:
+                handle_record(_trace_file_worker(job))
+                progress.update(1)
+            return sorted(set(completed_outputs))
+
+        with ProcessPoolExecutor(max_workers=min(resolved_batch_n_jobs, len(jobs))) as executor:
+            futures = {executor.submit(_trace_file_worker, job): Path(job[0]) for job in jobs}
+            for future in as_completed(futures):
+                try:
+                    record = future.result()
+                except Exception as exc:  # pragma: no cover - defensive guard
+                    input_path = futures[future]
+                    record = {
+                        "timestamp_utc": _iso_timestamp(),
+                        "status": "failed",
+                        "input_path": str(input_path),
+                        "output_swc": str(output_dir / f"{input_path.name}.swc"),
+                        "elapsed_seconds": None,
+                        "error_type": type(exc).__name__,
+                        "error_message": str(exc),
+                        "traceback": traceback.format_exc(),
+                        "timeout_seconds": None,
+                    }
+
+                handle_record(record)
+                progress.update(1)
+
         return sorted(set(completed_outputs))
-
-    if resolved_batch_n_jobs == 1:
-        for job in jobs:
-            handle_record(_trace_file_worker(job))
-        return sorted(set(completed_outputs))
-
-    with ProcessPoolExecutor(max_workers=min(resolved_batch_n_jobs, len(jobs))) as executor:
-        futures = {executor.submit(_trace_file_worker, job): Path(job[0]) for job in jobs}
-        for future in as_completed(futures):
-            try:
-                record = future.result()
-            except Exception as exc:  # pragma: no cover - defensive guard
-                input_path = futures[future]
-                record = {
-                    "timestamp_utc": _iso_timestamp(),
-                    "status": "failed",
-                    "input_path": str(input_path),
-                    "output_swc": str(output_dir / f"{input_path.name}.swc"),
-                    "elapsed_seconds": None,
-                    "error_type": type(exc).__name__,
-                    "error_message": str(exc),
-                    "traceback": traceback.format_exc(),
-                    "timeout_seconds": None,
-                }
-
-            handle_record(record)
-
-    return sorted(set(completed_outputs))
+    finally:
+        progress.close()
 
 
 def trace_directory(
