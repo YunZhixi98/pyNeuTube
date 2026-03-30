@@ -16,13 +16,13 @@ def _squared_distance(point1, point2):
     return np.dot(diff, diff)
 
 
-def is_sharp_turn(n1, n2, n3):
+def is_sharp_turn(pos1, pos2, pos3):
     """
-    Check if three continuous nodes form a sharp turn (n1->n2->n3).
+    Check if three continuous 3D positions form a sharp turn (pos1->pos2->pos3).
     Returns True if angle >= 90 degrees (dot product <= 0).
     """
-    dir_v1 = n2[2:5]-n1[2:5]
-    dir_v2 = n3[2:5]-n2[2:5]
+    dir_v1 = pos2 - pos1
+    dir_v2 = pos3 - pos2
     
     return np.dot(dir_v1, dir_v2) <= 0
 
@@ -34,6 +34,7 @@ def remove_zigzag(neuron: Neuron):
     nid_hash = neuron.nidHash
     children_map = neuron.indexChildren
     swc = neuron.swc
+    positions = swc[:, 2:5]
     
     nodes_to_remove = set()
     
@@ -66,14 +67,14 @@ def remove_zigzag(neuron: Neuron):
                 stack.extend(children_map[cur_idx])
                 continue
                 
-            parent3_node = swc[parent3_idx]
-            
             # Check zigzag pattern at parent2
-            if (is_sharp_turn(parent3_node, parent2_node, parent1_node) and 
-                is_sharp_turn(parent2_node, parent1_node, cur_node)):
+            if (
+                is_sharp_turn(positions[parent3_idx], positions[parent2_idx], positions[parent1_idx])
+                and is_sharp_turn(positions[parent2_idx], positions[parent1_idx], positions[cur_idx])
+            ):
                 
                 # Reconnect all children of parent2 to parent3
-                parent3_nid = parent3_node[0]
+                parent3_nid = swc[parent3_idx][0]
                 for child_idx in children_map[parent2_idx]:
                     swc[child_idx][6] = parent3_nid
                 
@@ -144,10 +145,8 @@ def tune_branch(neuron: Neuron):
                 stack.extend(children_map[cur_idx])
                 continue
             
-            gparent_node = swc[gparent_idx]
-            
             # Get great-grandparent node
-            ggparent_id = gparent_node[6]
+            ggparent_id = swc[gparent_idx][6]
             if ggparent_id == -1:
                 stack.extend(children_map[cur_idx])
                 continue
@@ -157,14 +156,12 @@ def tune_branch(neuron: Neuron):
                 stack.extend(children_map[cur_idx])
                 continue
             
-            ggparent_node = swc[ggparent_idx]
-            
             # Check turn conditions
             min_dist = np.inf
             new_pid = None
-            if not is_sharp_turn(gparent_node, parent_node, cur_node):
+            if not is_sharp_turn(positions[gparent_idx], positions[parent_idx], positions[cur_idx]):
                 min_dist = min(min_dist, _squared_distance(positions[parent_idx], positions[gparent_idx]))
-            if not is_sharp_turn(ggparent_node, parent_node, cur_node):
+            if not is_sharp_turn(positions[ggparent_idx], positions[parent_idx], positions[cur_idx]):
                 tmp_dist = _squared_distance(positions[parent_idx], positions[ggparent_idx])
                 if tmp_dist < min_dist:
                     min_dist = tmp_dist
@@ -175,12 +172,11 @@ def tune_branch(neuron: Neuron):
             for child_idx in gparent_children[::-1]:  # child_idx is previous sibling in DFS
                 if parent_idx == child_idx:
                     break
-                child_node = swc[child_idx]
-                if is_sharp_turn(child_node, parent_node, cur_node):
+                if is_sharp_turn(positions[child_idx], positions[parent_idx], positions[cur_idx]):
                     tmp_dist = _squared_distance(positions[parent_idx], positions[child_idx])
                     if tmp_dist < min_dist:
                         min_dist = tmp_dist
-                        new_pid = child_node[0]
+                        new_pid = swc[child_idx][0]
                         modified = True
 
             # modify the children_map of gparent node
