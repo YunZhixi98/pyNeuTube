@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import pickle
+import threading
 import traceback
 from collections.abc import Sequence
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -12,9 +13,10 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from importlib import import_module
-from multiprocessing import get_context
+from multiprocessing import Manager, get_context
 from multiprocessing.shared_memory import SharedMemory
 from pathlib import Path
+from queue import Empty
 from time import perf_counter
 from types import ModuleType
 from typing import Any, Callable
@@ -55,6 +57,22 @@ SUPPORTED_IMAGE_SUFFIXES = (
     ".nrrd",
     ".nhdr",
 )
+
+_TRACE_PROGRESS_STAGES = (
+    "load_image",
+    "preprocess_volume",
+    "generate_tracing_seeds",
+    "generate_neuron_trace",
+    "reconstruct",
+)
+_TRACE_PROGRESS_STAGE_INDEX = {stage: index + 1 for index, stage in enumerate(_TRACE_PROGRESS_STAGES)}
+_TRACE_PROGRESS_STAGE_LABELS = {
+    "load_image": "load image",
+    "preprocess_volume": "preprocess volume",
+    "generate_tracing_seeds": "generate tracing seeds",
+    "generate_neuron_trace": "generate trace chains",
+    "reconstruct": "reconstruct morphology",
+}
 
 
 @dataclass
@@ -183,6 +201,14 @@ def _load_image_volume(image: np.ndarray | str | Path) -> np.ndarray:
     if isinstance(image, (str, Path)):
         return ImageParser(image).load()
     return np.asarray(image)
+
+
+def _emit_trace_progress(
+    progress_callback: Callable[[str], None] | None,
+    stage: str,
+) -> None:
+    if progress_callback is not None:
+        progress_callback(stage)
 
 
 def _prepare_signal_image(image: np.ndarray, *, verbose: int = 1) -> np.ndarray:
@@ -354,12 +380,14 @@ def _trace_volume_internal(
     filter_chains: bool = True,
     return_intermediates: bool = False,
     config: str | ModuleType | None = None,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> TracingResult:
     with _temporary_trace_config(config):
         resolved_n_jobs = _resolve_n_jobs(n_jobs)
         _, check_timeout = _make_timeout_checker(timeout)
 
         check_timeout("preprocess_volume")
+        _emit_trace_progress(progress_callback, "preprocess_volume")
         signal_image, binary_image, threshold = preprocess_volume(image, verbose=verbose)
         check_timeout("preprocess_volume")
 
@@ -370,6 +398,7 @@ def _trace_volume_internal(
         ) -> TracingResult:
             t0 = perf_counter()
             seeds = Seeds()
+            _emit_trace_progress(progress_callback, "generate_tracing_seeds")
             seeds.generate_tracing_seeds(
                 active_signal_image,
                 active_binary_image,
@@ -387,6 +416,7 @@ def _trace_volume_internal(
 
             t0 = perf_counter()
             chains = SegmentChains(image_shape=active_signal_image.shape)
+            _emit_trace_progress(progress_callback, "generate_neuron_trace")
             chains.generate_neuron_trace(
                 seeds,
                 active_signal_image,
@@ -404,6 +434,7 @@ def _trace_volume_internal(
             if connect_chains:
                 t0 = perf_counter()
                 connector = ChainConnector(verbose=verbose)
+                _emit_trace_progress(progress_callback, "reconstruct")
                 neuron = connector.reconstruct(chains, active_signal_image, check_timeout=check_timeout)
                 _time_step(verbose, "reconstruct", t0)
                 check_timeout("reconstruct")
@@ -471,6 +502,7 @@ def _trace_file_internal(
     filter_chains: bool = True,
     return_intermediates: bool = False,
     config: str | ModuleType | None = None,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> TracingResult:
     _, check_timeout = _make_timeout_checker(timeout)
     image_path = Path(image_path)
@@ -506,6 +538,7 @@ def _trace_file_internal(
 
     t0 = perf_counter()
     check_timeout("load_image")
+    _emit_trace_progress(progress_callback, "load_image")
     image = parser.load()
     _time_step(verbose, "load_image", t0)
     check_timeout("load_image")
@@ -520,6 +553,7 @@ def _trace_file_internal(
         filter_chains=filter_chains,
         return_intermediates=return_intermediates,
         config=config,
+        progress_callback=progress_callback,
     )
     result.image_path = image_path
 
@@ -569,22 +603,42 @@ def _trace_file_internal(
     return result
 
 
-def _trace_file_worker(
-    payload: tuple[str, str, str | None, int, float | None, int, bool, str | None],
+def _trace_file_record(
+    input_path: str,
+    output_swc: str,
+    visualization_dir: str | None,
+    n_jobs: int,
+    timeout: float | None,
+    verbose: int,
+    overwrite: bool,
+    config: str | None,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> dict[str, object]:
-    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose, overwrite, config = payload
     started_at = perf_counter()
     try:
-        result = trace_file(
-            input_path,
-            output_swc=output_swc,
-            visualization_dir=visualization_dir,
-            n_jobs=n_jobs,
-            timeout=timeout,
-            verbose=verbose,
-            overwrite=overwrite,
-            config=config,
-        )
+        if progress_callback is None:
+            result = trace_file(
+                input_path,
+                output_swc=output_swc,
+                visualization_dir=visualization_dir,
+                n_jobs=n_jobs,
+                timeout=timeout,
+                verbose=verbose,
+                overwrite=overwrite,
+                config=config,
+            )
+        else:
+            result = _trace_file_internal(
+                input_path,
+                output_swc=output_swc,
+                visualization_dir=visualization_dir,
+                n_jobs=n_jobs,
+                timeout=timeout,
+                verbose=verbose,
+                overwrite=overwrite,
+                config=config,
+                progress_callback=progress_callback,
+            )
     except Exception as exc:
         timed_out = isinstance(exc, TraceTimeoutError)
         return {
@@ -610,6 +664,29 @@ def _trace_file_worker(
         "traceback": None,
         "timeout_seconds": None,
     }
+
+
+def _trace_file_worker(
+    payload: tuple[str, str, str | None, int, float | None, int, bool, str | None, object | None],
+) -> dict[str, object]:
+    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose, overwrite, config, progress_queue = payload
+
+    progress_callback = None
+    if progress_queue is not None:
+        def progress_callback(stage: str) -> None:
+            progress_queue.put((input_path, stage))
+
+    return _trace_file_record(
+        input_path,
+        output_swc,
+        visualization_dir,
+        n_jobs,
+        timeout,
+        verbose,
+        overwrite,
+        config,
+        progress_callback=progress_callback,
+    )
 
 
 def _append_manifest_record(
@@ -787,9 +864,61 @@ def trace_files(
 
         if resolved_batch_n_jobs == 1:
             for job in jobs:
-                handle_record(_trace_file_worker(job))
+                stage_progress = None
+                stage_state = {"index": 0}
+                if show_progress:
+                    input_path = Path(job[0])
+                    stage_progress = tqdm(
+                        total=len(_TRACE_PROGRESS_STAGES),
+                        desc=input_path.name,
+                        unit="stage",
+                        disable=False,
+                        leave=False,
+                    )
+
+                    def progress_callback(stage: str, *, bar=stage_progress, state=stage_state) -> None:
+                        stage_index = _TRACE_PROGRESS_STAGE_INDEX.get(stage)
+                        if stage_index is None:
+                            return
+                        delta = stage_index - state["index"]
+                        if delta > 0:
+                            bar.update(delta)
+                            state["index"] = stage_index
+                        bar.set_postfix_str(_TRACE_PROGRESS_STAGE_LABELS.get(stage, stage))
+
+                try:
+                    if show_progress:
+                        record = _trace_file_record(*job, progress_callback=progress_callback)
+                    else:
+                        record = _trace_file_worker(job + (None,))
+                    handle_record(record)
+                finally:
+                    if stage_progress is not None:
+                        stage_progress.close()
                 progress.update(1)
             return sorted(set(completed_outputs))
+
+        progress_queue = None
+        manager = None
+        progress_thread = None
+        stop_progress = threading.Event()
+        if show_progress:
+            manager = Manager()
+            progress_queue = manager.Queue()
+
+            def drain_progress_queue():
+                while not stop_progress.is_set():
+                    try:
+                        message = progress_queue.get(timeout=0.1)
+                    except Empty:
+                        continue
+                    if message is None:
+                        break
+                    input_path, stage = message
+                    progress.write(f"{Path(str(input_path)).name}: {_TRACE_PROGRESS_STAGE_LABELS.get(str(stage), str(stage))}")
+
+            progress_thread = threading.Thread(target=drain_progress_queue, daemon=True)
+            progress_thread.start()
 
         executor_kwargs: dict[str, object] = {
             "max_workers": min(resolved_batch_n_jobs, len(jobs)),
@@ -797,27 +926,38 @@ def trace_files(
         if os.name == "posix":
             executor_kwargs["mp_context"] = get_context("fork")
 
-        with ProcessPoolExecutor(**executor_kwargs) as executor:
-            futures = {executor.submit(_trace_file_worker, job): Path(job[0]) for job in jobs}
-            for future in as_completed(futures):
-                try:
-                    record = future.result()
-                except Exception as exc:  # pragma: no cover - defensive guard
-                    input_path = futures[future]
-                    record = {
-                        "timestamp_utc": _iso_timestamp(),
-                        "status": "failed",
-                        "input_path": str(input_path),
-                        "output_swc": str(output_dir / f"{input_path.name}.swc"),
-                        "elapsed_seconds": None,
-                        "error_type": type(exc).__name__,
-                        "error_message": str(exc),
-                        "traceback": traceback.format_exc(),
-                        "timeout_seconds": None,
-                    }
+        try:
+            with ProcessPoolExecutor(**executor_kwargs) as executor:
+                futures = {
+                    executor.submit(_trace_file_worker, job + (progress_queue,)): Path(job[0]) for job in jobs
+                }
+                for future in as_completed(futures):
+                    try:
+                        record = future.result()
+                    except Exception as exc:  # pragma: no cover - defensive guard
+                        input_path = futures[future]
+                        record = {
+                            "timestamp_utc": _iso_timestamp(),
+                            "status": "failed",
+                            "input_path": str(input_path),
+                            "output_swc": str(output_dir / f"{input_path.name}.swc"),
+                            "elapsed_seconds": None,
+                            "error_type": type(exc).__name__,
+                            "error_message": str(exc),
+                            "traceback": traceback.format_exc(),
+                            "timeout_seconds": None,
+                        }
 
-                handle_record(record)
-                progress.update(1)
+                    handle_record(record)
+                    progress.update(1)
+        finally:
+            if progress_queue is not None:
+                stop_progress.set()
+                progress_queue.put(None)
+            if progress_thread is not None:
+                progress_thread.join(timeout=1.0)
+            if manager is not None:
+                manager.shutdown()
 
         return sorted(set(completed_outputs))
     finally:
