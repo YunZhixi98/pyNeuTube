@@ -742,8 +742,12 @@ class SegmentChains:
         max_seeds: int | None = None,
         verbose: int = 1,
         check_timeout=None,
+        progress_callback=None,
     ):
         seed_iterable = islice(seeds, max_seeds) if max_seeds is not None else seeds
+        total = min(len(seeds), max_seeds) if max_seeds is not None else len(seeds)
+        if progress_callback is not None:
+            progress_callback("generate_neuron_trace", 0, total)
         for seed_idx, seed in enumerate(
             tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1)
         ):
@@ -757,6 +761,8 @@ class SegmentChains:
                 for seg in chain: 
                     label_tracing_mask(seg, self.trace_mask, dilate=True)
                 self.append(chain)
+            if progress_callback is not None:
+                progress_callback("generate_neuron_trace", seed_idx + 1, total)
         if verbose:
             print(f"Number of chains: {len(self)}")
 

@@ -204,11 +204,13 @@ def _load_image_volume(image: np.ndarray | str | Path) -> np.ndarray:
 
 
 def _emit_trace_progress(
-    progress_callback: Callable[[str], None] | None,
+    progress_callback: Callable[[str, int | None, int | None], None] | None,
     stage: str,
+    current: int | None = None,
+    total: int | None = None,
 ) -> None:
     if progress_callback is not None:
-        progress_callback(stage)
+        progress_callback(stage, current, total)
 
 
 def _prepare_signal_image(image: np.ndarray, *, verbose: int = 1) -> np.ndarray:
@@ -380,7 +382,7 @@ def _trace_volume_internal(
     filter_chains: bool = True,
     return_intermediates: bool = False,
     config: str | ModuleType | None = None,
-    progress_callback: Callable[[str], None] | None = None,
+    progress_callback: Callable[[str, int | None, int | None], None] | None = None,
 ) -> TracingResult:
     with _temporary_trace_config(config):
         resolved_n_jobs = _resolve_n_jobs(n_jobs)
@@ -406,6 +408,7 @@ def _trace_volume_internal(
                 verbose=verbose,
                 check_timeout=check_timeout,
                 shared_image=shared_image_spec,
+                progress_callback=progress_callback,
             )
             _time_step(verbose, "generate_tracing_seeds", t0)
             check_timeout("generate_tracing_seeds")
@@ -423,6 +426,7 @@ def _trace_volume_internal(
                 max_seeds=max_seeds,
                 verbose=verbose,
                 check_timeout=check_timeout,
+                progress_callback=progress_callback,
             )
             if filter_chains:
                 check_timeout("filter_chains")
@@ -502,7 +506,7 @@ def _trace_file_internal(
     filter_chains: bool = True,
     return_intermediates: bool = False,
     config: str | ModuleType | None = None,
-    progress_callback: Callable[[str], None] | None = None,
+    progress_callback: Callable[[str, int | None, int | None], None] | None = None,
 ) -> TracingResult:
     _, check_timeout = _make_timeout_checker(timeout)
     image_path = Path(image_path)
@@ -673,8 +677,8 @@ def _trace_file_worker(
 
     progress_callback = None
     if progress_queue is not None:
-        def progress_callback(stage: str) -> None:
-            progress_queue.put((input_path, stage))
+        def progress_callback(stage: str, current: int | None = None, total: int | None = None) -> None:
+            progress_queue.put((input_path, stage, current, total))
 
     return _trace_file_record(
         input_path,
@@ -865,7 +869,9 @@ def trace_files(
         if resolved_batch_n_jobs == 1:
             for job in jobs:
                 stage_progress = None
+                detail_progress = None
                 stage_state = {"index": 0}
+                detail_state = {"stage": None, "current": 0, "total": 0}
                 if show_progress:
                     input_path = Path(job[0])
                     stage_progress = tqdm(
@@ -876,7 +882,16 @@ def trace_files(
                         leave=False,
                     )
 
-                    def progress_callback(stage: str, *, bar=stage_progress, state=stage_state) -> None:
+                    def progress_callback(
+                        stage: str,
+                        current: int | None = None,
+                        total: int | None = None,
+                        *,
+                        bar=stage_progress,
+                        state=stage_state,
+                        input_name=input_path.name,
+                    ) -> None:
+                        nonlocal detail_progress
                         stage_index = _TRACE_PROGRESS_STAGE_INDEX.get(stage)
                         if stage_index is None:
                             return
@@ -886,6 +901,43 @@ def trace_files(
                             state["index"] = stage_index
                         bar.set_postfix_str(_TRACE_PROGRESS_STAGE_LABELS.get(stage, stage))
 
+                        detail_label = _TRACE_PROGRESS_STAGE_LABELS.get(stage, stage)
+                        if total is None:
+                            if detail_progress is not None and detail_state["stage"] != stage:
+                                detail_progress.close()
+                                detail_progress = None
+                                detail_state["stage"] = None
+                                detail_state["current"] = 0
+                                detail_state["total"] = 0
+                            return
+
+                        if detail_progress is None or detail_state["stage"] != stage or detail_state["total"] != total:
+                            if detail_progress is not None:
+                                detail_progress.close()
+                            detail_progress = tqdm(
+                                total=total,
+                                desc=f"{input_name}: {detail_label}",
+                                unit="item",
+                                disable=False,
+                                leave=False,
+                            )
+                            detail_state["stage"] = stage
+                            detail_state["current"] = 0
+                            detail_state["total"] = total
+
+                        current_value = max(0, min(int(current or 0), int(total)))
+                        delta_items = current_value - int(detail_state["current"])
+                        if delta_items > 0:
+                            detail_progress.update(delta_items)
+                            detail_state["current"] = current_value
+
+                        if current_value >= int(total):
+                            detail_progress.close()
+                            detail_progress = None
+                            detail_state["stage"] = None
+                            detail_state["current"] = 0
+                            detail_state["total"] = 0
+
                 try:
                     if show_progress:
                         record = _trace_file_record(*job, progress_callback=progress_callback)
@@ -893,6 +945,8 @@ def trace_files(
                         record = _trace_file_worker(job + (None,))
                     handle_record(record)
                 finally:
+                    if detail_progress is not None:
+                        detail_progress.close()
                     if stage_progress is not None:
                         stage_progress.close()
                 progress.update(1)
@@ -907,6 +961,7 @@ def trace_files(
             progress_queue = manager.Queue()
 
             def drain_progress_queue():
+                last_progress: dict[tuple[str, str], int] = {}
                 while not stop_progress.is_set():
                     try:
                         message = progress_queue.get(timeout=0.1)
@@ -914,8 +969,20 @@ def trace_files(
                         continue
                     if message is None:
                         break
-                    input_path, stage = message
-                    progress.write(f"{Path(str(input_path)).name}: {_TRACE_PROGRESS_STAGE_LABELS.get(str(stage), str(stage))}")
+                    input_path, stage, current, total = message
+                    input_name = Path(str(input_path)).name
+                    label = _TRACE_PROGRESS_STAGE_LABELS.get(str(stage), str(stage))
+                    if isinstance(total, int) and total > 0:
+                        current_value = 0 if current is None else int(current)
+                        key = (input_name, str(stage))
+                        previous = last_progress.get(key, -1)
+                        step = max(1, total // 20)
+                        if current_value != total and previous >= 0 and current_value - previous < step:
+                            continue
+                        last_progress[key] = current_value
+                        progress.write(f"{input_name}: {label} {current_value}/{total}")
+                    else:
+                        progress.write(f"{input_name}: {label}")
 
             progress_thread = threading.Thread(target=drain_progress_queue, daemon=True)
             progress_thread.start()

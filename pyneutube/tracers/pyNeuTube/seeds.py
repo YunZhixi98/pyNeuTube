@@ -320,8 +320,12 @@ class Seeds:
         seeds_mask: np.ndarray,
         verbose: int = 1,
         check_timeout=None,
+        progress_callback=None,
     ) -> int:
         nlabeled = 0
+        total = len(self._seeds)
+        if progress_callback is not None:
+            progress_callback("generate_tracing_seeds", 0, total)
         for seed_idx, seed in enumerate(
             tqdm(
             self,
@@ -338,6 +342,8 @@ class Seeds:
                 label_tracing_mask(seed.seg, seeds_mask, dilate=False)
             else:
                 nlabeled += 1
+            if progress_callback is not None:
+                progress_callback("generate_tracing_seeds", seed_idx + 1, total)
         return nlabeled
 
     def score_seeds(
@@ -348,6 +354,7 @@ class Seeds:
         verbose: int = 1,
         check_timeout=None,
         shared_image: SharedImageSpec | None = None,
+        progress_callback=None,
     ) -> None:
         """
         Score all seeds in the image.
@@ -363,6 +370,7 @@ class Seeds:
                 seeds_mask=seeds_mask,
                 verbose=verbose,
                 check_timeout=check_timeout,
+                progress_callback=progress_callback,
             )
         else:
             shm = None
@@ -370,6 +378,9 @@ class Seeds:
             try:
                 batch_size = max(16, len(self._seeds) // (worker_jobs * 8) or 1)
                 payload_batches = _batched_seed_payloads(self._seeds, batch_size)
+                total = len(self._seeds)
+                if progress_callback is not None:
+                    progress_callback("generate_tracing_seeds", 0, total)
                 if owns_shared_image:
                     image_shared = np.ascontiguousarray(image)
                     shm = SharedMemory(create=True, size=image_shared.nbytes)
@@ -416,6 +427,8 @@ class Seeds:
                                         nlabeled += 1
                                 seed_offset += len(scored_batch)
                                 progress.update(len(scored_batch))
+                                if progress_callback is not None:
+                                    progress_callback("generate_tracing_seeds", seed_offset, total)
                 except (OSError, PermissionError) as exc:
                     global _PARALLEL_SCORE_WARNING_EMITTED
 
@@ -436,6 +449,7 @@ class Seeds:
                         seeds_mask=seeds_mask,
                         verbose=verbose,
                         check_timeout=check_timeout,
+                        progress_callback=progress_callback,
                     )
             finally:
                 if owns_shared_image and shm is not None:
@@ -469,6 +483,7 @@ class Seeds:
         verbose: int = 1,
         check_timeout=None,
         shared_image: SharedImageSpec | None = None,
+        progress_callback=None,
     ):
         t0 = time.time()
         if check_timeout is not None:
@@ -484,6 +499,7 @@ class Seeds:
             verbose=verbose,
             check_timeout=check_timeout,
             shared_image=shared_image,
+            progress_callback=progress_callback,
         )
         _vprint(verbose, f"--> seed_score: {time.time() - t0:.6f}s")
         if check_timeout is not None:
