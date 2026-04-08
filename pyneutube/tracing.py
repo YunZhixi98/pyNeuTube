@@ -961,7 +961,29 @@ def trace_files(
             progress_queue = manager.Queue()
 
             def drain_progress_queue():
-                last_progress: dict[tuple[str, str], int] = {}
+                slot_count = min(resolved_batch_n_jobs, len(jobs))
+                slot_bars = [
+                    tqdm(
+                        total=1,
+                        desc="",
+                        unit="",
+                        disable=False,
+                        leave=False,
+                        position=slot_index + 1,
+                        bar_format="{desc}",
+                    )
+                    for slot_index in range(slot_count)
+                ]
+                path_to_slot: dict[str, int] = {}
+                free_slots = list(range(slot_count))
+
+                def release_slot(input_path_str: str) -> None:
+                    slot = path_to_slot.pop(input_path_str, None)
+                    if slot is None:
+                        return
+                    slot_bars[slot].set_description_str(" ", refresh=True)
+                    free_slots.append(slot)
+
                 while not stop_progress.is_set():
                     try:
                         message = progress_queue.get(timeout=0.1)
@@ -970,19 +992,35 @@ def trace_files(
                     if message is None:
                         break
                     input_path, stage, current, total = message
-                    input_name = Path(str(input_path)).name
+                    input_path_str = str(input_path)
+                    input_name = Path(input_path_str).name
+                    if str(stage) == "__done__":
+                        release_slot(input_path_str)
+                        continue
                     label = _TRACE_PROGRESS_STAGE_LABELS.get(str(stage), str(stage))
+                    slot = path_to_slot.get(input_path_str)
+                    if slot is None:
+                        if not free_slots:
+                            continue
+                        slot = min(free_slots)
+                        free_slots.remove(slot)
+                        path_to_slot[input_path_str] = slot
+
                     if isinstance(total, int) and total > 0:
                         current_value = 0 if current is None else int(current)
-                        key = (input_name, str(stage))
-                        previous = last_progress.get(key, -1)
-                        step = max(1, total // 20)
-                        if current_value != total and previous >= 0 and current_value - previous < step:
-                            continue
-                        last_progress[key] = current_value
-                        progress.write(f"{input_name}: {label} {current_value}/{total}")
+                        text = f"{input_name} | {label} {current_value}/{total}"
                     else:
-                        progress.write(f"{input_name}: {label}")
+                        text = f"{input_name} | {label}"
+
+                    slot_bars[slot].set_description_str(text, refresh=True)
+
+                    if isinstance(total, int) and total > 0 and int(current or 0) >= total:
+                        release_slot(input_path_str)
+
+                for input_path_str in list(path_to_slot):
+                    release_slot(input_path_str)
+                for bar in slot_bars:
+                    bar.close()
 
             progress_thread = threading.Thread(target=drain_progress_queue, daemon=True)
             progress_thread.start()
@@ -1017,6 +1055,8 @@ def trace_files(
 
                     handle_record(record)
                     progress.update(1)
+                    if progress_queue is not None:
+                        progress_queue.put((str(record["input_path"]), "__done__", 1, 1))
         finally:
             if progress_queue is not None:
                 stop_progress.set()
