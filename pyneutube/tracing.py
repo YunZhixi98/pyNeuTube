@@ -73,6 +73,7 @@ _TRACE_PROGRESS_STAGE_LABELS = {
     "generate_neuron_trace": "generate trace chains",
     "reconstruct": "reconstruct morphology",
 }
+_TRACE_PROGRESS_REFRESH_EVERY = 100
 
 
 @dataclass
@@ -211,6 +212,15 @@ def _emit_trace_progress(
 ) -> None:
     if progress_callback is not None:
         progress_callback(stage, current, total)
+
+
+def _safe_tqdm_close(bar) -> None:
+    if bar is None:
+        return
+    try:
+        bar.close()
+    except AttributeError:
+        pass
 
 
 def _prepare_signal_image(image: np.ndarray, *, verbose: int = 1) -> np.ndarray:
@@ -904,7 +914,7 @@ def trace_files(
                         detail_label = _TRACE_PROGRESS_STAGE_LABELS.get(stage, stage)
                         if total is None:
                             if detail_progress is not None and detail_state["stage"] != stage:
-                                detail_progress.close()
+                                _safe_tqdm_close(detail_progress)
                                 detail_progress = None
                                 detail_state["stage"] = None
                                 detail_state["current"] = 0
@@ -913,7 +923,7 @@ def trace_files(
 
                         if detail_progress is None or detail_state["stage"] != stage or detail_state["total"] != total:
                             if detail_progress is not None:
-                                detail_progress.close()
+                                _safe_tqdm_close(detail_progress)
                             detail_progress = tqdm(
                                 total=total,
                                 desc=f"{input_name}: {detail_label}",
@@ -927,12 +937,12 @@ def trace_files(
 
                         current_value = max(0, min(int(current or 0), int(total)))
                         delta_items = current_value - int(detail_state["current"])
-                        if delta_items > 0:
+                        if delta_items >= _TRACE_PROGRESS_REFRESH_EVERY or current_value >= int(total):
                             detail_progress.update(delta_items)
                             detail_state["current"] = current_value
 
                         if current_value >= int(total):
-                            detail_progress.close()
+                            _safe_tqdm_close(detail_progress)
                             detail_progress = None
                             detail_state["stage"] = None
                             detail_state["current"] = 0
@@ -945,10 +955,8 @@ def trace_files(
                         record = _trace_file_worker(job + (None,))
                     handle_record(record)
                 finally:
-                    if detail_progress is not None:
-                        detail_progress.close()
-                    if stage_progress is not None:
-                        stage_progress.close()
+                    _safe_tqdm_close(detail_progress)
+                    _safe_tqdm_close(stage_progress)
                 progress.update(1)
             return sorted(set(completed_outputs))
 
@@ -976,6 +984,7 @@ def trace_files(
                 ]
                 path_to_slot: dict[str, int] = {}
                 free_slots = list(range(slot_count))
+                slot_state: dict[int, tuple[str, int, int] | None] = {slot: None for slot in range(slot_count)}
 
                 def release_slot(input_path_str: str) -> None:
                     slot = path_to_slot.pop(input_path_str, None)
@@ -1008,9 +1017,22 @@ def trace_files(
 
                     if isinstance(total, int) and total > 0:
                         current_value = 0 if current is None else int(current)
+                        previous = slot_state.get(slot)
+                        should_refresh = (
+                            previous is None
+                            or previous[0] != str(stage)
+                            or previous[2] != int(total)
+                            or current_value >= int(total)
+                            or current_value == 0
+                            or current_value - previous[1] >= _TRACE_PROGRESS_REFRESH_EVERY
+                        )
+                        if not should_refresh:
+                            continue
                         text = f"{input_name} | {label} {current_value}/{total}"
+                        slot_state[slot] = (str(stage), current_value, int(total))
                     else:
                         text = f"{input_name} | {label}"
+                        slot_state[slot] = None
 
                     slot_bars[slot].set_description_str(text, refresh=True)
 
@@ -1020,7 +1042,7 @@ def trace_files(
                 for input_path_str in list(path_to_slot):
                     release_slot(input_path_str)
                 for bar in slot_bars:
-                    bar.close()
+                    _safe_tqdm_close(bar)
 
             progress_thread = threading.Thread(target=drain_progress_queue, daemon=True)
             progress_thread.start()
@@ -1068,7 +1090,7 @@ def trace_files(
 
         return sorted(set(completed_outputs))
     finally:
-        progress.close()
+        _safe_tqdm_close(progress)
 
 
 def trace_directory(
