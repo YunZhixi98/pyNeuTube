@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from importlib import import_module
 from multiprocessing import get_context
+from multiprocessing.shared_memory import SharedMemory
 from pathlib import Path
 from time import perf_counter
 from types import ModuleType
@@ -281,6 +282,20 @@ def _temporary_trace_config(config: str | ModuleType | None):
             setattr(target, attr_name, attr_value)
 
 
+@contextmanager
+def _shared_array(image: np.ndarray):
+    array = np.ascontiguousarray(np.asarray(image))
+    shm = SharedMemory(create=True, size=array.nbytes)
+    shared = np.ndarray(array.shape, dtype=array.dtype, buffer=shm.buf)
+    shared[...] = array
+    spec = (shm.name, array.shape, array.dtype.str)
+    try:
+        yield shared, spec
+    finally:
+        shm.close()
+        shm.unlink()
+
+
 def save_trace_stage(stage_data: object, output_path: str | Path) -> Path:
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -348,50 +363,70 @@ def _trace_volume_internal(
         signal_image, binary_image, threshold = preprocess_volume(image, verbose=verbose)
         check_timeout("preprocess_volume")
 
-        t0 = perf_counter()
-        seeds = Seeds()
-        seeds.generate_tracing_seeds(
-            signal_image,
-            binary_image,
-            n_jobs=resolved_n_jobs,
-            verbose=verbose,
-            check_timeout=check_timeout,
-        )
-        _time_step(verbose, "generate_tracing_seeds", t0)
-        check_timeout("generate_tracing_seeds")
-
-        t0 = perf_counter()
-        chains = SegmentChains(image_shape=signal_image.shape)
-        chains.generate_neuron_trace(
-            seeds,
-            signal_image,
-            max_seeds=max_seeds,
-            verbose=verbose,
-            check_timeout=check_timeout,
-        )
-        if filter_chains:
-            check_timeout("filter_chains")
-            chains.filter_chains(verbose=verbose)
-        _time_step(verbose, "generate_neuron_trace", t0)
-        check_timeout("generate_neuron_trace")
-
-        neuron = None
-        if connect_chains:
+        def _run_trace(
+            active_signal_image: np.ndarray,
+            active_binary_image: np.ndarray,
+            shared_image_spec=None,
+        ) -> TracingResult:
             t0 = perf_counter()
-            connector = ChainConnector(verbose=verbose)
-            neuron = connector.reconstruct(chains, signal_image, check_timeout=check_timeout)
-            _time_step(verbose, "reconstruct", t0)
-            check_timeout("reconstruct")
+            seeds = Seeds()
+            seeds.generate_tracing_seeds(
+                active_signal_image,
+                active_binary_image,
+                n_jobs=resolved_n_jobs,
+                verbose=verbose,
+                check_timeout=check_timeout,
+                shared_image=shared_image_spec,
+            )
+            _time_step(verbose, "generate_tracing_seeds", t0)
+            check_timeout("generate_tracing_seeds")
 
-        return TracingResult(
-            image_path=None,
-            threshold=threshold,
-            seeds=seeds,
-            chains=chains,
-            neuron=neuron,
-            signal_image=signal_image if return_intermediates else None,
-            binary_image=binary_image if return_intermediates else None,
-        )
+            binary_image_result = active_binary_image if return_intermediates else None
+            if not return_intermediates:
+                active_binary_image = None
+
+            t0 = perf_counter()
+            chains = SegmentChains(image_shape=active_signal_image.shape)
+            chains.generate_neuron_trace(
+                seeds,
+                active_signal_image,
+                max_seeds=max_seeds,
+                verbose=verbose,
+                check_timeout=check_timeout,
+            )
+            if filter_chains:
+                check_timeout("filter_chains")
+                chains.filter_chains(verbose=verbose)
+            _time_step(verbose, "generate_neuron_trace", t0)
+            check_timeout("generate_neuron_trace")
+
+            neuron = None
+            if connect_chains:
+                t0 = perf_counter()
+                connector = ChainConnector(verbose=verbose)
+                neuron = connector.reconstruct(chains, active_signal_image, check_timeout=check_timeout)
+                _time_step(verbose, "reconstruct", t0)
+                check_timeout("reconstruct")
+
+            signal_image_result = (
+                np.asarray(active_signal_image).copy() if return_intermediates else None
+            )
+            return TracingResult(
+                image_path=None,
+                threshold=threshold,
+                seeds=seeds,
+                chains=chains,
+                neuron=neuron,
+                signal_image=signal_image_result,
+                binary_image=binary_image_result,
+            )
+
+        if resolved_n_jobs > 1:
+            with _shared_array(signal_image) as (shared_signal_image, shared_image_spec):
+                del signal_image
+                return _run_trace(shared_signal_image, binary_image, shared_image_spec)
+
+        return _run_trace(signal_image, binary_image)
 
 
 def trace_file(
@@ -853,13 +888,25 @@ def extract_trace_seeds(
         else:
             binary_image = np.ascontiguousarray(np.asarray(binary_image), dtype=np.uint8)
         seeds = Seeds()
-        seeds.generate_tracing_seeds(
-            signal_image,
-            binary_image,
-            n_jobs=_resolve_n_jobs(n_jobs),
-            verbose=verbose,
-            check_timeout=check_timeout,
-        )
+        resolved_n_jobs = _resolve_n_jobs(n_jobs)
+        if resolved_n_jobs > 1:
+            with _shared_array(signal_image) as (shared_signal_image, shared_image_spec):
+                seeds.generate_tracing_seeds(
+                    shared_signal_image,
+                    binary_image,
+                    n_jobs=resolved_n_jobs,
+                    verbose=verbose,
+                    check_timeout=check_timeout,
+                    shared_image=shared_image_spec,
+                )
+        else:
+            seeds.generate_tracing_seeds(
+                signal_image,
+                binary_image,
+                n_jobs=resolved_n_jobs,
+                verbose=verbose,
+                check_timeout=check_timeout,
+            )
         if output_path is not None:
             save_trace_stage(seeds, output_path)
         if visualization_path is not None:

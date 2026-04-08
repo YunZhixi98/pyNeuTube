@@ -48,6 +48,13 @@ def _seed_priority_order(coords: np.ndarray, values: np.ndarray) -> np.ndarray:
 _SEED_SCORE_IMAGE = None
 _SEED_SCORE_SHM = None
 _PARALLEL_SCORE_WARNING_EMITTED = False
+SharedImageSpec = tuple[str, tuple[int, ...], str]
+
+
+def _seed_score_mp_context():
+    if os.name == "posix":
+        return get_context("fork")
+    return get_context("spawn")
 
 
 def _init_seed_score_worker(
@@ -340,6 +347,7 @@ class Seeds:
         n_jobs: int = 1,
         verbose: int = 1,
         check_timeout=None,
+        shared_image: SharedImageSpec | None = None,
     ) -> None:
         """
         Score all seeds in the image.
@@ -357,21 +365,28 @@ class Seeds:
                 check_timeout=check_timeout,
             )
         else:
-            image_shared = np.ascontiguousarray(image)
             shm = None
+            owns_shared_image = shared_image is None
             try:
-                shm = SharedMemory(create=True, size=image_shared.nbytes)
                 batch_size = max(16, len(self._seeds) // (worker_jobs * 8) or 1)
                 payload_batches = _batched_seed_payloads(self._seeds, batch_size)
-                shared_array = np.ndarray(image_shared.shape, dtype=image_shared.dtype, buffer=shm.buf)
-                shared_array[...] = image_shared
+                if owns_shared_image:
+                    image_shared = np.ascontiguousarray(image)
+                    shm = SharedMemory(create=True, size=image_shared.nbytes)
+                    shared_array = np.ndarray(image_shared.shape, dtype=image_shared.dtype, buffer=shm.buf)
+                    shared_array[...] = image_shared
+                    shm_name = shm.name
+                    shm_shape = image_shared.shape
+                    shm_dtype_str = image_shared.dtype.str
+                else:
+                    shm_name, shm_shape, shm_dtype_str = shared_image
 
                 try:
                     with ProcessPoolExecutor(
                         max_workers=worker_jobs,
-                        mp_context=get_context("spawn"),
+                        mp_context=_seed_score_mp_context(),
                         initializer=_init_seed_score_worker,
-                        initargs=(shm.name, image_shared.shape, image_shared.dtype.str),
+                        initargs=(shm_name, shm_shape, shm_dtype_str),
                     ) as executor:
                         seed_offset = 0
                         scored_batches = executor.map(
@@ -423,7 +438,7 @@ class Seeds:
                         check_timeout=check_timeout,
                     )
             finally:
-                if shm is not None:
+                if owns_shared_image and shm is not None:
                     shm.close()
                     shm.unlink()
 
@@ -453,6 +468,7 @@ class Seeds:
         n_jobs: int = 1,
         verbose: int = 1,
         check_timeout=None,
+        shared_image: SharedImageSpec | None = None,
     ):
         t0 = time.time()
         if check_timeout is not None:
@@ -467,6 +483,7 @@ class Seeds:
             n_jobs=n_jobs,
             verbose=verbose,
             check_timeout=check_timeout,
+            shared_image=shared_image,
         )
         _vprint(verbose, f"--> seed_score: {time.time() - t0:.6f}s")
         if check_timeout is not None:
