@@ -12,6 +12,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from importlib import import_module
+from multiprocessing import get_context
 from pathlib import Path
 from time import perf_counter
 from types import ModuleType
@@ -534,9 +535,9 @@ def _trace_file_internal(
 
 
 def _trace_file_worker(
-    payload: tuple[str, str, str | None, int, float | None, int, str | None],
+    payload: tuple[str, str, str | None, int, float | None, int, bool, str | None],
 ) -> dict[str, object]:
-    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose, config = payload
+    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose, overwrite, config = payload
     started_at = perf_counter()
     try:
         result = trace_file(
@@ -546,6 +547,7 @@ def _trace_file_worker(
             n_jobs=n_jobs,
             timeout=timeout,
             verbose=verbose,
+            overwrite=overwrite,
             config=config,
         )
     except Exception as exc:
@@ -644,7 +646,7 @@ def trace_files(
 
     show_progress = verbose >= 1
     completed_outputs: list[Path] = []
-    jobs: list[tuple[str, str, str | None, int, float | None, int, str | None]] = []
+    jobs: list[tuple[str, str, str | None, int, float | None, int, bool, str | None]] = []
     progress = tqdm(
         total=len(image_paths),
         desc="Tracing files",
@@ -695,6 +697,7 @@ def trace_files(
                     resolved_trace_n_jobs,
                     trace_timeout,
                     0,
+                    overwrite,
                     config,
                 )
             )
@@ -753,7 +756,13 @@ def trace_files(
                 progress.update(1)
             return sorted(set(completed_outputs))
 
-        with ProcessPoolExecutor(max_workers=min(resolved_batch_n_jobs, len(jobs))) as executor:
+        executor_kwargs: dict[str, object] = {
+            "max_workers": min(resolved_batch_n_jobs, len(jobs)),
+        }
+        if os.name == "posix":
+            executor_kwargs["mp_context"] = get_context("fork")
+
+        with ProcessPoolExecutor(**executor_kwargs) as executor:
             futures = {executor.submit(_trace_file_worker, job): Path(job[0]) for job in jobs}
             for future in as_completed(futures):
                 try:
