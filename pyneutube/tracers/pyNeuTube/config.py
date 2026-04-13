@@ -36,6 +36,7 @@ class Optimization:
 
 class TraceStatus(Enum):
     NORMAL = 0
+    HIT_MARK = auto()
     OUT_OF_BOUND = auto()
     VOXEL_TRACED = auto()
     LOW_SCORE = auto()

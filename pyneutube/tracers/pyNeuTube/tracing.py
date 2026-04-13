@@ -362,6 +362,7 @@ class SegmentChain:
         self._trace_step = Defaults.TRACE_STEP
         self._stop_seg_trace_score = Defaults.STOP_SEG_TRACE_SCORE
         self._max_seg_num = Defaults.MAX_SEG_NUM
+        self._blocked_by_init_hit = False
 
         self.mean_intensity = None
         self.mean_score = None
@@ -498,7 +499,7 @@ class SegmentChain:
                 if np.any(coord < 0) or np.any((coord+1) > trace_mask.shape):
                     self._trace_status[side_idx] = TraceStatus.OUT_OF_BOUND
                 elif trace_mask[coord_round[0], coord_round[1], coord_round[2]] == 1:
-                    self._trace_status[side_idx] = TraceStatus.VOXEL_TRACED
+                    self._trace_status[side_idx] = TraceStatus.HIT_MARK
             
             if side!='both':  # 'both' is somehow an initial check for seed's seg.
                 if seg.score < seg.get_norm_min_score(self._stop_seg_trace_score):
@@ -525,7 +526,6 @@ class SegmentChain:
 
                         return
                     
-                    """
                     r1 = seg_prev.radius * sqrt(seg_prev.scale)
                     r2 = cur_seg.radius * sqrt(cur_seg.scale)
                     if r2 > 1.0:
@@ -535,7 +535,6 @@ class SegmentChain:
                             self._segments.pop(seg_idx)
                             
                             return 
-                    """
 
                     #
                     loop_flag = False
@@ -578,19 +577,18 @@ class SegmentChain:
                 pos_ratio = 2/3
                 seg = self._segments[seg_idx]
                 coord_4_hit = np.round(seg.start_coord + seg.dir_v * seg.length * pos_ratio).astype(int)
-                coord_4_bound = seg.end_coord[::-1]
-            
-            if len(self) >= 2:
-                if trace_mask[coord_4_hit[2], coord_4_hit[1], coord_4_hit[0]] == 1:
-                    self._trace_status[side_idx] = TraceStatus.VOXEL_TRACED
-                
-                if np.any(coord_4_bound < 0) or np.any((coord_4_bound + 1) > trace_mask.shape):
-                    self._trace_status[side_idx] = TraceStatus.OUT_OF_BOUND
+
+            if trace_mask[coord_4_hit[2], coord_4_hit[1], coord_4_hit[0]] == 1:
+                self._trace_status[side_idx] = TraceStatus.HIT_MARK
 
             return
         
         _check_side(1)
         _check_side(0)
+        self._blocked_by_init_hit = (
+            self._trace_status[0] == TraceStatus.HIT_MARK
+            and self._trace_status[1] == TraceStatus.HIT_MARK
+        )
             
         return
 
@@ -685,10 +683,10 @@ class SegmentChain:
             print('\n')
         
         if len(self) >= 2:
-            if self._trace_status[1] != TraceStatus.VOXEL_TRACED:
+            if self._trace_status[1] != TraceStatus.HIT_MARK:
                 self._segments[-1].length_search(signal_image)
             
-            if self._trace_status[0] != TraceStatus.VOXEL_TRACED:
+            if self._trace_status[0] != TraceStatus.HIT_MARK:
                 self._segments[0].flip_segment()
                 self._segments[0].length_search(signal_image)
                 self._segments[0].flip_segment()
@@ -755,9 +753,14 @@ class SegmentChains:
                 check_timeout("chain generation")
             chain = SegmentChain(seed.seg.copy())
             chain.generate_chain_trace(signal_image, self.trace_mask)
-            # ensure the chain is long enough
-            if chain.path_length >= self._min_chain_length or \
-                (chain._trace_status[0] != TraceStatus.VOXEL_TRACED or chain._trace_status[1] != TraceStatus.VOXEL_TRACED):
+            keep_chain = (
+                not chain._blocked_by_init_hit and (
+                    chain.path_length >= self._min_chain_length
+                    or chain._trace_status[0] == TraceStatus.HIT_MARK
+                    or chain._trace_status[1] == TraceStatus.HIT_MARK
+                )
+            )
+            if keep_chain:
                 for seg in chain: 
                     label_tracing_mask(seg, self.trace_mask, dilate=True)
                 self.append(chain)
