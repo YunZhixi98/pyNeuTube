@@ -41,6 +41,7 @@ from pyneutube.tracers.pyNeuTube.config import Optimization as TraceOptimization
 from pyneutube.tracers.pyNeuTube.seeds import Seed, Seeds
 from pyneutube.tracers.pyNeuTube.tracing import SegmentChain, SegmentChains, TracingSegment
 from pyneutube.visualization import (
+    _project_overlay_image,
     save_chain_overlay_figure,
     save_overlay_figure,
     save_seed_overlay_figure,
@@ -577,12 +578,21 @@ def _trace_file_internal(
         result.output_swc = output_swc_path
         result.neuron.save_swc(result.output_swc, verbose=verbose)
 
+    projected_image = None
+    if (
+        output_seed_visualization_path is not None
+        or output_chain_visualization_path is not None
+        or output_visualization_path is not None
+    ):
+        projected_image = _project_overlay_image(image, log_transform=True)
+
     if output_seed_visualization_path is not None and len(result.seeds) > 0:
         result.output_seed_visualization = save_seed_overlay_figure(
             image,
             result.seeds,
             output_seed_visualization_path,
             title=f"{image_path.name} seeds",
+            projected_image=projected_image,
         )
 
     if output_chain_visualization_path is not None and len(result.chains) > 0:
@@ -591,6 +601,7 @@ def _trace_file_internal(
             result.chains,
             output_chain_visualization_path,
             title=f"{image_path.name} chains",
+            projected_image=projected_image,
         )
 
     if output_visualization_path is not None:
@@ -600,6 +611,7 @@ def _trace_file_internal(
                 result.neuron,
                 output_visualization_path,
                 title=image_path.name,
+                projected_image=projected_image,
             )
         else:
             chain_coords = [chain.to_coords() for chain in result.chains if len(chain) > 0]
@@ -610,6 +622,7 @@ def _trace_file_internal(
                     coords,
                     output_visualization_path,
                     title=image_path.name,
+                    projected_image=projected_image,
                 )
             else:
                 raise ValueError("No coordinates are available for visualization export.")

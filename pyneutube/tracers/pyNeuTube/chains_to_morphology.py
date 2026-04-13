@@ -340,6 +340,8 @@ class ChainConnector:
         if sgw.sp_option != 1:
             if sgw.group_mask is None:
                 sgw.group_mask = np.zeros(signal_image.shape, dtype=np.uint8)
+            else:
+                sgw.group_mask.fill(0)
             for i in range(start_index, end_index + 1):
                 label_tracing_mask(chain[i], sgw.group_mask, dilate=True)
             
@@ -390,8 +392,8 @@ class ChainConnector:
         if path_length >= 5:
             
             for i in range(path_length):
+                coord = np.array(np.unravel_index(path[i], signal_image.shape))
                 if hit_index < 3:
-                    coord = np.array(np.unravel_index(path[i], signal_image.shape))
                     if conn.info[0] == 0:
                         hit_index = point_in_chain_index(coord, chain)
                     else:
@@ -500,7 +502,7 @@ class ChainConnector:
                         sgw.including_signal_border = True
                         path = self.get_shortest_path(chain1, chain2, signal_image, sgw)
                         gdist = self.validate_shortest_path(path, chain1, signal_image, sgw, conn)
-                        conn.cost = 1.0 / (1.0 + exp((-conn.min_sdist + gdist) / 100.0))
+                        conn.cost = 1.0 / (1.0 + exp(-(conn.min_sdist + gdist) / 100.0))
                     else:
                         conn.cost = 1.0 / (1.0 + exp(-conn.min_sdist / 100.0))
                     

@@ -485,42 +485,90 @@ def remove_subtrees_by_length(neuron: Neuron, *, verbose: int = 1):
 
     if len(neuron.somata) < 10:
         return 
-    
+
     nid_hash = neuron.nidHash
     children_map = neuron.indexChildren
     swc = neuron.swc
-    
-    subtrees_nodes = []
-    subtrees_length = []
-    for soma in neuron.somata:
-        soma_idx = nid_hash[soma[0]]
-        tmp_nodes = [soma]
-        path_length = 0.0
-        stack = deque(children_map[soma_idx])
+    parent_indices = np.full(len(swc), -1, dtype=int)
+    for idx, node in enumerate(swc):
+        parent_indices[idx] = nid_hash.get(node[6], -1)
+
+    def _subtree_indices(root_idx: int):
+        indices = [root_idx]
+        stack = deque(children_map[root_idx])
         while stack:
             cur_idx = stack.pop()
-            cur_node = swc[cur_idx]
-            last_node = swc[nid_hash[cur_node[6]]]
-            path_length += np.linalg.norm(cur_node[2:5]-last_node[2:5])
+            indices.append(cur_idx)
             stack.extend(children_map[cur_idx])
-            tmp_nodes.append(cur_node)
+        return indices
 
-        subtrees_nodes.append(tmp_nodes)
-        subtrees_length.append(path_length)
+    def _distance_to_root_map(root_idx: int, subtree_indices: list[int]):
+        dist_to_root = {root_idx: 0.0}
+        stack = deque(children_map[root_idx])
+        while stack:
+            cur_idx = stack.pop()
+            parent_idx = parent_indices[cur_idx]
+            dist_to_root[cur_idx] = dist_to_root[parent_idx] + np.linalg.norm(
+                swc[cur_idx][2:5] - swc[parent_idx][2:5]
+            )
+            stack.extend(children_map[cur_idx])
+        return dist_to_root
 
-    mean_length = np.mean(subtrees_length)
-    new_swc = []
-    for i, subtree_nodes in enumerate(subtrees_nodes):
-        if subtrees_length[i] >= mean_length:
-            new_swc.extend(subtree_nodes)
-    
-    neuron.initialize(new_swc)
+    def _common_ancestor_index(idx1: int, idx2: int) -> int:
+        ancestors = set()
+        cur_idx = idx1
+        while cur_idx >= 0:
+            ancestors.add(cur_idx)
+            cur_idx = parent_indices[cur_idx]
+
+        cur_idx = idx2
+        while cur_idx not in ancestors:
+            cur_idx = parent_indices[cur_idx]
+
+        return cur_idx
+
+    def _main_trunk_length(root_idx: int, subtree_indices: list[int]) -> float:
+        leaves = [idx for idx in subtree_indices if len(children_map[idx]) == 0]
+        candidates = [root_idx] + leaves
+        if len(candidates) < 2:
+            return 0.0
+
+        dist_to_root = _distance_to_root_map(root_idx, subtree_indices)
+        max_score = -1.0
+        max_length = 0.0
+        for i, idx1 in enumerate(candidates[:-1]):
+            for idx2 in candidates[i + 1:]:
+                ancestor_idx = _common_ancestor_index(idx1, idx2)
+                geodesic_length = (
+                    dist_to_root[idx1]
+                    + dist_to_root[idx2]
+                    - 2.0 * dist_to_root[ancestor_idx]
+                )
+                euclidean_length = np.linalg.norm(swc[idx1][2:5] - swc[idx2][2:5])
+                score = geodesic_length * 0.2 + euclidean_length * 0.8
+                if score > max_score:
+                    max_score = score
+                    max_length = geodesic_length
+
+        return max_length
+
+    root_indices = [nid_hash[soma[0]] for soma in neuron.somata]
+    subtree_indices = [_subtree_indices(root_idx) for root_idx in root_indices]
+    subtree_lengths = [_main_trunk_length(root_idx, indices) for root_idx, indices in zip(root_indices, subtree_indices)]
+
+    mean_length = np.mean(subtree_lengths)
+    keep_mask = np.zeros(len(swc), dtype=bool)
+    for indices, trunk_length in zip(subtree_indices, subtree_lengths):
+        if trunk_length >= mean_length:
+            keep_mask[indices] = True
+
+    neuron.initialize(swc[keep_mask])
 
     if verbose:
         print(
             "Total "
-            f"{len(subtrees_length)} subtrees, Removed "
-            f"{len(subtrees_length) - np.sum(subtrees_length > mean_length)} subtrees, "
+            f"{len(subtree_lengths)} subtrees, Removed "
+            f"{len(subtree_lengths) - np.sum(np.asarray(subtree_lengths) >= mean_length)} subtrees, "
             f"Remove mean length: {mean_length}"
         )
 

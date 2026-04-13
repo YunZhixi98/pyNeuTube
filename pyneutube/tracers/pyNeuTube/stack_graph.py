@@ -533,10 +533,10 @@ class StackGraph:
         self,
         conn: int = 26,
         range_g: Optional[NDArray[int]] = None, # avoid using range directly!
-        resolution: np.ndarray = np.ones((3), dtype=float),
+        resolution: Optional[np.ndarray] = None,
         wf: Optional = stack_voxel_weight_cy,  
         sp_option: int = 0,
-        argv: Optional[np.ndarray] = np.full(STACK_GRAPH_WORKSPACE_ARGC, np.nan),
+        argv: Optional[np.ndarray] = None,
         gw: Optional = None, 
         group_mask: Optional[np.ndarray] = None,
         signal_mask: Optional[np.ndarray] = None,
@@ -547,10 +547,18 @@ class StackGraph:
     ):
         self.conn = conn
         self.range = range_g
-        self.resolution = resolution
+        self.resolution = (
+            np.ones((3), dtype=float)
+            if resolution is None
+            else np.asarray(resolution, dtype=float).copy()
+        )
         self.wf = wf    
         self.sp_option = sp_option
-        self.argv = argv
+        self.argv = (
+            np.full(self.STACK_GRAPH_WORKSPACE_ARGC, np.nan)
+            if argv is None
+            else np.asarray(argv, dtype=float).copy()
+        )
         self.gw = gw
         self.group_mask = group_mask    
         self.signal_mask = signal_mask  
@@ -590,6 +598,8 @@ class StackGraph:
         if self.sp_option != 1:
             if self.group_mask is None:
                 self.group_mask = np.zeros(signal_image.shape, dtype=np.uint8)
+            else:
+                self.group_mask.fill(0)
             for i in range(start, end + 1):
                 label_tracing_mask(chain[i], self.group_mask, dilate=True)
         
