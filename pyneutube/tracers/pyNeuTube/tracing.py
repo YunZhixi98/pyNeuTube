@@ -571,14 +571,16 @@ class SegmentChain:
                 pos_ratio = 1/3
                 seg = self._segments[seg_idx]
                 coord_4_hit = np.round(seg.start_coord + seg.dir_v * seg.length * pos_ratio).astype(int)  # coord for hitting traced voxel detection
-                coord_4_bound = seg.start_coord[::-1]
             else:
                 seg_idx = -1
                 pos_ratio = 2/3
                 seg = self._segments[seg_idx]
                 coord_4_hit = np.round(seg.start_coord + seg.dir_v * seg.length * pos_ratio).astype(int)
 
-            if trace_mask[coord_4_hit[2], coord_4_hit[1], coord_4_hit[0]] == 1:
+            coord_zyx = coord_4_hit[::-1]
+            if np.any(coord_zyx < 0) or np.any(coord_zyx >= trace_mask.shape):
+                self._trace_status[side_idx] = TraceStatus.OUT_OF_BOUND
+            elif trace_mask[coord_zyx[0], coord_zyx[1], coord_zyx[2]] == 1:
                 self._trace_status[side_idx] = TraceStatus.HIT_MARK
 
             return
