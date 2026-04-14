@@ -37,6 +37,10 @@ For a local source tree:
 python -m pip install .
 ```
 
+Published wheels do not require Cython at install time.
+
+Local source installs use the `pyproject.toml` build environment and compile the Cython extensions from `.pyx`. Under normal `pip install .` usage, `pip` installs those build dependencies automatically in an isolated build environment. You only need to preinstall `Cython` yourself if you intentionally disable build isolation or run developer build commands directly.
+
 For a local `conda` environment from this repository:
 
 ```bash
@@ -283,6 +287,8 @@ python tools/dev/smoke_imports.py
 python -m pytest -q
 ruff check .
 ```
+
+`python Cython_setup.py build_ext --inplace` is only needed for local extension-development workflows. End users should install the published wheel or run `python -m pip install .`, not manage `Cython` manually.
 
 ## License
 

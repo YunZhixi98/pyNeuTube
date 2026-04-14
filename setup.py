@@ -125,4 +125,4 @@ def build_setup_kwargs(*, use_cython: bool = False) -> dict[str, object]:
 
 
 if __name__ == "__main__":
-    setup(**build_setup_kwargs(use_cython=False))
+    setup(**build_setup_kwargs(use_cython=cythonize is not None))

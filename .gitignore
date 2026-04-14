@@ -168,11 +168,15 @@ build_ext.log
 build_meta.log
 .build_meta/
 .pip_tmp/
+.pip_dist/
 .pip_target/
 .pip_tracker/
 .pytest_tmp/
 .wheelhouse/
+docs/notebook_artifacts/
 debug/
 *.jsonl
+examples/reference_volume_trace.png
+examples/reference_volume_trace.swc
 tests/
 Cython_setup_legacy.py

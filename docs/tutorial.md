@@ -18,6 +18,10 @@ python -m pip install "git+https://github.com/YunZhixi98/pyNeuTube.git"
 
 For a local repository checkout, the fuller source-install options are documented in the main `README.md`.
 
+Published wheels do not require Cython at install time.
+
+Normal source installs use `pyproject.toml` build isolation and compile from the `.pyx` sources. Under ordinary `pip install .` usage, `pip` installs the build requirements automatically. Only `--no-build-isolation` or direct developer build commands need `Cython` to be preinstalled.
+
 Create a local environment from the bundled file:
 
 ```bash
