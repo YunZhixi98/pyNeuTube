@@ -25,12 +25,6 @@ Install from PyPI with `pip`:
 python -m pip install pyneutube
 ```
 
-Install from `conda-forge`:
-
-```bash
-conda install -c conda-forge pyneutube
-```
-
 If you need the latest source version instead of a published package, install from GitHub:
 
 ```bash
