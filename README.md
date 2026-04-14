@@ -293,3 +293,10 @@ ruff check .
 ## License
 
 This project is distributed under the BSD 3-Clause License. See `LICENSE` for details.
+
+## Acknowledgement / Contributors
+
+This project benefited greatly from the contributions of:
+
+- [**Yufeng Liu**](https://github.com/crazylyf) - For his work on the development and optimization of code.
+- [**Kangxu Fan**](https://github.com/fkxyyds) - For his assistance in testing and cross-version alignment.
