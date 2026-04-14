@@ -3,10 +3,28 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [],
+        "define_macros": [
+            [
+                "NPY_NO_DEPRECATED_API",
+                "NPY_1_7_API_VERSION"
+            ]
+        ],
+        "depends": [
+            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\arrayobject.h",
+            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\arrayscalars.h",
+            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\ndarrayobject.h",
+            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\ndarraytypes.h",
+            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\ufuncobject.h"
+        ],
+        "extra_compile_args": [
+            "/O2"
+        ],
+        "include_dirs": [
+            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include"
+        ],
         "name": "pyneutube.tracers.pyNeuTube.stack_graph_utils",
         "sources": [
-            "D:\\science\\Github\\pyneutube\\pyneutube\\tracers\\pyNeuTube\\stack_graph_utils.pyx"
+            "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx"
         ]
     },
     "module_name": "pyneutube.tracers.pyNeuTube.stack_graph_utils"
@@ -1384,7 +1402,7 @@ static const char *__pyx_filename;
 static const char* const __pyx_f[] = {
   "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx",
   "<stringsource>",
-  "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd",
+  "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd",
   "cpython/type.pxd",
 };
 /* #### Code section: utility_code_proto_before_types ### */
@@ -1637,7 +1655,7 @@ typedef struct {
 
 /* #### Code section: numeric_typedefs ### */
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":787
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":730
  * # in Cython to enable them only on the right systems.
  * 
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
@@ -1646,7 +1664,7 @@ typedef struct {
 */
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":788
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":731
  * 
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
@@ -1655,7 +1673,7 @@ typedef npy_int8 __pyx_t_5numpy_int8_t;
 */
 typedef npy_int16 __pyx_t_5numpy_int16_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":789
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":732
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t             # <<<<<<<<<<<<<<
@@ -1664,7 +1682,7 @@ typedef npy_int16 __pyx_t_5numpy_int16_t;
 */
 typedef npy_int32 __pyx_t_5numpy_int32_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":790
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":733
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  * ctypedef npy_int64      int64_t             # <<<<<<<<<<<<<<
@@ -1673,7 +1691,7 @@ typedef npy_int32 __pyx_t_5numpy_int32_t;
 */
 typedef npy_int64 __pyx_t_5numpy_int64_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":794
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":737
  * #ctypedef npy_int128     int128_t
  * 
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
@@ -1682,7 +1700,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
 */
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":795
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":738
  * 
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
@@ -1691,7 +1709,7 @@ typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 */
 typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":796
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":739
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t             # <<<<<<<<<<<<<<
@@ -1700,7 +1718,7 @@ typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 */
 typedef npy_uint32 __pyx_t_5numpy_uint32_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":797
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":740
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  * ctypedef npy_uint64     uint64_t             # <<<<<<<<<<<<<<
@@ -1709,7 +1727,7 @@ typedef npy_uint32 __pyx_t_5numpy_uint32_t;
 */
 typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":801
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":744
  * #ctypedef npy_uint128    uint128_t
  * 
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
@@ -1718,7 +1736,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 */
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":802
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":745
  * 
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
@@ -1727,25 +1745,43 @@ typedef npy_float32 __pyx_t_5numpy_float32_t;
 */
 typedef npy_float64 __pyx_t_5numpy_float64_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":809
- * ctypedef double complex complex128_t
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":754
+ * # The int types are mapped a bit surprising --
+ * # numpy.int corresponds to 'l' and numpy.long to 'q'
+ * ctypedef npy_long       int_t             # <<<<<<<<<<<<<<
+ * ctypedef npy_longlong   longlong_t
  * 
+*/
+typedef npy_long __pyx_t_5numpy_int_t;
+
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":755
+ * # numpy.int corresponds to 'l' and numpy.long to 'q'
+ * ctypedef npy_long       int_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
- * ctypedef npy_ulonglong  ulonglong_t
  * 
+ * ctypedef npy_ulong      uint_t
 */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":810
- * 
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":757
  * ctypedef npy_longlong   longlong_t
+ * 
+ * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
+ * ctypedef npy_ulonglong  ulonglong_t
+ * 
+*/
+typedef npy_ulong __pyx_t_5numpy_uint_t;
+
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":758
+ * 
+ * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
  * 
  * ctypedef npy_intp       intp_t
 */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":812
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":760
  * ctypedef npy_ulonglong  ulonglong_t
  * 
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
@@ -1754,7 +1790,7 @@ typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":813
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":761
  * 
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
@@ -1763,7 +1799,7 @@ typedef npy_intp __pyx_t_5numpy_intp_t;
 */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":815
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":763
  * ctypedef npy_uintp      uintp_t
  * 
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
@@ -1772,7 +1808,7 @@ typedef npy_uintp __pyx_t_5numpy_uintp_t;
 */
 typedef npy_double __pyx_t_5numpy_float_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":816
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":764
  * 
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
@@ -1781,12 +1817,12 @@ typedef npy_double __pyx_t_5numpy_float_t;
 */
 typedef npy_double __pyx_t_5numpy_double_t;
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":817
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":765
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
  * 
- * ctypedef float complex       cfloat_t
+ * ctypedef npy_cfloat      cfloat_t
 */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
@@ -1841,18 +1877,6 @@ static CYTHON_INLINE __pyx_t_float_complex __pyx_t_float_complex_from_parts(floa
 #endif
 static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(double, double);
 
-/* Declarations.proto */
-#if CYTHON_CCOMPLEX && (1) && (!0 || __cplusplus)
-  #ifdef __cplusplus
-    typedef ::std::complex< long double > __pyx_t_long_double_complex;
-  #else
-    typedef long double _Complex __pyx_t_long_double_complex;
-  #endif
-#else
-    typedef struct { long double real, imag; } __pyx_t_long_double_complex;
-#endif
-static CYTHON_INLINE __pyx_t_long_double_complex __pyx_t_long_double_complex_from_parts(long double, long double);
-
 /* #### Code section: type_declarations ### */
 
 /*--- Type declarations ---*/
@@ -1863,6 +1887,42 @@ struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
 struct __pyx_memoryviewslice_obj;
+
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":767
+ * ctypedef npy_longdouble longdouble_t
+ * 
+ * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
+ * ctypedef npy_cdouble     cdouble_t
+ * ctypedef npy_clongdouble clongdouble_t
+*/
+typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
+
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":768
+ * 
+ * ctypedef npy_cfloat      cfloat_t
+ * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
+ * ctypedef npy_clongdouble clongdouble_t
+ * 
+*/
+typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
+
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":769
+ * ctypedef npy_cfloat      cfloat_t
+ * ctypedef npy_cdouble     cdouble_t
+ * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
+ * 
+ * ctypedef npy_cdouble     complex_t
+*/
+typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
+
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":771
+ * ctypedef npy_clongdouble clongdouble_t
+ * 
+ * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
+ * 
+ * cdef inline object PyArray_MultiIterNew1(a):
+*/
+typedef npy_cdouble __pyx_t_5numpy_complex_t;
 struct __pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_EdgeStruct;
 struct __pyx_opt_args_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGraph_add_edge;
 struct __pyx_opt_args_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGraph_add_edge_batch;
@@ -1918,7 +1978,7 @@ struct __pyx_opt_args_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGr
   __Pyx_memviewslice weights;
 };
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":830
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":982
  * @cython.wraparound(False)
  * @cython.cdivision(True)
  * cdef inline (int, int, int) fast_unravel_index_3d(int64_t idx, int depth, int height, int width) nogil:             # <<<<<<<<<<<<<<
@@ -3264,6 +3324,9 @@ static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_int
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_double(PyObject *, int writable_flag);
 
 /* ObjectToMemviewSlice.proto */
+static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_unsigned_char__const__(PyObject *, int writable_flag);
+
+/* ObjectToMemviewSlice.proto */
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(PyObject *, int writable_flag);
 
 /* ObjectToMemviewSlice.proto */
@@ -3277,6 +3340,12 @@ static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsds_n
 
 /* ObjectToMemviewSlice.proto */
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsds_int(PyObject *, int writable_flag);
+
+/* ObjectToMemviewSlice.proto */
+static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32(PyObject *, int writable_flag);
+
+/* ObjectToMemviewSlice.proto */
+static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8__const__(PyObject *, int writable_flag);
 
 /* RealImag.proto */
 #if CYTHON_CCOMPLEX
@@ -3373,44 +3442,6 @@ static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsds
     #if 1
         static CYTHON_INLINE double __Pyx_c_abs_double(__pyx_t_double_complex);
         static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_pow_double(__pyx_t_double_complex, __pyx_t_double_complex);
-    #endif
-#endif
-
-/* Arithmetic.proto */
-#if CYTHON_CCOMPLEX && (1) && (!0 || __cplusplus)
-    #define __Pyx_c_eq_long__double(a, b)   ((a)==(b))
-    #define __Pyx_c_sum_long__double(a, b)  ((a)+(b))
-    #define __Pyx_c_diff_long__double(a, b) ((a)-(b))
-    #define __Pyx_c_prod_long__double(a, b) ((a)*(b))
-    #define __Pyx_c_quot_long__double(a, b) ((a)/(b))
-    #define __Pyx_c_neg_long__double(a)     (-(a))
-  #ifdef __cplusplus
-    #define __Pyx_c_is_zero_long__double(z) ((z)==(long double)0)
-    #define __Pyx_c_conj_long__double(z)    (::std::conj(z))
-    #if 1
-        #define __Pyx_c_abs_long__double(z)     (::std::abs(z))
-        #define __Pyx_c_pow_long__double(a, b)  (::std::pow(a, b))
-    #endif
-  #else
-    #define __Pyx_c_is_zero_long__double(z) ((z)==0)
-    #define __Pyx_c_conj_long__double(z)    (conjl(z))
-    #if 1
-        #define __Pyx_c_abs_long__double(z)     (cabsl(z))
-        #define __Pyx_c_pow_long__double(a, b)  (cpowl(a, b))
-    #endif
- #endif
-#else
-    static CYTHON_INLINE int __Pyx_c_eq_long__double(__pyx_t_long_double_complex, __pyx_t_long_double_complex);
-    static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_sum_long__double(__pyx_t_long_double_complex, __pyx_t_long_double_complex);
-    static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_diff_long__double(__pyx_t_long_double_complex, __pyx_t_long_double_complex);
-    static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_prod_long__double(__pyx_t_long_double_complex, __pyx_t_long_double_complex);
-    static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_quot_long__double(__pyx_t_long_double_complex, __pyx_t_long_double_complex);
-    static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_neg_long__double(__pyx_t_long_double_complex);
-    static CYTHON_INLINE int __Pyx_c_is_zero_long__double(__pyx_t_long_double_complex);
-    static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_conj_long__double(__pyx_t_long_double_complex);
-    #if 1
-        static CYTHON_INLINE long double __Pyx_c_abs_long__double(__pyx_t_long_double_complex);
-        static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_pow_long__double(__pyx_t_long_double_complex, __pyx_t_long_double_complex);
     #endif
 #endif
 
@@ -3536,18 +3567,6 @@ static PyObject *__pyx_memoryview__get_base(struct __pyx_memoryview_obj *__pyx_v
 static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memoryviewslice_obj *__pyx_v_self, char *__pyx_v_itemp); /* proto*/
 static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memoryviewslice_obj *__pyx_v_self, char *__pyx_v_itemp, PyObject *__pyx_v_value); /* proto*/
 static PyObject *__pyx_memoryviewslice__get_base(struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto*/
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_5dtype_8itemsize_itemsize(PyArray_Descr *__pyx_v_self); /* proto*/
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_5dtype_9alignment_alignment(PyArray_Descr *__pyx_v_self); /* proto*/
-static CYTHON_INLINE PyObject *__pyx_f_5numpy_5dtype_6fields_fields(PyArray_Descr *__pyx_v_self); /* proto*/
-static CYTHON_INLINE PyObject *__pyx_f_5numpy_5dtype_5names_names(PyArray_Descr *__pyx_v_self); /* proto*/
-static CYTHON_INLINE PyArray_ArrayDescr *__pyx_f_5numpy_5dtype_8subarray_subarray(PyArray_Descr *__pyx_v_self); /* proto*/
-static CYTHON_INLINE npy_uint64 __pyx_f_5numpy_5dtype_5flags_flags(PyArray_Descr *__pyx_v_self); /* proto*/
-static CYTHON_INLINE int __pyx_f_5numpy_9broadcast_7numiter_numiter(PyArrayMultiIterObject *__pyx_v_self); /* proto*/
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_9broadcast_4size_size(PyArrayMultiIterObject *__pyx_v_self); /* proto*/
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_9broadcast_5index_index(PyArrayMultiIterObject *__pyx_v_self); /* proto*/
-static CYTHON_INLINE int __pyx_f_5numpy_9broadcast_2nd_nd(PyArrayMultiIterObject *__pyx_v_self); /* proto*/
-static CYTHON_INLINE npy_intp *__pyx_f_5numpy_9broadcast_10dimensions_dimensions(PyArrayMultiIterObject *__pyx_v_self); /* proto*/
-static CYTHON_INLINE void **__pyx_f_5numpy_9broadcast_5iters_iters(PyArrayMultiIterObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx_v_self); /* proto*/
@@ -3609,9 +3628,11 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
+static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__graph_add_edge_inline(struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *, int, int, double); /*proto*/
 static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__stack_voxel_weight_cy(double, double, double, double, double); /*proto*/
 static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_voxel_weight_cy(double, double, double, double, double, int __pyx_skip_dispatch); /*proto*/
 static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges_cy(struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int, int, int, int, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
+static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_build_stack_graph_cy(struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *, __Pyx_memviewslice, int, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, PyObject *, PyObject *, int, __Pyx_memviewslice, __Pyx_memviewslice, int, int __pyx_skip_dispatch); /*proto*/
 static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edge_neighbor_list_fast(int, PyObject *, int, PyObject *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__update_degrees_inline(PyObject *, __Pyx_memviewslice, int); /*proto*/
 static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(int, int, int, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
@@ -3672,6 +3693,7 @@ static const __Pyx_TypeInfo __Pyx_TypeInfo_double__const__ = { "const double", N
 static const __Pyx_TypeInfo __Pyx_TypeInfo_unsigned_char__const__ = { "const unsigned char", NULL, sizeof(unsigned char const ), { 0 }, 0, __PYX_IS_UNSIGNED(unsigned char const ) ? 'U' : 'I', __PYX_IS_UNSIGNED(unsigned char const ), 0 };
 static const __Pyx_TypeInfo __Pyx_TypeInfo_int__const__ = { "const int", NULL, sizeof(int const ), { 0 }, 0, __PYX_IS_UNSIGNED(int const ) ? 'U' : 'I', __PYX_IS_UNSIGNED(int const ), 0 };
 static const __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
+static const __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8__const__ = { "const DTYPE_u8", NULL, sizeof(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8 const ), { 0 }, 0, __PYX_IS_UNSIGNED(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8 const ) ? 'U' : 'I', __PYX_IS_UNSIGNED(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8 const ), 0 };
 /* #### Code section: before_global_var ### */
 #define __Pyx_MODULE_NAME "pyneutube.tracers.pyNeuTube.stack_graph_utils"
 extern int __pyx_module_is_main_pyneutube__tracers__pyNeuTube__stack_graph_utils;
@@ -3780,20 +3802,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5Gr
 static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5Graph_12__setstate_cython__(struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_voxel_weight_cy(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_d, double __pyx_v_v1, double __pyx_v_v2, double __pyx_v_thre, double __pyx_v_scale); /* proto */
 static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_2add_edges_cy(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *__pyx_v_graph, __Pyx_memviewslice __pyx_v_stack, __Pyx_memviewslice __pyx_v_cond, __Pyx_memviewslice __pyx_v_x_offset, __Pyx_memviewslice __pyx_v_y_offset, __Pyx_memviewslice __pyx_v_z_offset, __Pyx_memviewslice __pyx_v_neighbor, __Pyx_memviewslice __pyx_v_dist, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_offset, __Pyx_memviewslice __pyx_v_stack_range, __Pyx_memviewslice __pyx_v_argv, __Pyx_memviewslice __pyx_v_intensity); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4graph_edge_neighbor_list_fast(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_nvertex, PyObject *__pyx_v_edges, int __pyx_v_nedge, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_edge_idx); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6update_degrees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_edges, PyObject *__pyx_v_degree); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8stack_neighbor_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_width, int __pyx_v_height, PyArrayObject *__pyx_v_neighbor); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_dist_r_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_conn, PyArrayObject *__pyx_v_res, PyArrayObject *__pyx_v_dist); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_util_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_height, int __pyx_v_depth); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset2_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_area); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_coord_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_index, int __pyx_v_width, int __pyx_v_area); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_subindex_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_sindex, int __pyx_v_x0, int __pyx_v_y0, int __pyx_v_z0, int __pyx_v_swidth, int __pyx_v_sarea, int __pyx_v_width, int __pyx_v_area); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_neighbor_bound_test_s_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_cwidth, int __pyx_v_cheight, int __pyx_v_cdepth, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22process_voxel_with_neighbors(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_neighbors_fast(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_offset2_array, __Pyx_memviewslice __pyx_v_org_neighbor_array, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28__pyx_unpickle_GraphEdge(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_Graph(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4build_stack_graph_cy(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *__pyx_v_graph, __Pyx_memviewslice __pyx_v_stack, int __pyx_v_conn, __Pyx_memviewslice __pyx_v_stack_range, __Pyx_memviewslice __pyx_v_x_offset, __Pyx_memviewslice __pyx_v_y_offset, __Pyx_memviewslice __pyx_v_z_offset, __Pyx_memviewslice __pyx_v_neighbor, __Pyx_memviewslice __pyx_v_dist, __Pyx_memviewslice __pyx_v_scan_boundary_masks, PyObject *__pyx_v_signal_mask_obj, PyObject *__pyx_v_group_mask_obj, int __pyx_v_including_signal_border, __Pyx_memviewslice __pyx_v_argv, __Pyx_memviewslice __pyx_v_intensity, int __pyx_v_initial_virtual_vertex); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6graph_edge_neighbor_list_fast(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_nvertex, PyObject *__pyx_v_edges, int __pyx_v_nedge, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_edge_idx); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8update_degrees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_edges, PyObject *__pyx_v_degree); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_width, int __pyx_v_height, PyArrayObject *__pyx_v_neighbor); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_neighbor_dist_r_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_conn, PyArrayObject *__pyx_v_res, PyArrayObject *__pyx_v_dist); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_height, int __pyx_v_depth); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_offset2_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_area); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_util_coord_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_index, int __pyx_v_width, int __pyx_v_area); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_subindex_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_sindex, int __pyx_v_x0, int __pyx_v_y0, int __pyx_v_z0, int __pyx_v_swidth, int __pyx_v_sarea, int __pyx_v_width, int __pyx_v_area); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22stack_neighbor_bound_test_s_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_cwidth, int __pyx_v_cheight, int __pyx_v_cdepth, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_with_neighbors(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_neighbors_fast(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28process_voxel_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_offset2_array, __Pyx_memviewslice __pyx_v_org_neighbor_array, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_GraphEdge(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_32__pyx_unpickle_Graph(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_GraphEdge(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_FastGraph(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3857,9 +3880,9 @@ typedef struct {
   __Pyx_memviewslice __pyx_k__7;
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[6];
-  PyObject *__pyx_codeobj_tab[33];
-  PyObject *__pyx_string_tab[303];
-  PyObject *__pyx_number_tab[10];
+  PyObject *__pyx_codeobj_tab[34];
+  PyObject *__pyx_string_tab[310];
+  PyObject *__pyx_number_tab[11];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -3952,8 +3975,8 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_itemsize_0_for_cython_array __pyx_string_tab[49]
 #define __pyx_kp_u_nedge __pyx_string_tab[50]
 #define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[51]
-#define __pyx_kp_u_numpy__core_multiarray_failed_to __pyx_string_tab[52]
-#define __pyx_kp_u_numpy__core_umath_failed_to_impo __pyx_string_tab[53]
+#define __pyx_kp_u_numpy_core_multiarray_failed_to __pyx_string_tab[52]
+#define __pyx_kp_u_numpy_core_umath_failed_to_impor __pyx_string_tab[53]
 #define __pyx_kp_u_object __pyx_string_tab[54]
 #define __pyx_kp_u_out_of_range __pyx_string_tab[55]
 #define __pyx_kp_u_pyneutube_tracers_pyNeuTube_stac __pyx_string_tab[56]
@@ -4009,200 +4032,207 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_array __pyx_string_tab[106]
 #define __pyx_n_u_asyncio_coroutines __pyx_string_tab[107]
 #define __pyx_n_u_base __pyx_string_tab[108]
-#define __pyx_n_u_c __pyx_string_tab[109]
-#define __pyx_n_u_cdepth __pyx_string_tab[110]
-#define __pyx_n_u_cheight __pyx_string_tab[111]
-#define __pyx_n_u_class __pyx_string_tab[112]
-#define __pyx_n_u_class_getitem __pyx_string_tab[113]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[114]
-#define __pyx_n_u_cond __pyx_string_tab[115]
-#define __pyx_n_u_conn __pyx_string_tab[116]
-#define __pyx_n_u_count __pyx_string_tab[117]
-#define __pyx_n_u_cwidth __pyx_string_tab[118]
-#define __pyx_n_u_d __pyx_string_tab[119]
-#define __pyx_n_u_degree __pyx_string_tab[120]
-#define __pyx_n_u_depth __pyx_string_tab[121]
-#define __pyx_n_u_dict __pyx_string_tab[122]
-#define __pyx_n_u_dict_2 __pyx_string_tab[123]
-#define __pyx_n_u_directed __pyx_string_tab[124]
-#define __pyx_n_u_dist __pyx_string_tab[125]
-#define __pyx_n_u_dtype __pyx_string_tab[126]
-#define __pyx_n_u_dtype_is_object __pyx_string_tab[127]
-#define __pyx_n_u_edge __pyx_string_tab[128]
-#define __pyx_n_u_edge_idx __pyx_string_tab[129]
-#define __pyx_n_u_edges __pyx_string_tab[130]
-#define __pyx_n_u_edges_array __pyx_string_tab[131]
-#define __pyx_n_u_empty __pyx_string_tab[132]
-#define __pyx_n_u_encode __pyx_string_tab[133]
-#define __pyx_n_u_enum __pyx_string_tab[134]
-#define __pyx_n_u_enumerate __pyx_string_tab[135]
-#define __pyx_n_u_error __pyx_string_tab[136]
-#define __pyx_n_u_flags __pyx_string_tab[137]
-#define __pyx_n_u_float64 __pyx_string_tab[138]
-#define __pyx_n_u_format __pyx_string_tab[139]
-#define __pyx_n_u_fortran __pyx_string_tab[140]
-#define __pyx_n_u_func __pyx_string_tab[141]
-#define __pyx_n_u_get __pyx_string_tab[142]
-#define __pyx_n_u_get_edge __pyx_string_tab[143]
-#define __pyx_n_u_get_edges_array __pyx_string_tab[144]
-#define __pyx_n_u_get_weight __pyx_string_tab[145]
-#define __pyx_n_u_get_weights_array __pyx_string_tab[146]
-#define __pyx_n_u_getitem __pyx_string_tab[147]
-#define __pyx_n_u_getstate __pyx_string_tab[148]
-#define __pyx_n_u_graph __pyx_string_tab[149]
-#define __pyx_n_u_graph_edge_neighbor_list_fast __pyx_string_tab[150]
-#define __pyx_n_u_gtype __pyx_string_tab[151]
-#define __pyx_n_u_height __pyx_string_tab[152]
-#define __pyx_n_u_i __pyx_string_tab[153]
-#define __pyx_n_u_id __pyx_string_tab[154]
-#define __pyx_n_u_idx __pyx_string_tab[155]
-#define __pyx_n_u_import __pyx_string_tab[156]
-#define __pyx_n_u_index __pyx_string_tab[157]
-#define __pyx_n_u_initial_capacity __pyx_string_tab[158]
-#define __pyx_n_u_int32 __pyx_string_tab[159]
-#define __pyx_n_u_int64 __pyx_string_tab[160]
-#define __pyx_n_u_intensity __pyx_string_tab[161]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[162]
-#define __pyx_n_u_is_in_bound __pyx_string_tab[163]
-#define __pyx_n_u_is_weighted __pyx_string_tab[164]
-#define __pyx_n_u_items __pyx_string_tab[165]
-#define __pyx_n_u_itemsize __pyx_string_tab[166]
-#define __pyx_n_u_main __pyx_string_tab[167]
-#define __pyx_n_u_member_names __pyx_string_tab[168]
-#define __pyx_n_u_members __pyx_string_tab[169]
-#define __pyx_n_u_memview __pyx_string_tab[170]
-#define __pyx_n_u_mode __pyx_string_tab[171]
-#define __pyx_n_u_module __pyx_string_tab[172]
-#define __pyx_n_u_module_2 __pyx_string_tab[173]
-#define __pyx_n_u_n_in_bound __pyx_string_tab[174]
-#define __pyx_n_u_n_nbr __pyx_string_tab[175]
-#define __pyx_n_u_name __pyx_string_tab[176]
-#define __pyx_n_u_name_2 __pyx_string_tab[177]
-#define __pyx_n_u_ndim __pyx_string_tab[178]
-#define __pyx_n_u_nedge_2 __pyx_string_tab[179]
-#define __pyx_n_u_neighbor __pyx_string_tab[180]
-#define __pyx_n_u_neighbors __pyx_string_tab[181]
-#define __pyx_n_u_new __pyx_string_tab[182]
-#define __pyx_n_u_np __pyx_string_tab[183]
-#define __pyx_n_u_numpy __pyx_string_tab[184]
-#define __pyx_n_u_nvertex __pyx_string_tab[185]
-#define __pyx_n_u_obj __pyx_string_tab[186]
-#define __pyx_n_u_offset __pyx_string_tab[187]
-#define __pyx_n_u_offset2 __pyx_string_tab[188]
-#define __pyx_n_u_offset2_array __pyx_string_tab[189]
-#define __pyx_n_u_offset2_neighbor_out __pyx_string_tab[190]
-#define __pyx_n_u_ones __pyx_string_tab[191]
-#define __pyx_n_u_org_neighbor __pyx_string_tab[192]
-#define __pyx_n_u_org_neighbor_array __pyx_string_tab[193]
-#define __pyx_n_u_pack __pyx_string_tab[194]
-#define __pyx_n_u_pop __pyx_string_tab[195]
-#define __pyx_n_u_process_voxel_batch __pyx_string_tab[196]
-#define __pyx_n_u_process_voxel_neighbors_fast __pyx_string_tab[197]
-#define __pyx_n_u_process_voxel_with_neighbors __pyx_string_tab[198]
-#define __pyx_n_u_pyneutube_tracers_pyNeuTube_stac __pyx_string_tab[199]
-#define __pyx_n_u_pyx_checksum __pyx_string_tab[200]
-#define __pyx_n_u_pyx_result __pyx_string_tab[201]
-#define __pyx_n_u_pyx_state __pyx_string_tab[202]
-#define __pyx_n_u_pyx_type __pyx_string_tab[203]
-#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[204]
-#define __pyx_n_u_pyx_unpickle_Graph __pyx_string_tab[205]
-#define __pyx_n_u_pyx_unpickle_GraphEdge __pyx_string_tab[206]
-#define __pyx_n_u_pyx_vtable __pyx_string_tab[207]
-#define __pyx_n_u_qualname __pyx_string_tab[208]
-#define __pyx_n_u_reduce __pyx_string_tab[209]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[210]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[211]
-#define __pyx_n_u_register __pyx_string_tab[212]
-#define __pyx_n_u_res __pyx_string_tab[213]
-#define __pyx_n_u_sarea __pyx_string_tab[214]
-#define __pyx_n_u_scale __pyx_string_tab[215]
-#define __pyx_n_u_self __pyx_string_tab[216]
-#define __pyx_n_u_set_name __pyx_string_tab[217]
-#define __pyx_n_u_setdefault __pyx_string_tab[218]
-#define __pyx_n_u_setstate __pyx_string_tab[219]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[220]
-#define __pyx_n_u_shape __pyx_string_tab[221]
-#define __pyx_n_u_sindex __pyx_string_tab[222]
-#define __pyx_n_u_size __pyx_string_tab[223]
-#define __pyx_n_u_stack __pyx_string_tab[224]
-#define __pyx_n_u_stack_depth __pyx_string_tab[225]
-#define __pyx_n_u_stack_height __pyx_string_tab[226]
-#define __pyx_n_u_stack_neighbor_bound_test_s_cy __pyx_string_tab[227]
-#define __pyx_n_u_stack_neighbor_dist_r_cy __pyx_string_tab[228]
-#define __pyx_n_u_stack_neighbor_offset_cy __pyx_string_tab[229]
-#define __pyx_n_u_stack_range __pyx_string_tab[230]
-#define __pyx_n_u_stack_subindex_cy __pyx_string_tab[231]
-#define __pyx_n_u_stack_util_coord_cy __pyx_string_tab[232]
-#define __pyx_n_u_stack_util_offset2_cy __pyx_string_tab[233]
-#define __pyx_n_u_stack_util_offset_cy __pyx_string_tab[234]
-#define __pyx_n_u_stack_voxel_weight_cy __pyx_string_tab[235]
-#define __pyx_n_u_stack_voxels __pyx_string_tab[236]
-#define __pyx_n_u_stack_width __pyx_string_tab[237]
-#define __pyx_n_u_start __pyx_string_tab[238]
-#define __pyx_n_u_state __pyx_string_tab[239]
-#define __pyx_n_u_step __pyx_string_tab[240]
-#define __pyx_n_u_stop __pyx_string_tab[241]
-#define __pyx_n_u_struct __pyx_string_tab[242]
-#define __pyx_n_u_swidth __pyx_string_tab[243]
-#define __pyx_n_u_test __pyx_string_tab[244]
-#define __pyx_n_u_thre __pyx_string_tab[245]
-#define __pyx_n_u_unpack __pyx_string_tab[246]
-#define __pyx_n_u_unravel_neighbor_out __pyx_string_tab[247]
-#define __pyx_n_u_unravel_offset2_out __pyx_string_tab[248]
-#define __pyx_n_u_update __pyx_string_tab[249]
-#define __pyx_n_u_update_degrees __pyx_string_tab[250]
-#define __pyx_n_u_use_python_lists __pyx_string_tab[251]
-#define __pyx_n_u_use_setstate __pyx_string_tab[252]
-#define __pyx_n_u_v1 __pyx_string_tab[253]
-#define __pyx_n_u_v2 __pyx_string_tab[254]
-#define __pyx_n_u_values __pyx_string_tab[255]
-#define __pyx_n_u_weight __pyx_string_tab[256]
-#define __pyx_n_u_weighted __pyx_string_tab[257]
-#define __pyx_n_u_weights __pyx_string_tab[258]
-#define __pyx_n_u_width __pyx_string_tab[259]
-#define __pyx_n_u_x __pyx_string_tab[260]
-#define __pyx_n_u_x0 __pyx_string_tab[261]
-#define __pyx_n_u_x_offset __pyx_string_tab[262]
-#define __pyx_n_u_y __pyx_string_tab[263]
-#define __pyx_n_u_y0 __pyx_string_tab[264]
-#define __pyx_n_u_y_offset __pyx_string_tab[265]
-#define __pyx_n_u_z __pyx_string_tab[266]
-#define __pyx_n_u_z0 __pyx_string_tab[267]
-#define __pyx_n_u_z_offset __pyx_string_tab[268]
-#define __pyx_n_u_zeros __pyx_string_tab[269]
-#define __pyx_kp_b_iso88591_1F __pyx_string_tab[270]
-#define __pyx_kp_b_iso88591_2RvRr_5 __pyx_string_tab[271]
-#define __pyx_kp_b_iso88591_5Q_4q_G1IQd_t_N_t9Bc_1_Ks_A_t9B __pyx_string_tab[272]
-#define __pyx_kp_b_iso88591_6_YgQ_U_1_uAQ_T_T_WAQ_WAQ_1_AS __pyx_string_tab[273]
-#define __pyx_kp_b_iso88591_7b_QgV2Q_vS_Bb_5_HE_2S_Rr_r_CuT __pyx_string_tab[274]
-#define __pyx_kp_b_iso88591_A67_5_aq_4wb_a_at_Ct7_A_q_E_aq_A __pyx_string_tab[275]
-#define __pyx_kp_b_iso88591_A_4BfBd_fTVVW_E_at1_3e4_1Ba_3e4 __pyx_string_tab[276]
-#define __pyx_kp_b_iso88591_A_4q_4_gQ_4_a __pyx_string_tab[277]
-#define __pyx_kp_b_iso88591_A_4q_t1_r_q_4F_A_1_4_4A __pyx_string_tab[278]
-#define __pyx_kp_b_iso88591_A_4q_t4q_r_r_D_b_F_Cq_O4vRq_89AT __pyx_string_tab[279]
-#define __pyx_kp_b_iso88591_A_4r_3d_T_A_1_L_U_l_4q __pyx_string_tab[280]
-#define __pyx_kp_b_iso88591_A_4t1_1_4BfAT_rQR_E_at1_5_N_1_q __pyx_string_tab[281]
-#define __pyx_kp_b_iso88591_A_4t1_AQ_4r_3d_T_A_AQ_t __pyx_string_tab[282]
-#define __pyx_kp_b_iso88591_A_4wc_Q_q_L_WF_L_WF_4q_at_Q_4y_R __pyx_string_tab[283]
-#define __pyx_kp_b_iso88591_A_t1 __pyx_string_tab[284]
-#define __pyx_kp_b_iso88591_Ba_2V1D_bPQ_32V2T_V2Q_s_1I_s_Q __pyx_string_tab[285]
-#define __pyx_kp_b_iso88591_Ct2Rs_b_T_3gT_3hd_Cq_2RvRr_6_7 __pyx_string_tab[286]
-#define __pyx_kp_b_iso88591_D_aq_U_1_4q_3a_2_2_2_uL_AU_aq_A __pyx_string_tab[287]
-#define __pyx_kp_b_iso88591_F_1_Ba_E_aq_m1A_s_1I_PQ_q_5_q_5 __pyx_string_tab[288]
-#define __pyx_kp_b_iso88591_F_A_vS_q_a_aq_a_s_G81_aq_a_s_G8 __pyx_string_tab[289]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[290]
-#define __pyx_kp_b_iso88591_S_7 __pyx_string_tab[291]
-#define __pyx_kp_b_iso88591_T_V1 __pyx_string_tab[292]
-#define __pyx_kp_b_iso88591_T_d_G1F_a_vWE_Q_q_q_q_awk_awk __pyx_string_tab[293]
-#define __pyx_kp_b_iso88591_T_t_7t_K4_Z_nnrr_D_D_L_L_P_P_X __pyx_string_tab[294]
-#define __pyx_kp_b_iso88591_a_31 __pyx_string_tab[295]
-#define __pyx_kp_b_iso88591_q_0_kQR_5_7_q_a_1 __pyx_string_tab[296]
-#define __pyx_kp_b_iso88591_q_0_kQR_9HAQ_7_1L_a_1 __pyx_string_tab[297]
-#define __pyx_kp_b_iso88591_q_a __pyx_string_tab[298]
-#define __pyx_kp_b_iso88591_s_3c_3c_S_S_Cq_E_aq_a_uCq_AU_au __pyx_string_tab[299]
-#define __pyx_kp_b_iso88591_s_Cs __pyx_string_tab[300]
-#define __pyx_kp_b_iso88591_s_r_3a_2Q_3c __pyx_string_tab[301]
-#define __pyx_n_b_O __pyx_string_tab[302]
+#define __pyx_n_u_build_stack_graph_cy __pyx_string_tab[109]
+#define __pyx_n_u_c __pyx_string_tab[110]
+#define __pyx_n_u_cdepth __pyx_string_tab[111]
+#define __pyx_n_u_cheight __pyx_string_tab[112]
+#define __pyx_n_u_class __pyx_string_tab[113]
+#define __pyx_n_u_class_getitem __pyx_string_tab[114]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[115]
+#define __pyx_n_u_cond __pyx_string_tab[116]
+#define __pyx_n_u_conn __pyx_string_tab[117]
+#define __pyx_n_u_count __pyx_string_tab[118]
+#define __pyx_n_u_cwidth __pyx_string_tab[119]
+#define __pyx_n_u_d __pyx_string_tab[120]
+#define __pyx_n_u_degree __pyx_string_tab[121]
+#define __pyx_n_u_depth __pyx_string_tab[122]
+#define __pyx_n_u_dict __pyx_string_tab[123]
+#define __pyx_n_u_dict_2 __pyx_string_tab[124]
+#define __pyx_n_u_directed __pyx_string_tab[125]
+#define __pyx_n_u_dist __pyx_string_tab[126]
+#define __pyx_n_u_dtype __pyx_string_tab[127]
+#define __pyx_n_u_dtype_is_object __pyx_string_tab[128]
+#define __pyx_n_u_edge __pyx_string_tab[129]
+#define __pyx_n_u_edge_idx __pyx_string_tab[130]
+#define __pyx_n_u_edges __pyx_string_tab[131]
+#define __pyx_n_u_edges_array __pyx_string_tab[132]
+#define __pyx_n_u_empty __pyx_string_tab[133]
+#define __pyx_n_u_encode __pyx_string_tab[134]
+#define __pyx_n_u_enum __pyx_string_tab[135]
+#define __pyx_n_u_enumerate __pyx_string_tab[136]
+#define __pyx_n_u_error __pyx_string_tab[137]
+#define __pyx_n_u_flags __pyx_string_tab[138]
+#define __pyx_n_u_float64 __pyx_string_tab[139]
+#define __pyx_n_u_format __pyx_string_tab[140]
+#define __pyx_n_u_fortran __pyx_string_tab[141]
+#define __pyx_n_u_func __pyx_string_tab[142]
+#define __pyx_n_u_get __pyx_string_tab[143]
+#define __pyx_n_u_get_edge __pyx_string_tab[144]
+#define __pyx_n_u_get_edges_array __pyx_string_tab[145]
+#define __pyx_n_u_get_weight __pyx_string_tab[146]
+#define __pyx_n_u_get_weights_array __pyx_string_tab[147]
+#define __pyx_n_u_getitem __pyx_string_tab[148]
+#define __pyx_n_u_getstate __pyx_string_tab[149]
+#define __pyx_n_u_graph __pyx_string_tab[150]
+#define __pyx_n_u_graph_edge_neighbor_list_fast __pyx_string_tab[151]
+#define __pyx_n_u_group_mask_obj __pyx_string_tab[152]
+#define __pyx_n_u_gtype __pyx_string_tab[153]
+#define __pyx_n_u_height __pyx_string_tab[154]
+#define __pyx_n_u_i __pyx_string_tab[155]
+#define __pyx_n_u_id __pyx_string_tab[156]
+#define __pyx_n_u_idx __pyx_string_tab[157]
+#define __pyx_n_u_import __pyx_string_tab[158]
+#define __pyx_n_u_including_signal_border __pyx_string_tab[159]
+#define __pyx_n_u_index __pyx_string_tab[160]
+#define __pyx_n_u_initial_capacity __pyx_string_tab[161]
+#define __pyx_n_u_initial_virtual_vertex __pyx_string_tab[162]
+#define __pyx_n_u_int32 __pyx_string_tab[163]
+#define __pyx_n_u_int64 __pyx_string_tab[164]
+#define __pyx_n_u_intensity __pyx_string_tab[165]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[166]
+#define __pyx_n_u_is_in_bound __pyx_string_tab[167]
+#define __pyx_n_u_is_weighted __pyx_string_tab[168]
+#define __pyx_n_u_items __pyx_string_tab[169]
+#define __pyx_n_u_itemsize __pyx_string_tab[170]
+#define __pyx_n_u_main __pyx_string_tab[171]
+#define __pyx_n_u_member_names __pyx_string_tab[172]
+#define __pyx_n_u_members __pyx_string_tab[173]
+#define __pyx_n_u_memview __pyx_string_tab[174]
+#define __pyx_n_u_mode __pyx_string_tab[175]
+#define __pyx_n_u_module __pyx_string_tab[176]
+#define __pyx_n_u_module_2 __pyx_string_tab[177]
+#define __pyx_n_u_n_in_bound __pyx_string_tab[178]
+#define __pyx_n_u_n_nbr __pyx_string_tab[179]
+#define __pyx_n_u_name __pyx_string_tab[180]
+#define __pyx_n_u_name_2 __pyx_string_tab[181]
+#define __pyx_n_u_ndim __pyx_string_tab[182]
+#define __pyx_n_u_nedge_2 __pyx_string_tab[183]
+#define __pyx_n_u_neighbor __pyx_string_tab[184]
+#define __pyx_n_u_neighbors __pyx_string_tab[185]
+#define __pyx_n_u_new __pyx_string_tab[186]
+#define __pyx_n_u_np __pyx_string_tab[187]
+#define __pyx_n_u_numpy __pyx_string_tab[188]
+#define __pyx_n_u_nvertex __pyx_string_tab[189]
+#define __pyx_n_u_obj __pyx_string_tab[190]
+#define __pyx_n_u_offset __pyx_string_tab[191]
+#define __pyx_n_u_offset2 __pyx_string_tab[192]
+#define __pyx_n_u_offset2_array __pyx_string_tab[193]
+#define __pyx_n_u_offset2_neighbor_out __pyx_string_tab[194]
+#define __pyx_n_u_ones __pyx_string_tab[195]
+#define __pyx_n_u_org_neighbor __pyx_string_tab[196]
+#define __pyx_n_u_org_neighbor_array __pyx_string_tab[197]
+#define __pyx_n_u_pack __pyx_string_tab[198]
+#define __pyx_n_u_pop __pyx_string_tab[199]
+#define __pyx_n_u_process_voxel_batch __pyx_string_tab[200]
+#define __pyx_n_u_process_voxel_neighbors_fast __pyx_string_tab[201]
+#define __pyx_n_u_process_voxel_with_neighbors __pyx_string_tab[202]
+#define __pyx_n_u_pyneutube_tracers_pyNeuTube_stac __pyx_string_tab[203]
+#define __pyx_n_u_pyx_checksum __pyx_string_tab[204]
+#define __pyx_n_u_pyx_result __pyx_string_tab[205]
+#define __pyx_n_u_pyx_state __pyx_string_tab[206]
+#define __pyx_n_u_pyx_type __pyx_string_tab[207]
+#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[208]
+#define __pyx_n_u_pyx_unpickle_Graph __pyx_string_tab[209]
+#define __pyx_n_u_pyx_unpickle_GraphEdge __pyx_string_tab[210]
+#define __pyx_n_u_pyx_vtable __pyx_string_tab[211]
+#define __pyx_n_u_qualname __pyx_string_tab[212]
+#define __pyx_n_u_reduce __pyx_string_tab[213]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[214]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[215]
+#define __pyx_n_u_register __pyx_string_tab[216]
+#define __pyx_n_u_res __pyx_string_tab[217]
+#define __pyx_n_u_sarea __pyx_string_tab[218]
+#define __pyx_n_u_scale __pyx_string_tab[219]
+#define __pyx_n_u_scan_boundary_masks __pyx_string_tab[220]
+#define __pyx_n_u_self __pyx_string_tab[221]
+#define __pyx_n_u_set_name __pyx_string_tab[222]
+#define __pyx_n_u_setdefault __pyx_string_tab[223]
+#define __pyx_n_u_setstate __pyx_string_tab[224]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[225]
+#define __pyx_n_u_shape __pyx_string_tab[226]
+#define __pyx_n_u_signal_mask_obj __pyx_string_tab[227]
+#define __pyx_n_u_sindex __pyx_string_tab[228]
+#define __pyx_n_u_size __pyx_string_tab[229]
+#define __pyx_n_u_stack __pyx_string_tab[230]
+#define __pyx_n_u_stack_depth __pyx_string_tab[231]
+#define __pyx_n_u_stack_height __pyx_string_tab[232]
+#define __pyx_n_u_stack_neighbor_bound_test_s_cy __pyx_string_tab[233]
+#define __pyx_n_u_stack_neighbor_dist_r_cy __pyx_string_tab[234]
+#define __pyx_n_u_stack_neighbor_offset_cy __pyx_string_tab[235]
+#define __pyx_n_u_stack_range __pyx_string_tab[236]
+#define __pyx_n_u_stack_subindex_cy __pyx_string_tab[237]
+#define __pyx_n_u_stack_util_coord_cy __pyx_string_tab[238]
+#define __pyx_n_u_stack_util_offset2_cy __pyx_string_tab[239]
+#define __pyx_n_u_stack_util_offset_cy __pyx_string_tab[240]
+#define __pyx_n_u_stack_voxel_weight_cy __pyx_string_tab[241]
+#define __pyx_n_u_stack_voxels __pyx_string_tab[242]
+#define __pyx_n_u_stack_width __pyx_string_tab[243]
+#define __pyx_n_u_start __pyx_string_tab[244]
+#define __pyx_n_u_state __pyx_string_tab[245]
+#define __pyx_n_u_step __pyx_string_tab[246]
+#define __pyx_n_u_stop __pyx_string_tab[247]
+#define __pyx_n_u_struct __pyx_string_tab[248]
+#define __pyx_n_u_swidth __pyx_string_tab[249]
+#define __pyx_n_u_test __pyx_string_tab[250]
+#define __pyx_n_u_thre __pyx_string_tab[251]
+#define __pyx_n_u_unpack __pyx_string_tab[252]
+#define __pyx_n_u_unravel_neighbor_out __pyx_string_tab[253]
+#define __pyx_n_u_unravel_offset2_out __pyx_string_tab[254]
+#define __pyx_n_u_update __pyx_string_tab[255]
+#define __pyx_n_u_update_degrees __pyx_string_tab[256]
+#define __pyx_n_u_use_python_lists __pyx_string_tab[257]
+#define __pyx_n_u_use_setstate __pyx_string_tab[258]
+#define __pyx_n_u_v1 __pyx_string_tab[259]
+#define __pyx_n_u_v2 __pyx_string_tab[260]
+#define __pyx_n_u_values __pyx_string_tab[261]
+#define __pyx_n_u_weight __pyx_string_tab[262]
+#define __pyx_n_u_weighted __pyx_string_tab[263]
+#define __pyx_n_u_weights __pyx_string_tab[264]
+#define __pyx_n_u_width __pyx_string_tab[265]
+#define __pyx_n_u_x __pyx_string_tab[266]
+#define __pyx_n_u_x0 __pyx_string_tab[267]
+#define __pyx_n_u_x_offset __pyx_string_tab[268]
+#define __pyx_n_u_y __pyx_string_tab[269]
+#define __pyx_n_u_y0 __pyx_string_tab[270]
+#define __pyx_n_u_y_offset __pyx_string_tab[271]
+#define __pyx_n_u_z __pyx_string_tab[272]
+#define __pyx_n_u_z0 __pyx_string_tab[273]
+#define __pyx_n_u_z_offset __pyx_string_tab[274]
+#define __pyx_n_u_zeros __pyx_string_tab[275]
+#define __pyx_kp_b_iso88591_1F __pyx_string_tab[276]
+#define __pyx_kp_b_iso88591_2RvRr_5 __pyx_string_tab[277]
+#define __pyx_kp_b_iso88591_5Q_4q_G1IQd_t_N_t9Bc_1_Ks_A_t9B __pyx_string_tab[278]
+#define __pyx_kp_b_iso88591_6_YgQ_U_1_uAQ_T_T_WAQ_WAQ_1_AS __pyx_string_tab[279]
+#define __pyx_kp_b_iso88591_7b_QgV2Q_vS_Bb_5_HE_2S_Rr_r_CuT __pyx_string_tab[280]
+#define __pyx_kp_b_iso88591_A67_5_aq_4wb_a_at_Ct7_A_q_E_aq_A __pyx_string_tab[281]
+#define __pyx_kp_b_iso88591_A_4BfBd_fTVVW_E_at1_3e4_1Ba_3e4 __pyx_string_tab[282]
+#define __pyx_kp_b_iso88591_A_4q_4_gQ_4_a __pyx_string_tab[283]
+#define __pyx_kp_b_iso88591_A_4q_t1_r_q_4F_A_1_4_4A __pyx_string_tab[284]
+#define __pyx_kp_b_iso88591_A_4q_t4q_r_r_D_b_F_Cq_O4vRq_89AT __pyx_string_tab[285]
+#define __pyx_kp_b_iso88591_A_4r_3d_T_A_1_L_U_l_4q __pyx_string_tab[286]
+#define __pyx_kp_b_iso88591_A_4t1_1_4BfAT_rQR_E_at1_5_N_1_q __pyx_string_tab[287]
+#define __pyx_kp_b_iso88591_A_4t1_AQ_4r_3d_T_A_AQ_t __pyx_string_tab[288]
+#define __pyx_kp_b_iso88591_A_4wc_Q_q_L_WF_L_WF_4q_at_Q_4y_R __pyx_string_tab[289]
+#define __pyx_kp_b_iso88591_A_t1 __pyx_string_tab[290]
+#define __pyx_kp_b_iso88591_Ba_2V1D_bPQ_32V2T_V2Q_s_1I_s_Q __pyx_string_tab[291]
+#define __pyx_kp_b_iso88591_Ct2Rs_b_T_3gT_3hd_Cq_2RvRr_6_7 __pyx_string_tab[292]
+#define __pyx_kp_b_iso88591_D_aq_U_1_4q_3a_2_2_2_uL_AU_aq_A __pyx_string_tab[293]
+#define __pyx_kp_b_iso88591_F_1_Ba_E_aq_m1A_s_1I_PQ_q_5_q_5 __pyx_string_tab[294]
+#define __pyx_kp_b_iso88591_F_A_vS_q_a_aq_a_s_G81_aq_a_s_G8 __pyx_string_tab[295]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[296]
+#define __pyx_kp_b_iso88591_S_7 __pyx_string_tab[297]
+#define __pyx_kp_b_iso88591_T_V1 __pyx_string_tab[298]
+#define __pyx_kp_b_iso88591_T_d_G1F_a_vWE_Q_q_q_q_awk_awk __pyx_string_tab[299]
+#define __pyx_kp_b_iso88591_T_t_7t_K4_Z_nnrr_D_D_L_L_P_P_X __pyx_string_tab[300]
+#define __pyx_kp_b_iso88591_a_31 __pyx_string_tab[301]
+#define __pyx_kp_b_iso88591_q_0_kQR_5_7_q_a_1 __pyx_string_tab[302]
+#define __pyx_kp_b_iso88591_q_0_kQR_9HAQ_7_1L_a_1 __pyx_string_tab[303]
+#define __pyx_kp_b_iso88591_q_a __pyx_string_tab[304]
+#define __pyx_kp_b_iso88591_s_3c_3c_S_S_Cq_E_aq_a_uCq_AU_au __pyx_string_tab[305]
+#define __pyx_kp_b_iso88591_s_Cs __pyx_string_tab[306]
+#define __pyx_kp_b_iso88591_s_r_3a_2Q_3c __pyx_string_tab[307]
+#define __pyx_kp_b_iso88591_vQa_5_aq_vQa_Bk_k_R_1_Bk_Q_Q_Bf __pyx_string_tab[308]
+#define __pyx_n_b_O __pyx_string_tab[309]
 #define __pyx_float_0_0 __pyx_number_tab[0]
 #define __pyx_int_0 __pyx_number_tab[1]
 #define __pyx_int_neg_1 __pyx_number_tab[2]
@@ -4210,9 +4240,10 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_int_2 __pyx_number_tab[4]
 #define __pyx_int_3 __pyx_number_tab[5]
 #define __pyx_int_26 __pyx_number_tab[6]
-#define __pyx_int_95074409 __pyx_number_tab[7]
-#define __pyx_int_123424690 __pyx_number_tab[8]
-#define __pyx_int_136983863 __pyx_number_tab[9]
+#define __pyx_int_256 __pyx_number_tab[7]
+#define __pyx_int_95074409 __pyx_number_tab[8]
+#define __pyx_int_123424690 __pyx_number_tab[9]
+#define __pyx_int_136983863 __pyx_number_tab[10]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -4261,9 +4292,9 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   clear_module_state->__pyx_k__7.memview = NULL; clear_module_state->__pyx_k__7.data = NULL;
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<6; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<33; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<303; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<10; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<34; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<310; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<11; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -4319,9 +4350,9 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_k__7->memview);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<6; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<33; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<303; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<10; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<34; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<310; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<11; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -17602,442 +17633,18 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":286
- *         cdef int type_num
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp itemsize(self) noexcept nogil:
- *             return PyDataType_ELSIZE(self)
-*/
-
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_5dtype_8itemsize_itemsize(PyArray_Descr *__pyx_v_self) {
-  npy_intp __pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":288
- *         @property
- *         cdef inline npy_intp itemsize(self) noexcept nogil:
- *             return PyDataType_ELSIZE(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __pyx_r = PyDataType_ELSIZE(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":286
- *         cdef int type_num
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp itemsize(self) noexcept nogil:
- *             return PyDataType_ELSIZE(self)
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":290
- *             return PyDataType_ELSIZE(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp alignment(self) noexcept nogil:
- *             return PyDataType_ALIGNMENT(self)
-*/
-
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_5dtype_9alignment_alignment(PyArray_Descr *__pyx_v_self) {
-  npy_intp __pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":292
- *         @property
- *         cdef inline npy_intp alignment(self) noexcept nogil:
- *             return PyDataType_ALIGNMENT(self)             # <<<<<<<<<<<<<<
- * 
- *         # Use fields/names with care as they may be NULL.  You must check
-*/
-  __pyx_r = PyDataType_ALIGNMENT(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":290
- *             return PyDataType_ELSIZE(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp alignment(self) noexcept nogil:
- *             return PyDataType_ALIGNMENT(self)
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":296
- *         # Use fields/names with care as they may be NULL.  You must check
- *         # for this using PyDataType_HASFIELDS.
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline object fields(self):
- *             return <object>PyDataType_FIELDS(self)
-*/
-
-static CYTHON_INLINE PyObject *__pyx_f_5numpy_5dtype_6fields_fields(PyArray_Descr *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1;
-  __Pyx_RefNannySetupContext("fields", 0);
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":298
- *         @property
- *         cdef inline object fields(self):
- *             return <object>PyDataType_FIELDS(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDataType_FIELDS(__pyx_v_self);
-  __Pyx_INCREF(((PyObject *)__pyx_t_1));
-  __pyx_r = ((PyObject *)__pyx_t_1);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":296
- *         # Use fields/names with care as they may be NULL.  You must check
- *         # for this using PyDataType_HASFIELDS.
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline object fields(self):
- *             return <object>PyDataType_FIELDS(self)
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":300
- *             return <object>PyDataType_FIELDS(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline tuple names(self):
- *             return <tuple>PyDataType_NAMES(self)
-*/
-
-static CYTHON_INLINE PyObject *__pyx_f_5numpy_5dtype_5names_names(PyArray_Descr *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1;
-  __Pyx_RefNannySetupContext("names", 0);
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":302
- *         @property
- *         cdef inline tuple names(self):
- *             return <tuple>PyDataType_NAMES(self)             # <<<<<<<<<<<<<<
- * 
- *         # Use PyDataType_HASSUBARRAY to test whether this field is
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDataType_NAMES(__pyx_v_self);
-  __Pyx_INCREF(((PyObject*)__pyx_t_1));
-  __pyx_r = ((PyObject*)__pyx_t_1);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":300
- *             return <object>PyDataType_FIELDS(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline tuple names(self):
- *             return <tuple>PyDataType_NAMES(self)
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":307
- *         # valid (the pointer can be NULL). Most users should access
- *         # this field via the inline helper method PyDataType_SHAPE.
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline PyArray_ArrayDescr* subarray(self) noexcept nogil:
- *             return PyDataType_SUBARRAY(self)
-*/
-
-static CYTHON_INLINE PyArray_ArrayDescr *__pyx_f_5numpy_5dtype_8subarray_subarray(PyArray_Descr *__pyx_v_self) {
-  PyArray_ArrayDescr *__pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":309
- *         @property
- *         cdef inline PyArray_ArrayDescr* subarray(self) noexcept nogil:
- *             return PyDataType_SUBARRAY(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __pyx_r = PyDataType_SUBARRAY(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":307
- *         # valid (the pointer can be NULL). Most users should access
- *         # this field via the inline helper method PyDataType_SHAPE.
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline PyArray_ArrayDescr* subarray(self) noexcept nogil:
- *             return PyDataType_SUBARRAY(self)
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":311
- *             return PyDataType_SUBARRAY(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_uint64 flags(self) noexcept nogil:
- *             """The data types flags."""
-*/
-
-static CYTHON_INLINE npy_uint64 __pyx_f_5numpy_5dtype_5flags_flags(PyArray_Descr *__pyx_v_self) {
-  npy_uint64 __pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":314
- *         cdef inline npy_uint64 flags(self) noexcept nogil:
- *             """The data types flags."""
- *             return PyDataType_FLAGS(self)             # <<<<<<<<<<<<<<
- * 
- * 
-*/
-  __pyx_r = PyDataType_FLAGS(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":311
- *             return PyDataType_SUBARRAY(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_uint64 flags(self) noexcept nogil:
- *             """The data types flags."""
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":323
- *     ctypedef class numpy.broadcast [object PyArrayMultiIterObject, check_size ignore]:
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline int numiter(self) noexcept nogil:
- *             """The number of arrays that need to be broadcast to the same shape."""
-*/
-
-static CYTHON_INLINE int __pyx_f_5numpy_9broadcast_7numiter_numiter(PyArrayMultiIterObject *__pyx_v_self) {
-  int __pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":326
- *         cdef inline int numiter(self) noexcept nogil:
- *             """The number of arrays that need to be broadcast to the same shape."""
- *             return PyArray_MultiIter_NUMITER(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __pyx_r = PyArray_MultiIter_NUMITER(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":323
- *     ctypedef class numpy.broadcast [object PyArrayMultiIterObject, check_size ignore]:
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline int numiter(self) noexcept nogil:
- *             """The number of arrays that need to be broadcast to the same shape."""
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":328
- *             return PyArray_MultiIter_NUMITER(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp size(self) noexcept nogil:
- *             """The total broadcasted size."""
-*/
-
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_9broadcast_4size_size(PyArrayMultiIterObject *__pyx_v_self) {
-  npy_intp __pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":331
- *         cdef inline npy_intp size(self) noexcept nogil:
- *             """The total broadcasted size."""
- *             return PyArray_MultiIter_SIZE(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __pyx_r = PyArray_MultiIter_SIZE(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":328
- *             return PyArray_MultiIter_NUMITER(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp size(self) noexcept nogil:
- *             """The total broadcasted size."""
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":333
- *             return PyArray_MultiIter_SIZE(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp index(self) noexcept nogil:
- *             """The current (1-d) index into the broadcasted result."""
-*/
-
-static CYTHON_INLINE npy_intp __pyx_f_5numpy_9broadcast_5index_index(PyArrayMultiIterObject *__pyx_v_self) {
-  npy_intp __pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":336
- *         cdef inline npy_intp index(self) noexcept nogil:
- *             """The current (1-d) index into the broadcasted result."""
- *             return PyArray_MultiIter_INDEX(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __pyx_r = PyArray_MultiIter_INDEX(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":333
- *             return PyArray_MultiIter_SIZE(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp index(self) noexcept nogil:
- *             """The current (1-d) index into the broadcasted result."""
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":338
- *             return PyArray_MultiIter_INDEX(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline int nd(self) noexcept nogil:
- *             """The number of dimensions in the broadcasted result."""
-*/
-
-static CYTHON_INLINE int __pyx_f_5numpy_9broadcast_2nd_nd(PyArrayMultiIterObject *__pyx_v_self) {
-  int __pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":341
- *         cdef inline int nd(self) noexcept nogil:
- *             """The number of dimensions in the broadcasted result."""
- *             return PyArray_MultiIter_NDIM(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __pyx_r = PyArray_MultiIter_NDIM(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":338
- *             return PyArray_MultiIter_INDEX(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline int nd(self) noexcept nogil:
- *             """The number of dimensions in the broadcasted result."""
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":343
- *             return PyArray_MultiIter_NDIM(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp* dimensions(self) noexcept nogil:
- *             """The shape of the broadcasted result."""
-*/
-
-static CYTHON_INLINE npy_intp *__pyx_f_5numpy_9broadcast_10dimensions_dimensions(PyArrayMultiIterObject *__pyx_v_self) {
-  npy_intp *__pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":346
- *         cdef inline npy_intp* dimensions(self) noexcept nogil:
- *             """The shape of the broadcasted result."""
- *             return PyArray_MultiIter_DIMS(self)             # <<<<<<<<<<<<<<
- * 
- *         @property
-*/
-  __pyx_r = PyArray_MultiIter_DIMS(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":343
- *             return PyArray_MultiIter_NDIM(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp* dimensions(self) noexcept nogil:
- *             """The shape of the broadcasted result."""
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":348
- *             return PyArray_MultiIter_DIMS(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline void** iters(self) noexcept nogil:
- *             """An array of iterator objects that holds the iterators for the arrays to be broadcast together.
-*/
-
-static CYTHON_INLINE void **__pyx_f_5numpy_9broadcast_5iters_iters(PyArrayMultiIterObject *__pyx_v_self) {
-  void **__pyx_r;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":352
- *             """An array of iterator objects that holds the iterators for the arrays to be broadcast together.
- *             On return, the iterators are adjusted for broadcasting."""
- *             return PyArray_MultiIter_ITERS(self)             # <<<<<<<<<<<<<<
- * 
- * 
-*/
-  __pyx_r = PyArray_MultiIter_ITERS(__pyx_v_self);
-  goto __pyx_L0;
-
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":348
- *             return PyArray_MultiIter_DIMS(self)
- * 
- *         @property             # <<<<<<<<<<<<<<
- *         cdef inline void** iters(self) noexcept nogil:
- *             """An array of iterator objects that holds the iterators for the arrays to be broadcast together.
-*/
-
-  /* function exit code */
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":366
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":244
  *         # Instead, we use properties that map to the corresponding C-API functions.
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline PyObject* base(self) noexcept nogil:
+ *         cdef inline PyObject* base(self) nogil:
  *             """Returns a borrowed reference to the object owning the data/memory.
 */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject *__pyx_v_self) {
   PyObject *__pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":370
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":248
  *             """Returns a borrowed reference to the object owning the data/memory.
  *             """
  *             return PyArray_BASE(self)             # <<<<<<<<<<<<<<
@@ -18047,11 +17654,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject 
   __pyx_r = PyArray_BASE(__pyx_v_self);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":366
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":244
  *         # Instead, we use properties that map to the corresponding C-API functions.
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline PyObject* base(self) noexcept nogil:
+ *         cdef inline PyObject* base(self) nogil:
  *             """Returns a borrowed reference to the object owning the data/memory.
 */
 
@@ -18060,7 +17667,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject 
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":372
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":250
  *             return PyArray_BASE(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
@@ -18074,7 +17681,7 @@ static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArray
   PyArray_Descr *__pyx_t_1;
   __Pyx_RefNannySetupContext("descr", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":376
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":254
  *             """Returns an owned reference to the dtype of the array.
  *             """
  *             return <dtype>PyArray_DESCR(self)             # <<<<<<<<<<<<<<
@@ -18087,7 +17694,7 @@ static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArray
   __pyx_r = ((PyArray_Descr *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":372
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":250
  *             return PyArray_BASE(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
@@ -18102,18 +17709,18 @@ static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArray
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":378
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":256
  *             return <dtype>PyArray_DESCR(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline int ndim(self) noexcept nogil:
+ *         cdef inline int ndim(self) nogil:
  *             """Returns the number of dimensions in the array.
 */
 
 static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx_v_self) {
   int __pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":382
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":260
  *             """Returns the number of dimensions in the array.
  *             """
  *             return PyArray_NDIM(self)             # <<<<<<<<<<<<<<
@@ -18123,11 +17730,11 @@ static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx
   __pyx_r = PyArray_NDIM(__pyx_v_self);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":378
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":256
  *             return <dtype>PyArray_DESCR(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline int ndim(self) noexcept nogil:
+ *         cdef inline int ndim(self) nogil:
  *             """Returns the number of dimensions in the array.
 */
 
@@ -18136,18 +17743,18 @@ static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":384
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":262
  *             return PyArray_NDIM(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp *shape(self) noexcept nogil:
+ *         cdef inline npy_intp *shape(self) nogil:
  *             """Returns a pointer to the dimensions/shape of the array.
 */
 
 static CYTHON_INLINE npy_intp *__pyx_f_5numpy_7ndarray_5shape_shape(PyArrayObject *__pyx_v_self) {
   npy_intp *__pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":390
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":268
  *             Can return NULL for 0-dimensional arrays.
  *             """
  *             return PyArray_DIMS(self)             # <<<<<<<<<<<<<<
@@ -18157,11 +17764,11 @@ static CYTHON_INLINE npy_intp *__pyx_f_5numpy_7ndarray_5shape_shape(PyArrayObjec
   __pyx_r = PyArray_DIMS(__pyx_v_self);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":384
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":262
  *             return PyArray_NDIM(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp *shape(self) noexcept nogil:
+ *         cdef inline npy_intp *shape(self) nogil:
  *             """Returns a pointer to the dimensions/shape of the array.
 */
 
@@ -18170,18 +17777,18 @@ static CYTHON_INLINE npy_intp *__pyx_f_5numpy_7ndarray_5shape_shape(PyArrayObjec
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":392
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":270
  *             return PyArray_DIMS(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp *strides(self) noexcept nogil:
+ *         cdef inline npy_intp *strides(self) nogil:
  *             """Returns a pointer to the strides of the array.
 */
 
 static CYTHON_INLINE npy_intp *__pyx_f_5numpy_7ndarray_7strides_strides(PyArrayObject *__pyx_v_self) {
   npy_intp *__pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":397
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":275
  *             The number of elements matches the number of dimensions of the array (ndim).
  *             """
  *             return PyArray_STRIDES(self)             # <<<<<<<<<<<<<<
@@ -18191,11 +17798,11 @@ static CYTHON_INLINE npy_intp *__pyx_f_5numpy_7ndarray_7strides_strides(PyArrayO
   __pyx_r = PyArray_STRIDES(__pyx_v_self);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":392
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":270
  *             return PyArray_DIMS(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp *strides(self) noexcept nogil:
+ *         cdef inline npy_intp *strides(self) nogil:
  *             """Returns a pointer to the strides of the array.
 */
 
@@ -18204,18 +17811,18 @@ static CYTHON_INLINE npy_intp *__pyx_f_5numpy_7ndarray_7strides_strides(PyArrayO
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":399
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":277
  *             return PyArray_STRIDES(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp size(self) noexcept nogil:
+ *         cdef inline npy_intp size(self) nogil:
  *             """Returns the total size (in number of elements) of the array.
 */
 
 static CYTHON_INLINE npy_intp __pyx_f_5numpy_7ndarray_4size_size(PyArrayObject *__pyx_v_self) {
   npy_intp __pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":403
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":281
  *             """Returns the total size (in number of elements) of the array.
  *             """
  *             return PyArray_SIZE(self)             # <<<<<<<<<<<<<<
@@ -18225,11 +17832,11 @@ static CYTHON_INLINE npy_intp __pyx_f_5numpy_7ndarray_4size_size(PyArrayObject *
   __pyx_r = PyArray_SIZE(__pyx_v_self);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":399
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":277
  *             return PyArray_STRIDES(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline npy_intp size(self) noexcept nogil:
+ *         cdef inline npy_intp size(self) nogil:
  *             """Returns the total size (in number of elements) of the array.
 */
 
@@ -18238,32 +17845,32 @@ static CYTHON_INLINE npy_intp __pyx_f_5numpy_7ndarray_4size_size(PyArrayObject *
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":405
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":283
  *             return PyArray_SIZE(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline char* data(self) noexcept nogil:
+ *         cdef inline char* data(self) nogil:
  *             """The pointer to the data buffer as a char*.
 */
 
 static CYTHON_INLINE char *__pyx_f_5numpy_7ndarray_4data_data(PyArrayObject *__pyx_v_self) {
   char *__pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":412
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":290
  *             of `PyArray_DATA()` instead, which returns a 'void*'.
  *             """
  *             return PyArray_BYTES(self)             # <<<<<<<<<<<<<<
  * 
- * 
+ *     ctypedef unsigned char      npy_bool
 */
   __pyx_r = PyArray_BYTES(__pyx_v_self);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":405
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":283
  *             return PyArray_SIZE(self)
  * 
  *         @property             # <<<<<<<<<<<<<<
- *         cdef inline char* data(self) noexcept nogil:
+ *         cdef inline char* data(self) nogil:
  *             """The pointer to the data buffer as a char*.
 */
 
@@ -18272,8 +17879,8 @@ static CYTHON_INLINE char *__pyx_f_5numpy_7ndarray_4data_data(PyArrayObject *__p
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":824
- * ctypedef long double complex clongdouble_t
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":773
+ * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
@@ -18289,7 +17896,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":825
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":774
  * 
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
@@ -18297,14 +17904,14 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
  * cdef inline object PyArray_MultiIterNew2(a, b):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyArray_MultiIterNew(1, ((void *)__pyx_v_a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 825, __pyx_L1_error)
+  __pyx_t_1 = PyArray_MultiIterNew(1, ((void *)__pyx_v_a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 774, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":824
- * ctypedef long double complex clongdouble_t
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":773
+ * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
@@ -18322,7 +17929,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":827
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":776
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -18339,7 +17946,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":828
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":777
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
@@ -18347,13 +17954,13 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyArray_MultiIterNew(2, ((void *)__pyx_v_a), ((void *)__pyx_v_b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 828, __pyx_L1_error)
+  __pyx_t_1 = PyArray_MultiIterNew(2, ((void *)__pyx_v_a), ((void *)__pyx_v_b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 777, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":827
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":776
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -18372,7 +17979,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":830
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":779
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -18389,7 +17996,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":831
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":780
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
@@ -18397,13 +18004,13 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyArray_MultiIterNew(3, ((void *)__pyx_v_a), ((void *)__pyx_v_b), ((void *)__pyx_v_c)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 831, __pyx_L1_error)
+  __pyx_t_1 = PyArray_MultiIterNew(3, ((void *)__pyx_v_a), ((void *)__pyx_v_b), ((void *)__pyx_v_c)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 780, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":830
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":779
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -18422,7 +18029,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":833
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":782
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -18439,7 +18046,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":834
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":783
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
@@ -18447,13 +18054,13 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyArray_MultiIterNew(4, ((void *)__pyx_v_a), ((void *)__pyx_v_b), ((void *)__pyx_v_c), ((void *)__pyx_v_d)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 834, __pyx_L1_error)
+  __pyx_t_1 = PyArray_MultiIterNew(4, ((void *)__pyx_v_a), ((void *)__pyx_v_b), ((void *)__pyx_v_c), ((void *)__pyx_v_d)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 783, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":833
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":782
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -18472,7 +18079,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":836
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":785
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -18489,7 +18096,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":837
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":786
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
@@ -18497,13 +18104,13 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
  * cdef inline tuple PyDataType_SHAPE(dtype d):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyArray_MultiIterNew(5, ((void *)__pyx_v_a), ((void *)__pyx_v_b), ((void *)__pyx_v_c), ((void *)__pyx_v_d), ((void *)__pyx_v_e)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 837, __pyx_L1_error)
+  __pyx_t_1 = PyArray_MultiIterNew(5, ((void *)__pyx_v_a), ((void *)__pyx_v_b), ((void *)__pyx_v_c), ((void *)__pyx_v_d), ((void *)__pyx_v_e)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 786, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":836
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":785
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -18522,7 +18129,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":839
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":788
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
@@ -18534,10 +18141,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  PyObject *__pyx_t_2;
   __Pyx_RefNannySetupContext("PyDataType_SHAPE", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":840
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":789
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
@@ -18547,7 +18153,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   __pyx_t_1 = PyDataType_HASSUBARRAY(__pyx_v_d);
   if (__pyx_t_1) {
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":841
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":790
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape             # <<<<<<<<<<<<<<
@@ -18555,12 +18161,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
  *         return ()
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __pyx_f_5numpy_5dtype_8subarray_subarray(__pyx_v_d)->shape;
-    __Pyx_INCREF(((PyObject*)__pyx_t_2));
-    __pyx_r = ((PyObject*)__pyx_t_2);
+    __Pyx_INCREF(((PyObject*)__pyx_v_d->subarray->shape));
+    __pyx_r = ((PyObject*)__pyx_v_d->subarray->shape);
     goto __pyx_L0;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":840
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":789
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
@@ -18569,7 +18174,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
 */
   }
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":843
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":792
  *         return <tuple>d.subarray.shape
  *     else:
  *         return ()             # <<<<<<<<<<<<<<
@@ -18583,7 +18188,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     goto __pyx_L0;
   }
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":839
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":788
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
@@ -18598,10 +18203,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1035
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":968
  *     int _import_umath() except -1
  * 
- * cdef inline void set_array_base(ndarray arr, object base) except *:             # <<<<<<<<<<<<<<
+ * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
 */
@@ -18612,28 +18217,28 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1036
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":969
  * 
- * cdef inline void set_array_base(ndarray arr, object base) except *:
+ * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!             # <<<<<<<<<<<<<<
  *     PyArray_SetBaseObject(arr, base)
  * 
 */
   Py_INCREF(__pyx_v_base);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1037
- * cdef inline void set_array_base(ndarray arr, object base) except *:
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":970
+ * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)             # <<<<<<<<<<<<<<
  * 
  * cdef inline object get_array_base(ndarray arr):
 */
-  __pyx_t_1 = PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(2, 1037, __pyx_L1_error)
+  __pyx_t_1 = PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(2, 970, __pyx_L1_error)
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1035
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":968
  *     int _import_umath() except -1
  * 
- * cdef inline void set_array_base(ndarray arr, object base) except *:             # <<<<<<<<<<<<<<
+ * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
 */
@@ -18645,7 +18250,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __pyx_L0:;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1039
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":972
  *     PyArray_SetBaseObject(arr, base)
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -18660,7 +18265,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1040
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":973
  * 
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)             # <<<<<<<<<<<<<<
@@ -18669,7 +18274,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
 */
   __pyx_v_base = PyArray_BASE(__pyx_v_arr);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1041
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":974
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -18679,7 +18284,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_t_1 = (__pyx_v_base == NULL);
   if (__pyx_t_1) {
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1042
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":975
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
  *         return None             # <<<<<<<<<<<<<<
@@ -18690,7 +18295,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1041
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":974
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -18699,7 +18304,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
 */
   }
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1043
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":976
  *     if base is NULL:
  *         return None
  *     return <object>base             # <<<<<<<<<<<<<<
@@ -18711,7 +18316,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_r = ((PyObject *)__pyx_v_base);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1039
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":972
  *     PyArray_SetBaseObject(arr, base)
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -18726,7 +18331,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1047
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":980
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -18752,7 +18357,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_array", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1048
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":981
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -18768,16 +18373,16 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1049
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":982
  * cdef inline int import_array() except -1:
  *     try:
  *         __pyx_import_array()             # <<<<<<<<<<<<<<
  *     except Exception:
- *         raise ImportError("numpy._core.multiarray failed to import")
+ *         raise ImportError("numpy.core.multiarray failed to import")
 */
-      __pyx_t_4 = _import_array(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 1049, __pyx_L3_error)
+      __pyx_t_4 = _import_array(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 982, __pyx_L3_error)
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1048
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":981
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -18791,44 +18396,44 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1050
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":983
  *     try:
  *         __pyx_import_array()
  *     except Exception:             # <<<<<<<<<<<<<<
- *         raise ImportError("numpy._core.multiarray failed to import")
+ *         raise ImportError("numpy.core.multiarray failed to import")
  * 
 */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(((PyTypeObject*)PyExc_Exception))));
     if (__pyx_t_4) {
       __Pyx_AddTraceback("numpy.import_array", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(2, 1050, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(2, 983, __pyx_L5_except_error)
       __Pyx_XGOTREF(__pyx_t_5);
       __Pyx_XGOTREF(__pyx_t_6);
       __Pyx_XGOTREF(__pyx_t_7);
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1051
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":984
  *         __pyx_import_array()
  *     except Exception:
- *         raise ImportError("numpy._core.multiarray failed to import")             # <<<<<<<<<<<<<<
+ *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
  * 
  * cdef inline int import_umath() except -1:
 */
       __pyx_t_9 = NULL;
       __pyx_t_10 = 1;
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_mstate_global->__pyx_kp_u_numpy__core_multiarray_failed_to};
+        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_mstate_global->__pyx_kp_u_numpy_core_multiarray_failed_to};
         __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_ImportError)), __pyx_callargs+__pyx_t_10, (2-__pyx_t_10) | (__pyx_t_10*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1051, __pyx_L5_except_error)
+        if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 984, __pyx_L5_except_error)
         __Pyx_GOTREF(__pyx_t_8);
       }
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __PYX_ERR(2, 1051, __pyx_L5_except_error)
+      __PYX_ERR(2, 984, __pyx_L5_except_error)
     }
     goto __pyx_L5_except_error;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1048
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":981
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -18844,7 +18449,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1047
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":980
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -18868,8 +18473,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1053
- *         raise ImportError("numpy._core.multiarray failed to import")
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":986
+ *         raise ImportError("numpy.core.multiarray failed to import")
  * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
@@ -18894,7 +18499,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_umath", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1054
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":987
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -18910,16 +18515,16 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1055
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":988
  * cdef inline int import_umath() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
  *     except Exception:
- *         raise ImportError("numpy._core.umath failed to import")
+ *         raise ImportError("numpy.core.umath failed to import")
 */
-      __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 1055, __pyx_L3_error)
+      __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 988, __pyx_L3_error)
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1054
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":987
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -18933,44 +18538,44 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1056
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":989
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
- *         raise ImportError("numpy._core.umath failed to import")
+ *         raise ImportError("numpy.core.umath failed to import")
  * 
 */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(((PyTypeObject*)PyExc_Exception))));
     if (__pyx_t_4) {
       __Pyx_AddTraceback("numpy.import_umath", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(2, 1056, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(2, 989, __pyx_L5_except_error)
       __Pyx_XGOTREF(__pyx_t_5);
       __Pyx_XGOTREF(__pyx_t_6);
       __Pyx_XGOTREF(__pyx_t_7);
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1057
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":990
  *         _import_umath()
  *     except Exception:
- *         raise ImportError("numpy._core.umath failed to import")             # <<<<<<<<<<<<<<
+ *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
  * 
  * cdef inline int import_ufunc() except -1:
 */
       __pyx_t_9 = NULL;
       __pyx_t_10 = 1;
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_mstate_global->__pyx_kp_u_numpy__core_umath_failed_to_impo};
+        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_mstate_global->__pyx_kp_u_numpy_core_umath_failed_to_impor};
         __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_ImportError)), __pyx_callargs+__pyx_t_10, (2-__pyx_t_10) | (__pyx_t_10*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1057, __pyx_L5_except_error)
+        if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 990, __pyx_L5_except_error)
         __Pyx_GOTREF(__pyx_t_8);
       }
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __PYX_ERR(2, 1057, __pyx_L5_except_error)
+      __PYX_ERR(2, 990, __pyx_L5_except_error)
     }
     goto __pyx_L5_except_error;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1054
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":987
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -18986,8 +18591,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1053
- *         raise ImportError("numpy._core.multiarray failed to import")
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":986
+ *         raise ImportError("numpy.core.multiarray failed to import")
  * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
@@ -19010,8 +18615,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1059
- *         raise ImportError("numpy._core.umath failed to import")
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":992
+ *         raise ImportError("numpy.core.umath failed to import")
  * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
@@ -19036,7 +18641,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_ufunc", 0);
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1060
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":993
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -19052,16 +18657,16 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1061
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":994
  * cdef inline int import_ufunc() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
  *     except Exception:
- *         raise ImportError("numpy._core.umath failed to import")
+ *         raise ImportError("numpy.core.umath failed to import")
 */
-      __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 1061, __pyx_L3_error)
+      __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 994, __pyx_L3_error)
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1060
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":993
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -19075,44 +18680,44 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1062
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":995
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
- *         raise ImportError("numpy._core.umath failed to import")
+ *         raise ImportError("numpy.core.umath failed to import")
  * 
 */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(((PyTypeObject*)PyExc_Exception))));
     if (__pyx_t_4) {
       __Pyx_AddTraceback("numpy.import_ufunc", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(2, 1062, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7) < 0) __PYX_ERR(2, 995, __pyx_L5_except_error)
       __Pyx_XGOTREF(__pyx_t_5);
       __Pyx_XGOTREF(__pyx_t_6);
       __Pyx_XGOTREF(__pyx_t_7);
 
-      /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1063
+      /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":996
  *         _import_umath()
  *     except Exception:
- *         raise ImportError("numpy._core.umath failed to import")             # <<<<<<<<<<<<<<
+ *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
  * 
  * 
 */
       __pyx_t_9 = NULL;
       __pyx_t_10 = 1;
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_mstate_global->__pyx_kp_u_numpy__core_umath_failed_to_impo};
+        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_mstate_global->__pyx_kp_u_numpy_core_umath_failed_to_impor};
         __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_ImportError)), __pyx_callargs+__pyx_t_10, (2-__pyx_t_10) | (__pyx_t_10*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1063, __pyx_L5_except_error)
+        if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 996, __pyx_L5_except_error)
         __Pyx_GOTREF(__pyx_t_8);
       }
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __PYX_ERR(2, 1063, __pyx_L5_except_error)
+      __PYX_ERR(2, 996, __pyx_L5_except_error)
     }
     goto __pyx_L5_except_error;
 
-    /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1060
+    /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":993
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -19128,8 +18733,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1059
- *         raise ImportError("numpy._core.umath failed to import")
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":992
+ *         raise ImportError("numpy.core.umath failed to import")
  * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
@@ -19152,10 +18757,10 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1066
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":999
  * 
  * 
- * cdef inline bint is_timedelta64_object(object obj) noexcept:             # <<<<<<<<<<<<<<
+ * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
 */
@@ -19163,7 +18768,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
 static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_obj) {
   int __pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1078
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1011
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyTimedeltaArrType_Type)             # <<<<<<<<<<<<<<
@@ -19173,10 +18778,10 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyTimedeltaArrType_Type));
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1066
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":999
  * 
  * 
- * cdef inline bint is_timedelta64_object(object obj) noexcept:             # <<<<<<<<<<<<<<
+ * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
 */
@@ -19186,10 +18791,10 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1081
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1014
  * 
  * 
- * cdef inline bint is_datetime64_object(object obj) noexcept:             # <<<<<<<<<<<<<<
+ * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
 */
@@ -19197,7 +18802,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
 static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_obj) {
   int __pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1093
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1026
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyDatetimeArrType_Type)             # <<<<<<<<<<<<<<
@@ -19207,10 +18812,10 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyDatetimeArrType_Type));
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1081
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1014
  * 
  * 
- * cdef inline bint is_datetime64_object(object obj) noexcept:             # <<<<<<<<<<<<<<
+ * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
 */
@@ -19220,10 +18825,10 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1096
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1029
  * 
  * 
- * cdef inline npy_datetime get_datetime64_value(object obj) noexcept nogil:             # <<<<<<<<<<<<<<
+ * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
 */
@@ -19231,7 +18836,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
 static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *__pyx_v_obj) {
   npy_datetime __pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1103
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1036
  *     also needed.  That can be found using `get_datetime64_unit`.
  *     """
  *     return (<PyDatetimeScalarObject*>obj).obval             # <<<<<<<<<<<<<<
@@ -19241,10 +18846,10 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
   __pyx_r = ((PyDatetimeScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1096
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1029
  * 
  * 
- * cdef inline npy_datetime get_datetime64_value(object obj) noexcept nogil:             # <<<<<<<<<<<<<<
+ * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
 */
@@ -19254,10 +18859,10 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1106
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1039
  * 
  * 
- * cdef inline npy_timedelta get_timedelta64_value(object obj) noexcept nogil:             # <<<<<<<<<<<<<<
+ * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
 */
@@ -19265,7 +18870,7 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
 static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject *__pyx_v_obj) {
   npy_timedelta __pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1110
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1043
  *     returns the int64 value underlying scalar numpy timedelta64 object
  *     """
  *     return (<PyTimedeltaScalarObject*>obj).obval             # <<<<<<<<<<<<<<
@@ -19275,10 +18880,10 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
   __pyx_r = ((PyTimedeltaScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1106
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1039
  * 
  * 
- * cdef inline npy_timedelta get_timedelta64_value(object obj) noexcept nogil:             # <<<<<<<<<<<<<<
+ * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
 */
@@ -19288,10 +18893,10 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
   return __pyx_r;
 }
 
-/* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1113
+/* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1046
  * 
  * 
- * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) noexcept nogil:             # <<<<<<<<<<<<<<
+ * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
 */
@@ -19299,20 +18904,18 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
 static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObject *__pyx_v_obj) {
   NPY_DATETIMEUNIT __pyx_r;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1117
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1050
  *     returns the unit part of the dtype for a numpy datetime64 object.
  *     """
  *     return <NPY_DATETIMEUNIT>(<PyDatetimeScalarObject*>obj).obmeta.base             # <<<<<<<<<<<<<<
- * 
- * 
 */
   __pyx_r = ((NPY_DATETIMEUNIT)((PyDatetimeScalarObject *)__pyx_v_obj)->obmeta.base);
   goto __pyx_L0;
 
-  /* "../../../software/anaconda3/envs/ntbtest/lib/site-packages/numpy/__init__.cython-30.pxd":1113
+  /* "../../../../software/anaconda3/Lib/site-packages/numpy/__init__.cython-30.pxd":1046
  * 
  * 
- * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) noexcept nogil:             # <<<<<<<<<<<<<<
+ * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
 */
@@ -21629,15 +21232,16 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   size_t __pyx_t_6;
-  int __pyx_t_7;
+  npy_intp *__pyx_t_7;
   int __pyx_t_8;
-  long __pyx_t_9;
+  int __pyx_t_9;
   long __pyx_t_10;
-  int __pyx_t_11;
+  long __pyx_t_11;
   int __pyx_t_12;
-  Py_ssize_t __pyx_t_13;
+  int __pyx_t_13;
   Py_ssize_t __pyx_t_14;
-  int __pyx_t_15;
+  Py_ssize_t __pyx_t_15;
+  int __pyx_t_16;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -21726,7 +21330,8 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *         cdef int i
  *         cdef int new_capacity
 */
-  __pyx_v_n_edges = (__pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_edges))[0]);
+  __pyx_t_7 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_edges)); if (unlikely(__pyx_t_7 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_v_n_edges = (__pyx_t_7[0]);
 
   /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":173
  * 
@@ -21735,8 +21340,8 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *             new_capacity = max(self.edge_capacity * 2, self.nedge + n_edges)
  *             self.edge_capacity = new_capacity
 */
-  __pyx_t_7 = ((__pyx_v_self->nedge + __pyx_v_n_edges) > __pyx_v_self->edge_capacity);
-  if (__pyx_t_7) {
+  __pyx_t_8 = ((__pyx_v_self->nedge + __pyx_v_n_edges) > __pyx_v_self->edge_capacity);
+  if (__pyx_t_8) {
 
     /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":174
  *         # Ensure capacity
@@ -21745,15 +21350,15 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *             self.edge_capacity = new_capacity
  *             self._grow_capacity()
 */
-    __pyx_t_8 = (__pyx_v_self->nedge + __pyx_v_n_edges);
-    __pyx_t_9 = (__pyx_v_self->edge_capacity * 2);
-    __pyx_t_7 = (__pyx_t_8 > __pyx_t_9);
-    if (__pyx_t_7) {
-      __pyx_t_10 = __pyx_t_8;
+    __pyx_t_9 = (__pyx_v_self->nedge + __pyx_v_n_edges);
+    __pyx_t_10 = (__pyx_v_self->edge_capacity * 2);
+    __pyx_t_8 = (__pyx_t_9 > __pyx_t_10);
+    if (__pyx_t_8) {
+      __pyx_t_11 = __pyx_t_9;
     } else {
-      __pyx_t_10 = __pyx_t_9;
+      __pyx_t_11 = __pyx_t_10;
     }
-    __pyx_v_new_capacity = __pyx_t_10;
+    __pyx_v_new_capacity = __pyx_t_11;
 
     /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":175
  *         if self.nedge + n_edges > self.edge_capacity:
@@ -21789,10 +21394,10 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *             self.edges_array[self.nedge + i].v1 = edges[i, 0]
  *             self.edges_array[self.nedge + i].v2 = edges[i, 1]
 */
-  __pyx_t_8 = __pyx_v_n_edges;
-  __pyx_t_11 = __pyx_t_8;
-  for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
-    __pyx_v_i = __pyx_t_12;
+  __pyx_t_9 = __pyx_v_n_edges;
+  __pyx_t_12 = __pyx_t_9;
+  for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
+    __pyx_v_i = __pyx_t_13;
 
     /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":180
  *         # Add all edges
@@ -21801,9 +21406,9 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *             self.edges_array[self.nedge + i].v2 = edges[i, 1]
  * 
 */
-    __pyx_t_13 = __pyx_v_i;
-    __pyx_t_14 = 0;
-    (__pyx_v_self->edges_array[(__pyx_v_self->nedge + __pyx_v_i)]).v1 = (*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[1].strides));
+    __pyx_t_14 = __pyx_v_i;
+    __pyx_t_15 = 0;
+    (__pyx_v_self->edges_array[(__pyx_v_self->nedge + __pyx_v_i)]).v1 = (*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_15, __pyx_pybuffernd_edges.diminfo[1].strides));
 
     /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":181
  *         for i in range(n_edges):
@@ -21812,9 +21417,9 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  * 
  *             # Update vertex count
 */
-    __pyx_t_14 = __pyx_v_i;
-    __pyx_t_13 = 1;
-    (__pyx_v_self->edges_array[(__pyx_v_self->nedge + __pyx_v_i)]).v2 = (*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_13, __pyx_pybuffernd_edges.diminfo[1].strides));
+    __pyx_t_15 = __pyx_v_i;
+    __pyx_t_14 = 1;
+    (__pyx_v_self->edges_array[(__pyx_v_self->nedge + __pyx_v_i)]).v2 = (*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[1].strides));
 
     /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":184
  * 
@@ -21823,10 +21428,10 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *                 self.nvertex = edges[i, 0] + 1
  *             if self.nvertex < edges[i, 1] + 1:
 */
-    __pyx_t_13 = __pyx_v_i;
-    __pyx_t_14 = 0;
-    __pyx_t_7 = (__pyx_v_self->nvertex < ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1));
-    if (__pyx_t_7) {
+    __pyx_t_14 = __pyx_v_i;
+    __pyx_t_15 = 0;
+    __pyx_t_8 = (__pyx_v_self->nvertex < ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_15, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1));
+    if (__pyx_t_8) {
 
       /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":185
  *             # Update vertex count
@@ -21835,9 +21440,9 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *             if self.nvertex < edges[i, 1] + 1:
  *                 self.nvertex = edges[i, 1] + 1
 */
-      __pyx_t_14 = __pyx_v_i;
-      __pyx_t_13 = 0;
-      __pyx_v_self->nvertex = ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_13, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1);
+      __pyx_t_15 = __pyx_v_i;
+      __pyx_t_14 = 0;
+      __pyx_v_self->nvertex = ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1);
 
       /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":184
  * 
@@ -21855,10 +21460,10 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  *                 self.nvertex = edges[i, 1] + 1
  * 
 */
-    __pyx_t_13 = __pyx_v_i;
-    __pyx_t_14 = 1;
-    __pyx_t_7 = (__pyx_v_self->nvertex < ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1));
-    if (__pyx_t_7) {
+    __pyx_t_14 = __pyx_v_i;
+    __pyx_t_15 = 1;
+    __pyx_t_8 = (__pyx_v_self->nvertex < ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_15, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1));
+    if (__pyx_t_8) {
 
       /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":187
  *                 self.nvertex = edges[i, 0] + 1
@@ -21867,9 +21472,9 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  * 
  *             if self.weighted and weights is not None:
 */
-      __pyx_t_14 = __pyx_v_i;
-      __pyx_t_13 = 1;
-      __pyx_v_self->nvertex = ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_13, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1);
+      __pyx_t_15 = __pyx_v_i;
+      __pyx_t_14 = 1;
+      __pyx_v_self->nvertex = ((*__Pyx_BufPtrStrided2d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_edges.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_edges.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_edges.diminfo[1].strides)) + 1);
 
       /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":186
  *             if self.nvertex < edges[i, 0] + 1:
@@ -21889,13 +21494,13 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
 */
     if (__pyx_v_self->weighted) {
     } else {
-      __pyx_t_7 = __pyx_v_self->weighted;
+      __pyx_t_8 = __pyx_v_self->weighted;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_15 = (((PyObject *) __pyx_v_weights.memview) != Py_None);
-    __pyx_t_7 = __pyx_t_15;
+    __pyx_t_16 = (((PyObject *) __pyx_v_weights.memview) != Py_None);
+    __pyx_t_8 = __pyx_t_16;
     __pyx_L9_bool_binop_done:;
-    if (__pyx_t_7) {
+    if (__pyx_t_8) {
 
       /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":190
  * 
@@ -21904,8 +21509,8 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGrap
  * 
  *         self.nedge += n_edges
 */
-      __pyx_t_13 = __pyx_v_i;
-      (__pyx_v_self->weights_array[(__pyx_v_self->nedge + __pyx_v_i)]) = (*((double const  *) ( /* dim=0 */ (__pyx_v_weights.data + __pyx_t_13 * __pyx_v_weights.strides[0]) )));
+      __pyx_t_14 = __pyx_v_i;
+      (__pyx_v_self->weights_array[(__pyx_v_self->nedge + __pyx_v_i)]) = (*((double const  *) ( /* dim=0 */ (__pyx_v_weights.data + __pyx_t_14 * __pyx_v_weights.strides[0]) )));
 
       /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":189
  *                 self.nvertex = edges[i, 1] + 1
@@ -27252,7 +26857,111 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5Gr
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":383
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":382
+ * 
+ * 
+ * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
+ * @cython.wraparound(False)
+ * cdef inline void _graph_add_edge_inline(Graph graph, int v1, int v2, double weight):
+*/
+
+static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__graph_add_edge_inline(struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *__pyx_v_graph, int __pyx_v_v1, int __pyx_v_v2, double __pyx_v_weight) {
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
+  struct __pyx_opt_args_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9FastGraph_add_edge __pyx_t_7;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("_graph_add_edge_inline", 0);
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":385
+ * @cython.wraparound(False)
+ * cdef inline void _graph_add_edge_inline(Graph graph, int v1, int v2, double weight):
+ *     if graph._use_python_lists:             # <<<<<<<<<<<<<<
+ *         graph.add_edge(v1, v2, weight)
+ *     else:
+*/
+  if (__pyx_v_graph->_use_python_lists) {
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":386
+ * cdef inline void _graph_add_edge_inline(Graph graph, int v1, int v2, double weight):
+ *     if graph._use_python_lists:
+ *         graph.add_edge(v1, v2, weight)             # <<<<<<<<<<<<<<
+ *     else:
+ *         graph.fast_graph.add_edge(v1, v2, weight)
+*/
+    __pyx_t_2 = ((PyObject *)__pyx_v_graph);
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_v1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_v2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_weight); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = 0;
+    {
+      PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5};
+      __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_add_edge, __pyx_callargs+__pyx_t_6, (4-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":385
+ * @cython.wraparound(False)
+ * cdef inline void _graph_add_edge_inline(Graph graph, int v1, int v2, double weight):
+ *     if graph._use_python_lists:             # <<<<<<<<<<<<<<
+ *         graph.add_edge(v1, v2, weight)
+ *     else:
+*/
+    goto __pyx_L3;
+  }
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":388
+ *         graph.add_edge(v1, v2, weight)
+ *     else:
+ *         graph.fast_graph.add_edge(v1, v2, weight)             # <<<<<<<<<<<<<<
+ * 
+ * 
+*/
+  /*else*/ {
+    __pyx_t_7.__pyx_n = 1;
+    __pyx_t_7.weight = __pyx_v_weight;
+    ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_FastGraph *)__pyx_v_graph->fast_graph->__pyx_vtab)->add_edge(__pyx_v_graph->fast_graph, __pyx_v_v1, __pyx_v_v2, 0, &__pyx_t_7); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 388, __pyx_L1_error)
+  }
+  __pyx_L3:;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":382
+ * 
+ * 
+ * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
+ * @cython.wraparound(False)
+ * cdef inline void _graph_add_edge_inline(Graph graph, int v1, int v2, double weight):
+*/
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("pyneutube.tracers.pyNeuTube.stack_graph_utils._graph_add_edge_inline", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+}
+
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":392
  * 
  * # Inline weight function
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -27266,7 +26975,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
   double __pyx_r;
   int __pyx_t_1;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":389
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":398
  *                                          double thre, double scale) nogil:
  *     """Inline version of stack voxel weight for maximum speed"""
  *     if isnan(thre):             # <<<<<<<<<<<<<<
@@ -27276,7 +26985,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
   __pyx_t_1 = isnan(__pyx_v_thre);
   if (__pyx_t_1) {
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":390
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":399
  *     """Inline version of stack voxel weight for maximum speed"""
  *     if isnan(thre):
  *         thre = 60.0             # <<<<<<<<<<<<<<
@@ -27285,7 +26994,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
 */
     __pyx_v_thre = 60.0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":389
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":398
  *                                          double thre, double scale) nogil:
  *     """Inline version of stack voxel weight for maximum speed"""
  *     if isnan(thre):             # <<<<<<<<<<<<<<
@@ -27294,7 +27003,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":391
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":400
  *     if isnan(thre):
  *         thre = 60.0
  *     if isnan(scale):             # <<<<<<<<<<<<<<
@@ -27304,7 +27013,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
   __pyx_t_1 = isnan(__pyx_v_scale);
   if (__pyx_t_1) {
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":392
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":401
  *         thre = 60.0
  *     if isnan(scale):
  *         scale = 5.0             # <<<<<<<<<<<<<<
@@ -27313,7 +27022,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
 */
     __pyx_v_scale = 5.0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":391
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":400
  *     if isnan(thre):
  *         thre = 60.0
  *     if isnan(scale):             # <<<<<<<<<<<<<<
@@ -27322,7 +27031,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":394
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":403
  *         scale = 5.0
  * 
  *     cdef double exp1 = exp((v1 - thre) / scale)             # <<<<<<<<<<<<<<
@@ -27331,7 +27040,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
 */
   __pyx_v_exp1 = exp(((__pyx_v_v1 - __pyx_v_thre) / __pyx_v_scale));
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":395
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":404
  * 
  *     cdef double exp1 = exp((v1 - thre) / scale)
  *     cdef double exp2 = exp((v2 - thre) / scale)             # <<<<<<<<<<<<<<
@@ -27340,7 +27049,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
 */
   __pyx_v_exp2 = exp(((__pyx_v_v2 - __pyx_v_thre) / __pyx_v_scale));
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":397
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":406
  *     cdef double exp2 = exp((v2 - thre) / scale)
  * 
  *     return d * (1.0 / (1.0 + exp1) + 1.0 / (1.0 + exp2) + 0.00001)             # <<<<<<<<<<<<<<
@@ -27350,7 +27059,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
   __pyx_r = (__pyx_v_d * (((1.0 / (1.0 + __pyx_v_exp1)) + (1.0 / (1.0 + __pyx_v_exp2))) + 0.00001));
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":383
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":392
  * 
  * # Inline weight function
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -27363,7 +27072,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":399
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":408
  *     return d * (1.0 / (1.0 + exp1) + 1.0 / (1.0 + exp2) + 0.00001)
  * 
  * cpdef double stack_voxel_weight_cy(double d, double v1, double v2,             # <<<<<<<<<<<<<<
@@ -27385,18 +27094,18 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_v
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":405
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":414
  *     This acquires the GIL and then calls the internal function.
  *     """
  *     return _stack_voxel_weight_cy(d, v1, v2, thre, scale)             # <<<<<<<<<<<<<<
  * 
  * 
 */
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__stack_voxel_weight_cy(__pyx_v_d, __pyx_v_v1, __pyx_v_v2, __pyx_v_thre, __pyx_v_scale); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 405, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__stack_voxel_weight_cy(__pyx_v_d, __pyx_v_v1, __pyx_v_v2, __pyx_v_thre, __pyx_v_scale); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 414, __pyx_L1_error)
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":399
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":408
  *     return d * (1.0 / (1.0 + exp1) + 1.0 / (1.0 + exp2) + 0.00001)
  * 
  * cpdef double stack_voxel_weight_cy(double d, double v1, double v2,             # <<<<<<<<<<<<<<
@@ -27456,60 +27165,60 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_d,&__pyx_mstate_global->__pyx_n_u_v1,&__pyx_mstate_global->__pyx_n_u_v2,&__pyx_mstate_global->__pyx_n_u_thre,&__pyx_mstate_global->__pyx_n_u_scale,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 399, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 408, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 399, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 408, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 399, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 408, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 399, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 408, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 399, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 408, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 399, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 408, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_voxel_weight_cy", 0) < (0)) __PYX_ERR(0, 399, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_voxel_weight_cy", 0) < (0)) __PYX_ERR(0, 408, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 5; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_voxel_weight_cy", 1, 5, 5, i); __PYX_ERR(0, 399, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_voxel_weight_cy", 1, 5, 5, i); __PYX_ERR(0, 408, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 5)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 399, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 408, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 399, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 408, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 399, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 408, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 399, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 408, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 399, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 408, __pyx_L3_error)
     }
-    __pyx_v_d = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_d == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L3_error)
-    __pyx_v_v1 = __Pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_v1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L3_error)
-    __pyx_v_v2 = __Pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_v2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L3_error)
-    __pyx_v_thre = __Pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_thre == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 400, __pyx_L3_error)
-    __pyx_v_scale = __Pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_scale == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 400, __pyx_L3_error)
+    __pyx_v_d = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_d == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 408, __pyx_L3_error)
+    __pyx_v_v1 = __Pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_v1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 408, __pyx_L3_error)
+    __pyx_v_v2 = __Pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_v2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 408, __pyx_L3_error)
+    __pyx_v_thre = __Pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_thre == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 409, __pyx_L3_error)
+    __pyx_v_scale = __Pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_scale == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 409, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_voxel_weight_cy", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 399, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_voxel_weight_cy", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 408, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -27540,8 +27249,8 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_sta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stack_voxel_weight_cy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_voxel_weight_cy(__pyx_v_d, __pyx_v_v1, __pyx_v_v2, __pyx_v_thre, __pyx_v_scale, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 399, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_voxel_weight_cy(__pyx_v_d, __pyx_v_v1, __pyx_v_v2, __pyx_v_thre, __pyx_v_scale, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -27558,7 +27267,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_sta
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":408
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":417
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -27604,7 +27313,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_edges_cy", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":431
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":440
  *     cdef int i, nx, ny, nz
  *     cdef double weight
  *     cdef int conn = cond.shape[0]             # <<<<<<<<<<<<<<
@@ -27613,7 +27322,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
 */
   __pyx_v_conn = (__pyx_v_cond.shape[0]);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":433
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":442
  *     cdef int conn = cond.shape[0]
  * 
  *     for i in range(conn):             # <<<<<<<<<<<<<<
@@ -27625,7 +27334,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":434
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":443
  * 
  *     for i in range(conn):
  *         if cond[i] != 0:             # <<<<<<<<<<<<<<
@@ -27636,7 +27345,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
     __pyx_t_5 = ((*((unsigned char const  *) ( /* dim=0 */ (__pyx_v_cond.data + __pyx_t_4 * __pyx_v_cond.strides[0]) ))) != 0);
     if (__pyx_t_5) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":435
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":444
  *     for i in range(conn):
  *         if cond[i] != 0:
  *             nx = x + stack_range[0]             # <<<<<<<<<<<<<<
@@ -27646,7 +27355,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
       __pyx_t_4 = 0;
       __pyx_v_nx = (__pyx_v_x + (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_4 * __pyx_v_stack_range.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":436
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":445
  *         if cond[i] != 0:
  *             nx = x + stack_range[0]
  *             ny = y + stack_range[2]             # <<<<<<<<<<<<<<
@@ -27656,7 +27365,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
       __pyx_t_4 = 2;
       __pyx_v_ny = (__pyx_v_y + (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_4 * __pyx_v_stack_range.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":437
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":446
  *             nx = x + stack_range[0]
  *             ny = y + stack_range[2]
  *             nz = z + stack_range[4]             # <<<<<<<<<<<<<<
@@ -27666,7 +27375,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
       __pyx_t_4 = 4;
       __pyx_v_nz = (__pyx_v_z + (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_4 * __pyx_v_stack_range.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":439
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":448
  *             nz = z + stack_range[4]
  * 
  *             if graph.is_weighted():             # <<<<<<<<<<<<<<
@@ -27680,14 +27389,14 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
         PyObject *__pyx_callargs[2] = {__pyx_t_7, NULL};
         __pyx_t_6 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_weighted, __pyx_callargs+__pyx_t_8, (1-__pyx_t_8) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 439, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 448, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
       }
-      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 439, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 448, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       if (__pyx_t_5) {
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":441
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":450
  *             if graph.is_weighted():
  *                 # Prepare arguments for weight function
  *                 argv[0] = dist[i]             # <<<<<<<<<<<<<<
@@ -27698,7 +27407,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
         __pyx_t_9 = 0;
         *((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_9 * __pyx_v_argv.strides[0]) )) = (*((double const  *) ( /* dim=0 */ (__pyx_v_dist.data + __pyx_t_4 * __pyx_v_dist.strides[0]) )));
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":442
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":451
  *                 # Prepare arguments for weight function
  *                 argv[0] = dist[i]
  *                 argv[1] = stack[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -27711,7 +27420,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
         __pyx_t_11 = 1;
         *((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_11 * __pyx_v_argv.strides[0]) )) = (*((double const  *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_stack.data + __pyx_t_4 * __pyx_v_stack.strides[0]) ) + __pyx_t_9 * __pyx_v_stack.strides[1]) ) + __pyx_t_10 * __pyx_v_stack.strides[2]) )));
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":444
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":453
  *                 argv[1] = stack[nz, ny, nx]
  *                 argv[2] = stack[
  *                     nz + z_offset[i],             # <<<<<<<<<<<<<<
@@ -27720,7 +27429,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
 */
         __pyx_t_10 = __pyx_v_i;
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":445
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":454
  *                 argv[2] = stack[
  *                     nz + z_offset[i],
  *                     ny + y_offset[i],             # <<<<<<<<<<<<<<
@@ -27729,7 +27438,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
 */
         __pyx_t_9 = __pyx_v_i;
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":446
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":455
  *                     nz + z_offset[i],
  *                     ny + y_offset[i],
  *                     nx + x_offset[i],             # <<<<<<<<<<<<<<
@@ -27738,7 +27447,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
 */
         __pyx_t_4 = __pyx_v_i;
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":443
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":452
  *                 argv[0] = dist[i]
  *                 argv[1] = stack[nz, ny, nx]
  *                 argv[2] = stack[             # <<<<<<<<<<<<<<
@@ -27751,7 +27460,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
         __pyx_t_14 = 2;
         *((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_14 * __pyx_v_argv.strides[0]) )) = (*((double const  *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_stack.data + __pyx_t_11 * __pyx_v_stack.strides[0]) ) + __pyx_t_12 * __pyx_v_stack.strides[1]) ) + __pyx_t_13 * __pyx_v_stack.strides[2]) )));
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":449
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":458
  *                 ]
  *                 # Call Python weight function (this will acquire GIL)
  *                 weight = _stack_voxel_weight_cy(argv[0], argv[1], argv[2], argv[3], argv[4])             # <<<<<<<<<<<<<<
@@ -27763,10 +27472,10 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
         __pyx_t_10 = 2;
         __pyx_t_13 = 3;
         __pyx_t_12 = 4;
-        __pyx_t_15 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__stack_voxel_weight_cy((*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_4 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_9 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_10 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_13 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_12 * __pyx_v_argv.strides[0]) )))); if (unlikely(__pyx_t_15 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 449, __pyx_L1_error)
+        __pyx_t_15 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__stack_voxel_weight_cy((*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_4 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_9 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_10 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_13 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_12 * __pyx_v_argv.strides[0]) )))); if (unlikely(__pyx_t_15 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 458, __pyx_L1_error)
         __pyx_v_weight = __pyx_t_15;
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":452
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":461
  * 
  *                 # Add weighted edge (this will acquire GIL)
  *                 graph.add_edge(offset, offset + neighbor[i], weight)             # <<<<<<<<<<<<<<
@@ -27775,12 +27484,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
 */
         __pyx_t_7 = ((PyObject *)__pyx_v_graph);
         __Pyx_INCREF(__pyx_t_7);
-        __pyx_t_16 = __Pyx_PyLong_From_int(__pyx_v_offset); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyLong_From_int(__pyx_v_offset); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 461, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
         __pyx_t_12 = __pyx_v_i;
-        __pyx_t_17 = __Pyx_PyLong_From_int((__pyx_v_offset + (*((int const  *) ( /* dim=0 */ (__pyx_v_neighbor.data + __pyx_t_12 * __pyx_v_neighbor.strides[0]) ))))); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_17 = __Pyx_PyLong_From_int((__pyx_v_offset + (*((int const  *) ( /* dim=0 */ (__pyx_v_neighbor.data + __pyx_t_12 * __pyx_v_neighbor.strides[0]) ))))); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 461, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_17);
-        __pyx_t_18 = PyFloat_FromDouble(__pyx_v_weight); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_18 = PyFloat_FromDouble(__pyx_v_weight); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 461, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_18);
         __pyx_t_8 = 0;
         {
@@ -27790,12 +27499,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
           __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error)
+          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 461, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
         }
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":439
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":448
  *             nz = z + stack_range[4]
  * 
  *             if graph.is_weighted():             # <<<<<<<<<<<<<<
@@ -27805,7 +27514,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
         goto __pyx_L6;
       }
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":455
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":464
  *             else:
  *                 # Add unweighted edge (this will acquire GIL)
  *                 graph.add_edge(offset, offset + neighbor[i])             # <<<<<<<<<<<<<<
@@ -27815,10 +27524,10 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
       /*else*/ {
         __pyx_t_18 = ((PyObject *)__pyx_v_graph);
         __Pyx_INCREF(__pyx_t_18);
-        __pyx_t_17 = __Pyx_PyLong_From_int(__pyx_v_offset); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 455, __pyx_L1_error)
+        __pyx_t_17 = __Pyx_PyLong_From_int(__pyx_v_offset); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 464, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_17);
         __pyx_t_12 = __pyx_v_i;
-        __pyx_t_16 = __Pyx_PyLong_From_int((__pyx_v_offset + (*((int const  *) ( /* dim=0 */ (__pyx_v_neighbor.data + __pyx_t_12 * __pyx_v_neighbor.strides[0]) ))))); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 455, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyLong_From_int((__pyx_v_offset + (*((int const  *) ( /* dim=0 */ (__pyx_v_neighbor.data + __pyx_t_12 * __pyx_v_neighbor.strides[0]) ))))); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 464, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
         __pyx_t_8 = 0;
         {
@@ -27827,12 +27536,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
           __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 455, __pyx_L1_error)
+          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 464, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
         }
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":457
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":466
  *                 graph.add_edge(offset, offset + neighbor[i])
  *                 # Store intensity value
  *                 intensity[offset] = stack[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -27847,7 +27556,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
       }
       __pyx_L6:;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":434
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":443
  * 
  *     for i in range(conn):
  *         if cond[i] != 0:             # <<<<<<<<<<<<<<
@@ -27857,7 +27566,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges
     }
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":408
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":417
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -27932,130 +27641,130 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_graph,&__pyx_mstate_global->__pyx_n_u_stack,&__pyx_mstate_global->__pyx_n_u_cond,&__pyx_mstate_global->__pyx_n_u_x_offset,&__pyx_mstate_global->__pyx_n_u_y_offset,&__pyx_mstate_global->__pyx_n_u_z_offset,&__pyx_mstate_global->__pyx_n_u_neighbor,&__pyx_mstate_global->__pyx_n_u_dist,&__pyx_mstate_global->__pyx_n_u_x,&__pyx_mstate_global->__pyx_n_u_y,&__pyx_mstate_global->__pyx_n_u_z,&__pyx_mstate_global->__pyx_n_u_offset,&__pyx_mstate_global->__pyx_n_u_stack_range,&__pyx_mstate_global->__pyx_n_u_argv,&__pyx_mstate_global->__pyx_n_u_intensity,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 408, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 417, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case 15:
         values[14] = __Pyx_ArgRef_FASTCALL(__pyx_args, 14);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[14])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[14])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 14:
         values[13] = __Pyx_ArgRef_FASTCALL(__pyx_args, 13);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 13:
         values[12] = __Pyx_ArgRef_FASTCALL(__pyx_args, 12);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 12:
         values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 11:
         values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 10:
         values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 408, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 417, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add_edges_cy", 0) < (0)) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add_edges_cy", 0) < (0)) __PYX_ERR(0, 417, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 15; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add_edges_cy", 1, 15, 15, i); __PYX_ERR(0, 408, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add_edges_cy", 1, 15, 15, i); __PYX_ERR(0, 417, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 15)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[12] = __Pyx_ArgRef_FASTCALL(__pyx_args, 12);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[13] = __Pyx_ArgRef_FASTCALL(__pyx_args, 13);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 417, __pyx_L3_error)
       values[14] = __Pyx_ArgRef_FASTCALL(__pyx_args, 14);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[14])) __PYX_ERR(0, 408, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[14])) __PYX_ERR(0, 417, __pyx_L3_error)
     }
     __pyx_v_graph = ((struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *)values[0]);
-    __pyx_v_stack = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_double__const__(values[1], 0); if (unlikely(!__pyx_v_stack.memview)) __PYX_ERR(0, 413, __pyx_L3_error)
-    __pyx_v_cond = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char__const__(values[2], 0); if (unlikely(!__pyx_v_cond.memview)) __PYX_ERR(0, 414, __pyx_L3_error)
-    __pyx_v_x_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[3], 0); if (unlikely(!__pyx_v_x_offset.memview)) __PYX_ERR(0, 415, __pyx_L3_error)
-    __pyx_v_y_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[4], 0); if (unlikely(!__pyx_v_y_offset.memview)) __PYX_ERR(0, 416, __pyx_L3_error)
-    __pyx_v_z_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[5], 0); if (unlikely(!__pyx_v_z_offset.memview)) __PYX_ERR(0, 417, __pyx_L3_error)
-    __pyx_v_neighbor = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[6], 0); if (unlikely(!__pyx_v_neighbor.memview)) __PYX_ERR(0, 418, __pyx_L3_error)
-    __pyx_v_dist = __Pyx_PyObject_to_MemoryviewSlice_ds_double__const__(values[7], 0); if (unlikely(!__pyx_v_dist.memview)) __PYX_ERR(0, 419, __pyx_L3_error)
-    __pyx_v_x = __Pyx_PyLong_As_int(values[8]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L3_error)
-    __pyx_v_y = __Pyx_PyLong_As_int(values[9]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L3_error)
-    __pyx_v_z = __Pyx_PyLong_As_int(values[10]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L3_error)
-    __pyx_v_offset = __Pyx_PyLong_As_int(values[11]); if (unlikely((__pyx_v_offset == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 421, __pyx_L3_error)
-    __pyx_v_stack_range = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[12], 0); if (unlikely(!__pyx_v_stack_range.memview)) __PYX_ERR(0, 422, __pyx_L3_error)
-    __pyx_v_argv = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[13], PyBUF_WRITABLE); if (unlikely(!__pyx_v_argv.memview)) __PYX_ERR(0, 423, __pyx_L3_error)
-    __pyx_v_intensity = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[14], PyBUF_WRITABLE); if (unlikely(!__pyx_v_intensity.memview)) __PYX_ERR(0, 424, __pyx_L3_error)
+    __pyx_v_stack = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_double__const__(values[1], 0); if (unlikely(!__pyx_v_stack.memview)) __PYX_ERR(0, 422, __pyx_L3_error)
+    __pyx_v_cond = __Pyx_PyObject_to_MemoryviewSlice_ds_unsigned_char__const__(values[2], 0); if (unlikely(!__pyx_v_cond.memview)) __PYX_ERR(0, 423, __pyx_L3_error)
+    __pyx_v_x_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[3], 0); if (unlikely(!__pyx_v_x_offset.memview)) __PYX_ERR(0, 424, __pyx_L3_error)
+    __pyx_v_y_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[4], 0); if (unlikely(!__pyx_v_y_offset.memview)) __PYX_ERR(0, 425, __pyx_L3_error)
+    __pyx_v_z_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[5], 0); if (unlikely(!__pyx_v_z_offset.memview)) __PYX_ERR(0, 426, __pyx_L3_error)
+    __pyx_v_neighbor = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[6], 0); if (unlikely(!__pyx_v_neighbor.memview)) __PYX_ERR(0, 427, __pyx_L3_error)
+    __pyx_v_dist = __Pyx_PyObject_to_MemoryviewSlice_ds_double__const__(values[7], 0); if (unlikely(!__pyx_v_dist.memview)) __PYX_ERR(0, 428, __pyx_L3_error)
+    __pyx_v_x = __Pyx_PyLong_As_int(values[8]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L3_error)
+    __pyx_v_y = __Pyx_PyLong_As_int(values[9]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L3_error)
+    __pyx_v_z = __Pyx_PyLong_As_int(values[10]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L3_error)
+    __pyx_v_offset = __Pyx_PyLong_As_int(values[11]); if (unlikely((__pyx_v_offset == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 430, __pyx_L3_error)
+    __pyx_v_stack_range = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[12], 0); if (unlikely(!__pyx_v_stack_range.memview)) __PYX_ERR(0, 431, __pyx_L3_error)
+    __pyx_v_argv = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[13], PyBUF_WRITABLE); if (unlikely(!__pyx_v_argv.memview)) __PYX_ERR(0, 432, __pyx_L3_error)
+    __pyx_v_intensity = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[14], PyBUF_WRITABLE); if (unlikely(!__pyx_v_intensity.memview)) __PYX_ERR(0, 433, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_edges_cy", 1, 15, 15, __pyx_nargs); __PYX_ERR(0, 408, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add_edges_cy", 1, 15, 15, __pyx_nargs); __PYX_ERR(0, 417, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -28076,7 +27785,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph, 1, "graph", 0))) __PYX_ERR(0, 412, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph, 1, "graph", 0))) __PYX_ERR(0, 421, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_2add_edges_cy(__pyx_self, __pyx_v_graph, __pyx_v_stack, __pyx_v_cond, __pyx_v_x_offset, __pyx_v_y_offset, __pyx_v_z_offset, __pyx_v_neighbor, __pyx_v_dist, __pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_offset, __pyx_v_stack_range, __pyx_v_argv, __pyx_v_intensity);
 
   /* function exit code */
@@ -28115,18 +27824,18 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_2ad
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_edges_cy", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_stack.memview)) { __Pyx_RaiseUnboundLocalError("stack"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_cond.memview)) { __Pyx_RaiseUnboundLocalError("cond"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_x_offset.memview)) { __Pyx_RaiseUnboundLocalError("x_offset"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_y_offset.memview)) { __Pyx_RaiseUnboundLocalError("y_offset"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_z_offset.memview)) { __Pyx_RaiseUnboundLocalError("z_offset"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_neighbor.memview)) { __Pyx_RaiseUnboundLocalError("neighbor"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_dist.memview)) { __Pyx_RaiseUnboundLocalError("dist"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_stack_range.memview)) { __Pyx_RaiseUnboundLocalError("stack_range"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_argv.memview)) { __Pyx_RaiseUnboundLocalError("argv"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_intensity.memview)) { __Pyx_RaiseUnboundLocalError("intensity"); __PYX_ERR(0, 408, __pyx_L1_error) }
-  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges_cy(__pyx_v_graph, __pyx_v_stack, __pyx_v_cond, __pyx_v_x_offset, __pyx_v_y_offset, __pyx_v_z_offset, __pyx_v_neighbor, __pyx_v_dist, __pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_offset, __pyx_v_stack_range, __pyx_v_argv, __pyx_v_intensity, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 408, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+  if (unlikely(!__pyx_v_stack.memview)) { __Pyx_RaiseUnboundLocalError("stack"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_cond.memview)) { __Pyx_RaiseUnboundLocalError("cond"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_x_offset.memview)) { __Pyx_RaiseUnboundLocalError("x_offset"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_y_offset.memview)) { __Pyx_RaiseUnboundLocalError("y_offset"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_z_offset.memview)) { __Pyx_RaiseUnboundLocalError("z_offset"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_neighbor.memview)) { __Pyx_RaiseUnboundLocalError("neighbor"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_dist.memview)) { __Pyx_RaiseUnboundLocalError("dist"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_stack_range.memview)) { __Pyx_RaiseUnboundLocalError("stack_range"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_argv.memview)) { __Pyx_RaiseUnboundLocalError("argv"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_intensity.memview)) { __Pyx_RaiseUnboundLocalError("intensity"); __PYX_ERR(0, 417, __pyx_L1_error) }
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_add_edges_cy(__pyx_v_graph, __pyx_v_stack, __pyx_v_cond, __pyx_v_x_offset, __pyx_v_y_offset, __pyx_v_z_offset, __pyx_v_neighbor, __pyx_v_dist, __pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_offset, __pyx_v_stack_range, __pyx_v_argv, __pyx_v_intensity, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 417, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -28143,7 +27852,1524 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_2ad
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":460
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":469
+ * 
+ * 
+ * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
+ * @cython.wraparound(False)
+ * @cython.cdivision(True)
+*/
+
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5build_stack_graph_cy(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_build_stack_graph_cy(struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *__pyx_v_graph, __Pyx_memviewslice __pyx_v_stack, int __pyx_v_conn, __Pyx_memviewslice __pyx_v_stack_range, __Pyx_memviewslice __pyx_v_x_offset, __Pyx_memviewslice __pyx_v_y_offset, __Pyx_memviewslice __pyx_v_z_offset, __Pyx_memviewslice __pyx_v_neighbor, __Pyx_memviewslice __pyx_v_dist, __Pyx_memviewslice __pyx_v_scan_boundary_masks, PyObject *__pyx_v_signal_mask_obj, PyObject *__pyx_v_group_mask_obj, int __pyx_v_including_signal_border, __Pyx_memviewslice __pyx_v_argv, __Pyx_memviewslice __pyx_v_intensity, int __pyx_v_initial_virtual_vertex, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  CYTHON_UNUSED int __pyx_v_stack_depth;
+  CYTHON_UNUSED int __pyx_v_stack_height;
+  CYTHON_UNUSED int __pyx_v_stack_width;
+  int __pyx_v_cdepth;
+  int __pyx_v_cheight;
+  int __pyx_v_cwidth;
+  int __pyx_v_x_state;
+  int __pyx_v_y_state;
+  int __pyx_v_z_state;
+  int __pyx_v_x;
+  int __pyx_v_y;
+  int __pyx_v_z;
+  int __pyx_v_i;
+  int __pyx_v_org_x;
+  int __pyx_v_org_y;
+  int __pyx_v_org_z;
+  int __pyx_v_neighbor_x;
+  int __pyx_v_neighbor_y;
+  int __pyx_v_neighbor_z;
+  int __pyx_v_offset;
+  int __pyx_v_current_virtual_vertex;
+  int __pyx_v_group_id;
+  int __pyx_v_group_vertex;
+  int __pyx_v_center_active;
+  int __pyx_v_neighbor_active;
+  double __pyx_v_center_value;
+  double __pyx_v_weight;
+  int __pyx_v_weighted;
+  PyArrayObject *__pyx_v_group_vertex_map_np = 0;
+  __Pyx_memviewslice __pyx_v_group_vertex_map = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_signal_mask = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_group_mask = { 0, 0, { 0 }, { 0 }, { 0 } };
+  int __pyx_v_has_signal_mask;
+  int __pyx_v_has_group_mask;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_group_vertex_map_np;
+  __Pyx_Buffer __pyx_pybuffer_group_vertex_map_np;
+  __Pyx_RefNannyDeclarations
+  Py_ssize_t __pyx_t_1;
+  Py_ssize_t __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  size_t __pyx_t_5;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  __Pyx_memviewslice __pyx_t_10 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_t_11 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_t_12 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  long __pyx_t_13;
+  long __pyx_t_14;
+  int __pyx_t_15;
+  long __pyx_t_16;
+  long __pyx_t_17;
+  int __pyx_t_18;
+  long __pyx_t_19;
+  long __pyx_t_20;
+  int __pyx_t_21;
+  Py_ssize_t __pyx_t_22;
+  int __pyx_t_23;
+  int __pyx_t_24;
+  int __pyx_t_25;
+  Py_ssize_t __pyx_t_26;
+  int __pyx_t_27;
+  Py_ssize_t __pyx_t_28;
+  Py_ssize_t __pyx_t_29;
+  double __pyx_t_30;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("build_stack_graph_cy", 0);
+  __pyx_pybuffer_group_vertex_map_np.pybuffer.buf = NULL;
+  __pyx_pybuffer_group_vertex_map_np.refcount = 0;
+  __pyx_pybuffernd_group_vertex_map_np.data = NULL;
+  __pyx_pybuffernd_group_vertex_map_np.rcbuffer = &__pyx_pybuffer_group_vertex_map_np;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":491
+ * ):
+ *     cdef:
+ *         int stack_depth = stack.shape[0]             # <<<<<<<<<<<<<<
+ *         int stack_height = stack.shape[1]
+ *         int stack_width = stack.shape[2]
+*/
+  __pyx_v_stack_depth = (__pyx_v_stack.shape[0]);
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":492
+ *     cdef:
+ *         int stack_depth = stack.shape[0]
+ *         int stack_height = stack.shape[1]             # <<<<<<<<<<<<<<
+ *         int stack_width = stack.shape[2]
+ *         int cdepth = stack_range[5] - stack_range[4]
+*/
+  __pyx_v_stack_height = (__pyx_v_stack.shape[1]);
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":493
+ *         int stack_depth = stack.shape[0]
+ *         int stack_height = stack.shape[1]
+ *         int stack_width = stack.shape[2]             # <<<<<<<<<<<<<<
+ *         int cdepth = stack_range[5] - stack_range[4]
+ *         int cheight = stack_range[3] - stack_range[2]
+*/
+  __pyx_v_stack_width = (__pyx_v_stack.shape[2]);
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":494
+ *         int stack_height = stack.shape[1]
+ *         int stack_width = stack.shape[2]
+ *         int cdepth = stack_range[5] - stack_range[4]             # <<<<<<<<<<<<<<
+ *         int cheight = stack_range[3] - stack_range[2]
+ *         int cwidth = stack_range[1] - stack_range[0]
+*/
+  __pyx_t_1 = 5;
+  __pyx_t_2 = 4;
+  __pyx_v_cdepth = ((*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_1 * __pyx_v_stack_range.strides[0]) ))) - (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_2 * __pyx_v_stack_range.strides[0]) ))));
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":495
+ *         int stack_width = stack.shape[2]
+ *         int cdepth = stack_range[5] - stack_range[4]
+ *         int cheight = stack_range[3] - stack_range[2]             # <<<<<<<<<<<<<<
+ *         int cwidth = stack_range[1] - stack_range[0]
+ *         int x_state, y_state, z_state
+*/
+  __pyx_t_2 = 3;
+  __pyx_t_1 = 2;
+  __pyx_v_cheight = ((*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_2 * __pyx_v_stack_range.strides[0]) ))) - (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_1 * __pyx_v_stack_range.strides[0]) ))));
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":496
+ *         int cdepth = stack_range[5] - stack_range[4]
+ *         int cheight = stack_range[3] - stack_range[2]
+ *         int cwidth = stack_range[1] - stack_range[0]             # <<<<<<<<<<<<<<
+ *         int x_state, y_state, z_state
+ *         int x, y, z, i
+*/
+  __pyx_t_1 = 1;
+  __pyx_t_2 = 0;
+  __pyx_v_cwidth = ((*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_1 * __pyx_v_stack_range.strides[0]) ))) - (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_2 * __pyx_v_stack_range.strides[0]) ))));
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":501
+ *         int org_x, org_y, org_z
+ *         int neighbor_x, neighbor_y, neighbor_z
+ *         int offset = 0             # <<<<<<<<<<<<<<
+ *         int current_virtual_vertex = initial_virtual_vertex
+ *         int group_id
+*/
+  __pyx_v_offset = 0;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":502
+ *         int neighbor_x, neighbor_y, neighbor_z
+ *         int offset = 0
+ *         int current_virtual_vertex = initial_virtual_vertex             # <<<<<<<<<<<<<<
+ *         int group_id
+ *         int group_vertex
+*/
+  __pyx_v_current_virtual_vertex = __pyx_v_initial_virtual_vertex;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":509
+ *         double center_value
+ *         double weight
+ *         bint weighted = graph.is_weighted()             # <<<<<<<<<<<<<<
+ *         np.ndarray[DTYPE_i32, ndim=1] group_vertex_map_np = np.zeros(256, dtype=np.int32)
+ *         DTYPE_i32[:] group_vertex_map = group_vertex_map_np
+*/
+  __pyx_t_4 = ((PyObject *)__pyx_v_graph);
+  __Pyx_INCREF(__pyx_t_4);
+  __pyx_t_5 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
+    __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_weighted, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 509, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+  }
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 509, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_weighted = __pyx_t_6;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":510
+ *         double weight
+ *         bint weighted = graph.is_weighted()
+ *         np.ndarray[DTYPE_i32, ndim=1] group_vertex_map_np = np.zeros(256, dtype=np.int32)             # <<<<<<<<<<<<<<
+ *         DTYPE_i32[:] group_vertex_map = group_vertex_map_np
+ * 
+*/
+  __pyx_t_4 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 510, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 510, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 510, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 510, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_8))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_8);
+    assert(__pyx_t_4);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_8);
+    __Pyx_INCREF(__pyx_t_4);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_8, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_mstate_global->__pyx_int_256};
+    __pyx_t_7 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 510, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_7, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 510, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_7);
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 510, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+  }
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 510, __pyx_L1_error)
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_group_vertex_map_np.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_3), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
+      __pyx_v_group_vertex_map_np = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_group_vertex_map_np.rcbuffer->pybuffer.buf = NULL;
+      __PYX_ERR(0, 510, __pyx_L1_error)
+    } else {__pyx_pybuffernd_group_vertex_map_np.diminfo[0].strides = __pyx_pybuffernd_group_vertex_map_np.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_group_vertex_map_np.diminfo[0].shape = __pyx_pybuffernd_group_vertex_map_np.rcbuffer->pybuffer.shape[0];
+    }
+  }
+  __pyx_v_group_vertex_map_np = ((PyArrayObject *)__pyx_t_3);
+  __pyx_t_3 = 0;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":511
+ *         bint weighted = graph.is_weighted()
+ *         np.ndarray[DTYPE_i32, ndim=1] group_vertex_map_np = np.zeros(256, dtype=np.int32)
+ *         DTYPE_i32[:] group_vertex_map = group_vertex_map_np             # <<<<<<<<<<<<<<
+ * 
+ *     cdef const DTYPE_u8[:, :, :] signal_mask
+*/
+  __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32(((PyObject *)__pyx_v_group_vertex_map_np), PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_v_group_vertex_map = __pyx_t_10;
+  __pyx_t_10.memview = NULL;
+  __pyx_t_10.data = NULL;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":515
+ *     cdef const DTYPE_u8[:, :, :] signal_mask
+ *     cdef const DTYPE_u8[:, :, :] group_mask
+ *     cdef bint has_signal_mask = signal_mask_obj is not None             # <<<<<<<<<<<<<<
+ *     cdef bint has_group_mask = group_mask_obj is not None
+ * 
+*/
+  __pyx_t_6 = (__pyx_v_signal_mask_obj != Py_None);
+  __pyx_v_has_signal_mask = __pyx_t_6;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":516
+ *     cdef const DTYPE_u8[:, :, :] group_mask
+ *     cdef bint has_signal_mask = signal_mask_obj is not None
+ *     cdef bint has_group_mask = group_mask_obj is not None             # <<<<<<<<<<<<<<
+ * 
+ *     if has_signal_mask:
+*/
+  __pyx_t_6 = (__pyx_v_group_mask_obj != Py_None);
+  __pyx_v_has_group_mask = __pyx_t_6;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":518
+ *     cdef bint has_group_mask = group_mask_obj is not None
+ * 
+ *     if has_signal_mask:             # <<<<<<<<<<<<<<
+ *         signal_mask = signal_mask_obj
+ *     if has_group_mask:
+*/
+  if (__pyx_v_has_signal_mask) {
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":519
+ * 
+ *     if has_signal_mask:
+ *         signal_mask = signal_mask_obj             # <<<<<<<<<<<<<<
+ *     if has_group_mask:
+ *         group_mask = group_mask_obj
+*/
+    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8__const__(__pyx_v_signal_mask_obj, 0); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 519, __pyx_L1_error)
+    __pyx_v_signal_mask = __pyx_t_11;
+    __pyx_t_11.memview = NULL;
+    __pyx_t_11.data = NULL;
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":518
+ *     cdef bint has_group_mask = group_mask_obj is not None
+ * 
+ *     if has_signal_mask:             # <<<<<<<<<<<<<<
+ *         signal_mask = signal_mask_obj
+ *     if has_group_mask:
+*/
+  }
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":520
+ *     if has_signal_mask:
+ *         signal_mask = signal_mask_obj
+ *     if has_group_mask:             # <<<<<<<<<<<<<<
+ *         group_mask = group_mask_obj
+ * 
+*/
+  if (__pyx_v_has_group_mask) {
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":521
+ *         signal_mask = signal_mask_obj
+ *     if has_group_mask:
+ *         group_mask = group_mask_obj             # <<<<<<<<<<<<<<
+ * 
+ *     for z in range(cdepth + 1):
+*/
+    __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8__const__(__pyx_v_group_mask_obj, 0); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 521, __pyx_L1_error)
+    __pyx_v_group_mask = __pyx_t_12;
+    __pyx_t_12.memview = NULL;
+    __pyx_t_12.data = NULL;
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":520
+ *     if has_signal_mask:
+ *         signal_mask = signal_mask_obj
+ *     if has_group_mask:             # <<<<<<<<<<<<<<
+ *         group_mask = group_mask_obj
+ * 
+*/
+  }
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":523
+ *         group_mask = group_mask_obj
+ * 
+ *     for z in range(cdepth + 1):             # <<<<<<<<<<<<<<
+ *         if z == 0:
+ *             z_state = 0
+*/
+  __pyx_t_13 = (__pyx_v_cdepth + 1);
+  __pyx_t_14 = __pyx_t_13;
+  for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
+    __pyx_v_z = __pyx_t_15;
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":524
+ * 
+ *     for z in range(cdepth + 1):
+ *         if z == 0:             # <<<<<<<<<<<<<<
+ *             z_state = 0
+ *         elif z == cdepth:
+*/
+    __pyx_t_6 = (__pyx_v_z == 0);
+    if (__pyx_t_6) {
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":525
+ *     for z in range(cdepth + 1):
+ *         if z == 0:
+ *             z_state = 0             # <<<<<<<<<<<<<<
+ *         elif z == cdepth:
+ *             z_state = 2
+*/
+      __pyx_v_z_state = 0;
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":524
+ * 
+ *     for z in range(cdepth + 1):
+ *         if z == 0:             # <<<<<<<<<<<<<<
+ *             z_state = 0
+ *         elif z == cdepth:
+*/
+      goto __pyx_L7;
+    }
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":526
+ *         if z == 0:
+ *             z_state = 0
+ *         elif z == cdepth:             # <<<<<<<<<<<<<<
+ *             z_state = 2
+ *         else:
+*/
+    __pyx_t_6 = (__pyx_v_z == __pyx_v_cdepth);
+    if (__pyx_t_6) {
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":527
+ *             z_state = 0
+ *         elif z == cdepth:
+ *             z_state = 2             # <<<<<<<<<<<<<<
+ *         else:
+ *             z_state = 1
+*/
+      __pyx_v_z_state = 2;
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":526
+ *         if z == 0:
+ *             z_state = 0
+ *         elif z == cdepth:             # <<<<<<<<<<<<<<
+ *             z_state = 2
+ *         else:
+*/
+      goto __pyx_L7;
+    }
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":529
+ *             z_state = 2
+ *         else:
+ *             z_state = 1             # <<<<<<<<<<<<<<
+ * 
+ *         org_z = z + stack_range[4]
+*/
+    /*else*/ {
+      __pyx_v_z_state = 1;
+    }
+    __pyx_L7:;
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":531
+ *             z_state = 1
+ * 
+ *         org_z = z + stack_range[4]             # <<<<<<<<<<<<<<
+ * 
+ *         for y in range(cheight + 1):
+*/
+    __pyx_t_2 = 4;
+    __pyx_v_org_z = (__pyx_v_z + (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_2 * __pyx_v_stack_range.strides[0]) ))));
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":533
+ *         org_z = z + stack_range[4]
+ * 
+ *         for y in range(cheight + 1):             # <<<<<<<<<<<<<<
+ *             if y == 0:
+ *                 y_state = 0
+*/
+    __pyx_t_16 = (__pyx_v_cheight + 1);
+    __pyx_t_17 = __pyx_t_16;
+    for (__pyx_t_18 = 0; __pyx_t_18 < __pyx_t_17; __pyx_t_18+=1) {
+      __pyx_v_y = __pyx_t_18;
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":534
+ * 
+ *         for y in range(cheight + 1):
+ *             if y == 0:             # <<<<<<<<<<<<<<
+ *                 y_state = 0
+ *             elif y == cheight:
+*/
+      __pyx_t_6 = (__pyx_v_y == 0);
+      if (__pyx_t_6) {
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":535
+ *         for y in range(cheight + 1):
+ *             if y == 0:
+ *                 y_state = 0             # <<<<<<<<<<<<<<
+ *             elif y == cheight:
+ *                 y_state = 2
+*/
+        __pyx_v_y_state = 0;
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":534
+ * 
+ *         for y in range(cheight + 1):
+ *             if y == 0:             # <<<<<<<<<<<<<<
+ *                 y_state = 0
+ *             elif y == cheight:
+*/
+        goto __pyx_L10;
+      }
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":536
+ *             if y == 0:
+ *                 y_state = 0
+ *             elif y == cheight:             # <<<<<<<<<<<<<<
+ *                 y_state = 2
+ *             else:
+*/
+      __pyx_t_6 = (__pyx_v_y == __pyx_v_cheight);
+      if (__pyx_t_6) {
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":537
+ *                 y_state = 0
+ *             elif y == cheight:
+ *                 y_state = 2             # <<<<<<<<<<<<<<
+ *             else:
+ *                 y_state = 1
+*/
+        __pyx_v_y_state = 2;
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":536
+ *             if y == 0:
+ *                 y_state = 0
+ *             elif y == cheight:             # <<<<<<<<<<<<<<
+ *                 y_state = 2
+ *             else:
+*/
+        goto __pyx_L10;
+      }
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":539
+ *                 y_state = 2
+ *             else:
+ *                 y_state = 1             # <<<<<<<<<<<<<<
+ * 
+ *             org_y = y + stack_range[2]
+*/
+      /*else*/ {
+        __pyx_v_y_state = 1;
+      }
+      __pyx_L10:;
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":541
+ *                 y_state = 1
+ * 
+ *             org_y = y + stack_range[2]             # <<<<<<<<<<<<<<
+ * 
+ *             for x in range(cwidth + 1):
+*/
+      __pyx_t_2 = 2;
+      __pyx_v_org_y = (__pyx_v_y + (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_2 * __pyx_v_stack_range.strides[0]) ))));
+
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":543
+ *             org_y = y + stack_range[2]
+ * 
+ *             for x in range(cwidth + 1):             # <<<<<<<<<<<<<<
+ *                 if x == 0:
+ *                     x_state = 0
+*/
+      __pyx_t_19 = (__pyx_v_cwidth + 1);
+      __pyx_t_20 = __pyx_t_19;
+      for (__pyx_t_21 = 0; __pyx_t_21 < __pyx_t_20; __pyx_t_21+=1) {
+        __pyx_v_x = __pyx_t_21;
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":544
+ * 
+ *             for x in range(cwidth + 1):
+ *                 if x == 0:             # <<<<<<<<<<<<<<
+ *                     x_state = 0
+ *                 elif x == cwidth:
+*/
+        __pyx_t_6 = (__pyx_v_x == 0);
+        if (__pyx_t_6) {
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":545
+ *             for x in range(cwidth + 1):
+ *                 if x == 0:
+ *                     x_state = 0             # <<<<<<<<<<<<<<
+ *                 elif x == cwidth:
+ *                     x_state = 2
+*/
+          __pyx_v_x_state = 0;
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":544
+ * 
+ *             for x in range(cwidth + 1):
+ *                 if x == 0:             # <<<<<<<<<<<<<<
+ *                     x_state = 0
+ *                 elif x == cwidth:
+*/
+          goto __pyx_L13;
+        }
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":546
+ *                 if x == 0:
+ *                     x_state = 0
+ *                 elif x == cwidth:             # <<<<<<<<<<<<<<
+ *                     x_state = 2
+ *                 else:
+*/
+        __pyx_t_6 = (__pyx_v_x == __pyx_v_cwidth);
+        if (__pyx_t_6) {
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":547
+ *                     x_state = 0
+ *                 elif x == cwidth:
+ *                     x_state = 2             # <<<<<<<<<<<<<<
+ *                 else:
+ *                     x_state = 1
+*/
+          __pyx_v_x_state = 2;
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":546
+ *                 if x == 0:
+ *                     x_state = 0
+ *                 elif x == cwidth:             # <<<<<<<<<<<<<<
+ *                     x_state = 2
+ *                 else:
+*/
+          goto __pyx_L13;
+        }
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":549
+ *                     x_state = 2
+ *                 else:
+ *                     x_state = 1             # <<<<<<<<<<<<<<
+ * 
+ *                 org_x = x + stack_range[0]
+*/
+        /*else*/ {
+          __pyx_v_x_state = 1;
+        }
+        __pyx_L13:;
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":551
+ *                     x_state = 1
+ * 
+ *                 org_x = x + stack_range[0]             # <<<<<<<<<<<<<<
+ *                 center_value = stack[org_z, org_y, org_x]
+ * 
+*/
+        __pyx_t_2 = 0;
+        __pyx_v_org_x = (__pyx_v_x + (*((int const  *) ( /* dim=0 */ (__pyx_v_stack_range.data + __pyx_t_2 * __pyx_v_stack_range.strides[0]) ))));
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":552
+ * 
+ *                 org_x = x + stack_range[0]
+ *                 center_value = stack[org_z, org_y, org_x]             # <<<<<<<<<<<<<<
+ * 
+ *                 if has_signal_mask:
+*/
+        __pyx_t_2 = __pyx_v_org_z;
+        __pyx_t_1 = __pyx_v_org_y;
+        __pyx_t_22 = __pyx_v_org_x;
+        __pyx_v_center_value = (*((double const  *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_stack.data + __pyx_t_2 * __pyx_v_stack.strides[0]) ) + __pyx_t_1 * __pyx_v_stack.strides[1]) ) + __pyx_t_22 * __pyx_v_stack.strides[2]) )));
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":554
+ *                 center_value = stack[org_z, org_y, org_x]
+ * 
+ *                 if has_signal_mask:             # <<<<<<<<<<<<<<
+ *                     center_active = signal_mask[org_z, org_y, org_x] > 0
+ *                 else:
+*/
+        if (__pyx_v_has_signal_mask) {
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":555
+ * 
+ *                 if has_signal_mask:
+ *                     center_active = signal_mask[org_z, org_y, org_x] > 0             # <<<<<<<<<<<<<<
+ *                 else:
+ *                     center_active = 1
+*/
+          if (unlikely(!__pyx_v_signal_mask.memview)) { __Pyx_RaiseUnboundLocalError("signal_mask"); __PYX_ERR(0, 555, __pyx_L1_error) }
+          __pyx_t_22 = __pyx_v_org_z;
+          __pyx_t_1 = __pyx_v_org_y;
+          __pyx_t_2 = __pyx_v_org_x;
+          __pyx_v_center_active = ((*((__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8 const  *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_signal_mask.data + __pyx_t_22 * __pyx_v_signal_mask.strides[0]) ) + __pyx_t_1 * __pyx_v_signal_mask.strides[1]) ) + __pyx_t_2 * __pyx_v_signal_mask.strides[2]) ))) > 0);
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":554
+ *                 center_value = stack[org_z, org_y, org_x]
+ * 
+ *                 if has_signal_mask:             # <<<<<<<<<<<<<<
+ *                     center_active = signal_mask[org_z, org_y, org_x] > 0
+ *                 else:
+*/
+          goto __pyx_L14;
+        }
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":557
+ *                     center_active = signal_mask[org_z, org_y, org_x] > 0
+ *                 else:
+ *                     center_active = 1             # <<<<<<<<<<<<<<
+ * 
+ *                 for i in range(conn):
+*/
+        /*else*/ {
+          __pyx_v_center_active = 1;
+        }
+        __pyx_L14:;
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":559
+ *                     center_active = 1
+ * 
+ *                 for i in range(conn):             # <<<<<<<<<<<<<<
+ *                     if scan_boundary_masks[x_state, y_state, z_state, i] == 0:
+ *                         continue
+*/
+        __pyx_t_23 = __pyx_v_conn;
+        __pyx_t_24 = __pyx_t_23;
+        for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_24; __pyx_t_25+=1) {
+          __pyx_v_i = __pyx_t_25;
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":560
+ * 
+ *                 for i in range(conn):
+ *                     if scan_boundary_masks[x_state, y_state, z_state, i] == 0:             # <<<<<<<<<<<<<<
+ *                         continue
+ * 
+*/
+          __pyx_t_2 = __pyx_v_x_state;
+          __pyx_t_1 = __pyx_v_y_state;
+          __pyx_t_22 = __pyx_v_z_state;
+          __pyx_t_26 = __pyx_v_i;
+          __pyx_t_6 = ((*((unsigned char const  *) ( /* dim=3 */ (( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_scan_boundary_masks.data + __pyx_t_2 * __pyx_v_scan_boundary_masks.strides[0]) ) + __pyx_t_1 * __pyx_v_scan_boundary_masks.strides[1]) ) + __pyx_t_22 * __pyx_v_scan_boundary_masks.strides[2]) ) + __pyx_t_26 * __pyx_v_scan_boundary_masks.strides[3]) ))) == 0);
+          if (__pyx_t_6) {
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":561
+ *                 for i in range(conn):
+ *                     if scan_boundary_masks[x_state, y_state, z_state, i] == 0:
+ *                         continue             # <<<<<<<<<<<<<<
+ * 
+ *                     if has_signal_mask:
+*/
+            goto __pyx_L15_continue;
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":560
+ * 
+ *                 for i in range(conn):
+ *                     if scan_boundary_masks[x_state, y_state, z_state, i] == 0:             # <<<<<<<<<<<<<<
+ *                         continue
+ * 
+*/
+          }
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":563
+ *                         continue
+ * 
+ *                     if has_signal_mask:             # <<<<<<<<<<<<<<
+ *                         if including_signal_border and center_active:
+ *                             neighbor_active = 1
+*/
+          if (__pyx_v_has_signal_mask) {
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":564
+ * 
+ *                     if has_signal_mask:
+ *                         if including_signal_border and center_active:             # <<<<<<<<<<<<<<
+ *                             neighbor_active = 1
+ *                         else:
+*/
+            if (__pyx_v_including_signal_border) {
+            } else {
+              __pyx_t_6 = __pyx_v_including_signal_border;
+              goto __pyx_L20_bool_binop_done;
+            }
+            __pyx_t_27 = (__pyx_v_center_active != 0);
+            __pyx_t_6 = __pyx_t_27;
+            __pyx_L20_bool_binop_done:;
+            if (__pyx_t_6) {
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":565
+ *                     if has_signal_mask:
+ *                         if including_signal_border and center_active:
+ *                             neighbor_active = 1             # <<<<<<<<<<<<<<
+ *                         else:
+ *                             neighbor_x = org_x + x_offset[i]
+*/
+              __pyx_v_neighbor_active = 1;
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":564
+ * 
+ *                     if has_signal_mask:
+ *                         if including_signal_border and center_active:             # <<<<<<<<<<<<<<
+ *                             neighbor_active = 1
+ *                         else:
+*/
+              goto __pyx_L19;
+            }
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":567
+ *                             neighbor_active = 1
+ *                         else:
+ *                             neighbor_x = org_x + x_offset[i]             # <<<<<<<<<<<<<<
+ *                             neighbor_y = org_y + y_offset[i]
+ *                             neighbor_z = org_z + z_offset[i]
+*/
+            /*else*/ {
+              __pyx_t_26 = __pyx_v_i;
+              __pyx_v_neighbor_x = (__pyx_v_org_x + (*((int const  *) ( /* dim=0 */ (__pyx_v_x_offset.data + __pyx_t_26 * __pyx_v_x_offset.strides[0]) ))));
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":568
+ *                         else:
+ *                             neighbor_x = org_x + x_offset[i]
+ *                             neighbor_y = org_y + y_offset[i]             # <<<<<<<<<<<<<<
+ *                             neighbor_z = org_z + z_offset[i]
+ *                             neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0
+*/
+              __pyx_t_26 = __pyx_v_i;
+              __pyx_v_neighbor_y = (__pyx_v_org_y + (*((int const  *) ( /* dim=0 */ (__pyx_v_y_offset.data + __pyx_t_26 * __pyx_v_y_offset.strides[0]) ))));
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":569
+ *                             neighbor_x = org_x + x_offset[i]
+ *                             neighbor_y = org_y + y_offset[i]
+ *                             neighbor_z = org_z + z_offset[i]             # <<<<<<<<<<<<<<
+ *                             neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0
+ *                             if including_signal_border:
+*/
+              __pyx_t_26 = __pyx_v_i;
+              __pyx_v_neighbor_z = (__pyx_v_org_z + (*((int const  *) ( /* dim=0 */ (__pyx_v_z_offset.data + __pyx_t_26 * __pyx_v_z_offset.strides[0]) ))));
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":570
+ *                             neighbor_y = org_y + y_offset[i]
+ *                             neighbor_z = org_z + z_offset[i]
+ *                             neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0             # <<<<<<<<<<<<<<
+ *                             if including_signal_border:
+ *                                 if (center_active == 0) and (neighbor_active == 0):
+*/
+              if (unlikely(!__pyx_v_signal_mask.memview)) { __Pyx_RaiseUnboundLocalError("signal_mask"); __PYX_ERR(0, 570, __pyx_L1_error) }
+              __pyx_t_26 = __pyx_v_neighbor_z;
+              __pyx_t_22 = __pyx_v_neighbor_y;
+              __pyx_t_1 = __pyx_v_neighbor_x;
+              __pyx_v_neighbor_active = ((*((__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8 const  *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_signal_mask.data + __pyx_t_26 * __pyx_v_signal_mask.strides[0]) ) + __pyx_t_22 * __pyx_v_signal_mask.strides[1]) ) + __pyx_t_1 * __pyx_v_signal_mask.strides[2]) ))) > 0);
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":571
+ *                             neighbor_z = org_z + z_offset[i]
+ *                             neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0
+ *                             if including_signal_border:             # <<<<<<<<<<<<<<
+ *                                 if (center_active == 0) and (neighbor_active == 0):
+ *                                     continue
+*/
+              if (__pyx_v_including_signal_border) {
+
+                /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":572
+ *                             neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0
+ *                             if including_signal_border:
+ *                                 if (center_active == 0) and (neighbor_active == 0):             # <<<<<<<<<<<<<<
+ *                                     continue
+ *                             else:
+*/
+                __pyx_t_27 = (__pyx_v_center_active == 0);
+                if (__pyx_t_27) {
+                } else {
+                  __pyx_t_6 = __pyx_t_27;
+                  goto __pyx_L24_bool_binop_done;
+                }
+                __pyx_t_27 = (__pyx_v_neighbor_active == 0);
+                __pyx_t_6 = __pyx_t_27;
+                __pyx_L24_bool_binop_done:;
+                if (__pyx_t_6) {
+
+                  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":573
+ *                             if including_signal_border:
+ *                                 if (center_active == 0) and (neighbor_active == 0):
+ *                                     continue             # <<<<<<<<<<<<<<
+ *                             else:
+ *                                 if (center_active == 0) or (neighbor_active == 0):
+*/
+                  goto __pyx_L15_continue;
+
+                  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":572
+ *                             neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0
+ *                             if including_signal_border:
+ *                                 if (center_active == 0) and (neighbor_active == 0):             # <<<<<<<<<<<<<<
+ *                                     continue
+ *                             else:
+*/
+                }
+
+                /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":571
+ *                             neighbor_z = org_z + z_offset[i]
+ *                             neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0
+ *                             if including_signal_border:             # <<<<<<<<<<<<<<
+ *                                 if (center_active == 0) and (neighbor_active == 0):
+ *                                     continue
+*/
+                goto __pyx_L22;
+              }
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":575
+ *                                     continue
+ *                             else:
+ *                                 if (center_active == 0) or (neighbor_active == 0):             # <<<<<<<<<<<<<<
+ *                                     continue
+ * 
+*/
+              /*else*/ {
+                __pyx_t_27 = (__pyx_v_center_active == 0);
+                if (!__pyx_t_27) {
+                } else {
+                  __pyx_t_6 = __pyx_t_27;
+                  goto __pyx_L27_bool_binop_done;
+                }
+                __pyx_t_27 = (__pyx_v_neighbor_active == 0);
+                __pyx_t_6 = __pyx_t_27;
+                __pyx_L27_bool_binop_done:;
+                if (__pyx_t_6) {
+
+                  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":576
+ *                             else:
+ *                                 if (center_active == 0) or (neighbor_active == 0):
+ *                                     continue             # <<<<<<<<<<<<<<
+ * 
+ *                     neighbor_x = org_x + x_offset[i]
+*/
+                  goto __pyx_L15_continue;
+
+                  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":575
+ *                                     continue
+ *                             else:
+ *                                 if (center_active == 0) or (neighbor_active == 0):             # <<<<<<<<<<<<<<
+ *                                     continue
+ * 
+*/
+                }
+              }
+              __pyx_L22:;
+            }
+            __pyx_L19:;
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":563
+ *                         continue
+ * 
+ *                     if has_signal_mask:             # <<<<<<<<<<<<<<
+ *                         if including_signal_border and center_active:
+ *                             neighbor_active = 1
+*/
+          }
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":578
+ *                                     continue
+ * 
+ *                     neighbor_x = org_x + x_offset[i]             # <<<<<<<<<<<<<<
+ *                     neighbor_y = org_y + y_offset[i]
+ *                     neighbor_z = org_z + z_offset[i]
+*/
+          __pyx_t_1 = __pyx_v_i;
+          __pyx_v_neighbor_x = (__pyx_v_org_x + (*((int const  *) ( /* dim=0 */ (__pyx_v_x_offset.data + __pyx_t_1 * __pyx_v_x_offset.strides[0]) ))));
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":579
+ * 
+ *                     neighbor_x = org_x + x_offset[i]
+ *                     neighbor_y = org_y + y_offset[i]             # <<<<<<<<<<<<<<
+ *                     neighbor_z = org_z + z_offset[i]
+ * 
+*/
+          __pyx_t_1 = __pyx_v_i;
+          __pyx_v_neighbor_y = (__pyx_v_org_y + (*((int const  *) ( /* dim=0 */ (__pyx_v_y_offset.data + __pyx_t_1 * __pyx_v_y_offset.strides[0]) ))));
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":580
+ *                     neighbor_x = org_x + x_offset[i]
+ *                     neighbor_y = org_y + y_offset[i]
+ *                     neighbor_z = org_z + z_offset[i]             # <<<<<<<<<<<<<<
+ * 
+ *                     if weighted:
+*/
+          __pyx_t_1 = __pyx_v_i;
+          __pyx_v_neighbor_z = (__pyx_v_org_z + (*((int const  *) ( /* dim=0 */ (__pyx_v_z_offset.data + __pyx_t_1 * __pyx_v_z_offset.strides[0]) ))));
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":582
+ *                     neighbor_z = org_z + z_offset[i]
+ * 
+ *                     if weighted:             # <<<<<<<<<<<<<<
+ *                         weight = _stack_voxel_weight_cy(
+ *                             dist[i],
+*/
+          if (__pyx_v_weighted) {
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":584
+ *                     if weighted:
+ *                         weight = _stack_voxel_weight_cy(
+ *                             dist[i],             # <<<<<<<<<<<<<<
+ *                             center_value,
+ *                             stack[neighbor_z, neighbor_y, neighbor_x],
+*/
+            __pyx_t_1 = __pyx_v_i;
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":586
+ *                             dist[i],
+ *                             center_value,
+ *                             stack[neighbor_z, neighbor_y, neighbor_x],             # <<<<<<<<<<<<<<
+ *                             argv[3],
+ *                             argv[4],
+*/
+            __pyx_t_22 = __pyx_v_neighbor_z;
+            __pyx_t_26 = __pyx_v_neighbor_y;
+            __pyx_t_2 = __pyx_v_neighbor_x;
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":587
+ *                             center_value,
+ *                             stack[neighbor_z, neighbor_y, neighbor_x],
+ *                             argv[3],             # <<<<<<<<<<<<<<
+ *                             argv[4],
+ *                         )
+*/
+            __pyx_t_28 = 3;
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":588
+ *                             stack[neighbor_z, neighbor_y, neighbor_x],
+ *                             argv[3],
+ *                             argv[4],             # <<<<<<<<<<<<<<
+ *                         )
+ *                         _graph_add_edge_inline(graph, offset, offset + neighbor[i], weight)
+*/
+            __pyx_t_29 = 4;
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":583
+ * 
+ *                     if weighted:
+ *                         weight = _stack_voxel_weight_cy(             # <<<<<<<<<<<<<<
+ *                             dist[i],
+ *                             center_value,
+*/
+            __pyx_t_30 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__stack_voxel_weight_cy((*((double const  *) ( /* dim=0 */ (__pyx_v_dist.data + __pyx_t_1 * __pyx_v_dist.strides[0]) ))), __pyx_v_center_value, (*((double const  *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_stack.data + __pyx_t_22 * __pyx_v_stack.strides[0]) ) + __pyx_t_26 * __pyx_v_stack.strides[1]) ) + __pyx_t_2 * __pyx_v_stack.strides[2]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_28 * __pyx_v_argv.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_argv.data + __pyx_t_29 * __pyx_v_argv.strides[0]) )))); if (unlikely(__pyx_t_30 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 583, __pyx_L1_error)
+            __pyx_v_weight = __pyx_t_30;
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":590
+ *                             argv[4],
+ *                         )
+ *                         _graph_add_edge_inline(graph, offset, offset + neighbor[i], weight)             # <<<<<<<<<<<<<<
+ *                     else:
+ *                         _graph_add_edge_inline(graph, offset, offset + neighbor[i], 0.0)
+*/
+            __pyx_t_29 = __pyx_v_i;
+            __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__graph_add_edge_inline(__pyx_v_graph, __pyx_v_offset, (__pyx_v_offset + (*((int const  *) ( /* dim=0 */ (__pyx_v_neighbor.data + __pyx_t_29 * __pyx_v_neighbor.strides[0]) )))), __pyx_v_weight); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 590, __pyx_L1_error)
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":582
+ *                     neighbor_z = org_z + z_offset[i]
+ * 
+ *                     if weighted:             # <<<<<<<<<<<<<<
+ *                         weight = _stack_voxel_weight_cy(
+ *                             dist[i],
+*/
+            goto __pyx_L29;
+          }
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":592
+ *                         _graph_add_edge_inline(graph, offset, offset + neighbor[i], weight)
+ *                     else:
+ *                         _graph_add_edge_inline(graph, offset, offset + neighbor[i], 0.0)             # <<<<<<<<<<<<<<
+ *                         intensity[offset] = center_value
+ * 
+*/
+          /*else*/ {
+            __pyx_t_29 = __pyx_v_i;
+            __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__graph_add_edge_inline(__pyx_v_graph, __pyx_v_offset, (__pyx_v_offset + (*((int const  *) ( /* dim=0 */ (__pyx_v_neighbor.data + __pyx_t_29 * __pyx_v_neighbor.strides[0]) )))), 0.0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 592, __pyx_L1_error)
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":593
+ *                     else:
+ *                         _graph_add_edge_inline(graph, offset, offset + neighbor[i], 0.0)
+ *                         intensity[offset] = center_value             # <<<<<<<<<<<<<<
+ * 
+ *                 if has_group_mask:
+*/
+            __pyx_t_29 = __pyx_v_offset;
+            *((double *) ( /* dim=0 */ (__pyx_v_intensity.data + __pyx_t_29 * __pyx_v_intensity.strides[0]) )) = __pyx_v_center_value;
+          }
+          __pyx_L29:;
+          __pyx_L15_continue:;
+        }
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":595
+ *                         intensity[offset] = center_value
+ * 
+ *                 if has_group_mask:             # <<<<<<<<<<<<<<
+ *                     group_id = group_mask[org_z, org_y, org_x]
+ *                     if group_id > 0:
+*/
+        if (__pyx_v_has_group_mask) {
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":596
+ * 
+ *                 if has_group_mask:
+ *                     group_id = group_mask[org_z, org_y, org_x]             # <<<<<<<<<<<<<<
+ *                     if group_id > 0:
+ *                         group_vertex = group_vertex_map[group_id]
+*/
+          if (unlikely(!__pyx_v_group_mask.memview)) { __Pyx_RaiseUnboundLocalError("group_mask"); __PYX_ERR(0, 596, __pyx_L1_error) }
+          __pyx_t_29 = __pyx_v_org_z;
+          __pyx_t_28 = __pyx_v_org_y;
+          __pyx_t_2 = __pyx_v_org_x;
+          __pyx_v_group_id = (*((__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8 const  *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_group_mask.data + __pyx_t_29 * __pyx_v_group_mask.strides[0]) ) + __pyx_t_28 * __pyx_v_group_mask.strides[1]) ) + __pyx_t_2 * __pyx_v_group_mask.strides[2]) )));
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":597
+ *                 if has_group_mask:
+ *                     group_id = group_mask[org_z, org_y, org_x]
+ *                     if group_id > 0:             # <<<<<<<<<<<<<<
+ *                         group_vertex = group_vertex_map[group_id]
+ *                         if group_vertex <= 0:
+*/
+          __pyx_t_6 = (__pyx_v_group_id > 0);
+          if (__pyx_t_6) {
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":598
+ *                     group_id = group_mask[org_z, org_y, org_x]
+ *                     if group_id > 0:
+ *                         group_vertex = group_vertex_map[group_id]             # <<<<<<<<<<<<<<
+ *                         if group_vertex <= 0:
+ *                             group_vertex = current_virtual_vertex
+*/
+            __pyx_t_2 = __pyx_v_group_id;
+            __pyx_v_group_vertex = (*((__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *) ( /* dim=0 */ (__pyx_v_group_vertex_map.data + __pyx_t_2 * __pyx_v_group_vertex_map.strides[0]) )));
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":599
+ *                     if group_id > 0:
+ *                         group_vertex = group_vertex_map[group_id]
+ *                         if group_vertex <= 0:             # <<<<<<<<<<<<<<
+ *                             group_vertex = current_virtual_vertex
+ *                             current_virtual_vertex += 1
+*/
+            __pyx_t_6 = (__pyx_v_group_vertex <= 0);
+            if (__pyx_t_6) {
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":600
+ *                         group_vertex = group_vertex_map[group_id]
+ *                         if group_vertex <= 0:
+ *                             group_vertex = current_virtual_vertex             # <<<<<<<<<<<<<<
+ *                             current_virtual_vertex += 1
+ *                             group_vertex_map[group_id] = group_vertex
+*/
+              __pyx_v_group_vertex = __pyx_v_current_virtual_vertex;
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":601
+ *                         if group_vertex <= 0:
+ *                             group_vertex = current_virtual_vertex
+ *                             current_virtual_vertex += 1             # <<<<<<<<<<<<<<
+ *                             group_vertex_map[group_id] = group_vertex
+ *                         _graph_add_edge_inline(graph, group_vertex, offset, 0.0)
+*/
+              __pyx_v_current_virtual_vertex = (__pyx_v_current_virtual_vertex + 1);
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":602
+ *                             group_vertex = current_virtual_vertex
+ *                             current_virtual_vertex += 1
+ *                             group_vertex_map[group_id] = group_vertex             # <<<<<<<<<<<<<<
+ *                         _graph_add_edge_inline(graph, group_vertex, offset, 0.0)
+ * 
+*/
+              __pyx_t_2 = __pyx_v_group_id;
+              *((__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *) ( /* dim=0 */ (__pyx_v_group_vertex_map.data + __pyx_t_2 * __pyx_v_group_vertex_map.strides[0]) )) = __pyx_v_group_vertex;
+
+              /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":599
+ *                     if group_id > 0:
+ *                         group_vertex = group_vertex_map[group_id]
+ *                         if group_vertex <= 0:             # <<<<<<<<<<<<<<
+ *                             group_vertex = current_virtual_vertex
+ *                             current_virtual_vertex += 1
+*/
+            }
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":603
+ *                             current_virtual_vertex += 1
+ *                             group_vertex_map[group_id] = group_vertex
+ *                         _graph_add_edge_inline(graph, group_vertex, offset, 0.0)             # <<<<<<<<<<<<<<
+ * 
+ *                 offset += 1
+*/
+            __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__graph_add_edge_inline(__pyx_v_graph, __pyx_v_group_vertex, __pyx_v_offset, 0.0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 603, __pyx_L1_error)
+
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":597
+ *                 if has_group_mask:
+ *                     group_id = group_mask[org_z, org_y, org_x]
+ *                     if group_id > 0:             # <<<<<<<<<<<<<<
+ *                         group_vertex = group_vertex_map[group_id]
+ *                         if group_vertex <= 0:
+*/
+          }
+
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":595
+ *                         intensity[offset] = center_value
+ * 
+ *                 if has_group_mask:             # <<<<<<<<<<<<<<
+ *                     group_id = group_mask[org_z, org_y, org_x]
+ *                     if group_id > 0:
+*/
+        }
+
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":605
+ *                         _graph_add_edge_inline(graph, group_vertex, offset, 0.0)
+ * 
+ *                 offset += 1             # <<<<<<<<<<<<<<
+ * 
+ *     if not graph._use_python_lists:
+*/
+        __pyx_v_offset = (__pyx_v_offset + 1);
+      }
+    }
+  }
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":607
+ *                 offset += 1
+ * 
+ *     if not graph._use_python_lists:             # <<<<<<<<<<<<<<
+ *         graph.nvertex = graph.fast_graph.nvertex
+ *         graph.nedge = graph.fast_graph.nedge
+*/
+  __pyx_t_6 = (!__pyx_v_graph->_use_python_lists);
+  if (__pyx_t_6) {
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":608
+ * 
+ *     if not graph._use_python_lists:
+ *         graph.nvertex = graph.fast_graph.nvertex             # <<<<<<<<<<<<<<
+ *         graph.nedge = graph.fast_graph.nedge
+ * 
+*/
+    __pyx_t_15 = __pyx_v_graph->fast_graph->nvertex;
+    __pyx_v_graph->nvertex = __pyx_t_15;
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":609
+ *     if not graph._use_python_lists:
+ *         graph.nvertex = graph.fast_graph.nvertex
+ *         graph.nedge = graph.fast_graph.nedge             # <<<<<<<<<<<<<<
+ * 
+ * 
+*/
+    __pyx_t_15 = __pyx_v_graph->fast_graph->nedge;
+    __pyx_v_graph->nedge = __pyx_t_15;
+
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":607
+ *                 offset += 1
+ * 
+ *     if not graph._use_python_lists:             # <<<<<<<<<<<<<<
+ *         graph.nvertex = graph.fast_graph.nvertex
+ *         graph.nedge = graph.fast_graph.nedge
+*/
+  }
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":469
+ * 
+ * 
+ * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
+ * @cython.wraparound(False)
+ * @cython.cdivision(True)
+*/
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_9);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_t_10, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_t_11, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_t_12, 1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_group_vertex_map_np.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("pyneutube.tracers.pyNeuTube.stack_graph_utils.build_stack_graph_cy", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_group_vertex_map_np.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_group_vertex_map_np);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_group_vertex_map, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_signal_mask, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_group_mask, 1);
+  __Pyx_RefNannyFinishContext();
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5build_stack_graph_cy(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4build_stack_graph_cy, "build_stack_graph_cy(Graph graph, const double[:, :, :] stack, int conn, const int[:] stack_range, const int[:] x_offset, const int[:] y_offset, const int[:] z_offset, const int[:] neighbor, const double[:] dist, const unsigned char[:, :, :, :] scan_boundary_masks, signal_mask_obj, group_mask_obj, bool including_signal_border, double[:] argv, double[:] intensity, int initial_virtual_vertex) -> void");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5build_stack_graph_cy = {"build_stack_graph_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5build_stack_graph_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4build_stack_graph_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5build_stack_graph_cy(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *__pyx_v_graph = 0;
+  __Pyx_memviewslice __pyx_v_stack = { 0, 0, { 0 }, { 0 }, { 0 } };
+  int __pyx_v_conn;
+  __Pyx_memviewslice __pyx_v_stack_range = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_x_offset = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_y_offset = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_z_offset = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_neighbor = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_dist = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_scan_boundary_masks = { 0, 0, { 0 }, { 0 }, { 0 } };
+  PyObject *__pyx_v_signal_mask_obj = 0;
+  PyObject *__pyx_v_group_mask_obj = 0;
+  int __pyx_v_including_signal_border;
+  __Pyx_memviewslice __pyx_v_argv = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_intensity = { 0, 0, { 0 }, { 0 }, { 0 } };
+  int __pyx_v_initial_virtual_vertex;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("build_stack_graph_cy (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_graph,&__pyx_mstate_global->__pyx_n_u_stack,&__pyx_mstate_global->__pyx_n_u_conn,&__pyx_mstate_global->__pyx_n_u_stack_range,&__pyx_mstate_global->__pyx_n_u_x_offset,&__pyx_mstate_global->__pyx_n_u_y_offset,&__pyx_mstate_global->__pyx_n_u_z_offset,&__pyx_mstate_global->__pyx_n_u_neighbor,&__pyx_mstate_global->__pyx_n_u_dist,&__pyx_mstate_global->__pyx_n_u_scan_boundary_masks,&__pyx_mstate_global->__pyx_n_u_signal_mask_obj,&__pyx_mstate_global->__pyx_n_u_group_mask_obj,&__pyx_mstate_global->__pyx_n_u_including_signal_border,&__pyx_mstate_global->__pyx_n_u_argv,&__pyx_mstate_global->__pyx_n_u_intensity,&__pyx_mstate_global->__pyx_n_u_initial_virtual_vertex,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 469, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case 16:
+        values[15] = __Pyx_ArgRef_FASTCALL(__pyx_args, 15);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[15])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 15:
+        values[14] = __Pyx_ArgRef_FASTCALL(__pyx_args, 14);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[14])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 14:
+        values[13] = __Pyx_ArgRef_FASTCALL(__pyx_args, 13);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 13:
+        values[12] = __Pyx_ArgRef_FASTCALL(__pyx_args, 12);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 12:
+        values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 11:
+        values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 10:
+        values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  9:
+        values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  8:
+        values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  7:
+        values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  6:
+        values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  5:
+        values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  4:
+        values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 469, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "build_stack_graph_cy", 0) < (0)) __PYX_ERR(0, 469, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 16; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("build_stack_graph_cy", 1, 16, 16, i); __PYX_ERR(0, 469, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 16)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[12] = __Pyx_ArgRef_FASTCALL(__pyx_args, 12);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[13] = __Pyx_ArgRef_FASTCALL(__pyx_args, 13);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[14] = __Pyx_ArgRef_FASTCALL(__pyx_args, 14);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[14])) __PYX_ERR(0, 469, __pyx_L3_error)
+      values[15] = __Pyx_ArgRef_FASTCALL(__pyx_args, 15);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[15])) __PYX_ERR(0, 469, __pyx_L3_error)
+    }
+    __pyx_v_graph = ((struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *)values[0]);
+    __pyx_v_stack = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_double__const__(values[1], 0); if (unlikely(!__pyx_v_stack.memview)) __PYX_ERR(0, 474, __pyx_L3_error)
+    __pyx_v_conn = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_conn == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 475, __pyx_L3_error)
+    __pyx_v_stack_range = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[3], 0); if (unlikely(!__pyx_v_stack_range.memview)) __PYX_ERR(0, 476, __pyx_L3_error)
+    __pyx_v_x_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[4], 0); if (unlikely(!__pyx_v_x_offset.memview)) __PYX_ERR(0, 477, __pyx_L3_error)
+    __pyx_v_y_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[5], 0); if (unlikely(!__pyx_v_y_offset.memview)) __PYX_ERR(0, 478, __pyx_L3_error)
+    __pyx_v_z_offset = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[6], 0); if (unlikely(!__pyx_v_z_offset.memview)) __PYX_ERR(0, 479, __pyx_L3_error)
+    __pyx_v_neighbor = __Pyx_PyObject_to_MemoryviewSlice_ds_int__const__(values[7], 0); if (unlikely(!__pyx_v_neighbor.memview)) __PYX_ERR(0, 480, __pyx_L3_error)
+    __pyx_v_dist = __Pyx_PyObject_to_MemoryviewSlice_ds_double__const__(values[8], 0); if (unlikely(!__pyx_v_dist.memview)) __PYX_ERR(0, 481, __pyx_L3_error)
+    __pyx_v_scan_boundary_masks = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_unsigned_char__const__(values[9], 0); if (unlikely(!__pyx_v_scan_boundary_masks.memview)) __PYX_ERR(0, 482, __pyx_L3_error)
+    __pyx_v_signal_mask_obj = values[10];
+    __pyx_v_group_mask_obj = values[11];
+    __pyx_v_including_signal_border = __Pyx_PyObject_IsTrue(values[12]); if (unlikely((__pyx_v_including_signal_border == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 485, __pyx_L3_error)
+    __pyx_v_argv = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[13], PyBUF_WRITABLE); if (unlikely(!__pyx_v_argv.memview)) __PYX_ERR(0, 486, __pyx_L3_error)
+    __pyx_v_intensity = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[14], PyBUF_WRITABLE); if (unlikely(!__pyx_v_intensity.memview)) __PYX_ERR(0, 487, __pyx_L3_error)
+    __pyx_v_initial_virtual_vertex = __Pyx_PyLong_As_int(values[15]); if (unlikely((__pyx_v_initial_virtual_vertex == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 488, __pyx_L3_error)
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("build_stack_graph_cy", 1, 16, 16, __pyx_nargs); __PYX_ERR(0, 469, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_stack, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_stack_range, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_x_offset, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_y_offset, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_z_offset, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_neighbor, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_dist, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_scan_boundary_masks, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_argv, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_intensity, 1);
+  __Pyx_AddTraceback("pyneutube.tracers.pyNeuTube.stack_graph_utils.build_stack_graph_cy", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_graph), __pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph, 1, "graph", 0))) __PYX_ERR(0, 473, __pyx_L1_error)
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4build_stack_graph_cy(__pyx_self, __pyx_v_graph, __pyx_v_stack, __pyx_v_conn, __pyx_v_stack_range, __pyx_v_x_offset, __pyx_v_y_offset, __pyx_v_z_offset, __pyx_v_neighbor, __pyx_v_dist, __pyx_v_scan_boundary_masks, __pyx_v_signal_mask_obj, __pyx_v_group_mask_obj, __pyx_v_including_signal_border, __pyx_v_argv, __pyx_v_intensity, __pyx_v_initial_virtual_vertex);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  goto __pyx_L7_cleaned_up;
+  __pyx_L0:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __pyx_L7_cleaned_up:;
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_stack, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_stack_range, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_x_offset, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_y_offset, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_z_offset, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_neighbor, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_dist, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_scan_boundary_masks, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_argv, 1);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_v_intensity, 1);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4build_stack_graph_cy(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph *__pyx_v_graph, __Pyx_memviewslice __pyx_v_stack, int __pyx_v_conn, __Pyx_memviewslice __pyx_v_stack_range, __Pyx_memviewslice __pyx_v_x_offset, __Pyx_memviewslice __pyx_v_y_offset, __Pyx_memviewslice __pyx_v_z_offset, __Pyx_memviewslice __pyx_v_neighbor, __Pyx_memviewslice __pyx_v_dist, __Pyx_memviewslice __pyx_v_scan_boundary_masks, PyObject *__pyx_v_signal_mask_obj, PyObject *__pyx_v_group_mask_obj, int __pyx_v_including_signal_border, __Pyx_memviewslice __pyx_v_argv, __Pyx_memviewslice __pyx_v_intensity, int __pyx_v_initial_virtual_vertex) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("build_stack_graph_cy", 0);
+  __Pyx_XDECREF(__pyx_r);
+  if (unlikely(!__pyx_v_stack.memview)) { __Pyx_RaiseUnboundLocalError("stack"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_stack_range.memview)) { __Pyx_RaiseUnboundLocalError("stack_range"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_x_offset.memview)) { __Pyx_RaiseUnboundLocalError("x_offset"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_y_offset.memview)) { __Pyx_RaiseUnboundLocalError("y_offset"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_z_offset.memview)) { __Pyx_RaiseUnboundLocalError("z_offset"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_neighbor.memview)) { __Pyx_RaiseUnboundLocalError("neighbor"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_dist.memview)) { __Pyx_RaiseUnboundLocalError("dist"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_scan_boundary_masks.memview)) { __Pyx_RaiseUnboundLocalError("scan_boundary_masks"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_argv.memview)) { __Pyx_RaiseUnboundLocalError("argv"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_intensity.memview)) { __Pyx_RaiseUnboundLocalError("intensity"); __PYX_ERR(0, 469, __pyx_L1_error) }
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_build_stack_graph_cy(__pyx_v_graph, __pyx_v_stack, __pyx_v_conn, __pyx_v_stack_range, __pyx_v_x_offset, __pyx_v_y_offset, __pyx_v_z_offset, __pyx_v_neighbor, __pyx_v_dist, __pyx_v_scan_boundary_masks, __pyx_v_signal_mask_obj, __pyx_v_group_mask_obj, __pyx_v_including_signal_border, __pyx_v_argv, __pyx_v_intensity, __pyx_v_initial_virtual_vertex, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 469, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 469, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pyneutube.tracers.pyNeuTube.stack_graph_utils.build_stack_graph_cy", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":612
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -28151,7 +29377,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_2ad
  * cpdef void graph_edge_neighbor_list_fast(
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5graph_edge_neighbor_list_fast(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7graph_edge_neighbor_list_fast(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28177,7 +29403,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("graph_edge_neighbor_list_fast", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":487
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":639
  *         int i, v1, v2
  *         GraphEdge edge
  *         bint with_edge_idx = edge_idx is not None             # <<<<<<<<<<<<<<
@@ -28187,7 +29413,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
   __pyx_t_1 = (__pyx_v_edge_idx != ((PyObject*)Py_None));
   __pyx_v_with_edge_idx = __pyx_t_1;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":491
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":643
  *         list v1_edge_idx, v2_edge_idx
  * 
  *     for i in range(nedge):             # <<<<<<<<<<<<<<
@@ -28199,7 +29425,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
   for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":492
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":644
  * 
  *     for i in range(nedge):
  *         edge = edges[i]             # <<<<<<<<<<<<<<
@@ -28208,15 +29434,15 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
 */
     if (unlikely(__pyx_v_edges == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 492, __pyx_L1_error)
+      __PYX_ERR(0, 644, __pyx_L1_error)
     }
     __pyx_t_5 = __Pyx_PyList_GET_ITEM(__pyx_v_edges, __pyx_v_i);
     __Pyx_INCREF(__pyx_t_5);
-    if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_GraphEdge))))) __PYX_ERR(0, 492, __pyx_L1_error)
+    if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_GraphEdge))))) __PYX_ERR(0, 644, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_edge, ((struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_GraphEdge *)__pyx_t_5));
     __pyx_t_5 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":493
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":645
  *     for i in range(nedge):
  *         edge = edges[i]
  *         v1 = edge.v1             # <<<<<<<<<<<<<<
@@ -28226,7 +29452,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
     __pyx_t_6 = __pyx_v_edge->v1;
     __pyx_v_v1 = __pyx_t_6;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":494
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":646
  *         edge = edges[i]
  *         v1 = edge.v1
  *         v2 = edge.v2             # <<<<<<<<<<<<<<
@@ -28236,7 +29462,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
     __pyx_t_6 = __pyx_v_edge->v2;
     __pyx_v_v2 = __pyx_t_6;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":497
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":649
  * 
  *         # Add to adjacency lists
  *         neighbors[v1].append(v2)             # <<<<<<<<<<<<<<
@@ -28245,14 +29471,14 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
 */
     if (unlikely(__pyx_v_neighbors == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 497, __pyx_L1_error)
+      __PYX_ERR(0, 649, __pyx_L1_error)
     }
-    __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_v2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_v2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 649, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_neighbors, __pyx_v_v1), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_neighbors, __pyx_v_v1), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 649, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":498
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":650
  *         # Add to adjacency lists
  *         neighbors[v1].append(v2)
  *         neighbors[v2].append(v1)             # <<<<<<<<<<<<<<
@@ -28261,14 +29487,14 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
 */
     if (unlikely(__pyx_v_neighbors == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 498, __pyx_L1_error)
+      __PYX_ERR(0, 650, __pyx_L1_error)
     }
-    __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_v1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_v1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 650, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_neighbors, __pyx_v_v2), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_neighbors, __pyx_v_v2), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 650, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":500
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":652
  *         neighbors[v2].append(v1)
  * 
  *         if with_edge_idx:             # <<<<<<<<<<<<<<
@@ -28277,7 +29503,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
 */
     if (__pyx_v_with_edge_idx) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":501
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":653
  * 
  *         if with_edge_idx:
  *             edge_idx[v1].append(i)             # <<<<<<<<<<<<<<
@@ -28286,14 +29512,14 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
 */
       if (unlikely(__pyx_v_edge_idx == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 501, __pyx_L1_error)
+        __PYX_ERR(0, 653, __pyx_L1_error)
       }
-      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 501, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 653, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_edge_idx, __pyx_v_v1), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 501, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_edge_idx, __pyx_v_v1), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 653, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":502
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":654
  *         if with_edge_idx:
  *             edge_idx[v1].append(i)
  *             edge_idx[v2].append(i)             # <<<<<<<<<<<<<<
@@ -28302,14 +29528,14 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
 */
       if (unlikely(__pyx_v_edge_idx == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 502, __pyx_L1_error)
+        __PYX_ERR(0, 654, __pyx_L1_error)
       }
-      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 502, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 654, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_edge_idx, __pyx_v_v2), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 502, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Append(__Pyx_PyList_GET_ITEM(__pyx_v_edge_idx, __pyx_v_v2), __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 654, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":500
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":652
  *         neighbors[v2].append(v1)
  * 
  *         if with_edge_idx:             # <<<<<<<<<<<<<<
@@ -28319,7 +29545,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
     }
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":460
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":612
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -28338,16 +29564,16 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edg
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5graph_edge_neighbor_list_fast(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7graph_edge_neighbor_list_fast(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4graph_edge_neighbor_list_fast, "graph_edge_neighbor_list_fast(int nvertex, list edges, int nedge, list neighbors, list edge_idx) -> void\n\nFast Cython version of graph_edge_neighbor_list\n\nParameters:\n-----------\nnvertex : int\n    Number of vertices\nedges : list\n    List of GraphEdge objects\nnedge : int\n    Number of edges\nneighbors : list\n    List of lists for neighbors (modified in place)\nedge_idx : list or None\n    List of lists for edge indices (modified in place)");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5graph_edge_neighbor_list_fast = {"graph_edge_neighbor_list_fast", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5graph_edge_neighbor_list_fast, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4graph_edge_neighbor_list_fast};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5graph_edge_neighbor_list_fast(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6graph_edge_neighbor_list_fast, "graph_edge_neighbor_list_fast(int nvertex, list edges, int nedge, list neighbors, list edge_idx) -> void\n\nFast Cython version of graph_edge_neighbor_list\n\nParameters:\n-----------\nnvertex : int\n    Number of vertices\nedges : list\n    List of GraphEdge objects\nnedge : int\n    Number of edges\nneighbors : list\n    List of lists for neighbors (modified in place)\nedge_idx : list or None\n    List of lists for edge indices (modified in place)");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7graph_edge_neighbor_list_fast = {"graph_edge_neighbor_list_fast", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7graph_edge_neighbor_list_fast, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6graph_edge_neighbor_list_fast};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7graph_edge_neighbor_list_fast(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28381,60 +29607,60 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_nvertex,&__pyx_mstate_global->__pyx_n_u_edges,&__pyx_mstate_global->__pyx_n_u_nedge_2,&__pyx_mstate_global->__pyx_n_u_neighbors,&__pyx_mstate_global->__pyx_n_u_edge_idx,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 460, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 612, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 460, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 612, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 460, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 612, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 460, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 612, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 460, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 612, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 460, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 612, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "graph_edge_neighbor_list_fast", 0) < (0)) __PYX_ERR(0, 460, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "graph_edge_neighbor_list_fast", 0) < (0)) __PYX_ERR(0, 612, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 5; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("graph_edge_neighbor_list_fast", 1, 5, 5, i); __PYX_ERR(0, 460, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("graph_edge_neighbor_list_fast", 1, 5, 5, i); __PYX_ERR(0, 612, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 5)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 460, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 612, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 460, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 612, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 460, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 612, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 460, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 612, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 460, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 612, __pyx_L3_error)
     }
-    __pyx_v_nvertex = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_nvertex == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 463, __pyx_L3_error)
+    __pyx_v_nvertex = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_nvertex == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 615, __pyx_L3_error)
     __pyx_v_edges = ((PyObject*)values[1]);
-    __pyx_v_nedge = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_nedge == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 465, __pyx_L3_error)
+    __pyx_v_nedge = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_nedge == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 617, __pyx_L3_error)
     __pyx_v_neighbors = ((PyObject*)values[3]);
     __pyx_v_edge_idx = ((PyObject*)values[4]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("graph_edge_neighbor_list_fast", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 460, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("graph_edge_neighbor_list_fast", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 612, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -28445,10 +29671,10 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_edges), (&PyList_Type), 1, "edges", 1))) __PYX_ERR(0, 464, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_neighbors), (&PyList_Type), 1, "neighbors", 1))) __PYX_ERR(0, 466, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_edge_idx), (&PyList_Type), 1, "edge_idx", 1))) __PYX_ERR(0, 467, __pyx_L1_error)
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4graph_edge_neighbor_list_fast(__pyx_self, __pyx_v_nvertex, __pyx_v_edges, __pyx_v_nedge, __pyx_v_neighbors, __pyx_v_edge_idx);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_edges), (&PyList_Type), 1, "edges", 1))) __PYX_ERR(0, 616, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_neighbors), (&PyList_Type), 1, "neighbors", 1))) __PYX_ERR(0, 618, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_edge_idx), (&PyList_Type), 1, "edge_idx", 1))) __PYX_ERR(0, 619, __pyx_L1_error)
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6graph_edge_neighbor_list_fast(__pyx_self, __pyx_v_nvertex, __pyx_v_edges, __pyx_v_nedge, __pyx_v_neighbors, __pyx_v_edge_idx);
 
   /* function exit code */
   goto __pyx_L0;
@@ -28467,7 +29693,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4graph_edge_neighbor_list_fast(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_nvertex, PyObject *__pyx_v_edges, int __pyx_v_nedge, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_edge_idx) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6graph_edge_neighbor_list_fast(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_nvertex, PyObject *__pyx_v_edges, int __pyx_v_nedge, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_edge_idx) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -28476,8 +29702,8 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4gr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("graph_edge_neighbor_list_fast", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edge_neighbor_list_fast(__pyx_v_nvertex, __pyx_v_edges, __pyx_v_nedge, __pyx_v_neighbors, __pyx_v_edge_idx, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 460, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_graph_edge_neighbor_list_fast(__pyx_v_nvertex, __pyx_v_edges, __pyx_v_nedge, __pyx_v_neighbors, __pyx_v_edge_idx, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 612, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -28494,7 +29720,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_4gr
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":505
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":657
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -28518,7 +29744,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_update_degrees_inline", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":515
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":667
  *     """Inline function to calculate vertex degrees"""
  *     cdef int i, v1, v2
  *     for i in range(nedge):             # <<<<<<<<<<<<<<
@@ -28530,7 +29756,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":516
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":668
  *     cdef int i, v1, v2
  *     for i in range(nedge):
  *         v1 = edges[i][0]             # <<<<<<<<<<<<<<
@@ -28539,15 +29765,15 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
 */
     if (unlikely(__pyx_v_edges == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 516, __pyx_L1_error)
+      __PYX_ERR(0, 668, __pyx_L1_error)
     }
-    __pyx_t_4 = __Pyx_GetItemInt(__Pyx_PyList_GET_ITEM(__pyx_v_edges, __pyx_v_i), 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_SharedReference); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__Pyx_PyList_GET_ITEM(__pyx_v_edges, __pyx_v_i), 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_SharedReference); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 668, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 668, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_v1 = __pyx_t_5;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":517
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":669
  *     for i in range(nedge):
  *         v1 = edges[i][0]
  *         v2 = edges[i][1]             # <<<<<<<<<<<<<<
@@ -28556,15 +29782,15 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
 */
     if (unlikely(__pyx_v_edges == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 517, __pyx_L1_error)
+      __PYX_ERR(0, 669, __pyx_L1_error)
     }
-    __pyx_t_4 = __Pyx_GetItemInt(__Pyx_PyList_GET_ITEM(__pyx_v_edges, __pyx_v_i), 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_SharedReference); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 517, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__Pyx_PyList_GET_ITEM(__pyx_v_edges, __pyx_v_i), 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_SharedReference); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 669, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 517, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 669, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_v2 = __pyx_t_5;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":518
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":670
  *         v1 = edges[i][0]
  *         v2 = edges[i][1]
  *         degree[v1] += 1             # <<<<<<<<<<<<<<
@@ -28574,7 +29800,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
     __pyx_t_6 = __pyx_v_v1;
     *((int *) ( /* dim=0 */ (__pyx_v_degree.data + __pyx_t_6 * __pyx_v_degree.strides[0]) )) += 1;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":519
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":671
  *         v2 = edges[i][1]
  *         degree[v1] += 1
  *         degree[v2] += 1             # <<<<<<<<<<<<<<
@@ -28585,7 +29811,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
     *((int *) ( /* dim=0 */ (__pyx_v_degree.data + __pyx_t_6 * __pyx_v_degree.strides[0]) )) += 1;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":505
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":657
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -28602,7 +29828,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
   __Pyx_RefNannyFinishContext();
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":522
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":674
  * 
  * # Python wrapper
  * def update_degrees(edges, degree):             # <<<<<<<<<<<<<<
@@ -28611,16 +29837,16 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7update_degrees(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9update_degrees(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6update_degrees, "update_degrees(edges, degree)\n\nPython wrapper for the inline degree calculation function");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7update_degrees = {"update_degrees", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7update_degrees, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6update_degrees};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7update_degrees(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8update_degrees, "update_degrees(edges, degree)\n\nPython wrapper for the inline degree calculation function");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9update_degrees = {"update_degrees", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9update_degrees, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8update_degrees};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9update_degrees(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28651,39 +29877,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_edges,&__pyx_mstate_global->__pyx_n_u_degree,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 522, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 674, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 522, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 674, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 522, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 674, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "update_degrees", 0) < (0)) __PYX_ERR(0, 522, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "update_degrees", 0) < (0)) __PYX_ERR(0, 674, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("update_degrees", 1, 2, 2, i); __PYX_ERR(0, 522, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("update_degrees", 1, 2, 2, i); __PYX_ERR(0, 674, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 522, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 674, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 522, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 674, __pyx_L3_error)
     }
     __pyx_v_edges = values[0];
     __pyx_v_degree = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("update_degrees", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 522, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("update_degrees", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 674, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -28694,7 +29920,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6update_degrees(__pyx_self, __pyx_v_edges, __pyx_v_degree);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8update_degrees(__pyx_self, __pyx_v_edges, __pyx_v_degree);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -28704,7 +29930,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6update_degrees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_edges, PyObject *__pyx_v_degree) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8update_degrees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_edges, PyObject *__pyx_v_degree) {
   int __pyx_v_nedge;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -28716,17 +29942,17 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6up
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("update_degrees", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":526
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":678
  *     Python wrapper for the inline degree calculation function
  *     """
  *     cdef int nedge = len(edges)             # <<<<<<<<<<<<<<
  *     _update_degrees_inline(edges, degree, nedge)
  * 
 */
-  __pyx_t_1 = PyObject_Length(__pyx_v_edges); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_edges); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 678, __pyx_L1_error)
   __pyx_v_nedge = __pyx_t_1;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":527
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":679
  *     """
  *     cdef int nedge = len(edges)
  *     _update_degrees_inline(edges, degree, nedge)             # <<<<<<<<<<<<<<
@@ -28735,14 +29961,14 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6up
 */
   __pyx_t_2 = __pyx_v_edges;
   __Pyx_INCREF(__pyx_t_2);
-  if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 527, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_degree, PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 527, __pyx_L1_error)
-  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__update_degrees_inline(((PyObject*)__pyx_t_2), __pyx_t_3, __pyx_v_nedge); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 527, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 679, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_degree, PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 679, __pyx_L1_error)
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils__update_degrees_inline(((PyObject*)__pyx_t_2), __pyx_t_3, __pyx_v_nedge); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 679, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_3, 1);
   __pyx_t_3.memview = NULL; __pyx_t_3.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":522
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":674
  * 
  * # Python wrapper
  * def update_degrees(edges, degree):             # <<<<<<<<<<<<<<
@@ -28764,7 +29990,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6up
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":531
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":683
  * 
  * ### simple mathematical or logical operations
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -28772,7 +29998,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_6up
  * cpdef void stack_neighbor_offset_cy(int n_nbr, int width, int height, np.ndarray[DTYPE_i32, ndim=1] neighbor) noexcept:
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9stack_neighbor_offset_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_offset_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28800,11 +30026,11 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
   __pyx_pybuffernd_neighbor.rcbuffer = &__pyx_pybuffer_neighbor;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_neighbor.rcbuffer->pybuffer, (PyObject*)__pyx_v_neighbor, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 531, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_neighbor.rcbuffer->pybuffer, (PyObject*)__pyx_v_neighbor, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 683, __pyx_L1_error)
   }
   __pyx_pybuffernd_neighbor.diminfo[0].strides = __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_neighbor.diminfo[0].shape = __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.shape[0];
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":537
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":689
  *     Calculate neighbor offsets for different connectivity patterns
  *     """
  *     cdef int area = width * height             # <<<<<<<<<<<<<<
@@ -28813,7 +30039,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
   __pyx_v_area = (__pyx_v_width * __pyx_v_height);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":539
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":691
  *     cdef int area = width * height
  * 
  *     if n_nbr == 4:             # <<<<<<<<<<<<<<
@@ -28823,7 +30049,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
   switch (__pyx_v_n_nbr) {
     case 4:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":540
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":692
  * 
  *     if n_nbr == 4:
  *         neighbor[0] = -1             # <<<<<<<<<<<<<<
@@ -28833,7 +30059,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 0;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = -1;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":541
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":693
  *     if n_nbr == 4:
  *         neighbor[0] = -1
  *         neighbor[1] = 1             # <<<<<<<<<<<<<<
@@ -28843,7 +30069,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 1;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = 1;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":542
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":694
  *         neighbor[0] = -1
  *         neighbor[1] = 1
  *         neighbor[2] = -width             # <<<<<<<<<<<<<<
@@ -28853,7 +30079,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 2;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (-__pyx_v_width);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":543
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":695
  *         neighbor[1] = 1
  *         neighbor[2] = -width
  *         neighbor[3] = width             # <<<<<<<<<<<<<<
@@ -28863,7 +30089,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 3;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = __pyx_v_width;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":539
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":691
  *     cdef int area = width * height
  * 
  *     if n_nbr == 4:             # <<<<<<<<<<<<<<
@@ -28873,7 +30099,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 6:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":545
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":697
  *         neighbor[3] = width
  *     elif n_nbr == 6:
  *         stack_neighbor_offset_cy(4, width, height, neighbor)             # <<<<<<<<<<<<<<
@@ -28882,7 +30108,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(4, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":546
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":698
  *     elif n_nbr == 6:
  *         stack_neighbor_offset_cy(4, width, height, neighbor)
  *         neighbor[4] = -area             # <<<<<<<<<<<<<<
@@ -28892,7 +30118,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 4;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (-__pyx_v_area);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":547
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":699
  *         stack_neighbor_offset_cy(4, width, height, neighbor)
  *         neighbor[4] = -area
  *         neighbor[5] = area             # <<<<<<<<<<<<<<
@@ -28902,7 +30128,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 5;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = __pyx_v_area;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":544
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":696
  *         neighbor[2] = -width
  *         neighbor[3] = width
  *     elif n_nbr == 6:             # <<<<<<<<<<<<<<
@@ -28912,7 +30138,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 8:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":549
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":701
  *         neighbor[5] = area
  *     elif n_nbr == 8:
  *         stack_neighbor_offset_cy(4, width, height, neighbor)             # <<<<<<<<<<<<<<
@@ -28921,7 +30147,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(4, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":550
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":702
  *     elif n_nbr == 8:
  *         stack_neighbor_offset_cy(4, width, height, neighbor)
  *         neighbor[4] = -width - 1             # <<<<<<<<<<<<<<
@@ -28931,7 +30157,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 4;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_width) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":551
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":703
  *         stack_neighbor_offset_cy(4, width, height, neighbor)
  *         neighbor[4] = -width - 1
  *         neighbor[5] = width + 1             # <<<<<<<<<<<<<<
@@ -28941,7 +30167,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 5;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_width + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":552
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":704
  *         neighbor[4] = -width - 1
  *         neighbor[5] = width + 1
  *         neighbor[6] = -width + 1             # <<<<<<<<<<<<<<
@@ -28951,7 +30177,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 6;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_width) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":553
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":705
  *         neighbor[5] = width + 1
  *         neighbor[6] = -width + 1
  *         neighbor[7] = width - 1             # <<<<<<<<<<<<<<
@@ -28961,7 +30187,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 7;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_width - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":548
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":700
  *         neighbor[4] = -area
  *         neighbor[5] = area
  *     elif n_nbr == 8:             # <<<<<<<<<<<<<<
@@ -28971,7 +30197,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 10:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":555
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":707
  *         neighbor[7] = width - 1
  *     elif n_nbr == 10:
  *         stack_neighbor_offset_cy(6, width, height, neighbor)             # <<<<<<<<<<<<<<
@@ -28980,7 +30206,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(6, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":556
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":708
  *     elif n_nbr == 10:
  *         stack_neighbor_offset_cy(6, width, height, neighbor)
  *         neighbor[6] = -width - 1             # <<<<<<<<<<<<<<
@@ -28990,7 +30216,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 6;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_width) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":557
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":709
  *         stack_neighbor_offset_cy(6, width, height, neighbor)
  *         neighbor[6] = -width - 1
  *         neighbor[7] = width + 1             # <<<<<<<<<<<<<<
@@ -29000,7 +30226,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 7;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_width + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":558
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":710
  *         neighbor[6] = -width - 1
  *         neighbor[7] = width + 1
  *         neighbor[8] = -width + 1             # <<<<<<<<<<<<<<
@@ -29010,7 +30236,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 8;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_width) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":559
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":711
  *         neighbor[7] = width + 1
  *         neighbor[8] = -width + 1
  *         neighbor[9] = width - 1             # <<<<<<<<<<<<<<
@@ -29020,7 +30246,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 9;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_width - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":554
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":706
  *         neighbor[6] = -width + 1
  *         neighbor[7] = width - 1
  *     elif n_nbr == 10:             # <<<<<<<<<<<<<<
@@ -29030,7 +30256,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 18:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":561
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":713
  *         neighbor[9] = width - 1
  *     elif n_nbr == 18:
  *         stack_neighbor_offset_cy(6, width, height, neighbor)             # <<<<<<<<<<<<<<
@@ -29039,7 +30265,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(6, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":562
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":714
  *     elif n_nbr == 18:
  *         stack_neighbor_offset_cy(6, width, height, neighbor)
  *         neighbor[6] = -width - 1             # <<<<<<<<<<<<<<
@@ -29049,7 +30275,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 6;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_width) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":563
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":715
  *         stack_neighbor_offset_cy(6, width, height, neighbor)
  *         neighbor[6] = -width - 1
  *         neighbor[7] = width + 1             # <<<<<<<<<<<<<<
@@ -29059,7 +30285,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 7;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_width + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":564
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":716
  *         neighbor[6] = -width - 1
  *         neighbor[7] = width + 1
  *         neighbor[8] = -width + 1             # <<<<<<<<<<<<<<
@@ -29069,7 +30295,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 8;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_width) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":565
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":717
  *         neighbor[7] = width + 1
  *         neighbor[8] = -width + 1
  *         neighbor[9] = width - 1             # <<<<<<<<<<<<<<
@@ -29079,7 +30305,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 9;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_width - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":566
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":718
  *         neighbor[8] = -width + 1
  *         neighbor[9] = width - 1
  *         neighbor[10] = -area - 1             # <<<<<<<<<<<<<<
@@ -29089,7 +30315,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 10;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_area) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":567
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":719
  *         neighbor[9] = width - 1
  *         neighbor[10] = -area - 1
  *         neighbor[11] = area + 1             # <<<<<<<<<<<<<<
@@ -29099,7 +30325,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 11;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_area + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":568
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":720
  *         neighbor[10] = -area - 1
  *         neighbor[11] = area + 1
  *         neighbor[12] = -area + 1             # <<<<<<<<<<<<<<
@@ -29109,7 +30335,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 12;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_area) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":569
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":721
  *         neighbor[11] = area + 1
  *         neighbor[12] = -area + 1
  *         neighbor[13] = area - 1             # <<<<<<<<<<<<<<
@@ -29119,7 +30345,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 13;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_area - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":570
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":722
  *         neighbor[12] = -area + 1
  *         neighbor[13] = area - 1
  *         neighbor[14] = -area - width             # <<<<<<<<<<<<<<
@@ -29129,7 +30355,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 14;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_area) - __pyx_v_width);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":571
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":723
  *         neighbor[13] = area - 1
  *         neighbor[14] = -area - width
  *         neighbor[15] = area + width             # <<<<<<<<<<<<<<
@@ -29139,7 +30365,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 15;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_area + __pyx_v_width);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":572
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":724
  *         neighbor[14] = -area - width
  *         neighbor[15] = area + width
  *         neighbor[16] = -area + width             # <<<<<<<<<<<<<<
@@ -29149,7 +30375,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 16;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((-__pyx_v_area) + __pyx_v_width);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":573
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":725
  *         neighbor[15] = area + width
  *         neighbor[16] = -area + width
  *         neighbor[17] = area - width             # <<<<<<<<<<<<<<
@@ -29159,7 +30385,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 17;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (__pyx_v_area - __pyx_v_width);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":560
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":712
  *         neighbor[8] = -width + 1
  *         neighbor[9] = width - 1
  *     elif n_nbr == 18:             # <<<<<<<<<<<<<<
@@ -29169,7 +30395,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 26:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":575
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":727
  *         neighbor[17] = area - width
  *     elif n_nbr == 26:
  *         stack_neighbor_offset_cy(18, width, height, neighbor)             # <<<<<<<<<<<<<<
@@ -29178,7 +30404,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(18, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":576
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":728
  *     elif n_nbr == 26:
  *         stack_neighbor_offset_cy(18, width, height, neighbor)
  *         neighbor[18] = -area - width - 1             # <<<<<<<<<<<<<<
@@ -29188,7 +30414,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 18;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (((-__pyx_v_area) - __pyx_v_width) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":577
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":729
  *         stack_neighbor_offset_cy(18, width, height, neighbor)
  *         neighbor[18] = -area - width - 1
  *         neighbor[19] = area + width + 1             # <<<<<<<<<<<<<<
@@ -29198,7 +30424,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 19;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((__pyx_v_area + __pyx_v_width) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":578
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":730
  *         neighbor[18] = -area - width - 1
  *         neighbor[19] = area + width + 1
  *         neighbor[20] = -area + width + 1             # <<<<<<<<<<<<<<
@@ -29208,7 +30434,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 20;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (((-__pyx_v_area) + __pyx_v_width) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":579
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":731
  *         neighbor[19] = area + width + 1
  *         neighbor[20] = -area + width + 1
  *         neighbor[21] = area - width - 1             # <<<<<<<<<<<<<<
@@ -29218,7 +30444,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 21;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((__pyx_v_area - __pyx_v_width) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":580
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":732
  *         neighbor[20] = -area + width + 1
  *         neighbor[21] = area - width - 1
  *         neighbor[22] = -area - width + 1             # <<<<<<<<<<<<<<
@@ -29228,7 +30454,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 22;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (((-__pyx_v_area) - __pyx_v_width) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":581
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":733
  *         neighbor[21] = area - width - 1
  *         neighbor[22] = -area - width + 1
  *         neighbor[23] = area + width - 1             # <<<<<<<<<<<<<<
@@ -29238,7 +30464,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 23;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((__pyx_v_area + __pyx_v_width) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":582
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":734
  *         neighbor[22] = -area - width + 1
  *         neighbor[23] = area + width - 1
  *         neighbor[24] = -area + width - 1             # <<<<<<<<<<<<<<
@@ -29248,7 +30474,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 24;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = (((-__pyx_v_area) + __pyx_v_width) - 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":583
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":735
  *         neighbor[23] = area + width - 1
  *         neighbor[24] = -area + width - 1
  *         neighbor[25] = area - width + 1             # <<<<<<<<<<<<<<
@@ -29258,7 +30484,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_1 = 25;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32 *, __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_neighbor.diminfo[0].strides) = ((__pyx_v_area - __pyx_v_width) + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":574
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":726
  *         neighbor[16] = -area + width
  *         neighbor[17] = area - width
  *     elif n_nbr == 26:             # <<<<<<<<<<<<<<
@@ -29268,7 +30494,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     default:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":585
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":737
  *         neighbor[25] = area - width + 1
  *     else:
  *         raise ValueError(f"Unsupported neighbor count: {n_nbr}")             # <<<<<<<<<<<<<<
@@ -29276,9 +30502,9 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
  * @cython.boundscheck(False)
 */
     __pyx_t_3 = NULL;
-    __pyx_t_4 = __Pyx_PyUnicode_From_int(__pyx_v_n_nbr, 0, ' ', 'd'); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyUnicode_From_int(__pyx_v_n_nbr, 0, ' ', 'd'); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 737, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Unsupported_neighbor_count, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Unsupported_neighbor_count, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 737, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_6 = 1;
@@ -29287,16 +30513,16 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_ValueError)), __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 585, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 737, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 585, __pyx_L1_error)
+    __PYX_ERR(0, 737, __pyx_L1_error)
     break;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":531
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":683
  * 
  * ### simple mathematical or logical operations
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -29326,16 +30552,16 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9stack_neighbor_offset_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_offset_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8stack_neighbor_offset_cy, "stack_neighbor_offset_cy(int n_nbr, int width, int height, ndarray neighbor) -> void\n\nCalculate neighbor offsets for different connectivity patterns");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9stack_neighbor_offset_cy = {"stack_neighbor_offset_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9stack_neighbor_offset_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8stack_neighbor_offset_cy};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9stack_neighbor_offset_cy(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_offset_cy, "stack_neighbor_offset_cy(int n_nbr, int width, int height, ndarray neighbor) -> void\n\nCalculate neighbor offsets for different connectivity patterns");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_offset_cy = {"stack_neighbor_offset_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_offset_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_offset_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_offset_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -29368,53 +30594,53 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_n_nbr,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_height,&__pyx_mstate_global->__pyx_n_u_neighbor,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 531, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 683, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 531, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 683, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 531, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 683, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 531, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 683, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 531, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 683, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_neighbor_offset_cy", 0) < (0)) __PYX_ERR(0, 531, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_neighbor_offset_cy", 0) < (0)) __PYX_ERR(0, 683, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 4; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_neighbor_offset_cy", 1, 4, 4, i); __PYX_ERR(0, 531, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_neighbor_offset_cy", 1, 4, 4, i); __PYX_ERR(0, 683, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 4)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 531, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 683, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 531, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 683, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 531, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 683, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 531, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 683, __pyx_L3_error)
     }
-    __pyx_v_n_nbr = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_n_nbr == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 533, __pyx_L3_error)
-    __pyx_v_width = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 533, __pyx_L3_error)
-    __pyx_v_height = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 533, __pyx_L3_error)
+    __pyx_v_n_nbr = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_n_nbr == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 685, __pyx_L3_error)
+    __pyx_v_width = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 685, __pyx_L3_error)
+    __pyx_v_height = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 685, __pyx_L3_error)
     __pyx_v_neighbor = ((PyArrayObject *)values[3]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_neighbor_offset_cy", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 531, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_neighbor_offset_cy", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 683, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -29425,8 +30651,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_neighbor), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "neighbor", 0))) __PYX_ERR(0, 533, __pyx_L1_error)
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8stack_neighbor_offset_cy(__pyx_self, __pyx_v_n_nbr, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_neighbor), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "neighbor", 0))) __PYX_ERR(0, 685, __pyx_L1_error)
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_offset_cy(__pyx_self, __pyx_v_n_nbr, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor);
 
   /* function exit code */
   goto __pyx_L0;
@@ -29445,7 +30671,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8stack_neighbor_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_width, int __pyx_v_height, PyArrayObject *__pyx_v_neighbor) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_width, int __pyx_v_height, PyArrayObject *__pyx_v_neighbor) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_neighbor;
   __Pyx_Buffer __pyx_pybuffer_neighbor;
   PyObject *__pyx_r = NULL;
@@ -29461,11 +30687,11 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8st
   __pyx_pybuffernd_neighbor.rcbuffer = &__pyx_pybuffer_neighbor;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_neighbor.rcbuffer->pybuffer, (PyObject*)__pyx_v_neighbor, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 531, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_neighbor.rcbuffer->pybuffer, (PyObject*)__pyx_v_neighbor, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 683, __pyx_L1_error)
   }
   __pyx_pybuffernd_neighbor.diminfo[0].strides = __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_neighbor.diminfo[0].shape = __pyx_pybuffernd_neighbor.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_void_to_None(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(__pyx_v_n_nbr, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_offset_cy(__pyx_v_n_nbr, __pyx_v_width, __pyx_v_height, __pyx_v_neighbor, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 683, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -29491,7 +30717,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8st
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":587
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":739
  *         raise ValueError(f"Unsupported neighbor count: {n_nbr}")
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -29499,7 +30725,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_8st
  * cpdef void stack_neighbor_dist_r_cy(int conn, np.ndarray[DTYPE_f64, ndim=1] res, np.ndarray[DTYPE_f64, ndim=1] dist) noexcept:
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_dist_r_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_neighbor_dist_r_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -29545,16 +30771,16 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
   __pyx_pybuffernd_dist.rcbuffer = &__pyx_pybuffer_dist;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_res.rcbuffer->pybuffer, (PyObject*)__pyx_v_res, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 587, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_res.rcbuffer->pybuffer, (PyObject*)__pyx_v_res, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 739, __pyx_L1_error)
   }
   __pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_dist.rcbuffer->pybuffer, (PyObject*)__pyx_v_dist, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 587, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_dist.rcbuffer->pybuffer, (PyObject*)__pyx_v_dist, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 739, __pyx_L1_error)
   }
   __pyx_pybuffernd_dist.diminfo[0].strides = __pyx_pybuffernd_dist.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_dist.diminfo[0].shape = __pyx_pybuffernd_dist.rcbuffer->pybuffer.shape[0];
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":596
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":748
  * 
  *     # Handle invalid resolution case
  *     if res[0] <= 0 or res[1] <= 0 or res[2] <= 0:             # <<<<<<<<<<<<<<
@@ -29581,7 +30807,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":597
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":749
  *     # Handle invalid resolution case
  *     if res[0] <= 0 or res[1] <= 0 or res[2] <= 0:
  *         for i in range(conn):             # <<<<<<<<<<<<<<
@@ -29593,7 +30819,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
       __pyx_v_i = __pyx_t_6;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":598
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":750
  *     if res[0] <= 0 or res[1] <= 0 or res[2] <= 0:
  *         for i in range(conn):
  *             dist[i] = 1.0             # <<<<<<<<<<<<<<
@@ -29604,7 +30830,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
       *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = 1.0;
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":599
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":751
  *         for i in range(conn):
  *             dist[i] = 1.0
  *         return             # <<<<<<<<<<<<<<
@@ -29613,7 +30839,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":596
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":748
  * 
  *     # Handle invalid resolution case
  *     if res[0] <= 0 or res[1] <= 0 or res[2] <= 0:             # <<<<<<<<<<<<<<
@@ -29622,7 +30848,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":602
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":754
  * 
  *     # Calculate distances based on connectivity pattern
  *     if conn == 4:             # <<<<<<<<<<<<<<
@@ -29632,7 +30858,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
   switch (__pyx_v_conn) {
     case 4:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":603
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":755
  *     # Calculate distances based on connectivity pattern
  *     if conn == 4:
  *         dist[0] = dist[1] = res[0]             # <<<<<<<<<<<<<<
@@ -29646,7 +30872,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 1;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_t_7;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":604
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":756
  *     if conn == 4:
  *         dist[0] = dist[1] = res[0]
  *         dist[2] = dist[3] = res[1]             # <<<<<<<<<<<<<<
@@ -29660,7 +30886,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 3;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_t_7;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":602
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":754
  * 
  *     # Calculate distances based on connectivity pattern
  *     if conn == 4:             # <<<<<<<<<<<<<<
@@ -29670,7 +30896,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 6:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":606
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":758
  *         dist[2] = dist[3] = res[1]
  *     elif conn == 6:
  *         dist[0] = dist[1] = res[0]             # <<<<<<<<<<<<<<
@@ -29684,7 +30910,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 1;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_t_7;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":607
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":759
  *     elif conn == 6:
  *         dist[0] = dist[1] = res[0]
  *         dist[2] = dist[3] = res[1]             # <<<<<<<<<<<<<<
@@ -29698,7 +30924,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 3;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_t_7;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":608
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":760
  *         dist[0] = dist[1] = res[0]
  *         dist[2] = dist[3] = res[1]
  *         dist[4] = dist[5] = res[2]             # <<<<<<<<<<<<<<
@@ -29712,7 +30938,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 5;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_t_7;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":605
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":757
  *         dist[0] = dist[1] = res[0]
  *         dist[2] = dist[3] = res[1]
  *     elif conn == 6:             # <<<<<<<<<<<<<<
@@ -29722,7 +30948,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 8:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":610
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":762
  *         dist[4] = dist[5] = res[2]
  *     elif conn == 8:
  *         stack_neighbor_dist_r_cy(4, res, dist)             # <<<<<<<<<<<<<<
@@ -29731,7 +30957,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_dist_r_cy(4, __pyx_v_res, __pyx_v_dist, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":611
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":763
  *     elif conn == 8:
  *         stack_neighbor_dist_r_cy(4, res, dist)
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1])             # <<<<<<<<<<<<<<
@@ -29744,7 +30970,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_10 = 1;
     __pyx_v_diag_dist = sqrt((((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_res.diminfo[0].strides))) + ((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_res.diminfo[0].strides)))));
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":612
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":764
  *         stack_neighbor_dist_r_cy(4, res, dist)
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1])
  *         dist[4] = dist[5] = dist[6] = dist[7] = diag_dist             # <<<<<<<<<<<<<<
@@ -29760,7 +30986,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_10 = 7;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_v_diag_dist;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":609
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":761
  *         dist[2] = dist[3] = res[1]
  *         dist[4] = dist[5] = res[2]
  *     elif conn == 8:             # <<<<<<<<<<<<<<
@@ -29770,7 +30996,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 18:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":614
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":766
  *         dist[4] = dist[5] = dist[6] = dist[7] = diag_dist
  *     elif conn == 18:
  *         stack_neighbor_dist_r_cy(6, res, dist)             # <<<<<<<<<<<<<<
@@ -29779,7 +31005,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_dist_r_cy(6, __pyx_v_res, __pyx_v_dist, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":616
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":768
  *         stack_neighbor_dist_r_cy(6, res, dist)
  *         # Face-diagonal distances
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1])             # <<<<<<<<<<<<<<
@@ -29792,7 +31018,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 1;
     __pyx_v_diag_dist = sqrt((((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_res.diminfo[0].strides))) + ((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_res.diminfo[0].strides)))));
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":617
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":769
  *         # Face-diagonal distances
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1])
  *         dist[6] = dist[7] = dist[8] = dist[9] = diag_dist             # <<<<<<<<<<<<<<
@@ -29808,7 +31034,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 9;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_v_diag_dist;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":619
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":771
  *         dist[6] = dist[7] = dist[8] = dist[9] = diag_dist
  *         # Edge-diagonal distances
  *         diag_dist = sqrt(res[0]*res[0] + res[2]*res[2])             # <<<<<<<<<<<<<<
@@ -29821,7 +31047,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_10 = 2;
     __pyx_v_diag_dist = sqrt((((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_res.diminfo[0].strides))) + ((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_res.diminfo[0].strides)))));
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":620
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":772
  *         # Edge-diagonal distances
  *         diag_dist = sqrt(res[0]*res[0] + res[2]*res[2])
  *         dist[10] = dist[11] = dist[12] = dist[13] = diag_dist             # <<<<<<<<<<<<<<
@@ -29837,7 +31063,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_10 = 13;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_v_diag_dist;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":621
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":773
  *         diag_dist = sqrt(res[0]*res[0] + res[2]*res[2])
  *         dist[10] = dist[11] = dist[12] = dist[13] = diag_dist
  *         diag_dist = sqrt(res[1]*res[1] + res[2]*res[2])             # <<<<<<<<<<<<<<
@@ -29850,7 +31076,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 2;
     __pyx_v_diag_dist = sqrt((((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_res.diminfo[0].strides))) + ((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_res.diminfo[0].strides)))));
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":622
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":774
  *         dist[10] = dist[11] = dist[12] = dist[13] = diag_dist
  *         diag_dist = sqrt(res[1]*res[1] + res[2]*res[2])
  *         dist[14] = dist[15] = dist[16] = dist[17] = diag_dist             # <<<<<<<<<<<<<<
@@ -29866,7 +31092,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_2 = 17;
     *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_v_diag_dist;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":613
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":765
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1])
  *         dist[4] = dist[5] = dist[6] = dist[7] = diag_dist
  *     elif conn == 18:             # <<<<<<<<<<<<<<
@@ -29876,7 +31102,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     case 26:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":624
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":776
  *         dist[14] = dist[15] = dist[16] = dist[17] = diag_dist
  *     elif conn == 26:
  *         stack_neighbor_dist_r_cy(18, res, dist)             # <<<<<<<<<<<<<<
@@ -29885,7 +31111,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_dist_r_cy(18, __pyx_v_res, __pyx_v_dist, 0);
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":626
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":778
  *         stack_neighbor_dist_r_cy(18, res, dist)
  *         # Corner-diagonal distances
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1] + res[2]*res[2])             # <<<<<<<<<<<<<<
@@ -29900,7 +31126,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     __pyx_t_12 = 2;
     __pyx_v_diag_dist = sqrt(((((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_res.diminfo[0].strides))) + ((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_res.diminfo[0].strides)))) + ((*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_res.diminfo[0].strides)) * (*__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_res.rcbuffer->pybuffer.buf, __pyx_t_12, __pyx_pybuffernd_res.diminfo[0].strides)))));
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":627
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":779
  *         # Corner-diagonal distances
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1] + res[2]*res[2])
  *         for i in range(18, 26):             # <<<<<<<<<<<<<<
@@ -29910,7 +31136,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     for (__pyx_t_6 = 18; __pyx_t_6 < 26; __pyx_t_6+=1) {
       __pyx_v_i = __pyx_t_6;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":628
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":780
  *         diag_dist = sqrt(res[0]*res[0] + res[1]*res[1] + res[2]*res[2])
  *         for i in range(18, 26):
  *             dist[i] = diag_dist             # <<<<<<<<<<<<<<
@@ -29921,7 +31147,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
       *__Pyx_BufPtrStrided1d(__pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64 *, __pyx_pybuffernd_dist.rcbuffer->pybuffer.buf, __pyx_t_12, __pyx_pybuffernd_dist.diminfo[0].strides) = __pyx_v_diag_dist;
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":623
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":775
  *         diag_dist = sqrt(res[1]*res[1] + res[2]*res[2])
  *         dist[14] = dist[15] = dist[16] = dist[17] = diag_dist
  *     elif conn == 26:             # <<<<<<<<<<<<<<
@@ -29931,7 +31157,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
     break;
     default:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":630
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":782
  *             dist[i] = diag_dist
  *     else:
  *         raise ValueError(f"Unsupported connectivity: {conn}")             # <<<<<<<<<<<<<<
@@ -29939,9 +31165,9 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
  * @cython.boundscheck(False)
 */
     __pyx_t_14 = NULL;
-    __pyx_t_15 = __Pyx_PyUnicode_From_int(__pyx_v_conn, 0, ' ', 'd'); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 630, __pyx_L1_error)
+    __pyx_t_15 = __Pyx_PyUnicode_From_int(__pyx_v_conn, 0, ' ', 'd'); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 782, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_15);
-    __pyx_t_16 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Unsupported_connectivity, __pyx_t_15); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 630, __pyx_L1_error)
+    __pyx_t_16 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Unsupported_connectivity, __pyx_t_15); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 782, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_16);
     __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
     __pyx_t_17 = 1;
@@ -29950,16 +31176,16 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
       __pyx_t_13 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_ValueError)), __pyx_callargs+__pyx_t_17, (2-__pyx_t_17) | (__pyx_t_17*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
       __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-      if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 630, __pyx_L1_error)
+      if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 782, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
     }
     __Pyx_Raise(__pyx_t_13, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __PYX_ERR(0, 630, __pyx_L1_error)
+    __PYX_ERR(0, 782, __pyx_L1_error)
     break;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":587
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":739
  *         raise ValueError(f"Unsupported neighbor count: {n_nbr}")
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -29991,16 +31217,16 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_nei
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_dist_r_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_neighbor_dist_r_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_dist_r_cy, "stack_neighbor_dist_r_cy(int conn, ndarray res, ndarray dist) -> void\n\nCalculate neighbor distances based on connectivity and resolution");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_dist_r_cy = {"stack_neighbor_dist_r_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_dist_r_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_dist_r_cy};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_dist_r_cy(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_neighbor_dist_r_cy, "stack_neighbor_dist_r_cy(int conn, ndarray res, ndarray dist) -> void\n\nCalculate neighbor distances based on connectivity and resolution");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_neighbor_dist_r_cy = {"stack_neighbor_dist_r_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_neighbor_dist_r_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_neighbor_dist_r_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_neighbor_dist_r_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30032,46 +31258,46 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_conn,&__pyx_mstate_global->__pyx_n_u_res,&__pyx_mstate_global->__pyx_n_u_dist,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 587, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 739, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 587, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 739, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 587, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 739, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 587, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 739, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_neighbor_dist_r_cy", 0) < (0)) __PYX_ERR(0, 587, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_neighbor_dist_r_cy", 0) < (0)) __PYX_ERR(0, 739, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_neighbor_dist_r_cy", 1, 3, 3, i); __PYX_ERR(0, 587, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_neighbor_dist_r_cy", 1, 3, 3, i); __PYX_ERR(0, 739, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 587, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 739, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 587, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 739, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 587, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 739, __pyx_L3_error)
     }
-    __pyx_v_conn = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_conn == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 589, __pyx_L3_error)
+    __pyx_v_conn = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_conn == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 741, __pyx_L3_error)
     __pyx_v_res = ((PyArrayObject *)values[1]);
     __pyx_v_dist = ((PyArrayObject *)values[2]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_neighbor_dist_r_cy", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 587, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_neighbor_dist_r_cy", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 739, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -30082,9 +31308,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_res), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "res", 0))) __PYX_ERR(0, 589, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dist), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "dist", 0))) __PYX_ERR(0, 589, __pyx_L1_error)
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_dist_r_cy(__pyx_self, __pyx_v_conn, __pyx_v_res, __pyx_v_dist);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_res), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "res", 0))) __PYX_ERR(0, 741, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dist), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "dist", 0))) __PYX_ERR(0, 741, __pyx_L1_error)
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_neighbor_dist_r_cy(__pyx_self, __pyx_v_conn, __pyx_v_res, __pyx_v_dist);
 
   /* function exit code */
   goto __pyx_L0;
@@ -30103,7 +31329,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10stack_neighbor_dist_r_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_conn, PyArrayObject *__pyx_v_res, PyArrayObject *__pyx_v_dist) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_neighbor_dist_r_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_conn, PyArrayObject *__pyx_v_res, PyArrayObject *__pyx_v_dist) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_dist;
   __Pyx_Buffer __pyx_pybuffer_dist;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_res;
@@ -30125,16 +31351,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10s
   __pyx_pybuffernd_dist.rcbuffer = &__pyx_pybuffer_dist;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_res.rcbuffer->pybuffer, (PyObject*)__pyx_v_res, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 587, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_res.rcbuffer->pybuffer, (PyObject*)__pyx_v_res, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 739, __pyx_L1_error)
   }
   __pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_dist.rcbuffer->pybuffer, (PyObject*)__pyx_v_dist, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 587, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_dist.rcbuffer->pybuffer, (PyObject*)__pyx_v_dist, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_f64, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 739, __pyx_L1_error)
   }
   __pyx_pybuffernd_dist.diminfo[0].strides = __pyx_pybuffernd_dist.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_dist.diminfo[0].shape = __pyx_pybuffernd_dist.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_void_to_None(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_dist_r_cy(__pyx_v_conn, __pyx_v_res, __pyx_v_dist, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_neighbor_dist_r_cy(__pyx_v_conn, __pyx_v_res, __pyx_v_dist, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 739, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -30162,7 +31388,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10s
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":632
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":784
  *         raise ValueError(f"Unsupported connectivity: {conn}")
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30170,7 +31396,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_10s
  * cpdef int stack_util_offset_cy(int x, int y, int z, int width, int height, int depth) noexcept:
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_util_offset_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30182,7 +31408,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":638
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":790
  *     Calculate the linear offset/index from 3D coordinates
  *     """
  *     if (x < 0) or (y < 0) or (z < 0) or (x >= width) or (y >= height) or (z >= depth):             # <<<<<<<<<<<<<<
@@ -30224,7 +31450,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":639
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":791
  *     """
  *     if (x < 0) or (y < 0) or (z < 0) or (x >= width) or (y >= height) or (z >= depth):
  *         return -1             # <<<<<<<<<<<<<<
@@ -30234,7 +31460,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
     __pyx_r = -1;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":638
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":790
  *     Calculate the linear offset/index from 3D coordinates
  *     """
  *     if (x < 0) or (y < 0) or (z < 0) or (x >= width) or (y >= height) or (z >= depth):             # <<<<<<<<<<<<<<
@@ -30243,7 +31469,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":641
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":793
  *         return -1
  * 
  *     return x + width * y + width * height * z             # <<<<<<<<<<<<<<
@@ -30253,7 +31479,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
   __pyx_r = ((__pyx_v_x + (__pyx_v_width * __pyx_v_y)) + ((__pyx_v_width * __pyx_v_height) * __pyx_v_z));
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":632
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":784
  *         raise ValueError(f"Unsupported connectivity: {conn}")
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30267,16 +31493,16 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_util_offset_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_util_offset_cy, "stack_util_offset_cy(int x, int y, int z, int width, int height, int depth) -> int\n\nCalculate the linear offset/index from 3D coordinates");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_util_offset_cy = {"stack_util_offset_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_util_offset_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_util_offset_cy};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_util_offset_cy(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset_cy, "stack_util_offset_cy(int x, int y, int z, int width, int height, int depth) -> int\n\nCalculate the linear offset/index from 3D coordinates");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset_cy = {"stack_util_offset_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30311,67 +31537,67 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_x,&__pyx_mstate_global->__pyx_n_u_y,&__pyx_mstate_global->__pyx_n_u_z,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_height,&__pyx_mstate_global->__pyx_n_u_depth,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 632, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 784, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 632, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 784, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 632, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 784, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 632, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 784, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 632, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 784, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 632, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 784, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 632, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 784, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_util_offset_cy", 0) < (0)) __PYX_ERR(0, 632, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_util_offset_cy", 0) < (0)) __PYX_ERR(0, 784, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 6; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_util_offset_cy", 1, 6, 6, i); __PYX_ERR(0, 632, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_util_offset_cy", 1, 6, 6, i); __PYX_ERR(0, 784, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 6)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 632, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 784, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 632, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 784, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 632, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 784, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 632, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 784, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 632, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 784, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 632, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 784, __pyx_L3_error)
     }
-    __pyx_v_x = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 634, __pyx_L3_error)
-    __pyx_v_y = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 634, __pyx_L3_error)
-    __pyx_v_z = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 634, __pyx_L3_error)
-    __pyx_v_width = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 634, __pyx_L3_error)
-    __pyx_v_height = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 634, __pyx_L3_error)
-    __pyx_v_depth = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 634, __pyx_L3_error)
+    __pyx_v_x = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 786, __pyx_L3_error)
+    __pyx_v_y = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 786, __pyx_L3_error)
+    __pyx_v_z = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 786, __pyx_L3_error)
+    __pyx_v_width = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 786, __pyx_L3_error)
+    __pyx_v_height = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 786, __pyx_L3_error)
+    __pyx_v_depth = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 786, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_util_offset_cy", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 632, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_util_offset_cy", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 784, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -30382,7 +31608,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_util_offset_cy(__pyx_self, __pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_height, __pyx_v_depth);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset_cy(__pyx_self, __pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_height, __pyx_v_depth);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -30392,7 +31618,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12stack_util_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_height, int __pyx_v_depth) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_height, int __pyx_v_depth) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -30401,7 +31627,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stack_util_offset_cy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_offset_cy(__pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_height, __pyx_v_depth, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 632, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_offset_cy(__pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_height, __pyx_v_depth, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 784, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -30418,7 +31644,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12s
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":643
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":795
  *     return x + width * y + width * height * z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30426,7 +31652,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_12s
  * cpdef int stack_util_offset2_cy(int x, int y, int z, int width, int area) noexcept:
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset2_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_offset2_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30436,7 +31662,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_offset2_cy(int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_area, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_r;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":649
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":801
  *     Calculate linear offset with precomputed area
  *     """
  *     return x + width * y + area * z             # <<<<<<<<<<<<<<
@@ -30446,7 +31672,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
   __pyx_r = ((__pyx_v_x + (__pyx_v_width * __pyx_v_y)) + (__pyx_v_area * __pyx_v_z));
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":643
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":795
  *     return x + width * y + width * height * z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30460,16 +31686,16 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset2_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_offset2_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset2_cy, "stack_util_offset2_cy(int x, int y, int z, int width, int area) -> int\n\nCalculate linear offset with precomputed area");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset2_cy = {"stack_util_offset2_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset2_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset2_cy};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset2_cy(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_offset2_cy, "stack_util_offset2_cy(int x, int y, int z, int width, int area) -> int\n\nCalculate linear offset with precomputed area");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_offset2_cy = {"stack_util_offset2_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_offset2_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_offset2_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_offset2_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30503,60 +31729,60 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_x,&__pyx_mstate_global->__pyx_n_u_y,&__pyx_mstate_global->__pyx_n_u_z,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_area,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 643, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 795, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 643, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 795, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 643, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 795, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 643, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 795, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 643, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 795, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 643, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 795, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_util_offset2_cy", 0) < (0)) __PYX_ERR(0, 643, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_util_offset2_cy", 0) < (0)) __PYX_ERR(0, 795, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 5; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_util_offset2_cy", 1, 5, 5, i); __PYX_ERR(0, 643, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_util_offset2_cy", 1, 5, 5, i); __PYX_ERR(0, 795, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 5)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 643, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 795, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 643, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 795, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 643, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 795, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 643, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 795, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 643, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 795, __pyx_L3_error)
     }
-    __pyx_v_x = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 645, __pyx_L3_error)
-    __pyx_v_y = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 645, __pyx_L3_error)
-    __pyx_v_z = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 645, __pyx_L3_error)
-    __pyx_v_width = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 645, __pyx_L3_error)
-    __pyx_v_area = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_area == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 645, __pyx_L3_error)
+    __pyx_v_x = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L3_error)
+    __pyx_v_y = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L3_error)
+    __pyx_v_z = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L3_error)
+    __pyx_v_width = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L3_error)
+    __pyx_v_area = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_area == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_util_offset2_cy", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 643, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_util_offset2_cy", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 795, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -30567,7 +31793,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset2_cy(__pyx_self, __pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_area);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_offset2_cy(__pyx_self, __pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_area);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -30577,7 +31803,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14stack_util_offset2_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_area) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_offset2_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z, int __pyx_v_width, int __pyx_v_area) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -30586,7 +31812,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stack_util_offset2_cy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_offset2_cy(__pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_area, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 643, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_offset2_cy(__pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_area, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 795, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -30603,7 +31829,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14s
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":651
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":803
  *     return x + width * y + area * z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30611,7 +31837,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_14s
  * cpdef tuple stack_util_coord_cy(int index, int width, int area) noexcept:
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_coord_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_util_coord_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30634,7 +31860,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stack_util_coord_cy", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":657
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":809
  *     Convert linear index to 3D coordinates
  *     """
  *     cdef int z = index // area             # <<<<<<<<<<<<<<
@@ -30643,7 +31869,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
 */
   __pyx_v_z = (__pyx_v_index / __pyx_v_area);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":658
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":810
  *     """
  *     cdef int z = index // area
  *     cdef int remainder = index % area             # <<<<<<<<<<<<<<
@@ -30652,7 +31878,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
 */
   __pyx_v_remainder = (__pyx_v_index % __pyx_v_area);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":659
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":811
  *     cdef int z = index // area
  *     cdef int remainder = index % area
  *     cdef int y = remainder // width             # <<<<<<<<<<<<<<
@@ -30661,7 +31887,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
 */
   __pyx_v_y = (__pyx_v_remainder / __pyx_v_width);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":660
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":812
  *     cdef int remainder = index % area
  *     cdef int y = remainder // width
  *     cdef int x = remainder % width             # <<<<<<<<<<<<<<
@@ -30670,7 +31896,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
 */
   __pyx_v_x = (__pyx_v_remainder % __pyx_v_width);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":661
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":813
  *     cdef int y = remainder // width
  *     cdef int x = remainder % width
  *     return x, y, z             # <<<<<<<<<<<<<<
@@ -30678,20 +31904,20 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
  * @cython.boundscheck(False)
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 661, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 813, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 661, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 813, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 661, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 813, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 661, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 813, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 661, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 813, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 661, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 813, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3) != (0)) __PYX_ERR(0, 661, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3) != (0)) __PYX_ERR(0, 813, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
@@ -30699,7 +31925,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":651
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":803
  *     return x + width * y + area * z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30722,16 +31948,16 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stac
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_coord_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_util_coord_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_coord_cy, "stack_util_coord_cy(int index, int width, int area) -> tuple\n\nConvert linear index to 3D coordinates");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_coord_cy = {"stack_util_coord_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_coord_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_coord_cy};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_coord_cy(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_util_coord_cy, "stack_util_coord_cy(int index, int width, int area) -> tuple\n\nConvert linear index to 3D coordinates");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_util_coord_cy = {"stack_util_coord_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_util_coord_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_util_coord_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_util_coord_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30763,46 +31989,46 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_index,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_area,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 651, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 803, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 651, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 803, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 651, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 803, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 651, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 803, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_util_coord_cy", 0) < (0)) __PYX_ERR(0, 651, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_util_coord_cy", 0) < (0)) __PYX_ERR(0, 803, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_util_coord_cy", 1, 3, 3, i); __PYX_ERR(0, 651, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_util_coord_cy", 1, 3, 3, i); __PYX_ERR(0, 803, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 651, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 803, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 651, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 803, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 651, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 803, __pyx_L3_error)
     }
-    __pyx_v_index = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 653, __pyx_L3_error)
-    __pyx_v_width = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 653, __pyx_L3_error)
-    __pyx_v_area = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_area == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 653, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 805, __pyx_L3_error)
+    __pyx_v_width = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 805, __pyx_L3_error)
+    __pyx_v_area = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_area == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 805, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_util_coord_cy", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 651, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_util_coord_cy", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 803, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -30813,7 +32039,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_coord_cy(__pyx_self, __pyx_v_index, __pyx_v_width, __pyx_v_area);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_util_coord_cy(__pyx_self, __pyx_v_index, __pyx_v_width, __pyx_v_area);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -30823,7 +32049,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16stack_util_coord_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_index, int __pyx_v_width, int __pyx_v_area) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_util_coord_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_index, int __pyx_v_width, int __pyx_v_area) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -30832,7 +32058,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stack_util_coord_cy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_coord_cy(__pyx_v_index, __pyx_v_width, __pyx_v_area, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 651, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_coord_cy(__pyx_v_index, __pyx_v_width, __pyx_v_area, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 803, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -30849,7 +32075,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16s
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":663
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":815
  *     return x, y, z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30857,7 +32083,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_16s
  * cpdef int stack_subindex_cy(int sindex, int x0, int y0, int z0,
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_subindex_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_subindex_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30882,14 +32108,14 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stack_subindex_cy", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":671
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":823
  *     """
  *     cdef int x, y, z
  *     x, y, z = stack_util_coord_cy(sindex, swidth, sarea)             # <<<<<<<<<<<<<<
  *     x += x0
  *     y += y0
 */
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_coord_cy(__pyx_v_sindex, __pyx_v_swidth, __pyx_v_sarea, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 671, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_coord_cy(__pyx_v_sindex, __pyx_v_swidth, __pyx_v_sarea, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 823, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(__pyx_t_1 != Py_None)) {
     PyObject* sequence = __pyx_t_1;
@@ -30897,7 +32123,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
     if (unlikely(size != 3)) {
       if (size > 3) __Pyx_RaiseTooManyValuesError(3);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 671, __pyx_L1_error)
+      __PYX_ERR(0, 823, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
@@ -30907,28 +32133,28 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
     __pyx_t_4 = PyTuple_GET_ITEM(sequence, 2);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 671, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 823, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 671, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 823, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 671, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 823, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 671, __pyx_L1_error)
+    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 823, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyLong_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 671, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 823, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_3); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 671, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_3); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 823, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 671, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 823, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_x = __pyx_t_5;
   __pyx_v_y = __pyx_t_6;
   __pyx_v_z = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":672
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":824
  *     cdef int x, y, z
  *     x, y, z = stack_util_coord_cy(sindex, swidth, sarea)
  *     x += x0             # <<<<<<<<<<<<<<
@@ -30937,7 +32163,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
 */
   __pyx_v_x = (__pyx_v_x + __pyx_v_x0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":673
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":825
  *     x, y, z = stack_util_coord_cy(sindex, swidth, sarea)
  *     x += x0
  *     y += y0             # <<<<<<<<<<<<<<
@@ -30946,7 +32172,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
 */
   __pyx_v_y = (__pyx_v_y + __pyx_v_y0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":674
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":826
  *     x += x0
  *     y += y0
  *     z += z0             # <<<<<<<<<<<<<<
@@ -30955,7 +32181,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
 */
   __pyx_v_z = (__pyx_v_z + __pyx_v_z0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":676
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":828
  *     z += z0
  * 
  *     return stack_util_offset2_cy(x, y, z, width, area)             # <<<<<<<<<<<<<<
@@ -30965,7 +32191,7 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
   __pyx_r = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_util_offset2_cy(__pyx_v_x, __pyx_v_y, __pyx_v_z, __pyx_v_width, __pyx_v_area, 0);
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":663
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":815
  *     return x, y, z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -30987,16 +32213,16 @@ static int __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subi
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_subindex_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_subindex_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_subindex_cy, "stack_subindex_cy(int sindex, int x0, int y0, int z0, int swidth, int sarea, int width, int area) -> int\n\nCalculate subindex with offset");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_subindex_cy = {"stack_subindex_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_subindex_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_subindex_cy};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_subindex_cy(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_subindex_cy, "stack_subindex_cy(int sindex, int x0, int y0, int z0, int swidth, int sarea, int width, int area) -> int\n\nCalculate subindex with offset");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_subindex_cy = {"stack_subindex_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_subindex_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_subindex_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_subindex_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -31033,81 +32259,81 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_sindex,&__pyx_mstate_global->__pyx_n_u_x0,&__pyx_mstate_global->__pyx_n_u_y0,&__pyx_mstate_global->__pyx_n_u_z0,&__pyx_mstate_global->__pyx_n_u_swidth,&__pyx_mstate_global->__pyx_n_u_sarea,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_area,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 663, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 815, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 663, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 815, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_subindex_cy", 0) < (0)) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_subindex_cy", 0) < (0)) __PYX_ERR(0, 815, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 8; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_subindex_cy", 1, 8, 8, i); __PYX_ERR(0, 663, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_subindex_cy", 1, 8, 8, i); __PYX_ERR(0, 815, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 8)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 815, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 815, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 815, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 815, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 815, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 815, __pyx_L3_error)
       values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 815, __pyx_L3_error)
       values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 663, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 815, __pyx_L3_error)
     }
-    __pyx_v_sindex = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_sindex == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 665, __pyx_L3_error)
-    __pyx_v_x0 = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_x0 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 665, __pyx_L3_error)
-    __pyx_v_y0 = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_y0 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 665, __pyx_L3_error)
-    __pyx_v_z0 = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_z0 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 665, __pyx_L3_error)
-    __pyx_v_swidth = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_swidth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L3_error)
-    __pyx_v_sarea = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_sarea == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L3_error)
-    __pyx_v_width = __Pyx_PyLong_As_int(values[6]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L3_error)
-    __pyx_v_area = __Pyx_PyLong_As_int(values[7]); if (unlikely((__pyx_v_area == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L3_error)
+    __pyx_v_sindex = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_sindex == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 817, __pyx_L3_error)
+    __pyx_v_x0 = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_x0 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 817, __pyx_L3_error)
+    __pyx_v_y0 = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_y0 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 817, __pyx_L3_error)
+    __pyx_v_z0 = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_z0 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 817, __pyx_L3_error)
+    __pyx_v_swidth = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_swidth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 818, __pyx_L3_error)
+    __pyx_v_sarea = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_sarea == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 818, __pyx_L3_error)
+    __pyx_v_width = __Pyx_PyLong_As_int(values[6]); if (unlikely((__pyx_v_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 818, __pyx_L3_error)
+    __pyx_v_area = __Pyx_PyLong_As_int(values[7]); if (unlikely((__pyx_v_area == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 818, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_subindex_cy", 1, 8, 8, __pyx_nargs); __PYX_ERR(0, 663, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_subindex_cy", 1, 8, 8, __pyx_nargs); __PYX_ERR(0, 815, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -31118,7 +32344,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_subindex_cy(__pyx_self, __pyx_v_sindex, __pyx_v_x0, __pyx_v_y0, __pyx_v_z0, __pyx_v_swidth, __pyx_v_sarea, __pyx_v_width, __pyx_v_area);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_subindex_cy(__pyx_self, __pyx_v_sindex, __pyx_v_x0, __pyx_v_y0, __pyx_v_z0, __pyx_v_swidth, __pyx_v_sarea, __pyx_v_width, __pyx_v_area);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -31128,7 +32354,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18stack_subindex_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_sindex, int __pyx_v_x0, int __pyx_v_y0, int __pyx_v_z0, int __pyx_v_swidth, int __pyx_v_sarea, int __pyx_v_width, int __pyx_v_area) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_subindex_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_sindex, int __pyx_v_x0, int __pyx_v_y0, int __pyx_v_z0, int __pyx_v_swidth, int __pyx_v_sarea, int __pyx_v_width, int __pyx_v_area) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -31137,7 +32363,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stack_subindex_cy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subindex_cy(__pyx_v_sindex, __pyx_v_x0, __pyx_v_y0, __pyx_v_z0, __pyx_v_swidth, __pyx_v_sarea, __pyx_v_width, __pyx_v_area, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 663, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_stack_subindex_cy(__pyx_v_sindex, __pyx_v_x0, __pyx_v_y0, __pyx_v_z0, __pyx_v_swidth, __pyx_v_sarea, __pyx_v_width, __pyx_v_area, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 815, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -31154,7 +32380,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18s
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":678
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":830
  *     return stack_util_offset2_cy(x, y, z, width, area)
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -31163,16 +32389,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_18s
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_neighbor_bound_test_s_cy(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23stack_neighbor_bound_test_s_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_neighbor_bound_test_s_cy, "stack_neighbor_bound_test_s_cy(int n_nbr, int cwidth, int cheight, int cdepth, int x, int y, int z)\n\nTest if neighbors are within bounds for a given connectivity pattern\n\nArgs:\n    n_nbr: Number of neighbors (4, 6, 8, 10, 18, or 26)\n    cwidth: Width of the volume\n    cheight: Height of the volume\n    cdepth: Depth of the volume\n    x: Current x coordinate\n    y: Current y coordinate\n    z: Current z coordinate\n    \nReturns:\n    tuple: (number of neighbors in bounds, in_bound array)");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_neighbor_bound_test_s_cy = {"stack_neighbor_bound_test_s_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_neighbor_bound_test_s_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_neighbor_bound_test_s_cy};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_neighbor_bound_test_s_cy(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22stack_neighbor_bound_test_s_cy, "stack_neighbor_bound_test_s_cy(int n_nbr, int cwidth, int cheight, int cdepth, int x, int y, int z)\n\nTest if neighbors are within bounds for a given connectivity pattern\n\nArgs:\n    n_nbr: Number of neighbors (4, 6, 8, 10, 18, or 26)\n    cwidth: Width of the volume\n    cheight: Height of the volume\n    cdepth: Depth of the volume\n    x: Current x coordinate\n    y: Current y coordinate\n    z: Current z coordinate\n    \nReturns:\n    tuple: (number of neighbors in bounds, in_bound array)");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23stack_neighbor_bound_test_s_cy = {"stack_neighbor_bound_test_s_cy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23stack_neighbor_bound_test_s_cy, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22stack_neighbor_bound_test_s_cy};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23stack_neighbor_bound_test_s_cy(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -31208,74 +32434,74 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_n_nbr,&__pyx_mstate_global->__pyx_n_u_cwidth,&__pyx_mstate_global->__pyx_n_u_cheight,&__pyx_mstate_global->__pyx_n_u_cdepth,&__pyx_mstate_global->__pyx_n_u_x,&__pyx_mstate_global->__pyx_n_u_y,&__pyx_mstate_global->__pyx_n_u_z,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 678, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 830, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 678, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 830, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 678, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 830, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 678, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 830, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 678, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 830, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 678, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 830, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 678, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 830, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 678, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 830, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_neighbor_bound_test_s_cy", 0) < (0)) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "stack_neighbor_bound_test_s_cy", 0) < (0)) __PYX_ERR(0, 830, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 7; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_neighbor_bound_test_s_cy", 1, 7, 7, i); __PYX_ERR(0, 678, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("stack_neighbor_bound_test_s_cy", 1, 7, 7, i); __PYX_ERR(0, 830, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 7)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 830, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 830, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 830, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 830, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 830, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 830, __pyx_L3_error)
       values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 678, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 830, __pyx_L3_error)
     }
-    __pyx_v_n_nbr = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_n_nbr == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 680, __pyx_L3_error)
-    __pyx_v_cwidth = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_cwidth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 680, __pyx_L3_error)
-    __pyx_v_cheight = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_cheight == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 680, __pyx_L3_error)
-    __pyx_v_cdepth = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_cdepth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 680, __pyx_L3_error)
-    __pyx_v_x = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 681, __pyx_L3_error)
-    __pyx_v_y = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 681, __pyx_L3_error)
-    __pyx_v_z = __Pyx_PyLong_As_int(values[6]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 681, __pyx_L3_error)
+    __pyx_v_n_nbr = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_n_nbr == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 832, __pyx_L3_error)
+    __pyx_v_cwidth = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_cwidth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 832, __pyx_L3_error)
+    __pyx_v_cheight = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_cheight == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 832, __pyx_L3_error)
+    __pyx_v_cdepth = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_cdepth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 832, __pyx_L3_error)
+    __pyx_v_x = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 833, __pyx_L3_error)
+    __pyx_v_y = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 833, __pyx_L3_error)
+    __pyx_v_z = __Pyx_PyLong_As_int(values[6]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 833, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("stack_neighbor_bound_test_s_cy", 1, 7, 7, __pyx_nargs); __PYX_ERR(0, 678, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("stack_neighbor_bound_test_s_cy", 1, 7, 7, __pyx_nargs); __PYX_ERR(0, 830, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -31286,7 +32512,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_neighbor_bound_test_s_cy(__pyx_self, __pyx_v_n_nbr, __pyx_v_cwidth, __pyx_v_cheight, __pyx_v_cdepth, __pyx_v_x, __pyx_v_y, __pyx_v_z);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22stack_neighbor_bound_test_s_cy(__pyx_self, __pyx_v_n_nbr, __pyx_v_cwidth, __pyx_v_cheight, __pyx_v_cdepth, __pyx_v_x, __pyx_v_y, __pyx_v_z);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -31296,7 +32522,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20stack_neighbor_bound_test_s_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_cwidth, int __pyx_v_cheight, int __pyx_v_cdepth, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22stack_neighbor_bound_test_s_cy(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_n_nbr, int __pyx_v_cwidth, int __pyx_v_cheight, int __pyx_v_cdepth, int __pyx_v_x, int __pyx_v_y, int __pyx_v_z) {
   PyArrayObject *__pyx_v_is_in_bound = 0;
   int __pyx_v_n_in_bound;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_is_in_bound;
@@ -31322,7 +32548,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
   __pyx_pybuffernd_is_in_bound.data = NULL;
   __pyx_pybuffernd_is_in_bound.rcbuffer = &__pyx_pybuffer_is_in_bound;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":697
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":849
  *         tuple: (number of neighbors in bounds, in_bound array)
  *     """
  *     cdef np.ndarray[np.int32_t, ndim=1] is_in_bound = np.ones(n_nbr, dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -31330,16 +32556,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  *     cdef int i
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 697, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_ones); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 697, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_ones); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 697, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 697, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 697, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -31356,31 +32582,31 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_t_3};
-    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 697, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 849, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 697, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 849, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 697, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 849, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 697, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 849, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_5numpy_int32_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_is_in_bound = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 697, __pyx_L1_error)
+      __PYX_ERR(0, 849, __pyx_L1_error)
     } else {__pyx_pybuffernd_is_in_bound.diminfo[0].strides = __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_is_in_bound.diminfo[0].shape = __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_is_in_bound = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":698
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":850
  *     """
  *     cdef np.ndarray[np.int32_t, ndim=1] is_in_bound = np.ones(n_nbr, dtype=np.int32)
  *     cdef int n_in_bound = n_nbr             # <<<<<<<<<<<<<<
@@ -31389,7 +32615,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
   __pyx_v_n_in_bound = __pyx_v_n_nbr;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":702
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":854
  * 
  *     # Check if all neighbors are in bounds
  *     if n_nbr == 4:             # <<<<<<<<<<<<<<
@@ -31399,7 +32625,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
   switch (__pyx_v_n_nbr) {
     case 4:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":703
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":855
  *     # Check if all neighbors are in bounds
  *     if n_nbr == 4:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):             # <<<<<<<<<<<<<<
@@ -31441,7 +32667,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L4_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":704
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":856
  *     if n_nbr == 4:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):
  *             return n_nbr, is_in_bound             # <<<<<<<<<<<<<<
@@ -31449,21 +32675,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
 */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 704, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 856, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 704, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 856, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_1);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 704, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 856, __pyx_L1_error);
       __Pyx_INCREF((PyObject *)__pyx_v_is_in_bound);
       __Pyx_GIVEREF((PyObject *)__pyx_v_is_in_bound);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 704, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 856, __pyx_L1_error);
       __pyx_t_1 = 0;
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":703
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":855
  *     # Check if all neighbors are in bounds
  *     if n_nbr == 4:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):             # <<<<<<<<<<<<<<
@@ -31472,7 +32698,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":705
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":857
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -31514,7 +32740,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L11_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":706
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":858
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):
  *             return 0, np.zeros(n_nbr, dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -31523,16 +32749,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_1 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 706, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 858, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 706, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 858, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 706, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 858, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 706, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 858, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 858, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_7 = 1;
@@ -31549,31 +32775,31 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       #endif
       {
         PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_1, __pyx_t_5};
-        __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 706, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 858, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 706, __pyx_L1_error)
+        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 858, __pyx_L1_error)
         __pyx_t_4 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 706, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 858, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
-      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 706, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 858, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
       __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_0);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 706, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 858, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 706, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 858, __pyx_L1_error);
       __pyx_t_4 = 0;
       __pyx_r = __pyx_t_6;
       __pyx_t_6 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":705
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":857
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -31582,7 +32808,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":708
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":860
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -31592,7 +32818,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":709
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":861
  * 
  *         if x == 0:
  *             is_in_bound[0] = 0             # <<<<<<<<<<<<<<
@@ -31602,7 +32828,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 0;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":710
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":862
  *         if x == 0:
  *             is_in_bound[0] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -31611,7 +32837,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":708
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":860
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -31620,7 +32846,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":711
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":863
  *             is_in_bound[0] = 0
  *             n_in_bound -= 1
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -31630,7 +32856,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == __pyx_v_cwidth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":712
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":864
  *             n_in_bound -= 1
  *         if x == cwidth:
  *             is_in_bound[1] = 0             # <<<<<<<<<<<<<<
@@ -31640,7 +32866,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 1;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":713
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":865
  *         if x == cwidth:
  *             is_in_bound[1] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -31649,7 +32875,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":711
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":863
  *             is_in_bound[0] = 0
  *             n_in_bound -= 1
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -31658,7 +32884,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":714
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":866
  *             is_in_bound[1] = 0
  *             n_in_bound -= 1
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -31668,7 +32894,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":715
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":867
  *             n_in_bound -= 1
  *         if y == 0:
  *             is_in_bound[2] = 0             # <<<<<<<<<<<<<<
@@ -31678,7 +32904,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 2;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":716
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":868
  *         if y == 0:
  *             is_in_bound[2] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -31687,7 +32913,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":714
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":866
  *             is_in_bound[1] = 0
  *             n_in_bound -= 1
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -31696,7 +32922,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":717
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":869
  *             is_in_bound[2] = 0
  *             n_in_bound -= 1
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -31706,7 +32932,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == __pyx_v_cheight);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":718
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":870
  *             n_in_bound -= 1
  *         if y == cheight:
  *             is_in_bound[3] = 0             # <<<<<<<<<<<<<<
@@ -31716,7 +32942,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 3;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":719
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":871
  *         if y == cheight:
  *             is_in_bound[3] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -31725,7 +32951,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":717
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":869
  *             is_in_bound[2] = 0
  *             n_in_bound -= 1
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -31734,7 +32960,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":702
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":854
  * 
  *     # Check if all neighbors are in bounds
  *     if n_nbr == 4:             # <<<<<<<<<<<<<<
@@ -31744,7 +32970,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     break;
     case 6:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":722
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":874
  * 
  *     elif n_nbr == 6:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):             # <<<<<<<<<<<<<<
@@ -31786,7 +33012,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L22_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":723
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":875
  *     elif n_nbr == 6:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound             # <<<<<<<<<<<<<<
@@ -31794,21 +33020,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
 */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 723, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 875, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 723, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 875, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_6);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 723, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 875, __pyx_L1_error);
       __Pyx_INCREF((PyObject *)__pyx_v_is_in_bound);
       __Pyx_GIVEREF((PyObject *)__pyx_v_is_in_bound);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 723, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 875, __pyx_L1_error);
       __pyx_t_6 = 0;
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":722
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":874
  * 
  *     elif n_nbr == 6:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):             # <<<<<<<<<<<<<<
@@ -31817,7 +33043,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":724
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":876
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -31859,7 +33085,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L29_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":725
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":877
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):
  *             return 0, np.zeros(n_nbr, dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -31868,16 +33094,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_6 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 725, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 877, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 877, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 725, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 877, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 725, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 877, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 725, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 877, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_7 = 1;
@@ -31894,31 +33120,31 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       #endif
       {
         PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, __pyx_t_3};
-        __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 725, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 877, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 725, __pyx_L1_error)
+        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 877, __pyx_L1_error)
         __pyx_t_4 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 725, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 877, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 877, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
       __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_0);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 725, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 877, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 725, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 877, __pyx_L1_error);
       __pyx_t_4 = 0;
       __pyx_r = __pyx_t_2;
       __pyx_t_2 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":724
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":876
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -31927,7 +33153,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":727
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":879
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -31937,7 +33163,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":728
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":880
  * 
  *         if x == 0:
  *             is_in_bound[0] = 0             # <<<<<<<<<<<<<<
@@ -31947,7 +33173,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 0;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":729
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":881
  *         if x == 0:
  *             is_in_bound[0] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -31956,7 +33182,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":727
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":879
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -31965,7 +33191,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":730
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":882
  *             is_in_bound[0] = 0
  *             n_in_bound -= 1
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -31975,7 +33201,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == __pyx_v_cwidth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":731
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":883
  *             n_in_bound -= 1
  *         if x == cwidth:
  *             is_in_bound[1] = 0             # <<<<<<<<<<<<<<
@@ -31985,7 +33211,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 1;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":732
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":884
  *         if x == cwidth:
  *             is_in_bound[1] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -31994,7 +33220,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":730
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":882
  *             is_in_bound[0] = 0
  *             n_in_bound -= 1
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -32003,7 +33229,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":733
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":885
  *             is_in_bound[1] = 0
  *             n_in_bound -= 1
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -32013,7 +33239,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":734
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":886
  *             n_in_bound -= 1
  *         if y == 0:
  *             is_in_bound[2] = 0             # <<<<<<<<<<<<<<
@@ -32023,7 +33249,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 2;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":735
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":887
  *         if y == 0:
  *             is_in_bound[2] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -32032,7 +33258,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":733
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":885
  *             is_in_bound[1] = 0
  *             n_in_bound -= 1
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -32041,7 +33267,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":736
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":888
  *             is_in_bound[2] = 0
  *             n_in_bound -= 1
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -32051,7 +33277,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == __pyx_v_cheight);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":737
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":889
  *             n_in_bound -= 1
  *         if y == cheight:
  *             is_in_bound[3] = 0             # <<<<<<<<<<<<<<
@@ -32061,7 +33287,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 3;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":738
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":890
  *         if y == cheight:
  *             is_in_bound[3] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -32070,7 +33296,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":736
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":888
  *             is_in_bound[2] = 0
  *             n_in_bound -= 1
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -32079,7 +33305,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":739
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":891
  *             is_in_bound[3] = 0
  *             n_in_bound -= 1
  *         if z == 0:             # <<<<<<<<<<<<<<
@@ -32089,7 +33315,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_z == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":740
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":892
  *             n_in_bound -= 1
  *         if z == 0:
  *             is_in_bound[4] = 0             # <<<<<<<<<<<<<<
@@ -32099,7 +33325,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 4;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":741
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":893
  *         if z == 0:
  *             is_in_bound[4] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -32108,7 +33334,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":739
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":891
  *             is_in_bound[3] = 0
  *             n_in_bound -= 1
  *         if z == 0:             # <<<<<<<<<<<<<<
@@ -32117,7 +33343,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":742
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":894
  *             is_in_bound[4] = 0
  *             n_in_bound -= 1
  *         if z == cdepth:             # <<<<<<<<<<<<<<
@@ -32127,7 +33353,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_z == __pyx_v_cdepth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":743
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":895
  *             n_in_bound -= 1
  *         if z == cdepth:
  *             is_in_bound[5] = 0             # <<<<<<<<<<<<<<
@@ -32137,7 +33363,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 5;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":744
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":896
  *         if z == cdepth:
  *             is_in_bound[5] = 0
  *             n_in_bound -= 1             # <<<<<<<<<<<<<<
@@ -32146,7 +33372,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 1);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":742
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":894
  *             is_in_bound[4] = 0
  *             n_in_bound -= 1
  *         if z == cdepth:             # <<<<<<<<<<<<<<
@@ -32155,7 +33381,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":721
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":873
  *             n_in_bound -= 1
  * 
  *     elif n_nbr == 6:             # <<<<<<<<<<<<<<
@@ -32165,7 +33391,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     break;
     case 8:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":747
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":899
  * 
  *     elif n_nbr == 8:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):             # <<<<<<<<<<<<<<
@@ -32207,7 +33433,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L42_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":748
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":900
  *     elif n_nbr == 8:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):
  *             return n_nbr, is_in_bound             # <<<<<<<<<<<<<<
@@ -32215,21 +33441,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
 */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 748, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 900, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 748, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 900, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_2);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 748, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 900, __pyx_L1_error);
       __Pyx_INCREF((PyObject *)__pyx_v_is_in_bound);
       __Pyx_GIVEREF((PyObject *)__pyx_v_is_in_bound);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 748, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 900, __pyx_L1_error);
       __pyx_t_2 = 0;
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":747
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":899
  * 
  *     elif n_nbr == 8:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):             # <<<<<<<<<<<<<<
@@ -32238,7 +33464,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":749
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":901
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -32280,7 +33506,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L49_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":750
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":902
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):
  *             return 0, np.zeros(n_nbr, dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -32289,16 +33515,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_2 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 750, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 902, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 750, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 902, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 750, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 902, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 750, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 902, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 750, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 902, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_7 = 1;
@@ -32315,31 +33541,31 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       #endif
       {
         PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_t_5};
-        __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 750, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 902, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 750, __pyx_L1_error)
+        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 902, __pyx_L1_error)
         __pyx_t_4 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 750, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 902, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 750, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 902, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
       __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_0);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 750, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 902, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 750, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 902, __pyx_L1_error);
       __pyx_t_4 = 0;
       __pyx_r = __pyx_t_1;
       __pyx_t_1 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":749
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":901
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z >= 0) and (z <= cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -32348,7 +33574,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":752
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":904
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -32358,7 +33584,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":753
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":905
  * 
  *         if x == 0:
  *             is_in_bound[0] = is_in_bound[4] = is_in_bound[7] = 0             # <<<<<<<<<<<<<<
@@ -32372,7 +33598,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 7;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":754
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":906
  *         if x == 0:
  *             is_in_bound[0] = is_in_bound[4] = is_in_bound[7] = 0
  *             n_in_bound -= 3             # <<<<<<<<<<<<<<
@@ -32381,7 +33607,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 3);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":752
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":904
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -32390,7 +33616,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":755
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":907
  *             is_in_bound[0] = is_in_bound[4] = is_in_bound[7] = 0
  *             n_in_bound -= 3
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -32400,7 +33626,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == __pyx_v_cwidth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":756
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":908
  *             n_in_bound -= 3
  *         if x == cwidth:
  *             is_in_bound[1] = is_in_bound[5] = is_in_bound[6] = 0             # <<<<<<<<<<<<<<
@@ -32414,7 +33640,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 6;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":757
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":909
  *         if x == cwidth:
  *             is_in_bound[1] = is_in_bound[5] = is_in_bound[6] = 0
  *             n_in_bound -= 3             # <<<<<<<<<<<<<<
@@ -32423,7 +33649,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 3);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":755
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":907
  *             is_in_bound[0] = is_in_bound[4] = is_in_bound[7] = 0
  *             n_in_bound -= 3
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -32432,7 +33658,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":758
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":910
  *             is_in_bound[1] = is_in_bound[5] = is_in_bound[6] = 0
  *             n_in_bound -= 3
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -32442,7 +33668,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":759
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":911
  *             n_in_bound -= 3
  *         if y == 0:
  *             is_in_bound[2] = is_in_bound[6] = 0             # <<<<<<<<<<<<<<
@@ -32454,7 +33680,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 6;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":760
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":912
  *         if y == 0:
  *             is_in_bound[2] = is_in_bound[6] = 0
  *             n_in_bound -= 2             # <<<<<<<<<<<<<<
@@ -32463,7 +33689,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 2);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":758
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":910
  *             is_in_bound[1] = is_in_bound[5] = is_in_bound[6] = 0
  *             n_in_bound -= 3
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -32472,7 +33698,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":761
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":913
  *             is_in_bound[2] = is_in_bound[6] = 0
  *             n_in_bound -= 2
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -32482,7 +33708,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == __pyx_v_cheight);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":762
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":914
  *             n_in_bound -= 2
  *         if y == cheight:
  *             is_in_bound[3] = is_in_bound[7] = 0             # <<<<<<<<<<<<<<
@@ -32494,7 +33720,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 7;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":763
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":915
  *         if y == cheight:
  *             is_in_bound[3] = is_in_bound[7] = 0
  *             n_in_bound -= 2             # <<<<<<<<<<<<<<
@@ -32503,7 +33729,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 2);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":761
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":913
  *             is_in_bound[2] = is_in_bound[6] = 0
  *             n_in_bound -= 2
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -32512,7 +33738,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":746
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":898
  *             n_in_bound -= 1
  * 
  *     elif n_nbr == 8:             # <<<<<<<<<<<<<<
@@ -32522,7 +33748,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     break;
     case 18:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":766
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":918
  * 
  *     elif n_nbr == 18:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):             # <<<<<<<<<<<<<<
@@ -32564,7 +33790,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L60_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":767
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":919
  *     elif n_nbr == 18:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound             # <<<<<<<<<<<<<<
@@ -32572,21 +33798,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
 */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 767, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 919, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 767, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 919, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_1);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 767, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 919, __pyx_L1_error);
       __Pyx_INCREF((PyObject *)__pyx_v_is_in_bound);
       __Pyx_GIVEREF((PyObject *)__pyx_v_is_in_bound);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 767, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 919, __pyx_L1_error);
       __pyx_t_1 = 0;
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":766
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":918
  * 
  *     elif n_nbr == 18:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):             # <<<<<<<<<<<<<<
@@ -32595,7 +33821,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":768
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":920
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -32637,7 +33863,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L67_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":769
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":921
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):
  *             return 0, np.zeros(n_nbr, dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -32646,16 +33872,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_1 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 769, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 921, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 769, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 921, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 769, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 921, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 769, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 921, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 769, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 921, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_7 = 1;
@@ -32672,31 +33898,31 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       #endif
       {
         PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_1, __pyx_t_3};
-        __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 769, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 921, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 769, __pyx_L1_error)
+        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 921, __pyx_L1_error)
         __pyx_t_4 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 769, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 921, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
-      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 769, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 921, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
       __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_0);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 769, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 921, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 769, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 921, __pyx_L1_error);
       __pyx_t_4 = 0;
       __pyx_r = __pyx_t_6;
       __pyx_t_6 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":768
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":920
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -32705,7 +33931,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":771
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":923
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -32715,7 +33941,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":772
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":924
  * 
  *         if x == 0:
  *             is_in_bound[0] = is_in_bound[6] = is_in_bound[9] = is_in_bound[10] = is_in_bound[13] = 0             # <<<<<<<<<<<<<<
@@ -32733,7 +33959,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 13;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":773
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":925
  *         if x == 0:
  *             is_in_bound[0] = is_in_bound[6] = is_in_bound[9] = is_in_bound[10] = is_in_bound[13] = 0
  *             n_in_bound -= 5             # <<<<<<<<<<<<<<
@@ -32742,7 +33968,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 5);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":771
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":923
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -32751,7 +33977,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":774
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":926
  *             is_in_bound[0] = is_in_bound[6] = is_in_bound[9] = is_in_bound[10] = is_in_bound[13] = 0
  *             n_in_bound -= 5
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -32761,7 +33987,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == __pyx_v_cwidth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":775
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":927
  *             n_in_bound -= 5
  *         if x == cwidth:
  *             is_in_bound[1] = is_in_bound[7] = is_in_bound[8] = is_in_bound[11] = is_in_bound[12] = 0             # <<<<<<<<<<<<<<
@@ -32779,7 +34005,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 12;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":776
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":928
  *         if x == cwidth:
  *             is_in_bound[1] = is_in_bound[7] = is_in_bound[8] = is_in_bound[11] = is_in_bound[12] = 0
  *             n_in_bound -= 5             # <<<<<<<<<<<<<<
@@ -32788,7 +34014,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 5);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":774
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":926
  *             is_in_bound[0] = is_in_bound[6] = is_in_bound[9] = is_in_bound[10] = is_in_bound[13] = 0
  *             n_in_bound -= 5
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -32797,7 +34023,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":777
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":929
  *             is_in_bound[1] = is_in_bound[7] = is_in_bound[8] = is_in_bound[11] = is_in_bound[12] = 0
  *             n_in_bound -= 5
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -32807,7 +34033,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":778
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":930
  *             n_in_bound -= 5
  *         if y == 0:
  *             is_in_bound[2] = is_in_bound[6] = is_in_bound[8] = is_in_bound[14] = is_in_bound[17] = 0             # <<<<<<<<<<<<<<
@@ -32825,7 +34051,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 17;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":779
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":931
  *         if y == 0:
  *             is_in_bound[2] = is_in_bound[6] = is_in_bound[8] = is_in_bound[14] = is_in_bound[17] = 0
  *             n_in_bound -= 5             # <<<<<<<<<<<<<<
@@ -32834,7 +34060,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 5);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":777
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":929
  *             is_in_bound[1] = is_in_bound[7] = is_in_bound[8] = is_in_bound[11] = is_in_bound[12] = 0
  *             n_in_bound -= 5
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -32843,7 +34069,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":780
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":932
  *             is_in_bound[2] = is_in_bound[6] = is_in_bound[8] = is_in_bound[14] = is_in_bound[17] = 0
  *             n_in_bound -= 5
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -32853,7 +34079,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == __pyx_v_cheight);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":781
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":933
  *             n_in_bound -= 5
  *         if y == cheight:
  *             is_in_bound[3] = is_in_bound[7] = is_in_bound[9] = is_in_bound[15] = is_in_bound[16] = 0             # <<<<<<<<<<<<<<
@@ -32871,7 +34097,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 16;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":782
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":934
  *         if y == cheight:
  *             is_in_bound[3] = is_in_bound[7] = is_in_bound[9] = is_in_bound[15] = is_in_bound[16] = 0
  *             n_in_bound -= 5             # <<<<<<<<<<<<<<
@@ -32880,7 +34106,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 5);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":780
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":932
  *             is_in_bound[2] = is_in_bound[6] = is_in_bound[8] = is_in_bound[14] = is_in_bound[17] = 0
  *             n_in_bound -= 5
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -32889,7 +34115,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":783
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":935
  *             is_in_bound[3] = is_in_bound[7] = is_in_bound[9] = is_in_bound[15] = is_in_bound[16] = 0
  *             n_in_bound -= 5
  *         if z == 0:             # <<<<<<<<<<<<<<
@@ -32899,7 +34125,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_z == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":784
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":936
  *             n_in_bound -= 5
  *         if z == 0:
  *             is_in_bound[4] = is_in_bound[10] = is_in_bound[12] = is_in_bound[14] = is_in_bound[16] = 0             # <<<<<<<<<<<<<<
@@ -32917,7 +34143,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 16;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":785
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":937
  *         if z == 0:
  *             is_in_bound[4] = is_in_bound[10] = is_in_bound[12] = is_in_bound[14] = is_in_bound[16] = 0
  *             n_in_bound -= 5             # <<<<<<<<<<<<<<
@@ -32926,7 +34152,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 5);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":783
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":935
  *             is_in_bound[3] = is_in_bound[7] = is_in_bound[9] = is_in_bound[15] = is_in_bound[16] = 0
  *             n_in_bound -= 5
  *         if z == 0:             # <<<<<<<<<<<<<<
@@ -32935,7 +34161,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":786
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":938
  *             is_in_bound[4] = is_in_bound[10] = is_in_bound[12] = is_in_bound[14] = is_in_bound[16] = 0
  *             n_in_bound -= 5
  *         if z == cdepth:             # <<<<<<<<<<<<<<
@@ -32945,7 +34171,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_z == __pyx_v_cdepth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":787
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":939
  *             n_in_bound -= 5
  *         if z == cdepth:
  *             is_in_bound[5] = is_in_bound[11] = is_in_bound[13] = is_in_bound[15] = is_in_bound[17] = 0             # <<<<<<<<<<<<<<
@@ -32963,7 +34189,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 17;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":788
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":940
  *         if z == cdepth:
  *             is_in_bound[5] = is_in_bound[11] = is_in_bound[13] = is_in_bound[15] = is_in_bound[17] = 0
  *             n_in_bound -= 5             # <<<<<<<<<<<<<<
@@ -32972,7 +34198,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 5);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":786
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":938
  *             is_in_bound[4] = is_in_bound[10] = is_in_bound[12] = is_in_bound[14] = is_in_bound[16] = 0
  *             n_in_bound -= 5
  *         if z == cdepth:             # <<<<<<<<<<<<<<
@@ -32981,7 +34207,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":765
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":917
  *             n_in_bound -= 2
  * 
  *     elif n_nbr == 18:             # <<<<<<<<<<<<<<
@@ -32991,7 +34217,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     break;
     case 26:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":791
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":943
  * 
  *     elif n_nbr == 26:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):             # <<<<<<<<<<<<<<
@@ -33033,7 +34259,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L80_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":792
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":944
  *     elif n_nbr == 26:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound             # <<<<<<<<<<<<<<
@@ -33041,21 +34267,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
 */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 792, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 944, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 792, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 944, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_6);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 792, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 944, __pyx_L1_error);
       __Pyx_INCREF((PyObject *)__pyx_v_is_in_bound);
       __Pyx_GIVEREF((PyObject *)__pyx_v_is_in_bound);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 792, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 944, __pyx_L1_error);
       __pyx_t_6 = 0;
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":791
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":943
  * 
  *     elif n_nbr == 26:
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):             # <<<<<<<<<<<<<<
@@ -33064,7 +34290,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":793
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":945
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -33106,7 +34332,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_L87_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":794
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":946
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):
  *             return 0, np.zeros(n_nbr, dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -33115,16 +34341,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_6 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 794, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 946, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 794, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 946, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 794, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_n_nbr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 946, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 794, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 946, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 794, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 946, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_7 = 1;
@@ -33141,31 +34367,31 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       #endif
       {
         PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, __pyx_t_5};
-        __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 794, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 946, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 794, __pyx_L1_error)
+        if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 946, __pyx_L1_error)
         __pyx_t_4 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 794, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 946, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 794, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 946, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
       __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_0);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 794, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_mstate_global->__pyx_int_0) != (0)) __PYX_ERR(0, 946, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 794, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 946, __pyx_L1_error);
       __pyx_t_4 = 0;
       __pyx_r = __pyx_t_2;
       __pyx_t_2 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":793
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":945
  *         if (x > 0) and (x < cwidth) and (y > 0) and (y < cheight) and (z > 0) and (z < cdepth):
  *             return n_nbr, is_in_bound
  *         if (x < 0) or (x > cwidth) or (y < 0) or (y > cheight) or (z < 0) or (z > cdepth):             # <<<<<<<<<<<<<<
@@ -33174,7 +34400,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":796
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":948
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -33184,7 +34410,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":797
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":949
  * 
  *         if x == 0:
  *             is_in_bound[0] = is_in_bound[6] = is_in_bound[9] = is_in_bound[10] = is_in_bound[13] = \             # <<<<<<<<<<<<<<
@@ -33202,7 +34428,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 13;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":798
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":950
  *         if x == 0:
  *             is_in_bound[0] = is_in_bound[6] = is_in_bound[9] = is_in_bound[10] = is_in_bound[13] = \
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[23] = is_in_bound[24] = 0             # <<<<<<<<<<<<<<
@@ -33218,7 +34444,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 24;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":799
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":951
  *             is_in_bound[0] = is_in_bound[6] = is_in_bound[9] = is_in_bound[10] = is_in_bound[13] = \
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[23] = is_in_bound[24] = 0
  *             n_in_bound -= 9             # <<<<<<<<<<<<<<
@@ -33227,7 +34453,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 9);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":796
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":948
  *             return 0, np.zeros(n_nbr, dtype=np.int32)
  * 
  *         if x == 0:             # <<<<<<<<<<<<<<
@@ -33236,7 +34462,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":800
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":952
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[23] = is_in_bound[24] = 0
  *             n_in_bound -= 9
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -33246,7 +34472,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_x == __pyx_v_cwidth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":801
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":953
  *             n_in_bound -= 9
  *         if x == cwidth:
  *             is_in_bound[1] = is_in_bound[7] = is_in_bound[8] = is_in_bound[11] = is_in_bound[12] = \             # <<<<<<<<<<<<<<
@@ -33264,7 +34490,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 12;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":802
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":954
  *         if x == cwidth:
  *             is_in_bound[1] = is_in_bound[7] = is_in_bound[8] = is_in_bound[11] = is_in_bound[12] = \
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[22] = is_in_bound[25] = 0             # <<<<<<<<<<<<<<
@@ -33280,7 +34506,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 25;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":803
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":955
  *             is_in_bound[1] = is_in_bound[7] = is_in_bound[8] = is_in_bound[11] = is_in_bound[12] = \
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[22] = is_in_bound[25] = 0
  *             n_in_bound -= 9             # <<<<<<<<<<<<<<
@@ -33289,7 +34515,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 9);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":800
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":952
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[23] = is_in_bound[24] = 0
  *             n_in_bound -= 9
  *         if x == cwidth:             # <<<<<<<<<<<<<<
@@ -33298,7 +34524,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":804
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":956
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[22] = is_in_bound[25] = 0
  *             n_in_bound -= 9
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -33308,7 +34534,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":805
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":957
  *             n_in_bound -= 9
  *         if y == 0:
  *             is_in_bound[2] = is_in_bound[6] = is_in_bound[8] = is_in_bound[14] = is_in_bound[17] = \             # <<<<<<<<<<<<<<
@@ -33326,7 +34552,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 17;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":806
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":958
  *         if y == 0:
  *             is_in_bound[2] = is_in_bound[6] = is_in_bound[8] = is_in_bound[14] = is_in_bound[17] = \
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[22] = is_in_bound[25] = 0             # <<<<<<<<<<<<<<
@@ -33342,7 +34568,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 25;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":807
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":959
  *             is_in_bound[2] = is_in_bound[6] = is_in_bound[8] = is_in_bound[14] = is_in_bound[17] = \
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[22] = is_in_bound[25] = 0
  *             n_in_bound -= 9             # <<<<<<<<<<<<<<
@@ -33351,7 +34577,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 9);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":804
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":956
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[22] = is_in_bound[25] = 0
  *             n_in_bound -= 9
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -33360,7 +34586,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":808
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":960
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[22] = is_in_bound[25] = 0
  *             n_in_bound -= 9
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -33370,7 +34596,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_y == __pyx_v_cheight);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":809
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":961
  *             n_in_bound -= 9
  *         if y == cheight:
  *             is_in_bound[3] = is_in_bound[7] = is_in_bound[9] = is_in_bound[15] = is_in_bound[16] = \             # <<<<<<<<<<<<<<
@@ -33388,7 +34614,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 16;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":810
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":962
  *         if y == cheight:
  *             is_in_bound[3] = is_in_bound[7] = is_in_bound[9] = is_in_bound[15] = is_in_bound[16] = \
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[23] = is_in_bound[24] = 0             # <<<<<<<<<<<<<<
@@ -33404,7 +34630,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 24;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":811
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":963
  *             is_in_bound[3] = is_in_bound[7] = is_in_bound[9] = is_in_bound[15] = is_in_bound[16] = \
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[23] = is_in_bound[24] = 0
  *             n_in_bound -= 9             # <<<<<<<<<<<<<<
@@ -33413,7 +34639,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 9);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":808
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":960
  *                 is_in_bound[18] = is_in_bound[21] = is_in_bound[22] = is_in_bound[25] = 0
  *             n_in_bound -= 9
  *         if y == cheight:             # <<<<<<<<<<<<<<
@@ -33422,7 +34648,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":812
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":964
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[23] = is_in_bound[24] = 0
  *             n_in_bound -= 9
  *         if z == 0:             # <<<<<<<<<<<<<<
@@ -33432,7 +34658,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_z == 0);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":813
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":965
  *             n_in_bound -= 9
  *         if z == 0:
  *             is_in_bound[4] = is_in_bound[10] = is_in_bound[12] = is_in_bound[14] = is_in_bound[16] = \             # <<<<<<<<<<<<<<
@@ -33450,7 +34676,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 16;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":814
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":966
  *         if z == 0:
  *             is_in_bound[4] = is_in_bound[10] = is_in_bound[12] = is_in_bound[14] = is_in_bound[16] = \
  *                 is_in_bound[18] = is_in_bound[20] = is_in_bound[22] = is_in_bound[24] = 0             # <<<<<<<<<<<<<<
@@ -33466,7 +34692,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 24;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":815
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":967
  *             is_in_bound[4] = is_in_bound[10] = is_in_bound[12] = is_in_bound[14] = is_in_bound[16] = \
  *                 is_in_bound[18] = is_in_bound[20] = is_in_bound[22] = is_in_bound[24] = 0
  *             n_in_bound -= 9             # <<<<<<<<<<<<<<
@@ -33475,7 +34701,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 9);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":812
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":964
  *                 is_in_bound[19] = is_in_bound[20] = is_in_bound[23] = is_in_bound[24] = 0
  *             n_in_bound -= 9
  *         if z == 0:             # <<<<<<<<<<<<<<
@@ -33484,7 +34710,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":816
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":968
  *                 is_in_bound[18] = is_in_bound[20] = is_in_bound[22] = is_in_bound[24] = 0
  *             n_in_bound -= 9
  *         if z == cdepth:             # <<<<<<<<<<<<<<
@@ -33494,7 +34720,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     __pyx_t_8 = (__pyx_v_z == __pyx_v_cdepth);
     if (__pyx_t_8) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":817
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":969
  *             n_in_bound -= 9
  *         if z == cdepth:
  *             is_in_bound[5] = is_in_bound[11] = is_in_bound[13] = is_in_bound[15] = is_in_bound[17] = \             # <<<<<<<<<<<<<<
@@ -33512,7 +34738,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 17;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":818
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":970
  *         if z == cdepth:
  *             is_in_bound[5] = is_in_bound[11] = is_in_bound[13] = is_in_bound[15] = is_in_bound[17] = \
  *                 is_in_bound[19] = is_in_bound[21] = is_in_bound[23] = is_in_bound[25] = 0             # <<<<<<<<<<<<<<
@@ -33528,7 +34754,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_10 = 25;
       *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_is_in_bound.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_is_in_bound.diminfo[0].strides) = 0;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":819
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":971
  *             is_in_bound[5] = is_in_bound[11] = is_in_bound[13] = is_in_bound[15] = is_in_bound[17] = \
  *                 is_in_bound[19] = is_in_bound[21] = is_in_bound[23] = is_in_bound[25] = 0
  *             n_in_bound -= 9             # <<<<<<<<<<<<<<
@@ -33537,7 +34763,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
       __pyx_v_n_in_bound = (__pyx_v_n_in_bound - 9);
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":816
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":968
  *                 is_in_bound[18] = is_in_bound[20] = is_in_bound[22] = is_in_bound[24] = 0
  *             n_in_bound -= 9
  *         if z == cdepth:             # <<<<<<<<<<<<<<
@@ -33546,7 +34772,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":790
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":942
  *             n_in_bound -= 5
  * 
  *     elif n_nbr == 26:             # <<<<<<<<<<<<<<
@@ -33556,7 +34782,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
     break;
     default:
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":822
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":974
  * 
  *     else:
  *         raise ValueError(f"Unsupported neighbor count: {n_nbr}")             # <<<<<<<<<<<<<<
@@ -33564,9 +34790,9 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  *     return n_in_bound, is_in_bound
 */
     __pyx_t_4 = NULL;
-    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_n_nbr, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 822, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_n_nbr, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 974, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Unsupported_neighbor_count, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 822, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Unsupported_neighbor_count, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 974, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_7 = 1;
@@ -33575,16 +34801,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_ValueError)), __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 822, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 974, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 822, __pyx_L1_error)
+    __PYX_ERR(0, 974, __pyx_L1_error)
     break;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":824
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":976
  *         raise ValueError(f"Unsupported neighbor count: {n_nbr}")
  * 
  *     return n_in_bound, is_in_bound             # <<<<<<<<<<<<<<
@@ -33592,21 +34818,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
  * 
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_n_in_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 824, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_n_in_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 976, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 824, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 976, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 824, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 976, __pyx_L1_error);
   __Pyx_INCREF((PyObject *)__pyx_v_is_in_bound);
   __Pyx_GIVEREF((PyObject *)__pyx_v_is_in_bound);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 824, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, ((PyObject *)__pyx_v_is_in_bound)) != (0)) __PYX_ERR(0, 976, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":678
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":830
  *     return stack_util_offset2_cy(x, y, z, width, area)
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33640,7 +34866,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_20s
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":827
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":979
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33657,7 +34883,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
   __pyx_ctuple_int__and_int__and_int __pyx_r;
   __pyx_ctuple_int__and_int__and_int __pyx_t_1;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":834
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":986
  *     cdef:
  *         int z, y, x
  *         int64_t height_width = height * width             # <<<<<<<<<<<<<<
@@ -33666,7 +34892,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
 */
   __pyx_v_height_width = (__pyx_v_height * __pyx_v_width);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":837
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":989
  *         int64_t remainder
  * 
  *     z = idx // height_width             # <<<<<<<<<<<<<<
@@ -33675,7 +34901,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
 */
   __pyx_v_z = (__pyx_v_idx / __pyx_v_height_width);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":838
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":990
  * 
  *     z = idx // height_width
  *     remainder = idx % height_width             # <<<<<<<<<<<<<<
@@ -33684,7 +34910,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
 */
   __pyx_v_remainder = (__pyx_v_idx % __pyx_v_height_width);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":839
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":991
  *     z = idx // height_width
  *     remainder = idx % height_width
  *     y = remainder // width             # <<<<<<<<<<<<<<
@@ -33693,7 +34919,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
 */
   __pyx_v_y = (__pyx_v_remainder / __pyx_v_width);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":840
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":992
  *     remainder = idx % height_width
  *     y = remainder // width
  *     x = remainder % width             # <<<<<<<<<<<<<<
@@ -33702,7 +34928,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
 */
   __pyx_v_x = (__pyx_v_remainder % __pyx_v_width);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":842
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":994
  *     x = remainder % width
  * 
  *     return z, y, x             # <<<<<<<<<<<<<<
@@ -33715,7 +34941,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":827
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":979
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33728,7 +34954,7 @@ static CYTHON_INLINE __pyx_ctuple_int__and_int__and_int __pyx_f_9pyneutube_7trac
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":844
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":996
  *     return z, y, x
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33740,7 +34966,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
   int64_t __pyx_r;
   int __pyx_t_1;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":848
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1000
  * cdef inline int64_t fast_clip(int64_t val, int64_t min_val, int64_t max_val) nogil:
  *     """Fast scalar clip function"""
  *     if val < min_val:             # <<<<<<<<<<<<<<
@@ -33750,7 +34976,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
   __pyx_t_1 = (__pyx_v_val < __pyx_v_min_val);
   if (__pyx_t_1) {
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":849
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1001
  *     """Fast scalar clip function"""
  *     if val < min_val:
  *         return min_val             # <<<<<<<<<<<<<<
@@ -33760,7 +34986,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
     __pyx_r = __pyx_v_min_val;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":848
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1000
  * cdef inline int64_t fast_clip(int64_t val, int64_t min_val, int64_t max_val) nogil:
  *     """Fast scalar clip function"""
  *     if val < min_val:             # <<<<<<<<<<<<<<
@@ -33769,7 +34995,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":850
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1002
  *     if val < min_val:
  *         return min_val
  *     elif val > max_val:             # <<<<<<<<<<<<<<
@@ -33779,7 +35005,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
   __pyx_t_1 = (__pyx_v_val > __pyx_v_max_val);
   if (__pyx_t_1) {
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":851
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1003
  *         return min_val
  *     elif val > max_val:
  *         return max_val             # <<<<<<<<<<<<<<
@@ -33789,7 +35015,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
     __pyx_r = __pyx_v_max_val;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":850
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1002
  *     if val < min_val:
  *         return min_val
  *     elif val > max_val:             # <<<<<<<<<<<<<<
@@ -33798,7 +35024,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":852
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1004
  *     elif val > max_val:
  *         return max_val
  *     return val             # <<<<<<<<<<<<<<
@@ -33808,7 +35034,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
   __pyx_r = __pyx_v_val;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":844
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":996
  *     return z, y, x
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33821,7 +35047,7 @@ static CYTHON_INLINE int64_t __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_grap
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":854
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1006
  *     return val
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33838,7 +35064,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
   int __pyx_t_5;
   Py_ssize_t __pyx_t_6;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":859
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1011
  *     """Fast clip for array of values"""
  *     cdef int i
  *     for i in range(arr.shape[0]):             # <<<<<<<<<<<<<<
@@ -33850,7 +35076,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":860
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1012
  *     cdef int i
  *     for i in range(arr.shape[0]):
  *         if arr[i] < min_val:             # <<<<<<<<<<<<<<
@@ -33861,7 +35087,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
     __pyx_t_5 = ((*((int64_t *) ( /* dim=0 */ (__pyx_v_arr.data + __pyx_t_4 * __pyx_v_arr.strides[0]) ))) < __pyx_v_min_val);
     if (__pyx_t_5) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":861
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1013
  *     for i in range(arr.shape[0]):
  *         if arr[i] < min_val:
  *             out[i] = min_val             # <<<<<<<<<<<<<<
@@ -33871,7 +35097,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
       __pyx_t_4 = __pyx_v_i;
       *((int64_t *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_4 * __pyx_v_out.strides[0]) )) = __pyx_v_min_val;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":860
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1012
  *     cdef int i
  *     for i in range(arr.shape[0]):
  *         if arr[i] < min_val:             # <<<<<<<<<<<<<<
@@ -33881,7 +35107,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
       goto __pyx_L5;
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":862
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1014
  *         if arr[i] < min_val:
  *             out[i] = min_val
  *         elif arr[i] > max_val:             # <<<<<<<<<<<<<<
@@ -33892,7 +35118,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
     __pyx_t_5 = ((*((int64_t *) ( /* dim=0 */ (__pyx_v_arr.data + __pyx_t_4 * __pyx_v_arr.strides[0]) ))) > __pyx_v_max_val);
     if (__pyx_t_5) {
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":863
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1015
  *             out[i] = min_val
  *         elif arr[i] > max_val:
  *             out[i] = max_val             # <<<<<<<<<<<<<<
@@ -33902,7 +35128,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
       __pyx_t_4 = __pyx_v_i;
       *((int64_t *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_4 * __pyx_v_out.strides[0]) )) = __pyx_v_max_val;
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":862
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1014
  *         if arr[i] < min_val:
  *             out[i] = min_val
  *         elif arr[i] > max_val:             # <<<<<<<<<<<<<<
@@ -33912,7 +35138,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
       goto __pyx_L5;
     }
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":865
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1017
  *             out[i] = max_val
  *         else:
  *             out[i] = arr[i]             # <<<<<<<<<<<<<<
@@ -33927,7 +35153,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
     __pyx_L5:;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":854
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1006
  *     return val
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33938,7 +35164,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
   /* function exit code */
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":867
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1019
  *             out[i] = arr[i]
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -33946,7 +35172,7 @@ static CYTHON_INLINE void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_u
  * @cython.cdivision(True)
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23process_voxel_with_neighbors(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_with_neighbors(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -33996,7 +35222,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
   __pyx_pybuffernd_unravel_neighbor.data = NULL;
   __pyx_pybuffernd_unravel_neighbor.rcbuffer = &__pyx_pybuffer_unravel_neighbor;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":899
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1051
  *     cdef:
  *         int i, z, y, x
  *         int64_t stack_voxels_minus_1 = stack_voxels - 1             # <<<<<<<<<<<<<<
@@ -34005,7 +35231,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
 */
   __pyx_v_stack_voxels_minus_1 = (__pyx_v_stack_voxels - 1);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":900
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1052
  *         int i, z, y, x
  *         int64_t stack_voxels_minus_1 = stack_voxels - 1
  *         np.ndarray[int64_t, ndim=1] offset2_org_neighbor = np.empty(26, dtype=np.int64)             # <<<<<<<<<<<<<<
@@ -34013,14 +35239,14 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
  *         int64_t neighbor_offset
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 900, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 900, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 900, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 900, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_6 = 1;
@@ -34037,30 +35263,30 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_mstate_global->__pyx_int_26};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 900, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1052, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_5, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 900, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_5, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 1052, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 900, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1052, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 900, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 1052, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_offset2_org_neighbor.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn_int64_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_offset2_org_neighbor = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_offset2_org_neighbor.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 900, __pyx_L1_error)
+      __PYX_ERR(0, 1052, __pyx_L1_error)
     } else {__pyx_pybuffernd_offset2_org_neighbor.diminfo[0].strides = __pyx_pybuffernd_offset2_org_neighbor.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_offset2_org_neighbor.diminfo[0].shape = __pyx_pybuffernd_offset2_org_neighbor.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_offset2_org_neighbor = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":901
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1053
  *         int64_t stack_voxels_minus_1 = stack_voxels - 1
  *         np.ndarray[int64_t, ndim=1] offset2_org_neighbor = np.empty(26, dtype=np.int64)
  *         np.ndarray[int, ndim=2] unravel_neighbor = np.empty((26, 3), dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -34068,14 +35294,14 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
  * 
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 901, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 901, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 901, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 901, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_6 = 1;
@@ -34092,37 +35318,37 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_mstate_global->__pyx_tuple[2]};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 901, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1053, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 901, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 1053, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 901, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1053, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 901, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 1053, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_int, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_unravel_neighbor = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 901, __pyx_L1_error)
+      __PYX_ERR(0, 1053, __pyx_L1_error)
     } else {__pyx_pybuffernd_unravel_neighbor.diminfo[0].strides = __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_unravel_neighbor.diminfo[0].shape = __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_unravel_neighbor.diminfo[1].strides = __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_unravel_neighbor.diminfo[1].shape = __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_unravel_neighbor = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":905
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1057
  * 
  *     # Unravel offset2
  *     z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)             # <<<<<<<<<<<<<<
  *     unravel_offset2 = (z, y, x)
  * 
 */
-  __pyx_t_7 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_offset2, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 905, __pyx_L1_error)
+  __pyx_t_7 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_offset2, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1057, __pyx_L1_error)
   __pyx_t_8 = __pyx_t_7.f0;
   __pyx_t_9 = __pyx_t_7.f1;
   __pyx_t_10 = __pyx_t_7.f2;
@@ -34130,34 +35356,34 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
   __pyx_v_y = __pyx_t_9;
   __pyx_v_x = __pyx_t_10;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":906
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1058
  *     # Unravel offset2
  *     z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)
  *     unravel_offset2 = (z, y, x)             # <<<<<<<<<<<<<<
  * 
  *     # Process all 26 neighbors
 */
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_z); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 906, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_z); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1058, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 906, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1058, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 906, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1058, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 906, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1058, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 906, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 1058, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 906, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 1058, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_3) != (0)) __PYX_ERR(0, 906, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_3) != (0)) __PYX_ERR(0, 1058, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_5 = 0;
   __pyx_t_3 = 0;
   __pyx_v_unravel_offset2 = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":909
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1061
  * 
  *     # Process all 26 neighbors
  *     for i in range(26):             # <<<<<<<<<<<<<<
@@ -34167,7 +35393,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
   for (__pyx_t_10 = 0; __pyx_t_10 < 26; __pyx_t_10+=1) {
     __pyx_v_i = __pyx_t_10;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":911
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1063
  *     for i in range(26):
  *         # Add neighbor offset and clip
  *         neighbor_offset = offset2 + org_neighbor[i]             # <<<<<<<<<<<<<<
@@ -34177,17 +35403,17 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
     __pyx_t_11 = __pyx_v_i;
     __pyx_v_neighbor_offset = (__pyx_v_offset2 + (*((int64_t *) ( /* dim=0 */ (__pyx_v_org_neighbor.data + __pyx_t_11 * __pyx_v_org_neighbor.strides[0]) ))));
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":912
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1064
  *         # Add neighbor offset and clip
  *         neighbor_offset = offset2 + org_neighbor[i]
  *         neighbor_offset = fast_clip(neighbor_offset, 0, stack_voxels_minus_1)             # <<<<<<<<<<<<<<
  *         offset2_org_neighbor[i] = neighbor_offset
  * 
 */
-    __pyx_t_12 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_clip(__pyx_v_neighbor_offset, 0, __pyx_v_stack_voxels_minus_1); if (unlikely(__pyx_t_12 == ((int64_t)-1L) && PyErr_Occurred())) __PYX_ERR(0, 912, __pyx_L1_error)
+    __pyx_t_12 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_clip(__pyx_v_neighbor_offset, 0, __pyx_v_stack_voxels_minus_1); if (unlikely(__pyx_t_12 == ((int64_t)-1L) && PyErr_Occurred())) __PYX_ERR(0, 1064, __pyx_L1_error)
     __pyx_v_neighbor_offset = __pyx_t_12;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":913
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1065
  *         neighbor_offset = offset2 + org_neighbor[i]
  *         neighbor_offset = fast_clip(neighbor_offset, 0, stack_voxels_minus_1)
  *         offset2_org_neighbor[i] = neighbor_offset             # <<<<<<<<<<<<<<
@@ -34197,14 +35423,14 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
     __pyx_t_11 = __pyx_v_i;
     *__Pyx_BufPtrStrided1d(int64_t *, __pyx_pybuffernd_offset2_org_neighbor.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_offset2_org_neighbor.diminfo[0].strides) = __pyx_v_neighbor_offset;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":916
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1068
  * 
  *         # Unravel the neighbor index
  *         z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)             # <<<<<<<<<<<<<<
  *         unravel_neighbor[i, 0] = z
  *         unravel_neighbor[i, 1] = y
 */
-    __pyx_t_7 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_neighbor_offset, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 916, __pyx_L1_error)
+    __pyx_t_7 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_neighbor_offset, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1068, __pyx_L1_error)
     __pyx_t_9 = __pyx_t_7.f0;
     __pyx_t_8 = __pyx_t_7.f1;
     __pyx_t_13 = __pyx_t_7.f2;
@@ -34212,7 +35438,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
     __pyx_v_y = __pyx_t_8;
     __pyx_v_x = __pyx_t_13;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":917
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1069
  *         # Unravel the neighbor index
  *         z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)
  *         unravel_neighbor[i, 0] = z             # <<<<<<<<<<<<<<
@@ -34223,7 +35449,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
     __pyx_t_14 = 0;
     *__Pyx_BufPtrStrided2d(int *, __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_unravel_neighbor.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_unravel_neighbor.diminfo[1].strides) = __pyx_v_z;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":918
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1070
  *         z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)
  *         unravel_neighbor[i, 0] = z
  *         unravel_neighbor[i, 1] = y             # <<<<<<<<<<<<<<
@@ -34234,7 +35460,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
     __pyx_t_11 = 1;
     *__Pyx_BufPtrStrided2d(int *, __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_unravel_neighbor.diminfo[0].strides, __pyx_t_11, __pyx_pybuffernd_unravel_neighbor.diminfo[1].strides) = __pyx_v_y;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":919
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1071
  *         unravel_neighbor[i, 0] = z
  *         unravel_neighbor[i, 1] = y
  *         unravel_neighbor[i, 2] = x             # <<<<<<<<<<<<<<
@@ -34246,7 +35472,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
     *__Pyx_BufPtrStrided2d(int *, __pyx_pybuffernd_unravel_neighbor.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_unravel_neighbor.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_unravel_neighbor.diminfo[1].strides) = __pyx_v_x;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":921
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1073
  *         unravel_neighbor[i, 2] = x
  * 
  *     return unravel_offset2, offset2_org_neighbor, unravel_neighbor             # <<<<<<<<<<<<<<
@@ -34254,22 +35480,22 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
  * @cython.boundscheck(False)
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 921, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1073, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_unravel_offset2);
   __Pyx_GIVEREF(__pyx_v_unravel_offset2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_unravel_offset2) != (0)) __PYX_ERR(0, 921, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_unravel_offset2) != (0)) __PYX_ERR(0, 1073, __pyx_L1_error);
   __Pyx_INCREF((PyObject *)__pyx_v_offset2_org_neighbor);
   __Pyx_GIVEREF((PyObject *)__pyx_v_offset2_org_neighbor);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_offset2_org_neighbor)) != (0)) __PYX_ERR(0, 921, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_offset2_org_neighbor)) != (0)) __PYX_ERR(0, 1073, __pyx_L1_error);
   __Pyx_INCREF((PyObject *)__pyx_v_unravel_neighbor);
   __Pyx_GIVEREF((PyObject *)__pyx_v_unravel_neighbor);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, ((PyObject *)__pyx_v_unravel_neighbor)) != (0)) __PYX_ERR(0, 921, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, ((PyObject *)__pyx_v_unravel_neighbor)) != (0)) __PYX_ERR(0, 1073, __pyx_L1_error);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":867
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1019
  *             out[i] = arr[i]
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -34307,16 +35533,16 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23process_voxel_with_neighbors(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_with_neighbors(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22process_voxel_with_neighbors, "process_voxel_with_neighbors(int64_t offset2, int64_t[:] org_neighbor, int stack_depth, int stack_height, int stack_width, int64_t stack_voxels)\n\nProcess a single voxel with its 26 neighbors\n\nParameters:\n-----------\noffset2 : int64_t\n    The offset index\norg_neighbor : array[26]\n    Array of 26 neighbor offsets\nstack_depth, stack_height, stack_width : int\n    Stack dimensions\nstack_voxels : int64_t\n    Total number of voxels\n    \nReturns:\n--------\ntuple: (unravel_offset2, offset2_org_neighbor_clipped, unravel_offset2_org_neighbor)\n    - unravel_offset2: tuple (z, y, x)\n    - offset2_org_neighbor_clipped: numpy array[26] of clipped neighbor indices\n    - unravel_offset2_org_neighbor: numpy array[26, 3] of unraveled neighbor coordinates");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23process_voxel_with_neighbors = {"process_voxel_with_neighbors", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23process_voxel_with_neighbors, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22process_voxel_with_neighbors};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23process_voxel_with_neighbors(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_with_neighbors, "process_voxel_with_neighbors(int64_t offset2, int64_t[:] org_neighbor, int stack_depth, int stack_height, int stack_width, int64_t stack_voxels)\n\nProcess a single voxel with its 26 neighbors\n\nParameters:\n-----------\noffset2 : int64_t\n    The offset index\norg_neighbor : array[26]\n    Array of 26 neighbor offsets\nstack_depth, stack_height, stack_width : int\n    Stack dimensions\nstack_voxels : int64_t\n    Total number of voxels\n    \nReturns:\n--------\ntuple: (unravel_offset2, offset2_org_neighbor_clipped, unravel_offset2_org_neighbor)\n    - unravel_offset2: tuple (z, y, x)\n    - offset2_org_neighbor_clipped: numpy array[26] of clipped neighbor indices\n    - unravel_offset2_org_neighbor: numpy array[26, 3] of unraveled neighbor coordinates");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_with_neighbors = {"process_voxel_with_neighbors", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_with_neighbors, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_with_neighbors};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_with_neighbors(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -34351,67 +35577,67 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_offset2,&__pyx_mstate_global->__pyx_n_u_org_neighbor,&__pyx_mstate_global->__pyx_n_u_stack_depth,&__pyx_mstate_global->__pyx_n_u_stack_height,&__pyx_mstate_global->__pyx_n_u_stack_width,&__pyx_mstate_global->__pyx_n_u_stack_voxels,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 867, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 1019, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 867, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 1019, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 867, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 1019, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 867, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 1019, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 867, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 1019, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 867, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 1019, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 867, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 1019, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_voxel_with_neighbors", 0) < (0)) __PYX_ERR(0, 867, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_voxel_with_neighbors", 0) < (0)) __PYX_ERR(0, 1019, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 6; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_voxel_with_neighbors", 1, 6, 6, i); __PYX_ERR(0, 867, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_voxel_with_neighbors", 1, 6, 6, i); __PYX_ERR(0, 1019, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 6)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 867, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 1019, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 867, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 1019, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 867, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 1019, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 867, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 1019, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 867, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 1019, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 867, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 1019, __pyx_L3_error)
     }
-    __pyx_v_offset2 = __Pyx_PyLong_As_int64_t(values[0]); if (unlikely((__pyx_v_offset2 == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 870, __pyx_L3_error)
-    __pyx_v_org_neighbor = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_org_neighbor.memview)) __PYX_ERR(0, 871, __pyx_L3_error)
-    __pyx_v_stack_depth = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_stack_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 872, __pyx_L3_error)
-    __pyx_v_stack_height = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_stack_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 873, __pyx_L3_error)
-    __pyx_v_stack_width = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_stack_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 874, __pyx_L3_error)
-    __pyx_v_stack_voxels = __Pyx_PyLong_As_int64_t(values[5]); if (unlikely((__pyx_v_stack_voxels == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 875, __pyx_L3_error)
+    __pyx_v_offset2 = __Pyx_PyLong_As_int64_t(values[0]); if (unlikely((__pyx_v_offset2 == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1022, __pyx_L3_error)
+    __pyx_v_org_neighbor = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_org_neighbor.memview)) __PYX_ERR(0, 1023, __pyx_L3_error)
+    __pyx_v_stack_depth = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_stack_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1024, __pyx_L3_error)
+    __pyx_v_stack_height = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_stack_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1025, __pyx_L3_error)
+    __pyx_v_stack_width = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_stack_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1026, __pyx_L3_error)
+    __pyx_v_stack_voxels = __Pyx_PyLong_As_int64_t(values[5]); if (unlikely((__pyx_v_stack_voxels == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1027, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("process_voxel_with_neighbors", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 867, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("process_voxel_with_neighbors", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 1019, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -34423,7 +35649,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22process_voxel_with_neighbors(__pyx_self, __pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_with_neighbors(__pyx_self, __pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -34434,7 +35660,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22process_voxel_with_neighbors(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_with_neighbors(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -34443,8 +35669,8 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process_voxel_with_neighbors", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_org_neighbor.memview)) { __Pyx_RaiseUnboundLocalError("org_neighbor"); __PYX_ERR(0, 867, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_with_neighbors(__pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 867, __pyx_L1_error)
+  if (unlikely(!__pyx_v_org_neighbor.memview)) { __Pyx_RaiseUnboundLocalError("org_neighbor"); __PYX_ERR(0, 1019, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_with_neighbors(__pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1019, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -34461,7 +35687,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_22p
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":923
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1075
  *     return unravel_offset2, offset2_org_neighbor, unravel_neighbor
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -34489,7 +35715,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
   int __pyx_clineno = 0;
   PyGILState_STATE __pyx_gilstate_save;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":946
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1098
  *     cdef:
  *         int i, z, y, x
  *         int64_t stack_voxels_minus_1 = stack_voxels - 1             # <<<<<<<<<<<<<<
@@ -34498,14 +35724,14 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
 */
   __pyx_v_stack_voxels_minus_1 = (__pyx_v_stack_voxels - 1);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":950
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1102
  * 
  *     # Unravel offset2
  *     z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)             # <<<<<<<<<<<<<<
  *     unravel_offset2_out[0] = z
  *     unravel_offset2_out[1] = y
 */
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_offset2, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 950, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_offset2, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1102, __pyx_L1_error)
   __pyx_t_2 = __pyx_t_1.f0;
   __pyx_t_3 = __pyx_t_1.f1;
   __pyx_t_4 = __pyx_t_1.f2;
@@ -34513,7 +35739,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
   __pyx_v_y = __pyx_t_3;
   __pyx_v_x = __pyx_t_4;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":951
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1103
  *     # Unravel offset2
  *     z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)
  *     unravel_offset2_out[0] = z             # <<<<<<<<<<<<<<
@@ -34523,7 +35749,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
   __pyx_t_5 = 0;
   *((int *) ( /* dim=0 */ (__pyx_v_unravel_offset2_out.data + __pyx_t_5 * __pyx_v_unravel_offset2_out.strides[0]) )) = __pyx_v_z;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":952
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1104
  *     z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)
  *     unravel_offset2_out[0] = z
  *     unravel_offset2_out[1] = y             # <<<<<<<<<<<<<<
@@ -34533,7 +35759,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
   __pyx_t_5 = 1;
   *((int *) ( /* dim=0 */ (__pyx_v_unravel_offset2_out.data + __pyx_t_5 * __pyx_v_unravel_offset2_out.strides[0]) )) = __pyx_v_y;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":953
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1105
  *     unravel_offset2_out[0] = z
  *     unravel_offset2_out[1] = y
  *     unravel_offset2_out[2] = x             # <<<<<<<<<<<<<<
@@ -34543,7 +35769,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
   __pyx_t_5 = 2;
   *((int *) ( /* dim=0 */ (__pyx_v_unravel_offset2_out.data + __pyx_t_5 * __pyx_v_unravel_offset2_out.strides[0]) )) = __pyx_v_x;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":956
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1108
  * 
  *     # Process all 26 neighbors
  *     for i in range(26):             # <<<<<<<<<<<<<<
@@ -34553,7 +35779,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
   for (__pyx_t_4 = 0; __pyx_t_4 < 26; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":958
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1110
  *     for i in range(26):
  *         # Add neighbor offset and clip
  *         neighbor_offset = offset2 + org_neighbor[i]             # <<<<<<<<<<<<<<
@@ -34563,17 +35789,17 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
     __pyx_t_5 = __pyx_v_i;
     __pyx_v_neighbor_offset = (__pyx_v_offset2 + (*((int64_t *) ( /* dim=0 */ (__pyx_v_org_neighbor.data + __pyx_t_5 * __pyx_v_org_neighbor.strides[0]) ))));
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":959
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1111
  *         # Add neighbor offset and clip
  *         neighbor_offset = offset2 + org_neighbor[i]
  *         neighbor_offset = fast_clip(neighbor_offset, 0, stack_voxels_minus_1)             # <<<<<<<<<<<<<<
  *         offset2_neighbor_out[i] = neighbor_offset
  * 
 */
-    __pyx_t_6 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_clip(__pyx_v_neighbor_offset, 0, __pyx_v_stack_voxels_minus_1); if (unlikely(__pyx_t_6 == ((int64_t)-1L) && __Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 959, __pyx_L1_error)
+    __pyx_t_6 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_clip(__pyx_v_neighbor_offset, 0, __pyx_v_stack_voxels_minus_1); if (unlikely(__pyx_t_6 == ((int64_t)-1L) && __Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1111, __pyx_L1_error)
     __pyx_v_neighbor_offset = __pyx_t_6;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":960
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1112
  *         neighbor_offset = offset2 + org_neighbor[i]
  *         neighbor_offset = fast_clip(neighbor_offset, 0, stack_voxels_minus_1)
  *         offset2_neighbor_out[i] = neighbor_offset             # <<<<<<<<<<<<<<
@@ -34583,14 +35809,14 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
     __pyx_t_5 = __pyx_v_i;
     *((int64_t *) ( /* dim=0 */ (__pyx_v_offset2_neighbor_out.data + __pyx_t_5 * __pyx_v_offset2_neighbor_out.strides[0]) )) = __pyx_v_neighbor_offset;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":963
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1115
  * 
  *         # Unravel the neighbor index
  *         z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)             # <<<<<<<<<<<<<<
  *         unravel_neighbor_out[i, 0] = z
  *         unravel_neighbor_out[i, 1] = y
 */
-    __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_neighbor_offset, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 963, __pyx_L1_error)
+    __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_neighbor_offset, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1115, __pyx_L1_error)
     __pyx_t_3 = __pyx_t_1.f0;
     __pyx_t_2 = __pyx_t_1.f1;
     __pyx_t_7 = __pyx_t_1.f2;
@@ -34598,7 +35824,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
     __pyx_v_y = __pyx_t_2;
     __pyx_v_x = __pyx_t_7;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":964
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1116
  *         # Unravel the neighbor index
  *         z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)
  *         unravel_neighbor_out[i, 0] = z             # <<<<<<<<<<<<<<
@@ -34609,7 +35835,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
     __pyx_t_8 = 0;
     *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_neighbor_out.data + __pyx_t_5 * __pyx_v_unravel_neighbor_out.strides[0]) ) + __pyx_t_8 * __pyx_v_unravel_neighbor_out.strides[1]) )) = __pyx_v_z;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":965
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1117
  *         z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)
  *         unravel_neighbor_out[i, 0] = z
  *         unravel_neighbor_out[i, 1] = y             # <<<<<<<<<<<<<<
@@ -34620,7 +35846,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
     __pyx_t_5 = 1;
     *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_neighbor_out.data + __pyx_t_8 * __pyx_v_unravel_neighbor_out.strides[0]) ) + __pyx_t_5 * __pyx_v_unravel_neighbor_out.strides[1]) )) = __pyx_v_y;
 
-    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":966
+    /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1118
  *         unravel_neighbor_out[i, 0] = z
  *         unravel_neighbor_out[i, 1] = y
  *         unravel_neighbor_out[i, 2] = x             # <<<<<<<<<<<<<<
@@ -34632,7 +35858,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
     *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_neighbor_out.data + __pyx_t_5 * __pyx_v_unravel_neighbor_out.strides[0]) ) + __pyx_t_8 * __pyx_v_unravel_neighbor_out.strides[1]) )) = __pyx_v_x;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":923
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1075
  *     return unravel_offset2, offset2_org_neighbor, unravel_neighbor
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -34649,7 +35875,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
   __pyx_L0:;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":969
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1121
  * 
  * # Wrapper for the nogil version
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -34657,7 +35883,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_v
  * cpdef process_voxel_neighbors_fast(int64_t offset2,
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_neighbors_fast(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_neighbors_fast(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -34672,16 +35898,16 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process_voxel_neighbors_fast", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":983
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1135
  *     Fast processing with pre-allocated output arrays
  *     """
  *     process_voxel_with_neighbors_nogil(             # <<<<<<<<<<<<<<
  *         offset2, org_neighbor,
  *         stack_depth, stack_height, stack_width, stack_voxels,
 */
-  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_with_neighbors_nogil(__pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 983, __pyx_L1_error)
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_with_neighbors_nogil(__pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1135, __pyx_L1_error)
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":969
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1121
  * 
  * # Wrapper for the nogil version
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -34702,16 +35928,16 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_neighbors_fast(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_neighbors_fast(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_neighbors_fast, "process_voxel_neighbors_fast(int64_t offset2, int64_t[:] org_neighbor, int stack_depth, int stack_height, int stack_width, int64_t stack_voxels, int[:] unravel_offset2_out, int64_t[:] offset2_neighbor_out, int[:, :] unravel_neighbor_out)\n\nFast processing with pre-allocated output arrays");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_neighbors_fast = {"process_voxel_neighbors_fast", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_neighbors_fast, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_neighbors_fast};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_neighbors_fast(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_neighbors_fast, "process_voxel_neighbors_fast(int64_t offset2, int64_t[:] org_neighbor, int stack_depth, int stack_height, int stack_width, int64_t stack_voxels, int[:] unravel_offset2_out, int64_t[:] offset2_neighbor_out, int[:, :] unravel_neighbor_out)\n\nFast processing with pre-allocated output arrays");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_neighbors_fast = {"process_voxel_neighbors_fast", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_neighbors_fast, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_neighbors_fast};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_neighbors_fast(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -34749,88 +35975,88 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_offset2,&__pyx_mstate_global->__pyx_n_u_org_neighbor,&__pyx_mstate_global->__pyx_n_u_stack_depth,&__pyx_mstate_global->__pyx_n_u_stack_height,&__pyx_mstate_global->__pyx_n_u_stack_width,&__pyx_mstate_global->__pyx_n_u_stack_voxels,&__pyx_mstate_global->__pyx_n_u_unravel_offset2_out,&__pyx_mstate_global->__pyx_n_u_offset2_neighbor_out,&__pyx_mstate_global->__pyx_n_u_unravel_neighbor_out,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 969, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 1121, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 969, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 1121, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_voxel_neighbors_fast", 0) < (0)) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_voxel_neighbors_fast", 0) < (0)) __PYX_ERR(0, 1121, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 9; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_voxel_neighbors_fast", 1, 9, 9, i); __PYX_ERR(0, 969, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_voxel_neighbors_fast", 1, 9, 9, i); __PYX_ERR(0, 1121, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 9)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 1121, __pyx_L3_error)
       values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 969, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 1121, __pyx_L3_error)
     }
-    __pyx_v_offset2 = __Pyx_PyLong_As_int64_t(values[0]); if (unlikely((__pyx_v_offset2 == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 971, __pyx_L3_error)
-    __pyx_v_org_neighbor = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_org_neighbor.memview)) __PYX_ERR(0, 972, __pyx_L3_error)
-    __pyx_v_stack_depth = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_stack_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 973, __pyx_L3_error)
-    __pyx_v_stack_height = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_stack_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 974, __pyx_L3_error)
-    __pyx_v_stack_width = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_stack_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 975, __pyx_L3_error)
-    __pyx_v_stack_voxels = __Pyx_PyLong_As_int64_t(values[5]); if (unlikely((__pyx_v_stack_voxels == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 976, __pyx_L3_error)
-    __pyx_v_unravel_offset2_out = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[6], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_offset2_out.memview)) __PYX_ERR(0, 977, __pyx_L3_error)
-    __pyx_v_offset2_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[7], PyBUF_WRITABLE); if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) __PYX_ERR(0, 978, __pyx_L3_error)
-    __pyx_v_unravel_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[8], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) __PYX_ERR(0, 979, __pyx_L3_error)
+    __pyx_v_offset2 = __Pyx_PyLong_As_int64_t(values[0]); if (unlikely((__pyx_v_offset2 == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1123, __pyx_L3_error)
+    __pyx_v_org_neighbor = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_org_neighbor.memview)) __PYX_ERR(0, 1124, __pyx_L3_error)
+    __pyx_v_stack_depth = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_stack_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1125, __pyx_L3_error)
+    __pyx_v_stack_height = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_stack_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1126, __pyx_L3_error)
+    __pyx_v_stack_width = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_stack_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1127, __pyx_L3_error)
+    __pyx_v_stack_voxels = __Pyx_PyLong_As_int64_t(values[5]); if (unlikely((__pyx_v_stack_voxels == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1128, __pyx_L3_error)
+    __pyx_v_unravel_offset2_out = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[6], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_offset2_out.memview)) __PYX_ERR(0, 1129, __pyx_L3_error)
+    __pyx_v_offset2_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[7], PyBUF_WRITABLE); if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) __PYX_ERR(0, 1130, __pyx_L3_error)
+    __pyx_v_unravel_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[8], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) __PYX_ERR(0, 1131, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("process_voxel_neighbors_fast", 1, 9, 9, __pyx_nargs); __PYX_ERR(0, 969, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("process_voxel_neighbors_fast", 1, 9, 9, __pyx_nargs); __PYX_ERR(0, 1121, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -34845,7 +36071,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_neighbors_fast(__pyx_self, __pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_neighbors_fast(__pyx_self, __pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -34859,7 +36085,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24process_voxel_neighbors_fast(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_neighbors_fast(CYTHON_UNUSED PyObject *__pyx_self, int64_t __pyx_v_offset2, __Pyx_memviewslice __pyx_v_org_neighbor, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -34868,11 +36094,11 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process_voxel_neighbors_fast", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_org_neighbor.memview)) { __Pyx_RaiseUnboundLocalError("org_neighbor"); __PYX_ERR(0, 969, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_unravel_offset2_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_offset2_out"); __PYX_ERR(0, 969, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("offset2_neighbor_out"); __PYX_ERR(0, 969, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_neighbor_out"); __PYX_ERR(0, 969, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_neighbors_fast(__pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 969, __pyx_L1_error)
+  if (unlikely(!__pyx_v_org_neighbor.memview)) { __Pyx_RaiseUnboundLocalError("org_neighbor"); __PYX_ERR(0, 1121, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_unravel_offset2_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_offset2_out"); __PYX_ERR(0, 1121, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("offset2_neighbor_out"); __PYX_ERR(0, 1121, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_neighbor_out"); __PYX_ERR(0, 1121, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_neighbors_fast(__pyx_v_offset2, __pyx_v_org_neighbor, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -34889,7 +36115,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24p
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":990
+/* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1142
  * 
  * # Optimized batch processing for multiple voxels
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -34897,7 +36123,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_24p
  * @cython.cdivision(True)
 */
 
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_batch(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29process_voxel_batch(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -34933,7 +36159,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process_voxel_batch", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1007
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1159
  *     cdef:
  *         int v, i, z, y, x
  *         int n_voxels = offset2_array.shape[0]             # <<<<<<<<<<<<<<
@@ -34942,7 +36168,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
 */
   __pyx_v_n_voxels = (__pyx_v_offset2_array.shape[0]);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1008
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1160
  *         int v, i, z, y, x
  *         int n_voxels = offset2_array.shape[0]
  *         int64_t stack_voxels_minus_1 = stack_voxels - 1             # <<<<<<<<<<<<<<
@@ -34951,7 +36177,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
 */
   __pyx_v_stack_voxels_minus_1 = (__pyx_v_stack_voxels - 1);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1011
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1163
  *         int64_t offset2, neighbor_offset
  * 
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -34964,7 +36190,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
       __Pyx_FastGIL_Remember();
       /*try:*/ {
 
-        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1012
+        /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1164
  * 
  *     with nogil:
  *         for v in range(n_voxels):             # <<<<<<<<<<<<<<
@@ -34976,7 +36202,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
         for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
           __pyx_v_v = __pyx_t_3;
 
-          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1013
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1165
  *     with nogil:
  *         for v in range(n_voxels):
  *             offset2 = offset2_array[v]             # <<<<<<<<<<<<<<
@@ -34986,14 +36212,14 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
           __pyx_t_4 = __pyx_v_v;
           __pyx_v_offset2 = (*((int64_t *) ( /* dim=0 */ (__pyx_v_offset2_array.data + __pyx_t_4 * __pyx_v_offset2_array.strides[0]) )));
 
-          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1016
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1168
  * 
  *             # Unravel offset2
  *             z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)             # <<<<<<<<<<<<<<
  *             unravel_offset2_out[v, 0] = z
  *             unravel_offset2_out[v, 1] = y
 */
-          __pyx_t_5 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_offset2, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1016, __pyx_L4_error)
+          __pyx_t_5 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_offset2, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1168, __pyx_L4_error)
           __pyx_t_6 = __pyx_t_5.f0;
           __pyx_t_7 = __pyx_t_5.f1;
           __pyx_t_8 = __pyx_t_5.f2;
@@ -35001,7 +36227,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
           __pyx_v_y = __pyx_t_7;
           __pyx_v_x = __pyx_t_8;
 
-          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1017
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1169
  *             # Unravel offset2
  *             z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)
  *             unravel_offset2_out[v, 0] = z             # <<<<<<<<<<<<<<
@@ -35012,7 +36238,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
           __pyx_t_9 = 0;
           *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_offset2_out.data + __pyx_t_4 * __pyx_v_unravel_offset2_out.strides[0]) ) + __pyx_t_9 * __pyx_v_unravel_offset2_out.strides[1]) )) = __pyx_v_z;
 
-          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1018
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1170
  *             z, y, x = fast_unravel_index_3d(offset2, stack_depth, stack_height, stack_width)
  *             unravel_offset2_out[v, 0] = z
  *             unravel_offset2_out[v, 1] = y             # <<<<<<<<<<<<<<
@@ -35023,7 +36249,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
           __pyx_t_4 = 1;
           *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_offset2_out.data + __pyx_t_9 * __pyx_v_unravel_offset2_out.strides[0]) ) + __pyx_t_4 * __pyx_v_unravel_offset2_out.strides[1]) )) = __pyx_v_y;
 
-          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1019
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1171
  *             unravel_offset2_out[v, 0] = z
  *             unravel_offset2_out[v, 1] = y
  *             unravel_offset2_out[v, 2] = x             # <<<<<<<<<<<<<<
@@ -35034,7 +36260,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
           __pyx_t_9 = 2;
           *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_offset2_out.data + __pyx_t_4 * __pyx_v_unravel_offset2_out.strides[0]) ) + __pyx_t_9 * __pyx_v_unravel_offset2_out.strides[1]) )) = __pyx_v_x;
 
-          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1022
+          /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1174
  * 
  *             # Process all 26 neighbors for this voxel
  *             for i in range(26):             # <<<<<<<<<<<<<<
@@ -35044,7 +36270,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
           for (__pyx_t_8 = 0; __pyx_t_8 < 26; __pyx_t_8+=1) {
             __pyx_v_i = __pyx_t_8;
 
-            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1023
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1175
  *             # Process all 26 neighbors for this voxel
  *             for i in range(26):
  *                 neighbor_offset = offset2 + org_neighbor_array[v, i]             # <<<<<<<<<<<<<<
@@ -35055,17 +36281,17 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
             __pyx_t_4 = __pyx_v_i;
             __pyx_v_neighbor_offset = (__pyx_v_offset2 + (*((int64_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_org_neighbor_array.data + __pyx_t_9 * __pyx_v_org_neighbor_array.strides[0]) ) + __pyx_t_4 * __pyx_v_org_neighbor_array.strides[1]) ))));
 
-            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1024
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1176
  *             for i in range(26):
  *                 neighbor_offset = offset2 + org_neighbor_array[v, i]
  *                 neighbor_offset = fast_clip(neighbor_offset, 0, stack_voxels_minus_1)             # <<<<<<<<<<<<<<
  *                 offset2_neighbor_out[v, i] = neighbor_offset
  * 
 */
-            __pyx_t_10 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_clip(__pyx_v_neighbor_offset, 0, __pyx_v_stack_voxels_minus_1); if (unlikely(__pyx_t_10 == ((int64_t)-1L) && __Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1024, __pyx_L4_error)
+            __pyx_t_10 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_clip(__pyx_v_neighbor_offset, 0, __pyx_v_stack_voxels_minus_1); if (unlikely(__pyx_t_10 == ((int64_t)-1L) && __Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1176, __pyx_L4_error)
             __pyx_v_neighbor_offset = __pyx_t_10;
 
-            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1025
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1177
  *                 neighbor_offset = offset2 + org_neighbor_array[v, i]
  *                 neighbor_offset = fast_clip(neighbor_offset, 0, stack_voxels_minus_1)
  *                 offset2_neighbor_out[v, i] = neighbor_offset             # <<<<<<<<<<<<<<
@@ -35076,14 +36302,14 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
             __pyx_t_9 = __pyx_v_i;
             *((int64_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_offset2_neighbor_out.data + __pyx_t_4 * __pyx_v_offset2_neighbor_out.strides[0]) ) + __pyx_t_9 * __pyx_v_offset2_neighbor_out.strides[1]) )) = __pyx_v_neighbor_offset;
 
-            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1027
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1179
  *                 offset2_neighbor_out[v, i] = neighbor_offset
  * 
  *                 z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)             # <<<<<<<<<<<<<<
  *                 unravel_neighbor_out[v, i, 0] = z
  *                 unravel_neighbor_out[v, i, 1] = y
 */
-            __pyx_t_5 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_neighbor_offset, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1027, __pyx_L4_error)
+            __pyx_t_5 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_fast_unravel_index_3d(__pyx_v_neighbor_offset, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 1179, __pyx_L4_error)
             __pyx_t_7 = __pyx_t_5.f0;
             __pyx_t_6 = __pyx_t_5.f1;
             __pyx_t_11 = __pyx_t_5.f2;
@@ -35091,7 +36317,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
             __pyx_v_y = __pyx_t_6;
             __pyx_v_x = __pyx_t_11;
 
-            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1028
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1180
  * 
  *                 z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)
  *                 unravel_neighbor_out[v, i, 0] = z             # <<<<<<<<<<<<<<
@@ -35103,7 +36329,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
             __pyx_t_12 = 0;
             *((int *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_neighbor_out.data + __pyx_t_9 * __pyx_v_unravel_neighbor_out.strides[0]) ) + __pyx_t_4 * __pyx_v_unravel_neighbor_out.strides[1]) ) + __pyx_t_12 * __pyx_v_unravel_neighbor_out.strides[2]) )) = __pyx_v_z;
 
-            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1029
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1181
  *                 z, y, x = fast_unravel_index_3d(neighbor_offset, stack_depth, stack_height, stack_width)
  *                 unravel_neighbor_out[v, i, 0] = z
  *                 unravel_neighbor_out[v, i, 1] = y             # <<<<<<<<<<<<<<
@@ -35115,11 +36341,10 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
             __pyx_t_9 = 1;
             *((int *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_unravel_neighbor_out.data + __pyx_t_12 * __pyx_v_unravel_neighbor_out.strides[0]) ) + __pyx_t_4 * __pyx_v_unravel_neighbor_out.strides[1]) ) + __pyx_t_9 * __pyx_v_unravel_neighbor_out.strides[2]) )) = __pyx_v_y;
 
-            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1030
+            /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1182
  *                 unravel_neighbor_out[v, i, 0] = z
  *                 unravel_neighbor_out[v, i, 1] = y
  *                 unravel_neighbor_out[v, i, 2] = x             # <<<<<<<<<<<<<<
- * 
  * 
 */
             __pyx_t_9 = __pyx_v_v;
@@ -35130,7 +36355,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
         }
       }
 
-      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1011
+      /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1163
  *         int64_t offset2, neighbor_offset
  * 
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -35152,7 +36377,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
       }
   }
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":990
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1142
  * 
  * # Optimized batch processing for multiple voxels
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -35173,16 +36398,16 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_proc
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_batch(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29process_voxel_batch(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_batch, "process_voxel_batch(int64_t[:] offset2_array, int64_t[:, :] org_neighbor_array, int stack_depth, int stack_height, int stack_width, int64_t stack_voxels, int[:, :] unravel_offset2_out, int64_t[:, :] offset2_neighbor_out, int[:, :, :] unravel_neighbor_out)\n\nProcess multiple voxels at once");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_batch = {"process_voxel_batch", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_batch, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_batch};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_batch(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28process_voxel_batch, "process_voxel_batch(int64_t[:] offset2_array, int64_t[:, :] org_neighbor_array, int stack_depth, int stack_height, int stack_width, int64_t stack_voxels, int[:, :] unravel_offset2_out, int64_t[:, :] offset2_neighbor_out, int[:, :, :] unravel_neighbor_out)\n\nProcess multiple voxels at once");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29process_voxel_batch = {"process_voxel_batch", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29process_voxel_batch, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28process_voxel_batch};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29process_voxel_batch(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -35220,88 +36445,88 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_offset2_array,&__pyx_mstate_global->__pyx_n_u_org_neighbor_array,&__pyx_mstate_global->__pyx_n_u_stack_depth,&__pyx_mstate_global->__pyx_n_u_stack_height,&__pyx_mstate_global->__pyx_n_u_stack_width,&__pyx_mstate_global->__pyx_n_u_stack_voxels,&__pyx_mstate_global->__pyx_n_u_unravel_offset2_out,&__pyx_mstate_global->__pyx_n_u_offset2_neighbor_out,&__pyx_mstate_global->__pyx_n_u_unravel_neighbor_out,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 990, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 1142, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 990, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 1142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_voxel_batch", 0) < (0)) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_voxel_batch", 0) < (0)) __PYX_ERR(0, 1142, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 9; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_voxel_batch", 1, 9, 9, i); __PYX_ERR(0, 990, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_voxel_batch", 1, 9, 9, i); __PYX_ERR(0, 1142, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 9)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 1142, __pyx_L3_error)
       values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 990, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 1142, __pyx_L3_error)
     }
-    __pyx_v_offset2_array = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_offset2_array.memview)) __PYX_ERR(0, 993, __pyx_L3_error)
-    __pyx_v_org_neighbor_array = __Pyx_PyObject_to_MemoryviewSlice_dsds_nn_int64_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_org_neighbor_array.memview)) __PYX_ERR(0, 994, __pyx_L3_error)
-    __pyx_v_stack_depth = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_stack_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 995, __pyx_L3_error)
-    __pyx_v_stack_height = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_stack_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 996, __pyx_L3_error)
-    __pyx_v_stack_width = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_stack_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 997, __pyx_L3_error)
-    __pyx_v_stack_voxels = __Pyx_PyLong_As_int64_t(values[5]); if (unlikely((__pyx_v_stack_voxels == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 998, __pyx_L3_error)
-    __pyx_v_unravel_offset2_out = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[6], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_offset2_out.memview)) __PYX_ERR(0, 999, __pyx_L3_error)
-    __pyx_v_offset2_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_dsds_nn_int64_t(values[7], PyBUF_WRITABLE); if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) __PYX_ERR(0, 1000, __pyx_L3_error)
-    __pyx_v_unravel_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_int(values[8], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) __PYX_ERR(0, 1001, __pyx_L3_error)
+    __pyx_v_offset2_array = __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_offset2_array.memview)) __PYX_ERR(0, 1145, __pyx_L3_error)
+    __pyx_v_org_neighbor_array = __Pyx_PyObject_to_MemoryviewSlice_dsds_nn_int64_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_org_neighbor_array.memview)) __PYX_ERR(0, 1146, __pyx_L3_error)
+    __pyx_v_stack_depth = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_stack_depth == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1147, __pyx_L3_error)
+    __pyx_v_stack_height = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_stack_height == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1148, __pyx_L3_error)
+    __pyx_v_stack_width = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_stack_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1149, __pyx_L3_error)
+    __pyx_v_stack_voxels = __Pyx_PyLong_As_int64_t(values[5]); if (unlikely((__pyx_v_stack_voxels == ((int64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1150, __pyx_L3_error)
+    __pyx_v_unravel_offset2_out = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[6], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_offset2_out.memview)) __PYX_ERR(0, 1151, __pyx_L3_error)
+    __pyx_v_offset2_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_dsds_nn_int64_t(values[7], PyBUF_WRITABLE); if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) __PYX_ERR(0, 1152, __pyx_L3_error)
+    __pyx_v_unravel_neighbor_out = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_int(values[8], PyBUF_WRITABLE); if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) __PYX_ERR(0, 1153, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("process_voxel_batch", 1, 9, 9, __pyx_nargs); __PYX_ERR(0, 990, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("process_voxel_batch", 1, 9, 9, __pyx_nargs); __PYX_ERR(0, 1142, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -35317,7 +36542,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_batch(__pyx_self, __pyx_v_offset2_array, __pyx_v_org_neighbor_array, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28process_voxel_batch(__pyx_self, __pyx_v_offset2_array, __pyx_v_org_neighbor_array, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -35332,7 +36557,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26process_voxel_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_offset2_array, __Pyx_memviewslice __pyx_v_org_neighbor_array, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28process_voxel_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_offset2_array, __Pyx_memviewslice __pyx_v_org_neighbor_array, int __pyx_v_stack_depth, int __pyx_v_stack_height, int __pyx_v_stack_width, int64_t __pyx_v_stack_voxels, __Pyx_memviewslice __pyx_v_unravel_offset2_out, __Pyx_memviewslice __pyx_v_offset2_neighbor_out, __Pyx_memviewslice __pyx_v_unravel_neighbor_out) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -35341,12 +36566,12 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process_voxel_batch", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_offset2_array.memview)) { __Pyx_RaiseUnboundLocalError("offset2_array"); __PYX_ERR(0, 990, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_org_neighbor_array.memview)) { __Pyx_RaiseUnboundLocalError("org_neighbor_array"); __PYX_ERR(0, 990, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_unravel_offset2_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_offset2_out"); __PYX_ERR(0, 990, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("offset2_neighbor_out"); __PYX_ERR(0, 990, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_neighbor_out"); __PYX_ERR(0, 990, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_batch(__pyx_v_offset2_array, __pyx_v_org_neighbor_array, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
+  if (unlikely(!__pyx_v_offset2_array.memview)) { __Pyx_RaiseUnboundLocalError("offset2_array"); __PYX_ERR(0, 1142, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_org_neighbor_array.memview)) { __Pyx_RaiseUnboundLocalError("org_neighbor_array"); __PYX_ERR(0, 1142, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_unravel_offset2_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_offset2_out"); __PYX_ERR(0, 1142, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_offset2_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("offset2_neighbor_out"); __PYX_ERR(0, 1142, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_unravel_neighbor_out.memview)) { __Pyx_RaiseUnboundLocalError("unravel_neighbor_out"); __PYX_ERR(0, 1142, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_process_voxel_batch(__pyx_v_offset2_array, __pyx_v_org_neighbor_array, __pyx_v_stack_depth, __pyx_v_stack_height, __pyx_v_stack_width, __pyx_v_stack_voxels, __pyx_v_unravel_offset2_out, __pyx_v_offset2_neighbor_out, __pyx_v_unravel_neighbor_out, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -35372,16 +36597,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_26p
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29__pyx_unpickle_GraphEdge(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_GraphEdge(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28__pyx_unpickle_GraphEdge, "__pyx_unpickle_GraphEdge(__pyx_type, long __pyx_checksum, tuple __pyx_state)");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29__pyx_unpickle_GraphEdge = {"__pyx_unpickle_GraphEdge", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29__pyx_unpickle_GraphEdge, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28__pyx_unpickle_GraphEdge};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29__pyx_unpickle_GraphEdge(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_GraphEdge, "__pyx_unpickle_GraphEdge(__pyx_type, long __pyx_checksum, tuple __pyx_state)");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_GraphEdge = {"__pyx_unpickle_GraphEdge", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_GraphEdge, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_GraphEdge};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_GraphEdge(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -35464,7 +36689,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v___pyx_state), (&PyTuple_Type), 1, "__pyx_state", 1))) __PYX_ERR(1, 4, __pyx_L1_error)
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28__pyx_unpickle_GraphEdge(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_GraphEdge(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   goto __pyx_L0;
@@ -35483,7 +36708,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_28__pyx_unpickle_GraphEdge(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_GraphEdge(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -35657,16 +36882,16 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils___py
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_Graph(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_33__pyx_unpickle_Graph(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_Graph, "__pyx_unpickle_Graph(__pyx_type, long __pyx_checksum, tuple __pyx_state)");
-static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_Graph = {"__pyx_unpickle_Graph", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_Graph, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_Graph};
-static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_Graph(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_32__pyx_unpickle_Graph, "__pyx_unpickle_Graph(__pyx_type, long __pyx_checksum, tuple __pyx_state)");
+static PyMethodDef __pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_33__pyx_unpickle_Graph = {"__pyx_unpickle_Graph", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_33__pyx_unpickle_Graph, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_32__pyx_unpickle_Graph};
+static PyObject *__pyx_pw_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_33__pyx_unpickle_Graph(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -35749,7 +36974,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v___pyx_state), (&PyTuple_Type), 1, "__pyx_state", 1))) __PYX_ERR(1, 4, __pyx_L1_error)
-  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_Graph(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_32__pyx_unpickle_Graph(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   goto __pyx_L0;
@@ -35768,7 +36993,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_30__pyx_unpickle_Graph(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_32__pyx_unpickle_Graph(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -37791,7 +39016,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #endif
   __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_7cpython_4type_type) __PYX_ERR(3, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule("numpy"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 272, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("numpy"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_mstate->__pyx_ptype_5numpy_dtype = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "dtype",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
@@ -37801,7 +39026,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyArray_Descr), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyArray_Descr),
   #endif
-  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_dtype) __PYX_ERR(2, 272, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_dtype) __PYX_ERR(2, 202, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_flatiter = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "flatiter",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyArrayIterObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyArrayIterObject),
@@ -37810,7 +39035,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyArrayIterObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyArrayIterObject),
   #endif
-  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_flatiter) __PYX_ERR(2, 317, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_flatiter) __PYX_ERR(2, 225, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_broadcast = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "broadcast",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyArrayMultiIterObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyArrayMultiIterObject),
@@ -37819,7 +39044,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyArrayMultiIterObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyArrayMultiIterObject),
   #endif
-  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_broadcast) __PYX_ERR(2, 321, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_broadcast) __PYX_ERR(2, 229, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_ndarray = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "ndarray",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyArrayObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyArrayObject),
@@ -37828,7 +39053,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyArrayObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyArrayObject),
   #endif
-  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_ndarray) __PYX_ERR(2, 360, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_ndarray) __PYX_ERR(2, 238, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_generic = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "generic",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37837,7 +39062,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_generic) __PYX_ERR(2, 873, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_generic) __PYX_ERR(2, 809, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_number = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "number",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37846,7 +39071,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_number) __PYX_ERR(2, 875, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_number) __PYX_ERR(2, 811, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_integer = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "integer",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37855,7 +39080,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_integer) __PYX_ERR(2, 877, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_integer) __PYX_ERR(2, 813, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_signedinteger = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "signedinteger",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37864,7 +39089,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_signedinteger) __PYX_ERR(2, 879, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_signedinteger) __PYX_ERR(2, 815, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_unsignedinteger = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "unsignedinteger",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37873,7 +39098,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_unsignedinteger) __PYX_ERR(2, 881, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_unsignedinteger) __PYX_ERR(2, 817, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_inexact = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "inexact",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37882,7 +39107,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_inexact) __PYX_ERR(2, 883, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_inexact) __PYX_ERR(2, 819, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_floating = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "floating",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37891,7 +39116,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_floating) __PYX_ERR(2, 885, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_floating) __PYX_ERR(2, 821, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_complexfloating = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "complexfloating",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37900,7 +39125,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_complexfloating) __PYX_ERR(2, 887, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_complexfloating) __PYX_ERR(2, 823, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_flexible = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "flexible",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37909,7 +39134,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_flexible) __PYX_ERR(2, 889, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_flexible) __PYX_ERR(2, 825, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_character = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "character",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
@@ -37918,7 +39143,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyObject),
   #endif
-  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_character) __PYX_ERR(2, 891, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Warn_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_character) __PYX_ERR(2, 827, __pyx_L1_error)
   __pyx_mstate->__pyx_ptype_5numpy_ufunc = __Pyx_ImportType_3_2_4(__pyx_t_1, "numpy", "ufunc",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyUFuncObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyUFuncObject),
@@ -37927,7 +39152,7 @@ static int __Pyx_modinit_type_import_code(__pyx_mstatetype *__pyx_mstate) {
   #else
   sizeof(PyUFuncObject), __PYX_GET_STRUCT_ALIGNMENT_3_2_4(PyUFuncObject),
   #endif
-  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_ufunc) __PYX_ERR(2, 955, __pyx_L1_error)
+  __Pyx_ImportType_CheckSize_Ignore_3_2_4); if (!__pyx_mstate->__pyx_ptype_5numpy_ufunc) __PYX_ERR(2, 866, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -39230,214 +40455,229 @@ __Pyx_RefNannySetupContext("PyInit_stack_graph_utils", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_Graph, __pyx_mstate_global->__pyx_n_u_setstate_cython, __pyx_t_10) < (0)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":399
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":408
  *     return d * (1.0 / (1.0 + exp1) + 1.0 / (1.0 + exp2) + 0.00001)
  * 
  * cpdef double stack_voxel_weight_cy(double d, double v1, double v2,             # <<<<<<<<<<<<<<
  *                                      double thre, double scale):
  *     """
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_1stack_voxel_weight_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_voxel_weight_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 399, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_1stack_voxel_weight_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_voxel_weight_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 408, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_voxel_weight_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 399, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_voxel_weight_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 408, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":408
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":417
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.cdivision(True)
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_3add_edges_cy, 0, __pyx_mstate_global->__pyx_n_u_add_edges_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_3add_edges_cy, 0, __pyx_mstate_global->__pyx_n_u_add_edges_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_add_edges_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 408, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_add_edges_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":460
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":469
+ * 
+ * 
+ * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
+ * @cython.wraparound(False)
+ * @cython.cdivision(True)
+*/
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5build_stack_graph_cy, 0, __pyx_mstate_global->__pyx_n_u_build_stack_graph_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 469, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
+  #endif
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_build_stack_graph_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 469, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":612
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef void graph_edge_neighbor_list_fast(
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_5graph_edge_neighbor_list_fast, 0, __pyx_mstate_global->__pyx_n_u_graph_edge_neighbor_list_fast, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7graph_edge_neighbor_list_fast, 0, __pyx_mstate_global->__pyx_n_u_graph_edge_neighbor_list_fast, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_graph_edge_neighbor_list_fast, __pyx_t_10) < (0)) __PYX_ERR(0, 460, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_graph_edge_neighbor_list_fast, __pyx_t_10) < (0)) __PYX_ERR(0, 612, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":522
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":674
  * 
  * # Python wrapper
  * def update_degrees(edges, degree):             # <<<<<<<<<<<<<<
  *     """
  *     Python wrapper for the inline degree calculation function
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_7update_degrees, 0, __pyx_mstate_global->__pyx_n_u_update_degrees, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 522, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9update_degrees, 0, __pyx_mstate_global->__pyx_n_u_update_degrees, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 674, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_update_degrees, __pyx_t_10) < (0)) __PYX_ERR(0, 522, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_update_degrees, __pyx_t_10) < (0)) __PYX_ERR(0, 674, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":531
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":683
  * 
  * ### simple mathematical or logical operations
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef void stack_neighbor_offset_cy(int n_nbr, int width, int height, np.ndarray[DTYPE_i32, ndim=1] neighbor) noexcept:
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_9stack_neighbor_offset_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_neighbor_offset_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_offset_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_neighbor_offset_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 683, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_neighbor_offset_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 531, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_neighbor_offset_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 683, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":587
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":739
  *         raise ValueError(f"Unsupported neighbor count: {n_nbr}")
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef void stack_neighbor_dist_r_cy(int conn, np.ndarray[DTYPE_f64, ndim=1] res, np.ndarray[DTYPE_f64, ndim=1] dist) noexcept:
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_11stack_neighbor_dist_r_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_neighbor_dist_r_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_neighbor_dist_r_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_neighbor_dist_r_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 739, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_neighbor_dist_r_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 587, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_neighbor_dist_r_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 739, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":632
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":784
  *         raise ValueError(f"Unsupported connectivity: {conn}")
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef int stack_util_offset_cy(int x, int y, int z, int width, int height, int depth) noexcept:
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_13stack_util_offset_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_util_offset_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 632, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_util_offset_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 784, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_util_offset_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 632, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_util_offset_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 784, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":643
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":795
  *     return x + width * y + width * height * z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef int stack_util_offset2_cy(int x, int y, int z, int width, int area) noexcept:
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_15stack_util_offset2_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_util_offset2_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 643, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_offset2_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_util_offset2_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 795, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_util_offset2_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 643, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_util_offset2_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 795, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":651
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":803
  *     return x + width * y + area * z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef tuple stack_util_coord_cy(int index, int width, int area) noexcept:
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_17stack_util_coord_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_util_coord_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 651, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_util_coord_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_util_coord_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 803, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_util_coord_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 651, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_util_coord_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 803, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":663
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":815
  *     return x, y, z
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef int stack_subindex_cy(int sindex, int x0, int y0, int z0,
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_19stack_subindex_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_subindex_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 663, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_subindex_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_subindex_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[27])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 815, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_subindex_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 663, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_subindex_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 815, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":678
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":830
  *     return stack_util_offset2_cy(x, y, z, width, area)
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * def stack_neighbor_bound_test_s_cy(int n_nbr, int cwidth, int cheight, int cdepth,
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_21stack_neighbor_bound_test_s_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_neighbor_bound_test_s_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[27])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 678, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23stack_neighbor_bound_test_s_cy, 0, __pyx_mstate_global->__pyx_n_u_stack_neighbor_bound_test_s_cy, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[28])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 830, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_neighbor_bound_test_s_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 678, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stack_neighbor_bound_test_s_cy, __pyx_t_10) < (0)) __PYX_ERR(0, 830, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":867
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1019
  *             out[i] = arr[i]
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.cdivision(True)
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_23process_voxel_with_neighbors, 0, __pyx_mstate_global->__pyx_n_u_process_voxel_with_neighbors, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[28])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 867, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_with_neighbors, 0, __pyx_mstate_global->__pyx_n_u_process_voxel_with_neighbors, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[29])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1019, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_process_voxel_with_neighbors, __pyx_t_10) < (0)) __PYX_ERR(0, 867, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_process_voxel_with_neighbors, __pyx_t_10) < (0)) __PYX_ERR(0, 1019, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":969
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1121
  * 
  * # Wrapper for the nogil version
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef process_voxel_neighbors_fast(int64_t offset2,
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_25process_voxel_neighbors_fast, 0, __pyx_mstate_global->__pyx_n_u_process_voxel_neighbors_fast, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[29])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 969, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_neighbors_fast, 0, __pyx_mstate_global->__pyx_n_u_process_voxel_neighbors_fast, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[30])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_process_voxel_neighbors_fast, __pyx_t_10) < (0)) __PYX_ERR(0, 969, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_process_voxel_neighbors_fast, __pyx_t_10) < (0)) __PYX_ERR(0, 1121, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":990
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1142
  * 
  * # Optimized batch processing for multiple voxels
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.cdivision(True)
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_27process_voxel_batch, 0, __pyx_mstate_global->__pyx_n_u_process_voxel_batch, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[30])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 990, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29process_voxel_batch, 0, __pyx_mstate_global->__pyx_n_u_process_voxel_batch, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[31])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_process_voxel_batch, __pyx_t_10) < (0)) __PYX_ERR(0, 990, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_process_voxel_batch, __pyx_t_10) < (0)) __PYX_ERR(0, 1142, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
   /* "(tree fragment)":4
@@ -39447,7 +40687,7 @@ __Pyx_RefNannySetupContext("PyInit_stack_graph_utils", 0);
  *     cdef object __pyx_result
  *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5aab869, 0xe19ce48, 0x7bde2f0, b'v1, v2')
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_29__pyx_unpickle_GraphEdge, 0, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_GraphEdge, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[31])); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_GraphEdge, 0, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_GraphEdge, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[32])); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
@@ -39460,7 +40700,7 @@ __Pyx_RefNannySetupContext("PyInit_stack_graph_utils", 0);
  *     int __Pyx_CheckUnpickleChecksum(long, long, long, long, const char*) except -1
  *     int __Pyx_UpdateUnpickledDict(object, object, Py_ssize_t) except -1
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_31__pyx_unpickle_Graph, 0, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_Graph, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[32])); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_33__pyx_unpickle_Graph, 0, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_Graph, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_stac, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[33])); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
@@ -39580,14 +40820,14 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[1]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[1]);
 
-  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":901
+  /* "pyneutube/tracers/pyNeuTube/stack_graph_utils.pyx":1053
  *         int64_t stack_voxels_minus_1 = stack_voxels - 1
  *         np.ndarray[int64_t, ndim=1] offset2_org_neighbor = np.empty(26, dtype=np.int64)
  *         np.ndarray[int, ndim=2] unravel_neighbor = np.empty((26, 3), dtype=np.int32)             # <<<<<<<<<<<<<<
  *         int64_t neighbor_offset
  * 
 */
-  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_int_26, __pyx_mstate_global->__pyx_int_3); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 901, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_int_26, __pyx_mstate_global->__pyx_int_3); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[2]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[2]);
 
@@ -39672,31 +40912,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 11; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{11},{34},{30},{32},{26},{28},{18},{10},{28},{21},{29},{33},{45},{22},{15},{179},{37},{30},{32},{26},{28},{13},{1},{1},{1},{1},{2},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{8},{50},{39},{34},{8},{13},{45},{49},{20},{32},{22},{14},{30},{37},{11},{5},{14},{8},{5},{9},{27},{29},{18},{24},{18},{25},{20},{27},{21},{13},{5},{9},{27},{29},{9},{23},{25},{14},{21},{23},{17},{7},{7},{20},{8},{10},{4},{15},{3},{8},{14},{12},{15},{6},{4},{4},{5},{18},{4},{1},{6},{7},{9},{17},{18},{4},{4},{5},{6},{1},{6},{5},{8},{5},{8},{4},{5},{15},{4},{8},{5},{11},{5},{6},{4},{9},{5},{5},{7},{6},{7},{8},{3},{8},{15},{10},{17},{11},{12},{5},{29},{5},{6},{1},{2},{3},{10},{5},{16},{5},{5},{9},{13},{11},{11},{5},{8},{8},{14},{11},{7},{4},{6},{10},{10},{5},{4},{8},{4},{5},{8},{9},{7},{2},{5},{7},{3},{6},{7},{13},{20},{4},{12},{18},{4},{3},{19},{28},{28},{45},{14},{12},{11},{10},{19},{20},{24},{14},{12},{10},{17},{13},{8},{3},{5},{5},{4},{12},{10},{12},{19},{5},{6},{4},{5},{11},{12},{30},{24},{24},{11},{17},{19},{21},{20},{21},{12},{11},{5},{5},{4},{4},{6},{6},{8},{4},{6},{20},{19},{6},{14},{16},{12},{2},{2},{6},{6},{8},{7},{5},{1},{2},{8},{1},{2},{8},{1},{2},{8},{5},{11},{25},{147},{108},{1865},{255},{83},{31},{53},{161},{57},{71},{63},{142},{9},{199},{83},{266},{220},{618},{9},{24},{25},{95},{191},{31},{55},{55},{11},{576},{55},{49},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (3919 bytes) */
-const char* const cstring = "BZh91AY&SY7\010(\252\000\004N\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\376\300@@@@@@@@@@@@\000@\000`\020\037{\240i\236f\350\241ZQ*jV\241Z\266\262\2612\333XVek\240<(\000\013\207\241$\204\232T\000\365\032<L\247\222zmM\240\311'\215\250\332j=OD\320\247\224\323\323S\324\331OH= h\364\200\036\246G\250\364\312<\210\320\022HF\021\241\004\302S\321\2014OLD\332P\323\321\0004\320\310\364\2324\017(\320\003\324\003&\232i\243@\000\006\251\344\201\244\231\250\000\000\000\000\001\241\240\000\001\240\006\200\000\000\320\r\007\251\240h\001\" \232 \2324\251\354\215L\320\304\3254\3654\362\232\006@\006\200\000\000\000\000\000\000\000\036\243M\020i\211\200L\0010F\232`\000L\000\232\032\030\230\000\000\000\004a\030\004i\211\220\300\022$\021\rS\304\322\247\274T\3755=FC\010j\233\021\244\375Q\232\230\002\007\352\206\001\250\301\003\000\036\243S\004\323#\014\324\017\304Z\3710_x\234A\003\356\\j\335\241\254\300\347\376\216D\222\373\360\213\373%\341\361\361\366\370\373`\203\376$H\004\240)R\213\311\350\262\301r\266\221\271\020\242\351\257Fkb\330\332\350\301%?\017\325\361}\357\305\3771J\201C\3119\316s\304\024\201I\025F&_\364\364\2306&\332b\030\316<\266\343\010\304q\2107+X@Z\302\323\274\220P\014\252j\027\037JU)ak\3306\3041\246\300c\033cI\014i\241\215\266!\014m\2666\233lI\217\251\026\261m\r\210,\016\341\010\200\272\272\327\317\235iN\005\005[\020\233\020\3440A\333\2720\214\333`6\002i\210\003>\264`H\270\326\0254U\n\032\024$$\256\233\254\025\250\320>\360\233n\304\006\255Z\233\020\330\254b\350\024\002\306\233\0016\320\256V\344\272\265*\260\2255\215qd1\210\215\343\245J\2713\205\010\221\326\"\324\340\333\273\207R\3265ajK\0134\214\367\253\001\322\303kC\213\201p.+\334\342\r\354\301\222\321\014X\026\024\302f\212\221\250\205ih,l\350.\264AEha\001\nj\363\270\262}\344k\232\n\212\310`\023\226({\256\020\231\244T\302\"|\203<\237\316\352Y\n\321\242Q\260\"\204\037\021\014u\204CC\205\333\363\003\3324%|}%\230Mz!<e\201\350\263O\022\001\266\301\002-\004\004\000\276\023F\035\003\204l\256\226\2422`""\320\252\276I7d\312\204\376%\223g\036\262\\w\363\357{\337`Sa07\226\335e6\305\"\177\315\245\352,g\376\343JhK1MPK\0368'\220\373w\266\362?\326x\331\032\263q9\024\335.&J6\330;\305\353M\323yem\270\230:\255\313\310\007{\241\216~\367d]$}\036\233T\222\350Gt\007>\222\004\246\023iB\224\217\317B&\021\021\r\367;\307\"iu\256*\026\"\360\256\277t\357\334P]\030QXX\225\205\301\010\204\346*\221\355\004\212\225\021\024c\363\016^\236>\275\003\253N\277A\264\0324nm\230p\351\352\222\226\216\317!m\233\023\267\r\276\226V\213t\372\371]\330\357h/%\360\2616\365\271\215t\345\256\301\230g\226=D\355\270\013 \231\036g\026\330@\360\372\227\347\346u\177\324\034zt7\251g\026t\216XM\030\311J\204\302\nk2e\225\"T\200\246\370}\326\244\201+\0021K\323\364\256\241z;\005\324T\005EAz\334s\222\374\037o\350\024\022\240*,\342\306\207\216\342\342)D\212UF\357<\270\363\037*R.\013\200\271(B\343\246\363\307,\337\026sD\201\310q\366\275\275\374l+\303\246\363\177;w\373\347\033\033\276N\210vs\327\317\267.\353\"\334\326U\321\307{\301\356\007\241\035\275\234\350(,\220\256A`\026\\\276G\010z\263\r\346\254\212\330I\333QQ\316pF\\\002* \220Q+P[\363\177\276\246n\360\363s\336^\213\320_z\311n}n*\356\nd\315:\377_\203\334\372~\357\265\303\347\213\333\324\377\237\254Y\031.\0008B\3741\236GD9\315\304aa,\007!\311\334\315e\220\3346\3243\014\335\034p\262\366\267'\031\025\250n'\013\r\377\331\243/\216\336\233>dhi\r\"\366w\367\361\366\242D\234\373\334\374\275m\345\253)\232\275mR\2736k\247\222\375\335\360*0\202\275\274.A\251\346\210u\322-h^\232\010lDD^\0248\264k\352]\032$w9M\026hF\260\302*\213\373B\301\036\352\014\367\245\352i\250%UZ\245TV\274\310\317\330\275\034\236\252\345\250^\213\302\342\343<\327cs4\304f\nP\351Z\346\0349\232F\234q\330n\204\326\332,fbbcu\337\275\177\016\016\013\222\257\224/y<//\221\353\263\n\037\305X\254@S:\240\334\004B\no\333\365\200\303\2521\310\037\327\354\207H\035\246w\274\327\n[\355\373\031\002~8\276d\245\353\274\332\252\273\3059\346\275W\267\265\351\306\231E\214\340\037\237H\316(g.\273\270\247\317\010\301VO\334(\227""\355\361H\373.\220\367\335\212u\304\224io\233G\223A\376h^\325k[\200v\326NwO%\016\261:\346xc:Q+\314\316\374\213=[h\365\333V/\201F\303\351a\002\227\310\014*\344I\356\024\031\360u\315\204\031\224\025UG3>U\202pA\374\037\324&i\266\375\032\237T\315s[\220z\366\000\177w9\246M6\334\337N3\377\206\203c\264Y\3301\006\216\013I\344E\335}r\324\r@x\321~\201\010\003{W\212Xi\034\033QV\rz\266l\326\021\320\221\254\324\374\307\2174\3254\003^\234\301=r!\347\036\002g\216`pQ\200t\267\316\212H\346$pH\340\357d8\235\006\224\302\262\220\333\252\233DDO\026\234\353I\3141\014XyN2\205\000\314\205\025\023\201\2077\200F\"\311b\030\371\302\346\342\336\271\263\337\2124e\275\333\r\263\322\225\232\242\345e\253I\177,E\352\210-L\265\317\255\204\212\364:\034\315\036\030\312\206\344X\314\t\027&\233\r\333.\202\243\003\230\\\3071\342\014\360&\217\337\243\231%\302Rq\020,\330\322\241v\351\025K-\231\257\247f;\330\345:\347\235\205\364\0354P\030\300(R\342\255\031\t\247\207\037\016\331\330\245Yp\233\264\251\231\0248W\t\337\016\362]\007Ob\333\203\177\027\217i,\365\021\320s\317~\255\370ev\357B\327\354e\0075\001\26252\216\354\234\260\241\365\306f\252\024&\367\226M\233m\2668\345\254`\321CU\230\330\327\221\211\332#8\312q\261tAar\306\215\021~dC%\3171\006\266[em\272\344\245z0\322\352O\257#p\245i2\333P\272\375\\\214\006\320\331*\36236\316\014F\300\336K=\001\257\025\024i~>Km\340\270\262-\020f\251\354<tgi\332\035\345\020\226\305fe3\223\022\265/\261\032[]\217\240nT\267\007?\014\367\201j\031\220\332c`|\005[a>\224\241\233\021<\320\243\312\"\361\334:O\022\271\274^\377\203|\213\007\233\021\2340\222FY\244}\036\366w\315\"\354\205\222<\264y`u\0323\032\226\3762Y\200\233Hl\007\323\304\311\275\226K\n\356\262\240\n\274\207w\316\250P\231\257Ld\265\3567y\225;\255\244\216\353!\266\332\210\354\2039\320\232\223^\311\263\0056\250\010vs`\345\225^\346c\014\306\214[\301;\257\036\023lnXP\0067\245\240L\270\253h\267(\301e\257O\016\313:N\014m#\216M\243\233{\316\344\205\312l3S\242\344\211\205\341es\266\371id\234mv\366V^ZSb\267[\361\266L\365\302\216""\266U\215\365\025\240-B*u@\321\255lj\201\266\316\r\333\301\312\2708\023\346\024\230\236\251C'\023\267t\364y\376\005\242\302\324\\<j^\016~\305\r\023u\2541v\270\355P\310*J\036\005R\221N\315\254\322\242\327\027MyW\217\016\206yCc\212v\346h\"\" \316;s\031\236\206F\355\271\005i\320\370tAI\306g\252b\312 *\016\373}[,\226OFX\306\212eh\232\242!\037\013,\333ccn\332\0031\330\210\\\224\261([\200\316\265[\244b|}y\026\364e\303\334\370zf,\354\006\032\264\230v\236\210\255|\014\266\304\\\322\305\256c\340\262\224\357%\335v\016Hu\222\263\354\017 \r\031iM\276q\020\226j\230\r\272\320\230\325\242\221\221(+\263\20566\227[%\250\274_\324\271\n\361\2213}\032\266o\335e\244\246\232\320\314NH\002\252)\033\332\305\251\253)Eh\343\272[5k\306,\257\016S\336\302\r\r60\021\357\333\322us9\201\007\276B=j\363\005\343\013%B\224\353\342\276T\370\244\253\210\270^\305<\272\221)\340\230c\031]{\2304\314L\206\2770\262\223\216\024\205\316EV\243dA\246\362\345Pn#sbEv2b\361\321\243\272\324T\304X7\230\320\344hUr\322\020b\362b\t\nI\2641\250\267\367I-\256\340\316\0139\234F\241l#N\214\347Gj\r&\356\006\344s\023h\213MmE<G\205\314\336\263B\261f\306U\366kj\r0t\337\304dhM\013X\355v\022\314l9\234.J)\255\366\013\227\277\014\351\275r\257\006\332lL\032\215\260\221;G\325\325\324wx\374\n\315\0341J\034LX\243\317\211\356\366\351\216i%\355\257qI\303f;\036\005\316#\235s\234\353\301\316\214\214\271\036\366\272\206\270\335t\032\002\2231\261\243%Y4\235\216\324\2153S\275\227\001[\305\032!\261\243\025\364\364HZQil\353J\264\332D\346`\034\020I\201e\247\262\305\337!u1\256\245\217\241\267\211\333S\336\343x\025!\002\314\330\252g\023\330\246\025\030\302\242O\263\002\275c\257\0226%\316\327\225\271\301p\242\326B\027\"N\313\021\231\365\310\340{\350\267\220\264\206\223\236iF\231Kb\305\307\220\3356F\343\022\\\226\351\261\274}\214\241\312\261\355\354I\352h\360\243w\0321\346[\232\3234*H\276\246\014\301\036C-\023UL\335\3306\022[N\3479\037\347\240\352\313\207Q\004\356\023\264\263\2770\262\014\214\205\220qc\235\206aD\271\2339.\006\264e6\345\023\"\261\200""\276\216\222\314Q\035\034\220\360D?.\022q,(\2160b\353\314\357Pc\335\035\022\372\315+\361\252\202\212\244SV\371%\275\366\t\342s\334b\250\037\261\210\255\344\357\260)\311<K\266\013\251\017F\266`\320\004\215\235%\004K\002o\252Bt\014\307\356\003ZP*\252.\311z\225\325Y\001\000\217\270@P\022\203\204\311@\3534\216\317\274\276\006\t[\020\r\241\2464\203\203\325\216\313\030\301\276\241\372\306!H\342=U\221\005\016\364G\267@c=\345\344\364\232P\203\211\300\344\324\230\273\004\302@\203\305\004\237q\340\210\203\226\301t\370\245\035X\205\020\243\232m\036@\232E\032J\254\n\222\362T\326\240cD\311%\022[\374',\204\376U\023_,\221\t\314\354\024\242&\r\023\201}\344\246\022\032\332\370\204\177\317L{\344\203\212\220}\\\336i\267\361\310\333k\210\2215\203\2640;)1\033\255\243\3727\020\206*\371\377@\210\001\200n\016;\304JF\361\010\204M\312j$\004!M}/\241\376\221%\302p.tl\r\\@R\256\207\024\310>\267\177*\272L\005r\016%\204L\025\270\366\362\334\204t%3\205\3656\222\"c:2\234\030\210\205#\371\025u\231\021:\334$\244\32128\342\217\2438\260\212\016H\0278\003=0\336 d\210\324%\0258\236\211ylg\226\225\221\016\262\310\224O\007\214\014\236Rh\216\206\210\001\344\274\372\264\234\217\324\233\\C+\004\306p\260\341\375\350}\372;I|~\004\022\005\340M\360\224;d\214PT\036\225\nm\257\355o\201q\250'\244&\206\235\017\247\020\224;\327VaD\367\007\274\354\217v\241\316\352L\221\022\321\374\250-\274\241\272\366\313|T\210\232\237\036\2558\2321y;\333\210\326$\335n]s]\027\361\244\303\365\274\r\315t\317\013g\245\252\327\\\016rZ\267[Y\217)\020\377v\010\003\310\356k\007I\31136\252\267\320[^\033\307o\036C}\037\366\306\2755@QB \003~%zV\347`\t\212\033\266A\016\t\334\320\345tzD\256p\246C\331\023h\217\034\001<\234\315jp\274}\231g|\323\223\221\365\310\343\212\035\303\270h\332S\023$3\230e\244\031\234VI\020\361\304\222\241\241\003A\344\\\322\036x\2647^\341\336\r\335\347A\020DQ\332\265h\265haBU\016\326\352\030\006\244!\362\243\302K\2751\357\005\235\275\007m\314\345(\246D\027\340{\2726zr5w\013\263!!}\335\313F\320?S\037 6r\315\222#-\0217a\361""\n\370\256\206\255[\245\014\252\271'\250\311d\016=\363\033\035\014?\023\014\304r\304\251\306#\022\345\326s\221\265\337\270\030\264\010\273P\353x\247\237\367`\334\371\006\237N\245V\323\237\027\254\346\317\306sE\277\301V\253fV\253\360\213 \233\211\021<\014|t\261\261\231\266\202\363b\264\275\3245J\225:\210\223\017\330v\377\256\213\035ML/\333XY'\371\207\200\206F\027%\335\333\010\355g\001\177\202\213\267zfr\300\253\232\007\322\030Y\246\t\212\027\330\010\312M\177\223\245\3550\3574\220\356\306}\001\367\336\277\207M?\207\316\3150K\335\234\2505\353\241\251\212\310}\200:\275\213\000c\244|\353\252\034\224{d\275\265\020g\257\032_(z\2760<\271\220z\350\364\003\331\014G\211_\243\223\230\375G\017\217\321\203\2372s\377\022\246\202\264\225dRhF\324\372\256\266\304*\005\200\207>\246\223k;\330\312\001\250@\302\315e()Z2\326w;0\262\031 \331wk\325^\021\221Y\254M\234\014\227,\274\326\322V\031\003\245=\352-\313\344\031\235\351\002\025\300\214>\312\362\323\037=]b\226\231\203U\343#Q\024\232r\207\244N\333\035\247i1\205402\231\242\250\231\225(\020\261\243\022\317\232\326\300%\027\272\003F\020^MH\366-\221\341u\334[]e0\272\265\236\250\303r\262d\261\037\374]\311\024\341B@\334 \242\250";
-    PyObject *data = __Pyx_DecompressString(cstring, 3919, 2);
+    const struct { const unsigned int length: 11; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{11},{34},{30},{32},{26},{28},{18},{10},{28},{21},{29},{33},{45},{22},{15},{179},{37},{30},{32},{26},{28},{13},{1},{1},{1},{1},{2},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{8},{50},{38},{33},{8},{13},{45},{49},{20},{32},{22},{14},{30},{37},{11},{5},{14},{8},{5},{9},{27},{29},{18},{24},{18},{25},{20},{27},{21},{13},{5},{9},{27},{29},{9},{23},{25},{14},{21},{23},{17},{7},{7},{20},{8},{10},{4},{15},{3},{8},{14},{12},{15},{6},{4},{4},{5},{18},{4},{20},{1},{6},{7},{9},{17},{18},{4},{4},{5},{6},{1},{6},{5},{8},{5},{8},{4},{5},{15},{4},{8},{5},{11},{5},{6},{4},{9},{5},{5},{7},{6},{7},{8},{3},{8},{15},{10},{17},{11},{12},{5},{29},{14},{5},{6},{1},{2},{3},{10},{23},{5},{16},{22},{5},{5},{9},{13},{11},{11},{5},{8},{8},{14},{11},{7},{4},{6},{10},{10},{5},{4},{8},{4},{5},{8},{9},{7},{2},{5},{7},{3},{6},{7},{13},{20},{4},{12},{18},{4},{3},{19},{28},{28},{45},{14},{12},{11},{10},{19},{20},{24},{14},{12},{10},{17},{13},{8},{3},{5},{5},{19},{4},{12},{10},{12},{19},{5},{15},{6},{4},{5},{11},{12},{30},{24},{24},{11},{17},{19},{21},{20},{21},{12},{11},{5},{5},{4},{4},{6},{6},{8},{4},{6},{20},{19},{6},{14},{16},{12},{2},{2},{6},{6},{8},{7},{5},{1},{2},{8},{1},{2},{8},{1},{2},{8},{5},{11},{25},{147},{108},{1865},{255},{83},{31},{53},{161},{57},{71},{63},{142},{9},{199},{83},{266},{220},{618},{9},{24},{25},{95},{191},{31},{55},{55},{11},{576},{55},{49},{810},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (4367 bytes) */
+const char* const cstring = "BZh91AY&SY\343<c0\000\004\344\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\376\300@@@@@@@@@@@@\000@\000`\021\377{\2301\203\332\272\341\221-4o{u\036\331\251\235\272\227MV\232\2223km\023U\003\333\331\320\000\001\260P\222AM$\232\037\252\014\215\014'\344\232\206\236i\221Oj\036\002`&\231)\350\3044\323M@\365\r\033\325\032\000\310\3656\223L&@\222D\030\200 j0Sj\236\2324\320\230$\362\206OQ\241\3524\310\320h\364\232h\320h\032\0004\323OH\003A\2404\230M\020\232(\032\032z\2004\r\000i\243\322\000\000\000\006\236\240\000\014\200\000\0314\032\000$B\010\211\242jz\243\3615OS\3654\237\245\031\246H4\000\320i\352\r\006G\250\006\200\006\200h\006L\217S\3244?P\202\r10\t\200&\010\323L\000\t\200\023CC\023\000\000\000\000\214#\000\21512\030\002D\201&@\2154\n\237\212\237\251\340j\233M4\302P4h2h4\032z\200\r\000\000\000\310h\0007\252\007\376\026\215|/y\234A\003\352ppj\241\254\300|\272|^\3375R\377\231\305\366\022\364;\373\375\236\376\220A\352\244J\021(\n\261K\247\327e\303\030e\361Cr\220\242\2233\037\004\360i\332\222\222\024\272\023&d(\375\037W\327\366\177\027\301e\240T\212\217jR\224\245\020P\005\001X\213\213\377\352\377\311\201\206\0233&\020\303-\020\2721D]\035\t\006\260X\260 \265\205S\221 \230\027\0241\213O8\212\023\270\262Y2\266\333\020\306\233\001\214m\215$4\320\320\306\333\004\r\211\215\26166\r\215\2001\232\221b\305\254eAPv\010D%ee\223\212\362\223\236u\005\033HM\210r\014/$p\334\213\305\203m6\206\300M0\033m!,<\010\275$Xj\365:cW\013\006v\227((\306\316\245\302\326:!\007jdM\267\202\003M\343km\215\200\306\306\006X\260X\0144\332\004\333\022\235\253\207n\270\301\205\270\243\200\360\020p\254\243\200Jx\207k\227r^\024\310\231xW\230\226\232\373\260\306\265`\312\201V\224\024\222%\235u\nSv\\\2070^\310gF DDE\030\255\006\2013\014\311\230f\221\024\325\241\311DQQ\010\231\341i\000\255!B\004\001_}7\220\2613DA\025\025\024\256\225\002\025=\241\213\207.\3363>$ta6\002\31460U\\\245%%+B\024\327\231\035\351\337z\0218\300\3039\253X\231\250\215\"\234\204\201\264^,\030Pj;O\266\023tUnus\210\300\264""\032\312'\242\272\376C z\303d&<=\271=?\265\341N;\013\254\363\331\247\302\2718\3725\025\314\021\277\2067\366$\220\277\225\254\033\010\364\3437\323^\234\301\023U\336\3227\236S\372]?\007~8\232x\366.\273\273\326\002\326\020\304!+6\002\33154\373\305!P\210\243$\351ZB@Mv\301,zpO!\347b\374D\177\275t\335\033uq9+\251.&Jm\260x\214Zz\322\265\331\353\\\306X\310\370\327\203P\034\036.\246x\374\235\tv+\275\036\314:zV%\200\030u\243\336\0015\357t\276\320Kx/0\224\250\222|z\300\354F\2017b\252\231\206\367w\2600\215\010<\027\024\242(\210\245U\263U\"B\356\343 \221\334))J\222\260\304\354\020\250,\260W\221\240\"\032l/\021\004x\314\336\221W_\275\317\313\236\320\343\312\357A\264\032\rvGt\203\233O\202RR\321\327\347)\344TkO\364\362&\333\351\327\t\205\270\331\353f\267\243\301\244\270\224\216O?1\272\316\321\307_^\355c0\323\271RNv\336\004\363\246G\177z\270\267ej|\257.]\217\034e\357\205\337\301\274\337\230\267E\272\013\210&\214\344\245Ba\r\323Y\223-R$\312&\025\257h}\247~$%T]r[\036\245\367\230\321\316az\275\nJB\361\362\370\345\025\370>\347\250T%P*\226a_Q\335\302\262\2621J*)\\\215~\\\272y\217\024 i\260,\002\260''\254\355\331\320\336\277\331\226\217\025U\"@\3448w\261\356p\306\202\356XqVp\321;\274\036\003\231\215\220\366\273s\303\255Yg\237M\375\346E\030Os\251\303\177\307\367C\322\266\347.\302\013\305\235\013\001\024AL\027\304\360\362\005\276\205Bm]\026\213\214Q\027]p\254\350Q\322$Kk\001\027\\ \230\252\225\350/=\217[\273k\335\032\265\362\030\321\215\005u\253\303G\332\341f\002\211\023>\257\333\347{\276\267\223\333\344\360\213\334\322\377SRW\253\325\340b\030\341\215rtC\235\\F\213D\264\016C\223\237U\234\215\303mC4o\267\355*\333]\027\270\274\262\300\263Bx\235\226\377\335\237\017\226\337Q\237\"\031\3534\"\271\346\027\354\337\276\377n$HK\243\270\334\334{\266\254\261\221\215G\213T\254\307\032\345\202\376\036X+F\020[\321u\305h5LJz\247\025\254(\332\221&\304D9\316v\242\207\025\213d\347\\\270!y\233\246\013\004\"\010\212+E}$\026\213\310\203\032\322\372\331\354BV\005\226%b,Vc\326\026nk\022\351\372\253\251hX\213\002""\262\2632\212\346\323\214R1D\244i\354\254\224\203\223\026\211\246\373\342i\010\256)+\242\\\\\\UW\274\277\217K\245RVk\027\362O\013,,\253S\3626+\367\3260\214\0106\355\272\t\342\341\002\251\005W\007\234\006\256\302\323\220&p\366\203\232\007\266\304\335\026r{7*\243\300~\310\272\357J\227\305\025\026\221\320\346>9\222Gu}:dq\024\030\020\302S\240\324P\207N\264\247\252WR\261$\274\024\021{\2732\035\260r)\235\233\3520j\361\255\376\006\262h\203\247S\027\263Z8\007}\244\353\204\362\020\355\017\255\357\305\322\232of\332\036(\321C\364H\213[\031\232\332-b\312I\3115\336;f*\256 n\322\021\231\201S\336\333k\324\275\324\332\245\271o\033\211n\265\252P\025>\027\250\030\264\215\024\366n\321\224\327&k\032\234\301\246t\007\276\3474H\246\343\315\374\361?\250k6\177\233\231\273\356\217\3300\r\323\304\232\224W\347f#\024\016O\017\023\246\234\034 7i\360\302\334\343\203\215\0260j\206\234\263\254\265\004s\244j5?\023\330\252J\254\340\326'0M\234t<\243\300\231\351\0308(\300<]GH\013\210\027\t${o:\223\"T\230\322\241^dm\335T\023\377-dU\242\013\021\\\035nU\326:\347\000\305\277\354\334q\212p2\002\226C\005'#\016\223\276\020\213\222\271\\\027y\242\353y[kl\305\227\243v\033\272\241\256:\022\237V\207*b\267\025js\243BA\004\304\032n\375\303\250::8k\371C+\250n,\314\0221\246\233\rl\266\021A\201\276-\363|\342\353\014/\023#\311[=\343\331\311<\3168Y`\227V\205o8\352R\312\034U&\247\031b\371\250\343\236K\214\020u\242\240\306\001Bw\n\223\323\004\223O\007\037&\330\354N\214\270%f\224\361\2213J\322s\007*Z\215\275\312\350\r\235=\231\2113n9N\031rQ\276\231\\\270\242\370\343\314\034\324\r\221\265\224\360\311\316\212\037\211\032\233h\242q\211d\335\266\333c\216[F\206\305\rZcs],N\361\032\306gM\313\242\013\213\226)\201\003{d\016\001 \226\301\213\020\022x\312\252\210\222g[T\313\202\203L\032,\242RB\363\373u\330\r\241\262U\311\264\3333\342\214\241\260I\236\220\327D\324am;u\315}\"\201C\234IM\360\373\2231\255\250u\017\326O\014\225\030\004\216[\213*+\235\031\365:y^\032r\024\313\022\313\257\214\n\241\2646\230\330\036\232\245q'\312\2243*\037""\261\311\306\321\324\273z\351\235\245I\234^\215\371\340N<\311\030\205\260H\277\010\037O\271\213\342\221U\342\275\034\350\347\003\272u\263\342j]\214\007? \034\311\014\3007j\366&\370\231,\313\267i\000U\255\007\222\234\254(Z\206L<8\226]\006\203\\1\034M\244\217\t\220\333\033Q\034\300\316\272\023Rn\337\233\260T\325\201\017\214\317D\227\te\372\267\014\323\0323\370\002y1\036\203lnY\220\006u\215.=\221B\214\225\026\325\354)Y\004\203S\313\212\0035\213\251\236#c\243\201\373\276Y\340\2611\273\374W\244f\210X\024]\231\271\nI\342\343\215\333\260\236\302\202Y*\013\037u\020g\255h\3634\253\331u\253\220ThM\256n\023\205#\021\330\006\366\214 \341pCpA\356|\334\002}\367\007\2017\002S\211\352R/q\0326\036\207c\277@\255\241\025\017\032U\203\2457\032\246\203_\t\\\306d\r\310\337\231\210(I\017\001P\234Oz\265iMf\213&\271\361\034\273\rs\r\216+\236f\204DC\203Y\347\230\324\371Y2x\033\372\005\355\330\3224cAI<(x\330\256\210\t\203\266n\326U+\236\014\251\213\005)\006\t\204\321\010\364\356\275\26666\353\2006sX0J\354\345\345r\216*\253\2602<\273\340Q\331\277\207\037k\303\242B\314\300]\253Aq\316\317E+-\354\265\322.\212oj\230\352j\354X\313\274q\226\022\"\227S\325$L\0326\251N~R!-\267S\003\236\263&2\200\236b\223\2128Z\231\206d\274\314`(\224Kz\261<\3051\331F\371\370J\270L>d\313\215\213\231\342\002\204\351\335\326\300\2415\220\205+7-P\313N\253\251eXs\237\317,\334\366(\300\267uz\216\356\210`\203\310$u\207R^j*\224\311\317R\321k]OP\232\270E\301t\310\251O\005H\222w\222\2063\021\0279\025\202\332+`d\305\3149\226qi&w\320H\\\242\241n9\004\033\"\033d7\003NI\026d\311\212\307S'm\222\225\302\264n\333M\312\323X\271\2454\325\270b\"\007\211\351\231\014\231:\330\3723\004\314\270l\\@\262Y!n[\005\255\0335\332tpq\264\341\341nG17\210\274\332\364\247\210\3559\234Zh\264]\261\226|\326\275\r0u\304\370\214\233\n\253]\236\313\221-F\303\254\341r\322\233<x\273\342\346\350\206{]\345\212\327\327[<\352\230s\302\226\264$OXt\313\317\316q\354\352Vh\330\211\314\263\026)\264\2636\037!0\317\231\3454Y\2013\342\314G.u\301#\200p8.~D@\206M\235\255CZ]7""M\320\244\314\354h\327\253&\223\263\271#zjx\266p+\210\243D64in\315\002[)l\276\266\2534\332D\352h\016\010$\320Y\253\315\215-\221J\212j\245;\344qyN\342O{\215\200\2454\304\346\027)b'\261+l\031\227 \224\251\224\311\276pX\265\022\351x\314\230@`+:Ns\301\027K>a\267\331y\322{\352[v\241m\r\2471\265\033^\375\220[\377\336\203\254<fu\351h\330\347P\376\203\337e9\272\226\346\330\366\336\310\363\335\317x\257\311u0\230\326\232w\222O\006*w\322b\002eBc^\263ZK\211v;\005?\3331\335\277\223I1k?\220\352\254g\231\205x^^,\342\342\315\256\306\305c\006\331\245\300\326\356\311\315(\231\025\214\013\321\341[H\343\252:4C\307\020\376d$\342Y\221\006\3101j\321\214\3479*1\354G4\236\243%<\266AJ\304Tn\343\246\351\276;\204\373\027^#\025\300\362\230\213\350\236\254\013m\231\375\034\233\346J\303\327\253\335\335\r\340&q\360\025%Q\306ocO z\336_T\212n\023\234\327\223\027\367\030\253\311#\216\360}\244\330\321\347\303\033[>\263=/\344\275\026\204\263\020\r\241\247\266\341 \367\037~?s\030\320\337i\347\215!H\375\207\336\r\010(Q\344\010\363\356\014g\357]\336\323J\022=\007\003\226\245\213\354\224\022\010>O\250\301(9\273\202 \360Z\027\271\364&<x\205\020\243\260\272\016\350\230\233E\232J\354\013\223\364\325'\340\204\014]{\024\224\322\347\363\016\271\013\276CP\351w\340P\235\036ik\"\201\242\240^\271\023AC]\036\232%\213\275\367\310\217\030\360\344?\216 \377^\333\372g\303;2\350\354\215\177\002\212W]#\003\321I\245L<Xq\004#\355\366\342*\021\372\340V<\336\360\210\001\200v\207\036\375\023!\343\020\210D\030|\023\236\003\204\235\005\300\323\376\244=d7\2244\021\014C\264D\007\373\335\312\322D\313\212\310\356\257grL\016\342p{\311N\214;\017\345\363{\241\010\366R\367\321&\202X\207p\022\300\\q%\200lh\006p\200\260\013\005\206\360\272#k\021\006\020!\214\314\317\371\270SE\323\277\002\241\364\005D\303yA\222$P\256)qx\253\370z5\013\n\260\207VdW\023\301\343\003'\222\232'\221\242 y^\237\217\014\216Eb\275\221\020N1%\206yl<\277\236\207\353y(\365\222\364\273\220H.\3459~ao\306\360Q\277\005\360K\010\244\373\251\254t\355\033\2033\014\005\366\270Z""\224\223B\335\333\260\312\224%\023%\365\333\350\205\373\227\206{\315\201\2101\250x\234\2452D\245)Z\374\257\027\3365\347i_\300\330?H\3103e\1772K\2134\202\363;\007\335\324F\022\256\333x5\215dq\344I\207\343\375\333\373\325*\206\001\336\261\213U\321s\303\021\007\244\355V\306\306R!\347\327 \0172\245\261\214\303U\301\307\036\2233b\034\337\346\003\306`\\8OA\372\307\234\335G\375\257\023S\343\342,!\204\302\210#\022d\354dt\244\325\276\310\013\206\033\316\225\272x$D\002.iPt\273\277{x\355\301\342\272\207\262.\336\0368\027A0jEY\360\265\314\001\243\306\205\273x\037w\001\200\222Y$\221t7\315\363\324\266\\{\234\\Hg0\312\3605>\366\231]\024\240>cW\264\206\225\022\310\362>\032\307\246*\373\257p\356\r\336\313\240\210\".\223Ng|\323\032\256\230\302tl\250\332\354\241\200\264\351b$\216UDx-5\2355\275m\016\013\033\225\335\327\264\345dV\221\017\325\356\034ni\365\353\246\260\373\nmf\255\317\350A\201\221\267`\260X&\366\351\243\252\024\352D\325\322\244\033\025\r\202%DE\266_\265(SN\215D;`}?r4\371\364\360\267!\212c!\223\226\321\240\351\2324\220\303\341?4\317\240\360u\006\320\240\250$c\243\212\2139\310\345w\264\001\250\251\354\221\216y\237\265\251C\205\203\255\330\033S\016v{d\325\303\233=\315g=\315\034\375\355\3724\n\034\003\352Q\243|Z%\356\352\"\360'\320K;5\232\220q\266i\\\310\206\347s\271\334\324M\257\227\230\356\037\222\266Z\030\230\331\232\323\267\246\354\n\211\257\346\3139\210dNc\247g\263Uo\261f\260\034\311\310\327\354t\246\225\224\354\372\240d\n\272\336\365\347\231g\213\232\034\271\310\244\233\227\363\224\261\035V\0350\266d\226d\017\317\222\371\335\314j\036\317rg\026\270\323\216OV\226\344\247r\235\030\341\351\347[\355=\022+\200O\342\333\003@\027K\355Y\301b\361klv\212\210[^T\254\207\265\324\003\211}\007l_Hy,\004\303\034\234>\307 \266\272\332\371\216>\030\n\270\210\326\304Y\"\352#\205\022\0045\021H3\271\222\201\020\001\3010\025#\030\203w3\000\324 a\206\255(*\324\313\336\325j\234.i%\333$\026\006\362\361\330\211\275\256\264\224NK\325\342r\340d\271e\246\327\222\320\310\035VQ~\257\2523\\=m\002\026@""\215_2\366\351\217\257gh\253\314\301\033w\263Z\224EMU\272\241\312b\373`\346q\226D8\327B\362=&\327\352;\354/3=\2703kL\301\241:L\350dda\026D\223+\024T\3321\202\375\327\212\014\272\003P\262TY\"\304\343\314\202\247\022\212\235\225\207\2036C\331U\002\351\323}l\332\252\251\265j}\\Cr\031\230\033%\240\377\342\356H\247\n\022\034g\214f\000";
+    PyObject *data = __Pyx_DecompressString(cstring, 4367, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (3733 bytes) */
-const char* const cstring = "x\332\335XK{\333F\262\225d\311\241b\305\026%\371\231\307\200\262<R\022G\261\036\266\022\307v\206\226e\3077\036\307z\3333qpA\240IaL\001$\036\222h\317|\343%\227Xb\211%\226Xb\311%\227Xr\311\237\340\237pO5@\212\264\250\2143\217|\231\273\020\321\350\356\352\256:Uu\252\240\233B\266X\024\024u\227i\246\252k\246P2\230\314\024U+\034N\nW\024a\3276-!\307\004US\330\001S\004IS\004M\267\004\263\250b\373];\237g\206\260\247\262}A\321\231\311\227\330AI7\231`Z\206\2520sY\322\004]+V\004\331`\222\305\004I\310\305B\326\216d\t\252)\310\272f\251\005[\267M\\\"\354\262]\335\250\314B\212\216\222LS-h\202\245\013\020V\276\340\347\304;\350\312dSr\360\276\241ZR\256\310\222\r\261RyC\337\3759Yn\226\260\257Z;\202U)1a:\231\267\014I3\271\031\207\"\3616H\250\200\312\352\300\356^'`j\014B\274iE)$\320\t+\273%\253\"\230;\022n\261\354\022\364\314\353\206 W\254\035]\233\225\014C\252\334\227\324\"\020\206\261R\261\250\313d\023\203\274)\034\267\272\317\324\302\216ud\275`\350\373\275%\371\312[R\246\365\300\220J;3\332\0363,vp\233\277\221\3363\355Qb\201n[\202\236\027\200L\201\361\265\226\255\361\211Ly\330\271-\247\333\232b\n3\322\001v]Q>}x\024\2678\220\354RI7\270\364\236TT\021q\272\302\256R\020a3\324\236\226\247\005\0005\r\264\310)\323W\205\002\244Z\233c<\0217\374\232[\177\344\316\332\"gA\205\307:@\342a\266\314a&}\025VTs\314\000|\010\007\nQ\\\302cQ\023\236\254<\371b\361\253E\036\342\006\373\013\2567\241]N.\"\n\201%\331d\253E\013\227Q\250\230\263\302\303\274P\321mAc1\272%\354\353\024\260v\230&\230\314\242\2010\315\343J\262`\267\010q\344\331t\022#\352\036#\351\373R\321d\263?t\201\007\225\223d\221d\231\231-4\327-V\022v\245\n\307\017\271\371\222\031\372!\320\233\032\317\002\034\211\314\"\247\n\252\305v\351]\317\221Q\233Z\033r\332\241q\025T\253rS\350\\\321\310\2479\212P\250b\335\024\266\271\217\223H\230\2753\375\351U\341[IQD\2150&\304\004\300|\355@\326\213E:\020\336\235\225r\362\255\216\344\246M\261\305w\336\236n\345\324\035E5Iy\306M(\310\302\014\371\272\300\323\211` vb\007\026\323,\316\025\207D\245\232\261\210B\246""\232\352K&\334\272-\\;\222aWa\026\342\371\266\246#\016\362\222]\264\004Q4\230b\313L\024\005\305\346\250i\272\366\005\342bO\225\212X\225UM\265DQ\263wK\225YQ\326\r6\273\0139\225\237'\344\333\251\245\356\022p\235\333\354]\tt\361\366\216\304\tw\272\262\251T\321\230m\33196\213\020\227\231a\316\226*\217\231\275A3\246%\311/\304\002\345\233h[j\321lo\3762\331\374e{\363\227G6\343\240\203[1\023+]\0368:GY\326vD\327z\367\254V0u\333\220\331\035\273\035hmF\212QQ$K\232\355\261\032'+\235\230\324\206\331\253m\356\270\235]_~\370p\371\207?>y\264\262\261\">X\313>\371n\245XTK\246j\362\324h3U{0\333\366]\354cQ\354\\B\342\001\r\253\327\"\305-\305\301\321\0311'Yr\307\r\005f\275\265\2635c\212\335\374\311\027bcz\315\035\331\256\232b\313\364\007+\217W\326\262\217b\233\371j\233y\333\203\243\266v.\035\261\225/n\200\245\216\001\352X\220\272\341\350i\3621\246\0351\353\241f\255 \037\360\270_\224\n\242\370\244r\200\277{ \\\3611\222x\215\345\327Y\331f\232\3146\326V\022\217o\0306#\366\236=$r\260HK\235n/\265\336L(\337\n11\246K\251Tb\232\"\241\356KFa\217\253'\231\025MV\365Y\244&2O\325\230\231\223L&\313\n+Y;\362\016\327\031\331N\324-\212\255\001\214$B\241WH\210*\250\233R.\207$\003\203)\304\236\234\036\345}U\261v\024\205\025\014\324\002:Q\024\02524~\304\331\303\024\260\233\245P\355\340?\"\260\212\311\200\254\340v\251\312\001\267\250\003mFm\003@BQd@\223\377Q\365b\206\241\033y\000k\346\213\272d\335X\004\327\201p\222*)\212y[\223E2\240\345\275\267\274x\350\277#\236\024\017\355\346\3038BbV\211\251\205+\333\252\020b\021f\211yDv\201\314\212\241TU\005\306\210bLzxR\335 *\005\253\212\262T\222dT\034U\263\026\346\361sc\021?\304\344V\205@i\273\010c@\316kaG\\\305\024\237\360\274(\356J\330\203\007\333EY\0275i\227\231\355W\223\017\250w\243\246\002\177v\221$\222\247\326>]\023\265\234A\242\242\230\374\242\264\360R\3212\262\365\304\211\032\333\307O\211S}\3224\301\215z>\217d\212\177\347\223G\014g\353\245\215\027\214\323\021\177\272Qh\317u\216c) \364\242\244\227J\206N\205_\334\323\017X1\216\373\356\251C\305\310\003\335k\324""\257\036n\370EEF\024Q8D\344\205\374\302\264w\3437\203\231\250|\3618\211\t\032\362X\346#[+\251\362\013@Ky\377\326\024\247\207^sDa\361\374\036o\337)\350\312\266T\214\035qX\236\217pX{\202\035\320\260\200(DR\300z\312{S\226\212\310\243b\236s\\\342U\214\222\262\337\301|b\017\026\344\205\312\3441KA\306\321\211!\342\311\035\017\343@\217\307m\337\361p\022-\210\210\304Ko\255\022\001\210\306\321\3718D\332\363\274'\210\207h'\271\032\3555\362\0162D7\224\356\251V\224\365\230l\317%Q\021s]\327\244\031\2179\215ah\304x\000\320\222i\351\3703l4\303|U\214\215\023\255\035\203\301\221\220\2625C\332\353\210D\212\357\326\\K+\232*\241-`\361\257\0303\245i\233\014\236\347\230\023\211\360\367\2263\366\346\366\346\321\343\333\314\214\025n\245\177BU\\\231\203\203k\007\311\035\225\312\265J2|\371\362\332\313\326\020\235\261\371\272\2771x\331\233\363\356\373\231\327\375oF\372\206F\252\363\325\265\352\236\263\346\030\356\230{\335\033\3602\321\340\365`\265\221:U]\254\226\033#\243\316\210\373\000\022\017\375U_\t2\215\2213U\313\371\326\233\366\323\215\321\t\3471\r\374\014m{\337M\026\277v\357\272\2627\346\315\321\206\357]\323\233\364\262\307\2574!z\312\375\332\313z\033\376\204\277\332\340\257\213\356\253\370\320aw\302\375\263\337\017]o\364\r\177\342>\363\n\376\352\233T\337\320pu\250\272\351d\234\271F\352L\325v\262\016\024\376\240\272\341\244\223\307\233\223}\303cN\332\271\354l\273Y\027\213\351\303\227&L\233k\214L@j\335}\317-{\375]/\270\353\367}CKA.\034\nW\303Bm\253>__m\014^r3tq\352\365^u\335\351o\244F\252w\2539\347\204s\335\035p'\335\357\274\025\177\314\237\367\327\203\241`-0\302\213\265+5\243>^_\256\333\321\306V\264\365,z\366\247\306\310\270\263\004\220\332\242\213\034\363\257\274E\317\200\360\002\340\235\014\356\006jh\325\346kk5\263>U\317EO\326\242\265u\222\\pr\356IWr\367\275\274\177\327\227\310\210y\256\311\310y\247\354\016\301\306\221Kt\370\277a\2729|\246j:\231w\263q\254\276Pg\321\372f\264\271\035m?\375\257\261\361?\210\310\257\351u\344\206\177\326\177\021\246\303+a\271\267\005\357\274E\372\307\213""\277\331\310\3504\362U=S\277\021\255\376\030\375\370<z.G\262\362\217q\371\315\211\234\363_\205\231\360F\355\303z\266\276\025\255\377\024\375$F\"\213X\376\237\025\371\357\363\334O\215\321\017\3359\367\276\3679*O>\370>,\327N\326^D\2538\370i\364\364\331/\204\373\377\345i=]\376\277\277\372iTl\317T\377\342\366G\027\227\202r\330\337\034<U\275\345\224_g\2337\226\232\251\017\321U\234\364$\257\374\346\375\276\341\0214\025\373\210\210\024\032\215)\017\244\362\tB\303\362\276E\004-\007V\270T\233\254\241W\030\215F3^\232\352\377\031\267L\247\177P]q\316:\222\223\364#Yw\303;\357\017\370\223\376\375\340\nn<\021\316\035\273\000\361\017F\223\336\203\241\217Y\366L,g\343\016\304F\333\261\356\237@\002\254\036v(?\267\253\311w\335\3045\027\374\363A\177\334\002e\220\t\373~\016)\264\035fC\364\027#\325\377q$\230\237ZD^\344\303\273\241R\233AV\344yQ\330\3564\310r\241\371\030\032\231\005\207\241\353\371\253?GI\322c\252\211>\007\210\266\333\262qd\341\337\251\033j\362\341+\357\252\317oL\226IKtY\347\221\251\347\320\324\014FS\213\301\375p2\314\222\344\\\"\023M.\006\331\267\204\026\201q\"fx\343\336=\377$\014\353'7O\"\010&\001L\331\037\364\177\010\027\303=\344:\367\307\t\347\253\244\177CK8\016pV\335<:\276\211\337\341\342\023\336ul\357~iv\276\000\370\267^\273\024\234\0172-\005\rg\014\220(\356e\200\237&\204>\203\273\237\373\031\037=\340\2503\350<\362\372\275\to\323\237\362\213\010\343\305\260\334\022$$\370\241\211;\262\341F\355B\375\\\335@\024\367\364\305uw\320}L\007'\240w\034\023\337\232t\307=5\022\271\021)\302\362\216\227\366H\375[\267\351\2328\364e4\264\253]\221\375\310\355\307\3346\265\344D\261\035\257-)\216\362i\236(7\321\376&\263\025\020\370ew\315-\307-\363\202\233C#\313\365\352\265\322\021\224<6\320\345\376\241\277ox\306\373\0330\221\032\251o\302\371p\2536W\273W?I\354\r\013\026\202\371`\013\263\033\265\211\270\007\216\333_\263:\025\235\276\314?\010\236\207\263u|O\234wL\\Gz\035\266\345\315\324%w\006\341\362(\350\017\320\223_r?\365\346\242\251\353\301z\010\035?\002L\233^b\336BU\211\306\246\275r4""\363u\370qM\21366\033\251\013\300`\334]\001\250=\207\340\227\350\324G\321G\024\034\374#f\270:P\235\254.\303\256y|\310\230\356\024,\036\360.#\"\251<\025\202\215p,\\\010wjJ}\022\275Y\231\342\205\223T\347\247\317\r|\227,Q\316\343\310\331\276\241\263\316=^\266\312\315\301\324\341\267\006O\024\004\374\202\203\034M\303\375\363\316\237\021v\351\343_\2100l\212\315\346(}clB7\034\332H^\256Pn\"\311\372;&\032\023\224~\027(vz\017\201[\372Rt\361K\277\034\014\006Y\0307\201\357\024\2456U\223jV}\261^\216\236lD\033D\316\350>i\3579\347\031\356<\340\024\225\n\373i{\257\351ts\364\242\233v?CG\220F\022)\034\334\311\276\341\013\316\337(\030)\315\246\343h\201\364\373\247(V\333\244|\316\331EDdc\2565\235\251\350\334\347\240\255\207\301\363\332,\305\322H+\303\373{\017I.\355\014\301\376\014rpt\322\233\361'\243\253wB)4k\031z\377\324\237\213\256\336\016\327k\000j\212\263\361\020\230o\224\272\013%\272\004$\242k\331\332\307u\r\345\264\265\341\204\177=\350?\376%\016\234\263\316}\360Z\2669\370^\353\263\016\221\341\234s\342\020!\353\332\203\316\271V/%\300\303\343\336\003\377\253`\356\227\357\333\343\031\232\274\346Qw\244\237]\373\255\236\325B\014MD{\355\234c\377\307\326:u\237\360\266\375\357\202l\367\376=o\315\353\222\311{w=\351\327\334\323L\235\356\350\206\350_.\357W?wV\021r`\320s\316:x,\315\377\241\340.!\3223Q\337$\222\232\376\027\023\235B\333\303yk\302\337\n\346b\201\323\325\r\200\255\240i\033\034\251>p\346\020\262W\241\007\017\331mg\205\327\223\324\030A\202V\256I?\264\006\255\316Dg>C\"K\376~\360\242v\276\216\022\3205\223><\376\023\327\212./\005V\364\315\367 \220W\321\237\320\373i\221fD\306\337\337\364\365\375a\340\336\000\036\367\006\036\321\343\321\300\023z<\031xJ\217\247\003?\322\343\307\201\347\003\357\252\236\345\336\366\337\363m\336\357}[\237\216V\343\017e\364\301j\244\226\242R\207\372\277\367\024\020\317R\360y\270]\3136\273g\010\316\217\372\206\246\311%i\372\277\317Y\347'\3576\262<\365q\364\361\002\201\327\034\004\301D\302\265\340T\370\roY\033\203\343\250\355)\316\321\270\343\257\361W\rj""\217\237\nN\207\320\371T\3658\261\257\361\245\224\365V;\304\210\340\036\205\247k-\261\306 \035t\022]X\377\233\261\270PfP\334d\336#\310 \326\313\356:/J\353h\265\307\375e\277\334\305\240m\272\031\246:\232zm\243\234\361\035Y\324\236)\354\261\335e\376\257\252\036S\303\247qM\372\0357\377\214|L\007\240\377Fj\002\345\217\252m\226\022\020$M\035\261\001\265\263\376\032\312\316\211`\216\262\256\363\244{\220=\313\235CL{\344\304\346\277x\342/\220\337\242\036\026\265[A_~\203\376\245\210\317\226l\343_\225\357\264\210\272\314\314\273h\264\214/\352q\364\233k\370j:\201\346*{\350r\336l&No\363\305\365`5\240\370\031m7Z\304\0073\376L\200\344\037\256\246\017\177x\013\024\243K\237*\323A:.hc\340!\223\250\342\"o\340\2619\355\\B\007(\305\203y$#\302\225\3022\375\303\377\001=U\243F";
-    PyObject *data = __Pyx_DecompressString(cstring, 3733, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (4255 bytes) */
+const char* const cstring = "x\332\335Y\315\177\323V\326NB\002N\t\020\347\033H[9\204&@\352\222\017H\241@\307\204@y\241\224|\021\230BUE\222\035M\034\331\326G\022\303\314\257,\275\324RK-\265\324RK/\275\324\322K\377\t\374\t\363\234+\331\261\363\301\320w\336\351\257\363.\"]\335{\317\275\347\234{\316s\236\353\334\346R\331,')\333\262\252+9U\347\362\232,\312\222\242f\366;\271\313\022\267m\352\006\267!s\212*\311{\262\304\t\252\304\2519\203\323\263\n\246\3377\323iY\343v\024y\227\223r\262\316\206\344\275|N\2279\335\320\024I\326\027\004\225\313\251\331\"'j\262`\310\234\300m\204B\306\246`p\212\316\2119\325P2f\316\324\261\t\267-o\347\264b\022R\264\224\240\353JF\345\214\034\007a\351k\266N8\203\266\214&E\013\357j\212!ld\345hB\250TZ\313m\177L\226\231\305\355*\306&g\024\36327\021\365\033\232\240\352\314\214}\221p\032$\024\270\312h\362\335\203f\207)\241\023\302I\213R&r\035\267\270\2357\212\234\276)`\027\303\314C\317tN\343\304\242\261\231S\223\202\246\t\305\207\202\222\205\207a\254\220\315\346D\262I\206\274\316\0357\272++\231M\343\320xF\313\355\036-\311F\016H\351\306#M\310oN\252;\262f\310{w\331\027\351=\331hE\026\344L\203\313\2459x&#\263\261\272\255\341\212\262\364\270y\332F\316T%\235\233\024\3660\353\262t\345\361a\277\205\201d\346\3639\215I\357\010Y\005\021\227\223\344)\n\"L\206\332\023\342\004\007GM\300[t(\023S\\\006R\365\311\241?\0217l\233;?\262\303zA\207\005\025\236\345\340$\026f\013\314\315\244\257$g\225\rY\203\373\020\016\024\242\330\204\305\242\312=_|\376\365\334\267s,\3045\371o\330^\207v\033b\026Q\010_\222M\246\2225\260\031\205\212\236\344\036\247\271b\316\344T9\364n\036\363\232\005\214MY\345t\331\240\0067\301\342J0`7\017q\344\331D\024#\312\216L\322\017\205\254.'\177jq\036T\216\222E\020EY\257{s\305\220\363\334\266Pd\376Cn\276\225\265\334\276\243\327T\226\005X\022\231E\207\312)\206\274M\337\271\r2jMm\270\234f\250L\005\305(\336\346\232GT:\323\r\212P\250b\334\346\326\331\031G\221\220\2747qe\212\373^\220$^%\037\223\3078\270\371\372\236\230\313fiA\234nR\330\020\3574%7M\n-\276w\260\273\236S\367$E'\345efBF\344&""\351\2543,\235\310\r\204N\362\236!\253\006\303\212}\240R\364PD\"Su\345\255\314\335\271\313]?\224aS0\013\361|W\315!\016\322\202\23158\236\327d\311\024e\236\347$\223yM\315\251_#.v\024!\213QQQ\025\203\347Us;_L\2129MNnCLa\313q\351Ff)\333\344\267\246Y\346\266\000\26088!:\202{-\271\224/\252\262i\230\033r\022\001.\312\232\236\314\027\237\311\346*\365\350\206 n\361\031\3126\3364\224\254\336\230\374M4\371\233\306\344o\016M\306B{wB\034\226Z\374\177\270\217r\254q\014-\343\255\275jF\317\231\232(\3373\033a\326\300\243\320)\222`\010\311#F\303T\245\025\243\312\220\234j \307\335\324\312\302\343\307\013?\375\370\374\351\342\352\"\377h9\365\374\207\305lV\311\353\212\316\022\243\201S\215F\262qr\341\t\363|\363\020\322\016\3360\216\032\244\250\245(8\334\303o\010\206\330\264CF6\016\314\254\367\350|+z\262\201\320\230\243\372\016MWt\276n\372\243\305g\213\313\251\247\241\315l\264\201\273\215\306a[\233\207\016\331\312\006W\201Q\3078\352X'\265\272\343H\223\2171\355\220Y\217Uc\021\351\200\327\303\254\220\341\371\347\305=\374=\000\334\362\317\220\302\313rzE.\230\262*\312\253\313\213\321\211\257j\246L\330\235\334\207q`H]\235\326S\252\177\351P\276\036b|\010\226B>/\253\222\200\252/h\231\035\246\236\240\027UQ\311Qj\"\363\024U\3267\004]&8\227\370\346\254\021\213\242(\311ycS\334dv \377\t\314y\276\336\200\341\0041\364\211Ux\005`Ni\270\201%\200i\022\341)\003LqW\221\214MI\2223\032\252\003\255\310\363\022\031\037\276\302\214\222%\340\235!Q5a\017\036\376\013\001\202,c\266*\322\036\263\262\351\004d\"\022p\034\312\244\014\017\263?\252g\262\246\345\2644\234\255\247\2639\301\2709\007\364\003\010Eu\223\347\323\246*\362d@\375D\017\234\354\376\231\036:]~\337n\326\014\243&\364Y\3508\246l\275f\360Y\230\305\247\021\355 \034f\236\337\026\364-2,CF\206\216U\024\t\246\361|\010\213x\253b\326$\366\311\023\341\023\262<\226\221\010\360Qn\010\201\001\306\274(\344\005\021\205\252\376\275\243h\206IoF\\\024\325\230\235\301\343\346\034\036T\026\214\"\371\263q\342h\343\264Xam\n\323\260^DE\203\207\246\230\203\227\274\r\216\300""\253\302\266\2547>u\326 \"H\014\005\177f\226$\242\267\332X]\345\325\r\215Dy>z\242N\261\272S\367O\375\215\025Uy\027\217<+\034\021\003\203\243r\3514r3|\316D\257\360$\352\037\rW\303\270\034\3029\247e\032}\315\355P\n~\333\312\347\362y-G,\202\337\311\355\311\3310\215Z\273\366\025\243\303k\035#\362\273?\341w\325,\236G\035\342\221R\342\226nn\207_\232\254\243\216\206\355(\234\250\311\322\200\265L5\257\210[p-\301\310\201.\2066G\365\021\"\206\375;\354.@\361Z@\214\204\007\261_\353\017Ab\243C\336\243f\006\001\214|\202\365\004#\272(de<\242\003\026\264\"\013i\220\274l\232\241ht\320hE\264\242\t[\371#p\226\225\302(\320\353\311\241\263X\2470d\376\013\235\310\220#l\206y\023\266\033\247\313\364\341\r\210\360\004\204\007F\t]x\355p\177\030D\215~FB\302&\330+S\2431F\347\207\034B2\266v\325\343\360\210\316F_\0247!\220\266t\352a\233a$\232Z\350\036\270<\257\0339\374i&\2707\033\345C\343xcS\223q\324\2202UM\330i\212U\312\200z_]+\352\312\203\207\310\341\223\017aX7u\031\261\301\216\200\020\212}\327\317fgzg\006W\nS\326C\205\353\000\021\341 Sfo\357\372^\264G\261x\275\0305\337\276\275\376\266\336\004\021\327\337\267W;/9\323\316C7\361\276\375CO[WOi\246\264\\\332\261\226-\315\356\263o8\035N\"\350\274\341-Uc\247Ks\245B\265\247\327\352\261\037A\342\261\273\344J^\242\332s\256dX\337;\023n\274\332;`=\243\206\233\240i\237\331\321\340-\373\276-:}\3164Mxb\353\316\230\223:~\244\006\321\323\366-'\345\254\272\003\356R\225}\316\331\357\302E\273\355\001\373g\267\035\272\336l\353\376\302~\345d\334\245\017\261\266\256\356RWi\315JX\323\325\330\271\222i\245,(|\246\264j\305\243\327\207\223m\335}V\334\272d\255\333)\033\203\361\375\217\032L\233\256\366\014@j\305>e\027\234\366\226\017\354\365U[\327\274\267\341w\371K~\246\374\2422SY\252v^\260\023\264q\354\375Ni\305j\257\306zJ\367K\033\326\t\353\206\335a\217\331?8\213n\237;\343\256x]\336\262\247\371\347\313\227\313Z\245\277\262P1\203\325\027\301\213W\301\253\277V{\372\255y8\251!:\307|\376\2553\347h\020\236\205{\307\274\373\236\342\033\345\231\362rY\257\214W6\202\347\313\301""\362\nI\316Z\033\366I[\260w\235\264{\337\025\310\210\031\246I\317\260U\260\273`c\317\005Z\374\377\240\273\326}\256\244[\211O\263\261\2572[\221\203\225\265`m=X\177\371_c\343\177\320#\177\344\251#7\334Aw\313\217\373\227\375\302\321\026|\362\024\341_\017\376i#\243\331\310w\225D\345f\260\364:x\375&x#\006\242\364\257\375\362\247\023\031r\337\371\t\377f\371b%Uy\021\254\374\022\374\302\007\274\034\310\351\377\255\310\177\337\311\375R\355\275hO\333\017\235k\250<i\357\211_(\237,o\005KX\370e\360\362\325\357t\367\377\313\325\216<\362_\377\360\325\250\330\236+\375\315n\017\316\317{\005\277\275\326y\272t\307*\274O\325n\316\327b\027\301*N:\202S\370\360Y[w\017H\305.\"\"\006\2421\356\000T\276@h\030\316\367\210\240\005\317\360\347\313cep\205\336\2407\341\304\251\376\237\263\013\264\372\231\322\2425h\tV\304GR\366\2523\354v\270c\356C\3572v<\341O\037;\000\3613\275\021\367\220\301c\026\034\035\303\251\220\201\230\240\035+\356\t$\300\322>C\371\330\254\032\233u\033\333\214\270\303^{H\201\022\310\204]w\003)\264\356\247|\360\213\236\322\377X\002\314\217\315!/\322\376}_*O\"+\322\254(\2547\033d\330\320\274\017Df\326\222\301z\376\356NS\222\034\321U\003\317\201G\033\264\254\037Y\370\033\261\241\032k\276s\246\\\266c4LZ\202e\r#S\207@j:\203\3619\357\241?\346\247Hr:\222\t\306\346\274\324\001\2419\3708\022\323\234~\347\201{\022\206\265\3231\217!\010\306\340\230\202\333\351\376\344\317\371;\310uv\036'\254o#\376\006J\330\017\347,\331i0\276\201/\261\361\t\347\006\246\267~\324\232?\340\370\003\237-\n\316x\211\272\202\232\325\007\227H\366%8?N\036\272\212\343~\343&\\p\300^\253\323z\352\264;\003\316\232;\356f\021\306s~\241.H\236`\213F\307\221\362W\313#\225\241\212\206(>\362,n\330\235\3663Z8rz\3232\341\256\021;>R#\236\031\021#_\336s\342\016\251\177\347.m\023\206\276\010B\273\324\022\331O\355v\364\255\023%'\210m\372\254K1/\237e\211r\033\3647\352-\002\300/\331\313v!\244\314\263\366\006\210,\323\353\250\221\246\240d\261\001\226\373\227\366\266\356I\347\037\360\211P\215}\347\317\370/\312\323\345\007\225\223""\204\336\260`\326\233\361^\240w\265<\020r\340\220\376\352\245\361\340\354%v!x\343'+\270O\014[:\266#\275\366iy-v\301\236D\270<\365\332=p\362\013\366\025g:\030\277\341\255\370\320q\024nZs\"\363fKR\3207\341\024\202\311[\376\347e5X]\253\306F\340\203~{\021N=\262\t|\tN\217\006\243\024\034\354\022\323]\352(\215\225\026`\327\014.2\272=\016\213;\234K\210H*O\031o\325\357\363g\375\315\262T\031\0037+P\2740\220j\276\372\334\304\275d\236r\036K&\333\272\006\255\007\254l\025j\235\261\375\273\006K\024\004\374\254\205\034\215\343\370g\254\237\021v\361\343?\0100L\212\315Z/\3351\326\240\033\026\255F\037\227)7\221d\355M\035\325\001J\277\021\212\235\243\233\360[\374Bp\376\033\267\340uz)\0307\200{\212T\036/\013e\2432W)\004\317W\203U\002g\260O\232;d\275\302\236{\014\242b~;M?\252;^\353=o\307\355\253`\004q$\221\304\234;\326\326=b\375\203\202\221\322l\"\214\026H\177v\232b\265\001\312C\3266\"\"\025b\255n\215\007C\327\000[\217\2757\345$\305RO=\303\333\217n\222\\\334\352\202\375\t\344`\357\2303\351\216\005S\367|\301\327\313\t\372\276\342N\007Sw\375\2252\0345\316\320\270\013\310\327K\354B\n.\300\023\301\365T\371\363\212\212rZ\237p\302\275\341\265\037\377\021\006\316\240\365\020\270\226\252u\236\252_\353\020\031\326\220\025\206\010Y\327h4\367\325\271\024\207\023\356w\036\271\337z\323\277\177\336\016\313\320\3503\215\272#|t\354\317\272V\335c \021\215\261!\313\374\217\2155\353>\340\254\273?x\251\326\371;\316\262\323\"\223v\356;\302\0379\247\026;\333\304\206\350'\227\317J\327\254%\204\034\020t\310Z\001\216\305\331\017\n\366<\"=\021\264\215!\251\351\267\230\3404h\017\303\255\001\367\2057\035\n\234-\255\302\331\022H[gO\351\2215\215\220\235\202\036,d\327\255EVOb}\344\022P\271\032=h\014Z\235\013\316]E\"\013\356\256\267U\036\256\240\004\264\364\304\367\227\377\3026\202K\363\236\021|\367\004\000\362.\370+\270\237\032\250Z\240\375\366\241\255\355/\035\017:\360z\320\361\224^O;\236\323\353y\307Kz\275\354xM\257\327\035o:>U=\303\276\353\236rM\306\367\276\257L\004K\341E\031<X\t\224|\220oR\377+G\002\360\314{\327""\374\365r\252\326\332C\356\034m\353\232\240#\211\323\357>\203\326/\316]dy\354\363\340\363Yr^\255\023\000\023p\327\275\323\376w\214\262V;\373Q\333c\014\243\261\307\337\303[\rj\217\033\363\316\372\320\371t\3518\261[\270)\245\234\245&1\002\270\247\376\331r]\254\332I\013\235\004\013k\377\320\027\026\312\004\212\233\3108\202\010`\275d\257\260\242\264\002\252\335\357.\270\205\026\004m\300M7\325\321\330{\023\345\214\315H\241\366\214c\216i/\260\237\252\216\350\352>\213m\342\2378\371#\362!\034\000\376\253\261\001\224?\252\266)J@\20041b\rj\247\334e\224\235\023\3364e]\363J\017 ;\310\016\207\220\366\320\212\265\177s\305\337!\377\2028,j\267\004^~\223~R\304\265%U\375w\345\233-\"\226\231\370\024\215\026p\243\356\007\337\\\306\255\351\004\310Uj\377\310\031\331\214\016\275\201\0277\274%\217\342\247\267A\264\010\017&\335I\017\311\337]\212\357?\030\005\n\275KW\225\t/\036\026\264>\340\220NPq\236\021xL\216[\027\300\000\205\2601\203dD\270RX\222\300T[\367EP\216\035g\211\262\250qQ#\276\326\350\035d<\246\037\270\266\345\305\241Gl\310\332b \265\354\274\363\022T8\016\314\240k\336\020\375\036{\331Y\372p\266\255\373<\220\3625\305\324\035\\\204\322\345Ty\255\362U\364\363@l\322e\030\224\240t;\345!\363\277\264\177\003_[\252\205\0200d\t\021\030\014ZK\373Dl\236jv\323\025\226\246\235\t\313\002\265k\354\001P\356\260\306p{+\204\3447t\373\036s\n8\231f\365[\270\336\321]8\336\317\370\034\265k\354\3213`\335\307\035\3654Q\032\372y:$&\363\354wlp\216\031B\360\352\000n\256\325\301a\346mj\327\330\243w\204\375\254\362\004P\000\276\361%\273:\256\273\217\274i\"+\323\325\201q\347\tb\343\224\267\353g\350\372TCG\212\230\341\242=\310x\341\300p0|\025!\177\313{\354\277*\213\225\376J\252:r\2766@\250>r1\2708\353\315\301M\243I\\\010G\257\340\306\256y#~\334OT?\362\221d?9L\225\263\3012`\375\327\340W\241:\n\204\253r\343\3163\357\022\030yWp\367\307\312\n\361\264\361\313\265Fogp\347)#\313\350\034H8C\010\355\021\026\000\307~DZ&\202\304<\351\3101\234\035\375\274:JA<E\267\262F'{\325F\222\254\024m2_\354E\304u\355\230n,\214e\256""\342\372\030z\362K\373-x\352\2047\214\033\0056.\322\177.\252#\023\301\004+\272p\026\312\314\t\220\326\321k\364\270\211;\316\350\024R\363\265\037\257F\033\250\345\037*\251\360\304\021dF\351\006\361\2773\245\237\303\237C\250\371\n7\360\357\034\341\247\177\002T\204\033\263";
+    PyObject *data = __Pyx_DecompressString(cstring, 4255, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (9463 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEdge index Empty shape tuple for cython.arrayFailed to allocate edges arrayFailed to allocate weights arrayFailed to grow edges arrayFailed to grow weights arrayFastGraph(nvertex=GraphEdge(GraphEdge index out of rangeGraph is not weightedIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to objectUnsupported connectivity: Unsupported neighbor count: Weight index .>'), ?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.array, nedge=no default __reduce__ due to non-trivial __cinit__numpy._core.multiarray failed to importnumpy._core.umath failed to import object> out of rangepyneutube.tracers.pyNeuTube.stack_graph_utilspyneutube/tracers/pyNeuTube/stack_graph_utils.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides., weighted=ASCIICOMPLETE_GRAPHEllipsisFalseFastGraphFastGraph.__reduce_cython__FastGraph.__setstate_cython__FastGraph.add_edgeFastGraph.add_edge_batchFastGraph.get_edgeFastGraph.get_edges_arrayFastGraph.get_weightFastGraph.get_weights_arrayFastGraph.is_weightedGENERAL_GRAPHGraphGraphEdgeGraphEdge.__reduce_cython__GraphEdge.__set""state_cython__GraphTypeGraph.__reduce_cython__Graph.__setstate_cython__Graph.add_edgeGraph.get_edges_arrayGraph.get_weights_arrayGraph.is_weightedIntEnumIntFlag__Pyx_PyDict_NextRefSequenceTREE_GRAPHTrueView.MemoryViewabcadd_edgeadd_edge_batchadd_edges_cyallocate_bufferappendareaargvarrayasyncio.coroutinesbaseccdepthcheight__class____class_getitem__cline_in_tracebackcondconncountcwidthddegreedepth__dict___dictdirecteddistdtypedtype_is_objectedgeedge_idxedgesedges_arrayemptyencodeenumenumerateerrorflagsfloat64formatfortran__func__getget_edgeget_edges_arrayget_weightget_weights_array__getitem____getstate__graphgraph_edge_neighbor_list_fastgtypeheightiididx__import__indexinitial_capacityint32int64intensity_is_coroutineis_in_boundis_weighteditemsitemsize__main___member_names___members__memviewmodemodule__module__n_in_boundn_nbrname__name__ndimnedgeneighborneighbors__new__npnumpynvertexobjoffsetoffset2offset2_arrayoffset2_neighbor_outonesorg_neighbororg_neighbor_arraypackpopprocess_voxel_batchprocess_voxel_neighbors_fastprocess_voxel_with_neighborspyneutube.tracers.pyNeuTube.stack_graph_utils__pyx_checksum__pyx_result__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_unpickle_Graph__pyx_unpickle_GraphEdge__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registerressareascaleself__set_name__setdefault__setstate____setstate_cython__shapesindexsizestackstack_depthstack_heightstack_neighbor_bound_test_s_cystack_neighbor_dist_r_cystack_neighbor_offset_cystack_rangestack_subindex_cystack_util_coord_cystack_util_offset2_cystack_util_offset_cystack_voxel_weight_cystack_voxelsstack_widthstartstatestepstopstructswidth__test__threunpackunravel_neighbor_outunravel_offset2_outupdateupdate_degreesuse_python_listsuse_setstatev1v2valuesweightweightedweightswidthxx0x_offsetyy0y_offsetzz0z_offsetzeros\200\001\330\004#\2401\240F\250!\200\001\360\014\000\005\014\2102\210R\210v\220R\220r\230\022\2305\240\002\240!\320\0045\260Q\330\010\013\2104\210q\330\014\020\220\014\230G\2401""\240I\250Q\250d\260!\330\014\017\210t\220?\240'\250\021\330\020\024\220N\240'\250\021\250!\330\014\020\220\n\230!\330\014\017\210t\2209\230B\230c\240\022\2401\330\020\024\220K\230s\240\"\240A\330\014\017\210t\2209\230B\230c\240\022\2401\330\020\024\220K\230s\240\"\240A\340\014\020\220\013\2309\240A\240T\250\024\250Q\330\014\020\220\013\2304\230{\250!\330\014\020\220\t\230\024\230[\250\001\200\001\3606\000\t\036\230Y\240g\250Q\360\010\000\005\t\210\005\210U\220!\2201\330\010\017\210u\220A\220Q\330\010\r\210T\220\021\330\010\r\210T\220\021\360\006\000\t\022\220\021\220#\220W\230A\230Q\330\010\021\220\021\220#\220W\230A\230Q\340\010\013\2101\330\014\024\220A\220S\230\007\230q\240\001\330\014\024\220A\220S\230\007\230q\240\001\200\001\360&\000\0057\260b\270\005\270Q\270g\300V\3102\310Q\330\004\032\230!\360\010\000\005\010\200v\210S\220\001\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\023\310C\310u\320TV\320VY\320YZ\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\022\3103\310e\320SU\320UW\320WX\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102""\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\023\310C\310u\320TV\320VY\320YZ\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250a\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250a\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\022\3103\310e\320SU\320UW\320WX\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c\320cd\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c\320cd\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c""\320cd\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c\320cd\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_e\320ef\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_e\320ef\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\022\3103\310e\320SU\320UW\320WX\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_`\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S""\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_`\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\360\006\000\t\017\210j\230\001\320\0317\260q\270\001\340\004\013\210<\220q\200A\34067\340\010\033\2305\240\006\240a\240q\360\n\000\t\014\2104\210w\220b\230\010\240\002\240$\240a\330\014\036\230a\230t\240?\260\"\260C\260t\2707\300\"\300A\330\014\020\320\020!\240\021\330\014\020\220\017\230q\360\006\000\t\r\210E\220\025\220a\220q\330\014\020\220\014\230A\230T\240\027\250\002\250\"\250F\260%\260q\270\003\2701\330\014\020\220\014\230A\230T\240\027\250\002\250\"\250F\260%\260q\270\003\2701\360\006\000\r\020\210t\2209\230B\230e\2401\240C\240s\250\"\250A\330\020\024\220K\230u\240A\240S\250\003\2502\250Q\330\014\017\210t\2209\230B\230e\2401\240C\240s\250\"\250A\330\020\024\220K\230u\240A\240S\250\003\2502\250Q\340\014\017\210t\220:\230T\240\030\250\027\260\001\330\020\024\220N\240!\2404\240w\250b\260\005\260W\270A\270Q\340\010\014\210J\220a\200A\340\0104\260B\260f\270B\270d\300(\310$\310f\320TV\320VW\360\006\000\t\r\210E\220\025\220a\220t\2301\330\014\022\220!\2203\220e\2304\230|\2501\250B\250a\330\014\022\220!\2203\220e\2304\230|\2501\250B\250a\340\010\017\210q\200A\330\010\013\2104\210q\330\014\023\2204\220\177\240g\250Q\340\014\023\2204\220{\240,\250a\200A\340\010\013\2104\210q\330\014\017\210t\2201\330\020\027\220r\230\026\230q\240\004\320$4\260F\270\"\270A\330\014\023\2201\340\014\023\2204\220{\320\"4\260A\200A\340\010\013\2104\210q\330\014\017\210t\2204\220q\330\020\027\220r\230\026\230r\240\023\240D\250\006\250b\260\001\330\014\032\230\"\230F\240\"\240C\240q\250\004\250O\2704\270v\300R\300q\330\014\020\220\003\2208\2309\240A\240T\250\021\330\020\023\220:\230Q\230f\240A\330\024\037\230q\240\003\2405\250\004\250A\330\024\037\230q\240\003\2405\250\004\250A\340\024\037\230q\240\003\2405\250\004\250A\250Q\330\024\037\230q\240\003\2405\250\004\250A\250Q\330\014\023\2201\340""\014\023\2204\220{\320\"2\260!\200A\340\010\013\2104\210r\220\022\2203\220d\230#\230T\240\021\330\014\022\220*\230A\230]\250!\2501\330\010\020\220\004\220L\240\001\240\024\240U\250$\250l\270!\2704\270q\200A\340\010\013\2104\210t\2201\330\014\023\2201\340\0104\260B\260f\270A\270T\300\030\310\026\310r\320QR\360\006\000\t\r\210E\220\025\220a\220t\2301\330\014\022\220!\2205\230\004\230N\250!\2501\340\010\017\210q\200A\340\010\013\2104\210t\2201\330\014\022\220*\230A\230Q\330\010\013\2104\210r\220\022\2203\220d\230#\230T\240\021\330\014\022\220*\230A\230_\250A\250Q\330\010\017\210t\220>\240\021\240!\200A\340<=\360\006\000\t\014\2104\210w\220c\230\024\230Q\330\014\020\220\017\230q\360\006\000\t\r\210L\230\001\230\024\230W\240F\250!\330\010\014\210L\230\001\230\024\230W\240F\250!\360\006\000\t\014\2104\210q\330\014\020\220\016\230a\230t\240:\250Q\360\006\000\t\014\2104\210y\230\002\230#\230R\230q\330\014\020\220\013\2303\230b\240\001\330\010\013\2104\210y\230\002\230#\230R\230q\330\014\020\220\013\2303\230b\240\001\340\010\014\210J\220a\200A\340\010\017\210t\2201\200\001\360@\001\000\t(\240}\260B\260a\330\010;\2702\270V\3001\300D\310\006\310b\320PQ\330\0103\2602\260V\2702\270T\300\024\300V\3102\310Q\360\010\000\005\010\200s\210$\320\016#\2401\240I\250]\270.\310\001\330\004\027\220s\230#\230Q\360\006\000\005\t\210\005\210U\220!\2201\340\010\032\230(\240\"\240L\260\001\260\021\330\010\032\230)\2401\320$5\260S\270\001\330\010\034\230A\230U\240!\360\006\000\t\014\2103\210d\320\022'\240q\320(9\270\035\300n\320TU\330\010\030\230\001\230\023\230E\240\021\330\010\030\230\001\230\023\230E\240\021\330\010\030\230\001\230\023\230E\240\021\340\004\013\320\013\034\320\0342\260!\200\001\360\014\000\005\t\210\002\210\"\210C\210t\2202\220R\220s\230$\230b\240\002\240#\240T\250\022\2503\250g\260T\270\022\2703\270h\300d\310\"\310C\310q\330\010\020\220\001\340\004\013\2102\210R\210v\220R\220r\230\022\2306\240\022\2407\250\"\250A\200\001\360.\000\005\025\220D\230\006\230a\230q\340\004\010\210""\005\210U\220!\2201\330\010\013\2104\210q\220\003\2203\220a\330\014\021\220\022\2202\220[\240\001\240\021\330\014\021\220\022\2202\220[\240\001\240\021\330\014\021\220\022\2202\220[\240\001\240\021\340\014\017\210u\220L\240\001\340\020\024\220A\220U\230$\230a\230q\330\020\024\220A\220U\230%\230q\240\004\240D\250\001\330\020\024\220A\220U\230%\230q\330\024\027\220r\230\030\240\021\240!\330\024\027\220r\230\030\240\021\240!\330\024\027\220r\230\030\240\021\240!\360\006\000\021\032\320\031/\250q\260\004\260A\260T\270\024\270Q\270d\300$\300a\300t\3104\310q\320PT\320TX\320XY\320YZ\360\006\000\021\026\220Y\230a\230x\240w\250b\260\010\270\001\270\024\270Q\360\006\000\021\026\220Y\230a\230x\240w\250b\260\010\270\001\270\021\340\020\031\230\021\230*\240E\250\021\250$\250d\260!\200\001\360\"\000\t\030\220}\240F\250!\2501\330\010'\240}\260B\260a\360\006\000\n\013\330\010\014\210E\220\025\220a\220q\330\014\026\220m\2401\240A\360\006\000\r\020\210s\220$\320\026+\2501\250I\260]\300.\320PQ\330\014\037\230q\240\003\2405\250\001\330\014\037\230q\240\003\2405\250\001\330\014\037\230q\240\003\2405\250\001\360\006\000\r\021\220\005\220U\230!\2301\330\020\"\240(\250\"\320,>\270a\270s\300!\330\020\"\240)\2501\320,=\270S\300\001\330\020$\240A\240S\250\005\250Q\340\020\023\2203\220d\320\032/\250q\3200A\300\035\310n\320\\]\330\020$\240A\240S\250\003\2505\260\001\330\020$\240A\240S\250\003\2505\260\001\330\020$\240A\240S\250\003\2505\260\001\200\001\360\014\000\005\025\220F\230\"\230A\340\004\007\200v\210S\220\001\330\010\020\220\001\220\026\220q\330\010\020\220\001\220\025\220a\330\010\020\220\001\220\025\220a\220q\330\010\020\220\001\220\025\220a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220q\330\010\020\220\001\220\025\220a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220""\001\220\025\220f\230B\230a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\t\017\210s\220!\330\010 \240\001\240\024\240W\250H\260A\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\340\010\016\210j\230\001\320\0317\260q\270\001\200\001\330\004\n\210+\220Q\200\001\360\010\000\005\026\220S\230\001\230\021\330\004\032\230!\2307\240(\250!\320\000\"\240!\360\014\000\005\014\320\013!\240\021\240#\240T\250\024\250V\2601\200\001\360\010\000\005\016\210T\220\025\220d\230!\330\004\014\210G\2201\220F\230,\240a\330\004\007\200v\210W\220E\230\024\230Q\330\010\022\220!\330\010\027\220q\340\010\027\220q\330\004\007\200q\330\010\017\320\017*\250$\250a\250w\260k\300\027\310\001\340\010\017\320\017*\250$\250a\250w\260k\300\021\200\001\360\010\000\005\016\210T\220\036\230t\320#7\260t""\320;K\3104\310{\320Z^\320^n\320nr\320r\177\360\000\000@\002D\002\360\000\000D\002L\002\360\000\000L\002P\002\360\000\000P\002X\002\360\000\000X\002\\\002\360\000\000\\\002]\002\330\004\014\210G\2201\220F\230,\240a\330\004\007\200v\210W\220E\230\024\230Q\330\010\022\220!\330\010\027\220q\340\010\027\220t\230=\250\007\250u\260C\260t\270?\310'\320QV\320VY\320Y]\320]i\320ip\320pq\330\004\007\200q\330\010\017\320\017&\240d\250!\2507\260+\270W\300A\340\010\017\320\017&\240d\250!\2507\260+\270Q\200\001\360\034\000\005'\240a\330\010\021\220\021\330\010\025\220^\240=\260\001\330\010\035\320\0353\2601\200\001\340\004\037\230q\320 0\260\013\270;\300k\320QR\330\004\023\2205\230\010\240\001\240\021\330\004\007\200|\2207\230!\330\010'\240q\250\010\260\016\270a\330\004\013\2101\200\001\340\004\037\230q\320 0\260\013\270;\300k\320QR\330\004\023\2209\230H\240A\240Q\330\004\007\200|\2207\230!\330\010+\2501\250L\270\016\300a\330\004\013\2101\200\001\330\004'\240q\250\006\250a\200\001\360\022\000\005\010\200s\210!\2103\210c\220\022\2203\220c\230\021\230#\230S\240\002\240#\240S\250\001\250\023\250C\250q\330\010\014\210E\220\025\220a\220q\330\014\020\220\001\220\025\220a\330\010\t\360\006\000\005\010\200u\210C\210q\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\t\016\210c\220\021\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\t\016\210c\220\021\330\010 \240\001\240\023\240E\250\021\330\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210U\220$\220a\220u\230D\240\001\240\025\240d\250!\2505\260\001\330\t\016\210c\220\021\330\010 \240\001\240\023\240E\250\021\340\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210U\220$\220a\220u\230D\240\001\240\025""\240d\250!\2505\260\001\340\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210V\2204\220q\230\006\230d\240!\2406\250\024\250Q\250f\260A\330\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210V\2204\220q\230\006\230d\240!\2406\250\024\250Q\250f\260A\330\t\016\210c\220\021\330\010 \240\001\240\024\240U\250!\340\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260C\260r\270\023\270A\270R\270q\300\003\3001\300A\330\010\014\210E\220\025\220a\220t\2301\330\014\020\220\001\220\025\220a\340\010\016\210j\230\001\320\0315\260Q\260a\200\001\360\020\000\005\010\200s\210$\320\016!\240\021\240(\250(\260!\330\004\t\210\021\330\004\t\210\021\330\004\t\210\021\340\004\013\320\013 \240\001\240\023\240C\240s\250'\260\021\200\001\360\014\000\005\022\220\026\220s\230!\330\004\031\230\026\230r\240\021\330\004\021\220\032\2303\230a\330\004\021\220\032\2302\230Q\330\004\013\2103\210c\220\021O";
+    #else /* compression: none (10384 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEdge index Empty shape tuple for cython.arrayFailed to allocate edges arrayFailed to allocate weights arrayFailed to grow edges arrayFailed to grow weights arrayFastGraph(nvertex=GraphEdge(GraphEdge index out of rangeGraph is not weightedIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to objectUnsupported connectivity: Unsupported neighbor count: Weight index .>'), ?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.array, nedge=no default __reduce__ due to non-trivial __cinit__numpy.core.multiarray failed to importnumpy.core.umath failed to import object> out of rangepyneutube.tracers.pyNeuTube.stack_graph_utilspyneutube/tracers/pyNeuTube/stack_graph_utils.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides., weighted=ASCIICOMPLETE_GRAPHEllipsisFalseFastGraphFastGraph.__reduce_cython__FastGraph.__setstate_cython__FastGraph.add_edgeFastGraph.add_edge_batchFastGraph.get_edgeFastGraph.get_edges_arrayFastGraph.get_weightFastGraph.get_weights_arrayFastGraph.is_weightedGENERAL_GRAPHGraphGraphEdgeGraphEdge.__reduce_cython__GraphEdge.__setst""ate_cython__GraphTypeGraph.__reduce_cython__Graph.__setstate_cython__Graph.add_edgeGraph.get_edges_arrayGraph.get_weights_arrayGraph.is_weightedIntEnumIntFlag__Pyx_PyDict_NextRefSequenceTREE_GRAPHTrueView.MemoryViewabcadd_edgeadd_edge_batchadd_edges_cyallocate_bufferappendareaargvarrayasyncio.coroutinesbasebuild_stack_graph_cyccdepthcheight__class____class_getitem__cline_in_tracebackcondconncountcwidthddegreedepth__dict___dictdirecteddistdtypedtype_is_objectedgeedge_idxedgesedges_arrayemptyencodeenumenumerateerrorflagsfloat64formatfortran__func__getget_edgeget_edges_arrayget_weightget_weights_array__getitem____getstate__graphgraph_edge_neighbor_list_fastgroup_mask_objgtypeheightiididx__import__including_signal_borderindexinitial_capacityinitial_virtual_vertexint32int64intensity_is_coroutineis_in_boundis_weighteditemsitemsize__main___member_names___members__memviewmodemodule__module__n_in_boundn_nbrname__name__ndimnedgeneighborneighbors__new__npnumpynvertexobjoffsetoffset2offset2_arrayoffset2_neighbor_outonesorg_neighbororg_neighbor_arraypackpopprocess_voxel_batchprocess_voxel_neighbors_fastprocess_voxel_with_neighborspyneutube.tracers.pyNeuTube.stack_graph_utils__pyx_checksum__pyx_result__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_unpickle_Graph__pyx_unpickle_GraphEdge__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registerressareascalescan_boundary_masksself__set_name__setdefault__setstate____setstate_cython__shapesignal_mask_objsindexsizestackstack_depthstack_heightstack_neighbor_bound_test_s_cystack_neighbor_dist_r_cystack_neighbor_offset_cystack_rangestack_subindex_cystack_util_coord_cystack_util_offset2_cystack_util_offset_cystack_voxel_weight_cystack_voxelsstack_widthstartstatestepstopstructswidth__test__threunpackunravel_neighbor_outunravel_offset2_outupdateupdate_degreesuse_python_listsuse_setstatev1v2valuesweightweightedweightswidthxx0x_offsetyy0y_offsetzz0z_offsetzeros\200\001\330\004#\2401\240F\250!\200\001\360\014\000\005\014\2102\210R""\210v\220R\220r\230\022\2305\240\002\240!\320\0045\260Q\330\010\013\2104\210q\330\014\020\220\014\230G\2401\240I\250Q\250d\260!\330\014\017\210t\220?\240'\250\021\330\020\024\220N\240'\250\021\250!\330\014\020\220\n\230!\330\014\017\210t\2209\230B\230c\240\022\2401\330\020\024\220K\230s\240\"\240A\330\014\017\210t\2209\230B\230c\240\022\2401\330\020\024\220K\230s\240\"\240A\340\014\020\220\013\2309\240A\240T\250\024\250Q\330\014\020\220\013\2304\230{\250!\330\014\020\220\t\230\024\230[\250\001\200\001\3606\000\t\036\230Y\240g\250Q\360\010\000\005\t\210\005\210U\220!\2201\330\010\017\210u\220A\220Q\330\010\r\210T\220\021\330\010\r\210T\220\021\360\006\000\t\022\220\021\220#\220W\230A\230Q\330\010\021\220\021\220#\220W\230A\230Q\340\010\013\2101\330\014\024\220A\220S\230\007\230q\240\001\330\014\024\220A\220S\230\007\230q\240\001\200\001\360&\000\0057\260b\270\005\270Q\270g\300V\3102\310Q\330\004\032\230!\360\010\000\005\010\200v\210S\220\001\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\023\310C\310u\320TV\320VY\320YZ\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\022\3103\310e\320SU\320UW\320WX\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w""\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230Q\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\023\310C\310u\320TV\320VY\320YZ\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270q\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250a\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250a\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\022\3103\310e\320SU\320UW\320WX\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c\320cd\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c\320cd\330\014\032\230!\330\010\013\2102""\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c\320cd\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]c\320cd\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_e\320ef\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_e\320ef\330\014\032\230!\340\t\017\210s\220!\330\010\014\210B\210b\220\003\2205\230\002\230\"\230H\240E\250\022\2502\250S\260\005\260R\260r\270\031\300%\300r\310\022\3103\310e\320SU\320UW\320WX\330\014\023\2207\230!\330\010\014\210B\210b\220\003\2204\220r\230\022\2308\2404\240r\250\022\2503\250d\260\"\260B\260i\270t\3002\300R\300s\310$\310b\320PR\320RS\330\014\023\2203\220b\230\006\230a\230w\240f\250B\250a\340\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\025\250k\270\021\270%\270{\310!\3106\320Q\\\320\\]\320]^\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_`\330""\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\330\010\013\2102\210S\220\001\330\014\027\220q\230\005\230[\250\001\250\026\250{\270!\2706\300\033\310A\310V\320S^\320^_\320_`\330\020\033\2301\230F\240+\250Q\250f\260K\270q\300\006\300k\320QR\320RX\320XY\330\014\032\230!\360\006\000\t\017\210j\230\001\320\0317\260q\270\001\340\004\013\210<\220q\200A\34067\340\010\033\2305\240\006\240a\240q\360\n\000\t\014\2104\210w\220b\230\010\240\002\240$\240a\330\014\036\230a\230t\240?\260\"\260C\260t\2707\300\"\300A\330\014\020\320\020!\240\021\330\014\020\220\017\230q\360\006\000\t\r\210E\220\025\220a\220q\330\014\020\220\014\230A\230T\240\027\250\002\250\"\250F\260%\260q\270\003\2701\330\014\020\220\014\230A\230T\240\027\250\002\250\"\250F\260%\260q\270\003\2701\360\006\000\r\020\210t\2209\230B\230e\2401\240C\240s\250\"\250A\330\020\024\220K\230u\240A\240S\250\003\2502\250Q\330\014\017\210t\2209\230B\230e\2401\240C\240s\250\"\250A\330\020\024\220K\230u\240A\240S\250\003\2502\250Q\340\014\017\210t\220:\230T\240\030\250\027\260\001\330\020\024\220N\240!\2404\240w\250b\260\005\260W\270A\270Q\340\010\014\210J\220a\200A\340\0104\260B\260f\270B\270d\300(\310$\310f\320TV\320VW\360\006\000\t\r\210E\220\025\220a\220t\2301\330\014\022\220!\2203\220e\2304\230|\2501\250B\250a\330\014\022\220!\2203\220e\2304\230|\2501\250B\250a\340\010\017\210q\200A\330\010\013\2104\210q\330\014\023\2204\220\177\240g\250Q\340\014\023\2204\220{\240,\250a\200A\340\010\013\2104\210q\330\014\017\210t\2201\330\020\027\220r\230\026\230q\240\004\320$4\260F\270\"\270A\330\014\023\2201\340\014\023\2204\220{\320\"4\260A\200A\340\010\013\2104\210q\330\014\017\210t\2204\220q\330\020\027\220r\230\026\230r\240\023\240D\250\006\250b\260\001\330\014\032\230\"\230F\240\"\240C\240q\250\004\250O\2704\270v\300R\300q\330\014\020\220\003\2208\2309\240A\240T\250\021\330\020\023\220:\230Q\230f\240A\330\024\037\230q\240\003\2405\250\004\250A\330\024\037\230q\240\003\2405\250\004\250A\340""\024\037\230q\240\003\2405\250\004\250A\250Q\330\024\037\230q\240\003\2405\250\004\250A\250Q\330\014\023\2201\340\014\023\2204\220{\320\"2\260!\200A\340\010\013\2104\210r\220\022\2203\220d\230#\230T\240\021\330\014\022\220*\230A\230]\250!\2501\330\010\020\220\004\220L\240\001\240\024\240U\250$\250l\270!\2704\270q\200A\340\010\013\2104\210t\2201\330\014\023\2201\340\0104\260B\260f\270A\270T\300\030\310\026\310r\320QR\360\006\000\t\r\210E\220\025\220a\220t\2301\330\014\022\220!\2205\230\004\230N\250!\2501\340\010\017\210q\200A\340\010\013\2104\210t\2201\330\014\022\220*\230A\230Q\330\010\013\2104\210r\220\022\2203\220d\230#\230T\240\021\330\014\022\220*\230A\230_\250A\250Q\330\010\017\210t\220>\240\021\240!\200A\340<=\360\006\000\t\014\2104\210w\220c\230\024\230Q\330\014\020\220\017\230q\360\006\000\t\r\210L\230\001\230\024\230W\240F\250!\330\010\014\210L\230\001\230\024\230W\240F\250!\360\006\000\t\014\2104\210q\330\014\020\220\016\230a\230t\240:\250Q\360\006\000\t\014\2104\210y\230\002\230#\230R\230q\330\014\020\220\013\2303\230b\240\001\330\010\013\2104\210y\230\002\230#\230R\230q\330\014\020\220\013\2303\230b\240\001\340\010\014\210J\220a\200A\340\010\017\210t\2201\200\001\360@\001\000\t(\240}\260B\260a\330\010;\2702\270V\3001\300D\310\006\310b\320PQ\330\0103\2602\260V\2702\270T\300\024\300V\3102\310Q\360\010\000\005\010\200s\210$\320\016#\2401\240I\250]\270.\310\001\330\004\027\220s\230#\230Q\360\006\000\005\t\210\005\210U\220!\2201\340\010\032\230(\240\"\240L\260\001\260\021\330\010\032\230)\2401\320$5\260S\270\001\330\010\034\230A\230U\240!\360\006\000\t\014\2103\210d\320\022'\240q\320(9\270\035\300n\320TU\330\010\030\230\001\230\023\230E\240\021\330\010\030\230\001\230\023\230E\240\021\330\010\030\230\001\230\023\230E\240\021\340\004\013\320\013\034\320\0342\260!\200\001\360\014\000\005\t\210\002\210\"\210C\210t\2202\220R\220s\230$\230b\240\002\240#\240T\250\022\2503\250g\260T\270\022\2703\270h\300d\310\"\310C\310q\330\010\020\220\001\340\004\013\2102\210R""\210v\220R\220r\230\022\2306\240\022\2407\250\"\250A\200\001\360.\000\005\025\220D\230\006\230a\230q\340\004\010\210\005\210U\220!\2201\330\010\013\2104\210q\220\003\2203\220a\330\014\021\220\022\2202\220[\240\001\240\021\330\014\021\220\022\2202\220[\240\001\240\021\330\014\021\220\022\2202\220[\240\001\240\021\340\014\017\210u\220L\240\001\340\020\024\220A\220U\230$\230a\230q\330\020\024\220A\220U\230%\230q\240\004\240D\250\001\330\020\024\220A\220U\230%\230q\330\024\027\220r\230\030\240\021\240!\330\024\027\220r\230\030\240\021\240!\330\024\027\220r\230\030\240\021\240!\360\006\000\021\032\320\031/\250q\260\004\260A\260T\270\024\270Q\270d\300$\300a\300t\3104\310q\320PT\320TX\320XY\320YZ\360\006\000\021\026\220Y\230a\230x\240w\250b\260\010\270\001\270\024\270Q\360\006\000\021\026\220Y\230a\230x\240w\250b\260\010\270\001\270\021\340\020\031\230\021\230*\240E\250\021\250$\250d\260!\200\001\360\"\000\t\030\220}\240F\250!\2501\330\010'\240}\260B\260a\360\006\000\n\013\330\010\014\210E\220\025\220a\220q\330\014\026\220m\2401\240A\360\006\000\r\020\210s\220$\320\026+\2501\250I\260]\300.\320PQ\330\014\037\230q\240\003\2405\250\001\330\014\037\230q\240\003\2405\250\001\330\014\037\230q\240\003\2405\250\001\360\006\000\r\021\220\005\220U\230!\2301\330\020\"\240(\250\"\320,>\270a\270s\300!\330\020\"\240)\2501\320,=\270S\300\001\330\020$\240A\240S\250\005\250Q\340\020\023\2203\220d\320\032/\250q\3200A\300\035\310n\320\\]\330\020$\240A\240S\250\003\2505\260\001\330\020$\240A\240S\250\003\2505\260\001\330\020$\240A\240S\250\003\2505\260\001\200\001\360\014\000\005\025\220F\230\"\230A\340\004\007\200v\210S\220\001\330\010\020\220\001\220\026\220q\330\010\020\220\001\220\025\220a\330\010\020\220\001\220\025\220a\220q\330\010\020\220\001\220\025\220a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220q\330\010\020\220\001\220\025\220a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220v\230R""\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\t\017\210s\220!\330\010 \240\001\240\023\240G\2508\2601\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\025\220a\220v\230R\230q\330\010\020\220\001\220\025\220f\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\010\020\220\001\220\026\220q\230\005\230R\230q\330\010\020\220\001\220\026\220u\230B\230a\330\t\017\210s\220!\330\010 \240\001\240\024\240W\250H\260A\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\330\010\020\220\001\220\026\220q\230\005\230R\230v\240R\240q\330\010\020\220\001\220\026\220u\230B\230f\240B\240a\340\010\016\210j\230\001\320\0317\260q\270\001\200\001\330\004\n\210+\220Q\200\001\360\010\000\005\026\220S\230\001\230\021\330\004\032\230!\2307\240(\250!\320\000\"\240!\360\014\000\005\014\320\013!\240\021\240#\240T\250\024\250V\2601\200\001\360\010\000\005\016\210T\220\025\220d\230!\330\004\014\210G\2201\220F\230,\240a\330\004\007\200v\210W\220E\230\024\230Q\330\010\022\220!\330\010\027\220q\340\010\027\220q\330\004\007\200q\330\010\017\320\017*\250$\250a\250w\260k\300\027""\310\001\340\010\017\320\017*\250$\250a\250w\260k\300\021\200\001\360\010\000\005\016\210T\220\036\230t\320#7\260t\320;K\3104\310{\320Z^\320^n\320nr\320r\177\360\000\000@\002D\002\360\000\000D\002L\002\360\000\000L\002P\002\360\000\000P\002X\002\360\000\000X\002\\\002\360\000\000\\\002]\002\330\004\014\210G\2201\220F\230,\240a\330\004\007\200v\210W\220E\230\024\230Q\330\010\022\220!\330\010\027\220q\340\010\027\220t\230=\250\007\250u\260C\260t\270?\310'\320QV\320VY\320Y]\320]i\320ip\320pq\330\004\007\200q\330\010\017\320\017&\240d\250!\2507\260+\270W\300A\340\010\017\320\017&\240d\250!\2507\260+\270Q\200\001\360\034\000\005'\240a\330\010\021\220\021\330\010\025\220^\240=\260\001\330\010\035\320\0353\2601\200\001\340\004\037\230q\320 0\260\013\270;\300k\320QR\330\004\023\2205\230\010\240\001\240\021\330\004\007\200|\2207\230!\330\010'\240q\250\010\260\016\270a\330\004\013\2101\200\001\340\004\037\230q\320 0\260\013\270;\300k\320QR\330\004\023\2209\230H\240A\240Q\330\004\007\200|\2207\230!\330\010+\2501\250L\270\016\300a\330\004\013\2101\200\001\330\004'\240q\250\006\250a\200\001\360\022\000\005\010\200s\210!\2103\210c\220\022\2203\220c\230\021\230#\230S\240\002\240#\240S\250\001\250\023\250C\250q\330\010\014\210E\220\025\220a\220q\330\014\020\220\001\220\025\220a\330\010\t\360\006\000\005\010\200u\210C\210q\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\t\016\210c\220\021\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\010\014\210A\210U\220$\220a\220u\230C\230q\240\001\330\t\016\210c\220\021\330\010 \240\001\240\023\240E\250\021\330\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210U\220$\220a\220u\230D\240\001\240\025\240d\250!\2505\260\001\330\t\016\210c\220\021\330\010 \240\001\240\023\240E\250\021\340\010\024\220D\230\001\230\023\230A\230R\230q\240\003""\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210U\220$\220a\220u\230D\240\001\240\025\240d\250!\2505\260\001\340\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210V\2204\220q\230\006\230d\240!\2406\250\024\250Q\250f\260A\330\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260A\330\010\014\210A\210V\2204\220q\230\006\230d\240!\2406\250\024\250Q\250f\260A\330\t\016\210c\220\021\330\010 \240\001\240\024\240U\250!\340\010\024\220D\230\001\230\023\230A\230R\230q\240\003\2401\240C\240r\250\023\250A\250R\250q\260\003\2601\260C\260r\270\023\270A\270R\270q\300\003\3001\300A\330\010\014\210E\220\025\220a\220t\2301\330\014\020\220\001\220\025\220a\340\010\016\210j\230\001\320\0315\260Q\260a\200\001\360\020\000\005\010\200s\210$\320\016!\240\021\240(\250(\260!\330\004\t\210\021\330\004\t\210\021\330\004\t\210\021\340\004\013\320\013 \240\001\240\023\240C\240s\250'\260\021\200\001\360\014\000\005\022\220\026\220s\230!\330\004\031\230\026\230r\240\021\330\004\021\220\032\2303\230a\330\004\021\220\032\2302\230Q\330\004\013\2103\210c\220\021\200\001\360,\000\t\033\230%\230v\240Q\240a\330\010\033\2305\240\006\240a\240q\330\010\032\230%\230v\240Q\240a\330\010\025\220[\240\001\240\023\240B\240k\260\021\260!\330\010\026\220k\240\021\240#\240R\240{\260!\2601\330\010\025\220[\240\001\240\023\240B\240k\260\021\260!\360\n\000\t\026\220Q\330\010%\240Q\360\016\000\t\031\230\005\230\\\250\021\330\010<\270B\270f\300A\300U\310&\320PR\320RS\330\010(\250\001\360\010\000\005!\320 0\260\007\260q\330\004\037\230\177\250g\260Q\340\004\007\200q\330\010\026\220a\330\004\007\200q\330\010\025\220Q\340\004\010\210\005\210U\220!\2207\230\"\230A\330\010\013\2102\210S\220\001\330\014\026\220a\330\r\017\210s\220!\330\014\026\220a\340\014\026\220a\340\010\020\220\002\220\"\220K\230q\240\001\340\010\014\210E\220\025\220a\220x\230r\240\021\330\014\017""\210r\220\023\220A\330\020\032\230!\330\021\023\2203\220a\330\020\032\230!\340\020\032\230!\340\014\024\220B\220b\230\013\2401\240A\340\014\020\220\005\220U\230!\2307\240\"\240A\330\020\023\2202\220S\230\001\330\024\036\230a\330\025\027\220s\230!\330\024\036\230a\340\024\036\230a\340\020\030\230\002\230\"\230K\240q\250\001\330\020\037\230u\240A\240W\250G\2601\340\020\023\2201\330\024$\240K\250q\260\007\260w\270g\300R\300q\340\024$\240A\340\020\024\220E\230\025\230a\230q\330\024\027\320\027*\250!\2509\260I\270Y\300c\310\023\310A\330\030\031\340\024\027\220q\330\030\033\320\0333\2604\260q\330\034.\250a\340\034)\250\026\250r\260\030\270\021\270!\330\034)\250\026\250r\260\030\270\021\270!\330\034)\250\026\250r\260\030\270\021\270!\330\034.\250k\270\021\270,\300l\320R^\320^`\320`a\330\034\037\230q\330 $\240N\260#\260S\270\005\320=M\310S\320PQ\330$%\340 $\240N\260#\260S\270\004\320<L\310C\310q\330$%\340\024!\240\026\240r\250\030\260\021\260!\330\024!\240\026\240r\250\030\260\021\260!\330\024!\240\026\240r\250\030\260\021\260!\340\024\027\220q\330\030!\320!7\260q\330\034 \240\001\240\021\330\034\035\330\034!\240\021\240,\250l\270!\330\034 \240\001\240\021\330\034 \240\001\240\021\340\030.\250a\250w\260h\270g\300R\300x\310q\320PT\320TU\340\030.\250a\250w\260h\270g\300R\300x\310q\320PT\320TU\330\030!\240\021\240*\250A\340\020\023\2201\330\024\037\230z\250\021\250'\260\027\270\001\330\024\027\220y\240\002\240!\330\030'\320'7\260q\270\001\330\030\033\230=\250\003\2501\330\034+\2501\330\0346\260a\330\034,\250A\250\\\270\021\330\030.\250a\250w\260n\300H\310A\340\020\032\230!\340\004\007\200t\2105\220\001\330\010\r\210[\230\005\230[\250\001\330\010\r\210Y\220e\230;\240aO";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 270; i++) {
+    for (int i = 0; i < 276; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 65) PyUnicode_InternInPlace(&string);
@@ -39707,7 +40947,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 270; i < 303; i++) {
+    for (int i = 276; i < 310; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -39718,15 +40958,15 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 303; i++) {
+    for (Py_ssize_t i = 0; i < 310; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 270;
-      for (Py_ssize_t i=0; i<33; ++i) {
+      PyObject **table = stringtab + 276;
+      for (Py_ssize_t i=0; i<34; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
         if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -39754,16 +40994,17 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
   {
     PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 1;
     int8_t const cint_constants_1[] = {0,-1,1,2,3,26};
+    int16_t const cint_constants_2[] = {256};
     int32_t const cint_constants_4[] = {95074409L,123424690L,136983863L};
-    for (int i = 0; i < 9; i++) {
-      numbertab[i] = PyLong_FromLong((i < 6 ? cint_constants_1[i - 0] : cint_constants_4[i - 6]));
+    for (int i = 0; i < 10; i++) {
+      numbertab[i] = PyLong_FromLong((i < 6 ? cint_constants_1[i - 0] : (i < 7 ? cint_constants_2[i - 6] : cint_constants_4[i - 7])));
       if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #if CYTHON_IMMORTAL_CONSTANTS
   {
     PyObject **table = __pyx_mstate->__pyx_number_tab;
-    for (Py_ssize_t i=0; i<10; ++i) {
+    for (Py_ssize_t i=0; i<11; ++i) {
       #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
       #if PY_VERSION_HEX < 0x030E0000
       if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -39785,12 +41026,12 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
 }
 /* #### Code section: init_codeobjects ### */
 typedef struct {
-    unsigned int argcount : 4;
+    unsigned int argcount : 5;
     unsigned int num_posonly_args : 1;
     unsigned int num_kwonly_args : 1;
-    unsigned int nlocals : 4;
+    unsigned int nlocals : 5;
     unsigned int flags : 10;
-    unsigned int first_line : 10;
+    unsigned int first_line : 11;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -39892,84 +41133,89 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_1F, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 399};
+    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 408};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_d, __pyx_mstate->__pyx_n_u_v1, __pyx_mstate->__pyx_n_u_v2, __pyx_mstate->__pyx_n_u_thre, __pyx_mstate->__pyx_n_u_scale};
     __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_voxel_weight_cy, __pyx_mstate->__pyx_kp_b_iso88591_T_V1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {15, 0, 0, 15, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 408};
+    const __Pyx_PyCode_New_function_description descr = {15, 0, 0, 15, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 417};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_graph, __pyx_mstate->__pyx_n_u_stack, __pyx_mstate->__pyx_n_u_cond, __pyx_mstate->__pyx_n_u_x_offset, __pyx_mstate->__pyx_n_u_y_offset, __pyx_mstate->__pyx_n_u_z_offset, __pyx_mstate->__pyx_n_u_neighbor, __pyx_mstate->__pyx_n_u_dist, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_z, __pyx_mstate->__pyx_n_u_offset, __pyx_mstate->__pyx_n_u_stack_range, __pyx_mstate->__pyx_n_u_argv, __pyx_mstate->__pyx_n_u_intensity};
     __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_add_edges_cy, __pyx_mstate->__pyx_kp_b_iso88591_D_aq_U_1_4q_3a_2_2_2_uL_AU_aq_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 460};
+    const __Pyx_PyCode_New_function_description descr = {16, 0, 0, 16, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 469};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_graph, __pyx_mstate->__pyx_n_u_stack, __pyx_mstate->__pyx_n_u_conn, __pyx_mstate->__pyx_n_u_stack_range, __pyx_mstate->__pyx_n_u_x_offset, __pyx_mstate->__pyx_n_u_y_offset, __pyx_mstate->__pyx_n_u_z_offset, __pyx_mstate->__pyx_n_u_neighbor, __pyx_mstate->__pyx_n_u_dist, __pyx_mstate->__pyx_n_u_scan_boundary_masks, __pyx_mstate->__pyx_n_u_signal_mask_obj, __pyx_mstate->__pyx_n_u_group_mask_obj, __pyx_mstate->__pyx_n_u_including_signal_border, __pyx_mstate->__pyx_n_u_argv, __pyx_mstate->__pyx_n_u_intensity, __pyx_mstate->__pyx_n_u_initial_virtual_vertex};
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_build_stack_graph_cy, __pyx_mstate->__pyx_kp_b_iso88591_vQa_5_aq_vQa_Bk_k_R_1_Bk_Q_Q_Bf, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 612};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_nvertex, __pyx_mstate->__pyx_n_u_edges, __pyx_mstate->__pyx_n_u_nedge_2, __pyx_mstate->__pyx_n_u_neighbors, __pyx_mstate->__pyx_n_u_edge_idx};
-    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_graph_edge_neighbor_list_fast, __pyx_mstate->__pyx_kp_b_iso88591_6_YgQ_U_1_uAQ_T_T_WAQ_WAQ_1_AS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_graph_edge_neighbor_list_fast, __pyx_mstate->__pyx_kp_b_iso88591_6_YgQ_U_1_uAQ_T_T_WAQ_WAQ_1_AS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 522};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 674};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_edges, __pyx_mstate->__pyx_n_u_degree, __pyx_mstate->__pyx_n_u_nedge_2};
-    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_update_degrees, __pyx_mstate->__pyx_kp_b_iso88591_S_7, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_update_degrees, __pyx_mstate->__pyx_kp_b_iso88591_S_7, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 531};
+    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 683};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_n_nbr, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_neighbor};
-    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_neighbor_offset_cy, __pyx_mstate->__pyx_kp_b_iso88591_F_A_vS_q_a_aq_a_s_G81_aq_a_s_G8, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_neighbor_offset_cy, __pyx_mstate->__pyx_kp_b_iso88591_F_A_vS_q_a_aq_a_s_G81_aq_a_s_G8, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 587};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 739};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_conn, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_dist};
-    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_neighbor_dist_r_cy, __pyx_mstate->__pyx_kp_b_iso88591_s_3c_3c_S_S_Cq_E_aq_a_uCq_AU_au, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_neighbor_dist_r_cy, __pyx_mstate->__pyx_kp_b_iso88591_s_3c_3c_S_S_Cq_E_aq_a_uCq_AU_au, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 632};
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 784};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_z, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_depth};
-    __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_util_offset_cy, __pyx_mstate->__pyx_kp_b_iso88591_Ct2Rs_b_T_3gT_3hd_Cq_2RvRr_6_7, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[24] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_util_offset_cy, __pyx_mstate->__pyx_kp_b_iso88591_Ct2Rs_b_T_3gT_3hd_Cq_2RvRr_6_7, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[24])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 643};
+    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 795};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_z, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_area};
-    __pyx_mstate_global->__pyx_codeobj_tab[24] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_util_offset2_cy, __pyx_mstate->__pyx_kp_b_iso88591_2RvRr_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[24])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[25] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_util_offset2_cy, __pyx_mstate->__pyx_kp_b_iso88591_2RvRr_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[25])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 651};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 803};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_area};
-    __pyx_mstate_global->__pyx_codeobj_tab[25] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_util_coord_cy, __pyx_mstate->__pyx_kp_b_iso88591_s_r_3a_2Q_3c, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[25])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[26] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_util_coord_cy, __pyx_mstate->__pyx_kp_b_iso88591_s_r_3a_2Q_3c, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[26])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {8, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 663};
+    const __Pyx_PyCode_New_function_description descr = {8, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 815};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_sindex, __pyx_mstate->__pyx_n_u_x0, __pyx_mstate->__pyx_n_u_y0, __pyx_mstate->__pyx_n_u_z0, __pyx_mstate->__pyx_n_u_swidth, __pyx_mstate->__pyx_n_u_sarea, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_area};
-    __pyx_mstate_global->__pyx_codeobj_tab[26] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_subindex_cy, __pyx_mstate->__pyx_kp_b_iso88591_s_Cs, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[26])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[27] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_subindex_cy, __pyx_mstate->__pyx_kp_b_iso88591_s_Cs, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[27])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {7, 0, 0, 10, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 678};
+    const __Pyx_PyCode_New_function_description descr = {7, 0, 0, 10, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 830};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_n_nbr, __pyx_mstate->__pyx_n_u_cwidth, __pyx_mstate->__pyx_n_u_cheight, __pyx_mstate->__pyx_n_u_cdepth, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_z, __pyx_mstate->__pyx_n_u_is_in_bound, __pyx_mstate->__pyx_n_u_n_in_bound, __pyx_mstate->__pyx_n_u_i};
-    __pyx_mstate_global->__pyx_codeobj_tab[27] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_neighbor_bound_test_s_cy, __pyx_mstate->__pyx_kp_b_iso88591_7b_QgV2Q_vS_Bb_5_HE_2S_Rr_r_CuT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[27])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[28] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_stack_neighbor_bound_test_s_cy, __pyx_mstate->__pyx_kp_b_iso88591_7b_QgV2Q_vS_Bb_5_HE_2S_Rr_r_CuT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[28])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 867};
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1019};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_offset2, __pyx_mstate->__pyx_n_u_org_neighbor, __pyx_mstate->__pyx_n_u_stack_depth, __pyx_mstate->__pyx_n_u_stack_height, __pyx_mstate->__pyx_n_u_stack_width, __pyx_mstate->__pyx_n_u_stack_voxels};
-    __pyx_mstate_global->__pyx_codeobj_tab[28] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_process_voxel_with_neighbors, __pyx_mstate->__pyx_kp_b_iso88591_Ba_2V1D_bPQ_32V2T_V2Q_s_1I_s_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[28])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[29] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_process_voxel_with_neighbors, __pyx_mstate->__pyx_kp_b_iso88591_Ba_2V1D_bPQ_32V2T_V2Q_s_1I_s_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[29])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 9, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 969};
+    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 9, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1121};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_offset2, __pyx_mstate->__pyx_n_u_org_neighbor, __pyx_mstate->__pyx_n_u_stack_depth, __pyx_mstate->__pyx_n_u_stack_height, __pyx_mstate->__pyx_n_u_stack_width, __pyx_mstate->__pyx_n_u_stack_voxels, __pyx_mstate->__pyx_n_u_unravel_offset2_out, __pyx_mstate->__pyx_n_u_offset2_neighbor_out, __pyx_mstate->__pyx_n_u_unravel_neighbor_out};
-    __pyx_mstate_global->__pyx_codeobj_tab[29] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_process_voxel_neighbors_fast, __pyx_mstate->__pyx_kp_b_iso88591_a_31, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[29])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[30] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_process_voxel_neighbors_fast, __pyx_mstate->__pyx_kp_b_iso88591_a_31, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[30])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 9, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 990};
+    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 9, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1142};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_offset2_array, __pyx_mstate->__pyx_n_u_org_neighbor_array, __pyx_mstate->__pyx_n_u_stack_depth, __pyx_mstate->__pyx_n_u_stack_height, __pyx_mstate->__pyx_n_u_stack_width, __pyx_mstate->__pyx_n_u_stack_voxels, __pyx_mstate->__pyx_n_u_unravel_offset2_out, __pyx_mstate->__pyx_n_u_offset2_neighbor_out, __pyx_mstate->__pyx_n_u_unravel_neighbor_out};
-    __pyx_mstate_global->__pyx_codeobj_tab[30] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_process_voxel_batch, __pyx_mstate->__pyx_kp_b_iso88591_F_1_Ba_E_aq_m1A_s_1I_PQ_q_5_q_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[30])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[31] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_stac_2, __pyx_mstate->__pyx_n_u_process_voxel_batch, __pyx_mstate->__pyx_kp_b_iso88591_F_1_Ba_E_aq_m1A_s_1I_PQ_q_5_q_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[31])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 4};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_pyx_type, __pyx_mstate->__pyx_n_u_pyx_checksum, __pyx_mstate->__pyx_n_u_pyx_state, __pyx_mstate->__pyx_n_u_pyx_result};
-    __pyx_mstate_global->__pyx_codeobj_tab[31] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_pyx_unpickle_GraphEdge, __pyx_mstate->__pyx_kp_b_iso88591_q_0_kQR_9HAQ_7_1L_a_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[31])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[32] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_pyx_unpickle_GraphEdge, __pyx_mstate->__pyx_kp_b_iso88591_q_0_kQR_9HAQ_7_1L_a_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[32])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 4};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_pyx_type, __pyx_mstate->__pyx_n_u_pyx_checksum, __pyx_mstate->__pyx_n_u_pyx_state, __pyx_mstate->__pyx_n_u_pyx_result};
-    __pyx_mstate_global->__pyx_codeobj_tab[32] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_pyx_unpickle_Graph, __pyx_mstate->__pyx_kp_b_iso88591_q_0_kQR_5_7_q_a_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[32])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[33] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_pyx_unpickle_Graph, __pyx_mstate->__pyx_kp_b_iso88591_q_0_kQR_5_7_q_a_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[33])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -46694,6 +47940,29 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
   }
   
 /* ObjectToMemviewSlice */
+  static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_unsigned_char__const__(PyObject *obj, int writable_flag) {
+      __Pyx_memviewslice result = __Pyx_MEMSLICE_INIT;
+      __Pyx_BufFmt_StackElem stack[1];
+      int axes_specs[] = { (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED) };
+      int retcode;
+      if (obj == Py_None) {
+          result.memview = (struct __pyx_memoryview_obj *) Py_None;
+          return result;
+      }
+      retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, 0,
+                                                   PyBUF_RECORDS_RO | writable_flag, 4,
+                                                   &__Pyx_TypeInfo_unsigned_char__const__, stack,
+                                                   &result, obj);
+      if (unlikely(retcode == -1))
+          goto __pyx_fail;
+      return result;
+  __pyx_fail:
+      result.memview = NULL;
+      result.data = NULL;
+      return result;
+  }
+  
+/* ObjectToMemviewSlice */
   static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_nn_int64_t(PyObject *obj, int writable_flag) {
       __Pyx_memviewslice result = __Pyx_MEMSLICE_INIT;
       __Pyx_BufFmt_StackElem stack[1];
@@ -46798,6 +48067,52 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
       retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, 0,
                                                    PyBUF_RECORDS_RO | writable_flag, 3,
                                                    &__Pyx_TypeInfo_int, stack,
+                                                   &result, obj);
+      if (unlikely(retcode == -1))
+          goto __pyx_fail;
+      return result;
+  __pyx_fail:
+      result.memview = NULL;
+      result.data = NULL;
+      return result;
+  }
+  
+/* ObjectToMemviewSlice */
+  static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32(PyObject *obj, int writable_flag) {
+      __Pyx_memviewslice result = __Pyx_MEMSLICE_INIT;
+      __Pyx_BufFmt_StackElem stack[1];
+      int axes_specs[] = { (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED) };
+      int retcode;
+      if (obj == Py_None) {
+          result.memview = (struct __pyx_memoryview_obj *) Py_None;
+          return result;
+      }
+      retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, 0,
+                                                   PyBUF_RECORDS_RO | writable_flag, 1,
+                                                   &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_i32, stack,
+                                                   &result, obj);
+      if (unlikely(retcode == -1))
+          goto __pyx_fail;
+      return result;
+  __pyx_fail:
+      result.memview = NULL;
+      result.data = NULL;
+      return result;
+  }
+  
+/* ObjectToMemviewSlice */
+  static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8__const__(PyObject *obj, int writable_flag) {
+      __Pyx_memviewslice result = __Pyx_MEMSLICE_INIT;
+      __Pyx_BufFmt_StackElem stack[1];
+      int axes_specs[] = { (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED) };
+      int retcode;
+      if (obj == Py_None) {
+          result.memview = (struct __pyx_memoryview_obj *) Py_None;
+          return result;
+      }
+      retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, 0,
+                                                   PyBUF_RECORDS_RO | writable_flag, 3,
+                                                   &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_17stack_graph_utils_DTYPE_u8__const__, stack,
                                                    &result, obj);
       if (unlikely(retcode == -1))
           goto __pyx_fail;
@@ -47111,160 +48426,6 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
               z_theta = theta * b.real + lnr * b.imag;
               z.real = z_r * cos(z_theta);
               z.imag = z_r * sin(z_theta);
-              return z;
-          }
-      #endif
-  #endif
-  
-/* Declarations */
-  #if CYTHON_CCOMPLEX && (1) && (!0 || __cplusplus)
-    #ifdef __cplusplus
-      static CYTHON_INLINE __pyx_t_long_double_complex __pyx_t_long_double_complex_from_parts(long double x, long double y) {
-        return ::std::complex< long double >(x, y);
-      }
-    #else
-      static CYTHON_INLINE __pyx_t_long_double_complex __pyx_t_long_double_complex_from_parts(long double x, long double y) {
-        return x + y*(__pyx_t_long_double_complex)_Complex_I;
-      }
-    #endif
-  #else
-      static CYTHON_INLINE __pyx_t_long_double_complex __pyx_t_long_double_complex_from_parts(long double x, long double y) {
-        __pyx_t_long_double_complex z;
-        z.real = x;
-        z.imag = y;
-        return z;
-      }
-  #endif
-  
-/* Arithmetic */
-  #if CYTHON_CCOMPLEX && (1) && (!0 || __cplusplus)
-  #else
-      static CYTHON_INLINE int __Pyx_c_eq_long__double(__pyx_t_long_double_complex a, __pyx_t_long_double_complex b) {
-         return (a.real == b.real) && (a.imag == b.imag);
-      }
-      static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_sum_long__double(__pyx_t_long_double_complex a, __pyx_t_long_double_complex b) {
-          __pyx_t_long_double_complex z;
-          z.real = a.real + b.real;
-          z.imag = a.imag + b.imag;
-          return z;
-      }
-      static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_diff_long__double(__pyx_t_long_double_complex a, __pyx_t_long_double_complex b) {
-          __pyx_t_long_double_complex z;
-          z.real = a.real - b.real;
-          z.imag = a.imag - b.imag;
-          return z;
-      }
-      static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_prod_long__double(__pyx_t_long_double_complex a, __pyx_t_long_double_complex b) {
-          __pyx_t_long_double_complex z;
-          z.real = a.real * b.real - a.imag * b.imag;
-          z.imag = a.real * b.imag + a.imag * b.real;
-          return z;
-      }
-      #if 1
-      static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_quot_long__double(__pyx_t_long_double_complex a, __pyx_t_long_double_complex b) {
-          if (b.imag == 0) {
-              return __pyx_t_long_double_complex_from_parts(a.real / b.real, a.imag / b.real);
-          } else if (fabsl(b.real) >= fabsl(b.imag)) {
-              if (b.real == 0 && b.imag == 0) {
-                  return __pyx_t_long_double_complex_from_parts(a.real / b.real, a.imag / b.imag);
-              } else {
-                  long double r = b.imag / b.real;
-                  long double s = (long double)(1.0) / (b.real + b.imag * r);
-                  return __pyx_t_long_double_complex_from_parts(
-                      (a.real + a.imag * r) * s, (a.imag - a.real * r) * s);
-              }
-          } else {
-              long double r = b.real / b.imag;
-              long double s = (long double)(1.0) / (b.imag + b.real * r);
-              return __pyx_t_long_double_complex_from_parts(
-                  (a.real * r + a.imag) * s, (a.imag * r - a.real) * s);
-          }
-      }
-      #else
-      static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_quot_long__double(__pyx_t_long_double_complex a, __pyx_t_long_double_complex b) {
-          if (b.imag == 0) {
-              return __pyx_t_long_double_complex_from_parts(a.real / b.real, a.imag / b.real);
-          } else {
-              long double denom = b.real * b.real + b.imag * b.imag;
-              return __pyx_t_long_double_complex_from_parts(
-                  (a.real * b.real + a.imag * b.imag) / denom,
-                  (a.imag * b.real - a.real * b.imag) / denom);
-          }
-      }
-      #endif
-      static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_neg_long__double(__pyx_t_long_double_complex a) {
-          __pyx_t_long_double_complex z;
-          z.real = -a.real;
-          z.imag = -a.imag;
-          return z;
-      }
-      static CYTHON_INLINE int __Pyx_c_is_zero_long__double(__pyx_t_long_double_complex a) {
-         return (a.real == 0) && (a.imag == 0);
-      }
-      static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_conj_long__double(__pyx_t_long_double_complex a) {
-          __pyx_t_long_double_complex z;
-          z.real =  a.real;
-          z.imag = -a.imag;
-          return z;
-      }
-      #if 1
-          static CYTHON_INLINE long double __Pyx_c_abs_long__double(__pyx_t_long_double_complex z) {
-            #if !defined(HAVE_HYPOT) || defined(_MSC_VER)
-              return sqrtl(z.real*z.real + z.imag*z.imag);
-            #else
-              return hypotl(z.real, z.imag);
-            #endif
-          }
-          static CYTHON_INLINE __pyx_t_long_double_complex __Pyx_c_pow_long__double(__pyx_t_long_double_complex a, __pyx_t_long_double_complex b) {
-              __pyx_t_long_double_complex z;
-              long double r, lnr, theta, z_r, z_theta;
-              if (b.imag == 0 && b.real == (int)b.real) {
-                  if (b.real < 0) {
-                      long double denom = a.real * a.real + a.imag * a.imag;
-                      a.real = a.real / denom;
-                      a.imag = -a.imag / denom;
-                      b.real = -b.real;
-                  }
-                  switch ((int)b.real) {
-                      case 0:
-                          z.real = 1;
-                          z.imag = 0;
-                          return z;
-                      case 1:
-                          return a;
-                      case 2:
-                          return __Pyx_c_prod_long__double(a, a);
-                      case 3:
-                          z = __Pyx_c_prod_long__double(a, a);
-                          return __Pyx_c_prod_long__double(z, a);
-                      case 4:
-                          z = __Pyx_c_prod_long__double(a, a);
-                          return __Pyx_c_prod_long__double(z, z);
-                  }
-              }
-              if (a.imag == 0) {
-                  if (a.real == 0) {
-                      return a;
-                  } else if ((b.imag == 0) && (a.real >= 0)) {
-                      z.real = powl(a.real, b.real);
-                      z.imag = 0;
-                      return z;
-                  } else if (a.real > 0) {
-                      r = a.real;
-                      theta = 0;
-                  } else {
-                      r = -a.real;
-                      theta = atan2l(0.0, -1.0);
-                  }
-              } else {
-                  r = __Pyx_c_abs_long__double(a);
-                  theta = atan2l(a.imag, a.real);
-              }
-              lnr = logl(r);
-              z_r = expl(lnr * b.real - theta * b.imag);
-              z_theta = theta * b.real + lnr * b.imag;
-              z.real = z_r * cosl(z_theta);
-              z.imag = z_r * sinl(z_theta);
               return z;
           }
       #endif

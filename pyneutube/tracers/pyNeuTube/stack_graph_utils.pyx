@@ -379,6 +379,15 @@ cdef class Graph:
             return self.fast_graph.get_weights_array()
 
 
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cdef inline void _graph_add_edge_inline(Graph graph, int v1, int v2, double weight):
+    if graph._use_python_lists:
+        graph.add_edge(v1, v2, weight)
+    else:
+        graph.fast_graph.add_edge(v1, v2, weight)
+
+
 # Inline weight function
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -455,6 +464,149 @@ cpdef void add_edges_cy(
                 graph.add_edge(offset, offset + neighbor[i])
                 # Store intensity value
                 intensity[offset] = stack[nz, ny, nx]
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+@cython.cdivision(True)
+cpdef void build_stack_graph_cy(
+    Graph graph,
+    const double[:, :, :] stack,
+    int conn,
+    const int[:] stack_range,
+    const int[:] x_offset,
+    const int[:] y_offset,
+    const int[:] z_offset,
+    const int[:] neighbor,
+    const double[:] dist,
+    const unsigned char[:, :, :, :] scan_boundary_masks,
+    object signal_mask_obj,
+    object group_mask_obj,
+    bint including_signal_border,
+    double[:] argv,
+    double[:] intensity,
+    int initial_virtual_vertex,
+):
+    cdef:
+        int stack_depth = stack.shape[0]
+        int stack_height = stack.shape[1]
+        int stack_width = stack.shape[2]
+        int cdepth = stack_range[5] - stack_range[4]
+        int cheight = stack_range[3] - stack_range[2]
+        int cwidth = stack_range[1] - stack_range[0]
+        int x_state, y_state, z_state
+        int x, y, z, i
+        int org_x, org_y, org_z
+        int neighbor_x, neighbor_y, neighbor_z
+        int offset = 0
+        int current_virtual_vertex = initial_virtual_vertex
+        int group_id
+        int group_vertex
+        int center_active
+        int neighbor_active
+        double center_value
+        double weight
+        bint weighted = graph.is_weighted()
+        np.ndarray[DTYPE_i32, ndim=1] group_vertex_map_np = np.zeros(256, dtype=np.int32)
+        DTYPE_i32[:] group_vertex_map = group_vertex_map_np
+
+    cdef const DTYPE_u8[:, :, :] signal_mask
+    cdef const DTYPE_u8[:, :, :] group_mask
+    cdef bint has_signal_mask = signal_mask_obj is not None
+    cdef bint has_group_mask = group_mask_obj is not None
+
+    if has_signal_mask:
+        signal_mask = signal_mask_obj
+    if has_group_mask:
+        group_mask = group_mask_obj
+
+    for z in range(cdepth + 1):
+        if z == 0:
+            z_state = 0
+        elif z == cdepth:
+            z_state = 2
+        else:
+            z_state = 1
+
+        org_z = z + stack_range[4]
+
+        for y in range(cheight + 1):
+            if y == 0:
+                y_state = 0
+            elif y == cheight:
+                y_state = 2
+            else:
+                y_state = 1
+
+            org_y = y + stack_range[2]
+
+            for x in range(cwidth + 1):
+                if x == 0:
+                    x_state = 0
+                elif x == cwidth:
+                    x_state = 2
+                else:
+                    x_state = 1
+
+                org_x = x + stack_range[0]
+                center_value = stack[org_z, org_y, org_x]
+
+                if has_signal_mask:
+                    center_active = signal_mask[org_z, org_y, org_x] > 0
+                else:
+                    center_active = 1
+
+                for i in range(conn):
+                    if scan_boundary_masks[x_state, y_state, z_state, i] == 0:
+                        continue
+
+                    if has_signal_mask:
+                        if including_signal_border and center_active:
+                            neighbor_active = 1
+                        else:
+                            neighbor_x = org_x + x_offset[i]
+                            neighbor_y = org_y + y_offset[i]
+                            neighbor_z = org_z + z_offset[i]
+                            neighbor_active = signal_mask[neighbor_z, neighbor_y, neighbor_x] > 0
+                            if including_signal_border:
+                                if (center_active == 0) and (neighbor_active == 0):
+                                    continue
+                            else:
+                                if (center_active == 0) or (neighbor_active == 0):
+                                    continue
+
+                    neighbor_x = org_x + x_offset[i]
+                    neighbor_y = org_y + y_offset[i]
+                    neighbor_z = org_z + z_offset[i]
+
+                    if weighted:
+                        weight = _stack_voxel_weight_cy(
+                            dist[i],
+                            center_value,
+                            stack[neighbor_z, neighbor_y, neighbor_x],
+                            argv[3],
+                            argv[4],
+                        )
+                        _graph_add_edge_inline(graph, offset, offset + neighbor[i], weight)
+                    else:
+                        _graph_add_edge_inline(graph, offset, offset + neighbor[i], 0.0)
+                        intensity[offset] = center_value
+
+                if has_group_mask:
+                    group_id = group_mask[org_z, org_y, org_x]
+                    if group_id > 0:
+                        group_vertex = group_vertex_map[group_id]
+                        if group_vertex <= 0:
+                            group_vertex = current_virtual_vertex
+                            current_virtual_vertex += 1
+                            group_vertex_map[group_id] = group_vertex
+                        _graph_add_edge_inline(graph, group_vertex, offset, 0.0)
+
+                offset += 1
+
+    if not graph._use_python_lists:
+        graph.nvertex = graph.fast_graph.nvertex
+        graph.nedge = graph.fast_graph.nedge
 
 
 @cython.boundscheck(False)
@@ -1028,6 +1180,4 @@ cpdef process_voxel_batch(int64_t[:] offset2_array,
                 unravel_neighbor_out[v, i, 0] = z
                 unravel_neighbor_out[v, i, 1] = y
                 unravel_neighbor_out[v, i, 2] = x
-
-
 

@@ -96,6 +96,20 @@ def build_extensions(*, use_cython: bool = False) -> list[Extension]:
         ),
     ]
 
+    shortest_path_stem = "pyneutube/tracers/pyNeuTube/shortest_path_accel"
+    shortest_path_pyx = ROOT / f"{shortest_path_stem}.pyx"
+    shortest_path_c = ROOT / f"{shortest_path_stem}.c"
+    if use_cython or shortest_path_c.exists():
+        extensions.append(
+            Extension(
+                "pyneutube.tracers.pyNeuTube.shortest_path_accel",
+                [_extension_source(shortest_path_stem, use_cython=use_cython)],
+                include_dirs=[np.get_include()],
+                define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+                extra_compile_args=_extra_compile_args(),
+            )
+        )
+
     if use_cython:
         if cythonize is None:
             raise RuntimeError(

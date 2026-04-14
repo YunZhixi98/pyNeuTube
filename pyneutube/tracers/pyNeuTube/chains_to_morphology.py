@@ -170,7 +170,10 @@ def _can_skip_connect_test(chain1_stats, chain2_stats, dist_thresh: float) -> bo
 
 class ChainConnector:
 
-    def __init__(self, verbose: int = 1):
+    def __init__(
+        self,
+        verbose: int = 1,
+    ):
         
         # 
         self.conn_list: List[Neurocomp_Conn] = []

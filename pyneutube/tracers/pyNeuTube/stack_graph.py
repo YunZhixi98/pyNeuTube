@@ -2,7 +2,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum, auto
 from functools import lru_cache
-import heapq
 from typing import Dict, List, Optional
 
 import numpy as np
@@ -12,10 +11,12 @@ from pyneutube.core.processing.filtering import rc_threshold
 
 from .chain_utils import get_inner_chain_range
 from .geometry import point_to_chain_surface
+from .shortest_path_accel import graph_shortest_path_dijkstra_cy
 from .stack_graph_utils import (
     Graph,
     GraphEdge,
     add_edges_cy,
+    build_stack_graph_cy,
     graph_edge_neighbor_list_fast,
     process_voxel_neighbors_fast,
     stack_neighbor_dist_r_cy,
@@ -426,7 +427,12 @@ class GraphWorkspace:
 
         return self.connection
 
-    def graph_shortest_path_e(self, graph: Graph, start: int, end: int) -> Optional[np.ndarray]:
+    def graph_shortest_path_e(
+        self,
+        graph: Graph,
+        start: int,
+        end: int,
+    ) -> Optional[np.ndarray]:
         """
         Find shortest path between two nodes using Dijkstra's algorithm
         
@@ -437,82 +443,25 @@ class GraphWorkspace:
         Returns:
             Array of node indices representing the shortest path, or None if no path exists
         """
-        # Initialize workspace if needed
-        if self.is_ready(GraphWorkspaceStatus.GRAPH_WORKSPACE_VLIST):
-            return self.vlist
-            
-        
         self._ensure_workspace_size(graph)
+        edges = graph.get_edges_array()
+        if graph.is_weighted():
+            weights = graph.get_weights_array()
+        else:
+            weights = np.ones(graph.nedge, dtype=np.float64)
 
-        # Initialize data structures
-        nvertex = self.nvertex
-        self.vlist.fill(-1)
-        self.dlist.fill(np.inf)
-        self.status.fill(0)
-
-        self.graph_neighbor_list(graph)
-
-        neighbors = self.connection
-        edge_indices = self.idx
-        dist = self.dlist
-        path = self.vlist
-        checked = self.status
-        weighted = graph.is_weighted()
-        weights = graph.get_weights_array() if weighted else None
-
-        # Initialize start node
-        dist[start] = 0
-        path[start] = -1
-        checked[start] = 1
+        predecessors, distances = graph_shortest_path_dijkstra_cy(
+            edges,
+            weights,
+            graph.nvertex,
+            start,
+            end,
+        )
+        self.vlist[:] = predecessors
+        self.dlist[:] = distances
+        self.status[:] = np.isfinite(distances).astype(np.uint8)
+        return self.vlist
         
-        # Priority queue (min-heap)
-        heap = []
-        heapq.heappush(heap, (0, start))
-        
-        while heap:
-            current_dist, cur_vertex = heapq.heappop(heap)
-            
-            if current_dist > dist[cur_vertex]:
-                continue
-            
-            checked[cur_vertex] = True
-
-            # Early termination if we reach the end
-            if cur_vertex == end:
-                break
-
-            cur_neighbors = neighbors[cur_vertex]
-            cur_edge_indices = edge_indices[cur_vertex]
-            cur_dist = dist[cur_vertex]
-            for i, neighbor in enumerate(cur_neighbors):
-                if checked[neighbor]:
-                    continue
-
-                # Get edge weight
-                if weighted:
-                    edge_weight = weights[cur_edge_indices[i]]
-                    neighbor_dist = cur_dist + edge_weight
-                else:
-                    neighbor_dist = cur_dist + 1
-
-                if neighbor_dist < dist[neighbor]:
-                    dist[neighbor] = neighbor_dist
-                    path[neighbor] = cur_vertex
-                    heapq.heappush(heap, (neighbor_dist, neighbor))
-
-        return path
-
-        # # Reconstruct path if end was reached
-        # if dist[end] == np.inf:
-        #     return None
-        
-        # path_indices = []
-        # current = end
-        # while current != -1:
-        #     path_indices.append(current)
-        #     current = path[current]
-
-        # return path_indices  # will reverse in parse_stack_shortest_path
 
     
     def clear(self) -> None:
@@ -629,7 +578,7 @@ class StackGraph:
 
 
 
-    def stack_graph_w(self, stack: np.ndarray) -> Graph:
+    def _stack_graph_w_python(self, stack: np.ndarray) -> Graph:
         """
         `stack` is the input image or signal, that is a 3D array.
         """
@@ -762,6 +711,69 @@ class StackGraph:
         
         return graph
 
+    def stack_graph_w(self, stack: np.ndarray) -> Graph:
+        offset = 0
+        stack_range = np.zeros(6, dtype=np.int32)
+        stack_depth, stack_height, stack_width = stack.shape
+
+        if self.range is None:
+            stack_range[0], stack_range[1] = 0, stack_width - 1
+            stack_range[2], stack_range[3] = 0, stack_height - 1
+            stack_range[4], stack_range[5] = 0, stack_depth - 1
+        else:
+            stack_range[0] = max(0, self.range[0])
+            stack_range[1] = min(stack_width - 1, self.range[1])
+            stack_range[2] = max(0, self.range[2])
+            stack_range[3] = min(stack_height - 1, self.range[3])
+            stack_range[4] = max(0, self.range[4])
+            stack_range[5] = min(stack_depth - 1, self.range[5])
+
+        cdepth = stack_range[5] - stack_range[4]
+        cheight = stack_range[3] - stack_range[2]
+        cwidth = stack_range[1] - stack_range[0]
+        nvertex = (cwidth + 1) * (cheight + 1) * (cdepth + 1)
+        self.virtualVertex = nvertex
+
+        weighted = self.sp_option != 1
+        if not weighted:
+            self.intensity = np.zeros(nvertex + 1, dtype=float)
+            self.intensity[nvertex] = float("inf")
+
+        graph = Graph(weighted=weighted, initial_capacity=nvertex, use_python_lists=False)
+
+        neighbor = np.zeros((26), dtype=np.int32)
+        stack_neighbor_offset_cy(self.conn, cwidth + 1, cheight + 1, neighbor)
+        dist = np.zeros(26, dtype=float)
+        stack_neighbor_dist_r_cy(self.conn, self.resolution, dist)
+        x_offset = stack_neighbor_x_offset(self.conn)
+        y_offset = stack_neighbor_y_offset(self.conn)
+        z_offset = stack_neighbor_z_offset(self.conn)
+        scan_boundary_masks = _scan_boundary_masks(self.conn)
+
+        if self.intensity is None:
+            self.intensity = np.empty(0, dtype=float)
+
+        build_stack_graph_cy(
+            graph,
+            stack,
+            self.conn,
+            stack_range,
+            x_offset,
+            y_offset,
+            z_offset,
+            neighbor,
+            dist,
+            scan_boundary_masks,
+            self.signal_mask,
+            self.group_mask,
+            self.including_signal_border,
+            self.argv,
+            self.intensity,
+            nvertex,
+        )
+
+        return graph
+
     def parse_stack_shortest_path(self, path: np.ndarray, start: int, end: int,
                              width: int, height: int) -> List[int]:
         """
@@ -833,7 +845,11 @@ class StackGraph:
         # initialize a StackGraph_W object
         graph = self.stack_graph_w(stack)
 
-        path = self.gw.graph_shortest_path_e(graph, start_index, end_index)
+        path = self.gw.graph_shortest_path_e(
+            graph,
+            start_index,
+            end_index,
+        )
 
         self.value = self.gw.dlist[end_index]   # gw
         
