@@ -1,10 +1,13 @@
 ﻿from __future__ import annotations
 
+import os
+import shlex
 import sys
 from pathlib import Path
 
 import numpy as np
 from setuptools import Extension, setup
+from setuptools.command.build_ext import build_ext
 
 try:
     from Cython.Build import cythonize
@@ -41,6 +44,44 @@ def _extra_compile_args() -> list[str]:
     if sys.platform == "win32":
         return ["/O2"]
     return ["-O3"]
+
+
+def _strip_compiler_compat_flags(command):
+    if isinstance(command, str):
+        parts = shlex.split(command)
+        stripped = _strip_compiler_compat_flags(parts)
+        return " ".join(shlex.quote(part) for part in stripped)
+
+    if not isinstance(command, (list, tuple)):
+        return command
+
+    result: list[str] = []
+    skip_next = False
+    for index, part in enumerate(command):
+        if skip_next:
+            skip_next = False
+            continue
+        if part == "-B" and index + 1 < len(command) and "compiler_compat" in command[index + 1]:
+            skip_next = True
+            continue
+        if isinstance(part, str) and part.startswith("-B") and "compiler_compat" in part:
+            continue
+        result.append(part)
+    return result
+
+
+class PyNeuTubeBuildExt(build_ext):
+    def build_extensions(self):
+        if (
+            sys.platform.startswith("linux")
+            and os.environ.get("CONDA_PREFIX")
+            and os.environ.get("PYNEUTUBE_KEEP_CONDA_COMPILER_COMPAT") != "1"
+        ):
+            for attr in ("compiler", "compiler_so", "compiler_cxx", "linker_so", "linker_exe"):
+                command = getattr(self.compiler, attr, None)
+                if command is not None:
+                    setattr(self.compiler, attr, _strip_compiler_compat_flags(command))
+        super().build_extensions()
 
 
 def build_extensions(*, use_cython: bool = False) -> list[Extension]:
@@ -121,7 +162,10 @@ def build_extensions(*, use_cython: bool = False) -> list[Extension]:
 
 
 def build_setup_kwargs(*, use_cython: bool = False) -> dict[str, object]:
-    return {"ext_modules": build_extensions(use_cython=use_cython)}
+    return {
+        "ext_modules": build_extensions(use_cython=use_cython),
+        "cmdclass": {"build_ext": PyNeuTubeBuildExt},
+    }
 
 
 if __name__ == "__main__":
