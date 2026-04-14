@@ -277,6 +277,8 @@ Bundled examples and local release helpers:
 - `python tools/dev/profile_reference_pipeline.py --max-seeds 2`
 - `python tools/dev/convert_reference_formats.py`
 
+The `examples.*` commands above are repository-local development scripts. If you run them directly from the source tree, build the Cython extensions first with `python Cython_setup.py build_ext --inplace`. If you want to exercise the installed package instead, run equivalent API snippets from outside the repository source tree.
+
 ## Development checks
 
 Recommended local checks:

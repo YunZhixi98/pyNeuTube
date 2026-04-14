@@ -220,3 +220,5 @@ The custom module should expose `Defaults` and optionally `Optimization` with th
 - `python tools/dev/smoke_imports.py`
 - `python tools/dev/convert_reference_formats.py`
 - `python tools/dev/profile_reference_pipeline.py --max-seeds 2`
+
+The `examples.*` scripts are repository-local developer helpers. If you run them directly from the source tree, run `python Cython_setup.py build_ext --inplace` first. If you want to validate the installed package instead, run the same workflows from outside the repository source tree.
