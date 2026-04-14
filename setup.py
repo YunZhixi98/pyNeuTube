@@ -77,7 +77,12 @@ class PyNeuTubeBuildExt(build_ext):
             and os.environ.get("CONDA_PREFIX")
             and os.environ.get("PYNEUTUBE_KEEP_CONDA_COMPILER_COMPAT") != "1"
         ):
-            for attr in ("compiler", "compiler_so", "compiler_cxx", "linker_so", "linker_exe"):
+            # Some Linux+conda environments inject "-B .../compiler_compat" into the
+            # linker command and then fail while linking even trivial extensions.
+            # Keep the compile-side command line intact and only strip the linker-side
+            # compiler_compat wrapper, which is the path implicated by the observed
+            # "collect2: error: ld returned 255 exit status" failures.
+            for attr in ("linker_so", "linker_exe"):
                 command = getattr(self.compiler, attr, None)
                 if command is not None:
                     setattr(self.compiler, attr, _strip_compiler_compat_flags(command))
