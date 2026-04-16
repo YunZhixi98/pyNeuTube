@@ -6,7 +6,7 @@ tracing.py
 Definition of tracing segments and utilities of tracing.
 """
 
-from functools import lru_cache
+from functools import cache, lru_cache
 from itertools import islice
 from typing import Callable, List, Tuple, Literal, Union
 from tqdm import tqdm
@@ -35,12 +35,24 @@ _MULTI_TRIAL_THETA_OFFSETS = (0.0, np.pi / 8, -np.pi / 8, np.pi / 16, -np.pi / 1
 _MULTI_TRIAL_PSI_OFFSETS = (0.0, np.pi / 4, -np.pi / 4, np.pi / 8, -np.pi / 8)
 
 
-@lru_cache(maxsize=16)
-def _orientation_search_schedule(length: float) -> tuple[tuple[float, tuple[float, ...]], ...]:
+# zx: backup
+# @lru_cache(maxsize=16)
+# def _orientation_search_schedule(length: float) -> tuple[tuple[float, tuple[float, ...]], ...]:
+#     schedule = []
+#     for theta in np.arange(0.1, np.pi * 0.75, 0.2):
+#         psi_step = 2.0 / length / np.sin(theta)
+#         psi_values = tuple(float(value) for value in np.arange(0, 2 * np.pi, psi_step))
+#         schedule.append((float(theta), psi_values))
+#     return tuple(schedule)
+
+@cache
+def _orientation_search_schedule() -> tuple[tuple[float, tuple[float, ...]], ...]:
     schedule = []
-    for theta in np.arange(0.1, np.pi * 0.75, 0.2):
-        psi_step = 2.0 / length / np.sin(theta)
-        psi_values = tuple(float(value) for value in np.arange(0, 2 * np.pi, psi_step))
+    thetas = np.arccos(np.linspace(-1, 1, num=12, endpoint=False))  # uniform sampling on the surface of sphere
+    total_sin_theta = np.sum(np.sin(thetas))
+    for theta in thetas:
+        Ni = max(1, int(np.round(400 * np.sin(theta) / total_sin_theta)))
+        psi_values = tuple(float(value) for value in np.linspace(0, 2*np.pi, num=Ni, endpoint=False))
         schedule.append((float(theta), psi_values))
     return tuple(schedule)
 
@@ -198,7 +210,7 @@ class TracingSegment(BaseTracingSegment):
         #     psis = np.linspace(0, 2*np.pi, num=Ni, endpoint=False)
         #     for psi in psis:
 
-        for theta, psi_values in _orientation_search_schedule(float(self.length)):
+        for theta, psi_values in _orientation_search_schedule():
             for psi in psi_values:
                 self.theta, self.psi = theta, psi
                 self._set_orientation()
@@ -796,7 +808,7 @@ class SegmentChains:
                 scores = [seg.score for seg in chain]
                 chain.mean_intensity = np.mean(intensities)
                 chain.mean_score = np.mean(scores)
-                if (chain.mean_score >= self._min_chain_score) and (chain.mean_intensity < min_intensity):
+                if (chain.mean_score >= self._min_chain_score) or (chain.mean_intensity < min_intensity):
                     min_intensity = chain.mean_intensity
 
                 # mean_intensities.append(chain.mean_intensity)
