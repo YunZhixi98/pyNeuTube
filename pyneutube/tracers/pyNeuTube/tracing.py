@@ -252,7 +252,7 @@ class TracingSegment(BaseTracingSegment):
                     score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = correlation_score,
                     multi_trials: bool = False) -> bool:
 
-        if multi_trials:
+        if multi_trials and self.radius <= (Defaults.SEG_LENGTH - 1) / 2:
             thetas = [self.theta + offset for offset in _MULTI_TRIAL_THETA_OFFSETS]
             psis = [self.psi + offset for offset in _MULTI_TRIAL_PSI_OFFSETS]
 
@@ -808,7 +808,7 @@ class SegmentChains:
                 scores = [seg.score for seg in chain]
                 chain.mean_intensity = np.mean(intensities)
                 chain.mean_score = np.mean(scores)
-                if (chain.mean_score >= self._min_chain_score) or (chain.mean_intensity < min_intensity):
+                if (chain.mean_score >= self._min_chain_score) and (chain.mean_intensity < min_intensity):
                     min_intensity = chain.mean_intensity
 
                 # mean_intensities.append(chain.mean_intensity)
@@ -817,7 +817,7 @@ class SegmentChains:
             # min_intensity = min(mean_intensities) if mean_intensities else np.inf
             self._chains = [
                 chain for chain, score in zip(self._chains, mean_scores)
-                if (score >= self._min_chain_score) and (chain.mean_intensity >= min_intensity)
+                if (score >= self._min_chain_score) or (chain.mean_intensity >= min_intensity)
             ]
             if verbose:
                 print(f"Number of chains after filtering: {len(self)}")

@@ -34,7 +34,7 @@ def optimize_segment(
 
     seg_filter = _OPTIMIZATION_SEG_FILTER
     tmpseg = seg.copy()
-    init_dir = set_orientation(seg.theta, seg.psi)
+    # init_dir = set_orientation(seg.theta, seg.psi)
 
     def _score_func(x: np.ndarray) -> float:
         tmpseg.radius, tmpseg.theta, tmpseg.psi, tmpseg.scale = x
