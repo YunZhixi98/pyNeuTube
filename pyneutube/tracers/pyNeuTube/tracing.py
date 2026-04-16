@@ -630,6 +630,18 @@ class SegmentChain:
             if test_seg_turn_2(self._segments[-2], self._segments[-1], max_angle=1.0):
                 self._segments.pop(-1)
 
+    def _refresh_endpoint_scores(self, signal_image: np.ndarray) -> None:
+        if len(self) == 0:
+            return
+
+        endpoint_indices = [0] if len(self) == 1 else [0, -1]
+        for idx in endpoint_indices:
+            seg = self._segments[idx]
+            seg.score, seg.mean_intensity = seg.score_segment(
+                signal_image,
+                [correlation_score, mean_intensity_score],
+            )
+
     def generate_chain_trace(self, signal_image: np.ndarray, trace_mask: np.ndarray) -> None:
         """
         """
@@ -695,6 +707,9 @@ class SegmentChain:
 
         self._remove_overlap_sides()
         self._remove_turn_sides()
+        # Endpoint geometry can change after tracing; refresh endpoint stats so
+        # downstream chain screening uses up-to-date score/intensity values.
+        self._refresh_endpoint_scores(signal_image)
 
         return
         
