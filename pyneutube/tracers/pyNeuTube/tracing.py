@@ -643,10 +643,10 @@ class SegmentChain:
                 self._segments.pop(-1)
 
     def _refresh_endpoint_scores(self, signal_image: np.ndarray) -> None:
-        if len(self) == 0:
+        if len(self) <= 1:
             return
 
-        endpoint_indices = [0] if len(self) == 1 else [0, -1]
+        endpoint_indices = [0, -1]
         for idx in endpoint_indices:
             seg = self._segments[idx]
             seg.score, seg.mean_intensity = seg.score_segment(

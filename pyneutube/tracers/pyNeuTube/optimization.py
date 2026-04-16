@@ -38,8 +38,8 @@ def optimize_segment(
 
     def _score_func(x: np.ndarray) -> float:
         tmpseg.radius, tmpseg.theta, tmpseg.psi, tmpseg.scale = x
-        new_dir = set_orientation(tmpseg.theta, tmpseg.psi)
-        dot_product = np.dot(init_dir, new_dir)
+        # new_dir = set_orientation(tmpseg.theta, tmpseg.psi)
+        # dot_product = np.dot(init_dir, new_dir)
         # penalty = 1000.0 * abs(dot_product) if dot_product < 0 else 0.0  
         penalty = 0 # temporarily disable the penalty
 
