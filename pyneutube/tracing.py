@@ -75,6 +75,7 @@ _TRACE_PROGRESS_STAGE_LABELS = {
     "reconstruct": "reconstruct morphology",
 }
 _TRACE_PROGRESS_REFRESH_EVERY = 100
+_TRACE_PROGRESS_MIN_INTERVAL = 0.2
 
 
 @dataclass
@@ -84,10 +85,12 @@ class TracingResult:
     seeds: Seeds
     chains: SegmentChains
     neuron: Neuron | None = None
+    pre_postprocess_neuron: Neuron | None = None
     output_swc: Path | None = None
     output_visualization: Path | None = None
     output_seed_visualization: Path | None = None
     output_chain_visualization: Path | None = None
+    output_pre_postprocess_visualization: Path | None = None
     signal_image: np.ndarray | None = None
     binary_image: np.ndarray | None = None
     skipped: bool = False
@@ -222,6 +225,68 @@ def _safe_tqdm_close(bar) -> None:
         bar.close()
     except AttributeError:
         pass
+
+
+def _batch_pool_context(*, show_progress: bool):
+    if os.name != "posix":
+        return None
+    # Forking a multi-threaded parent can deadlock workers when verbose mode
+    # has already started tqdm and progress-drain threads.
+    start_method = "spawn" if show_progress else "fork"
+    return get_context(start_method)
+
+
+class _QueuedBatchProgressReporter:
+    def __init__(
+        self,
+        input_path: str,
+        progress_queue,
+        *,
+        refresh_every: int = _TRACE_PROGRESS_REFRESH_EVERY,
+        min_interval: float = _TRACE_PROGRESS_MIN_INTERVAL,
+        timer: Callable[[], float] = perf_counter,
+    ) -> None:
+        self._input_path = str(input_path)
+        self._progress_queue = progress_queue
+        self._refresh_every = max(1, int(refresh_every))
+        self._min_interval = max(0.0, float(min_interval))
+        self._timer = timer
+        self._last_stage: str | None = None
+        self._last_current: int | None = None
+        self._last_total: int | None = None
+        self._last_emit_at: float | None = None
+
+    def emit(self, stage: str, current: int | None = None, total: int | None = None) -> None:
+        stage_name = str(stage)
+        current_value = None if current is None else int(current)
+        total_value = None if total is None else int(total)
+        now = self._timer()
+
+        should_emit = (
+            self._last_stage != stage_name
+            or self._last_total != total_value
+            or current_value is None
+            or total_value is None
+        )
+
+        if current_value is not None and total_value is not None:
+            if current_value <= 0 or current_value >= total_value:
+                should_emit = True
+            elif self._last_current is None or current_value < self._last_current:
+                should_emit = True
+            elif current_value - self._last_current >= self._refresh_every:
+                should_emit = True
+            elif self._last_emit_at is None or now - self._last_emit_at >= self._min_interval:
+                should_emit = True
+
+        if not should_emit:
+            return
+
+        self._progress_queue.put((self._input_path, stage_name, current_value, total_value))
+        self._last_stage = stage_name
+        self._last_current = current_value
+        self._last_total = total_value
+        self._last_emit_at = now
 
 
 def _prepare_signal_image(image: np.ndarray, *, verbose: int = 1) -> np.ndarray:
@@ -446,11 +511,24 @@ def _trace_volume_internal(
             check_timeout("generate_neuron_trace")
 
             neuron = None
+            pre_postprocess_neuron = None
             if connect_chains:
                 t0 = perf_counter()
-                connector = ChainConnector(verbose=verbose)
+                connector = ChainConnector(
+                    verbose=verbose,
+                    enable_crossover_test=getattr(TraceDefaults, "CROSSOVER_TEST", False),
+                )
                 _emit_trace_progress(progress_callback, "reconstruct")
-                neuron = connector.reconstruct(chains, active_signal_image, check_timeout=check_timeout)
+                reconstruct_result = connector.reconstruct(
+                    chains,
+                    active_signal_image,
+                    check_timeout=check_timeout,
+                    return_pre_postprocess_neuron=True,
+                )
+                if isinstance(reconstruct_result, tuple):
+                    neuron, pre_postprocess_neuron = reconstruct_result
+                else:
+                    neuron = reconstruct_result
                 _time_step(verbose, "reconstruct", t0)
                 check_timeout("reconstruct")
 
@@ -463,6 +541,7 @@ def _trace_volume_internal(
                 seeds=seeds,
                 chains=chains,
                 neuron=neuron,
+                pre_postprocess_neuron=pre_postprocess_neuron,
                 signal_image=signal_image_result,
                 binary_image=binary_image_result,
             )
@@ -525,6 +604,11 @@ def _trace_file_internal(
     output_visualization_path = _visualization_output_path(image_path, visualization_dir, "result")
     output_seed_visualization_path = _visualization_output_path(image_path, visualization_dir, "seeds")
     output_chain_visualization_path = _visualization_output_path(image_path, visualization_dir, "chains")
+    output_pre_postprocess_visualization_path = _visualization_output_path(
+        image_path,
+        visualization_dir,
+        "pre_postprocess",
+    )
     existing_output = None
     if output_swc_path is not None and output_swc_path.exists():
         existing_output = output_swc_path
@@ -534,6 +618,11 @@ def _trace_file_internal(
         existing_output = output_seed_visualization_path
     elif output_chain_visualization_path is not None and output_chain_visualization_path.exists():
         existing_output = output_chain_visualization_path
+    elif (
+        output_pre_postprocess_visualization_path is not None
+        and output_pre_postprocess_visualization_path.exists()
+    ):
+        existing_output = output_pre_postprocess_visualization_path
 
     if existing_output is not None and not overwrite:
         exists_policy = _resolve_on_exists(on_exists, default="error")
@@ -583,6 +672,7 @@ def _trace_file_internal(
         output_seed_visualization_path is not None
         or output_chain_visualization_path is not None
         or output_visualization_path is not None
+        or output_pre_postprocess_visualization_path is not None
     ):
         projected_image = _project_overlay_image(image, log_transform=True)
 
@@ -601,6 +691,18 @@ def _trace_file_internal(
             result.chains,
             output_chain_visualization_path,
             title=f"{image_path.name} chains",
+            projected_image=projected_image,
+        )
+
+    if (
+        output_pre_postprocess_visualization_path is not None
+        and result.pre_postprocess_neuron is not None
+    ):
+        result.output_pre_postprocess_visualization = save_overlay_figure(
+            image,
+            result.pre_postprocess_neuron,
+            output_pre_postprocess_visualization_path,
+            title=f"{image_path.name} pre-postprocess",
             projected_image=projected_image,
         )
 
@@ -700,8 +802,10 @@ def _trace_file_worker(
 
     progress_callback = None
     if progress_queue is not None:
+        reporter = _QueuedBatchProgressReporter(input_path, progress_queue)
+
         def progress_callback(stage: str, current: int | None = None, total: int | None = None) -> None:
-            progress_queue.put((input_path, stage, current, total))
+            reporter.emit(stage, current, total)
 
     return _trace_file_record(
         input_path,
@@ -798,12 +902,18 @@ def trace_files(
             output_visualization = _visualization_output_path(image_path, visualization_dir, "result")
             output_seed_visualization = _visualization_output_path(image_path, visualization_dir, "seeds")
             output_chain_visualization = _visualization_output_path(image_path, visualization_dir, "chains")
+            output_pre_postprocess_visualization = _visualization_output_path(
+                image_path,
+                visualization_dir,
+                "pre_postprocess",
+            )
             has_existing_output = output_swc.exists() or any(
                 path is not None and path.exists()
                 for path in (
                     output_visualization,
                     output_seed_visualization,
                     output_chain_visualization,
+                    output_pre_postprocess_visualization,
                 )
             )
             if has_existing_output and not overwrite:
@@ -814,6 +924,7 @@ def trace_files(
                         output_visualization,
                         output_seed_visualization,
                         output_chain_visualization,
+                        output_pre_postprocess_visualization,
                     )
                     if path is not None and path.exists()
                 )
@@ -977,6 +1088,7 @@ def trace_files(
         manager = None
         progress_thread = None
         stop_progress = threading.Event()
+        mp_context = _batch_pool_context(show_progress=show_progress)
         if show_progress:
             manager = Manager()
             progress_queue = manager.Queue()
@@ -992,24 +1104,46 @@ def trace_files(
                         leave=False,
                         position=slot_index + 1,
                         bar_format="{desc}",
+                        mininterval=_TRACE_PROGRESS_MIN_INTERVAL,
                     )
                     for slot_index in range(slot_count)
                 ]
                 path_to_slot: dict[str, int] = {}
                 free_slots = list(range(slot_count))
                 slot_state: dict[int, tuple[str, int, int] | None] = {slot: None for slot in range(slot_count)}
+                slot_dirty: dict[int, bool] = {slot: False for slot in range(slot_count)}
+                slot_last_refresh: dict[int, float] = {slot: 0.0 for slot in range(slot_count)}
+
+                def refresh_slot(slot: int, *, force: bool = False) -> None:
+                    if not slot_dirty[slot]:
+                        return
+                    now = perf_counter()
+                    if not force and now - slot_last_refresh[slot] < _TRACE_PROGRESS_MIN_INTERVAL:
+                        return
+                    slot_bars[slot].refresh()
+                    slot_dirty[slot] = False
+                    slot_last_refresh[slot] = now
+
+                def set_slot_text(slot: int, text: str) -> None:
+                    slot_bars[slot].set_description_str(text, refresh=False)
+                    slot_dirty[slot] = True
+                    refresh_slot(slot)
 
                 def release_slot(input_path_str: str) -> None:
                     slot = path_to_slot.pop(input_path_str, None)
                     if slot is None:
                         return
-                    slot_bars[slot].set_description_str(" ", refresh=True)
+                    set_slot_text(slot, " ")
+                    refresh_slot(slot, force=True)
+                    slot_state[slot] = None
                     free_slots.append(slot)
 
                 while not stop_progress.is_set():
                     try:
                         message = progress_queue.get(timeout=0.1)
                     except Empty:
+                        for slot in range(slot_count):
+                            refresh_slot(slot)
                         continue
                     if message is None:
                         break
@@ -1047,14 +1181,15 @@ def trace_files(
                         text = f"{input_name} | {label}"
                         slot_state[slot] = None
 
-                    slot_bars[slot].set_description_str(text, refresh=True)
+                    set_slot_text(slot, text)
 
                     if isinstance(total, int) and total > 0 and int(current or 0) >= total:
                         release_slot(input_path_str)
 
                 for input_path_str in list(path_to_slot):
                     release_slot(input_path_str)
-                for bar in slot_bars:
+                for slot, bar in enumerate(slot_bars):
+                    refresh_slot(slot, force=True)
                     _safe_tqdm_close(bar)
 
             progress_thread = threading.Thread(target=drain_progress_queue, daemon=True)
@@ -1063,8 +1198,8 @@ def trace_files(
         executor_kwargs: dict[str, object] = {
             "max_workers": min(resolved_batch_n_jobs, len(jobs)),
         }
-        if os.name == "posix":
-            executor_kwargs["mp_context"] = get_context("fork")
+        if mp_context is not None:
+            executor_kwargs["mp_context"] = mp_context
 
         try:
             with ProcessPoolExecutor(**executor_kwargs) as executor:

@@ -85,6 +85,10 @@ def postprocess_reconstruction(neuron: Neuron, *, verbose: int = 1, check_timeou
     return neuron
 
 
+def _clone_neuron(neuron: Neuron) -> Neuron:
+    return Neuron().initialize(np.asarray(neuron.swc, dtype=object).copy())
+
+
 def _clone_connect_segment(seg):
     new_seg = seg.__class__.__new__(seg.__class__)
     new_seg.radius = seg.radius
@@ -146,6 +150,10 @@ def _chain_broadphase_stats(chains: SegmentChains):
 
 
 def _can_skip_connect_test(chain1_stats, chain2_stats, dist_thresh: float) -> bool:
+    # Broadphase safety (cylinders, isotropic geometry, no image term):
+    # d_bbox <= min center distance used by connect_test's first reject check.
+    # Therefore, if d_bbox > T then min_sdist > T also holds, so skipping here
+    # cannot reject a pair that would pass the later geometric connection test.
     if chain1_stats is None or chain2_stats is None:
         return True
 
@@ -173,6 +181,7 @@ class ChainConnector:
     def __init__(
         self,
         verbose: int = 1,
+        enable_crossover_test: bool = False,
     ):
         
         # 
@@ -187,6 +196,7 @@ class ChainConnector:
         self.dist_thresh = Defaults.SEG_LENGTH
         self.sp_test = True
         self.interpolate = True
+        self.enable_crossover_test = bool(enable_crossover_test)
 
         self.verbose = verbose
 
@@ -238,7 +248,7 @@ class ChainConnector:
             conn.cost = 10.0
             return False
 
-        min_pdist = -1.0
+        conn.min_pdist = float("inf")
         head_ball_radius = head._set_ball_radius()
         tail_ball_radius = tail._set_ball_radius()
         head_center = head.center_coord
@@ -259,7 +269,7 @@ class ChainConnector:
                     update = True
                 elif surface_dist == min_sdist:
                     tmp_pdist = seg_to_seg_dist(head, seg)
-                    if tmp_pdist < min_pdist:
+                    if tmp_pdist < conn.min_pdist:
                         conn.min_pdist = tmp_pdist
                         update = True
 
@@ -277,7 +287,7 @@ class ChainConnector:
                     update = True
                 elif surface_dist == min_sdist:
                     tmp_pdist = seg_to_seg_dist(tail, seg)
-                    if tmp_pdist < min_pdist:
+                    if tmp_pdist < conn.min_pdist:
                         conn.min_pdist = tmp_pdist
                         update = True
 
@@ -427,7 +437,14 @@ class ChainConnector:
 
         return gdist
 
-    def reconstruct(self, chains: SegmentChains, signal_image: np.ndarray, *, check_timeout=None):
+    def reconstruct(
+        self,
+        chains: SegmentChains,
+        signal_image: np.ndarray,
+        *,
+        check_timeout=None,
+        return_pre_postprocess_neuron: bool = False,
+    ):
         self.prepare_chain_conn(chains, signal_image, check_timeout=check_timeout)
         self._vprint(
             f"prepare_chain_conn: graph vertices={self.graph.nvertex}, edges={self.graph.nedge}"
@@ -440,9 +457,10 @@ class ChainConnector:
             f"remove_redundant_edges: graph vertices={self.graph.nvertex}, edges={self.graph.nedge}"
         )
 
-        if check_timeout is not None:
-            check_timeout("crossover_test")
-        self.crossover_test(chains)
+        if self.enable_crossover_test:
+            if check_timeout is not None:
+                check_timeout("crossover_test")
+            self.crossover_test(chains)
 
         if check_timeout is not None:
             check_timeout("chains_to_circles")
@@ -454,6 +472,7 @@ class ChainConnector:
             circle_comp_list,
             signal_image,
             check_timeout=check_timeout,
+            return_pre_postprocess_neuron=return_pre_postprocess_neuron,
         )
 
 
@@ -791,7 +810,18 @@ class ChainConnector:
                 else:
                     id_[0] = start_id[index1 + 1] - 1  # chain tail circle
 
-                id_[1] = closest_circle(circle_comp_list[start_id[index2]: start_id[index2 + 1]], start_id[index2 + 1] - start_id[index2], conn2.pos) + start_id[index2]
+                if conn2.mode == ConnectorType.NEUROCOMP_CONN_LINK:
+                    # Preserve LINK endpoint semantics: info[1] encodes target head (0) or tail (1).
+                    if conn2.info[1] == 0:
+                        id_[1] = start_id[index2]
+                    else:
+                        id_[1] = start_id[index2 + 1] - 1
+                else:
+                    id_[1] = closest_circle(
+                        circle_comp_list[start_id[index2]: start_id[index2 + 1]],
+                        start_id[index2 + 1] - start_id[index2],
+                        conn2.pos,
+                    ) + start_id[index2]
             
             conn = Neurocomp_Conn(mode=ConnectorType.NEUROCOMP_CONN_LINK, 
                                   info=np.array([0, 1], dtype=int), cost=conn2.cost,
@@ -809,8 +839,11 @@ class ChainConnector:
         signal_image,
         *,
         check_timeout=None,
+        return_pre_postprocess_neuron: bool = False,
     ):
         if not circle_comp_list:
+            if return_pre_postprocess_neuron:
+                return None, None
             return None
         
         circle_graph.weights = [circle_conn_list[i].cost for i in range(circle_graph.nedge)]
@@ -838,4 +871,8 @@ class ChainConnector:
             check_timeout("from_graph")
         neuron.from_graph(tree, circle_comp_list)
         self._vprint(f'--> from_graph [length={neuron.length}]: {time.time() - t0:.5f}')
-        return postprocess_reconstruction(neuron, verbose=self.verbose, check_timeout=check_timeout)
+        pre_postprocess_neuron = _clone_neuron(neuron) if return_pre_postprocess_neuron else None
+        neuron = postprocess_reconstruction(neuron, verbose=self.verbose, check_timeout=check_timeout)
+        if return_pre_postprocess_neuron:
+            return neuron, pre_postprocess_neuron
+        return neuron

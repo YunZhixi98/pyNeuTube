@@ -20,6 +20,7 @@ class Defaults:
     MIN_CHAIN_LENGTH: int = floor(SEG_LENGTH * 2.5)
 
     MIN_CHAIN_SCORE = 0.6
+    CROSSOVER_TEST: bool = False
 
     Max_Edge_Capacity: int = 1073741824 # 1G, maybe larger if necessary
 

@@ -14,7 +14,7 @@ def parse_args(argv=None):
         "--visualization-dir",
         help=(
             "Optional directory for lightweight PNG overlays. "
-            "Outputs are written to result/, seeds/, and chains/. Disabled by default."
+            "Outputs are written to result/, seeds/, chains/, and pre_postprocess/. Disabled by default."
         ),
     )
     parser.add_argument(
