@@ -810,7 +810,18 @@ class ChainConnector:
                 else:
                     id_[0] = start_id[index1 + 1] - 1  # chain tail circle
 
-                id_[1] = closest_circle(circle_comp_list[start_id[index2]: start_id[index2 + 1]], start_id[index2 + 1] - start_id[index2], conn2.pos) + start_id[index2]
+                if conn2.mode == ConnectorType.NEUROCOMP_CONN_LINK:
+                    # Preserve LINK endpoint semantics: info[1] encodes target head (0) or tail (1).
+                    if conn2.info[1] == 0:
+                        id_[1] = start_id[index2]
+                    else:
+                        id_[1] = start_id[index2 + 1] - 1
+                else:
+                    id_[1] = closest_circle(
+                        circle_comp_list[start_id[index2]: start_id[index2 + 1]],
+                        start_id[index2 + 1] - start_id[index2],
+                        conn2.pos,
+                    ) + start_id[index2]
             
             conn = Neurocomp_Conn(mode=ConnectorType.NEUROCOMP_CONN_LINK, 
                                   info=np.array([0, 1], dtype=int), cost=conn2.cost,
