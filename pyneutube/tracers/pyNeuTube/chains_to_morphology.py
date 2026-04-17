@@ -381,7 +381,7 @@ class ChainConnector:
             offset_path = sgw.stack_route(signal_image, start_pos, end_pos)
         else:
             self._vprint('too far')
-            raise NotImplementedError
+            raise NotImplementedError  # tz_locseg_chain.c Locseg_Chain_Shortest_Path_Pt
         
         path = []
         nvoxels = signal_image.size

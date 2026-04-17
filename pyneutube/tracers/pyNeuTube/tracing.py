@@ -252,27 +252,27 @@ class TracingSegment(BaseTracingSegment):
                     score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = correlation_score,
                     multi_trials: bool = False) -> bool:
 
-        if multi_trials and self.radius <= (Defaults.SEG_LENGTH - 1) / 2:
-            thetas = [self.theta + offset for offset in _MULTI_TRIAL_THETA_OFFSETS]
-            psis = [self.psi + offset for offset in _MULTI_TRIAL_PSI_OFFSETS]
+        # if multi_trials and self.radius <= (Defaults.SEG_LENGTH - 1) / 2:
+        #     thetas = [self.theta + offset for offset in _MULTI_TRIAL_THETA_OFFSETS]
+        #     psis = [self.psi + offset for offset in _MULTI_TRIAL_PSI_OFFSETS]
 
-            tmpseg = self.copy()
-            i = 0
-            for theta in thetas:
-                for psi in psis:
-                    x_init = [self.radius, theta, psi, self.scale]
-                    tmpseg.theta, tmpseg.psi = x_init[1:3]
-                    tmpseg._set_orientation()
-                    score, _ = tmpseg.score_segment(image, [correlation_score, mean_intensity_score])
-                    if i == 0:
-                        max_score = score
-                        max_x = x_init
-                    elif score > max_score:
-                        max_score = score
-                        max_x = x_init
-                    i += 1
-        else:
-            max_x = [self.radius, self.theta, self.psi, self.scale]
+        #     tmpseg = self.copy()
+        #     i = 0
+        #     for theta in thetas:
+        #         for psi in psis:
+        #             x_init = [self.radius, theta, psi, self.scale]
+        #             tmpseg.theta, tmpseg.psi = x_init[1:3]
+        #             tmpseg._set_orientation()
+        #             score, _ = tmpseg.score_segment(image, [correlation_score, mean_intensity_score])
+        #             if i == 0:
+        #                 max_score = score
+        #                 max_x = x_init
+        #             elif score > max_score:
+        #                 max_score = score
+        #                 max_x = x_init
+        #             i += 1
+        # else:
+        max_x = [self.radius, self.theta, self.psi, self.scale]
 
         max_params = optimize_segment(self, image, score_func, var_init=max_x)
 

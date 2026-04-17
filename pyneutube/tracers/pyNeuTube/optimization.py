@@ -1,13 +1,12 @@
-from typing import Callable, Union
+from typing import Callable, Optional, Tuple, Union
 
 import numpy as np
-from scipy.optimize import minimize
+from scipy.optimize import OptimizeResult, minimize
 
 from pyneutube.core.processing.sampling import sample_voxels
 
 from .config import Defaults, Optimization
 from .filters import MexicanHatFilter, correlation_score
-from .seg_utils import set_orientation
 from .tracing_base import BaseTracingSegment
 
 _OPTIMIZATION_SEG_FILTER = MexicanHatFilter()
@@ -58,3 +57,248 @@ def optimize_segment(
         tol=1e-3,
         options={"maxiter": Optimization.MAX_ITER},
     )
+
+
+
+# def optimize_segment(
+#     seg: BaseTracingSegment,
+#     image: np.ndarray,
+#     score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = correlation_score,
+#     var_init=None,
+# ):
+#     """Fit radius, orientation, and scale using the C-style optimizer port."""
+#     if var_init is not None:
+#         seg.radius, seg.theta, seg.psi, seg.scale = var_init
+
+#     optimizer = SegmentOptimizer(
+#         image,
+#         score_func=score_func,
+#         maxiter=Optimization.MAX_ITER,
+#     )
+#     optimizer.fit(seg)
+#     return OptimizeResult(
+#         success=True,
+#         x=np.array([seg.radius, seg.theta, seg.psi, seg.scale], dtype=np.float64),
+#     )
+
+
+# class SegmentOptimizer:
+#     """Approximate the NeuTube perceptor optimization flow with finite differences."""
+
+#     def __init__(
+#         self,
+#         image: np.ndarray,
+#         *,
+#         score_func: Callable[[np.ndarray, np.ndarray], float] = correlation_score,
+#         maxiter: int = Optimization.MAX_ITER,
+#         min_gradient: float = 1e-3,
+#         min_direction: float = 1e-3,
+#         alpha0: float = 0.2,
+#         ro: float = 0.8,
+#         c1: float = 0.01,
+#         weight: Optional[np.ndarray] = None,
+#         verbose: bool = False,
+#     ):
+#         self.image = np.asarray(image)
+#         self.score_func = score_func
+#         self.maxiter = int(maxiter)
+#         self.min_gradient = float(min_gradient)
+#         self.min_direction = float(min_direction)
+#         self.alpha0 = float(alpha0)
+#         self.ro = float(ro)
+#         self.c1 = float(c1)
+#         self.weight = None if weight is None else np.asarray(weight, dtype=np.float64)
+#         self.verbose = bool(verbose)
+
+#         self.var_bound = np.array(
+#             [
+#                 (Defaults.MIN_SEG_RADIUS, 50.0),
+#                 (-np.inf, np.inf),
+#                 (-np.inf, np.inf),
+#                 (0.2, 20.0),
+#             ],
+#             dtype=np.float64,
+#         )
+#         self.delta = np.array(
+#             [
+#                 Optimization.DELTA_RADIUS,
+#                 Optimization.DELTA_THETA,
+#                 Optimization.DELTA_PSI,
+#                 Optimization.DELTA_SCALE,
+#             ],
+#             dtype=np.float64,
+#         )
+#         self.seg_filter = _OPTIMIZATION_SEG_FILTER
+#         self.stop_grad = Optimization.LINE_SEARCH_STOP_GRADIENT
+
+#     @staticmethod
+#     def _apply_x_to_seg(seg: BaseTracingSegment, x: np.ndarray) -> None:
+#         seg.radius = float(x[0])
+#         seg.theta = float(x[1])
+#         seg.psi = float(x[2])
+#         seg.scale = float(x[3])
+
+#     def _score_at(self, x_local: np.ndarray, tmpseg: BaseTracingSegment) -> float:
+#         self._apply_x_to_seg(tmpseg, x_local)
+#         coords3d, _, weights = self.seg_filter(tmpseg)
+#         intensities = sample_voxels(self.image, coords3d)
+#         return float(self.score_func(intensities, weights))
+
+#     def compute_fd_gradient(
+#         self,
+#         x: np.ndarray,
+#         tmpseg: BaseTracingSegment,
+#         score_at: Optional[Callable[[np.ndarray, BaseTracingSegment], float]] = None,
+#     ) -> np.ndarray:
+#         if score_at is None:
+#             score_at = self._score_at
+
+#         n = int(x.size)
+#         gradient = np.zeros_like(x, dtype=np.float64)
+#         base_score = score_at(x, tmpseg)
+
+#         for i in range(n):
+#             step = self.delta[i]
+#             x[i] += step
+#             right_score = score_at(x, tmpseg)
+#             x[i] -= step
+
+#             grad_i = (right_score - base_score) / step
+#             if grad_i < 0.0:
+#                 x[i] -= step
+#                 left_score = score_at(x, tmpseg)
+#                 if left_score < base_score:
+#                     grad_i = 0.0
+#                 else:
+#                     grad_i = (base_score - left_score) / step
+#                 x[i] += step
+#             elif grad_i > 0.0:
+#                 x[i] -= step
+#                 left_score = score_at(x, tmpseg)
+#                 if left_score > base_score:
+#                     grad_i = (base_score - left_score) / step
+#                 x[i] += step
+#             else:
+#                 x[i] -= step
+#                 left_score = score_at(x, tmpseg)
+#                 grad_i = (base_score - left_score) / step
+#                 x[i] += step
+
+#             gradient[i] = grad_i
+
+#         return gradient
+
+#     def line_search_var_backtrack(
+#         self,
+#         x_org: np.ndarray,
+#         direction: np.ndarray,
+#         start_score: float,
+#         start_grad: np.ndarray,
+#         tmpseg: BaseTracingSegment,
+#         *,
+#         score_at: Optional[Callable[[np.ndarray, BaseTracingSegment], float]] = None,
+#     ) -> Tuple[bool, np.ndarray, float]:
+#         if score_at is None:
+#             score_at = self._score_at
+
+#         dir_vec = direction * self.weight if self.weight is not None else direction.copy()
+#         dir_len = float(np.linalg.norm(dir_vec))
+#         if dir_len <= self.min_direction:
+#             return False, x_org.copy(), start_score
+
+#         alpha = self.alpha0 / dir_len
+#         gd_dot = float(np.dot(start_grad, dir_vec))
+#         gd_dot_c1 = gd_dot * self.c1
+#         low = self.var_bound[:, 0]
+#         high = self.var_bound[:, 1]
+
+#         org_x = x_org.copy()
+#         x_trial = np.empty_like(org_x)
+#         scaled_dir = np.empty_like(dir_vec)
+
+#         while True:
+#             np.multiply(dir_vec, alpha, out=scaled_dir)
+#             np.add(org_x, scaled_dir, out=x_trial)
+#             np.clip(x_trial, low, high, out=x_trial)
+#             score_trial = score_at(x_trial, tmpseg)
+
+#             if alpha * dir_len < self.stop_grad:
+#                 self._apply_x_to_seg(tmpseg, org_x)
+#                 return False, org_x.copy(), start_score
+
+#             wolfe1 = max(alpha / self.ro * gd_dot_c1, 0.0)
+#             if score_trial >= start_score + wolfe1:
+#                 return True, x_trial.copy(), score_trial
+
+#             alpha *= self.ro
+
+#     def fit(self, seg: BaseTracingSegment) -> None:
+#         x = np.array([seg.radius, seg.theta, seg.psi, seg.scale], dtype=np.float64)
+#         if self.weight is None:
+#             self.weight = self.delta / np.linalg.norm(self.delta)
+
+#         tmpseg = seg.copy()
+#         score_at = self._score_at
+#         g0 = self.compute_fd_gradient(x, tmpseg, score_at)
+#         update_direction = g0.copy()
+#         final_score = score_at(x, tmpseg)
+#         iter_count = 0
+
+#         while True:
+#             improved = False
+#             dir_len = float(np.linalg.norm(update_direction))
+#             if dir_len >= self.min_direction:
+#                 improved, x_new, new_score = self.line_search_var_backtrack(
+#                     x,
+#                     update_direction,
+#                     final_score,
+#                     g0,
+#                     tmpseg,
+#                     score_at=score_at,
+#                 )
+#                 if improved:
+#                     x = x_new
+#                     final_score = new_score
+#                     if self.verbose:
+#                         print(f"iter {iter_count + 1}: score {final_score:.6g}")
+
+#             if not improved:
+#                 gnorm = float(np.linalg.norm(g0))
+#                 if gnorm > self.min_gradient:
+#                     update_direction = g0.copy()
+#                     improved, x_new, new_score = self.line_search_var_backtrack(
+#                         x,
+#                         update_direction,
+#                         final_score,
+#                         g0,
+#                         tmpseg,
+#                         score_at=score_at,
+#                     )
+#                     if improved:
+#                         x = x_new
+#                         final_score = new_score
+#                         if self.verbose:
+#                             print(f"iter {iter_count + 1} (fallback): score {final_score:.6g}")
+
+#                 if not improved:
+#                     break
+
+#             iter_count += 1
+#             if iter_count >= self.maxiter:
+#                 break
+
+#             g1 = self.compute_fd_gradient(x, tmpseg, score_at)
+#             denom = float(np.dot(g0, g0))
+#             if denom <= 1e-20:
+#                 beta = 0.0
+#             else:
+#                 beta = float(np.dot(g1, (g1 - g0)) / denom)
+#                 if beta < 0.0:
+#                     beta = 0.0
+
+#             update_direction = g1 + beta * update_direction
+#             g0 = g1.copy()
+
+#         self._apply_x_to_seg(seg, x)
+#         seg.theta = seg.theta % (2 * np.pi)
+#         seg.psi = seg.psi % (2 * np.pi)

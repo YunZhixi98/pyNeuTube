@@ -14,26 +14,33 @@ from .geometry import segment_segment_distance
 def get_inner_chain_range(chain: SegmentChain, chain_idx: int, ref_coord: np.ndarray, 
                           dist_threshold: float = Defaults.SEG_LENGTH*2.5) -> Tuple[int, int]:
     """ tz_locseg_chain.c: static void locseg_chain_point_range(...) """
-    accum_dist = 0.0  # accumulated distance from ref_coord
-    start_idx = chain_idx  # current index in chain
     n_chain = len(chain)
+    if n_chain == 0:
+        return 0, -1
 
-    while start_idx >= 0 and accum_dist < dist_threshold:
-        cur_seg = chain[start_idx]
-        accum_dist += np.linalg.norm(cur_seg.start_coord - ref_coord)
-        start_idx -= 1
-    if start_idx < 0:
-        start_idx = 0
+    chain_idx = max(0, min(chain_idx, n_chain - 1))
 
-    accum_dist = 0.0
-    end_idx = chain_idx + 1
+    start_idx = chain_idx
+    accum_dist = float(np.linalg.norm(chain[chain_idx].start_coord - ref_coord))
+    probe_idx = chain_idx
 
-    while end_idx < n_chain and accum_dist < dist_threshold:
-        cur_seg = chain[end_idx]
-        accum_dist += np.linalg.norm(cur_seg.end_coord - ref_coord)
-        end_idx += 1
-    if end_idx >= n_chain:
-        end_idx = n_chain - 1
+    while accum_dist < dist_threshold:
+        probe_idx -= 1
+        if probe_idx < 0:
+            break
+        accum_dist += float(np.linalg.norm(chain[probe_idx].start_coord - ref_coord))
+        start_idx = probe_idx
+
+    end_idx = chain_idx
+    accum_dist = float(np.linalg.norm(chain[chain_idx].end_coord - ref_coord))
+    probe_idx = chain_idx
+
+    while accum_dist < dist_threshold:
+        probe_idx += 1
+        if probe_idx >= n_chain:
+            break
+        accum_dist += float(np.linalg.norm(chain[probe_idx].end_coord - ref_coord))
+        end_idx = probe_idx
 
     return start_idx, end_idx
 
