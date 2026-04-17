@@ -11,11 +11,14 @@ from typing import Callable, Optional, Union
 
 import numpy as np
 from fast_histogram import histogram1d
-from scipy.ndimage import convolve, label, maximum_filter
+from scipy.ndimage import convolve, generate_binary_structure, label, maximum_filter
 # from cupyx.ndarray import convolve as cupy_convolve
 
 from pyneutube.core.neighbors import check_kernel_and_neighbors, neighbors_26_forward
 from pyneutube.core.processing.local_maximum import Stack_Local_Max, Stack_Locmax_Region
+
+
+_CONNECTIVITY_18_STRUCTURE = generate_binary_structure(3, 2)
 
 
 def subtract_background(
@@ -151,76 +154,65 @@ def triangle_threshold(image: np.ndarray,
     np.ndarray
         The threshold value determined by the triangle method.
     """
+    values = np.asarray(image, dtype=np.float64).ravel()
+    if values.size == 0:
+        raise ValueError("`image` must contain at least one value.")
+
     if min_value is None:
-        min_value = np.min(image)
+        min_value = int(values.min())
     if max_value is None:
-        max_value = np.max(image)
+        max_value = int(values.max())
     if min_value is None or max_value is None:
         raise ValueError("`min_value` and `max_value` must not be None.")
-    
-    # cast to float, in case of implicit out-of-range conversion
+
     min_value = int(min_value)
     max_value = int(max_value)
 
-    bin_range = (min_value, max_value + 1)
-    bins = max_value - min_value + 1
-
     if min_value < 0 or max_value < 0:
         raise ValueError("`min_value` and `max_value` must be non-negative.")
-    if min_value >= max_value:
-        raise ValueError("`min_value` must be less than `max_value`.")
-    
-    # Calculate histogram
-    hist = histogram1d(np.asarray(image, dtype=np.float64).ravel(), bins=bins, range=bin_range).astype(np.int64)
-    bin_edges = np.arange(min_value, max_value + 2, dtype=np.float64)
+    if min_value > max_value:
+        raise ValueError("`min_value` must be less than or equal to `max_value`.")
 
-    # Find peak, lowest and highest gray levels.
-    # To generalize, find out the peak at given region
-    if max_height_value is not None:
-        bin_centers = (bin_edges[:-1] + bin_edges[1:])/2.
-        hist_search_mask = bin_centers <= max_height_value
-        hist = hist[hist_search_mask]
-        bin_edges = bin_edges[:len(hist)+1]
-        bins = len(hist)
+    hist = histogram1d(
+        values,
+        bins=max_value - min_value + 1,
+        range=(min_value, max_value + 1),
+    ).astype(np.int64)
 
-    arg_peak_height = np.argmax(hist)
-    peak_height = hist[arg_peak_height]
-    arg_low_level, arg_high_level = np.flatnonzero(hist)[[0, -1]]
+    low = min_value
+    high = max_value if max_height_value is None else min(max_value, int(max_height_value))
+    if high < low:
+        raise ValueError("`max_height_value` must be greater than or equal to `min_value`.")
 
-    if arg_low_level == arg_high_level:
-        # Image has constant intensity.
-        return max_value
-    
-    # Flip is True if left tail is shorter.
-    flip = arg_peak_height - arg_low_level < arg_high_level - arg_peak_height
-    if flip:
-        hist = hist[::-1]
-        arg_low_level = bins - arg_high_level - 1
-        arg_peak_height = bins - arg_peak_height - 1
+    hist_view = hist[(low - min_value):(high - min_value + 1)]
+    if hist_view.size == 0:
+        raise ValueError("No histogram bins remain in the requested range.")
 
-    # If flip == True, arg_high_level becomes incorrect
-    # but we don't need it anymore.
-    del arg_high_level
+    max_index = int(np.argmax(hist_view))
+    tail_hist = hist_view[max_index:]
+    tail_nonzero = np.flatnonzero(tail_hist)
+    min_tail_value = int(tail_hist[tail_nonzero].min())
+    min_index = max_index + int(tail_nonzero[tail_hist[tail_nonzero] == min_tail_value][-1])
 
-    # Set up the coordinate system.
-    width = arg_peak_height - arg_low_level
-    x1 = np.arange(width)
-    y1 = hist[x1 + arg_low_level]
+    if max_index == min_index:
+        return float(low - 1)
 
-    # Normalize. Construct the normalized x and y vectors along the hypotenuse.
-    norm = np.sqrt(peak_height**2 + width**2)
-    peak_height /= norm  # y
-    width /= norm  # x
+    hist_segment = hist_view[max_index:min_index + 1]
+    tail_value = int(hist_segment[-1])
+    norm_factor = (hist_segment.size - 1) / float(hist_segment[0] - tail_value)
+    normalized_hist = (hist_segment.astype(np.float64) - tail_value) * norm_factor
 
-    # Maximize the length.
-    length = peak_height * x1 - width * y1  # cross product as a measure between histogram and hypotenuse
-    length[y1==0] = 0
-    arg_level = np.argmax(length) + arg_low_level
+    threshold_offset = 0
+    best_score = normalized_hist[0]
+    for index in range(1, hist_segment.size):
+        if hist_segment[index] <= 0:
+            continue
+        score = normalized_hist[index] + float(index)
+        if score < best_score:
+            best_score = score
+            threshold_offset = index
 
-    if flip:
-        arg_level = bins - arg_level - 1
-
-    return bin_edges[arg_level]
+    return float(low + max_index + threshold_offset)
 
 
 def rc_threshold(image: np.ndarray, 
@@ -297,100 +289,83 @@ def rc_threshold(image: np.ndarray,
 
 def local_max_filter(image: np.ndarray) -> np.ndarray:
     """
-    re-encapsulate Stack_Locmax_Region in Cython.
+    Re-encapsulate `Stack_Locmax_Region` and keep one seed voxel per plateau.
     """
     image = np.ascontiguousarray(image, dtype=np.float64)
-    img_padding = np.pad(image, ((1, 1), (1, 1), (1, 1)), mode='constant', constant_values=0)
+    img_padding = np.pad(image, ((1, 1), (1, 1), (1, 1)), mode="constant", constant_values=0)
     loc_max_mask = (img_padding != 0).astype(np.uint8)
     loc_max_mask = Stack_Locmax_Region(img_padding, loc_max_mask)
+    if not np.any(loc_max_mask):
+        return loc_max_mask
 
-    return loc_max_mask
+    labeled, _ = label(loc_max_mask > 0, structure=_CONNECTIVITY_18_STRUCTURE)
+    labeled_flat = labeled.ravel()
+    nonzero_positions = np.flatnonzero(labeled_flat)
+    _, first_indices = np.unique(labeled_flat[nonzero_positions], return_index=True)
+    representative_positions = nonzero_positions[first_indices]
+    representative_mask = np.zeros_like(loc_max_mask, dtype=np.uint8)
+    representative_mask.ravel()[representative_positions] = 1
 
+    return representative_mask
 
 def refine_local_max_threshold(
     image: np.ndarray,
     init_thresh: float,
     *,
+    threshold_source: Optional[np.ndarray] = None,
     low_ratio: float = 0.01,
     high_ratio: float = 0.05,
     drop_factor_if_low: float = 0.3,
     drop_factor_if_high: float = 0.5,
-    threshold_finder: Callable[[np.ndarray, float, float], float] = triangle_threshold
+    max_iterations: int = 3,
+    threshold_finder: Callable[[np.ndarray, float, float], float] = triangle_threshold,
 ) -> float:
     """
-    Refine an initial foreground threshold by “peeling away” peaks until
-    the foreground ratio meets stability/drop criteria.
+    Refine an initial foreground threshold using the NeuTube retry logic.
 
-    Parameters
-    ----------
-    image : np.ndarray
-        Input intensity image.
-    init_thresh : float
-        Initial threshold.
-    low_ratio : float
-        Lower bound on acceptable foreground fraction.
-    high_ratio : float
-        Upper bound on acceptable foreground fraction.
-    drop_factor_if_low : float
-        If initial FG ratio ∈ (low_ratio, high_ratio], we accept a single
-        new threshold only if FG ratio drops by at least this factor.
-    drop_factor_if_high : float
-        If initial FG ratio > high_ratio, we iteratively peel peaks
-        until FG ratio ≤ high_ratio; at each peel, we accept a new
-        threshold if the drop vs. previous ratio ≥ this factor.
-    threshold_finder : Callable
-        Function(image, low, high) → new_threshold. Defaults to
-        `triangle_threshold(image, low, high)`.
-
-    Returns
-    -------
-    float
-        Refined threshold.
+    `image` is used for foreground-area ratios, while `threshold_source`
+    provides the histogram source for retry thresholds.
     """
 
     total_voxels = image.size
-    max_val = float(image.max())
+    threshold_values = image if threshold_source is None else threshold_source
+    threshold_values = np.asarray(threshold_values, dtype=np.float64).ravel()
+    if threshold_values.size == 0:
+        return float(init_thresh)
 
-    def fg_ratio_above(t: float) -> float:
-        """Compute foreground fraction above threshold t."""
-        return np.count_nonzero(image > t) / total_voxels
+    upper_bound = float(threshold_values.max())
 
-    # Initial ratio
-    current_thresh = init_thresh
+    def fg_ratio_above(threshold: float) -> float:
+        return np.count_nonzero(image > threshold) / total_voxels
+
+    current_thresh = float(init_thresh)
     initial_ratio = fg_ratio_above(current_thresh)
 
-    # Case 1: “just barely” too much FG → one-shot test
     if low_ratio < initial_ratio <= high_ratio:
-        candidate = threshold_finder(image, current_thresh + 1, max_val - 1)
-        new_ratio = fg_ratio_above(candidate)
-        if new_ratio <= initial_ratio * drop_factor_if_low:
-            return candidate
+        if current_thresh + 1 > upper_bound - 1:
+            return current_thresh
+        candidate = threshold_finder(threshold_values, current_thresh + 1, upper_bound - 1)
+        if fg_ratio_above(candidate) <= initial_ratio * drop_factor_if_low:
+            return float(candidate)
         return current_thresh
 
-    # Case 2: too much FG → iterative peeling
     if initial_ratio > high_ratio:
+        candidate = current_thresh
+        ratio = initial_ratio
         prev_ratio = initial_ratio
-        while True:
-            candidate = threshold_finder(image, current_thresh + 1, max_val - 1)
-            ratio = fg_ratio_above(candidate)
-
-            # Stop if we've dipped below the acceptable FG fraction
-            if ratio <= high_ratio:
-                # Accept candidate if we had a big enough drop
-                if ratio <= prev_ratio * drop_factor_if_high:
-                    return candidate
+        retries_remaining = max(0, int(max_iterations))
+        while ratio > high_ratio and retries_remaining > 0:
+            if candidate + 1 > upper_bound - 1:
                 break
-
-            # Accept intermediate peel if drop is big enough
+            candidate = threshold_finder(threshold_values, candidate + 1, upper_bound - 1)
+            ratio = fg_ratio_above(candidate)
             if ratio <= prev_ratio * drop_factor_if_high:
-                current_thresh = candidate
+                current_thresh = float(candidate)
             prev_ratio = ratio
-
+            retries_remaining -= 1
         return current_thresh
 
-    # Case 3: too little FG already — nothing to do
     return current_thresh
-
 
 def connectivity_filter(image: np.ndarray, min_neighbors: int, 
                         kernel: Optional[np.ndarray] = None, 

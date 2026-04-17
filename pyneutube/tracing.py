@@ -318,7 +318,6 @@ def _estimate_threshold(signal_image: np.ndarray, *, verbose: int = 1) -> float:
     t0 = perf_counter()
     local_max_mask = local_max_filter(signal_image)
     _time_step(verbose, "local_max_filter", t0)
-
     local_max_values = signal_image[local_max_mask > 0]
     if local_max_values.size == 0:
         raise ValueError("No local maxima were found in the input volume.")
@@ -332,11 +331,22 @@ def _estimate_threshold(signal_image: np.ndarray, *, verbose: int = 1) -> float:
         return threshold
 
     t0 = perf_counter()
-    threshold = float(triangle_threshold(local_max_values))
+    threshold = float(
+        triangle_threshold(
+            local_max_values,
+            max_height_value=int(np.max(local_max_values)) - 1,
+        )
+    )
     _time_step(verbose, f"triangle_threshold={threshold:.3f}", t0)
 
     t0 = perf_counter()
-    threshold = float(refine_local_max_threshold(signal_image, threshold))
+    threshold = float(
+        refine_local_max_threshold(
+            signal_image,
+            threshold,
+            threshold_source=local_max_values,
+        )
+    )
     _time_step(verbose, f"refine_local_max_threshold={threshold:.3f}", t0)
     return threshold
 
