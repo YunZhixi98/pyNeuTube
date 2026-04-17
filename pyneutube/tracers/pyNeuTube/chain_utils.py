@@ -1,5 +1,4 @@
 
-from math import floor
 from typing import Tuple, Callable, Literal, Optional
 
 import numpy as np
@@ -56,14 +55,23 @@ def get_chain_side_bright_point(chain: SegmentChain, signal_image: np.ndarray,
                                 side: Literal['head', 'tail']) -> np.ndarray:
     if side == 'head':
         seg = chain[0]
-        coords = seg.start_coord + seg.dir_v * np.arange(0, floor((seg.length-1)/2)+1, 1).reshape(-1, 1)
     else:
         seg = chain[-1]
-        coords = seg.end_coord - seg.dir_v * np.arange(0, floor((seg.length-1)/2)+1, 1).reshape(-1, 1)
+
+    sample_count = max(1, int(np.floor((seg.length - 1.0) / 2.0)) + 1)
+    offsets = np.arange(sample_count, dtype=np.float64).reshape(-1, 1)
+
+    if side == 'head':
+        coords = seg.start_coord + seg.dir_v * offsets
+    else:
+        coords = seg.end_coord - seg.dir_v * offsets
 
     intensities = sample_voxels(signal_image, coords)
-    idx = np.argmax(intensities)
+    valid_indices = np.flatnonzero(~np.isnan(intensities))
+    if valid_indices.size == 0:
+        return coords[0]
 
+    idx = valid_indices[np.argmax(intensities[valid_indices])]
     return coords[idx]
 
 
@@ -82,6 +90,7 @@ def interpolate_chain(chain: SegmentChain, ref_point: np.ndarray, ort: Optional[
 
     closest1 = None
     index = None
+    interp_lambda = 0.0
 
     if ort is None:
         raise NotImplementedError
@@ -99,7 +108,12 @@ def interpolate_chain(chain: SegmentChain, ref_point: np.ndarray, ort: Optional[
                 min_dist = tmp_min_dist
                 min_index = i
                 closest1 = tmp_closest1
-                interp_lambda = np.linalg.norm(closest1 - start_pos) / np.linalg.norm(end_pos - start_pos)
+                segment = end_pos - start_pos
+                segment_len2 = float(np.dot(segment, segment))
+                if segment_len2 > 0.0:
+                    interp_lambda = float(np.dot(closest1 - start_pos, segment) / segment_len2)
+                else:
+                    interp_lambda = 0.0
 
     if interp_lambda > 0.0 and interp_lambda < 1.0:
         start_pos = coords[min_index]

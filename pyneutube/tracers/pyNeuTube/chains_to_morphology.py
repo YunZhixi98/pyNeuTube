@@ -357,13 +357,9 @@ class ChainConnector:
                 sgw.group_mask.fill(0)
             for i in range(start_index, end_index + 1):
                 label_tracing_mask(chain[i], sgw.group_mask, dilate=True)
-            
-            tmpcoords = [chain[end_index].start_coord, chain[end_index].end_coord]
-            last_chain_bbox = np.array([np.min(tmpcoords, axis=0), np.max(tmpcoords, axis=0)])
-            x1, y1, z1 = np.floor(last_chain_bbox[0]-1).astype(int)
-            x2, y2, z2 = np.ceil(last_chain_bbox[1]+1).astype(int)
-            sgw.set_range(int(start_pos[0]), x1, int(start_pos[1]), y1, int(start_pos[2]), z1)
-            sgw.update_range(x2, y2, z2)
+            sgw._set_range_from_group_mask(start_pos)
+        else:
+            sgw.set_range(int(start_pos[0]), int(end_pos[0]), int(start_pos[1]), int(end_pos[1]), int(start_pos[2]), int(end_pos[2]))
         
         sgw.expand_range(np.full(3, 10))
         sgw.validate_range(signal_image.shape[2], signal_image.shape[1], signal_image.shape[0])
