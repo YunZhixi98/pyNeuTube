@@ -331,7 +331,11 @@ class ChainConnector:
             min_idx = tmp_min_idx
             chain1_seg = chain1[-1]
 
-        if np.any(bright_point < 0) or np.any((bright_point+1) > signal_image.shape):
+        xyz_max = np.array(
+            [signal_image.shape[2] - 1, signal_image.shape[1] - 1, signal_image.shape[0] - 1],
+            dtype=np.float64,
+        )
+        if np.any(bright_point < 0) or np.any(bright_point > xyz_max):
             return []
         
         sgw.update_stack_graph_workspace_by_seg_chain(chain1_seg, chain2, signal_image)
@@ -411,14 +415,15 @@ class ChainConnector:
         if path_length >= 5:
             
             for i in range(path_length):
-                coord = np.array(np.unravel_index(path[i], signal_image.shape))
+                coord_zyx = np.array(np.unravel_index(path[i], signal_image.shape))
+                coord_xyz = coord_zyx[::-1]
                 if hit_index < 3:
                     if conn.info[0] == 0:
-                        hit_index = point_in_chain_index(coord, chain)
+                        hit_index = point_in_chain_index(coord_xyz, chain)
                     else:
-                        hit_index = point_in_chain_index(coord, chain[::-1])
+                        hit_index = point_in_chain_index(coord_xyz, chain[::-1])
                 
-                intensity = signal_image[coord[0], coord[1], coord[2]]
+                intensity = signal_image[coord_zyx[0], coord_zyx[1], coord_zyx[2]]
                 if intensity == 0 or intensity < sgw.argv[3]-sgw.argv[4]:
                     dark_count+=1
                 else:
@@ -428,11 +433,11 @@ class ChainConnector:
                 conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
             else:
                 if dark_count+ bright_count >= 2:
-                    prev_coord = np.unravel_index(path[path_length - 2], signal_image.shape)
+                    prev_coord = np.array(np.unravel_index(path[path_length - 2], signal_image.shape))[::-1]
                     count = 0
                     conn.ort = np.zeros(3, dtype=np.float64)
                     for i in range(path_length - 3, -1, -1):
-                        coord = np.array(np.unravel_index(path[i], signal_image.shape))
+                        coord = np.array(np.unravel_index(path[i], signal_image.shape))[::-1]
                         conn.ort += prev_coord - coord
                         prev_coord = coord
                         count += 1
