@@ -199,6 +199,9 @@ def triangle_threshold(image: np.ndarray,
 
     hist_segment = hist_view[max_index:min_index + 1]
     tail_value = int(hist_segment[-1])
+    if hist_segment[0] == tail_value:
+        return float(low + max_index)
+
     norm_factor = (hist_segment.size - 1) / float(hist_segment[0] - tail_value)
     normalized_hist = (hist_segment.astype(np.float64) - tail_value) * norm_factor
 

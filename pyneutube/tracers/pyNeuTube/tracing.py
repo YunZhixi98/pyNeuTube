@@ -378,6 +378,47 @@ class SegmentChain:
 
         self.mean_intensity = None
         self.mean_score = None
+        self.label_bboxes = None
+
+    def _invalidate_label_bbox(self) -> None:
+        self.label_bboxes = None
+
+    def get_label_bbox(
+        self,
+        start: int | None = None,
+    end: int | None = None,
+    ) -> np.ndarray | None:
+        if self.label_bboxes is None or len(self) == 0:
+            return None
+
+        if start is None:
+            start = 0
+        if end is None:
+            end = len(self) - 1
+        if start > end:
+            return None
+
+        selected = self.label_bboxes[start:end + 1]
+        valid = selected[:, 0] >= 0
+        if not np.any(valid):
+            return None
+
+        selected = selected[valid]
+        return np.array(
+            [
+                selected[:, 0].min(),
+                selected[:, 1].max(),
+                selected[:, 2].min(),
+                selected[:, 3].max(),
+                selected[:, 4].min(),
+                selected[:, 5].max(),
+            ],
+            dtype=np.intp,
+        )
+
+    def _remove_segment(self, idx: int) -> None:
+        self._segments.pop(idx)
+        self._invalidate_label_bbox()
 
     def append(self, segment: TracingSegment):
         """
@@ -386,12 +427,14 @@ class SegmentChain:
         if not isinstance(segment, TracingSegment):
             raise TypeError("Can only add TracingSegment objects")
         self._segments.append(segment)
+        self._invalidate_label_bbox()
 
     def insert(self, idx: int, segment: TracingSegment):
         """
         Insert a segment at position `idx` in the chain and re-validate connectivity.
         """
         self._segments.insert(idx, segment)
+        self._invalidate_label_bbox()
 
     @property
     def segments(self) -> List[TracingSegment]:
@@ -516,13 +559,13 @@ class SegmentChain:
             if side!='both':  # 'both' is somehow an initial check for seed's seg.
                 if seg.score < seg.get_norm_min_score(self._stop_seg_trace_score):
                     self._trace_status[side_idx] = TraceStatus.LOW_SCORE
-                    self._segments.pop(seg_idx)  # delete this segment
+                    self._remove_segment(seg_idx)  # delete this segment
                     # print(f'pop seg_idx={seg_idx} on side={side}, score={seg.score}')
                     return
 
                 if seg.radius > 25:
                     self._trace_status[side_idx] = TraceStatus.SEG_TOO_THICK
-                    self._segments.pop(seg_idx)
+                    self._remove_segment(seg_idx)
                     # print(f'pop seg_idx={seg_idx} on side={side}, radius={seg.radius}')
 
                 if len(self) >= 2:
@@ -533,7 +576,7 @@ class SegmentChain:
                     intensity_change = cur_seg.mean_intensity / seg_prev.mean_intensity
                     if intensity_change < 0.5:
                         self._trace_status[side_idx] = TraceStatus.SIGNAL_CHANGED
-                        self._segments.pop(seg_idx)
+                        self._remove_segment(seg_idx)
                         # print(f'pop seg_idx={seg_idx} on side={side}', 'status=signal_changed')
 
                         return
@@ -544,7 +587,7 @@ class SegmentChain:
                         ratio = r1 / r2
                         if ratio > 2.0 or ratio < 0.5:
                             self._trace_status[side_idx] = TraceStatus.RADIUS_CHANGED
-                            self._segments.pop(seg_idx)
+                            self._remove_segment(seg_idx)
                             
                             return 
 
@@ -564,7 +607,7 @@ class SegmentChain:
 
                     if loop_flag:
                         self._trace_status[side_idx] = TraceStatus.LOOP_FORMED
-                        self._segments.pop(seg_idx)
+                        self._remove_segment(seg_idx)
                         
             return
 
@@ -627,20 +670,20 @@ class SegmentChain:
     def _remove_overlap_sides(self) -> None:
         if len(self) >= 2:
             if test_seg_overlap(self._segments[1], self._segments[0], 'sides'):
-                self._segments.pop(0)
+                self._remove_segment(0)
         
         if len(self) >= 2:
             if test_seg_overlap(self._segments[-2], self._segments[-1], 'sides'):
-                self._segments.pop(-1)
+                self._remove_segment(-1)
 
     def _remove_turn_sides(self) -> None:
         if len(self) >= 2:
             if test_seg_turn_2(self._segments[1], self._segments[0], max_angle=1.0):
-                self._segments.pop(0)
+                self._remove_segment(0)
 
         if len(self) >= 2:
             if test_seg_turn_2(self._segments[-2], self._segments[-1], max_angle=1.0):
-                self._segments.pop(-1)
+                self._remove_segment(-1)
 
     def _refresh_endpoint_scores(self, signal_image: np.ndarray) -> None:
         if len(self) <= 1:
@@ -790,8 +833,7 @@ class SegmentChains:
                 )
             )
             if keep_chain:
-                for seg in chain: 
-                    label_tracing_mask(seg, self.trace_mask, dilate=True)
+                label_tracing_mask(chain, self.trace_mask, dilate=True)
                 self.append(chain)
             if progress_callback is not None:
                 progress_callback("generate_neuron_trace", seed_idx + 1, total)

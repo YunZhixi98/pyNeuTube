@@ -537,26 +537,6 @@ class StackGraph:
         np.clip(self.range, [0, 0, 0, 0, 0, 0], 
                 [width-1, width-1, height-1, height-1, depth-1, depth-1], self.range)
 
-    def _set_range_from_group_mask(self, start_pos: np.ndarray) -> None:
-        coords = np.argwhere(self.group_mask > 0)
-        start_pos = np.asarray(start_pos, dtype=int)
-
-        if coords.size == 0:
-            self.set_range(
-                int(start_pos[0]),
-                int(start_pos[0]),
-                int(start_pos[1]),
-                int(start_pos[1]),
-                int(start_pos[2]),
-                int(start_pos[2]),
-            )
-            return
-
-        z_min, y_min, x_min = coords.min(axis=0)
-        z_max, y_max, x_max = coords.max(axis=0)
-        self.set_range(int(start_pos[0]), int(x_min), int(start_pos[1]), int(y_min), int(start_pos[2]), int(z_min))
-        self.update_range(int(x_max), int(y_max), int(z_max))
-    
     from .tracing import SegmentChain, TracingSegment
     def update_stack_graph_workspace_by_seg_chain(self, seg: TracingSegment, chain: SegmentChain, signal_image: np.ndarray):
         pos = seg.center_coord
@@ -569,9 +549,20 @@ class StackGraph:
                 self.group_mask = np.zeros(signal_image.shape, dtype=np.uint8)
             else:
                 self.group_mask.fill(0)
-            for i in range(start, end + 1):
-                label_tracing_mask(chain[i], self.group_mask, dilate=True)
-            self._set_range_from_group_mask(np.rint(pos).astype(int))
+            label_tracing_mask(
+                chain,
+                self.group_mask,
+                dilate=True,
+                start=start,
+                end=end,
+            )
+            bbox = chain.get_label_bbox(start, end)
+            start_pos = np.rint(pos).astype(int)
+            if bbox is None:
+                self.set_range(int(start_pos[0]), int(start_pos[0]), int(start_pos[1]), int(start_pos[1]), int(start_pos[2]), int(start_pos[2]))
+            else:
+                self.set_range(int(start_pos[0]), int(bbox[0]), int(start_pos[1]), int(bbox[2]), int(start_pos[2]), int(bbox[4]))
+                self.update_range(int(bbox[1]), int(bbox[3]), int(bbox[5]))
         else:
             end_pos = np.rint(chain[seg_index].center_coord).astype(int)
             self.set_range(int(pos[0]), int(end_pos[0]), int(pos[1]), int(end_pos[1]), int(pos[2]), int(end_pos[2]))

@@ -155,6 +155,7 @@ def interpolate_chain(chain: SegmentChain, ref_point: np.ndarray, ort: Optional[
                 chain.insert(start_seg_idx, interp_seg)
                 index = start_seg_idx
         else:
+            # chain._invalidate_label_bbox()
             r1 = chain[start_seg_idx].radius
             r2 = chain[end_seg_idx].radius
             interp_seg = prev_seg.copy()
