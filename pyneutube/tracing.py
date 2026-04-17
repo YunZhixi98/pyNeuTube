@@ -76,6 +76,7 @@ _TRACE_PROGRESS_STAGE_LABELS = {
 }
 _TRACE_PROGRESS_REFRESH_EVERY = 100
 _TRACE_PROGRESS_MIN_INTERVAL = 0.2
+_MORPHOLOGY_STRUCTURE = np.ones((3, 3, 3), dtype=bool)
 
 
 @dataclass
@@ -308,8 +309,12 @@ def _build_binary_image(
     t0 = perf_counter()
     binary_image = threshold_filter(signal_image, float(threshold))
     binary_image = connectivity_filter(binary_image, 4, n_neighbors=26)
-    binary_image = binary_dilation(binary_image, structure=np.ones((3, 3, 3)), border_value=0)
-    binary_image = binary_erosion(binary_image, structure=np.ones((3, 3, 3)), border_value=1)
+    binary_image = binary_dilation(
+        binary_image.astype(bool, copy=False),
+        structure=_MORPHOLOGY_STRUCTURE,
+        border_value=0,
+    )
+    binary_image = binary_erosion(binary_image, structure=_MORPHOLOGY_STRUCTURE, border_value=1)
     _time_step(verbose, "binary_mask", t0)
     return np.ascontiguousarray(binary_image, dtype=np.uint8)
 

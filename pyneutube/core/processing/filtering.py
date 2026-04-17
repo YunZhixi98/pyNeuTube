@@ -367,6 +367,22 @@ def refine_local_max_threshold(
 
     return current_thresh
 
+
+def _actual_neighbor_count(kernel: np.ndarray, image_shape: tuple[int, int, int]) -> np.ndarray:
+    if kernel.shape == (3, 3, 3) and int(np.sum(kernel)) == 26 and kernel[1, 1, 1] == 0:
+        depth, height, width = image_shape
+        z = np.minimum(np.arange(depth), np.arange(depth)[::-1])[:, None, None]
+        y = np.minimum(np.arange(height), np.arange(height)[::-1])[None, :, None]
+        x = np.minimum(np.arange(width), np.arange(width)[::-1])[None, None, :]
+        z_count = np.where(z == 0, 2, 3)
+        y_count = np.where(y == 0, 2, 3)
+        x_count = np.where(x == 0, 2, 3)
+        return (z_count * y_count * x_count - 1).astype(np.uint8, copy=False)
+
+    ones = np.ones(image_shape, dtype=np.uint8)
+    return convolve(ones, kernel, mode="constant", cval=0)
+
+
 def connectivity_filter(image: np.ndarray, min_neighbors: int, 
                         kernel: Optional[np.ndarray] = None, 
                         n_neighbors: Optional[int] = None) -> np.ndarray:
@@ -395,21 +411,12 @@ def connectivity_filter(image: np.ndarray, min_neighbors: int,
     kernel, n_neighbors = check_kernel_and_neighbors(kernel, n_neighbors)
 
     binary_image = (image > 0).astype(np.uint8)
-    
-    # Calculate the actual number of neighborhoods (without considering boundaries)
-    ones = np.ones_like(binary_image, dtype=np.uint8)
-    actual_neighbors = convolve(ones, kernel, mode='constant', cval=0)
-    
-    # Calculate the number of signals in the neighborhood
-    neighbor_count = convolve(binary_image, kernel, mode='constant', cval=0)
-    
-    # apply boundary threshold：min_neighbors * actual_neighbors / self.neighbors
+    actual_neighbors = _actual_neighbor_count(kernel, binary_image.shape)
+    neighbor_count = convolve(binary_image, kernel, mode="constant", cval=0)
     threshold = (min_neighbors * actual_neighbors) / n_neighbors
-    
     mask = ((binary_image > 0) & (neighbor_count >= threshold)).astype(np.uint8)
-            
-    return mask
 
+    return mask
 
 def maximum_filter_mask1(image: np.ndarray, 
                         kernel: Optional[np.ndarray] = None,
