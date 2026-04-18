@@ -9,22 +9,10 @@
                 "NPY_1_7_API_VERSION"
             ]
         ],
-        "depends": [
-            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\arrayobject.h",
-            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\arrayscalars.h",
-            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\ndarrayobject.h",
-            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\ndarraytypes.h",
-            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include\\numpy\\ufuncobject.h"
-        ],
-        "extra_compile_args": [
-            "/O2"
-        ],
-        "include_dirs": [
-            "D:\\software\\anaconda3\\Lib\\site-packages\\numpy\\core\\include"
-        ],
+        "depends": [],
         "name": "pyneutube.tracers.pyNeuTube.filters",
         "sources": [
-            "pyneutube/tracers/pyNeuTube/filters.pyx"
+            "D:\\science\\Github\\mine\\pyNeuTube\\pyneutube\\tracers\\pyNeuTube\\filters.pyx"
         ]
     },
     "module_name": "pyneutube.tracers.pyNeuTube.filters"
