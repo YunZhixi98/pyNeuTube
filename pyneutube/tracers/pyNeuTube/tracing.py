@@ -31,13 +31,13 @@ from .tracing_utils import label_tracing_mask
 
 _SEG_FILTER = MexicanHatFilter()
 _ORIENTATION_SEG_FILTER = MexicanHatFilter(max_dist2=0.81)
-_MULTI_TRIAL_THETA_OFFSETS = (0.0, np.pi / 8, -np.pi / 8, np.pi / 16, -np.pi / 16)
-_MULTI_TRIAL_PSI_OFFSETS = (0.0, np.pi / 4, -np.pi / 4, np.pi / 8, -np.pi / 8)
+# _MULTI_TRIAL_THETA_OFFSETS = (0.0, np.pi / 8, -np.pi / 8, np.pi / 16, -np.pi / 16)
+# _MULTI_TRIAL_PSI_OFFSETS = (0.0, np.pi / 4, -np.pi / 4, np.pi / 8, -np.pi / 8)
 
 
-# zx: backup
+# # zx: backup
 # @lru_cache(maxsize=16)
-# def _orientation_search_schedule(length: float) -> tuple[tuple[float, tuple[float, ...]], ...]:
+# def _orientation_search_schedule(length: float = Defaults.SEG_LENGTH) -> tuple[tuple[float, tuple[float, ...]], ...]:
 #     schedule = []
 #     for theta in np.arange(0.1, np.pi * 0.75, 0.2):
 #         psi_step = 2.0 / length / np.sin(theta)
@@ -184,12 +184,15 @@ class TracingSegment(BaseTracingSegment):
         """
         Perform mean shift using filtered value of image intensity
         """
-        coords_3d, _, weights_3d = _SEG_FILTER(self)
+        coords_3d, _, _ = _SEG_FILTER(self)
         intensities = sample_voxels(image, coords_3d)
-        coords_3d_weights = intensities * weights_3d
-        if np.sum(coords_3d_weights) != 0:
-            centroid = np.average(coords_3d, weights=coords_3d_weights, axis=0)
-            self._set_coordinate(centroid, 'center')
+        valid_mask = np.isfinite(intensities)
+        if np.any(valid_mask):
+            valid_coords = coords_3d[valid_mask]
+            valid_intensities = intensities[valid_mask]
+            if np.sum(valid_intensities) != 0:
+                centroid = np.average(valid_coords, weights=valid_intensities, axis=0)
+                self._set_coordinate(centroid, 'center')
 
         return
     

@@ -318,7 +318,7 @@ cpdef double correlation_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
         sum_y2 += y * y
 
     if sum_x2 == 0 or sum_y2 == 0:
-        return -1.0
+        return 0.0
 
     return sum_xy / (sqrt(sum_x2) * sqrt(sum_y2))
 
