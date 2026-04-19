@@ -45,6 +45,15 @@ def _seed_priority_order(coords: np.ndarray, values: np.ndarray) -> np.ndarray:
     return np.lexsort((xyz_coords[:, 2], xyz_coords[:, 1], xyz_coords[:, 0], -priority))
 
 
+def _filter_interior_seed_coords(coords: np.ndarray, shape: tuple[int, ...]) -> np.ndarray:
+    if coords.size == 0:
+        return coords
+
+    upper_bound = np.asarray(shape, dtype=coords.dtype) - 1
+    valid = np.all(coords > 0, axis=1) & np.all(coords < upper_bound, axis=1)
+    return coords[valid]
+
+
 _SEED_SCORE_IMAGE = None
 _SEED_SCORE_SHM = None
 _PARALLEL_SCORE_WARNING_EMITTED = False
@@ -258,8 +267,7 @@ class Seeds:
         ).astype(np.float64)
 
         dt_local_max_mask = maximum_filter_mask(dt_image, verbose=max(verbose - 1, 0))
-        coords = np.argwhere(dt_local_max_mask)
-
+        coords = _filter_interior_seed_coords(np.argwhere(dt_local_max_mask), dt_image.shape)
         coords_values = dt_image[tuple(coords.T)]
 
         # arg_idx = _seed_priority_order(coords, coords_values)

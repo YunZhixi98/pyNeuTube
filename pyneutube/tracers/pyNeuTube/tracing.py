@@ -24,7 +24,7 @@ from .filters import MexicanHatFilter, correlation_score, dot_score, mean_intens
 from .tracing_base import BaseTracingSegment
 from .seg_utils import set_coordinates, set_orientation
 from .geometry import point_in_seg
-from .optimization import optimize_segment
+from .optimization import optimize_segment, optimize_segment_C
 from .tracing_utils import label_tracing_mask
 # from filters0 import correlation_score, mean_intensity_score
 
@@ -257,7 +257,7 @@ class TracingSegment(BaseTracingSegment):
 
         max_x = [self.radius, self.theta, self.psi, self.scale]
 
-        max_params = optimize_segment(self, image, score_func, var_init=max_x)
+        max_params = optimize_segment_C(self, image, score_func, var_init=max_x)
 
         if max_params.success:
             self.radius, self.theta, self.psi, self.scale = max_params.x
