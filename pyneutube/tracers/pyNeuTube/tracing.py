@@ -545,11 +545,18 @@ class SegmentChain:
                     self._remove_segment(seg_idx)  # delete this segment
                     # print(f'pop seg_idx={seg_idx} on side={side}, score={seg.score}')
                     return
+                
+                radius = seg.radius * sqrt(seg.scale)
 
-                if seg.radius > 25:
+                if radius > 25:
                     self._trace_status[side_idx] = TraceStatus.SEG_TOO_THICK
                     self._remove_segment(seg_idx)
-                    # print(f'pop seg_idx={seg_idx} on side={side}, radius={seg.radius}')
+                    return
+
+                if radius < Defaults.MIN_SEG_RADIUS:
+                    self._trace_status[side_idx] = TraceStatus.SEG_TOO_THIN
+                    self._remove_segment(seg_idx)
+                    return
 
                 if len(self) >= 2:
                     # 
@@ -576,12 +583,17 @@ class SegmentChain:
 
                     #
                     loop_flag = False
+                    endpoint_flag = "start" if side_idx == 0 else "end"
+                    opposite_endpoint_flag = "end" if side_idx == 0 else "start"
                     for tmpseg in self._segments[seg_idx+1:len(self)+seg_idx][::1 if side_idx==0 else -1]:
-                        loop_flag = test_seg_overlap(tmpseg, seg, seg2_coord_flag='start' if side_idx==0 else 'end')
+                        if tmpseg is seg_prev:
+                            continue
+
+                        loop_flag = test_seg_overlap(tmpseg, seg, seg2_coord_flag=endpoint_flag)
                         if loop_flag:
                             break
                         if test_seg_overlap(tmpseg, seg, seg2_coord_flag='center'):
-                            if test_seg_overlap(tmpseg, seg, seg2_coord_flag='end' if side_idx==0 else 'start'):
+                            if not test_seg_overlap(tmpseg, seg, seg2_coord_flag=opposite_endpoint_flag):
                                 loop_flag = True
                                 break
                             elif test_seg_turn(tmpseg, seg, max_angle=np.pi/2):

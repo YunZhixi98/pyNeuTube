@@ -217,7 +217,6 @@ class ChainConnector:
         self,
         chain1: SegmentChain,
         chain2: SegmentChain,
-        signal_image,
         conn: Neurocomp_Conn,
         *,
         chain2_max_radius: float | None = None,
@@ -235,7 +234,7 @@ class ChainConnector:
             tail.length = 2.0
 
         chain2_segments = chain2._segments
-        min_sdist = min(
+        min_center_dist = min(
             seg_chain_dist_upper_bound(chain2, head),
             seg_chain_dist_upper_bound(chain2, tail),
         )
@@ -243,11 +242,12 @@ class ChainConnector:
         if chain2_max_radius is None:
             chain2_max_radius = max((seg.radius for seg in chain2_segments), default=0.0)
         max_radius = max(head.radius, tail.radius, chain2_max_radius)
-        if min_sdist > 2*np.sqrt(max_radius**2+((Defaults.SEG_LENGTH-1)/2)**2)+self.dist_thresh:
+        if min_center_dist > 2*np.sqrt(max_radius**2+((Defaults.SEG_LENGTH-1)/2)**2)+self.dist_thresh:
             conn.mode = ConnectorType.NEUROCOMP_CONN_NONE
             conn.cost = 10.0
             return False
 
+        min_sdist = float("inf")
         conn.min_pdist = float("inf")
         head_ball_radius = head._set_ball_radius()
         tail_ball_radius = tail._set_ball_radius()
@@ -260,7 +260,7 @@ class ChainConnector:
                 seg_ball_radius = seg._set_ball_radius()
 
             seg_center = seg.center_coord
-            if (norm(seg_center - head_center) - seg_ball_radius - head_ball_radius) < min_sdist:
+            if (norm(seg_center - head_center) - seg_ball_radius - head_ball_radius) < min_center_dist:
                 surface_dist, tmp_intersection_p = seg_to_seg_surface(head, seg)
                 update = False
                 if surface_dist < min_sdist:
@@ -278,7 +278,7 @@ class ChainConnector:
                     conn.info[1] = i
                     conn.pos = tmp_intersection_p
 
-            if (norm(seg_center - tail_center) - seg_ball_radius - tail_ball_radius) < min_sdist:
+            if (norm(seg_center - tail_center) - seg_ball_radius - tail_ball_radius) < min_center_dist:
                 surface_dist, tmp_intersection_p = seg_to_seg_surface(tail, seg)
                 update = False
                 if surface_dist < min_sdist:
@@ -523,7 +523,6 @@ class ChainConnector:
                 is_possible_connect = self.connect_test(
                     chain1,
                     chain2,
-                    signal_image,
                     conn,
                     chain2_max_radius=None if chain2_stats is None else chain2_stats["max_radius"],
                 )
