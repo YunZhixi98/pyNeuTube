@@ -700,7 +700,7 @@ class SegmentChain:
         while self._trace_status[1] == TraceStatus.NORMAL and len(self) < self._max_seg_num:
             new_seg = self._init_next_seg(side='tail')
             success = new_seg.fit_segment(signal_image)
-            #print(len(self), self[-1],'\n',new_seg,'\n', self._trace_status[1])
+            # print(len(self), self[-1],'\n',new_seg,'\n', self._trace_status[1])
 
             if success:
                 self.append(new_seg)
@@ -892,11 +892,7 @@ def test_seg_overlap(seg1: TracingSegment, seg2: TracingSegment, seg2_coord_flag
     elif seg2_coord_flag == 'sides':
         seg2_coords = (seg2.start_coord, seg2.end_coord)
 
-    flags = [False, False]
-    for i in range(len(seg2_coords)):
-        flags[i] = point_in_seg(seg1, seg2_coords[i])
-
-    return all(flags)
+    return all(point_in_seg(seg1, coord) for coord in seg2_coords)
 
 
 def test_seg_turn(seg1: TracingSegment, seg2: TracingSegment, max_angle: float = 1) -> bool:
