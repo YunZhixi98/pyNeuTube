@@ -16,7 +16,7 @@ cimport numpy as cnp
 from scipy.ndimage import map_coordinates
 cimport cython
 
-from libc.math cimport floor, ceil
+from libc.math cimport NAN, ceil, floor
 
 cnp.import_array()
 
@@ -78,7 +78,7 @@ cdef inline double trilinear_interpolate(double[:, :, ::1] image,
     
     # Check bounds
     if x0 < 0 or x1 >= width or y0 < 0 or y1 >= height or z0 < 0 or z1 >= depth:
-        return 0.0
+        return NAN
     
     # Calculate weights
     wx = x - x0
@@ -113,7 +113,7 @@ cdef inline double nearest_neighbor(double[:, ::1] image, double x, double y) no
     iy = <int>(y + 0.5)
     
     if ix < 0 or ix >= width or iy < 0 or iy >= height:
-        return 0.0
+        return NAN
     
     return image[iy, ix]
 
@@ -169,7 +169,7 @@ def sample_voxels(double[:, :, ::1] image,
                     iz >= 0 and iz < depth):
                     result_view[i] = image[iz, iy, ix]
                 else:
-                    result_view[i] = 0.0
+                    result_view[i] = NAN
         else:
             # Trilinear interpolation
             for i in range(n_points):
@@ -179,5 +179,4 @@ def sample_voxels(double[:, :, ::1] image,
                 result_view[i] = trilinear_interpolate(image, x, y, z, width, height, depth)
     
     return result
-
 

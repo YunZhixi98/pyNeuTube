@@ -20,8 +20,8 @@ from pyneutube.core.processing.sampling import sample_voxels
 from pyneutube.core.processing.transform import rotate_by_theta_psi, normalize_euler_zx
 
 from .config import TraceStatus, Defaults, TraceDirection
+from .filters import MexicanHatFilter, correlation_score, dot_score, mean_intensity_score
 from .tracing_base import BaseTracingSegment
-from .filters import MexicanHatFilter, correlation_score, mean_intensity_score
 from .seg_utils import set_coordinates, set_orientation
 from .geometry import point_in_seg
 from .optimization import optimize_segment
@@ -252,29 +252,9 @@ class TracingSegment(BaseTracingSegment):
         return
 
     def fit_segment(self, image: np.ndarray,
-                    score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = correlation_score,
-                    multi_trials: bool = False) -> bool:
+                    score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = dot_score,
+                    ) -> bool:
 
-        # if multi_trials and self.radius <= (Defaults.SEG_LENGTH - 1) / 2:
-        #     thetas = [self.theta + offset for offset in _MULTI_TRIAL_THETA_OFFSETS]
-        #     psis = [self.psi + offset for offset in _MULTI_TRIAL_PSI_OFFSETS]
-
-        #     tmpseg = self.copy()
-        #     i = 0
-        #     for theta in thetas:
-        #         for psi in psis:
-        #             x_init = [self.radius, theta, psi, self.scale]
-        #             tmpseg.theta, tmpseg.psi = x_init[1:3]
-        #             tmpseg._set_orientation()
-        #             score, _ = tmpseg.score_segment(image, [correlation_score, mean_intensity_score])
-        #             if i == 0:
-        #                 max_score = score
-        #                 max_x = x_init
-        #             elif score > max_score:
-        #                 max_score = score
-        #                 max_x = x_init
-        #             i += 1
-        # else:
         max_x = [self.radius, self.theta, self.psi, self.scale]
 
         max_params = optimize_segment(self, image, score_func, var_init=max_x)
@@ -707,7 +687,7 @@ class SegmentChain:
         # forward trace
         while self._trace_status[1] == TraceStatus.NORMAL and len(self) < self._max_seg_num:
             new_seg = self._init_next_seg(side='tail')
-            success = new_seg.fit_segment(signal_image, multi_trials=True)
+            success = new_seg.fit_segment(signal_image)
             #print(len(self), self[-1],'\n',new_seg,'\n', self._trace_status[1])
 
             if success:
@@ -722,7 +702,7 @@ class SegmentChain:
         if self._trace_status[0] == TraceStatus.NORMAL:
             while self._trace_status[0] == TraceStatus.NORMAL and len(self) < self._max_seg_num:
                 new_seg = self._init_next_seg(side='head')
-                success = new_seg.fit_segment(signal_image, multi_trials=True)
+                success = new_seg.fit_segment(signal_image)
                 new_seg.flip_segment()
                 # print(len(self), self[0],'\n',new_seg,'\n', self._trace_status[0])
 

@@ -6,7 +6,7 @@ from scipy.optimize import OptimizeResult, minimize
 from pyneutube.core.processing.sampling import sample_voxels
 
 from .config import Defaults, Optimization
-from .filters import MexicanHatFilter, correlation_score
+from .filters import MexicanHatFilter, correlation_score, dot_score
 from .tracing_base import BaseTracingSegment
 
 _OPTIMIZATION_SEG_FILTER = MexicanHatFilter()
@@ -15,7 +15,7 @@ _OPTIMIZATION_SEG_FILTER = MexicanHatFilter()
 def optimize_segment(
     seg: BaseTracingSegment,
     image: np.ndarray,
-    score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = correlation_score,
+    score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = dot_score,
     var_init=None,
 ):
     """Fit radius, orientation, and scale for a tracing segment."""
@@ -63,7 +63,7 @@ def optimize_segment(
 def optimize_segment_C(
     seg: BaseTracingSegment,
     image: np.ndarray,
-    score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = correlation_score,
+    score_func: Callable[[np.ndarray, np.ndarray], Union[np.ndarray, float]] = dot_score,
     var_init=None,
 ):
     """Fit radius, orientation, and scale using the C-style optimizer port."""
@@ -89,7 +89,7 @@ class SegmentOptimizer:
         self,
         image: np.ndarray,
         *,
-        score_func: Callable[[np.ndarray, np.ndarray], float] = correlation_score,
+        score_func: Callable[[np.ndarray, np.ndarray], float] = dot_score,
         maxiter: int = Optimization.MAX_ITER,
         min_gradient: float = 1e-3,
         min_direction: float = 1e-3,

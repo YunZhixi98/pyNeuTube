@@ -6,7 +6,7 @@ from abc import abstractmethod
 import numpy as np
 cimport numpy as np
 cimport cython
-from libc.math cimport sqrt, exp, ceil, fabs
+from libc.math cimport ceil, exp, fabs, isnan, sqrt
 
 from typing import Literal, Optional
 
@@ -302,15 +302,20 @@ cpdef double correlation_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
         double[:] ii_view = image_intensities
         double[:] fw_view = filter_weights
 
-    # Calculate means
+    # Match NeuTube's darray_corrcoef_n(): ignore NaNs in sums, but keep
+    # the full array length as the mean denominator.
     for i in range(n):
-        sum_x += ii_view[i]
-        sum_y += fw_view[i]
+        if not isnan(ii_view[i]):
+            sum_x += ii_view[i]
+        if not isnan(fw_view[i]):
+            sum_y += fw_view[i]
     mean_x = sum_x / n
     mean_y = sum_y / n
 
-    # Calculate covariance and variances
+    # Calculate covariance and variances on valid pairs only.
     for i in range(n):
+        if isnan(ii_view[i]) or isnan(fw_view[i]):
+            continue
         x = ii_view[i] - mean_x
         y = fw_view[i] - mean_y
         sum_xy += x * y
@@ -321,6 +326,25 @@ cpdef double correlation_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
         return 0.0
 
     return sum_xy / (sqrt(sum_x2) * sqrt(sum_y2))
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef double dot_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
+                       np.ndarray[DTYPE_t, ndim=1] filter_weights):
+    """Compute NeuTube-style dot product, ignoring invalid samples."""
+    cdef:
+        Py_ssize_t i, n = image_intensities.shape[0]
+        double score = 0.0
+        double[:] ii_view = image_intensities
+        double[:] fw_view = filter_weights
+
+    for i in range(n):
+        if isnan(ii_view[i]) or isnan(fw_view[i]):
+            continue
+        score += ii_view[i] * fw_view[i]
+
+    return score
 
 # cpdef double correlation_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
 #                              np.ndarray[DTYPE_t, ndim=1] filter_weights):
@@ -343,7 +367,7 @@ cpdef double mean_intensity_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
         double[:] ii_view = image_intensities
 
     for i in range(n):
-        if fw_view[i] > 0:
+        if fw_view[i] > 0 and not isnan(ii_view[i]):
             total += ii_view[i]
             count += 1
 

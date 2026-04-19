@@ -18411,7 +18411,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_4core_10processing_8sampling_tril
  * 
  *     # Check bounds
  *     if x0 < 0 or x1 >= width or y0 < 0 or y1 >= height or z0 < 0 or z1 >= depth:             # <<<<<<<<<<<<<<
- *         return 0.0
+ *         return NAN
  * 
 */
   __pyx_t_2 = (__pyx_v_x0 < 0);
@@ -18452,18 +18452,18 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_4core_10processing_8sampling_tril
     /* "pyneutube/core/processing/sampling.pyx":81
  *     # Check bounds
  *     if x0 < 0 or x1 >= width or y0 < 0 or y1 >= height or z0 < 0 or z1 >= depth:
- *         return 0.0             # <<<<<<<<<<<<<<
+ *         return NAN             # <<<<<<<<<<<<<<
  * 
  *     # Calculate weights
 */
-    __pyx_r = 0.0;
+    __pyx_r = NAN;
     goto __pyx_L0;
 
     /* "pyneutube/core/processing/sampling.pyx":80
  * 
  *     # Check bounds
  *     if x0 < 0 or x1 >= width or y0 < 0 or y1 >= height or z0 < 0 or z1 >= depth:             # <<<<<<<<<<<<<<
- *         return 0.0
+ *         return NAN
  * 
 */
   }
@@ -18664,7 +18664,7 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_4core_10processing_8sampling_near
  *     iy = <int>(y + 0.5)
  * 
  *     if ix < 0 or ix >= width or iy < 0 or iy >= height:             # <<<<<<<<<<<<<<
- *         return 0.0
+ *         return NAN
  * 
 */
   __pyx_t_2 = (__pyx_v_ix < 0);
@@ -18693,24 +18693,24 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_4core_10processing_8sampling_near
     /* "pyneutube/core/processing/sampling.pyx":116
  * 
  *     if ix < 0 or ix >= width or iy < 0 or iy >= height:
- *         return 0.0             # <<<<<<<<<<<<<<
+ *         return NAN             # <<<<<<<<<<<<<<
  * 
  *     return image[iy, ix]
 */
-    __pyx_r = 0.0;
+    __pyx_r = NAN;
     goto __pyx_L0;
 
     /* "pyneutube/core/processing/sampling.pyx":115
  *     iy = <int>(y + 0.5)
  * 
  *     if ix < 0 or ix >= width or iy < 0 or iy >= height:             # <<<<<<<<<<<<<<
- *         return 0.0
+ *         return NAN
  * 
 */
   }
 
   /* "pyneutube/core/processing/sampling.pyx":118
- *         return 0.0
+ *         return NAN
  * 
  *     return image[iy, ix]             # <<<<<<<<<<<<<<
  * 
@@ -19174,7 +19174,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_8sampling_sample_voxels(
  *                     iz >= 0 and iz < depth):
  *                     result_view[i] = image[iz, iy, ix]             # <<<<<<<<<<<<<<
  *                 else:
- *                     result_view[i] = 0.0
+ *                     result_view[i] = NAN
 */
               __pyx_t_14 = __pyx_v_iz;
               __pyx_t_13 = __pyx_v_iy;
@@ -19195,13 +19195,13 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_8sampling_sample_voxels(
             /* "pyneutube/core/processing/sampling.pyx":172
  *                     result_view[i] = image[iz, iy, ix]
  *                 else:
- *                     result_view[i] = 0.0             # <<<<<<<<<<<<<<
+ *                     result_view[i] = NAN             # <<<<<<<<<<<<<<
  *         else:
  *             # Trilinear interpolation
 */
             /*else*/ {
               __pyx_t_16 = __pyx_v_i;
-              *((double *) ( /* dim=0 */ (__pyx_v_result_view.data + __pyx_t_16 * __pyx_v_result_view.strides[0]) )) = 0.0;
+              *((double *) ( /* dim=0 */ (__pyx_v_result_view.data + __pyx_t_16 * __pyx_v_result_view.strides[0]) )) = NAN;
             }
             __pyx_L9:;
           }
@@ -19303,7 +19303,6 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_8sampling_sample_voxels(
  *                 result_view[i] = trilinear_interpolate(image, x, y, z, width, height, depth)
  * 
  *     return result             # <<<<<<<<<<<<<<
- * 
  * 
 */
   __Pyx_XDECREF(__pyx_r);
@@ -21377,7 +21376,7 @@ __Pyx_RefNannySetupContext("PyInit_sampling", 0);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "pyneutube/core/processing/sampling.pyx":21
- * from libc.math cimport floor, ceil
+ * from libc.math cimport NAN, ceil, floor
  * 
  * cnp.import_array()             # <<<<<<<<<<<<<<
  * 
