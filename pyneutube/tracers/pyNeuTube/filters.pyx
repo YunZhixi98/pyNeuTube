@@ -231,18 +231,16 @@ cdef class MexicanHatFilter(SegmentFilter):
             for i in range(n):
                 weights[i] /= sum_abs_weights
         
-        if rotate and (seg.theta != 0 or seg.psi != 0):
-            # Add z coordinate and rotate
+        if rotate:
             with nogil:
                 for i in range(n):
                     coords_3d[i,0] = coords[i,0]
                     coords_3d[i,1] = coords[i,1]
                     coords_3d[i,2] = z
-            # coords_3d[:,:2] = coords
-            # coords_3d[:,2] = z
-            coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)
+            if seg.theta != 0 or seg.psi != 0:
+                coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)
             coords = coords_3d
-        
+
         return coords, dist2, weights
     # cpdef tuple _discrete_field_2d_scaling(self, object seg, bint rotate=False, double z=0):
     #     """Scale 2D coordinates according to segment parameters."""

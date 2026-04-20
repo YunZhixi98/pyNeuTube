@@ -22511,9 +22511,9 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
   Py_ssize_t __pyx_t_14;
   int __pyx_t_15;
   Py_ssize_t __pyx_t_16;
-  int __pyx_t_17;
+  Py_ssize_t __pyx_t_17;
   Py_ssize_t __pyx_t_18;
-  Py_ssize_t __pyx_t_19;
+  int __pyx_t_19;
   double __pyx_t_20;
   struct __pyx_opt_args_9pyneutube_4core_10processing_9transform_rotate_by_theta_psi_fast __pyx_t_21;
   int __pyx_lineno = 0;
@@ -23118,7 +23118,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
  *             for i in range(n):
  *                 weights[i] /= sum_abs_weights             # <<<<<<<<<<<<<<
  * 
- *         if rotate and (seg.theta != 0 or seg.psi != 0):
+ *         if rotate:
 */
           __pyx_t_14 = __pyx_v_i;
           *((double *) ( /* dim=0 */ (__pyx_v_weights.data + __pyx_t_14 * __pyx_v_weights.strides[0]) )) /= __pyx_v_sum_abs_weights;
@@ -23145,35 +23145,15 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
   /* "pyneutube/tracers/pyNeuTube/filters.pyx":234
  *                 weights[i] /= sum_abs_weights
  * 
- *         if rotate and (seg.theta != 0 or seg.psi != 0):             # <<<<<<<<<<<<<<
- *             # Add z coordinate and rotate
+ *         if rotate:             # <<<<<<<<<<<<<<
  *             with nogil:
+ *                 for i in range(n):
 */
   if (__pyx_v_rotate) {
-  } else {
-    __pyx_t_15 = __pyx_v_rotate;
-    goto __pyx_L13_bool_binop_done;
-  }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_17 = (__Pyx_PyLong_BoolNeObjC(__pyx_t_2, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_17 < 0))) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!__pyx_t_17) {
-  } else {
-    __pyx_t_15 = __pyx_t_17;
-    goto __pyx_L13_bool_binop_done;
-  }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_17 = (__Pyx_PyLong_BoolNeObjC(__pyx_t_2, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_17 < 0))) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_15 = __pyx_t_17;
-  __pyx_L13_bool_binop_done:;
-  if (__pyx_t_15) {
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":236
- *         if rotate and (seg.theta != 0 or seg.psi != 0):
- *             # Add z coordinate and rotate
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":235
+ * 
+ *         if rotate:
  *             with nogil:             # <<<<<<<<<<<<<<
  *                 for i in range(n):
  *                     coords_3d[i,0] = coords[i,0]
@@ -23184,8 +23164,8 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
         __Pyx_FastGIL_Remember();
         /*try:*/ {
 
-          /* "pyneutube/tracers/pyNeuTube/filters.pyx":237
- *             # Add z coordinate and rotate
+          /* "pyneutube/tracers/pyNeuTube/filters.pyx":236
+ *         if rotate:
  *             with nogil:
  *                 for i in range(n):             # <<<<<<<<<<<<<<
  *                     coords_3d[i,0] = coords[i,0]
@@ -23196,7 +23176,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
           for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
             __pyx_v_i = __pyx_t_13;
 
-            /* "pyneutube/tracers/pyNeuTube/filters.pyx":238
+            /* "pyneutube/tracers/pyNeuTube/filters.pyx":237
  *             with nogil:
  *                 for i in range(n):
  *                     coords_3d[i,0] = coords[i,0]             # <<<<<<<<<<<<<<
@@ -23205,29 +23185,29 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
 */
             __pyx_t_14 = __pyx_v_i;
             __pyx_t_16 = 0;
-            __pyx_t_18 = __pyx_v_i;
-            __pyx_t_19 = 0;
-            *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords_3d.data + __pyx_t_18 * __pyx_v_coords_3d.strides[0]) )) + __pyx_t_19)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords.data + __pyx_t_14 * __pyx_v_coords.strides[0]) )) + __pyx_t_16)) )));
+            __pyx_t_17 = __pyx_v_i;
+            __pyx_t_18 = 0;
+            *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords_3d.data + __pyx_t_17 * __pyx_v_coords_3d.strides[0]) )) + __pyx_t_18)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords.data + __pyx_t_14 * __pyx_v_coords.strides[0]) )) + __pyx_t_16)) )));
 
-            /* "pyneutube/tracers/pyNeuTube/filters.pyx":239
+            /* "pyneutube/tracers/pyNeuTube/filters.pyx":238
  *                 for i in range(n):
  *                     coords_3d[i,0] = coords[i,0]
  *                     coords_3d[i,1] = coords[i,1]             # <<<<<<<<<<<<<<
  *                     coords_3d[i,2] = z
- *             # coords_3d[:,:2] = coords
+ *             if seg.theta != 0 or seg.psi != 0:
 */
             __pyx_t_16 = __pyx_v_i;
             __pyx_t_14 = 1;
-            __pyx_t_19 = __pyx_v_i;
-            __pyx_t_18 = 1;
-            *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords_3d.data + __pyx_t_19 * __pyx_v_coords_3d.strides[0]) )) + __pyx_t_18)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords.data + __pyx_t_16 * __pyx_v_coords.strides[0]) )) + __pyx_t_14)) )));
+            __pyx_t_18 = __pyx_v_i;
+            __pyx_t_17 = 1;
+            *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords_3d.data + __pyx_t_18 * __pyx_v_coords_3d.strides[0]) )) + __pyx_t_17)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_coords.data + __pyx_t_16 * __pyx_v_coords.strides[0]) )) + __pyx_t_14)) )));
 
-            /* "pyneutube/tracers/pyNeuTube/filters.pyx":240
+            /* "pyneutube/tracers/pyNeuTube/filters.pyx":239
  *                     coords_3d[i,0] = coords[i,0]
  *                     coords_3d[i,1] = coords[i,1]
  *                     coords_3d[i,2] = z             # <<<<<<<<<<<<<<
- *             # coords_3d[:,:2] = coords
- *             # coords_3d[:,2] = z
+ *             if seg.theta != 0 or seg.psi != 0:
+ *                 coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)
 */
             __pyx_t_14 = __pyx_v_i;
             __pyx_t_16 = 2;
@@ -23235,9 +23215,9 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
           }
         }
 
-        /* "pyneutube/tracers/pyNeuTube/filters.pyx":236
- *         if rotate and (seg.theta != 0 or seg.psi != 0):
- *             # Add z coordinate and rotate
+        /* "pyneutube/tracers/pyNeuTube/filters.pyx":235
+ * 
+ *         if rotate:
  *             with nogil:             # <<<<<<<<<<<<<<
  *                 for i in range(n):
  *                     coords_3d[i,0] = coords[i,0]
@@ -23246,41 +23226,74 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
           /*normal exit:*/{
             __Pyx_FastGIL_Forget();
             PyEval_RestoreThread(_save);
-            goto __pyx_L18;
+            goto __pyx_L15;
           }
-          __pyx_L18:;
+          __pyx_L15:;
         }
     }
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":243
- *             # coords_3d[:,:2] = coords
- *             # coords_3d[:,2] = z
- *             coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)             # <<<<<<<<<<<<<<
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":240
+ *                     coords_3d[i,1] = coords[i,1]
+ *                     coords_3d[i,2] = z
+ *             if seg.theta != 0 or seg.psi != 0:             # <<<<<<<<<<<<<<
+ *                 coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)
+ *             coords = coords_3d
+*/
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_19 = (__Pyx_PyLong_BoolNeObjC(__pyx_t_2, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_19 < 0))) __PYX_ERR(0, 240, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (!__pyx_t_19) {
+    } else {
+      __pyx_t_15 = __pyx_t_19;
+      goto __pyx_L19_bool_binop_done;
+    }
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_19 = (__Pyx_PyLong_BoolNeObjC(__pyx_t_2, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_19 < 0))) __PYX_ERR(0, 240, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_15 = __pyx_t_19;
+    __pyx_L19_bool_binop_done:;
+    if (__pyx_t_15) {
+
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":241
+ *                     coords_3d[i,2] = z
+ *             if seg.theta != 0 or seg.psi != 0:
+ *                 coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)             # <<<<<<<<<<<<<<
  *             coords = coords_3d
  * 
 */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_11 = __Pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_20 = __Pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_20 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_21.__pyx_n = 1;
-    __pyx_t_21.center = Py_None;
-    __pyx_t_2 = __pyx_f_9pyneutube_4core_10processing_9transform_rotate_by_theta_psi_fast(__pyx_v_coords_3d, __pyx_t_11, __pyx_t_20, 0, &__pyx_t_21); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_2, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_XCLEAR_MEMVIEW(&__pyx_v_coords_3d, 1);
-    __pyx_v_coords_3d = __pyx_t_9;
-    __pyx_t_9.memview = NULL;
-    __pyx_t_9.data = NULL;
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_11 = __Pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_20 = __Pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_20 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_21.__pyx_n = 1;
+      __pyx_t_21.center = Py_None;
+      __pyx_t_2 = __pyx_f_9pyneutube_4core_10processing_9transform_rotate_by_theta_psi_fast(__pyx_v_coords_3d, __pyx_t_11, __pyx_t_20, 0, &__pyx_t_21); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_2, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 241, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __PYX_XCLEAR_MEMVIEW(&__pyx_v_coords_3d, 1);
+      __pyx_v_coords_3d = __pyx_t_9;
+      __pyx_t_9.memview = NULL;
+      __pyx_t_9.data = NULL;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":244
- *             # coords_3d[:,2] = z
- *             coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":240
+ *                     coords_3d[i,1] = coords[i,1]
+ *                     coords_3d[i,2] = z
+ *             if seg.theta != 0 or seg.psi != 0:             # <<<<<<<<<<<<<<
+ *                 coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)
+ *             coords = coords_3d
+*/
+    }
+
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":242
+ *             if seg.theta != 0 or seg.psi != 0:
+ *                 coords_3d = rotate_by_theta_psi_fast(coords_3d, seg.theta, seg.psi, None)
  *             coords = coords_3d             # <<<<<<<<<<<<<<
  * 
  *         return coords, dist2, weights
@@ -23292,13 +23305,13 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
     /* "pyneutube/tracers/pyNeuTube/filters.pyx":234
  *                 weights[i] /= sum_abs_weights
  * 
- *         if rotate and (seg.theta != 0 or seg.psi != 0):             # <<<<<<<<<<<<<<
- *             # Add z coordinate and rotate
+ *         if rotate:             # <<<<<<<<<<<<<<
  *             with nogil:
+ *                 for i in range(n):
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":246
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":244
  *             coords = coords_3d
  * 
  *         return coords, dist2, weights             # <<<<<<<<<<<<<<
@@ -23306,20 +23319,20 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFil
  *     #     """Scale 2D coordinates according to segment parameters."""
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_coords, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_coords, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_dist2, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_dist2, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_weights, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_weights, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 246, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 244, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 246, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 244, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_1) != (0)) __PYX_ERR(0, 246, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_1) != (0)) __PYX_ERR(0, 244, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_6 = 0;
   __pyx_t_1 = 0;
@@ -23726,7 +23739,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_16MexicanHatFi
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/filters.pyx":292
+/* "pyneutube/tracers/pyNeuTube/filters.pyx":290
  *     #     return coords, dist2, weights
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -23781,26 +23794,26 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 292, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 290, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 292, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 290, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":298
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":296
  *     """Compute correlation coefficient."""
  *     cdef:
  *         Py_ssize_t i, n = image_intensities.shape[0]             # <<<<<<<<<<<<<<
  *         double sum_xy = 0.0, sum_x = 0.0, sum_y = 0.0
  *         double sum_x2 = 0.0, sum_y2 = 0.0
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image_intensities)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image_intensities)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 296, __pyx_L1_error)
   __pyx_v_n = (__pyx_t_1[0]);
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":299
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":297
  *     cdef:
  *         Py_ssize_t i, n = image_intensities.shape[0]
  *         double sum_xy = 0.0, sum_x = 0.0, sum_y = 0.0             # <<<<<<<<<<<<<<
@@ -23811,7 +23824,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
   __pyx_v_sum_x = 0.0;
   __pyx_v_sum_y = 0.0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":300
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":298
  *         Py_ssize_t i, n = image_intensities.shape[0]
  *         double sum_xy = 0.0, sum_x = 0.0, sum_y = 0.0
  *         double sum_x2 = 0.0, sum_y2 = 0.0             # <<<<<<<<<<<<<<
@@ -23821,31 +23834,31 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
   __pyx_v_sum_x2 = 0.0;
   __pyx_v_sum_y2 = 0.0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":302
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":300
  *         double sum_x2 = 0.0, sum_y2 = 0.0
  *         double x, y, mean_x, mean_y
  *         double[:] ii_view = image_intensities             # <<<<<<<<<<<<<<
  *         double[:] fw_view = filter_weights
  * 
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 300, __pyx_L1_error)
   __pyx_v_ii_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":303
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":301
  *         double x, y, mean_x, mean_y
  *         double[:] ii_view = image_intensities
  *         double[:] fw_view = filter_weights             # <<<<<<<<<<<<<<
  * 
  *     # Match NeuTube's darray_corrcoef_n(): ignore NaNs in sums, but keep
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 301, __pyx_L1_error)
   __pyx_v_fw_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":307
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":305
  *     # Match NeuTube's darray_corrcoef_n(): ignore NaNs in sums, but keep
  *     # the full array length as the mean denominator.
  *     for i in range(n):             # <<<<<<<<<<<<<<
@@ -23857,7 +23870,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_i = __pyx_t_5;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":308
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":306
  *     # the full array length as the mean denominator.
  *     for i in range(n):
  *         if not isnan(ii_view[i]):             # <<<<<<<<<<<<<<
@@ -23868,7 +23881,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     __pyx_t_7 = (!isnan((*((double *) ( /* dim=0 */ (__pyx_v_ii_view.data + __pyx_t_6 * __pyx_v_ii_view.strides[0]) )))));
     if (__pyx_t_7) {
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":309
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":307
  *     for i in range(n):
  *         if not isnan(ii_view[i]):
  *             sum_x += ii_view[i]             # <<<<<<<<<<<<<<
@@ -23878,7 +23891,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
       __pyx_t_6 = __pyx_v_i;
       __pyx_v_sum_x = (__pyx_v_sum_x + (*((double *) ( /* dim=0 */ (__pyx_v_ii_view.data + __pyx_t_6 * __pyx_v_ii_view.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":308
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":306
  *     # the full array length as the mean denominator.
  *     for i in range(n):
  *         if not isnan(ii_view[i]):             # <<<<<<<<<<<<<<
@@ -23887,7 +23900,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":310
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":308
  *         if not isnan(ii_view[i]):
  *             sum_x += ii_view[i]
  *         if not isnan(fw_view[i]):             # <<<<<<<<<<<<<<
@@ -23898,7 +23911,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     __pyx_t_7 = (!isnan((*((double *) ( /* dim=0 */ (__pyx_v_fw_view.data + __pyx_t_6 * __pyx_v_fw_view.strides[0]) )))));
     if (__pyx_t_7) {
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":311
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":309
  *             sum_x += ii_view[i]
  *         if not isnan(fw_view[i]):
  *             sum_y += fw_view[i]             # <<<<<<<<<<<<<<
@@ -23908,7 +23921,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
       __pyx_t_6 = __pyx_v_i;
       __pyx_v_sum_y = (__pyx_v_sum_y + (*((double *) ( /* dim=0 */ (__pyx_v_fw_view.data + __pyx_t_6 * __pyx_v_fw_view.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":310
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":308
  *         if not isnan(ii_view[i]):
  *             sum_x += ii_view[i]
  *         if not isnan(fw_view[i]):             # <<<<<<<<<<<<<<
@@ -23918,7 +23931,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     }
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":312
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":310
  *         if not isnan(fw_view[i]):
  *             sum_y += fw_view[i]
  *     mean_x = sum_x / n             # <<<<<<<<<<<<<<
@@ -23927,7 +23940,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
   __pyx_v_mean_x = (__pyx_v_sum_x / ((double)__pyx_v_n));
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":313
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":311
  *             sum_y += fw_view[i]
  *     mean_x = sum_x / n
  *     mean_y = sum_y / n             # <<<<<<<<<<<<<<
@@ -23936,7 +23949,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
   __pyx_v_mean_y = (__pyx_v_sum_y / ((double)__pyx_v_n));
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":316
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":314
  * 
  *     # Calculate covariance and variances on valid pairs only.
  *     for i in range(n):             # <<<<<<<<<<<<<<
@@ -23948,7 +23961,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_i = __pyx_t_5;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":317
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":315
  *     # Calculate covariance and variances on valid pairs only.
  *     for i in range(n):
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):             # <<<<<<<<<<<<<<
@@ -23968,7 +23981,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     __pyx_L10_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":318
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":316
  *     for i in range(n):
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):
  *             continue             # <<<<<<<<<<<<<<
@@ -23977,7 +23990,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
       goto __pyx_L7_continue;
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":317
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":315
  *     # Calculate covariance and variances on valid pairs only.
  *     for i in range(n):
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):             # <<<<<<<<<<<<<<
@@ -23986,7 +23999,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":319
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":317
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):
  *             continue
  *         x = ii_view[i] - mean_x             # <<<<<<<<<<<<<<
@@ -23996,7 +24009,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     __pyx_t_6 = __pyx_v_i;
     __pyx_v_x = ((*((double *) ( /* dim=0 */ (__pyx_v_ii_view.data + __pyx_t_6 * __pyx_v_ii_view.strides[0]) ))) - __pyx_v_mean_x);
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":320
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":318
  *             continue
  *         x = ii_view[i] - mean_x
  *         y = fw_view[i] - mean_y             # <<<<<<<<<<<<<<
@@ -24006,7 +24019,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     __pyx_t_6 = __pyx_v_i;
     __pyx_v_y = ((*((double *) ( /* dim=0 */ (__pyx_v_fw_view.data + __pyx_t_6 * __pyx_v_fw_view.strides[0]) ))) - __pyx_v_mean_y);
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":321
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":319
  *         x = ii_view[i] - mean_x
  *         y = fw_view[i] - mean_y
  *         sum_xy += x * y             # <<<<<<<<<<<<<<
@@ -24015,7 +24028,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
     __pyx_v_sum_xy = (__pyx_v_sum_xy + (__pyx_v_x * __pyx_v_y));
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":322
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":320
  *         y = fw_view[i] - mean_y
  *         sum_xy += x * y
  *         sum_x2 += x * x             # <<<<<<<<<<<<<<
@@ -24024,7 +24037,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
     __pyx_v_sum_x2 = (__pyx_v_sum_x2 + (__pyx_v_x * __pyx_v_x));
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":323
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":321
  *         sum_xy += x * y
  *         sum_x2 += x * x
  *         sum_y2 += y * y             # <<<<<<<<<<<<<<
@@ -24035,7 +24048,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     __pyx_L7_continue:;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":325
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":323
  *         sum_y2 += y * y
  * 
  *     if sum_x2 == 0 or sum_y2 == 0:             # <<<<<<<<<<<<<<
@@ -24053,7 +24066,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
   __pyx_L13_bool_binop_done:;
   if (__pyx_t_7) {
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":326
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":324
  * 
  *     if sum_x2 == 0 or sum_y2 == 0:
  *         return 0.0             # <<<<<<<<<<<<<<
@@ -24063,7 +24076,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":325
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":323
  *         sum_y2 += y * y
  * 
  *     if sum_x2 == 0 or sum_y2 == 0:             # <<<<<<<<<<<<<<
@@ -24072,7 +24085,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":328
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":326
  *         return 0.0
  * 
  *     return sum_xy / (sqrt(sum_x2) * sqrt(sum_y2))             # <<<<<<<<<<<<<<
@@ -24082,7 +24095,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(
   __pyx_r = (__pyx_v_sum_xy / (sqrt(__pyx_v_sum_x2) * sqrt(__pyx_v_sum_y2)));
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":292
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":290
  *     #     return coords, dist2, weights
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -24153,39 +24166,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_image_intensities,&__pyx_mstate_global->__pyx_n_u_filter_weights,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 292, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 290, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 292, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 290, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 292, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 290, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "correlation_score", 0) < (0)) __PYX_ERR(0, 292, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "correlation_score", 0) < (0)) __PYX_ERR(0, 290, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("correlation_score", 1, 2, 2, i); __PYX_ERR(0, 292, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("correlation_score", 1, 2, 2, i); __PYX_ERR(0, 290, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 292, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 290, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 292, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 290, __pyx_L3_error)
     }
     __pyx_v_image_intensities = ((PyArrayObject *)values[0]);
     __pyx_v_filter_weights = ((PyArrayObject *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("correlation_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 292, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("correlation_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 290, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24196,8 +24209,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 294, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 295, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 293, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(__pyx_self, __pyx_v_image_intensities, __pyx_v_filter_weights);
 
   /* function exit code */
@@ -24240,17 +24253,17 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_sc
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 292, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 290, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 292, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 290, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 292, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -24278,7 +24291,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_correlation_sc
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/filters.pyx":331
+/* "pyneutube/tracers/pyNeuTube/filters.pyx":329
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -24326,26 +24339,26 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 331, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 329, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 331, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 329, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":337
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":335
  *     """Compute NeuTube-style dot product, ignoring invalid samples."""
  *     cdef:
  *         Py_ssize_t i, n = image_intensities.shape[0]             # <<<<<<<<<<<<<<
  *         double score = 0.0
  *         double[:] ii_view = image_intensities
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image_intensities)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 337, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image_intensities)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 335, __pyx_L1_error)
   __pyx_v_n = (__pyx_t_1[0]);
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":338
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":336
  *     cdef:
  *         Py_ssize_t i, n = image_intensities.shape[0]
  *         double score = 0.0             # <<<<<<<<<<<<<<
@@ -24354,31 +24367,31 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
 */
   __pyx_v_score = 0.0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":339
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":337
  *         Py_ssize_t i, n = image_intensities.shape[0]
  *         double score = 0.0
  *         double[:] ii_view = image_intensities             # <<<<<<<<<<<<<<
  *         double[:] fw_view = filter_weights
  * 
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 339, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 337, __pyx_L1_error)
   __pyx_v_ii_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":340
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":338
  *         double score = 0.0
  *         double[:] ii_view = image_intensities
  *         double[:] fw_view = filter_weights             # <<<<<<<<<<<<<<
  * 
  *     for i in range(n):
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 338, __pyx_L1_error)
   __pyx_v_fw_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":342
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":340
  *         double[:] fw_view = filter_weights
  * 
  *     for i in range(n):             # <<<<<<<<<<<<<<
@@ -24390,7 +24403,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_i = __pyx_t_5;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":343
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":341
  * 
  *     for i in range(n):
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):             # <<<<<<<<<<<<<<
@@ -24410,7 +24423,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":344
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":342
  *     for i in range(n):
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):
  *             continue             # <<<<<<<<<<<<<<
@@ -24419,7 +24432,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
 */
       goto __pyx_L3_continue;
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":343
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":341
  * 
  *     for i in range(n):
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):             # <<<<<<<<<<<<<<
@@ -24428,7 +24441,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":345
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":343
  *         if isnan(ii_view[i]) or isnan(fw_view[i]):
  *             continue
  *         score += ii_view[i] * fw_view[i]             # <<<<<<<<<<<<<<
@@ -24441,7 +24454,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
     __pyx_L3_continue:;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":347
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":345
  *         score += ii_view[i] * fw_view[i]
  * 
  *     return score             # <<<<<<<<<<<<<<
@@ -24451,7 +24464,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(PyArrayO
   __pyx_r = __pyx_v_score;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":331
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":329
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -24522,39 +24535,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_image_intensities,&__pyx_mstate_global->__pyx_n_u_filter_weights,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 331, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 329, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 331, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 329, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 331, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 329, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "dot_score", 0) < (0)) __PYX_ERR(0, 331, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "dot_score", 0) < (0)) __PYX_ERR(0, 329, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("dot_score", 1, 2, 2, i); __PYX_ERR(0, 331, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("dot_score", 1, 2, 2, i); __PYX_ERR(0, 329, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 331, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 329, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 331, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 329, __pyx_L3_error)
     }
     __pyx_v_image_intensities = ((PyArrayObject *)values[0]);
     __pyx_v_filter_weights = ((PyArrayObject *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dot_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 331, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dot_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 329, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24565,8 +24578,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 333, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 334, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 332, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_2dot_score(__pyx_self, __pyx_v_image_intensities, __pyx_v_filter_weights);
 
   /* function exit code */
@@ -24609,17 +24622,17 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_2dot_score(CYT
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 331, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 329, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 331, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 329, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 331, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_dot_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -24647,7 +24660,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_2dot_score(CYT
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/filters.pyx":357
+/* "pyneutube/tracers/pyNeuTube/filters.pyx":355
  * #     return np.corrcoef(image_intensities, filter_weights)[0, 1]
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -24695,26 +24708,26 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 357, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 355, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 357, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 355, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":363
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":361
  *     """Compute mean intensity for positive weights."""
  *     cdef:
  *         Py_ssize_t i, n = filter_weights.shape[0]             # <<<<<<<<<<<<<<
  *         double total = 0.0
  *         int count = 0
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_filter_weights)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 363, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_filter_weights)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 361, __pyx_L1_error)
   __pyx_v_n = (__pyx_t_1[0]);
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":364
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":362
  *     cdef:
  *         Py_ssize_t i, n = filter_weights.shape[0]
  *         double total = 0.0             # <<<<<<<<<<<<<<
@@ -24723,7 +24736,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
 */
   __pyx_v_total = 0.0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":365
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":363
  *         Py_ssize_t i, n = filter_weights.shape[0]
  *         double total = 0.0
  *         int count = 0             # <<<<<<<<<<<<<<
@@ -24732,31 +24745,31 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
 */
   __pyx_v_count = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":366
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":364
  *         double total = 0.0
  *         int count = 0
  *         double[:] fw_view = filter_weights             # <<<<<<<<<<<<<<
  *         double[:] ii_view = image_intensities
  * 
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 366, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 364, __pyx_L1_error)
   __pyx_v_fw_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":367
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":365
  *         int count = 0
  *         double[:] fw_view = filter_weights
  *         double[:] ii_view = image_intensities             # <<<<<<<<<<<<<<
  * 
  *     for i in range(n):
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 365, __pyx_L1_error)
   __pyx_v_ii_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":369
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":367
  *         double[:] ii_view = image_intensities
  * 
  *     for i in range(n):             # <<<<<<<<<<<<<<
@@ -24768,7 +24781,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_i = __pyx_t_5;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":370
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":368
  * 
  *     for i in range(n):
  *         if fw_view[i] > 0 and not isnan(ii_view[i]):             # <<<<<<<<<<<<<<
@@ -24788,7 +24801,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":371
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":369
  *     for i in range(n):
  *         if fw_view[i] > 0 and not isnan(ii_view[i]):
  *             total += ii_view[i]             # <<<<<<<<<<<<<<
@@ -24798,7 +24811,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
       __pyx_t_7 = __pyx_v_i;
       __pyx_v_total = (__pyx_v_total + (*((double *) ( /* dim=0 */ (__pyx_v_ii_view.data + __pyx_t_7 * __pyx_v_ii_view.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":372
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":370
  *         if fw_view[i] > 0 and not isnan(ii_view[i]):
  *             total += ii_view[i]
  *             count += 1             # <<<<<<<<<<<<<<
@@ -24807,7 +24820,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
 */
       __pyx_v_count = (__pyx_v_count + 1);
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":370
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":368
  * 
  *     for i in range(n):
  *         if fw_view[i] > 0 and not isnan(ii_view[i]):             # <<<<<<<<<<<<<<
@@ -24817,7 +24830,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
     }
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":374
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":372
  *             count += 1
  * 
  *     if count == 0:             # <<<<<<<<<<<<<<
@@ -24827,7 +24840,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
   __pyx_t_6 = (__pyx_v_count == 0);
   if (__pyx_t_6) {
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":375
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":373
  * 
  *     if count == 0:
  *         return 0.0             # <<<<<<<<<<<<<<
@@ -24837,7 +24850,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":374
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":372
  *             count += 1
  * 
  *     if count == 0:             # <<<<<<<<<<<<<<
@@ -24846,7 +24859,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":376
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":374
  *     if count == 0:
  *         return 0.0
  *     return total / count             # <<<<<<<<<<<<<<
@@ -24856,7 +24869,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_sco
   __pyx_r = (__pyx_v_total / ((double)__pyx_v_count));
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":357
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":355
  * #     return np.corrcoef(image_intensities, filter_weights)[0, 1]
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -24927,39 +24940,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_image_intensities,&__pyx_mstate_global->__pyx_n_u_filter_weights,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 357, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 355, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 357, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 355, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 357, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 355, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "mean_intensity_score", 0) < (0)) __PYX_ERR(0, 357, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "mean_intensity_score", 0) < (0)) __PYX_ERR(0, 355, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("mean_intensity_score", 1, 2, 2, i); __PYX_ERR(0, 357, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("mean_intensity_score", 1, 2, 2, i); __PYX_ERR(0, 355, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 357, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 355, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 357, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 355, __pyx_L3_error)
     }
     __pyx_v_image_intensities = ((PyArrayObject *)values[0]);
     __pyx_v_filter_weights = ((PyArrayObject *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mean_intensity_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 357, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mean_intensity_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 355, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24970,8 +24983,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 359, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 360, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 357, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 358, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_4mean_intensity_score(__pyx_self, __pyx_v_image_intensities, __pyx_v_filter_weights);
 
   /* function exit code */
@@ -25014,17 +25027,17 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_4mean_intensit
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 357, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 355, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 357, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 355, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 357, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 357, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 355, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -25052,7 +25065,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_4mean_intensit
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/filters.pyx":385
+/* "pyneutube/tracers/pyNeuTube/filters.pyx":383
  * #     return np.mean(image_intensities[mask])
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -25099,26 +25112,26 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 385, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 383, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 385, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 383, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":394
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":392
  *     """
  *     cdef:
  *         Py_ssize_t i, n = filter_weights.shape[0]             # <<<<<<<<<<<<<<
  *         double total = 0.0
  *         int count = 0
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_filter_weights)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_filter_weights)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 392, __pyx_L1_error)
   __pyx_v_n = (__pyx_t_1[0]);
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":395
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":393
  *     cdef:
  *         Py_ssize_t i, n = filter_weights.shape[0]
  *         double total = 0.0             # <<<<<<<<<<<<<<
@@ -25127,7 +25140,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
 */
   __pyx_v_total = 0.0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":396
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":394
  *         Py_ssize_t i, n = filter_weights.shape[0]
  *         double total = 0.0
  *         int count = 0             # <<<<<<<<<<<<<<
@@ -25136,31 +25149,31 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
 */
   __pyx_v_count = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":397
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":395
  *         double total = 0.0
  *         int count = 0
  *         double[:] fw_view = filter_weights             # <<<<<<<<<<<<<<
  *         double[:] ii_view = image_intensities
  * 
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_filter_weights), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 395, __pyx_L1_error)
   __pyx_v_fw_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":398
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":396
  *         int count = 0
  *         double[:] fw_view = filter_weights
  *         double[:] ii_view = image_intensities             # <<<<<<<<<<<<<<
  * 
  *     for i in range(n):
 */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 398, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_image_intensities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 396, __pyx_L1_error)
   __pyx_v_ii_view = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":400
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":398
  *         double[:] ii_view = image_intensities
  * 
  *     for i in range(n):             # <<<<<<<<<<<<<<
@@ -25172,7 +25185,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_i = __pyx_t_5;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":401
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":399
  * 
  *     for i in range(n):
  *         if fw_view[i] < 0:             # <<<<<<<<<<<<<<
@@ -25183,7 +25196,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
     __pyx_t_7 = ((*((double *) ( /* dim=0 */ (__pyx_v_fw_view.data + __pyx_t_6 * __pyx_v_fw_view.strides[0]) ))) < 0.0);
     if (__pyx_t_7) {
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":402
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":400
  *     for i in range(n):
  *         if fw_view[i] < 0:
  *             total += ii_view[i]             # <<<<<<<<<<<<<<
@@ -25193,7 +25206,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
       __pyx_t_6 = __pyx_v_i;
       __pyx_v_total = (__pyx_v_total + (*((double *) ( /* dim=0 */ (__pyx_v_ii_view.data + __pyx_t_6 * __pyx_v_ii_view.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":403
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":401
  *         if fw_view[i] < 0:
  *             total += ii_view[i]
  *             count += 1             # <<<<<<<<<<<<<<
@@ -25202,7 +25215,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
 */
       __pyx_v_count = (__pyx_v_count + 1);
 
-      /* "pyneutube/tracers/pyNeuTube/filters.pyx":401
+      /* "pyneutube/tracers/pyNeuTube/filters.pyx":399
  * 
  *     for i in range(n):
  *         if fw_view[i] < 0:             # <<<<<<<<<<<<<<
@@ -25212,7 +25225,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
     }
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":405
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":403
  *             count += 1
  * 
  *     if count == 0:             # <<<<<<<<<<<<<<
@@ -25222,7 +25235,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
   __pyx_t_7 = (__pyx_v_count == 0);
   if (__pyx_t_7) {
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":406
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":404
  * 
  *     if count == 0:
  *         return 0.0             # <<<<<<<<<<<<<<
@@ -25231,7 +25244,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/filters.pyx":405
+    /* "pyneutube/tracers/pyNeuTube/filters.pyx":403
  *             count += 1
  * 
  *     if count == 0:             # <<<<<<<<<<<<<<
@@ -25240,7 +25253,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":407
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":405
  *     if count == 0:
  *         return 0.0
  *     return total / count             # <<<<<<<<<<<<<<
@@ -25248,7 +25261,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg
   __pyx_r = (__pyx_v_total / ((double)__pyx_v_count));
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":385
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":383
  * #     return np.mean(image_intensities[mask])
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -25319,39 +25332,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_image_intensities,&__pyx_mstate_global->__pyx_n_u_filter_weights,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 385, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 383, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 385, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 383, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 385, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 383, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "mean_intensity_neg_weight_score", 0) < (0)) __PYX_ERR(0, 385, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "mean_intensity_neg_weight_score", 0) < (0)) __PYX_ERR(0, 383, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("mean_intensity_neg_weight_score", 1, 2, 2, i); __PYX_ERR(0, 385, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("mean_intensity_neg_weight_score", 1, 2, 2, i); __PYX_ERR(0, 383, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 385, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 383, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 385, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 383, __pyx_L3_error)
     }
     __pyx_v_image_intensities = ((PyArrayObject *)values[0]);
     __pyx_v_filter_weights = ((PyArrayObject *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mean_intensity_neg_weight_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 385, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mean_intensity_neg_weight_score", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 383, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -25362,8 +25375,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 387, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 388, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image_intensities), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image_intensities", 0))) __PYX_ERR(0, 385, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filter_weights), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "filter_weights", 0))) __PYX_ERR(0, 386, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_6mean_intensity_neg_weight_score(__pyx_self, __pyx_v_image_intensities, __pyx_v_filter_weights);
 
   /* function exit code */
@@ -25406,17 +25419,17 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_7filters_6mean_intensit
   __pyx_pybuffernd_filter_weights.rcbuffer = &__pyx_pybuffer_filter_weights;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 385, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image_intensities.rcbuffer->pybuffer, (PyObject*)__pyx_v_image_intensities, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 383, __pyx_L1_error)
   }
   __pyx_pybuffernd_image_intensities.diminfo[0].strides = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image_intensities.diminfo[0].shape = __pyx_pybuffernd_image_intensities.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 385, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_filter_weights.rcbuffer->pybuffer, (PyObject*)__pyx_v_filter_weights, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_7filters_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 383, __pyx_L1_error)
   }
   __pyx_pybuffernd_filter_weights.diminfo[0].strides = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_filter_weights.diminfo[0].shape = __pyx_pybuffernd_filter_weights.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg_weight_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 385, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 385, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_7filters_mean_intensity_neg_weight_score(__pyx_v_image_intensities, __pyx_v_filter_weights, 1); if (unlikely(__pyx_t_1 == ((double)-1) && PyErr_Occurred())) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -28197,64 +28210,64 @@ __Pyx_RefNannySetupContext("PyInit_filters", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_setstate_cython, __pyx_t_5) < (0)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":292
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":290
  *     #     return coords, dist2, weights
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef double correlation_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_1correlation_score, 0, __pyx_mstate_global->__pyx_n_u_correlation_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_1correlation_score, 0, __pyx_mstate_global->__pyx_n_u_correlation_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_correlation_score, __pyx_t_5) < (0)) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_correlation_score, __pyx_t_5) < (0)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":331
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":329
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef double dot_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_3dot_score, 0, __pyx_mstate_global->__pyx_n_u_dot_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_3dot_score, 0, __pyx_mstate_global->__pyx_n_u_dot_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 329, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_dot_score, __pyx_t_5) < (0)) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_dot_score, __pyx_t_5) < (0)) __PYX_ERR(0, 329, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":357
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":355
  * #     return np.corrcoef(image_intensities, filter_weights)[0, 1]
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef double mean_intensity_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_5mean_intensity_score, 0, __pyx_mstate_global->__pyx_n_u_mean_intensity_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 357, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_5mean_intensity_score, 0, __pyx_mstate_global->__pyx_n_u_mean_intensity_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_mean_intensity_score, __pyx_t_5) < (0)) __PYX_ERR(0, 357, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_mean_intensity_score, __pyx_t_5) < (0)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/filters.pyx":385
+  /* "pyneutube/tracers/pyNeuTube/filters.pyx":383
  * #     return np.mean(image_intensities[mask])
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * cpdef double mean_intensity_neg_weight_score(np.ndarray[DTYPE_t, ndim=1] image_intensities,
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_7mean_intensity_neg_weight_score, 0, __pyx_mstate_global->__pyx_n_u_mean_intensity_neg_weight_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 385, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_7filters_7mean_intensity_neg_weight_score, 0, __pyx_mstate_global->__pyx_n_u_mean_intensity_neg_weight_score, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_filt, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_mean_intensity_neg_weight_score, __pyx_t_5) < (0)) __PYX_ERR(0, 385, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_mean_intensity_neg_weight_score, __pyx_t_5) < (0)) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "pyneutube/tracers/pyNeuTube/filters.pyx":1
@@ -28413,25 +28426,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{42},{15},{179},{37},{30},{27},{32},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{12},{50},{38},{33},{8},{34},{39},{6},{20},{32},{22},{14},{30},{37},{8},{5},{8},{8},{7},{16},{34},{36},{43},{28},{8},{20},{10},{13},{31},{33},{40},{36},{25},{8},{15},{3},{14},{15},{7},{18},{4},{1},{9},{17},{18},{6},{4},{17},{5},{8},{26},{5},{9},{5},{15},{5},{6},{9},{5},{3},{14},{5},{7},{6},{7},{8},{22},{12},{6},{2},{17},{10},{5},{5},{13},{5},{8},{11},{6},{8},{9},{31},{20},{7},{4},{10},{4},{8},{4},{7},{2},{5},{3},{4},{3},{3},{35},{14},{11},{10},{19},{14},{12},{6},{10},{17},{13},{8},{7},{6},{5},{3},{4},{12},{10},{12},{19},{5},{4},{5},{11},{4},{4},{6},{8},{5},{6},{6},{6},{6},{1},{1},{5},{5},{206},{261},{95},{2},{8},{485},{25},{107},{9},{99},{113},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2357 bytes) */
-const char* const cstring = "BZh91AY&SYx\236\202\246\000\001k\177\377\367\377\377\377\377\377\377\377\277\347\377\373\277\377\377\372@@@@@@@@@@@@@\000@\000`\010\337\032\347\273\312\257of^\320fKP\265\355\334\265\2338\002\360\224D&\215\004\236MH\365?*~\233LM&\251\355S\317Q\030S\362\221\372S5\036)\264\324\310\003OD\332M\003\302\032#\032e?T4\tD\001LL\t\244\365#\r\"y\2527\251=A\352\014\200\036\240\000\000\000\000\001\241\240\000\000\324h\230\224\362 \000\320\001\246\200h\000\006\200\000\032\000\001\246\200\000\321\243M\000\002SD\010)\205=S\3645OP\323\324\375$\361O(h\000h\001\220\000\000\000\000\000\000\r=@\203LLLL\004\300L\000\000\000\002`\000\t\200\000L\000\000\000\004\320$P\020S\325O\302\236\n\233\nzz\246\203\365!\3524\00044\000\000\000\000\000\000\003G\246\241\264\225\243\301\204\007\355\206\307\320?\245\375\256\023\242p\314\224g\305\t\207\371I\322<b\343ll\304\177\310\251D]\323V\355\021\314\240\244\225\242\271\246\323bM\241\311W\216\361h$e\0061\262\252\243\020\330\234\0075\"\375\262\350nU\026\005\224\026\235\267\306\253\306\014c\030-\315rZ\217\213\267\267\250\231\010@\276\244J\224('\"D\213R\215g9\302\213^\322\345\334t\346B\363$\212\206A\313\024I\324\t\023m\030\022\032\201a\325\034I\035\241\022Q \375\376\303L\353\322%c\222\3438R\022f8\300N\250\340\347\317@U\373d\004\240(\304\306\376\324\340$%1\330O\016\360\307\310/\254\321\004\3553\321\335\031\206-oB^\204=\262\342Vya<\1775\222\304\240\347G\t`ME\330\242\013f\216J^Q\3727Zo\232\231\301\256}S!\235\312\306\264\036,Y7\272\266\306y\352\206\024\263\177V\264M\202r\2335\247Vm\014\361\360\240\335\035\307\034\232\216\t\322\003\314\320\247J/{\277bxAJ\207q\300\314u\310c\204x\327\332,\243\253n\346\014\333\\\220\025a\246P\222\010\332H#\263\206\272^c\250\256\242\246\n\343\032\271\177b\361tx\r\245%\226\243F\267\240\326<z_ R\003\220t\032\r\217\263\351\313\330\240\214g=\303\271\003\006\2200(\351\261\314\372'%\036\226l\262\232\212x4\364\377\n\317\326\022\306\317\303\005-\232\206`\231hh\324\034\251\226*\326\251\304\364lb}\232\254\3426U2u}\032\346\344\246\270o\325\364""\354\226\235\372P\025hTy\020s\307\303\020\376W/\276\2032\370f\243\323\265a\265k2;:\016\232\273\024\353QGg\350\266\375\nO\300+\203 g\273P4m\206\376\347\327\275J\2722,\234\225[\336\374\246Y\317\321\201\240\352av\336\371\231:\234\251f\215\250 \322\314\266+\211\230\032b#F\317W\343\006\273\252\317\323@\224\321S\230\212t\246Z\017\241\021\200K\361Q\314A&\r\264\020u\320>\266B\324\227V\305BR@d\031\322\357\r\316\203p\226\351\213\\\354\221t\014nZ\306W\032\225\262\024zE\244;\272\223\342\032.&\335\215E\273\315\020\211V\257|\2476Ve\234\362BY(\256\264\265LI\n\301\\\325SE\237\275\362Kt2H\253Z\351\204\203\370\300e\347U\227a\244f.\240\243\374(bRc\257\362\204C\233\311\232h-\205\364 <:o\"\024m\220\257I\216bV\343\234,\316m\303\003\310\340F\2339\031\207\202\203F\000\347\250\302&\n'CY\324;\t5\304pp\234b\024\016D(FL\372w\216\224\304\0236\257\006\2010\220\202bG1T((\n9;>\035\355\335E\252\313B\324,J\336\333\331h\216t\230\234\310\345q'\325UK\327\304\244.\016M}\301\266SD\216~\200\224s2T\233>\204\314f\035\307Fe2\303vz\263M\204\311\037e\223\216\241\240\260\346\266\347\363\023m\343\325\326\013\331KR\203\000\311\t\342\030\214$C&GBLiQ;\237\004T\351\246\004a\324\353\335s/\01779\013C\362\337V\355$RK\216\215\271iR\323\333U\262\231\235\t\024\035\347\tT\254o\221s\216\323I$\223\0326\247qA\024\301\362.D\3110\225\036\370{\360]\\\246h\272\2166M,#e8`p\340R\225\361\205.\330\234\263\301@\352\224\355\275H\312p\rD\031\310\246M<\275\006:\212\304\304\350\303\037g\0064\223\304OTv,\245%\244b\256\336\355\206Z\014s\306\307\314m\027\314\301\027\024\273\006\252\247*R\023\251\021\212\231\316r\355 \272\250Y.\377D\300;\2358\300\240jd\206\001\235\311X\246\237\303\241\201\230]\234x\312\300\265\0306\257\206\313\246\244N\014P\241\332\303A*\330\244\271\246\316\003io\263\0305\006%\272O\260\231\256z\271\210f\235\233\371d4=\265[\016\213ll\244\263\027\302\t\201\332\242\rCr)J\241\265\222\330\326$\346\366\212\241\235\303\353\261\305J\326\341\031#\321\254\010K~\317p\306\001f\207\261 \222cN\254e\177*\227t8\307b&\321hu\301\025\257tk\232""\027X\250\340\320\340`_!/]\022\334\032\221\234\214\303\032\023S\300\336\360\244\033\0334h\304\304\001$\373-\215\322y\244\346w\332x\332\205`\354+\014)Tl\006\256\232mR\254\325l\257VM\263*\264\017\260b\356\220\2360\210\223&\023\t\335\304\352\247}B\013\314\312mY\363a\341\203\202\346\243\270LXI\363\265G\260J\362\000\222\035\256c\306\266\204\220\220\212\336*\005,\300\254\301\036\304r6\305\205\333y\310gpP\242N\262\242u\265#\307\306d\273\222\006\276ca\013\340\004\002d\274\362!\024b\303\0024\344\217\024R\276D\025B\006\tJ(\323R*\212\241\235\310\303\216\327\033\246m\335)\236f)w%/\214h\311\024\340Q\214\203G2\032\245U~t\362\273\365\333\3678?N\243\306\025\200-\232-\325\235\231\353\235:\0001t\250\341\232cD\211\022\003\346\250\342\243M\001\255\027B\000\321\272\2153\r&\361\2469\204n\302\340\316*\334H\263*\030\r\202\353\024\210\0145\332/\303EK\330\233\246d:\005\230\304KR\333\313\313N\014\314/\024\233\031F\362\301\217\203\262Q\326\003\030\370\324\260\214#7\271L\357,DjH\341{\207\316\0211z\027S\n\236\217\300\210\341\030d\312\205\036\213\n\354\312\354k\026\256\300\311ej4-\207E\351\273\036T\362oa\316d%\0309\255_\036\247\315\334\317#$r\351\214\323R\030OQ\230\224\213\234(\251\004\235\215\2666\336\364\017l\367\312\271g}\3748Awea\250&D\246\223\241!\207d]g*5R\204\247\270&>\241\022\ra\035\245G\031^\203\222\235h\021\205(\313\211\227\024\311b-t\010UO8\341k\316\262\rD\350)\\\353\306U!`N\272\305e|\321\214\266\256\177?U\353\244L\363\215cd\313\305\210t\311\3128\231,\016\261\273\364rXs!\26007\263;\266\366{\244\033x3\361#Hq\031\007\243:\324n\265\215\217,\337\263\004\024\035)I\312\th\020\035l\r\014!\262c\316\3251\013;\356B\345\236L;<\0237\001\327[=\210Tj'b0\037Gg\252\252#\333\025\321\225\331~9\242\360\323\336\355.-\234\2678S\200\337N.0M\363T\375\220\374N\267 vE\347:\306_\204\357\027\033\310n!\320yS\312\301\207t\375P\372O\311\203\234\246\311\306~i\020\306s\375~t^k#BSl\350U9W\320\032\305\276\006\351*a&\3437\261'\230\2057\356\036@\213\034\236\224\270H\240\317VA\024#PU\022.\337\255-\t\247\023\227F\006\224P""\374\034\312\236\236\205\350\275\222\366=\207V\377\356\232\373J_\010\344%g\024.,^..\376\246v\326\276\023X\227:u\373Kz\354\253\254dT\316\353\360JdX%a\206,V\245\223o\300b.\307;\257+V?e\262\035k\333\004\234\262\022\\?\310\243\270\316\241h\315\024\336=\321mf\335\356\3326\3136|\3231\263\036\211\267-\333\261`\335\301\213\332\275\354\317\255K\275\324\354Q\377\274\372\2272S\307R\235\214>\335C\247\274\367osv\261\\\327\223(\335\347\207\2329G\223)\005\307u\324c0\017\006\252.\220\214i\215\364\037\035q\351\357\255%\013\206M\n\353;\304\312\216\366\260\356\312I\341\376;P\211L\211\003\301\3778\377S-\n\356\377\027rE8P\220x\236\202\246";
-    PyObject *data = __Pyx_DecompressString(cstring, 2357, 2);
+    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{42},{15},{179},{37},{30},{27},{32},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{12},{50},{38},{33},{8},{34},{39},{6},{20},{32},{22},{14},{30},{37},{8},{5},{8},{8},{7},{16},{34},{36},{43},{28},{8},{20},{10},{13},{31},{33},{40},{36},{25},{8},{15},{3},{14},{15},{7},{18},{4},{1},{9},{17},{18},{6},{4},{17},{5},{8},{26},{5},{9},{5},{15},{5},{6},{9},{5},{3},{14},{5},{7},{6},{7},{8},{22},{12},{6},{2},{17},{10},{5},{5},{13},{5},{8},{11},{6},{8},{9},{31},{20},{7},{4},{10},{4},{8},{4},{7},{2},{5},{3},{4},{3},{3},{35},{14},{11},{10},{19},{14},{12},{6},{10},{17},{13},{8},{7},{6},{5},{3},{4},{12},{10},{12},{19},{5},{4},{5},{11},{4},{4},{6},{8},{5},{6},{6},{6},{6},{1},{1},{5},{5},{206},{261},{95},{2},{8},{484},{25},{107},{9},{99},{113},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2358 bytes) */
+const char* const cstring = "BZh91AY&SY\037}7\356\000\001j\377\377\377\377\377\377\377\377\377\377\277\347\377\373\277\377\377\372@@@@@@@@@@@@@\000@\000`\010\337y\327\215\345C;\036\261]c\255B\242\2215\274\007\337v\022\211\ndi\224\036P6\2316\t\242G\251\352cS4\324\365\014\2154\364\232\032\032\001\246\217S \3206\223\321\003F\324\320\002P\200\200M\003DG\251\351\244\230\236\"y#F\206\2004\000h\000\000\000h24\000\000\032\023M\010)\224\321\2100F\324\3104\323 a\032\031\r\014\203 \310\006M\000\032\r4h\323j4\320\302DA\004\206\215S\302jz\200\365=G\244\001\240\000\001\240\000\000\000\000\000\000\001\243B\250\010\303)\246\r4\004\300&F\000\000\203\0234\020\311\210\0311\030\000\t\200\020\310\323\r5#H\217S#F\203!\243F\203 \000\000\000\000\000\000\000\000\000\003\020hr\340\273 (\354\001\020\373\217\204\371H\2424U\206X\\u,\017\246\226\323\002@I\004\202F\301\314E\313#.i\216\202v\324*%\226H\033M\2116\207E\177\3731n\2246\220\3067p\270\3046'\003\251C>\003(\347\256\024x#\t\032\275\270J\314\203\014\314\302\343s\322\364\204\237\257]T$c\034\225\242X\241QD\311\2231JoZ\326,\270t.,\212\017#\232X4\216`\235\233\001B\255\230\265\242V\034\033\355-Q\256>A\332\356\326=:\343\270p\355#t\322\032\223\246\262\224g\210J\030\301\237e\301\271\262@&\t\250\221\226\313N\021\312\272\261JN\222>\242\177:\342\374\337\037\305\031\2261\204,\002\330\007$jP \372\2164w\352\nt\006\0106'Y\303\315\322\240\303\204j\273e\246\014\233\022\213\322j\350\213\237\013(#k\325\234\340\200\262j \373\235*-\2629km{\234\304M\361:f\3779:\030\325j\021\303\001\256f\213m\362\360jF\204\026\254\247\3716\346\306\014\034\033\3756\303\221%\267`t\2762\364\0144qh=S\022}\311\004\267e\030\020\310\201\242\021\034\2144\341I\216\"\270\212\2258\203\032Y\236\025\2514\301Ih\344\031yPA\315\0021Ls\005$A\007\311\300\351\362\375\277V\217j\242s\246\236\243\206\234\226\r\222X\222\2531\276SrK\222xt)R2\224\326\255[V\\yba\347\364dI\317\340\030Bag\322\361\350:\014\217\301\316S\231\024q\023\257\263\0270\346\3312\177Og7%\327]\252\317\253\233<5\331QU6\305\020\177\331\325\335'?\267\264A\262uy\365""\346\325\266\353\361\267'o\206\007G\301\267%i\n8\235\275La\336\312\305\030\315N\200T6\006\2767\321\2522X\311\202/G.\256\274\t\3709\3543\235l\270\366\265\224\247[/M16\210\240\343\026\315\256\005\201I\230\302b8u;?\030\355\276\035\206\3750\022\315WD\211\272K'\213ld \026\360V\366 R\022xq\302\326\333\220\3502\321\010\2663(\021\277{M\3207\2603E\270\025+>*&AT\326\2601\n\244\262PN\376\211\004\302\200\177\354\0322*\336\rKy\233\221%\332\315\364n\254\275L;\342\202[6Ybb\252)\212\302\275\312\246l_\276I\245\371\232h\253r\341\031\207\361\224l\207a\261\345\300l\357\250\253\374*d\254\317\275\371FA\306\350SB\013\210\311R\004\003\272\201 \253h\215\330\031\351'~|\301<\306\333Xx\334(a<\231E\261\031P\260\026\032\013\034X\216?=\205\2531\352\234\002\236 \252\004\026\002\203\014\026\010v\362f\020~%\000(\217\260\032\001`2\010\013\004\215\265P\250\250*\340\355\271\\\215[\205\352\327\205\350bK\240\354\215x\217|\3316\345\247\0318I\335\323\327\320Z_\0373\207\2667\213j\241\313\324\024\236-{\225Q\251\244i\"\010f\227S\001v\033\372j\206\233>\314\034\020\345I\201\007\n\345\3615\275\243\245\274\231'NC\2230\327\227\023(\234\350Ji\236\025\021\266\346\270\306l\271\301P'=<=\014\033\034\236\033\307.F\324\3325\305\344^\274\021M\251\2763\206\205\224\326\005\352*\221\031\240\345Y\022\236\230\234`\205V\333m\243V\355q,2\331\306\273\3464\332\033\264e1\226k|\257\026s1\272/\"\245\321j\350+\322\031\241\322\004\274p\365\262BApO\224\344\242\304_\rH3U\266wxw\r7\026\t\211\331\206\236\262\030\322O`\256\364\361\255\242\330`2\256\326\254F\234\306{e\212\024\016\253%\006T\\\351\217+\225S\303J\302\213\021\031R\323ut \273\225,\327_\001\224:Xg\211P\344\322\206P\265\351p\246\037\206\366R\221w\371\331\3370\352R\205\252\251[oU\024y\006Q\032Gj\330\017\224\321\351\3177\271\345\211\270\245\340QD\"@\013\251X\243[\352\204\004ND\203.\310(\014\3628r#\022A!\246^\206\325\024\312w\010\203\220\325$\255P\321\245q9\222\212 \341T-y\013\261<\261\\\354\262\232E\226\000\306\370\360\214Df\030)\214\n\005\0326\371\032)\226\325\261\360\372\242\0215Rp""o\204\226\355C\236\340\307\211Q\341\231\340\301\222bd\\\323\343\216IQ2\221\224\265o\003\213\227@\326\334\262\235\006\200\006\334n-\030\322*\334\0331\273\023\273/\000\345^P\351qf+\355\333v\327J\353b.\232\334\245\324\221\254h\210lq9\314\321448\210\034;\235\355\21124\272\253\327\256\230\224\034\234U\242\002\243\316\221\262\256F\001L\211\002\214\205\212<l56\306\306_!\330-\202\007\203\t\006G\243\261,q\355ZF\327\205J%\027\026\024\\\344\227\017\t\245x\363\007B\201\321\214\340\010\n\224\362\311\tF\306\266\2616\337\036\304\245\235\010W\0105\222\244\243\013\021TU\013^\214p\336\363QN\254\022\332\014\351\217\241\\%*\264\242\233\024f\213\207\266\3463\032\316T\031\247\231\336\273\311\333tN\222\324\032\316'te\247\365\224\252\003\274\276\276\227\027\021\3028p\302\361#\256\212\242\240\033\020\245\230\025\016:\030@05\030;(\207\035\251\r\221\337\022\206\t\330\314Y\276\235\320\220\317\207\t\313=W2Ea\244\310`\264\014\211z_\220\310^l\245\214\202\2243U\310X\264\"\375*?\0203BV,e\031Q\007\251l\014H\216I\234\250<\205\021\221\236\010c\2566A!\224\220\361\030\322\326\nE\236w\334\246:/8_XM\354+)z\320\314\232\345mW_\244\317\271Lns\203\205\347<\034\034\344\232ggrj\232\240\302\273\246\242\2241qehI\340\333cm\360\311\030i\312\227\327\256Yq\347&<\254\005a\246R\255\303\033\021\t\230\341\005\311T\251+\356\312\010X\"E\314K\005G\2321\240\364\257\226\201(\326\215\214\240\306W5\220\267T!e{\016\311\32091r&\362\227Qvy\330\206 \242\353\205k\266\306k\354\335\335\320\332~\205\214Q\004\022\026\033\t*\013O(Dr\031t!\022\334\323\362\0045C\001\320\200\365L\233\267\320\360\321R6\362\231\203\222Z4Q\227I\270\223,\352\033\363@q\021\225^\370,7\250`u2)C\026\276\215\352\014zc~_>y\023\n$\251\276\025q\250\354BSH\231\317\201\035\034\277UTK\354\331\210\311\214\246\375W\275\022\264\273+c\2511\277\202k\232\251\263p\023\312d\236\324-\234\355\2444E\336,\2235\313c\315\\-!x\333K\254\246\321\250l!\334=L\033\3343\215\223\326\220\014f\367w\346\213\367\2344\024\213E\345Sm~\301\226:\314uK\0067\304\354YM\302\333\311\250\371t \207u\035 Pe""\335\361\024\037PQD{\265\370I\302d<\334#\003\035\352\0267U>\260\336e\346\267\342\314\315qi\354&]\2451A\370\010\231]\326\325\375of\2576\227V\275\203(\212\372\236,\365\245F%\312M\365)\364\255\304~VB\233OY\311\212\035\013e\222\213\361\241\242\322\277\375\304(W\2130\202\353\320\016\237\267\237u\225\211\346@\246\2218Y\370\224g\026\211\263v\326\25031\031\"@\205? ^g\242+\334\270\341\211\355\002\377\371j\227`a\204\032\367\"\361\003p\2342\211\234\030\003\035\003s\000\366\345W\336\376n\357\004\n\251\003\305\273y\"^\206\003\222GX\0228C\024\305&$\031\360\232F\324\227\307B\314\243\313\010\211\261\201\021l\010\204\350\342c\343\302\304\322\263@\211\346\300\256X\304x0o\027rE8P\220\037}7\356";
+    PyObject *data = __Pyx_DecompressString(cstring, 2358, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2161 bytes) */
-const char* const cstring = "x\332\235VKs\023I\022\036\021\2301;6\213l\017\217\201\205\262y\310\314\030\201\214\007\230]`C\330\006\0341<\204\301\363\330`*J\335\245V\255\373\345\256j[bc#|\324\261\217u\354c\037u\324\321G\216>\352\250\237\300O\330\254\352\226\344'1\261\007\225\252\253\263*3\277\357\313\254\376;*\33362\231C]\316<\227#?\240\0065\231k\r\027\321\r\0239!\027\250J\021sM\332\240&\"\256\211\\O n30\177\032\326j4@\233\214n!\323\243\\\277\242\r\337\343\024q\0210\223\362E\342\"\317\265\233\310\010(\021\024\021TM7\211:\021\210qdx\256`V\350\205\034\234 \207:^\320,\302.u\024\341\234Y.\022\036\202\315\346m}Nj\241\\fF\331\301[\001\023\244j\323\314 \r\252\026x\316\227\366\352\264\320\026\023u$\232>E\205l]\004\304\345:\215\341\226\324\014v0\200J\354\301ni/`,\005!5Zv|\321D\274N\340h\021\372\020\\\315\013\220\321\024u\317-\222  \315\025\035\200\027\n\344\325P\325\013]\223\243Y\322\200Sn\230\267V\016\373J\301\017}\337\013\0045W\334Mb3`\3113\351\234\002\036\214\201\244\202Q@\340\247\000\316T\"\2059d\301\256\276q\032\016`\255\335\274\204\321\t\035\3047B\022\300^\223qA\\\203\016\230\007\024\230`\233\264\370\350\245\206bMA\001\301\276\362\000tM\342\242\316GenR\233Ui\000t\000\330J\000\020\216f\332Eo\226\337\334^x\270\240\005\024\320\177C\240\034\362\250\0326p\014\302Q\331\207\314\026\020\226\"\202\027\321J\r5\275\020\271\024\202\002\001\370`\267w\203\250S\027q*\324\004\0254kD\000B\030\266\203\212\013\031\003\020\270\332\375\214\330\234\026_\357\203\031B\316\244H\014\203\362>\356\253\202\372\310!M\2154\344\377\221\006\336\220\022\375\226\263\217G\340\363\336\325\362\003o \351M\032\200\272\004u\324\263WU\371\026\237\024n\375\223\230&v\025r\n\007\004\340\335m\030\236m\253H\201\335\"\251\032\217\366\024\2042J\363xrp\271\257\303'@\230\362K\265w\313@\263\212kKKP%\247*\2326\004u\205\256\257aq3\236n1U\224:\243G\217\321\335C\002\235\003,\032X\251b\376\261\353\001\3035\022\332\002a\014b\t\r\21212C\235\264\353\271\267\201\361MFlxk0\227\t\214\335\320\361\233E\303\013h\321\201mL\037\211j\204\331)\253\314QB\336c\025:""\004\212\354\240A\206\340\023\277\351\322P\204UZ\004]\0334\340E\277\371\212\206\357\324\n\340Sc\326\300\342Nfqg`q\247\006\372J\3674f9\360\370\370Q\332\243\314}8\037^S\2654\200{\337\373\375\253\256\305\27500\350\223p\240\004b\333\236\241\333\236N\334$\202\024\217x\233\226\244:1\353\232\3059\364\021@w\036\227W\027WV\226R\320\371\262m3\2373\3763P\026\020\373%m0\203\270/\210x\2463;\370\\\034\220\224\022\212\361\021\026PBP\360\342K6@>\364X0\2511j\233x\336\304\334\200N\342Z\207L\327i\340R\033\327B\327x\355+E\023\033\3437\315\006\374\226\240\027\340W\240\304\267\264\266\272\374\034\377\274\374\352\371\273\027\253\324\002=f\333\367=\034\016\376\340\353C\221\037086\354\375v\026uu\307\302\251<p\265\t'\037\260\331\223\327*\335\010)\364G\325\006\213\303\216\010\205K\252\\iN8\024\3021\373\334\342\264\307\020\256\025@x\3235\230\247\264\016=\237\271\224W\t\247\006\324\213jk\030\367'\026\025\252,\325#\030a\006mM\311\271J\214\365T\347\206\3477\341\220\200\332i\327\343\252z\014hlPt\246\202\032\037\237\277.f\323\023\351&S\365[=`\306qZhT\335[\220%\\+\024\212S\343C\203\000\254\033~\006\323\026eV]\360\232M,\030<\"\356/@\353\200\352\315.\035\254\321\302\370hx\325z\306\036\266l\257\252.&\346\020K\245*T\203\022\214\002\034i\365\303\277\272%!:\310\001\306\001xi\347\312\332\327\036\216l\352Z\242\216\261C\0008<\350_\016\205\260\372\3477\261\013a\244Y\244@\034x\235\2559\352\352W\367+\034\344\231\241\r\377.q\206#\204\r#\335\202\301\327}\014\020\364\201&\337\363\241T\277\324\260\262v\2041\364#l\324\251\261\316C'}\312\220QSM\214\236\205\256\317\214u\010`\331\355\333m\352/\036%\033\270\275\3554\242\200\230,\344\303\376|\250\216\006\013\264\241\246\026@C\225\2200\334d\201\272E\251\322\t\005\2268\265k\272\316\262da\226\365\377=\325\207\217\250D\335\317\024)\260\034\010=\000k^`\252\266\313\205\007\277 T\"\005_j\254S\330\256\357mH\022\300\013}\350\224\024>WB\312\033\037u'T\3270\177\323|\255\365\211\276\237M\373J\306\217\376\032\235\203O\320\020\340\030\376\003\231(\003t\235\371J\004>\021F}\016\245\356""\263w\236/0\t,\216\177\032\260\205\027\024\371\270t\327\017<\365i\000\201\341\237\3647\241\3228NQRR\326\221c \032\327\010|\016|?81\355}\352\330[_\035g\276\235\353]\271\372y\364\253\323\227v\277\373!\271\337\316\267\247\273\243\027\344x\374!\235\234\211Io\364\262,w\325\000v#\247[#\255\367\321tT\352\216~\323Zh\205Q9\372E\226e\245;\366m69n\375\344xk-\232\217\206\223\317\247\016\034\367c\224\213\316\313\234\234\222\253\361H\\\211\255\244\222\220\356\330xwt\254\365<*E\213Q \363\007\036&\242\231\350iD\016Oz'\277\336\336j\031\321Dt/\262\340\300\\w\364\257\255\215\336\311oZ\017\242k\321;\231\227\263\361L\274\224\344\222<\200p\356\374A\020\316G\033\335A\346\275\223\243\177.\320\274^\237\224O\245\005\353D\271+m\227\267\313\335re\267\362v\273\334[\371m\367\267\337!\363\361\313rA\376'\271\331\316\265\363\335\261k\361|\374+\034b\266\347:t\247\324\035\273\"\253\361(\3046\225\374\2533\322\001\024Q|\"\236M\246\223\205\344\277\235\345\235|o\354\262\\\224\033\335\261K\362\236\004\3273q!\231H`\343e\271\024\347\342|\1772\245\243\030+\304Ar.\t\332\223\355\245\316\251Nu'\007\331\216\337\214+\275\3613\335\261\263\321H\364^N\313R\367\3549\200\252\002\347\235\235\214\0264\276S\337\301\213y\271\026\227\366M/\311\222|\026_\217\253\311\327pj\2767uY.\307\371x\272;\325\367\257W&\224\355\371hS\276\205P/L\247\321t/^\225\001X\300\3639\010k\n\322\256\267\253\235\\\337\301/\361\313\366D\373~g\262\263\264sbgz\270\374<\231O\326\332\367\332fg\246S\356\235\275\026/\304\033\340\177\243\235\353\355\315\001\210\223\247$\310V1}#\342\262\020O\306Oc#\231L\226\001\200r/?\321=;\025-\313o%\201\260\246\376\006\031W\201\306\265\244\224<\005\032\217_P\212\035\277\270{\341.\220v\251\263\330i\354\360O7w\337h\215Wz \257F\264%\311\266\252\223\323\371\350\004\350\3609\004\376V\212\270\024\227\343J\372\342\2524wg\036w*\300\363\203O\240\263+\352\371\307v\245M;\017wJ;K\237F\341\304\335\312\373\335\367\037v?\374\261\373\007\356\215^\217_$\345DW\326CP3\320}\021$VV\177 \204\311\350\037\262\036\223X$\017\333%HO\311|;\327=\371""\227\326\017Q\005\244=w\373\363\031\220\266,&\247\022\222ld\312\236\212\312\307\312\373\001L\356EU\231\033\026\257\316\020*j\263\265\032\245\225\324\005i\337\207\352*\201\213\351\031]=\377\207\213\023\362\2724\343\033}\"\377\224\303\327\377\003\254\262H\371";
-    PyObject *data = __Pyx_DecompressString(cstring, 2161, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2165 bytes) */
+const char* const cstring = "x\332\235V\317s\023G\026\216XC\314\306&\226\355@\022\274\3206\020\231\304\010d\034 \273@J\330\306\270*\200\205\261\263\331\024\351j\315\264F\275\236_\236\356\261%\266\266\312G\035\3478\3079\316QG\035}\344\350\343\034\365'\360'\354\353\236\221\344\237Tj\017j\365\364\274\356\367\336\367}\357\365\374\035\225M\023\351\314\2426g\216\315\221\353Q\215\352\3146\006\213\350\226\216,\237\013T\245\210\331:mP\035\021[G\266#\0207\031\230?\363k5\352\241\035Fw\221\356P\256^\321\206\353p\212\270\360\230N\371\"\261\221c\233M\244y\224\010\212\010\252\246\233D\235\010\3048\322\034[0\303w|\016N\220E-\307k\026a\227<\212p\316\014\033\t\007\301f\375\216:'\265\220.3\243\354\340]\217\tR5if\220\006U\363\034\353S{UZh\227\211:\022M\227\242B\266.<bs\225\306`Kj\006;\030@%\016a\267t\0300\226\202\220\032-[\256h\"^'p\264\360]\010\256\346xHk\212\272c\027\211\347\221\346\252\n\300\361\005rj\250\352\370\266\316\321,i\300)\267\364\333\253'}\245\340\373\256\353x\202\352\253\366\0161\031\260\344\350tN\002\017\306@RA+ \360S\000g2\221\302\0342`W\3178\r\007\260Vn^\302h\371\026\342\333>\361`\257\316\270 \266F\373\314\003\nL\260\035Z|\374RA\261)\241\200`_9\000\272\"qQ\345#3\327\251\311\252\324\003:\000l)\000\010G1m\243\265\345\265;\013\217\026\224\200<\372o\010\224C\036U\315\004\216A82{\237\231\002\302\222D\360\"Z\255\241\246\343#\233BP \000\027\354\016o\020uj#N\205\234\240\202b\215\010@\010\303vPq!c\000\002\227\273\237\023\223\323\342\353#0C\310\231\024\211\246Q\336\303}]P\027Y\244\251\220\206\374\337S\317\031P\242\336r\366\376\024|6l%?\360\006\222\336\241\036\250KPK>;U\231o\361i\341\366\317D\327\261-\221\2238 \000\357^CsLSF\n\354\026IU{|\250 \244Q\232\307\323\343\313=\035>\005\302\244_\252\274\033\032\232\225\\\033J\20229Y\321\264!\250-T}\r\212\233\361t\213.\243T\031=~\202\356\235\020\350\034`\321\300R\025\363Ol\007\030\256\021\337\024\010c\020\213\257Q\214\221\356\253\244m\307\276\003\214\3570b\302[\215\331L`l\373\226\333,j\216G\213\026lc\352HT#\314LYe\226\024\362!+\337\"Pd\307\r2\004\237\272M\233\372\302""\257\322\"\350Z\243\036/\272\315W\324\177+W\000\237\0323\372\026w3\213\273}\213\2735\320W\272\2471\313\201\307'\217\323\036\245\037\301\371\344\232\254\245>\334G\336\037]\265\r\356\370\236F\237\372}%\020\323t4\325\366T\342:\021\244x\312\333\264$\345\211Y\327,\316\241\367\000\272\365\244\274\276\270\272\272\224\202\316\227M\223\271\234\361_\2002\217\230/i\203i\304~A\304s\225\331\361\347b\237\244\224P\214O\261\200\022\202\202\027\237\262\001\362\241\307\202I\215QS\307\363:\346\032t\022\3338a\272E=\233\232\270\346\333\332kW*\232\230\030\2575\033\360[\202^\200_\201\022\337\320\332\372\362\n\376e\371\325\312\333\027\353\324\000=f\333\217<\234\014\376\370\353\023\221\037383\354\243v\006\265U\307\302\251<p\265\t'\037\2639\224\327:\335\366)\364G\331\006\213\203\216\010\205K\252\\jNX\024\302\321{\334\342\264\307\020\256\024@x\323\326\230#\265\016=\237\331\224W\t\247\032\324\213lk\030\367&\006\025\262,\345#\030a\006mM\312\271J\264\255T\347\232\3436\341\020\217\232i\327\343\262z4hlPt\272\204\032\237\235\277*f\335\021\351&]\366[5`\306qZhT\336[\220%\\+\024\212S\341C=\017\254\033n\006\323.eF]\360\232I\014\030\034\"\036,@\353\200\352\315.\035\254\320\302\370tx\345z\306\0366L\247*/&f\021C\246*d\203\022\214\002\034i\365\303\277\274%!:\310\001\306>xi\347\312\332\327!\216Lj\033\242\216\261E\0008\334\357_\026\205\260z\3477\261\ra\244Y\244@\034{\235\255Y\362\352\227\367+\034\344\350\276\t\3776\261\006#\204\r#\335\205\301U}\014\020t\201&\327q\241T?\325\260\262v\2041\364#\254\325\251\266\305}+}\312\220\221SE\214\232\371\266\313\264-\010`\331\356\331\355\250/\036)\033\270\275\3154\"\217\350\314\347\203\376|\242\216\372\013\264!\247\006@C\245\2200\334d\236\274E\251\324\t\005\22685k\252\316\262da\226\365\377C\325\207O\251D\325\317$)\260\354\t5\000k\216\247\313\266\313\205\003?\317\227\"\005_r\254S\330\256\356mH\022\300\363]\350\224\024>W|\312\033\357U'\224\3270_k\276V\372D\337\317\246}%\343G}\215\316\301'\250\017p\014\376\201L\224\001\272\305\\)\002\227\010\255>\207R\367\331;\307\025\230x""\006\307?\365\331\302\013\222|\\\272\347z\216\3744\200\300\360O\352\233Pj\034\247(I)\253\3101\020\215k\004>\007\276\357\237\230\366>y\354\355\317\3162\337\313u\257]\3778\374\331\305\253\007\337\376\020?h\347\333\323\311\360\327\341h\364.\235\\\212Hwx*,'r\000\273\363\027[\347[\033\301tPJ\206\277h-\264\374\240\034\374\032\226\303J2\362U69k}h\264\265\031\314\007\203\311\307\013\307\216\3731\310\005W\302\\8\031\256G\347\243Jd\304\225\230$#\243\311\360Hk%(\005\213\201\027\346\217=\214\0073\301\263\200\234\234t\207>\337\333mi\301xp?0\340\300\\2\374ek\273;\364E\353ap#x\033\346\303\331h&Z\212sq\036@\270|\3458\010W\202\355\244\237ywh\370\317\005\232W\353\023\341\263\320\200u\"\335\225\366\312{\345\244\\9\250\274\331+wW\177;\370\355_\220\371\350T\270\020\376'\376\256\235k\347\223\221\033\321|\364O8Do\317u\350~)\031\271\026V\243a\210m2\376\275s\276\003(\242\350\\4\033O\307\013\361\177;\313\373\371\356\310T\270\030n'#W\303\373!\270\236\211\n\361x\014\033\247\302\245(\027\345{\223I\025\305H!\362\342\313\261\327\236h/u.t\252\3739\310v\364\273\250\322\035\275\224\214\214\005\347\203\215p:,%c\227\001\252\n\23476\021,(|'\277\205\027\363\341fT:2\275\032\226\302\347\321\315\250\032\177\016\247\346\273\223S\341r\224\217\246\223\311\236\177\2652.m\257\004;\341\033\010\365\353\3514\232\344\233\353\241\007\026\360|\031\302\232\204\264\353\355j'\327s\360k\364\262=\336~\320\231\350,\355\237\333\237\036,\257\304\363\361f\373~[\357\314t\312\335\261\033\321B\264\r\376\267\333\271\356\341\034\200\270\360B\010\262\005\350\223\374x26\031,\207_\205\004B\230\374\033dW\005\3126\343R\374\014(;{\001 \377\262\305\203\202\342R\213&\242\345x\".'cS\007S\013\355r\373\367\375\277\354?\372p\377C\355\340\355\206\224x\245\013\352j\004\273!\331\223er1\037\234\003\031\256@\334oB\021\225\242rTI_\\\017\365\203\231'\235\n\320\374\360\003\310\354\232|\376\261]i\323\316\243\375\322\376\322\207\341\2035\220\312\306\301\306\273\203w\177\034\374\201\273\3037\243\027q9V\205\365\010\304\014l\177\003Q\225\345\037\350`\"""\370GX\217H$\342G\355R\273,\343\330\336\313%C\177m\375\020T@\331sw>^\002e\207\305\370BL\342\355L\330\223A\371Lu?\204\311\375\240\032\346\006\265\2532\204\202\332i\255\007i!%\240\354\007P\\%p1=\243\212\347\377pq.\274\031\352\321\255\036\217\177\312\341\353\377\001\337AH\361";
+    PyObject *data = __Pyx_DecompressString(cstring, 2165, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (4153 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis Maximum squared distance must be positive.<MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Step size must be positive.Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.array, max_dist2=no default __reduce__ due to non-trivial __cinit__numpy.core.multiarray failed to importnumpy.core.umath failed to import object>pyneutube.tracers.pyNeuTube.configpyneutube/tracers/pyNeuTube/filters.pyx(step=<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides., z_dim=ASCIIDefaultsEllipsisLiteralMexicanHatFilterMexicanHatFilter.__reduce_cython__MexicanHatFilter.__setstate_cython__MexicanHatFilter._discrete_field_2d_scalingMexicanHatFilter.kernel_funcOptional__Pyx_PyDict_NextRefSEG_LENGTHSegmentFilterSegmentFilter.__reduce_cython__SegmentFilter.__setstate_cython__SegmentFilter._discrete_field_2d_scalingSegmentFilter.generate_filter_by_segSegmentFilter.kernel_funcSequenceView.MemoryViewabcabstractmethodallocate_bufferasarrayasyncio.coroutinesbasec__class____class_getitem__cline_in_tracebackconfigcopycorrelation_""scorecount__dict___discrete_field_2d_scalingdist2dot_scoredtypedtype_is_objectemptyencodeenumerateerrorexpfilter_weightsflagsfloat64formatfortran__func__generate_filter_by_seg__getstate__globalidimage_intensities__import__indexis_2d_is_coroutineitemsitemsizekernel_funclength__main__max_dist2mean_intensity_neg_weight_scoremean_intensity_scorememviewmode__module__name__name__ndim__new__npnumpyobjpackpoppsipyneutube.tracers.pyNeuTube.filters__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__radius__reduce____reduce_cython____reduce_ex__registerrel_posrotatescalesegself__set_name__setdefault__setstate____setstate_cython__shapesizestartstart_coordstepstopstruct__test__thetatypingunpackupdatevaluesxzz_dimzerosPyObject *(__Pyx_memviewslice, double, double, int __pyx_skip_dispatch, struct __pyx_opt_args_9pyneutube_4core_10processing_9transform_rotate_by_theta_psi_fast *__pyx_optional_args)\000rotate_by_theta_psi_fast\200\001\340\036\037\360\010\000\t\033\320\032+\2506\260\021\260!\330\010\030\230\r\240]\260!\330\010\030\230\016\240a\340\010\034\230A\330\010\034\230A\360\010\000\005\t\210\005\210U\220!\2201\330\010\013\2104\210u\220A\220W\230A\230Q\330\014\025\220W\230A\230Q\330\010\013\2104\210u\220A\220W\230A\230Q\330\014\025\220W\230A\230Q\330\004\r\210V\2202\220Q\330\004\r\210V\2202\220Q\360\006\000\005\t\210\005\210U\220!\2201\330\010\013\2105\220\001\220\027\230\001\230\024\230S\240\005\240Q\240g\250Q\250a\330\014\r\330\010\014\210G\2201\220C\220r\230\021\330\010\014\210G\2201\220C\220r\230\021\330\010\022\220\"\220B\220a\330\010\022\220\"\220B\220a\330\010\022\220\"\220B\220a\340\004\007\200w\210c\220\022\2203\220g\230S\240\001\330\010\017\210q\340\004\013\2107\220#\220T\230\021\230(\240\"\240D\250\001\250\021\200\001\340\026\027\360\010\000\t\033\320\032+\2506\260\021\260!\330\010\027\220q\330\010\034\230A\330\010\034\230A\340\004\010\210\005\210U\220!\2201\330\010\013\2105\220\001\220\027\230\001\230\024\230S\240\005\240Q\240g\250Q\250a""\330\014\r\330\010\021\220\027\230\001\230\023\230B\230g\240Q\240a\340\004\013\2101\200A\200A\330AQ\320QR\200A\340IY\320YZ\360\006\000\r\034\2304\230{\250&\260\001\260\021\330\014#\2402\240X\250Q\250d\260,\270e\3001\330\014\036\230b\240\010\250\001\250\024\250[\270\005\270Q\330\014 \240\002\240(\250!\2504\250}\270E\300\021\340\014\034\230C\230q\330\014\033\2303\230a\330\014\"\240'\250\022\2501\330\014\034\230D\240\001\240\021\330\014\034\230D\240\001\240\024\240Q\240a\340\014'\240r\250\026\250r\260\023\260D\270\006\270b\300\001\360\010\000\r&\240Q\340\r\016\330\014\020\220\005\220U\230!\2301\330\020\026\220g\230Q\230a\330\020\023\2204\220r\230\021\330\024\032\230!\2302\230V\2401\330\024\032\230!\2302\230V\2401\330\024\033\2301\230F\240$\240b\250\007\250r\260\021\340\024\034\230E\240\021\240!\330\024\034\230D\240\001\240\021\330\024\034\230E\240\022\2401\330\024\027\220v\230R\230q\330\030!\240\024\240Q\240a\330\031\037\230r\240\021\330\030!\240\026\240r\250\024\250Q\250h\260b\270\001\330\024\032\230!\2302\230W\240M\260\022\2606\270\023\270D\300\002\300!\330\024\032\230!\2302\230W\240G\2502\250V\2603\260d\270\"\270A\340\020#\2404\240q\250\007\250q\260\001\340\014\020\220\005\220U\230!\2301\330\020\027\220q\230\006\230a\340\010\013\2107\220%\220s\230'\240\023\240B\240c\250\023\250E\260\023\260A\340\021\022\330\020\024\220E\230\025\230a\230q\330\024\035\230Q\230b\240\005\240V\2501\250B\250a\330\024\035\230Q\230b\240\005\240V\2501\250B\250a\330\024\035\230Q\230b\240\005\240Q\360\006\000\r\031\320\0300\260\001\260\033\270C\270x\300s\310&\320PQ\330\014\025\220Q\340\010\017\210x\220w\230a\200A\360\010\000\t\021\220\002\220\"\220G\2302\230R\230t\2401\240A\240Q\200A\360\010\000\t\037\230d\320\"=\270Q\270e\3007\310!\330\010\036\230d\320\"5\260Q\260e\2708\3001\300D\310\010\320PQ\320QU\320U]\320]^\320^_\340\010$\240H\250A\250Q\330\010\013\2108\2203\220a\330\014\031\230\023\230A\330\014\031\230\021\340\014\023\220;\230h\240a\240t\2508\2601\260A\340\010\017\210q\200\001\330\004""\n\210+\220Q\200\001\340,-\360\016\000\t\033\230.\250\006\250a\250q\330\010\027\220q\330\010\024\220A\330\010\034\230A\330\010\034\230A\340\004\010\210\005\210U\220!\2201\330\010\013\2107\220!\2203\220b\230\001\330\014\025\220W\230A\230Q\330\014\025\220Q\340\004\007\200v\210S\220\001\330\010\017\210q\330\004\013\2106\220\022\2201\200\001\340!\"\360\010\000\t\033\230.\250\006\250a\250q\330\010\027\220q\330\010\024\220A\330\010\034\230A\330\010\034\230A\340\004\010\210\005\210U\220!\2201\330\010\013\2107\220!\2203\220b\230\002\230$\230d\240%\240q\250\007\250q\260\001\330\014\025\220W\230A\230Q\330\014\025\220Q\340\004\007\200v\210S\220\001\330\010\017\210q\330\004\013\2106\220\022\2201O";
+    #else /* compression: none (4152 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis Maximum squared distance must be positive.<MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Step size must be positive.Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.array, max_dist2=no default __reduce__ due to non-trivial __cinit__numpy.core.multiarray failed to importnumpy.core.umath failed to import object>pyneutube.tracers.pyNeuTube.configpyneutube/tracers/pyNeuTube/filters.pyx(step=<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides., z_dim=ASCIIDefaultsEllipsisLiteralMexicanHatFilterMexicanHatFilter.__reduce_cython__MexicanHatFilter.__setstate_cython__MexicanHatFilter._discrete_field_2d_scalingMexicanHatFilter.kernel_funcOptional__Pyx_PyDict_NextRefSEG_LENGTHSegmentFilterSegmentFilter.__reduce_cython__SegmentFilter.__setstate_cython__SegmentFilter._discrete_field_2d_scalingSegmentFilter.generate_filter_by_segSegmentFilter.kernel_funcSequenceView.MemoryViewabcabstractmethodallocate_bufferasarrayasyncio.coroutinesbasec__class____class_getitem__cline_in_tracebackconfigcopycorrelation_""scorecount__dict___discrete_field_2d_scalingdist2dot_scoredtypedtype_is_objectemptyencodeenumerateerrorexpfilter_weightsflagsfloat64formatfortran__func__generate_filter_by_seg__getstate__globalidimage_intensities__import__indexis_2d_is_coroutineitemsitemsizekernel_funclength__main__max_dist2mean_intensity_neg_weight_scoremean_intensity_scorememviewmode__module__name__name__ndim__new__npnumpyobjpackpoppsipyneutube.tracers.pyNeuTube.filters__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__radius__reduce____reduce_cython____reduce_ex__registerrel_posrotatescalesegself__set_name__setdefault__setstate____setstate_cython__shapesizestartstart_coordstepstopstruct__test__thetatypingunpackupdatevaluesxzz_dimzerosPyObject *(__Pyx_memviewslice, double, double, int __pyx_skip_dispatch, struct __pyx_opt_args_9pyneutube_4core_10processing_9transform_rotate_by_theta_psi_fast *__pyx_optional_args)\000rotate_by_theta_psi_fast\200\001\340\036\037\360\010\000\t\033\320\032+\2506\260\021\260!\330\010\030\230\r\240]\260!\330\010\030\230\016\240a\340\010\034\230A\330\010\034\230A\360\010\000\005\t\210\005\210U\220!\2201\330\010\013\2104\210u\220A\220W\230A\230Q\330\014\025\220W\230A\230Q\330\010\013\2104\210u\220A\220W\230A\230Q\330\014\025\220W\230A\230Q\330\004\r\210V\2202\220Q\330\004\r\210V\2202\220Q\360\006\000\005\t\210\005\210U\220!\2201\330\010\013\2105\220\001\220\027\230\001\230\024\230S\240\005\240Q\240g\250Q\250a\330\014\r\330\010\014\210G\2201\220C\220r\230\021\330\010\014\210G\2201\220C\220r\230\021\330\010\022\220\"\220B\220a\330\010\022\220\"\220B\220a\330\010\022\220\"\220B\220a\340\004\007\200w\210c\220\022\2203\220g\230S\240\001\330\010\017\210q\340\004\013\2107\220#\220T\230\021\230(\240\"\240D\250\001\250\021\200\001\340\026\027\360\010\000\t\033\320\032+\2506\260\021\260!\330\010\027\220q\330\010\034\230A\330\010\034\230A\340\004\010\210\005\210U\220!\2201\330\010\013\2105\220\001\220\027\230\001\230\024\230S\240\005\240Q\240g\250Q\250a""\330\014\r\330\010\021\220\027\230\001\230\023\230B\230g\240Q\240a\340\004\013\2101\200A\200A\330AQ\320QR\200A\340IY\320YZ\360\006\000\r\034\2304\230{\250&\260\001\260\021\330\014#\2402\240X\250Q\250d\260,\270e\3001\330\014\036\230b\240\010\250\001\250\024\250[\270\005\270Q\330\014 \240\002\240(\250!\2504\250}\270E\300\021\340\014\034\230C\230q\330\014\033\2303\230a\330\014\"\240'\250\022\2501\330\014\034\230D\240\001\240\021\330\014\034\230D\240\001\240\024\240Q\240a\340\014'\240r\250\026\250r\260\023\260D\270\006\270b\300\001\360\010\000\r&\240Q\340\r\016\330\014\020\220\005\220U\230!\2301\330\020\026\220g\230Q\230a\330\020\023\2204\220r\230\021\330\024\032\230!\2302\230V\2401\330\024\032\230!\2302\230V\2401\330\024\033\2301\230F\240$\240b\250\007\250r\260\021\340\024\034\230E\240\021\240!\330\024\034\230D\240\001\240\021\330\024\034\230E\240\022\2401\330\024\027\220v\230R\230q\330\030!\240\024\240Q\240a\330\031\037\230r\240\021\330\030!\240\026\240r\250\024\250Q\250h\260b\270\001\330\024\032\230!\2302\230W\240M\260\022\2606\270\023\270D\300\002\300!\330\024\032\230!\2302\230W\240G\2502\250V\2603\260d\270\"\270A\340\020#\2404\240q\250\007\250q\260\001\340\014\020\220\005\220U\230!\2301\330\020\027\220q\230\006\230a\340\010\013\2101\330\021\022\330\020\024\220E\230\025\230a\230q\330\024\035\230Q\230b\240\005\240V\2501\250B\250a\330\024\035\230Q\230b\240\005\240V\2501\250B\250a\330\024\035\230Q\230b\240\005\240Q\330\014\017\210s\220'\230\023\230B\230c\240\023\240E\250\023\250A\330\020\034\320\0344\260A\260[\300\003\3008\3103\310f\320TU\330\014\025\220Q\340\010\017\210x\220w\230a\200A\360\010\000\t\021\220\002\220\"\220G\2302\230R\230t\2401\240A\240Q\200A\360\010\000\t\037\230d\320\"=\270Q\270e\3007\310!\330\010\036\230d\320\"5\260Q\260e\2708\3001\300D\310\010\320PQ\320QU\320U]\320]^\320^_\340\010$\240H\250A\250Q\330\010\013\2108\2203\220a\330\014\031\230\023\230A\330\014\031\230\021\340\014\023\220;\230h\240a\240t\2508\2601\260A\340\010\017\210q\200\001\330\004\n""\210+\220Q\200\001\340,-\360\016\000\t\033\230.\250\006\250a\250q\330\010\027\220q\330\010\024\220A\330\010\034\230A\330\010\034\230A\340\004\010\210\005\210U\220!\2201\330\010\013\2107\220!\2203\220b\230\001\330\014\025\220W\230A\230Q\330\014\025\220Q\340\004\007\200v\210S\220\001\330\010\017\210q\330\004\013\2106\220\022\2201\200\001\340!\"\360\010\000\t\033\230.\250\006\250a\250q\330\010\027\220q\330\010\024\220A\330\010\034\230A\330\010\034\230A\340\004\010\210\005\210U\220!\2201\330\010\013\2107\220!\2203\220b\230\002\230$\230d\240%\240q\250\007\250q\260\001\330\014\025\220W\230A\230Q\330\014\025\220Q\340\004\007\200v\210S\220\001\330\010\017\210q\330\004\013\2106\220\022\2201O";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -28593,22 +28606,22 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 292};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 290};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_image_intensities, __pyx_mstate->__pyx_n_u_filter_weights};
     __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_filt_2, __pyx_mstate->__pyx_n_u_correlation_score, __pyx_mstate->__pyx_kp_b_iso88591_6_a_A_A_U_1_4uAWAQ_WAQ_4uAWAQ_W, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 331};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 329};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_image_intensities, __pyx_mstate->__pyx_n_u_filter_weights};
     __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_filt_2, __pyx_mstate->__pyx_n_u_dot_score, __pyx_mstate->__pyx_kp_b_iso88591_6_q_A_A_U_1_5_S_QgQa_BgQa_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 357};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 355};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_image_intensities, __pyx_mstate->__pyx_n_u_filter_weights};
     __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_filt_2, __pyx_mstate->__pyx_n_u_mean_intensity_score, __pyx_mstate->__pyx_kp_b_iso88591_aq_q_A_A_A_U_1_7_3b_d_q_q_WAQ_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 385};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 383};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_image_intensities, __pyx_mstate->__pyx_n_u_filter_weights};
     __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_filt_2, __pyx_mstate->__pyx_n_u_mean_intensity_neg_weight_score, __pyx_mstate->__pyx_kp_b_iso88591_aq_q_A_A_A_U_1_7_3b_WAQ_Q_vS_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }

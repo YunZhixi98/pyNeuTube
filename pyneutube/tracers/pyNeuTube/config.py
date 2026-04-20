@@ -45,6 +45,7 @@ class TraceStatus(Enum):
     LOOP_FORMED = auto()
     SIGNAL_CHANGED = auto()
     RADIUS_CHANGED = auto()
+    SEG_TOO_THIN = auto()
 
 
 class TraceDirection(Enum):
