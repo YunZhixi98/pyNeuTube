@@ -43,7 +43,7 @@ def _extension_source(stem: str, *, use_cython: bool) -> str:
 def _extra_compile_args() -> list[str]:
     if sys.platform == "win32":
         return ["/O2"]
-    return ["-O3"]
+    return ["-O3", "-std=gnu99"]
 
 
 def _strip_compiler_compat_flags(command):
