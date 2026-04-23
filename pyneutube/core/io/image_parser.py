@@ -21,6 +21,11 @@ try:  # Optional runtime dependency.
 except ImportError:  # pragma: no cover - optional dependency
     nrrd = None
 
+try:  # Optional compiled accelerator.
+    from . import vaa3d_accel
+except ImportError:  # pragma: no cover - extension may be absent in source checkouts
+    vaa3d_accel = None
+
 
 def _vprint(verbose: int, message: str) -> None:
     if verbose:
@@ -118,6 +123,9 @@ def _read_v3draw_header(path: Path) -> tuple[tuple[int, int, int], np.dtype, dic
 
 def load_v3draw(path: str | os.PathLike[str]) -> np.ndarray:
     path = Path(path)
+    if vaa3d_accel is not None:
+        return _normalized_volume(vaa3d_accel.load_v3draw(path))
+
     format_key = b"raw_image_stack_by_hpeng"
     with path.open("rb") as handle:
         if handle.read(len(format_key)) != format_key:
@@ -456,6 +464,9 @@ class PBD:
 
     def load_image(self, path: str | os.PathLike[str]) -> np.ndarray:
         path = Path(path)
+        if vaa3d_accel is not None:
+            return _normalized_volume(vaa3d_accel.load_v3dpbd(path))
+
         self.decompression_prior = 0
         format_key = b"v3d_volume_pkbitdf_encod"
         with path.open("rb") as handle:

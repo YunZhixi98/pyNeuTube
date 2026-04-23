@@ -61,6 +61,7 @@ packages = [
 ]
 
 [tool.setuptools.package-data]
+"pyneutube.core.io" = ["*.pyx"]
 "pyneutube.core.processing" = ["*.pyx", "*.pxd"]
 "pyneutube.tracers.pyNeuTube" = ["*.pyx"]
 

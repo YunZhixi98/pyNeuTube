@@ -92,6 +92,13 @@ class PyNeuTubeBuildExt(build_ext):
 def build_extensions(*, use_cython: bool = False) -> list[Extension]:
     extensions = [
         Extension(
+            "pyneutube.core.io.vaa3d_accel",
+            [_extension_source("pyneutube/core/io/vaa3d_accel", use_cython=use_cython)],
+            include_dirs=[np.get_include()],
+            define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+            extra_compile_args=_extra_compile_args(),
+        ),
+        Extension(
             "pyneutube.core.processing.local_maximum",
             [_extension_source("pyneutube/core/processing/local_maximum", use_cython=use_cython)],
             include_dirs=[np.get_include()],
