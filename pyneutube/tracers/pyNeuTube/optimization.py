@@ -9,6 +9,13 @@ from .config import Defaults, Optimization
 from .filters import MexicanHatFilter, correlation_score, dot_score
 from .tracing_base import BaseTracingSegment
 
+try:
+    from .optimization_accel import SegmentOptimizer as _CythonSegmentOptimizer
+    from .optimization_accel import optimize_segment_C as _optimize_segment_C_accel
+except ImportError:
+    _CythonSegmentOptimizer = None
+    _optimize_segment_C_accel = None
+
 _OPTIMIZATION_SEG_FILTER = MexicanHatFilter()
 
 
@@ -67,6 +74,14 @@ def optimize_segment_C(
     var_init=None,
 ):
     """Fit radius, orientation, and scale using the C-style optimizer port."""
+    if _optimize_segment_C_accel is not None:
+        return _optimize_segment_C_accel(
+            seg,
+            image,
+            score_func=score_func,
+            var_init=var_init,
+        )
+
     if var_init is not None:
         seg.radius, seg.theta, seg.psi, seg.scale = var_init
 
@@ -311,3 +326,7 @@ class SegmentOptimizer:
         self._apply_x_to_seg(seg, x)
         seg.theta = seg.theta % (2 * np.pi)
         seg.psi = seg.psi % (2 * np.pi)
+
+
+if _CythonSegmentOptimizer is not None:
+    SegmentOptimizer = _CythonSegmentOptimizer

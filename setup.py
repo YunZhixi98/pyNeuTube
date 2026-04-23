@@ -156,6 +156,19 @@ def build_extensions(*, use_cython: bool = False) -> list[Extension]:
             )
         )
 
+    optimization_accel_stem = "pyneutube/tracers/pyNeuTube/optimization_accel"
+    optimization_accel_c = ROOT / f"{optimization_accel_stem}.c"
+    if use_cython or optimization_accel_c.exists():
+        extensions.append(
+            Extension(
+                "pyneutube.tracers.pyNeuTube.optimization_accel",
+                [_extension_source(optimization_accel_stem, use_cython=use_cython)],
+                include_dirs=[np.get_include()],
+                define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+                extra_compile_args=_extra_compile_args(),
+            )
+        )
+
     if use_cython:
         if cythonize is None:
             raise RuntimeError(
