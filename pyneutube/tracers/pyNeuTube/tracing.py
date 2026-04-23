@@ -17,7 +17,11 @@ from scipy.optimize import minimize
 
 from pyneutube.core.math_utils import get_bounding_box
 from pyneutube.core.processing.sampling import sample_voxels
-from pyneutube.core.processing.transform import rotate_by_theta_psi, normalize_euler_zx
+from pyneutube.core.processing.transform import (
+    normalize_euler_zx,
+    rotate_by_theta_psi,
+    rotate_by_theta_psi_fast,
+)
 
 from .config import TraceStatus, Defaults, TraceDirection
 from .filters import MexicanHatFilter, correlation_score, dot_score, mean_intensity_score
@@ -203,6 +207,15 @@ class TracingSegment(BaseTracingSegment):
         best_score = -np.inf
         best_theta, best_psi = self.theta, self.psi
         center_coord = self.center_coord.copy()
+        half_length = (self.length - 1.0) * 0.5
+
+        # For a fixed radius/scale/length, the orientation filter weights are
+        # invariant and only the local coordinates need rotation per candidate.
+        base_seg = self.copy()
+        base_seg.theta = 0.0
+        base_seg.psi = 0.0
+        base_seg._set_orientation()
+        base_coords_3d, _, weights_3d = _ORIENTATION_SEG_FILTER(base_seg, rel_pos="local")
 
         
         # backup: zx's solution
@@ -215,12 +228,13 @@ class TracingSegment(BaseTracingSegment):
 
         for theta, psi_values in _orientation_search_schedule():
             for psi in psi_values:
-                self.theta, self.psi = theta, psi
-                self._set_orientation()
-                self._set_coordinate(center_coord, 'center')
-
-                coords_3d, _, weights_3d = _ORIENTATION_SEG_FILTER(self)
-
+                dir_v = np.asarray(
+                    _cached_orientation_vector(float(theta), float(psi)),
+                    dtype=np.float64,
+                )
+                start_coord = center_coord - half_length * dir_v
+                coords_3d = rotate_by_theta_psi_fast(base_coords_3d, theta, psi, None)
+                coords_3d += start_coord
                 intensities = sample_voxels(image, coords_3d)
                 score = correlation_score(intensities, weights_3d)
 

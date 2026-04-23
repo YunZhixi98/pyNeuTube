@@ -176,6 +176,26 @@ def _can_skip_connect_test(chain1_stats, chain2_stats, dist_thresh: float) -> bo
     return min_bbox_dist > distance_limit
 
 
+def _grid_index_bounds(
+    min_corner: np.ndarray,
+    max_corner: np.ndarray,
+    cell_size: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    min_index = np.floor(min_corner / cell_size).astype(np.int32)
+    max_index = np.floor(max_corner / cell_size).astype(np.int32)
+    return min_index, max_index
+
+
+def _iter_grid_keys(
+    min_index: np.ndarray,
+    max_index: np.ndarray,
+):
+    for ix in range(int(min_index[0]), int(max_index[0]) + 1):
+        for iy in range(int(min_index[1]), int(max_index[1]) + 1):
+            for iz in range(int(min_index[2]), int(max_index[2]) + 1):
+                yield (ix, iy, iz)
+
+
 class ChainConnector:
 
     def __init__(
@@ -500,12 +520,44 @@ class ChainConnector:
             self.sp_test = False
 
         broadphase_stats = _chain_broadphase_stats(chains)
+        global_max_radius = max(
+            (stats["max_radius"] for stats in broadphase_stats if stats is not None),
+            default=0.0,
+        )
+        global_distance_limit = 2 * np.sqrt(
+            global_max_radius**2 + ((Defaults.SEG_LENGTH - 1) / 2) ** 2
+        ) + self.dist_thresh
+        cell_size = max(float(global_distance_limit), 1.0)
+        spatial_grid: dict[tuple[int, int, int], list[int]] = {}
+        for chain_idx, chain_stats in enumerate(broadphase_stats):
+            if chain_stats is None:
+                continue
+            min_index, max_index = _grid_index_bounds(
+                chain_stats["chain_min"],
+                chain_stats["chain_max"],
+                cell_size,
+            )
+            for key in _iter_grid_keys(min_index, max_index):
+                spatial_grid.setdefault(key, []).append(chain_idx)
 
         for i, chain1 in enumerate(chains):
             if check_timeout is not None and i % 4 == 0:
                 check_timeout("chain connection")
             chain1_stats = broadphase_stats[i]
-            for j, chain2 in enumerate(chains):
+            if chain1_stats is None:
+                continue
+
+            query_min_index, query_max_index = _grid_index_bounds(
+                chain1_stats["chain_min"] - global_distance_limit,
+                chain1_stats["chain_max"] + global_distance_limit,
+                cell_size,
+            )
+            candidate_indices = set()
+            for key in _iter_grid_keys(query_min_index, query_max_index):
+                candidate_indices.update(spatial_grid.get(key, ()))
+
+            for j in sorted(candidate_indices):
+                chain2 = chains[j]
                 if i == j:
                     continue
                 chain2_stats = broadphase_stats[j]
