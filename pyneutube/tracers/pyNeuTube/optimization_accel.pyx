@@ -56,6 +56,14 @@ cdef class SegmentOptimizer:
     cdef object high
     cdef object delta
     cdef object weight
+    cdef object _x_buf
+    cdef object _g0_buf
+    cdef object _g1_buf
+    cdef object _gradient_buf
+    cdef object _direction_buf
+    cdef object _trial_buf
+    cdef object _org_x_buf
+    cdef object _scaled_dir_buf
 
     def __init__(
         self,
@@ -119,6 +127,14 @@ cdef class SegmentOptimizer:
 
         self.seg_filter = _OPTIMIZATION_SEG_FILTER
         self.stop_grad = Optimization.LINE_SEARCH_STOP_GRADIENT
+        self._x_buf = np.empty(4, dtype=np.float64)
+        self._g0_buf = np.empty(4, dtype=np.float64)
+        self._g1_buf = np.empty(4, dtype=np.float64)
+        self._gradient_buf = np.empty(4, dtype=np.float64)
+        self._direction_buf = np.empty(4, dtype=np.float64)
+        self._trial_buf = np.empty(4, dtype=np.float64)
+        self._org_x_buf = np.empty(4, dtype=np.float64)
+        self._scaled_dir_buf = np.empty(4, dtype=np.float64)
 
     @staticmethod
     cdef void _apply_x_to_seg(object seg, double[:] x) except *:
@@ -132,6 +148,13 @@ cdef class SegmentOptimizer:
         coords3d, _, weights = self.seg_filter(tmpseg)
         intensities = sample_voxels(self.image, coords3d)
         return float(self.score_func(intensities, weights))
+
+    @staticmethod
+    cdef void _copy4(double[:] src, double[:] dst) noexcept:
+        dst[0] = src[0]
+        dst[1] = src[1]
+        dst[2] = src[2]
+        dst[3] = src[3]
 
     @staticmethod
     cdef void _conjugate_update_direction(
@@ -161,11 +184,13 @@ cdef class SegmentOptimizer:
         direction[2] = direction[2] * beta + gradient[2]
         direction[3] = direction[3] * beta + gradient[3]
 
-    cpdef cnp.ndarray compute_fd_gradient(self, cnp.ndarray[DTYPE_t, ndim=1] x, object tmpseg):
+    cdef void _compute_fd_gradient_into(
+        self,
+        double[:] x_view,
+        object tmpseg,
+        double[:] gradient_view,
+    ) except *:
         cdef:
-            cnp.ndarray[DTYPE_t, ndim=1] gradient = np.zeros(4, dtype=np.float64)
-            double[:] x_view = x
-            double[:] gradient_view = gradient
             double[:] delta_view = self.delta
             double base_score = self._score_at(x_view, tmpseg)
             double right_score
@@ -203,25 +228,31 @@ cdef class SegmentOptimizer:
 
             gradient_view[i] = grad_i
 
-        return gradient
-
-    cpdef tuple line_search_var_backtrack(
-        self,
-        cnp.ndarray[DTYPE_t, ndim=1] x_org,
-        cnp.ndarray[DTYPE_t, ndim=1] direction,
-        double start_score,
-        cnp.ndarray[DTYPE_t, ndim=1] start_grad,
-        object tmpseg,
-    ):
+    cpdef cnp.ndarray compute_fd_gradient(self, cnp.ndarray[DTYPE_t, ndim=1] x, object tmpseg):
         cdef:
-            double[:] direction_view = direction
-            double[:] start_grad_view = start_grad
+            double[:] x_view = x
+            cnp.ndarray[DTYPE_t, ndim=1] gradient = self._gradient_buf
+            double[:] gradient_view = gradient
+
+        self._compute_fd_gradient_into(x_view, tmpseg, gradient_view)
+
+        return np.array(gradient, copy=True)
+
+    cdef tuple _line_search_var_backtrack_impl(
+        self,
+        double[:] x_org_view,
+        double[:] direction_view,
+        double start_score,
+        double[:] start_grad_view,
+        object tmpseg,
+    ) except *:
+        cdef:
             double[:] low_view = self.low
             double[:] high_view = self.high
             double[:] weight_view = self.weight
-            cnp.ndarray[DTYPE_t, ndim=1] org_x = np.array(x_org, copy=True, dtype=np.float64)
-            cnp.ndarray[DTYPE_t, ndim=1] x_trial = np.empty(4, dtype=np.float64)
-            cnp.ndarray[DTYPE_t, ndim=1] scaled_dir = np.empty(4, dtype=np.float64)
+            cnp.ndarray[DTYPE_t, ndim=1] x_trial = self._trial_buf
+            cnp.ndarray[DTYPE_t, ndim=1] org_x = self._org_x_buf
+            cnp.ndarray[DTYPE_t, ndim=1] scaled_dir = self._scaled_dir_buf
             double[:] org_x_view = org_x
             double[:] x_trial_view = x_trial
             double[:] scaled_dir_view = scaled_dir
@@ -233,12 +264,14 @@ cdef class SegmentOptimizer:
             double wolfe1
             int i
 
+        SegmentOptimizer._copy4(x_org_view, org_x_view)
+
         for i in range(4):
             direction_view[i] *= weight_view[i]
 
         dir_len = _vec_norm4(direction_view)
         if dir_len <= self.min_direction:
-            return False, org_x.copy(), start_score
+            return False, start_score
 
         alpha = self.alpha0 / dir_len
         gd_dot = _dot4(start_grad_view, direction_view)
@@ -258,26 +291,50 @@ cdef class SegmentOptimizer:
             alpha *= self.ro
             if alpha * dir_len < self.stop_grad:
                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
-                return False, org_x.copy(), start_score
+                return False, start_score
 
             wolfe1 = alpha / self.ro * gd_dot_c1
             if wolfe1 < 0.0:
                 wolfe1 = 0.0
             if score_trial >= start_score + wolfe1:
-                return True, x_trial.copy(), score_trial
+                return True, score_trial
+
+    cpdef tuple line_search_var_backtrack(
+        self,
+        cnp.ndarray[DTYPE_t, ndim=1] x_org,
+        cnp.ndarray[DTYPE_t, ndim=1] direction,
+        double start_score,
+        cnp.ndarray[DTYPE_t, ndim=1] start_grad,
+        object tmpseg,
+    ):
+        cdef:
+            double[:] x_org_view = x_org
+            double[:] direction_view = direction
+            double[:] start_grad_view = start_grad
+            bint improved
+            double score_trial
+
+        improved, score_trial = self._line_search_var_backtrack_impl(
+            x_org_view,
+            direction_view,
+            start_score,
+            start_grad_view,
+            tmpseg,
+        )
+        if improved:
+            return True, np.array(self._trial_buf, copy=True), score_trial
+        return False, np.array(self._org_x_buf, copy=True), start_score
 
     cpdef void fit(self, object seg):
         cdef:
-            cnp.ndarray[DTYPE_t, ndim=1] x = np.array(
-                [seg.radius, seg.theta, seg.psi, seg.scale],
-                dtype=np.float64,
-            )
-            cnp.ndarray[DTYPE_t, ndim=1] g0
-            cnp.ndarray[DTYPE_t, ndim=1] g1
-            cnp.ndarray[DTYPE_t, ndim=1] update_direction
+            cnp.ndarray[DTYPE_t, ndim=1] x = self._x_buf
+            cnp.ndarray[DTYPE_t, ndim=1] g0 = self._g0_buf
+            cnp.ndarray[DTYPE_t, ndim=1] g1 = self._g1_buf
+            cnp.ndarray[DTYPE_t, ndim=1] update_direction = self._direction_buf
             double[:] update_direction_view
             double[:] g0_view
             double[:] g1_view
+            double[:] x_view = x
             double final_score
             double dir_len
             double gnorm
@@ -285,26 +342,30 @@ cdef class SegmentOptimizer:
             int iter_count = 0
             bint improved
             object tmpseg = seg.copy()
-            object x_new
 
-        g0 = self.compute_fd_gradient(x, tmpseg)
-        update_direction = np.array(g0, copy=True)
-        final_score = self._score_at(x, tmpseg)
+        x_view[0] = seg.radius
+        x_view[1] = seg.theta
+        x_view[2] = seg.psi
+        x_view[3] = seg.scale
+
+        self._compute_fd_gradient_into(x_view, tmpseg, g0)
+        SegmentOptimizer._copy4(g0, update_direction)
+        final_score = self._score_at(x_view, tmpseg)
 
         while True:
             improved = False
             update_direction_view = update_direction
             dir_len = _vec_norm4(update_direction_view)
             if dir_len >= self.min_direction:
-                improved, x_new, new_score = self.line_search_var_backtrack(
-                    x,
-                    update_direction,
+                improved, new_score = self._line_search_var_backtrack_impl(
+                    x_view,
+                    update_direction_view,
                     final_score,
                     g0,
                     tmpseg,
                 )
                 if improved:
-                    x = x_new
+                    SegmentOptimizer._copy4(self._trial_buf, x_view)
                     final_score = new_score
                     if self.verbose:
                         print(f"iter {iter_count + 1}: score {final_score:.6g}")
@@ -313,16 +374,17 @@ cdef class SegmentOptimizer:
                 g0_view = g0
                 gnorm = _vec_norm4(g0_view)
                 if gnorm > self.min_gradient:
-                    update_direction = np.array(g0, copy=True)
-                    improved, x_new, new_score = self.line_search_var_backtrack(
-                        x,
-                        update_direction,
+                    SegmentOptimizer._copy4(g0_view, update_direction)
+                    update_direction_view = update_direction
+                    improved, new_score = self._line_search_var_backtrack_impl(
+                        x_view,
+                        update_direction_view,
                         final_score,
                         g0,
                         tmpseg,
                     )
                     if improved:
-                        x = x_new
+                        SegmentOptimizer._copy4(self._trial_buf, x_view)
                         final_score = new_score
                         if self.verbose:
                             print(f"iter {iter_count + 1} (fallback): score {final_score:.6g}")
@@ -334,14 +396,14 @@ cdef class SegmentOptimizer:
             if iter_count >= self.maxiter:
                 break
 
-            g1 = self.compute_fd_gradient(x, tmpseg)
+            self._compute_fd_gradient_into(x_view, tmpseg, g1)
             g1_view = g1
             g0_view = g0
             update_direction_view = update_direction
             SegmentOptimizer._conjugate_update_direction(g1_view, g0_view, update_direction_view)
-            g0 = np.array(g1, copy=True)
+            SegmentOptimizer._copy4(g1_view, g0_view)
 
-        SegmentOptimizer._apply_x_to_seg(seg, x)
+        SegmentOptimizer._apply_x_to_seg(seg, x_view)
         seg.theta = seg.theta % (2 * np.pi)
         seg.psi = seg.psi % (2 * np.pi)
 
