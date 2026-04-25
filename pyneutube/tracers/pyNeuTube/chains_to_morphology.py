@@ -33,6 +33,9 @@ from .tracing_utils import label_tracing_mask
 from .chain_utils import get_chain_side_bright_point, get_inner_chain_range, interpolate_chain
 
 
+_CANDIDATE_FALLBACK_RATIO = 0.5
+
+
 def postprocess_reconstruction(neuron: Neuron, *, verbose: int = 1, check_timeout=None) -> Neuron:
     import time
 
@@ -112,6 +115,10 @@ def _bbox_distance(min1: np.ndarray, max1: np.ndarray, min2: np.ndarray, max2: n
     return float(np.linalg.norm(gap))
 
 
+def _connection_distance_limit(max_radius: float, dist_thresh: float) -> float:
+    return float(2 * np.sqrt(max_radius**2 + ((Defaults.SEG_LENGTH - 1) / 2) ** 2) + dist_thresh)
+
+
 def _chain_broadphase_stats(chains: SegmentChains):
     stats = []
     for chain in chains:
@@ -122,6 +129,13 @@ def _chain_broadphase_stats(chains: SegmentChains):
         start_coords = np.asarray([seg.start_coord for seg in chain], dtype=np.float64)
         end_coords = np.asarray([seg.end_coord for seg in chain], dtype=np.float64)
         chain_coords = np.vstack((start_coords, end_coords))
+        segment_bounds = [
+            (
+                np.minimum(start_coord, end_coord),
+                np.maximum(start_coord, end_coord),
+            )
+            for start_coord, end_coord in zip(start_coords, end_coords)
+        ]
         head_coords = np.vstack(
             (
                 np.asarray(chain[0].start_coord, dtype=np.float64),
@@ -143,6 +157,7 @@ def _chain_broadphase_stats(chains: SegmentChains):
                 "tail_min": tail_coords.min(axis=0),
                 "tail_max": tail_coords.max(axis=0),
                 "max_radius": max(float(seg.radius) for seg in chain),
+                "segment_bounds": segment_bounds,
             }
         )
 
@@ -172,7 +187,7 @@ def _can_skip_connect_test(chain1_stats, chain2_stats, dist_thresh: float) -> bo
         ),
     )
     max_radius = max(chain1_stats["max_radius"], chain2_stats["max_radius"])
-    distance_limit = 2 * np.sqrt(max_radius**2 + ((Defaults.SEG_LENGTH - 1) / 2) ** 2) + dist_thresh
+    distance_limit = _connection_distance_limit(max_radius, dist_thresh)
     return min_bbox_dist > distance_limit
 
 
@@ -194,6 +209,48 @@ def _iter_grid_keys(
         for iy in range(int(min_index[1]), int(max_index[1]) + 1):
             for iz in range(int(min_index[2]), int(max_index[2]) + 1):
                 yield (ix, iy, iz)
+
+
+def _build_segment_spatial_grid(
+    broadphase_stats,
+    cell_size: float,
+) -> dict[tuple[int, int, int], list[int]]:
+    spatial_grid: dict[tuple[int, int, int], list[int]] = {}
+    for chain_idx, chain_stats in enumerate(broadphase_stats):
+        if chain_stats is None:
+            continue
+        for segment_min, segment_max in chain_stats["segment_bounds"]:
+            min_index, max_index = _grid_index_bounds(segment_min, segment_max, cell_size)
+            for key in _iter_grid_keys(min_index, max_index):
+                bucket = spatial_grid.setdefault(key, [])
+                if not bucket or bucket[-1] != chain_idx:
+                    bucket.append(chain_idx)
+    return spatial_grid
+
+
+def _candidate_indices_from_segment_grid(
+    chain_stats,
+    spatial_grid: dict[tuple[int, int, int], list[int]],
+    distance_limit: float,
+    cell_size: float,
+    *,
+    fallback_limit: int,
+) -> set[int] | None:
+    candidate_indices: set[int] = set()
+    for box_min, box_max in (
+        (chain_stats["head_min"], chain_stats["head_max"]),
+        (chain_stats["tail_min"], chain_stats["tail_max"]),
+    ):
+        query_min_index, query_max_index = _grid_index_bounds(
+            box_min - distance_limit,
+            box_max + distance_limit,
+            cell_size,
+        )
+        for key in _iter_grid_keys(query_min_index, query_max_index):
+            candidate_indices.update(spatial_grid.get(key, ()))
+            if len(candidate_indices) > fallback_limit:
+                return None
+    return candidate_indices
 
 
 class ChainConnector:
@@ -524,21 +581,10 @@ class ChainConnector:
             (stats["max_radius"] for stats in broadphase_stats if stats is not None),
             default=0.0,
         )
-        global_distance_limit = 2 * np.sqrt(
-            global_max_radius**2 + ((Defaults.SEG_LENGTH - 1) / 2) ** 2
-        ) + self.dist_thresh
+        global_distance_limit = _connection_distance_limit(global_max_radius, self.dist_thresh)
         cell_size = max(float(global_distance_limit), 1.0)
-        spatial_grid: dict[tuple[int, int, int], list[int]] = {}
-        for chain_idx, chain_stats in enumerate(broadphase_stats):
-            if chain_stats is None:
-                continue
-            min_index, max_index = _grid_index_bounds(
-                chain_stats["chain_min"],
-                chain_stats["chain_max"],
-                cell_size,
-            )
-            for key in _iter_grid_keys(min_index, max_index):
-                spatial_grid.setdefault(key, []).append(chain_idx)
+        spatial_grid = _build_segment_spatial_grid(broadphase_stats, cell_size)
+        candidate_fallback_limit = max(1, int(_CANDIDATE_FALLBACK_RATIO * nchains))
 
         for i, chain1 in enumerate(chains):
             if check_timeout is not None and i % 4 == 0:
@@ -547,16 +593,16 @@ class ChainConnector:
             if chain1_stats is None:
                 continue
 
-            query_min_index, query_max_index = _grid_index_bounds(
-                chain1_stats["chain_min"] - global_distance_limit,
-                chain1_stats["chain_max"] + global_distance_limit,
+            candidate_indices = _candidate_indices_from_segment_grid(
+                chain1_stats,
+                spatial_grid,
+                global_distance_limit,
                 cell_size,
+                fallback_limit=candidate_fallback_limit,
             )
-            candidate_indices = set()
-            for key in _iter_grid_keys(query_min_index, query_max_index):
-                candidate_indices.update(spatial_grid.get(key, ()))
+            candidate_iter = range(nchains) if candidate_indices is None else sorted(candidate_indices)
 
-            for j in sorted(candidate_indices):
+            for j in candidate_iter:
                 chain2 = chains[j]
                 if i == j:
                     continue
