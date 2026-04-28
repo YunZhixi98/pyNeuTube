@@ -99,11 +99,12 @@ def subtract_background(
         out = image - common_intensity
         return out
     else:
-        out = image.astype(np.int16)    # broadcast to int16 is enough for this case
-        out -= common_intensity
+        # out = image.astype(np.int16)    # broadcast to int16 is enough for this case
+        # out -= common_intensity
+        out = image - common_intensity
         np.clip(out, 0, None, out=out)
 
-        return out.astype(image.dtype)
+        return out.astype(image.dtype, copy=False)
 
 
 def threshold_filter(image: np.ndarray, threshold: Union[int, float]) -> np.ndarray:
