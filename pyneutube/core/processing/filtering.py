@@ -52,6 +52,7 @@ def subtract_background(
     """
 
     flat = image.ravel()
+    total = flat.size
 
     # Build histogram over [minV…maxV]
     imin, imax = int(flat.min()), int(flat.max())
@@ -239,7 +240,6 @@ def rc_threshold(image: np.ndarray,
         return (counts * indices).sum() / total
 
     flat = image.ravel()
-    total = flat.size
 
     # Build histogram over [minV…maxV]
     if min_value is not None:
