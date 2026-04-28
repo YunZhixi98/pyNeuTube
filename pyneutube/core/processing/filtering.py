@@ -52,7 +52,6 @@ def subtract_background(
     """
 
     flat = image.ravel()
-    total = flat.size
 
     # Build histogram over [minV…maxV]
     imin, imax = int(flat.min()), int(flat.max())
@@ -253,16 +252,16 @@ def rc_threshold(image: np.ndarray,
         imax = int(flat.max())
 
     counts = histogram1d(flat, bins=imax - imin + 1, range=(imin, imax + 1)).astype('int64')   # fastest
+    length = counts.size
 
     thresh = int((imin + imax) / 2.0 - imin)
     c1, c2 = 0, 0  # define center
 
-    prev_thresh = thresh
-    
     while True:
         # if threshold equals last index, break (no second class)
-        if thresh >= total - 1:
+        if thresh >= length - 1:
             break
+        prev_thresh = thresh
 
         # class1: indices 0..thre
         # class2: indices thre+1..length-1
@@ -280,7 +279,7 @@ def rc_threshold(image: np.ndarray,
         if new_thresh == prev_thresh:
             break
 
-        prev_thresh = new_thresh
+        thresh = new_thresh
 
     # convert back to gray value
     thresh += imin
