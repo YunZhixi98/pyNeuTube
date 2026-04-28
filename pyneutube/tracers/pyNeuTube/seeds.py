@@ -270,8 +270,8 @@ class Seeds:
         coords = _filter_interior_seed_coords(np.argwhere(dt_local_max_mask), dt_image.shape)
         coords_values = dt_image[tuple(coords.T)]
 
-        # arg_idx = _seed_priority_order(coords, coords_values)
-        arg_idx = np.arange(len(coords))
+        arg_idx = _seed_priority_order(coords, coords_values)
+        # arg_idx = np.arange(len(coords))
         for coord, value in zip(coords[arg_idx], coords_values[arg_idx], strict=True):
             self.append(Seed(coord=coord[::-1], value=value))  # xyz-order
         _vprint(verbose, f"{len(self)} seeds found")
@@ -313,10 +313,10 @@ class Seeds:
         self._seeds.sort(
             key=lambda seed: (
                 -seed.score,
-                # -abs(seed.value - Defaults.MAX_CONF_RADIUS),
-                # int(seed.coord[0]),
-                # int(seed.coord[1]),
-                # int(seed.coord[2]),
+                -abs(seed.value - Defaults.MAX_CONF_RADIUS),
+                int(seed.coord[0]),
+                int(seed.coord[1]),
+                int(seed.coord[2]),
             )
         )
 
