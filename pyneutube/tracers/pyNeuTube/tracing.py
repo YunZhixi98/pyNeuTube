@@ -6,7 +6,7 @@ tracing.py
 Definition of tracing segments and utilities of tracing.
 """
 
-from functools import cache, lru_cache
+from functools import lru_cache
 from itertools import islice
 from typing import Callable, List, Tuple, Literal, Union
 from tqdm import tqdm
@@ -17,11 +17,7 @@ from scipy.optimize import minimize
 
 from pyneutube.core.math_utils import get_bounding_box
 from pyneutube.core.processing.sampling import sample_voxels
-from pyneutube.core.processing.transform import (
-    normalize_euler_zx,
-    rotate_by_theta_psi,
-    rotate_by_theta_psi_fast,
-)
+from pyneutube.core.processing.transform import rotate_by_theta_psi_fast
 
 from .config import TraceStatus, Defaults, TraceDirection
 from .filters import MexicanHatFilter, correlation_score, dot_score, mean_intensity_score
@@ -35,11 +31,15 @@ from .tracing_utils import label_tracing_mask
 
 _SEG_FILTER = MexicanHatFilter()
 _ORIENTATION_SEG_FILTER = MexicanHatFilter(max_dist2=0.81)
+_HEMISPHERE_UNIFORM_POINTS = 200
+_HEMISPHERE_REFINE_COARSE_POINTS = 96
+_HEMISPHERE_REFINE_TOP_K = 6
+_HEMISPHERE_REFINE_ANGLE = np.deg2rad(6.0)
 # _MULTI_TRIAL_THETA_OFFSETS = (0.0, np.pi / 8, -np.pi / 8, np.pi / 16, -np.pi / 16)
 # _MULTI_TRIAL_PSI_OFFSETS = (0.0, np.pi / 4, -np.pi / 4, np.pi / 8, -np.pi / 8)
 
 
-# zx: backup
+# C original
 @lru_cache(maxsize=16)
 def _orientation_search_schedule(length: float = Defaults.SEG_LENGTH) -> tuple[tuple[float, tuple[float, ...]], ...]:
     schedule = []
@@ -49,16 +49,56 @@ def _orientation_search_schedule(length: float = Defaults.SEG_LENGTH) -> tuple[t
         schedule.append((float(theta), psi_values))
     return tuple(schedule)
 
-# @cache
-# def _orientation_search_schedule() -> tuple[tuple[float, tuple[float, ...]], ...]:
-#     schedule = []
-#     thetas = np.arccos(np.linspace(-1, 1, num=12, endpoint=False))  # uniform sampling on the surface of sphere
-#     total_sin_theta = np.sum(np.sin(thetas))
-#     for theta in thetas:
-#         Ni = max(1, int(np.round(400 * np.sin(theta) / total_sin_theta)))
-#         psi_values = tuple(float(value) for value in np.linspace(0, 2*np.pi, num=Ni, endpoint=False))
-#         schedule.append((float(theta), psi_values))
-#     return tuple(schedule)
+
+@lru_cache(maxsize=16)
+def _hemisphere_uniform_orientation_schedule(
+    num_points: int = _HEMISPHERE_UNIFORM_POINTS,
+) -> tuple[tuple[float, tuple[float, ...]], ...]:
+    golden_angle = np.pi * (3.0 - np.sqrt(5.0))
+    indices = np.arange(num_points)
+    z = np.linspace(0.0, 1.0, num=num_points, endpoint=False) + 0.5 / num_points
+    theta_values = np.arccos(z)
+    psi_values = np.mod(indices * golden_angle, 2.0 * np.pi)
+    return tuple(
+        (float(theta), (float(psi),))
+        for theta, psi in zip(theta_values, psi_values, strict=True)
+    )
+
+
+def _orientation_vector_to_theta_psi(vector: np.ndarray) -> tuple[float, float]:
+    direction = np.asarray(vector, dtype=np.float64)
+    norm = np.linalg.norm(direction)
+    if norm == 0:
+        raise ValueError("Orientation vector must be non-zero.")
+    direction = direction / norm
+    if direction[2] < 0.0:
+        direction = -direction
+    theta = float(np.arccos(np.clip(direction[2], -1.0, 1.0)))
+    psi = float(np.arctan2(direction[0], -direction[1]) % (2 * np.pi))
+    return theta, psi
+
+
+@lru_cache(maxsize=1024)
+def _vector_refined_orientation_candidates(
+    theta: float,
+    psi: float,
+    angle_step: float = _HEMISPHERE_REFINE_ANGLE,
+) -> tuple[tuple[float, float], ...]:
+    center = np.asarray(_cached_orientation_vector(float(theta), float(psi)), dtype=np.float64)
+    center /= np.linalg.norm(center)
+    reference = np.array([0.0, 0.0, 1.0], dtype=np.float64)
+    if abs(float(np.dot(center, reference))) > 0.95:
+        reference = np.array([1.0, 0.0, 0.0], dtype=np.float64)
+    tangent_u = np.cross(center, reference)
+    tangent_u /= np.linalg.norm(tangent_u)
+    tangent_v = np.cross(center, tangent_u)
+
+    candidates = []
+    for offset_u in (-1.0, 0.0, 1.0):
+        for offset_v in (-1.0, 0.0, 1.0):
+            refined = center + angle_step * (offset_u * tangent_u + offset_v * tangent_v)
+            candidates.append(_orientation_vector_to_theta_psi(refined))
+    return tuple(candidates)
 
 
 @lru_cache(maxsize=4096)
@@ -217,17 +257,25 @@ class TracingSegment(BaseTracingSegment):
         base_seg._set_orientation()
         base_coords_3d, _, weights_3d = _ORIENTATION_SEG_FILTER(base_seg, rel_pos="local")
 
-        
-        # backup: zx's solution
-        # thetas = np.arccos(np.linspace(-1, 1, num=12, endpoint=False))  # uniform sampling on the surface of sphere
-        # total_sin_theta = np.sum(np.sin(thetas))
-        # for theta in thetas:
-        #     Ni = max(1, int(np.round(400 * np.sin(theta) / total_sin_theta)))
-        #     psis = np.linspace(0, 2*np.pi, num=Ni, endpoint=False)
-        #     for psi in psis:
+        search_mode = getattr(Defaults, "ORIENTATION_SEARCH_MODE", "grid")
+        if search_mode == "grid":
+            for theta, psi_values in _orientation_search_schedule(self.length):
+                for psi in psi_values:
+                    dir_v = np.asarray(
+                        _cached_orientation_vector(float(theta), float(psi)),
+                        dtype=np.float64,
+                    )
+                    start_coord = center_coord - half_length * dir_v
+                    coords_3d = rotate_by_theta_psi_fast(base_coords_3d, theta, psi, None)
+                    coords_3d += start_coord
+                    intensities = sample_voxels(image, coords_3d)
+                    score = correlation_score(intensities, weights_3d)
 
-        for theta, psi_values in _orientation_search_schedule():
-            for psi in psi_values:
+                    if score > best_score:
+                        best_score = score
+                        best_theta, best_psi = theta, psi
+        elif search_mode in {"hemisphere_uniform", "hemisphere_uniform_refine"}:
+            def score_candidate(theta: float, psi: float) -> float:
                 dir_v = np.asarray(
                     _cached_orientation_vector(float(theta), float(psi)),
                     dtype=np.float64,
@@ -236,11 +284,41 @@ class TracingSegment(BaseTracingSegment):
                 coords_3d = rotate_by_theta_psi_fast(base_coords_3d, theta, psi, None)
                 coords_3d += start_coord
                 intensities = sample_voxels(image, coords_3d)
-                score = correlation_score(intensities, weights_3d)
+                return correlation_score(intensities, weights_3d)
 
+            def update_best(theta: float, psi: float) -> float:
+                nonlocal best_score, best_theta, best_psi
+                score = score_candidate(theta, psi)
                 if score > best_score:
                     best_score = score
                     best_theta, best_psi = theta, psi
+                return score
+
+            coarse_scores = []
+            if search_mode == "hemisphere_uniform":
+                schedule = _hemisphere_uniform_orientation_schedule()
+            else:
+                schedule = _hemisphere_uniform_orientation_schedule(_HEMISPHERE_REFINE_COARSE_POINTS)
+            for theta, psi_values in schedule:
+                psi = psi_values[0]
+                score = update_best(theta, psi)
+                coarse_scores.append((score, theta, psi))
+
+            if search_mode == "hemisphere_uniform_refine":
+                coarse_scores.sort(reverse=True, key=lambda item: item[0])
+                seen = {
+                    (round(theta, 12), round(psi_values[0], 12))
+                    for theta, psi_values in schedule
+                }
+                for _score, theta, psi in coarse_scores[:_HEMISPHERE_REFINE_TOP_K]:
+                    for refined_theta, refined_psi in _vector_refined_orientation_candidates(theta, psi):
+                        key = (round(refined_theta, 12), round(refined_psi, 12))
+                        if key in seen:
+                            continue
+                        seen.add(key)
+                        update_best(refined_theta, refined_psi)
+        else:
+            raise ValueError(f"Unknown orientation search mode: {search_mode!r}")
 
         self.theta, self.psi = best_theta, best_psi
         self._set_orientation()
@@ -813,6 +891,18 @@ class SegmentChains:
         self._min_chain_score = Defaults.MIN_CHAIN_SCORE
         self._min_chain_length = Defaults.MIN_CHAIN_LENGTH
 
+    def _seed_blocked_by_trace_mask(self, seed_seg: TracingSegment) -> bool:
+        """Return True when both initial trace directions immediately hit traced voxels."""
+        for pos_ratio in (1 / 3, 2 / 3):
+            coord_xyz = seed_seg.start_coord + seed_seg.dir_v * seed_seg.length * pos_ratio
+            coord_zyx = coord_xyz[::-1]
+            coord_round = np.round(coord_zyx).astype(int)
+            if np.any(coord_zyx < 0) or np.any(coord_zyx >= self.trace_mask.shape):
+                return False
+            if self.trace_mask[coord_round[0], coord_round[1], coord_round[2]] != 1:
+                return False
+        return True
+
     def generate_neuron_trace(
         self,
         seeds,
@@ -827,11 +917,17 @@ class SegmentChains:
         total = min(len(seeds), max_seeds) if max_seeds is not None else len(seeds)
         if progress_callback is not None:
             progress_callback("generate_neuron_trace", 0, total)
+        skipped_init_hits = 0
         for seed_idx, seed in enumerate(
             tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1)
         ):
             if check_timeout is not None and seed_idx % 8 == 0:
                 check_timeout("chain generation")
+            if self._seed_blocked_by_trace_mask(seed.seg):
+                skipped_init_hits += 1
+                if progress_callback is not None:
+                    progress_callback("generate_neuron_trace", seed_idx + 1, total)
+                continue
             chain = SegmentChain(seed.seg.copy())
             chain.generate_chain_trace(signal_image, self.trace_mask)
             keep_chain = (
@@ -848,6 +944,8 @@ class SegmentChains:
                 progress_callback("generate_neuron_trace", seed_idx + 1, total)
         if verbose:
             print(f"Number of chains: {len(self)}")
+            if skipped_init_hits:
+                print(f"Seeds skipped by initial trace mask: {skipped_init_hits}")
 
     def filter_chains(self, *, verbose: int = 1):
         if len(self) > 100:
