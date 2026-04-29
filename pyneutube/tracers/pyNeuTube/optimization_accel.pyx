@@ -64,6 +64,7 @@ cdef class SegmentOptimizer:
     cdef object _trial_buf
     cdef object _org_x_buf
     cdef object _scaled_dir_buf
+    cdef double _last_gradient_base_score
 
     def __init__(
         self,
@@ -135,6 +136,7 @@ cdef class SegmentOptimizer:
         self._trial_buf = np.empty(4, dtype=np.float64)
         self._org_x_buf = np.empty(4, dtype=np.float64)
         self._scaled_dir_buf = np.empty(4, dtype=np.float64)
+        self._last_gradient_base_score = 0.0
 
     @staticmethod
     cdef void _apply_x_to_seg(object seg, double[:] x) except *:
@@ -198,6 +200,8 @@ cdef class SegmentOptimizer:
             double step
             double grad_i
             int i
+
+        self._last_gradient_base_score = base_score
 
         for i in range(4):
             step = delta_view[i]
@@ -278,6 +282,10 @@ cdef class SegmentOptimizer:
         gd_dot_c1 = gd_dot * self.c1
 
         while True:
+            if alpha * self.ro * dir_len < self.stop_grad:
+                SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
+                return False, start_score
+
             for i in range(4):
                 scaled_dir_view[i] = direction_view[i] * alpha
                 x_trial_view[i] = org_x_view[i] + scaled_dir_view[i]
@@ -289,10 +297,6 @@ cdef class SegmentOptimizer:
             score_trial = self._score_at(x_trial_view, tmpseg)
 
             alpha *= self.ro
-            if alpha * dir_len < self.stop_grad:
-                SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
-                return False, start_score
-
             wolfe1 = alpha / self.ro * gd_dot_c1
             if wolfe1 < 0.0:
                 wolfe1 = 0.0
@@ -350,7 +354,7 @@ cdef class SegmentOptimizer:
 
         self._compute_fd_gradient_into(x_view, tmpseg, g0)
         SegmentOptimizer._copy4(g0, update_direction)
-        final_score = self._score_at(x_view, tmpseg)
+        final_score = self._last_gradient_base_score
 
         while True:
             improved = False

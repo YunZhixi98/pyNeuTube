@@ -1937,10 +1937,11 @@ struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOpti
   PyObject *_trial_buf;
   PyObject *_org_x_buf;
   PyObject *_scaled_dir_buf;
+  double _last_gradient_base_score;
 };
 
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":411
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":415
  * 
  * 
  * def optimize_segment_C(seg, image, score_func=dot_score, var_init=None):             # <<<<<<<<<<<<<<
@@ -3672,7 +3673,7 @@ static PyObject *__pyx_builtin_id;
 static const char __pyx_k_c[] = "c";
 static const char __pyx_k_name[] = "name";
 static const char __pyx_k_fortran[] = "fortran";
-static const char __pyx_k_direction_buf__g0_buf__g1_buf[] = "_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight";
+static const char __pyx_k_direction_buf__g0_buf__g1_buf[] = "_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight";
 /* #### Code section: decls ### */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
@@ -4020,7 +4021,7 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_b_iso88591_A_1_q_DA_1_6_6_m5_q_wb_at_WA __pyx_string_tab[189]
 #define __pyx_kp_b_iso88591_A_T_d_d_D_q_Q_CuA_auCq_auCq_auCq __pyx_string_tab[190]
 #define __pyx_kp_b_iso88591_A_q_4D_a_axxq_r_q_q __pyx_string_tab[191]
-#define __pyx_kp_b_iso88591_T_j_JdBRRVVccggyy_K_K_O_O_X_X_e __pyx_string_tab[192]
+#define __pyx_kp_b_iso88591_T_j_JdBRRVVrrv_w_D_D_H_H_Z_Z_k __pyx_string_tab[192]
 #define __pyx_kp_b_iso88591_avQ __pyx_string_tab[193]
 #define __pyx_kp_b_iso88591_k_y_q_9Cxs_9A_1_A_T_F_1Cy_83fCy __pyx_string_tab[194]
 #define __pyx_kp_b_iso88591_q_0_kQR_81A_7_2_3FnTU_1 __pyx_string_tab[195]
@@ -4036,8 +4037,8 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_int_1 __pyx_number_tab[8]
 #define __pyx_int_2 __pyx_number_tab[9]
 #define __pyx_int_4 __pyx_number_tab[10]
-#define __pyx_int_99562027 __pyx_number_tab[11]
-#define __pyx_int_136983863 __pyx_number_tab[12]
+#define __pyx_int_136983863 __pyx_number_tab[11]
+#define __pyx_int_146736379 __pyx_number_tab[12]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -18872,8 +18873,8 @@ static CYTHON_INLINE double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimizatio
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":68
- *     cdef object _scaled_dir_buf
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":69
+ *     cdef double _last_gradient_base_score
  * 
  *     def __init__(             # <<<<<<<<<<<<<<
  *         self,
@@ -18911,18 +18912,18 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_image,&__pyx_mstate_global->__pyx_n_u_score_func,&__pyx_mstate_global->__pyx_n_u_maxiter,&__pyx_mstate_global->__pyx_n_u_min_gradient,&__pyx_mstate_global->__pyx_n_u_min_direction,&__pyx_mstate_global->__pyx_n_u_alpha0,&__pyx_mstate_global->__pyx_n_u_ro,&__pyx_mstate_global->__pyx_n_u_c1,&__pyx_mstate_global->__pyx_n_u_weight,&__pyx_mstate_global->__pyx_n_u_verbose,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_VARARGS(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 68, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 69, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 68, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 69, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 68, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 69, __pyx_L3_error)
       if (!values[1]) values[1] = __Pyx_NewRef(__pyx_mstate_global->__pyx_k__6);
       if (!values[2]) values[2] = __Pyx_NewRef(__pyx_mstate_global->__pyx_k__7);
       if (!values[3]) values[3] = __Pyx_NewRef(((PyObject *)__pyx_mstate_global->__pyx_float_1eneg_3));
@@ -18931,7 +18932,7 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       if (!values[6]) values[6] = __Pyx_NewRef(((PyObject *)__pyx_mstate_global->__pyx_float_0_8));
       if (!values[7]) values[7] = __Pyx_NewRef(((PyObject *)__pyx_mstate_global->__pyx_float_0_01));
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":79
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":80
  *         ro=0.8,
  *         c1=0.01,
  *         weight=None,             # <<<<<<<<<<<<<<
@@ -18940,7 +18941,7 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       if (!values[8]) values[8] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":80
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":81
  *         c1=0.01,
  *         weight=None,
  *         verbose=False,             # <<<<<<<<<<<<<<
@@ -18949,13 +18950,13 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       if (!values[9]) values[9] = __Pyx_NewRef(((PyObject *)Py_False));
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 68, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 69, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 68, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 69, __pyx_L3_error)
       if (!values[1]) values[1] = __Pyx_NewRef(__pyx_mstate_global->__pyx_k__6);
       if (!values[2]) values[2] = __Pyx_NewRef(__pyx_mstate_global->__pyx_k__7);
       if (!values[3]) values[3] = __Pyx_NewRef(((PyObject *)__pyx_mstate_global->__pyx_float_1eneg_3));
@@ -18964,7 +18965,7 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       if (!values[6]) values[6] = __Pyx_NewRef(((PyObject *)__pyx_mstate_global->__pyx_float_0_8));
       if (!values[7]) values[7] = __Pyx_NewRef(((PyObject *)__pyx_mstate_global->__pyx_float_0_01));
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":79
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":80
  *         ro=0.8,
  *         c1=0.01,
  *         weight=None,             # <<<<<<<<<<<<<<
@@ -18973,7 +18974,7 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       if (!values[8]) values[8] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":80
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":81
  *         c1=0.01,
  *         weight=None,
  *         verbose=False,             # <<<<<<<<<<<<<<
@@ -18995,7 +18996,7 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 68, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 69, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19008,8 +19009,8 @@ static int __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer___init__(((struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self), __pyx_v_image, __pyx_v_score_func, __pyx_v_maxiter, __pyx_v_min_gradient, __pyx_v_min_direction, __pyx_v_alpha0, __pyx_v_ro, __pyx_v_c1, __pyx_v_weight, __pyx_v_verbose);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":68
- *     cdef object _scaled_dir_buf
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":69
+ *     cdef double _last_gradient_base_score
  * 
  *     def __init__(             # <<<<<<<<<<<<<<
  *         self,
@@ -19048,7 +19049,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":86
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":87
  *             double[:] delta_view
  * 
  *         self.image = np.asarray(image)             # <<<<<<<<<<<<<<
@@ -19056,9 +19057,9 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         self.maxiter = int(maxiter)
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_asarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_asarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -19078,7 +19079,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_GIVEREF(__pyx_t_1);
@@ -19087,7 +19088,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->image = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":87
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":88
  * 
  *         self.image = np.asarray(image)
  *         self.score_func = score_func             # <<<<<<<<<<<<<<
@@ -19100,80 +19101,80 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __Pyx_DECREF(__pyx_v_self->score_func);
   __pyx_v_self->score_func = __pyx_v_score_func;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":88
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":89
  *         self.image = np.asarray(image)
  *         self.score_func = score_func
  *         self.maxiter = int(maxiter)             # <<<<<<<<<<<<<<
  *         self.min_gradient = float(min_gradient)
  *         self.min_direction = float(min_direction)
 */
-  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_maxiter); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_maxiter); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->maxiter = __pyx_t_6;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":89
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":90
  *         self.score_func = score_func
  *         self.maxiter = int(maxiter)
  *         self.min_gradient = float(min_gradient)             # <<<<<<<<<<<<<<
  *         self.min_direction = float(min_direction)
  *         self.alpha0 = float(alpha0)
 */
-  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_min_gradient); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_min_gradient); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
   __pyx_v_self->min_gradient = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":90
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":91
  *         self.maxiter = int(maxiter)
  *         self.min_gradient = float(min_gradient)
  *         self.min_direction = float(min_direction)             # <<<<<<<<<<<<<<
  *         self.alpha0 = float(alpha0)
  *         self.ro = float(ro)
 */
-  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_min_direction); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_min_direction); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L1_error)
   __pyx_v_self->min_direction = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":91
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":92
  *         self.min_gradient = float(min_gradient)
  *         self.min_direction = float(min_direction)
  *         self.alpha0 = float(alpha0)             # <<<<<<<<<<<<<<
  *         self.ro = float(ro)
  *         self.c1 = float(c1)
 */
-  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_alpha0); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_alpha0); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L1_error)
   __pyx_v_self->alpha0 = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":92
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":93
  *         self.min_direction = float(min_direction)
  *         self.alpha0 = float(alpha0)
  *         self.ro = float(ro)             # <<<<<<<<<<<<<<
  *         self.c1 = float(c1)
  *         self.verbose = bool(verbose)
 */
-  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_ro); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_ro); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L1_error)
   __pyx_v_self->ro = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":93
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":94
  *         self.alpha0 = float(alpha0)
  *         self.ro = float(ro)
  *         self.c1 = float(c1)             # <<<<<<<<<<<<<<
  *         self.verbose = bool(verbose)
  * 
 */
-  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_c1); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_AsDouble(__pyx_v_c1); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L1_error)
   __pyx_v_self->c1 = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":94
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":95
  *         self.ro = float(ro)
  *         self.c1 = float(c1)
  *         self.verbose = bool(verbose)             # <<<<<<<<<<<<<<
  * 
  *         self.low = np.array(
 */
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_v_verbose); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_v_verbose); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 95, __pyx_L1_error)
   __pyx_v_self->verbose = (!(!__pyx_t_8));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":96
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":97
  *         self.verbose = bool(verbose)
  * 
  *         self.low = np.array(             # <<<<<<<<<<<<<<
@@ -19181,65 +19182,65 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *             dtype=np.float64,
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":97
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":98
  * 
  *         self.low = np.array(
  *             [Defaults.MIN_SEG_RADIUS, -np.inf, -np.inf, 0.2],             # <<<<<<<<<<<<<<
  *             dtype=np.float64,
  *         )
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_Defaults); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_Defaults); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_MIN_SEG_RADIUS); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_MIN_SEG_RADIUS); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Negative(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Negative(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_10 = PyNumber_Negative(__pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_10 = PyNumber_Negative(__pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-  __pyx_t_11 = PyList_New(4); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_11 = PyList_New(4); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_GIVEREF(__pyx_t_9);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 0, __pyx_t_9) != (0)) __PYX_ERR(0, 97, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 0, __pyx_t_9) != (0)) __PYX_ERR(0, 98, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 97, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 98, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_10);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 2, __pyx_t_10) != (0)) __PYX_ERR(0, 97, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 2, __pyx_t_10) != (0)) __PYX_ERR(0, 98, __pyx_L1_error);
   __Pyx_INCREF(__pyx_mstate_global->__pyx_float_0_2);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_float_0_2);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 3, __pyx_mstate_global->__pyx_float_0_2) != (0)) __PYX_ERR(0, 97, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_11, 3, __pyx_mstate_global->__pyx_float_0_2) != (0)) __PYX_ERR(0, 98, __pyx_L1_error);
   __pyx_t_9 = 0;
   __pyx_t_2 = 0;
   __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":98
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":99
  *         self.low = np.array(
  *             [Defaults.MIN_SEG_RADIUS, -np.inf, -np.inf, 0.2],
  *             dtype=np.float64,             # <<<<<<<<<<<<<<
  *         )
  *         self.high = np.array(
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __pyx_t_5 = 1;
@@ -19256,20 +19257,20 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_t_11};
-    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 97, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_10, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 96, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_10, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 97, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_10);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":96
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":97
  *         self.verbose = bool(verbose)
  * 
  *         self.low = np.array(             # <<<<<<<<<<<<<<
@@ -19282,7 +19283,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->low = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":100
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":101
  *             dtype=np.float64,
  *         )
  *         self.high = np.array(             # <<<<<<<<<<<<<<
@@ -19290,54 +19291,54 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *             dtype=np.float64,
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":101
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":102
  *         )
  *         self.high = np.array(
  *             [50.0, np.inf, np.inf, 20.0],             # <<<<<<<<<<<<<<
  *             dtype=np.float64,
  *         )
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_inf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_10 = PyList_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_10 = PyList_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_INCREF(__pyx_mstate_global->__pyx_float_50_0);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_float_50_0);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 0, __pyx_mstate_global->__pyx_float_50_0) != (0)) __PYX_ERR(0, 101, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 0, __pyx_mstate_global->__pyx_float_50_0) != (0)) __PYX_ERR(0, 102, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_11);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 1, __pyx_t_11) != (0)) __PYX_ERR(0, 101, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 1, __pyx_t_11) != (0)) __PYX_ERR(0, 102, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 2, __pyx_t_4) != (0)) __PYX_ERR(0, 101, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 2, __pyx_t_4) != (0)) __PYX_ERR(0, 102, __pyx_L1_error);
   __Pyx_INCREF(__pyx_mstate_global->__pyx_float_20_0);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_float_20_0);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 3, __pyx_mstate_global->__pyx_float_20_0) != (0)) __PYX_ERR(0, 101, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 3, __pyx_mstate_global->__pyx_float_20_0) != (0)) __PYX_ERR(0, 102, __pyx_L1_error);
   __pyx_t_11 = 0;
   __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":102
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":103
  *         self.high = np.array(
  *             [50.0, np.inf, np.inf, 20.0],
  *             dtype=np.float64,             # <<<<<<<<<<<<<<
  *         )
  *         self.delta = np.array(
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
@@ -19354,20 +19355,20 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, __pyx_t_10};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_11, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_11, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 101, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":100
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":101
  *             dtype=np.float64,
  *         )
  *         self.high = np.array(             # <<<<<<<<<<<<<<
@@ -19380,7 +19381,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->high = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":104
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":105
  *             dtype=np.float64,
  *         )
  *         self.delta = np.array(             # <<<<<<<<<<<<<<
@@ -19388,96 +19389,96 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *                 Optimization.DELTA_RADIUS,
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":106
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":107
  *         self.delta = np.array(
  *             [
  *                 Optimization.DELTA_RADIUS,             # <<<<<<<<<<<<<<
  *                 Optimization.DELTA_THETA,
  *                 Optimization.DELTA_PSI,
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_RADIUS); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_RADIUS); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":107
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":108
  *             [
  *                 Optimization.DELTA_RADIUS,
  *                 Optimization.DELTA_THETA,             # <<<<<<<<<<<<<<
  *                 Optimization.DELTA_PSI,
  *                 Optimization.DELTA_SCALE,
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_THETA); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_THETA); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":108
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":109
  *                 Optimization.DELTA_RADIUS,
  *                 Optimization.DELTA_THETA,
  *                 Optimization.DELTA_PSI,             # <<<<<<<<<<<<<<
  *                 Optimization.DELTA_SCALE,
  *             ],
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_PSI); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_PSI); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":109
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":110
  *                 Optimization.DELTA_THETA,
  *                 Optimization.DELTA_PSI,
  *                 Optimization.DELTA_SCALE,             # <<<<<<<<<<<<<<
  *             ],
  *             dtype=np.float64,
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_SCALE); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DELTA_SCALE); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":105
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":106
  *         )
  *         self.delta = np.array(
  *             [             # <<<<<<<<<<<<<<
  *                 Optimization.DELTA_RADIUS,
  *                 Optimization.DELTA_THETA,
 */
-  __pyx_t_4 = PyList_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_4 = PyList_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_10);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_10) != (0)) __PYX_ERR(0, 105, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_10) != (0)) __PYX_ERR(0, 106, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 105, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 106, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_9);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 2, __pyx_t_9) != (0)) __PYX_ERR(0, 105, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 2, __pyx_t_9) != (0)) __PYX_ERR(0, 106, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_12);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 3, __pyx_t_12) != (0)) __PYX_ERR(0, 105, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 3, __pyx_t_12) != (0)) __PYX_ERR(0, 106, __pyx_L1_error);
   __pyx_t_10 = 0;
   __pyx_t_3 = 0;
   __pyx_t_9 = 0;
   __pyx_t_12 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":111
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":112
  *                 Optimization.DELTA_SCALE,
  *             ],
  *             dtype=np.float64,             # <<<<<<<<<<<<<<
  *         )
  *         if weight is None:
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __pyx_t_5 = 1;
@@ -19494,20 +19495,20 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_t_4};
-    __pyx_t_12 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 104, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_12, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_12, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 105, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_12);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":104
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":105
  *             dtype=np.float64,
  *         )
  *         self.delta = np.array(             # <<<<<<<<<<<<<<
@@ -19520,7 +19521,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->delta = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":113
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":114
  *             dtype=np.float64,
  *         )
  *         if weight is None:             # <<<<<<<<<<<<<<
@@ -19530,19 +19531,19 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_8 = (__pyx_v_weight == Py_None);
   if (__pyx_t_8) {
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":114
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":115
  *         )
  *         if weight is None:
  *             delta_view = self.delta             # <<<<<<<<<<<<<<
  *             norm = _vec_norm4(delta_view)
  *             self.weight = np.array(
 */
-    __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->delta, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->delta, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(0, 115, __pyx_L1_error)
     __pyx_v_delta_view = __pyx_t_13;
     __pyx_t_13.memview = NULL;
     __pyx_t_13.data = NULL;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":115
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":116
  *         if weight is None:
  *             delta_view = self.delta
  *             norm = _vec_norm4(delta_view)             # <<<<<<<<<<<<<<
@@ -19551,7 +19552,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_v_norm = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel__vec_norm4(__pyx_v_delta_view);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":116
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":117
  *             delta_view = self.delta
  *             norm = _vec_norm4(delta_view)
  *             self.weight = np.array(             # <<<<<<<<<<<<<<
@@ -19559,13 +19560,13 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *                     delta_view[0] / norm,
 */
     __pyx_t_11 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 117, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 117, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":118
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":119
  *             self.weight = np.array(
  *                 [
  *                     delta_view[0] / norm,             # <<<<<<<<<<<<<<
@@ -19573,10 +19574,10 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *                     delta_view[2] / norm,
 */
     __pyx_t_14 = 0;
-    __pyx_t_12 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 118, __pyx_L1_error)
+    __pyx_t_12 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":119
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":120
  *                 [
  *                     delta_view[0] / norm,
  *                     delta_view[1] / norm,             # <<<<<<<<<<<<<<
@@ -19584,10 +19585,10 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *                     delta_view[3] / norm,
 */
     __pyx_t_14 = 1;
-    __pyx_t_4 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":120
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":121
  *                     delta_view[0] / norm,
  *                     delta_view[1] / norm,
  *                     delta_view[2] / norm,             # <<<<<<<<<<<<<<
@@ -19595,10 +19596,10 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *                 ],
 */
     __pyx_t_14 = 2;
-    __pyx_t_2 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":121
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":122
  *                     delta_view[1] / norm,
  *                     delta_view[2] / norm,
  *                     delta_view[3] / norm,             # <<<<<<<<<<<<<<
@@ -19606,41 +19607,41 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *                 dtype=np.float64,
 */
     __pyx_t_14 = 3;
-    __pyx_t_3 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(((*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_14 * __pyx_v_delta_view.strides[0]) ))) / __pyx_v_norm)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":117
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":118
  *             norm = _vec_norm4(delta_view)
  *             self.weight = np.array(
  *                 [             # <<<<<<<<<<<<<<
  *                     delta_view[0] / norm,
  *                     delta_view[1] / norm,
 */
-    __pyx_t_10 = PyList_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 117, __pyx_L1_error)
+    __pyx_t_10 = PyList_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_GIVEREF(__pyx_t_12);
-    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 0, __pyx_t_12) != (0)) __PYX_ERR(0, 117, __pyx_L1_error);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 0, __pyx_t_12) != (0)) __PYX_ERR(0, 118, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 117, __pyx_L1_error);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 118, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 2, __pyx_t_2) != (0)) __PYX_ERR(0, 117, __pyx_L1_error);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 2, __pyx_t_2) != (0)) __PYX_ERR(0, 118, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 3, __pyx_t_3) != (0)) __PYX_ERR(0, 117, __pyx_L1_error);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 3, __pyx_t_3) != (0)) __PYX_ERR(0, 118, __pyx_L1_error);
     __pyx_t_12 = 0;
     __pyx_t_4 = 0;
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":123
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":124
  *                     delta_view[3] / norm,
  *                 ],
  *                 dtype=np.float64,             # <<<<<<<<<<<<<<
  *             )
  *         else:
 */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_5 = 1;
@@ -19657,20 +19658,20 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     #endif
     {
       PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_11, __pyx_t_10};
-      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 116, __pyx_L1_error)
+      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 117, __pyx_L1_error)
       __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":116
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":117
  *             delta_view = self.delta
  *             norm = _vec_norm4(delta_view)
  *             self.weight = np.array(             # <<<<<<<<<<<<<<
@@ -19683,7 +19684,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_v_self->weight = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":113
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":114
  *             dtype=np.float64,
  *         )
  *         if weight is None:             # <<<<<<<<<<<<<<
@@ -19693,7 +19694,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     goto __pyx_L3;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":126
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":127
  *             )
  *         else:
  *             self.weight = np.asarray(weight, dtype=np.float64)             # <<<<<<<<<<<<<<
@@ -19702,14 +19703,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   /*else*/ {
     __pyx_t_9 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_asarray); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_asarray); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_5 = 1;
@@ -19726,15 +19727,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     #endif
     {
       PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_9, __pyx_v_weight};
-      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_10, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
+      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_10, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
       __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_GIVEREF(__pyx_t_1);
@@ -19745,14 +19746,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   }
   __pyx_L3:;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":128
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":129
  *             self.weight = np.asarray(weight, dtype=np.float64)
  * 
  *         self.seg_filter = _OPTIMIZATION_SEG_FILTER             # <<<<<<<<<<<<<<
  *         self.stop_grad = Optimization.LINE_SEARCH_STOP_GRADIENT
  *         self._x_buf = np.empty(4, dtype=np.float64)
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_OPTIMIZATION_SEG_FILTER); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_OPTIMIZATION_SEG_FILTER); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->seg_filter);
@@ -19760,23 +19761,23 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->seg_filter = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":129
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":130
  * 
  *         self.seg_filter = _OPTIMIZATION_SEG_FILTER
  *         self.stop_grad = Optimization.LINE_SEARCH_STOP_GRADIENT             # <<<<<<<<<<<<<<
  *         self._x_buf = np.empty(4, dtype=np.float64)
  *         self._g0_buf = np.empty(4, dtype=np.float64)
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_LINE_SEARCH_STOP_GRADIENT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_LINE_SEARCH_STOP_GRADIENT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_self->stop_grad = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":130
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":131
  *         self.seg_filter = _OPTIMIZATION_SEG_FILTER
  *         self.stop_grad = Optimization.LINE_SEARCH_STOP_GRADIENT
  *         self._x_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
@@ -19784,14 +19785,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         self._g1_buf = np.empty(4, dtype=np.float64)
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -19808,15 +19809,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 131, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -19825,7 +19826,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_x_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":131
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":132
  *         self.stop_grad = Optimization.LINE_SEARCH_STOP_GRADIENT
  *         self._x_buf = np.empty(4, dtype=np.float64)
  *         self._g0_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
@@ -19833,14 +19834,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         self._gradient_buf = np.empty(4, dtype=np.float64)
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -19857,15 +19858,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_10, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 131, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 132, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -19874,7 +19875,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_g0_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":132
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":133
  *         self._x_buf = np.empty(4, dtype=np.float64)
  *         self._g0_buf = np.empty(4, dtype=np.float64)
  *         self._g1_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
@@ -19882,14 +19883,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         self._direction_buf = np.empty(4, dtype=np.float64)
 */
   __pyx_t_9 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -19906,15 +19907,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_9, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_10, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 132, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_10, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 133, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -19923,7 +19924,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_g1_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":133
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":134
  *         self._g0_buf = np.empty(4, dtype=np.float64)
  *         self._g1_buf = np.empty(4, dtype=np.float64)
  *         self._gradient_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
@@ -19931,14 +19932,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         self._trial_buf = np.empty(4, dtype=np.float64)
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -19955,15 +19956,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 133, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -19972,7 +19973,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_gradient_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":134
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":135
  *         self._g1_buf = np.empty(4, dtype=np.float64)
  *         self._gradient_buf = np.empty(4, dtype=np.float64)
  *         self._direction_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
@@ -19980,14 +19981,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         self._org_x_buf = np.empty(4, dtype=np.float64)
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -20004,15 +20005,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_10, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 134, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -20021,7 +20022,7 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_direction_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":135
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":136
  *         self._gradient_buf = np.empty(4, dtype=np.float64)
  *         self._direction_buf = np.empty(4, dtype=np.float64)
  *         self._trial_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
@@ -20029,14 +20030,14 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         self._scaled_dir_buf = np.empty(4, dtype=np.float64)
 */
   __pyx_t_9 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -20053,15 +20054,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_9, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_10, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_10, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 136, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -20070,22 +20071,22 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_trial_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":136
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":137
  *         self._direction_buf = np.empty(4, dtype=np.float64)
  *         self._trial_buf = np.empty(4, dtype=np.float64)
  *         self._org_x_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
  *         self._scaled_dir_buf = np.empty(4, dtype=np.float64)
- * 
+ *         self._last_gradient_base_score = 0.0
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -20102,15 +20103,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 136, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 137, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -20119,22 +20120,22 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_org_x_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":137
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":138
  *         self._trial_buf = np.empty(4, dtype=np.float64)
  *         self._org_x_buf = np.empty(4, dtype=np.float64)
  *         self._scaled_dir_buf = np.empty(4, dtype=np.float64)             # <<<<<<<<<<<<<<
+ *         self._last_gradient_base_score = 0.0
  * 
- *     @staticmethod
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -20151,15 +20152,15 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_10, __pyx_mstate_global->__pyx_int_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 137, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
@@ -20168,8 +20169,17 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_v_self->_scaled_dir_buf = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":68
- *     cdef object _scaled_dir_buf
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":139
+ *         self._org_x_buf = np.empty(4, dtype=np.float64)
+ *         self._scaled_dir_buf = np.empty(4, dtype=np.float64)
+ *         self._last_gradient_base_score = 0.0             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+*/
+  __pyx_v_self->_last_gradient_base_score = 0.0;
+
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":69
+ *     cdef double _last_gradient_base_score
  * 
  *     def __init__(             # <<<<<<<<<<<<<<
  *         self,
@@ -20197,8 +20207,8 @@ static int __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":139
- *         self._scaled_dir_buf = np.empty(4, dtype=np.float64)
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":141
+ *         self._last_gradient_base_score = 0.0
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     cdef void _apply_x_to_seg(object seg, double[:] x) except *:
@@ -20214,7 +20224,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_apply_x_to_seg", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":141
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":143
  *     @staticmethod
  *     cdef void _apply_x_to_seg(object seg, double[:] x) except *:
  *         seg.radius = x[0]             # <<<<<<<<<<<<<<
@@ -20222,12 +20232,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         seg.psi = x[2]
 */
   __pyx_t_1 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius, __pyx_t_2) < (0)) __PYX_ERR(0, 141, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius, __pyx_t_2) < (0)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":142
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":144
  *     cdef void _apply_x_to_seg(object seg, double[:] x) except *:
  *         seg.radius = x[0]
  *         seg.theta = x[1]             # <<<<<<<<<<<<<<
@@ -20235,12 +20245,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *         seg.scale = x[3]
 */
   __pyx_t_1 = 1;
-  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta, __pyx_t_2) < (0)) __PYX_ERR(0, 142, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta, __pyx_t_2) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":143
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":145
  *         seg.radius = x[0]
  *         seg.theta = x[1]
  *         seg.psi = x[2]             # <<<<<<<<<<<<<<
@@ -20248,12 +20258,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  * 
 */
   __pyx_t_1 = 2;
-  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi, __pyx_t_2) < (0)) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi, __pyx_t_2) < (0)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":144
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":146
  *         seg.theta = x[1]
  *         seg.psi = x[2]
  *         seg.scale = x[3]             # <<<<<<<<<<<<<<
@@ -20261,13 +20271,13 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *     cdef double _score_at(self, double[:] x_local, object tmpseg) except *:
 */
   __pyx_t_1 = 3;
-  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_x.data + __pyx_t_1 * __pyx_v_x.strides[0]) )))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale, __pyx_t_2) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale, __pyx_t_2) < (0)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":139
- *         self._scaled_dir_buf = np.empty(4, dtype=np.float64)
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":141
+ *         self._last_gradient_base_score = 0.0
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     cdef void _apply_x_to_seg(object seg, double[:] x) except *:
@@ -20283,7 +20293,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __Pyx_RefNannyFinishContext();
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":146
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":148
  *         seg.scale = x[3]
  * 
  *     cdef double _score_at(self, double[:] x_local, object tmpseg) except *:             # <<<<<<<<<<<<<<
@@ -20311,16 +20321,16 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_score_at", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":147
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":149
  * 
  *     cdef double _score_at(self, double[:] x_local, object tmpseg) except *:
  *         SegmentOptimizer._apply_x_to_seg(tmpseg, x_local)             # <<<<<<<<<<<<<<
  *         coords3d, _, weights = self.seg_filter(tmpseg)
  *         intensities = sample_voxels(self.image, coords3d)
 */
-  __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__apply_x_to_seg(__pyx_v_tmpseg, __pyx_v_x_local); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 147, __pyx_L1_error)
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__apply_x_to_seg(__pyx_v_tmpseg, __pyx_v_x_local); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 149, __pyx_L1_error)
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":148
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":150
  *     cdef double _score_at(self, double[:] x_local, object tmpseg) except *:
  *         SegmentOptimizer._apply_x_to_seg(tmpseg, x_local)
  *         coords3d, _, weights = self.seg_filter(tmpseg)             # <<<<<<<<<<<<<<
@@ -20347,7 +20357,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -20356,7 +20366,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
     if (unlikely(size != 3)) {
       if (size > 3) __Pyx_RaiseTooManyValuesError(3);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 148, __pyx_L1_error)
+      __PYX_ERR(0, 150, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -20368,27 +20378,27 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
       __Pyx_INCREF(__pyx_t_5);
     } else {
       __pyx_t_3 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_XGOTREF(__pyx_t_3);
       __pyx_t_2 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_XGOTREF(__pyx_t_2);
       __pyx_t_5 = __Pyx_PyList_GetItemRefFast(sequence, 2, __Pyx_ReferenceSharing_SharedReference);
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 148, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_XGOTREF(__pyx_t_5);
     }
     #else
-    __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 148, __pyx_L1_error)
+    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_7 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_6);
@@ -20398,7 +20408,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
     __Pyx_GOTREF(__pyx_t_2);
     index = 2; __pyx_t_5 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_5)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 3) < (0)) __PYX_ERR(0, 148, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 3) < (0)) __PYX_ERR(0, 150, __pyx_L1_error)
     __pyx_t_7 = NULL;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     goto __pyx_L4_unpacking_done;
@@ -20406,7 +20416,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 148, __pyx_L1_error)
+    __PYX_ERR(0, 150, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_coords3d = __pyx_t_3;
@@ -20416,7 +20426,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
   __pyx_v_weights = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":149
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":151
  *         SegmentOptimizer._apply_x_to_seg(tmpseg, x_local)
  *         coords3d, _, weights = self.seg_filter(tmpseg)
  *         intensities = sample_voxels(self.image, coords3d)             # <<<<<<<<<<<<<<
@@ -20424,7 +20434,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
  * 
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_sample_voxels); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_sample_voxels); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -20443,13 +20453,13 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_intensities = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":150
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":152
  *         coords3d, _, weights = self.seg_filter(tmpseg)
  *         intensities = sample_voxels(self.image, coords3d)
  *         return float(self.score_func(intensities, weights))             # <<<<<<<<<<<<<<
@@ -20476,15 +20486,15 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_8 = __Pyx_PyObject_AsDouble(__pyx_t_1); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_AsDouble(__pyx_t_1); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_8;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":146
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":148
  *         seg.scale = x[3]
  * 
  *     cdef double _score_at(self, double[:] x_local, object tmpseg) except *:             # <<<<<<<<<<<<<<
@@ -20510,7 +20520,7 @@ static double __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segm
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":152
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":154
  *         return float(self.score_func(intensities, weights))
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -20522,7 +20532,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   Py_ssize_t __pyx_t_1;
   Py_ssize_t __pyx_t_2;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":154
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":156
  *     @staticmethod
  *     cdef void _copy4(double[:] src, double[:] dst) noexcept:
  *         dst[0] = src[0]             # <<<<<<<<<<<<<<
@@ -20533,7 +20543,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_dst.data + __pyx_t_2 * __pyx_v_dst.strides[0]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_src.data + __pyx_t_1 * __pyx_v_src.strides[0]) )));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":155
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":157
  *     cdef void _copy4(double[:] src, double[:] dst) noexcept:
  *         dst[0] = src[0]
  *         dst[1] = src[1]             # <<<<<<<<<<<<<<
@@ -20544,7 +20554,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_dst.data + __pyx_t_2 * __pyx_v_dst.strides[0]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_src.data + __pyx_t_1 * __pyx_v_src.strides[0]) )));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":156
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":158
  *         dst[0] = src[0]
  *         dst[1] = src[1]
  *         dst[2] = src[2]             # <<<<<<<<<<<<<<
@@ -20555,7 +20565,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_dst.data + __pyx_t_2 * __pyx_v_dst.strides[0]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_src.data + __pyx_t_1 * __pyx_v_src.strides[0]) )));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":157
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":159
  *         dst[1] = src[1]
  *         dst[2] = src[2]
  *         dst[3] = src[3]             # <<<<<<<<<<<<<<
@@ -20566,7 +20576,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 3;
   *((double *) ( /* dim=0 */ (__pyx_v_dst.data + __pyx_t_2 * __pyx_v_dst.strides[0]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_src.data + __pyx_t_1 * __pyx_v_src.strides[0]) )));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":152
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":154
  *         return float(self.score_func(intensities, weights))
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -20577,7 +20587,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   /* function exit code */
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":159
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":161
  *         dst[3] = src[3]
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -20598,7 +20608,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   Py_ssize_t __pyx_t_4;
   Py_ssize_t __pyx_t_5;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":165
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":167
  *         double[:] direction,
  *     ) noexcept:
  *         cdef double grad_delta0 = gradient[0] - prev_gradient[0]             # <<<<<<<<<<<<<<
@@ -20609,7 +20619,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 0;
   __pyx_v_grad_delta0 = ((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_1 * __pyx_v_gradient.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_prev_gradient.data + __pyx_t_2 * __pyx_v_prev_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":166
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":168
  *     ) noexcept:
  *         cdef double grad_delta0 = gradient[0] - prev_gradient[0]
  *         cdef double grad_delta1 = gradient[1] - prev_gradient[1]             # <<<<<<<<<<<<<<
@@ -20620,7 +20630,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_1 = 1;
   __pyx_v_grad_delta1 = ((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_2 * __pyx_v_gradient.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_prev_gradient.data + __pyx_t_1 * __pyx_v_prev_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":167
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":169
  *         cdef double grad_delta0 = gradient[0] - prev_gradient[0]
  *         cdef double grad_delta1 = gradient[1] - prev_gradient[1]
  *         cdef double grad_delta2 = gradient[2] - prev_gradient[2]             # <<<<<<<<<<<<<<
@@ -20631,7 +20641,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 2;
   __pyx_v_grad_delta2 = ((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_1 * __pyx_v_gradient.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_prev_gradient.data + __pyx_t_2 * __pyx_v_prev_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":168
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":170
  *         cdef double grad_delta1 = gradient[1] - prev_gradient[1]
  *         cdef double grad_delta2 = gradient[2] - prev_gradient[2]
  *         cdef double grad_delta3 = gradient[3] - prev_gradient[3]             # <<<<<<<<<<<<<<
@@ -20642,7 +20652,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_1 = 3;
   __pyx_v_grad_delta3 = ((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_2 * __pyx_v_gradient.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_prev_gradient.data + __pyx_t_1 * __pyx_v_prev_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":169
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":171
  *         cdef double grad_delta2 = gradient[2] - prev_gradient[2]
  *         cdef double grad_delta3 = gradient[3] - prev_gradient[3]
  *         cdef double denom = _dot4(prev_gradient, prev_gradient)             # <<<<<<<<<<<<<<
@@ -20651,7 +20661,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   __pyx_v_denom = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel__dot4(__pyx_v_prev_gradient, __pyx_v_prev_gradient);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":170
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":172
  *         cdef double grad_delta3 = gradient[3] - prev_gradient[3]
  *         cdef double denom = _dot4(prev_gradient, prev_gradient)
  *         cdef double beta = 0.0             # <<<<<<<<<<<<<<
@@ -20660,7 +20670,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   __pyx_v_beta = 0.0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":172
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":174
  *         cdef double beta = 0.0
  * 
  *         if denom > 0.0:             # <<<<<<<<<<<<<<
@@ -20670,7 +20680,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_3 = (__pyx_v_denom > 0.0);
   if (__pyx_t_3) {
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":174
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":176
  *         if denom > 0.0:
  *             beta = (
  *                 gradient[0] * grad_delta0             # <<<<<<<<<<<<<<
@@ -20679,7 +20689,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_t_1 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":175
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":177
  *             beta = (
  *                 gradient[0] * grad_delta0
  *                 + gradient[1] * grad_delta1             # <<<<<<<<<<<<<<
@@ -20688,7 +20698,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_t_2 = 1;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":176
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":178
  *                 gradient[0] * grad_delta0
  *                 + gradient[1] * grad_delta1
  *                 + gradient[2] * grad_delta2             # <<<<<<<<<<<<<<
@@ -20697,7 +20707,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_t_4 = 2;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":177
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":179
  *                 + gradient[1] * grad_delta1
  *                 + gradient[2] * grad_delta2
  *                 + gradient[3] * grad_delta3             # <<<<<<<<<<<<<<
@@ -20706,7 +20716,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_t_5 = 3;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":178
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":180
  *                 + gradient[2] * grad_delta2
  *                 + gradient[3] * grad_delta3
  *             ) / denom             # <<<<<<<<<<<<<<
@@ -20715,7 +20725,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_v_beta = ((((((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_1 * __pyx_v_gradient.strides[0]) ))) * __pyx_v_grad_delta0) + ((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_2 * __pyx_v_gradient.strides[0]) ))) * __pyx_v_grad_delta1)) + ((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_4 * __pyx_v_gradient.strides[0]) ))) * __pyx_v_grad_delta2)) + ((*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_5 * __pyx_v_gradient.strides[0]) ))) * __pyx_v_grad_delta3)) / __pyx_v_denom);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":179
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":181
  *                 + gradient[3] * grad_delta3
  *             ) / denom
  *             if beta < 0.0:             # <<<<<<<<<<<<<<
@@ -20725,7 +20735,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_3 = (__pyx_v_beta < 0.0);
     if (__pyx_t_3) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":180
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":182
  *             ) / denom
  *             if beta < 0.0:
  *                 beta = 0.0             # <<<<<<<<<<<<<<
@@ -20734,7 +20744,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       __pyx_v_beta = 0.0;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":179
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":181
  *                 + gradient[3] * grad_delta3
  *             ) / denom
  *             if beta < 0.0:             # <<<<<<<<<<<<<<
@@ -20743,7 +20753,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":172
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":174
  *         cdef double beta = 0.0
  * 
  *         if denom > 0.0:             # <<<<<<<<<<<<<<
@@ -20752,7 +20762,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":182
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":184
  *                 beta = 0.0
  * 
  *         direction[0] = direction[0] * beta + gradient[0]             # <<<<<<<<<<<<<<
@@ -20764,7 +20774,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_2 * __pyx_v_direction.strides[0]) )) = (((*((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_5 * __pyx_v_direction.strides[0]) ))) * __pyx_v_beta) + (*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_4 * __pyx_v_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":183
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":185
  * 
  *         direction[0] = direction[0] * beta + gradient[0]
  *         direction[1] = direction[1] * beta + gradient[1]             # <<<<<<<<<<<<<<
@@ -20776,7 +20786,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_2 * __pyx_v_direction.strides[0]) )) = (((*((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_4 * __pyx_v_direction.strides[0]) ))) * __pyx_v_beta) + (*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_5 * __pyx_v_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":184
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":186
  *         direction[0] = direction[0] * beta + gradient[0]
  *         direction[1] = direction[1] * beta + gradient[1]
  *         direction[2] = direction[2] * beta + gradient[2]             # <<<<<<<<<<<<<<
@@ -20788,7 +20798,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_2 * __pyx_v_direction.strides[0]) )) = (((*((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_5 * __pyx_v_direction.strides[0]) ))) * __pyx_v_beta) + (*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_4 * __pyx_v_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":185
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":187
  *         direction[1] = direction[1] * beta + gradient[1]
  *         direction[2] = direction[2] * beta + gradient[2]
  *         direction[3] = direction[3] * beta + gradient[3]             # <<<<<<<<<<<<<<
@@ -20800,7 +20810,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __pyx_t_2 = 3;
   *((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_2 * __pyx_v_direction.strides[0]) )) = (((*((double *) ( /* dim=0 */ (__pyx_v_direction.data + __pyx_t_4 * __pyx_v_direction.strides[0]) ))) * __pyx_v_beta) + (*((double *) ( /* dim=0 */ (__pyx_v_gradient.data + __pyx_t_5 * __pyx_v_gradient.strides[0]) ))));
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":159
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":161
  *         dst[3] = src[3]
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -20811,7 +20821,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   /* function exit code */
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":187
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":189
  *         direction[3] = direction[3] * beta + gradient[3]
  * 
  *     cdef void _compute_fd_gradient_into(             # <<<<<<<<<<<<<<
@@ -20836,30 +20846,39 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":194
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":196
  *     ) except *:
  *         cdef:
  *             double[:] delta_view = self.delta             # <<<<<<<<<<<<<<
  *             double base_score = self._score_at(x_view, tmpseg)
  *             double right_score
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->delta, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->delta, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 196, __pyx_L1_error)
   __pyx_v_delta_view = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":195
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":197
  *         cdef:
  *             double[:] delta_view = self.delta
  *             double base_score = self._score_at(x_view, tmpseg)             # <<<<<<<<<<<<<<
  *             double right_score
  *             double left_score
 */
-  __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 197, __pyx_L1_error)
   __pyx_v_base_score = __pyx_t_2;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":202
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":204
  *             int i
+ * 
+ *         self._last_gradient_base_score = base_score             # <<<<<<<<<<<<<<
+ * 
+ *         for i in range(4):
+*/
+  __pyx_v_self->_last_gradient_base_score = __pyx_v_base_score;
+
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":206
+ *         self._last_gradient_base_score = base_score
  * 
  *         for i in range(4):             # <<<<<<<<<<<<<<
  *             step = delta_view[i]
@@ -20868,7 +20887,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   for (__pyx_t_3 = 0; __pyx_t_3 < 4; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":203
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":207
  * 
  *         for i in range(4):
  *             step = delta_view[i]             # <<<<<<<<<<<<<<
@@ -20878,7 +20897,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_4 = __pyx_v_i;
     __pyx_v_step = (*((double *) ( /* dim=0 */ (__pyx_v_delta_view.data + __pyx_t_4 * __pyx_v_delta_view.strides[0]) )));
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":204
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":208
  *         for i in range(4):
  *             step = delta_view[i]
  *             x_view[i] += step             # <<<<<<<<<<<<<<
@@ -20888,17 +20907,17 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_4 = __pyx_v_i;
     *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_4 * __pyx_v_x_view.strides[0]) )) += __pyx_v_step;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":205
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":209
  *             step = delta_view[i]
  *             x_view[i] += step
  *             right_score = self._score_at(x_view, tmpseg)             # <<<<<<<<<<<<<<
  *             x_view[i] -= step
  * 
 */
-    __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 205, __pyx_L1_error)
+    __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 209, __pyx_L1_error)
     __pyx_v_right_score = __pyx_t_2;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":206
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":210
  *             x_view[i] += step
  *             right_score = self._score_at(x_view, tmpseg)
  *             x_view[i] -= step             # <<<<<<<<<<<<<<
@@ -20908,7 +20927,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_4 = __pyx_v_i;
     *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_4 * __pyx_v_x_view.strides[0]) )) -= __pyx_v_step;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":208
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":212
  *             x_view[i] -= step
  * 
  *             grad_i = (right_score - base_score) / step             # <<<<<<<<<<<<<<
@@ -20917,7 +20936,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_v_grad_i = ((__pyx_v_right_score - __pyx_v_base_score) / __pyx_v_step);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":209
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":213
  * 
  *             grad_i = (right_score - base_score) / step
  *             if grad_i < 0.0:             # <<<<<<<<<<<<<<
@@ -20927,7 +20946,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_5 = (__pyx_v_grad_i < 0.0);
     if (__pyx_t_5) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":210
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":214
  *             grad_i = (right_score - base_score) / step
  *             if grad_i < 0.0:
  *                 x_view[i] -= step             # <<<<<<<<<<<<<<
@@ -20937,17 +20956,17 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_4 = __pyx_v_i;
       *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_4 * __pyx_v_x_view.strides[0]) )) -= __pyx_v_step;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":211
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":215
  *             if grad_i < 0.0:
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)             # <<<<<<<<<<<<<<
  *                 if left_score < base_score:
  *                     grad_i = 0.0
 */
-      __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 211, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L1_error)
       __pyx_v_left_score = __pyx_t_2;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":212
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":216
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 if left_score < base_score:             # <<<<<<<<<<<<<<
@@ -20957,7 +20976,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_5 = (__pyx_v_left_score < __pyx_v_base_score);
       if (__pyx_t_5) {
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":213
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":217
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 if left_score < base_score:
  *                     grad_i = 0.0             # <<<<<<<<<<<<<<
@@ -20966,7 +20985,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         __pyx_v_grad_i = 0.0;
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":212
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":216
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 if left_score < base_score:             # <<<<<<<<<<<<<<
@@ -20976,7 +20995,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
         goto __pyx_L6;
       }
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":215
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":219
  *                     grad_i = 0.0
  *                 else:
  *                     grad_i = (base_score - left_score) / step             # <<<<<<<<<<<<<<
@@ -20988,7 +21007,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       }
       __pyx_L6:;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":216
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":220
  *                 else:
  *                     grad_i = (base_score - left_score) / step
  *                 x_view[i] += step             # <<<<<<<<<<<<<<
@@ -20998,7 +21017,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_4 = __pyx_v_i;
       *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_4 * __pyx_v_x_view.strides[0]) )) += __pyx_v_step;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":209
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":213
  * 
  *             grad_i = (right_score - base_score) / step
  *             if grad_i < 0.0:             # <<<<<<<<<<<<<<
@@ -21008,7 +21027,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       goto __pyx_L5;
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":217
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":221
  *                     grad_i = (base_score - left_score) / step
  *                 x_view[i] += step
  *             elif grad_i > 0.0:             # <<<<<<<<<<<<<<
@@ -21018,7 +21037,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_5 = (__pyx_v_grad_i > 0.0);
     if (__pyx_t_5) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":218
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":222
  *                 x_view[i] += step
  *             elif grad_i > 0.0:
  *                 x_view[i] -= step             # <<<<<<<<<<<<<<
@@ -21028,17 +21047,17 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_4 = __pyx_v_i;
       *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_4 * __pyx_v_x_view.strides[0]) )) -= __pyx_v_step;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":219
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":223
  *             elif grad_i > 0.0:
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)             # <<<<<<<<<<<<<<
  *                 if left_score > base_score:
  *                     grad_i = (base_score - left_score) / step
 */
-      __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 219, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L1_error)
       __pyx_v_left_score = __pyx_t_2;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":220
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":224
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 if left_score > base_score:             # <<<<<<<<<<<<<<
@@ -21048,7 +21067,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_5 = (__pyx_v_left_score > __pyx_v_base_score);
       if (__pyx_t_5) {
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":221
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":225
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 if left_score > base_score:
  *                     grad_i = (base_score - left_score) / step             # <<<<<<<<<<<<<<
@@ -21057,7 +21076,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         __pyx_v_grad_i = ((__pyx_v_base_score - __pyx_v_left_score) / __pyx_v_step);
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":220
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":224
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 if left_score > base_score:             # <<<<<<<<<<<<<<
@@ -21066,7 +21085,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       }
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":222
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":226
  *                 if left_score > base_score:
  *                     grad_i = (base_score - left_score) / step
  *                 x_view[i] += step             # <<<<<<<<<<<<<<
@@ -21076,7 +21095,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_4 = __pyx_v_i;
       *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_4 * __pyx_v_x_view.strides[0]) )) += __pyx_v_step;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":217
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":221
  *                     grad_i = (base_score - left_score) / step
  *                 x_view[i] += step
  *             elif grad_i > 0.0:             # <<<<<<<<<<<<<<
@@ -21086,7 +21105,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       goto __pyx_L5;
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":224
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":228
  *                 x_view[i] += step
  *             else:
  *                 x_view[i] -= step             # <<<<<<<<<<<<<<
@@ -21097,17 +21116,17 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_4 = __pyx_v_i;
       *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_4 * __pyx_v_x_view.strides[0]) )) -= __pyx_v_step;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":225
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":229
  *             else:
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)             # <<<<<<<<<<<<<<
  *                 grad_i = (base_score - left_score) / step
  *                 x_view[i] += step
 */
-      __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 225, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 229, __pyx_L1_error)
       __pyx_v_left_score = __pyx_t_2;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":226
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":230
  *                 x_view[i] -= step
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 grad_i = (base_score - left_score) / step             # <<<<<<<<<<<<<<
@@ -21116,7 +21135,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       __pyx_v_grad_i = ((__pyx_v_base_score - __pyx_v_left_score) / __pyx_v_step);
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":227
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":231
  *                 left_score = self._score_at(x_view, tmpseg)
  *                 grad_i = (base_score - left_score) / step
  *                 x_view[i] += step             # <<<<<<<<<<<<<<
@@ -21128,7 +21147,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     }
     __pyx_L5:;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":229
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":233
  *                 x_view[i] += step
  * 
  *             gradient_view[i] = grad_i             # <<<<<<<<<<<<<<
@@ -21139,7 +21158,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     *((double *) ( /* dim=0 */ (__pyx_v_gradient_view.data + __pyx_t_4 * __pyx_v_gradient_view.strides[0]) )) = __pyx_v_grad_i;
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":187
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":189
  *         direction[3] = direction[3] * beta + gradient[3]
  * 
  *     cdef void _compute_fd_gradient_into(             # <<<<<<<<<<<<<<
@@ -21156,7 +21175,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_delta_view, 1);
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":231
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":235
  *             gradient_view[i] = grad_i
  * 
  *     cpdef cnp.ndarray compute_fd_gradient(self, cnp.ndarray[DTYPE_t, ndim=1] x, object tmpseg):             # <<<<<<<<<<<<<<
@@ -21201,7 +21220,7 @@ static PyArrayObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_acce
   __pyx_pybuffernd_x.rcbuffer = &__pyx_pybuffer_x;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x.rcbuffer->pybuffer, (PyObject*)__pyx_v_x, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 231, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x.rcbuffer->pybuffer, (PyObject*)__pyx_v_x, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 235, __pyx_L1_error)
   }
   __pyx_pybuffernd_x.diminfo[0].strides = __pyx_pybuffernd_x.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_x.diminfo[0].shape = __pyx_pybuffernd_x.rcbuffer->pybuffer.shape[0];
   /* Check if called by wrapper */
@@ -21220,7 +21239,7 @@ static PyArrayObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_acce
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_compute_fd_gradient); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_compute_fd_gradient); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void(*)(void)) __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_3compute_fd_gradient)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
@@ -21244,10 +21263,10 @@ static PyArrayObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_acce
           __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 231, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 235, __pyx_L1_error)
         __pyx_r = ((PyArrayObject *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -21266,19 +21285,19 @@ static PyArrayObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_acce
     #endif
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":233
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":237
  *     cpdef cnp.ndarray compute_fd_gradient(self, cnp.ndarray[DTYPE_t, ndim=1] x, object tmpseg):
  *         cdef:
  *             double[:] x_view = x             # <<<<<<<<<<<<<<
  *             cnp.ndarray[DTYPE_t, ndim=1] gradient = self._gradient_buf
  *             double[:] gradient_view = gradient
 */
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 237, __pyx_L1_error)
   __pyx_v_x_view = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":234
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":238
  *         cdef:
  *             double[:] x_view = x
  *             cnp.ndarray[DTYPE_t, ndim=1] gradient = self._gradient_buf             # <<<<<<<<<<<<<<
@@ -21287,40 +21306,40 @@ static PyArrayObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_acce
 */
   __pyx_t_1 = __pyx_v_self->_gradient_buf;
   __Pyx_INCREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 234, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 238, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_gradient.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_gradient = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_gradient.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 234, __pyx_L1_error)
+      __PYX_ERR(0, 238, __pyx_L1_error)
     } else {__pyx_pybuffernd_gradient.diminfo[0].strides = __pyx_pybuffernd_gradient.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_gradient.diminfo[0].shape = __pyx_pybuffernd_gradient.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_gradient = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":235
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":239
  *             double[:] x_view = x
  *             cnp.ndarray[DTYPE_t, ndim=1] gradient = self._gradient_buf
  *             double[:] gradient_view = gradient             # <<<<<<<<<<<<<<
  * 
  *         self._compute_fd_gradient_into(x_view, tmpseg, gradient_view)
 */
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_gradient), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_gradient), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 239, __pyx_L1_error)
   __pyx_v_gradient_view = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":237
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":241
  *             double[:] gradient_view = gradient
  * 
  *         self._compute_fd_gradient_into(x_view, tmpseg, gradient_view)             # <<<<<<<<<<<<<<
  * 
  *         return np.array(gradient, copy=True)
 */
-  ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_compute_fd_gradient_into(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg, __pyx_v_gradient_view); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 237, __pyx_L1_error)
+  ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_compute_fd_gradient_into(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg, __pyx_v_gradient_view); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":239
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":243
  *         self._compute_fd_gradient_into(x_view, tmpseg, gradient_view)
  * 
  *         return np.array(gradient, copy=True)             # <<<<<<<<<<<<<<
@@ -21329,9 +21348,9 @@ static PyArrayObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_acce
 */
   __Pyx_XDECREF((PyObject *)__pyx_r);
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
@@ -21348,22 +21367,22 @@ static PyArrayObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_acce
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, ((PyObject *)__pyx_v_gradient)};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_copy, Py_True, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 239, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_copy, Py_True, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 243, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 239, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 243, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":231
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":235
  *             gradient_view[i] = grad_i
  * 
  *     cpdef cnp.ndarray compute_fd_gradient(self, cnp.ndarray[DTYPE_t, ndim=1] x, object tmpseg):             # <<<<<<<<<<<<<<
@@ -21441,39 +21460,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_x,&__pyx_mstate_global->__pyx_n_u_tmpseg,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 231, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 235, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 231, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 235, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 231, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 235, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "compute_fd_gradient", 0) < (0)) __PYX_ERR(0, 231, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "compute_fd_gradient", 0) < (0)) __PYX_ERR(0, 235, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("compute_fd_gradient", 1, 2, 2, i); __PYX_ERR(0, 231, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("compute_fd_gradient", 1, 2, 2, i); __PYX_ERR(0, 235, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 231, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 235, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 231, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 235, __pyx_L3_error)
     }
     __pyx_v_x = ((PyArrayObject *)values[0]);
     __pyx_v_tmpseg = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("compute_fd_gradient", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 231, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("compute_fd_gradient", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 235, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21484,7 +21503,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_x), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "x", 0))) __PYX_ERR(0, 231, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_x), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "x", 0))) __PYX_ERR(0, 235, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_2compute_fd_gradient(((struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self), __pyx_v_x, __pyx_v_tmpseg);
 
   /* function exit code */
@@ -21520,11 +21539,11 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   __pyx_pybuffernd_x.rcbuffer = &__pyx_pybuffer_x;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x.rcbuffer->pybuffer, (PyObject*)__pyx_v_x, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 231, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x.rcbuffer->pybuffer, (PyObject*)__pyx_v_x, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 235, __pyx_L1_error)
   }
   __pyx_pybuffernd_x.diminfo[0].strides = __pyx_pybuffernd_x.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_x.diminfo[0].shape = __pyx_pybuffernd_x.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_compute_fd_gradient(__pyx_v_self, __pyx_v_x, __pyx_v_tmpseg, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_compute_fd_gradient(__pyx_v_self, __pyx_v_x, __pyx_v_tmpseg, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -21550,7 +21569,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":241
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":245
  *         return np.array(gradient, copy=True)
  * 
  *     cdef tuple _line_search_var_backtrack_impl(             # <<<<<<<<<<<<<<
@@ -21609,43 +21628,43 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
   __pyx_pybuffernd_scaled_dir.data = NULL;
   __pyx_pybuffernd_scaled_dir.rcbuffer = &__pyx_pybuffer_scaled_dir;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":250
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":254
  *     ) except *:
  *         cdef:
  *             double[:] low_view = self.low             # <<<<<<<<<<<<<<
  *             double[:] high_view = self.high
  *             double[:] weight_view = self.weight
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->low, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->low, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 254, __pyx_L1_error)
   __pyx_v_low_view = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":251
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":255
  *         cdef:
  *             double[:] low_view = self.low
  *             double[:] high_view = self.high             # <<<<<<<<<<<<<<
  *             double[:] weight_view = self.weight
  *             cnp.ndarray[DTYPE_t, ndim=1] x_trial = self._trial_buf
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->high, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->high, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 255, __pyx_L1_error)
   __pyx_v_high_view = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":252
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":256
  *             double[:] low_view = self.low
  *             double[:] high_view = self.high
  *             double[:] weight_view = self.weight             # <<<<<<<<<<<<<<
  *             cnp.ndarray[DTYPE_t, ndim=1] x_trial = self._trial_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] org_x = self._org_x_buf
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->weight, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->weight, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 256, __pyx_L1_error)
   __pyx_v_weight_view = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":253
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":257
  *             double[:] high_view = self.high
  *             double[:] weight_view = self.weight
  *             cnp.ndarray[DTYPE_t, ndim=1] x_trial = self._trial_buf             # <<<<<<<<<<<<<<
@@ -21654,19 +21673,19 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_t_2 = __pyx_v_self->_trial_buf;
   __Pyx_INCREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 253, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 257, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x_trial.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_x_trial = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_x_trial.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 253, __pyx_L1_error)
+      __PYX_ERR(0, 257, __pyx_L1_error)
     } else {__pyx_pybuffernd_x_trial.diminfo[0].strides = __pyx_pybuffernd_x_trial.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_x_trial.diminfo[0].shape = __pyx_pybuffernd_x_trial.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_x_trial = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":254
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":258
  *             double[:] weight_view = self.weight
  *             cnp.ndarray[DTYPE_t, ndim=1] x_trial = self._trial_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] org_x = self._org_x_buf             # <<<<<<<<<<<<<<
@@ -21675,19 +21694,19 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_t_2 = __pyx_v_self->_org_x_buf;
   __Pyx_INCREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 254, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 258, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_org_x.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_org_x = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_org_x.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 254, __pyx_L1_error)
+      __PYX_ERR(0, 258, __pyx_L1_error)
     } else {__pyx_pybuffernd_org_x.diminfo[0].strides = __pyx_pybuffernd_org_x.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_org_x.diminfo[0].shape = __pyx_pybuffernd_org_x.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_org_x = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":255
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":259
  *             cnp.ndarray[DTYPE_t, ndim=1] x_trial = self._trial_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] org_x = self._org_x_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] scaled_dir = self._scaled_dir_buf             # <<<<<<<<<<<<<<
@@ -21696,55 +21715,55 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_t_2 = __pyx_v_self->_scaled_dir_buf;
   __Pyx_INCREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 255, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 259, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_scaled_dir.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_scaled_dir = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_scaled_dir.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 255, __pyx_L1_error)
+      __PYX_ERR(0, 259, __pyx_L1_error)
     } else {__pyx_pybuffernd_scaled_dir.diminfo[0].strides = __pyx_pybuffernd_scaled_dir.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_scaled_dir.diminfo[0].shape = __pyx_pybuffernd_scaled_dir.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_scaled_dir = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":256
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":260
  *             cnp.ndarray[DTYPE_t, ndim=1] org_x = self._org_x_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] scaled_dir = self._scaled_dir_buf
  *             double[:] org_x_view = org_x             # <<<<<<<<<<<<<<
  *             double[:] x_trial_view = x_trial
  *             double[:] scaled_dir_view = scaled_dir
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_org_x), PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_org_x), PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 260, __pyx_L1_error)
   __pyx_v_org_x_view = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":257
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":261
  *             cnp.ndarray[DTYPE_t, ndim=1] scaled_dir = self._scaled_dir_buf
  *             double[:] org_x_view = org_x
  *             double[:] x_trial_view = x_trial             # <<<<<<<<<<<<<<
  *             double[:] scaled_dir_view = scaled_dir
  *             double dir_len
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x_trial), PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x_trial), PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 261, __pyx_L1_error)
   __pyx_v_x_trial_view = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":258
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":262
  *             double[:] org_x_view = org_x
  *             double[:] x_trial_view = x_trial
  *             double[:] scaled_dir_view = scaled_dir             # <<<<<<<<<<<<<<
  *             double dir_len
  *             double alpha
 */
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_scaled_dir), PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_scaled_dir), PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 262, __pyx_L1_error)
   __pyx_v_scaled_dir_view = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":267
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":271
  *             int i
  * 
  *         SegmentOptimizer._copy4(x_org_view, org_x_view)             # <<<<<<<<<<<<<<
@@ -21753,7 +21772,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__copy4(__pyx_v_x_org_view, __pyx_v_org_x_view);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":269
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":273
  *         SegmentOptimizer._copy4(x_org_view, org_x_view)
  * 
  *         for i in range(4):             # <<<<<<<<<<<<<<
@@ -21763,7 +21782,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
   for (__pyx_t_3 = 0; __pyx_t_3 < 4; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":270
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":274
  * 
  *         for i in range(4):
  *             direction_view[i] *= weight_view[i]             # <<<<<<<<<<<<<<
@@ -21775,7 +21794,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     *((double *) ( /* dim=0 */ (__pyx_v_direction_view.data + __pyx_t_5 * __pyx_v_direction_view.strides[0]) )) *= (*((double *) ( /* dim=0 */ (__pyx_v_weight_view.data + __pyx_t_4 * __pyx_v_weight_view.strides[0]) )));
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":272
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":276
  *             direction_view[i] *= weight_view[i]
  * 
  *         dir_len = _vec_norm4(direction_view)             # <<<<<<<<<<<<<<
@@ -21784,7 +21803,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_v_dir_len = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel__vec_norm4(__pyx_v_direction_view);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":273
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":277
  * 
  *         dir_len = _vec_norm4(direction_view)
  *         if dir_len <= self.min_direction:             # <<<<<<<<<<<<<<
@@ -21794,7 +21813,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
   __pyx_t_6 = (__pyx_v_dir_len <= __pyx_v_self->min_direction);
   if (__pyx_t_6) {
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":274
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":278
  *         dir_len = _vec_norm4(direction_view)
  *         if dir_len <= self.min_direction:
  *             return False, start_score             # <<<<<<<<<<<<<<
@@ -21802,21 +21821,21 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
  *         alpha = self.alpha0 / dir_len
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 278, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_INCREF(Py_False);
     __Pyx_GIVEREF(Py_False);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, Py_False) != (0)) __PYX_ERR(0, 274, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, Py_False) != (0)) __PYX_ERR(0, 278, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 274, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 278, __pyx_L1_error);
     __pyx_t_2 = 0;
     __pyx_r = ((PyObject*)__pyx_t_7);
     __pyx_t_7 = 0;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":273
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":277
  * 
  *         dir_len = _vec_norm4(direction_view)
  *         if dir_len <= self.min_direction:             # <<<<<<<<<<<<<<
@@ -21825,7 +21844,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":276
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":280
  *             return False, start_score
  * 
  *         alpha = self.alpha0 / dir_len             # <<<<<<<<<<<<<<
@@ -21834,7 +21853,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_v_alpha = (__pyx_v_self->alpha0 / __pyx_v_dir_len);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":277
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":281
  * 
  *         alpha = self.alpha0 / dir_len
  *         gd_dot = _dot4(start_grad_view, direction_view)             # <<<<<<<<<<<<<<
@@ -21843,7 +21862,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_v_gd_dot = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel__dot4(__pyx_v_start_grad_view, __pyx_v_direction_view);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":278
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":282
  *         alpha = self.alpha0 / dir_len
  *         gd_dot = _dot4(start_grad_view, direction_view)
  *         gd_dot_c1 = gd_dot * self.c1             # <<<<<<<<<<<<<<
@@ -21852,18 +21871,68 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __pyx_v_gd_dot_c1 = (__pyx_v_gd_dot * __pyx_v_self->c1);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":280
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":284
  *         gd_dot_c1 = gd_dot * self.c1
  * 
  *         while True:             # <<<<<<<<<<<<<<
- *             for i in range(4):
- *                 scaled_dir_view[i] = direction_view[i] * alpha
+ *             if alpha * self.ro * dir_len < self.stop_grad:
+ *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
 */
   while (1) {
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":281
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":285
  * 
  *         while True:
+ *             if alpha * self.ro * dir_len < self.stop_grad:             # <<<<<<<<<<<<<<
+ *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
+ *                 return False, start_score
+*/
+    __pyx_t_6 = (((__pyx_v_alpha * __pyx_v_self->ro) * __pyx_v_dir_len) < __pyx_v_self->stop_grad);
+    if (__pyx_t_6) {
+
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":286
+ *         while True:
+ *             if alpha * self.ro * dir_len < self.stop_grad:
+ *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)             # <<<<<<<<<<<<<<
+ *                 return False, start_score
+ * 
+*/
+      __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__apply_x_to_seg(__pyx_v_tmpseg, __pyx_v_org_x_view); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 286, __pyx_L1_error)
+
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":287
+ *             if alpha * self.ro * dir_len < self.stop_grad:
+ *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
+ *                 return False, start_score             # <<<<<<<<<<<<<<
+ * 
+ *             for i in range(4):
+*/
+      __Pyx_XDECREF(__pyx_r);
+      __pyx_t_7 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_INCREF(Py_False);
+      __Pyx_GIVEREF(Py_False);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, Py_False) != (0)) __PYX_ERR(0, 287, __pyx_L1_error);
+      __Pyx_GIVEREF(__pyx_t_7);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_7) != (0)) __PYX_ERR(0, 287, __pyx_L1_error);
+      __pyx_t_7 = 0;
+      __pyx_r = ((PyObject*)__pyx_t_2);
+      __pyx_t_2 = 0;
+      goto __pyx_L0;
+
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":285
+ * 
+ *         while True:
+ *             if alpha * self.ro * dir_len < self.stop_grad:             # <<<<<<<<<<<<<<
+ *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
+ *                 return False, start_score
+*/
+    }
+
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":289
+ *                 return False, start_score
+ * 
  *             for i in range(4):             # <<<<<<<<<<<<<<
  *                 scaled_dir_view[i] = direction_view[i] * alpha
  *                 x_trial_view[i] = org_x_view[i] + scaled_dir_view[i]
@@ -21871,8 +21940,8 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     for (__pyx_t_3 = 0; __pyx_t_3 < 4; __pyx_t_3+=1) {
       __pyx_v_i = __pyx_t_3;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":282
- *         while True:
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":290
+ * 
  *             for i in range(4):
  *                 scaled_dir_view[i] = direction_view[i] * alpha             # <<<<<<<<<<<<<<
  *                 x_trial_view[i] = org_x_view[i] + scaled_dir_view[i]
@@ -21882,7 +21951,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
       __pyx_t_5 = __pyx_v_i;
       *((double *) ( /* dim=0 */ (__pyx_v_scaled_dir_view.data + __pyx_t_5 * __pyx_v_scaled_dir_view.strides[0]) )) = ((*((double *) ( /* dim=0 */ (__pyx_v_direction_view.data + __pyx_t_4 * __pyx_v_direction_view.strides[0]) ))) * __pyx_v_alpha);
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":283
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":291
  *             for i in range(4):
  *                 scaled_dir_view[i] = direction_view[i] * alpha
  *                 x_trial_view[i] = org_x_view[i] + scaled_dir_view[i]             # <<<<<<<<<<<<<<
@@ -21894,7 +21963,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
       __pyx_t_8 = __pyx_v_i;
       *((double *) ( /* dim=0 */ (__pyx_v_x_trial_view.data + __pyx_t_8 * __pyx_v_x_trial_view.strides[0]) )) = ((*((double *) ( /* dim=0 */ (__pyx_v_org_x_view.data + __pyx_t_4 * __pyx_v_org_x_view.strides[0]) ))) + (*((double *) ( /* dim=0 */ (__pyx_v_scaled_dir_view.data + __pyx_t_5 * __pyx_v_scaled_dir_view.strides[0]) ))));
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":284
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":292
  *                 scaled_dir_view[i] = direction_view[i] * alpha
  *                 x_trial_view[i] = org_x_view[i] + scaled_dir_view[i]
  *                 if x_trial_view[i] < low_view[i]:             # <<<<<<<<<<<<<<
@@ -21906,7 +21975,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
       __pyx_t_6 = ((*((double *) ( /* dim=0 */ (__pyx_v_x_trial_view.data + __pyx_t_5 * __pyx_v_x_trial_view.strides[0]) ))) < (*((double *) ( /* dim=0 */ (__pyx_v_low_view.data + __pyx_t_4 * __pyx_v_low_view.strides[0]) ))));
       if (__pyx_t_6) {
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":285
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":293
  *                 x_trial_view[i] = org_x_view[i] + scaled_dir_view[i]
  *                 if x_trial_view[i] < low_view[i]:
  *                     x_trial_view[i] = low_view[i]             # <<<<<<<<<<<<<<
@@ -21917,17 +21986,17 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
         __pyx_t_5 = __pyx_v_i;
         *((double *) ( /* dim=0 */ (__pyx_v_x_trial_view.data + __pyx_t_5 * __pyx_v_x_trial_view.strides[0]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_low_view.data + __pyx_t_4 * __pyx_v_low_view.strides[0]) )));
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":284
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":292
  *                 scaled_dir_view[i] = direction_view[i] * alpha
  *                 x_trial_view[i] = org_x_view[i] + scaled_dir_view[i]
  *                 if x_trial_view[i] < low_view[i]:             # <<<<<<<<<<<<<<
  *                     x_trial_view[i] = low_view[i]
  *                 elif x_trial_view[i] > high_view[i]:
 */
-        goto __pyx_L10;
+        goto __pyx_L11;
       }
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":286
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":294
  *                 if x_trial_view[i] < low_view[i]:
  *                     x_trial_view[i] = low_view[i]
  *                 elif x_trial_view[i] > high_view[i]:             # <<<<<<<<<<<<<<
@@ -21939,7 +22008,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
       __pyx_t_6 = ((*((double *) ( /* dim=0 */ (__pyx_v_x_trial_view.data + __pyx_t_4 * __pyx_v_x_trial_view.strides[0]) ))) > (*((double *) ( /* dim=0 */ (__pyx_v_high_view.data + __pyx_t_5 * __pyx_v_high_view.strides[0]) ))));
       if (__pyx_t_6) {
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":287
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":295
  *                     x_trial_view[i] = low_view[i]
  *                 elif x_trial_view[i] > high_view[i]:
  *                     x_trial_view[i] = high_view[i]             # <<<<<<<<<<<<<<
@@ -21950,7 +22019,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
         __pyx_t_4 = __pyx_v_i;
         *((double *) ( /* dim=0 */ (__pyx_v_x_trial_view.data + __pyx_t_4 * __pyx_v_x_trial_view.strides[0]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_high_view.data + __pyx_t_5 * __pyx_v_high_view.strides[0]) )));
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":286
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":294
  *                 if x_trial_view[i] < low_view[i]:
  *                     x_trial_view[i] = low_view[i]
  *                 elif x_trial_view[i] > high_view[i]:             # <<<<<<<<<<<<<<
@@ -21958,89 +22027,39 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
  * 
 */
       }
-      __pyx_L10:;
+      __pyx_L11:;
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":289
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":297
  *                     x_trial_view[i] = high_view[i]
  * 
  *             score_trial = self._score_at(x_trial_view, tmpseg)             # <<<<<<<<<<<<<<
  * 
  *             alpha *= self.ro
 */
-    __pyx_t_9 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_trial_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 289, __pyx_L1_error)
+    __pyx_t_9 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_trial_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L1_error)
     __pyx_v_score_trial = __pyx_t_9;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":291
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":299
  *             score_trial = self._score_at(x_trial_view, tmpseg)
  * 
  *             alpha *= self.ro             # <<<<<<<<<<<<<<
- *             if alpha * dir_len < self.stop_grad:
- *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
+ *             wolfe1 = alpha / self.ro * gd_dot_c1
+ *             if wolfe1 < 0.0:
 */
     __pyx_v_alpha = (__pyx_v_alpha * __pyx_v_self->ro);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":292
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":300
  * 
  *             alpha *= self.ro
- *             if alpha * dir_len < self.stop_grad:             # <<<<<<<<<<<<<<
- *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
- *                 return False, start_score
-*/
-    __pyx_t_6 = ((__pyx_v_alpha * __pyx_v_dir_len) < __pyx_v_self->stop_grad);
-    if (__pyx_t_6) {
-
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":293
- *             alpha *= self.ro
- *             if alpha * dir_len < self.stop_grad:
- *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)             # <<<<<<<<<<<<<<
- *                 return False, start_score
- * 
-*/
-      __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__apply_x_to_seg(__pyx_v_tmpseg, __pyx_v_org_x_view); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 293, __pyx_L1_error)
-
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":294
- *             if alpha * dir_len < self.stop_grad:
- *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
- *                 return False, start_score             # <<<<<<<<<<<<<<
- * 
- *             wolfe1 = alpha / self.ro * gd_dot_c1
-*/
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_7 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 294, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_INCREF(Py_False);
-      __Pyx_GIVEREF(Py_False);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, Py_False) != (0)) __PYX_ERR(0, 294, __pyx_L1_error);
-      __Pyx_GIVEREF(__pyx_t_7);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_7) != (0)) __PYX_ERR(0, 294, __pyx_L1_error);
-      __pyx_t_7 = 0;
-      __pyx_r = ((PyObject*)__pyx_t_2);
-      __pyx_t_2 = 0;
-      goto __pyx_L0;
-
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":292
- * 
- *             alpha *= self.ro
- *             if alpha * dir_len < self.stop_grad:             # <<<<<<<<<<<<<<
- *                 SegmentOptimizer._apply_x_to_seg(tmpseg, org_x_view)
- *                 return False, start_score
-*/
-    }
-
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":296
- *                 return False, start_score
- * 
  *             wolfe1 = alpha / self.ro * gd_dot_c1             # <<<<<<<<<<<<<<
  *             if wolfe1 < 0.0:
  *                 wolfe1 = 0.0
 */
     __pyx_v_wolfe1 = ((__pyx_v_alpha / __pyx_v_self->ro) * __pyx_v_gd_dot_c1);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":297
- * 
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":301
+ *             alpha *= self.ro
  *             wolfe1 = alpha / self.ro * gd_dot_c1
  *             if wolfe1 < 0.0:             # <<<<<<<<<<<<<<
  *                 wolfe1 = 0.0
@@ -22049,7 +22068,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     __pyx_t_6 = (__pyx_v_wolfe1 < 0.0);
     if (__pyx_t_6) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":298
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":302
  *             wolfe1 = alpha / self.ro * gd_dot_c1
  *             if wolfe1 < 0.0:
  *                 wolfe1 = 0.0             # <<<<<<<<<<<<<<
@@ -22058,8 +22077,8 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
       __pyx_v_wolfe1 = 0.0;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":297
- * 
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":301
+ *             alpha *= self.ro
  *             wolfe1 = alpha / self.ro * gd_dot_c1
  *             if wolfe1 < 0.0:             # <<<<<<<<<<<<<<
  *                 wolfe1 = 0.0
@@ -22067,7 +22086,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":299
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":303
  *             if wolfe1 < 0.0:
  *                 wolfe1 = 0.0
  *             if score_trial >= start_score + wolfe1:             # <<<<<<<<<<<<<<
@@ -22077,7 +22096,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     __pyx_t_6 = (__pyx_v_score_trial >= (__pyx_v_start_score + __pyx_v_wolfe1));
     if (__pyx_t_6) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":300
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":304
  *                 wolfe1 = 0.0
  *             if score_trial >= start_score + wolfe1:
  *                 return True, score_trial             # <<<<<<<<<<<<<<
@@ -22085,21 +22104,21 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
  *     cpdef tuple line_search_var_backtrack(
 */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_score_trial); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_score_trial); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 300, __pyx_L1_error)
+      __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 304, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_INCREF(Py_True);
       __Pyx_GIVEREF(Py_True);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, Py_True) != (0)) __PYX_ERR(0, 300, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, Py_True) != (0)) __PYX_ERR(0, 304, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_2);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 300, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 304, __pyx_L1_error);
       __pyx_t_2 = 0;
       __pyx_r = ((PyObject*)__pyx_t_7);
       __pyx_t_7 = 0;
       goto __pyx_L0;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":299
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":303
  *             if wolfe1 < 0.0:
  *                 wolfe1 = 0.0
  *             if score_trial >= start_score + wolfe1:             # <<<<<<<<<<<<<<
@@ -22109,7 +22128,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     }
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":241
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":245
  *         return np.array(gradient, copy=True)
  * 
  *     cdef tuple _line_search_var_backtrack_impl(             # <<<<<<<<<<<<<<
@@ -22154,7 +22173,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":302
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":306
  *                 return True, score_trial
  * 
  *     cpdef tuple line_search_var_backtrack(             # <<<<<<<<<<<<<<
@@ -22210,17 +22229,17 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
   __pyx_pybuffernd_start_grad.rcbuffer = &__pyx_pybuffer_start_grad;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x_org.rcbuffer->pybuffer, (PyObject*)__pyx_v_x_org, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 302, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x_org.rcbuffer->pybuffer, (PyObject*)__pyx_v_x_org, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
   }
   __pyx_pybuffernd_x_org.diminfo[0].strides = __pyx_pybuffernd_x_org.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_x_org.diminfo[0].shape = __pyx_pybuffernd_x_org.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_direction.rcbuffer->pybuffer, (PyObject*)__pyx_v_direction, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 302, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_direction.rcbuffer->pybuffer, (PyObject*)__pyx_v_direction, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
   }
   __pyx_pybuffernd_direction.diminfo[0].strides = __pyx_pybuffernd_direction.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_direction.diminfo[0].shape = __pyx_pybuffernd_direction.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_start_grad.rcbuffer->pybuffer, (PyObject*)__pyx_v_start_grad, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 302, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_start_grad.rcbuffer->pybuffer, (PyObject*)__pyx_v_start_grad, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
   }
   __pyx_pybuffernd_start_grad.diminfo[0].strides = __pyx_pybuffernd_start_grad.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_start_grad.diminfo[0].shape = __pyx_pybuffernd_start_grad.rcbuffer->pybuffer.shape[0];
   /* Check if called by wrapper */
@@ -22239,14 +22258,14 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_line_search_var_backtrack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_line_search_var_backtrack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void(*)(void)) __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_5line_search_var_backtrack)) {
         __Pyx_XDECREF(__pyx_r);
         __pyx_t_3 = NULL;
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; 
-        __pyx_t_5 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 302, __pyx_L1_error)
+        __pyx_t_5 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 306, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __pyx_t_6 = 1;
         #if CYTHON_UNPACK_METHODS
@@ -22266,10 +22285,10 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 306, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
         }
-        if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 302, __pyx_L1_error)
+        if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 306, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -22288,50 +22307,50 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     #endif
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":311
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":315
  *     ):
  *         cdef:
  *             double[:] x_org_view = x_org             # <<<<<<<<<<<<<<
  *             double[:] direction_view = direction
  *             double[:] start_grad_view = start_grad
 */
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x_org), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x_org), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 315, __pyx_L1_error)
   __pyx_v_x_org_view = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":312
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":316
  *         cdef:
  *             double[:] x_org_view = x_org
  *             double[:] direction_view = direction             # <<<<<<<<<<<<<<
  *             double[:] start_grad_view = start_grad
  *             bint improved
 */
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 316, __pyx_L1_error)
   __pyx_v_direction_view = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":313
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":317
  *             double[:] x_org_view = x_org
  *             double[:] direction_view = direction
  *             double[:] start_grad_view = start_grad             # <<<<<<<<<<<<<<
  *             bint improved
  *             double score_trial
 */
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_start_grad), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_start_grad), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 317, __pyx_L1_error)
   __pyx_v_start_grad_view = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":317
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":321
  *             double score_trial
  * 
  *         improved, score_trial = self._line_search_var_backtrack_impl(             # <<<<<<<<<<<<<<
  *             x_org_view,
  *             direction_view,
 */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_line_search_var_backtrack_impl(__pyx_v_self, __pyx_v_x_org_view, __pyx_v_direction_view, __pyx_v_start_score, __pyx_v_start_grad_view, __pyx_v_tmpseg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_line_search_var_backtrack_impl(__pyx_v_self, __pyx_v_x_org_view, __pyx_v_direction_view, __pyx_v_start_score, __pyx_v_start_grad_view, __pyx_v_tmpseg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(__pyx_t_1 != Py_None)) {
     PyObject* sequence = __pyx_t_1;
@@ -22339,7 +22358,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 317, __pyx_L1_error)
+      __PYX_ERR(0, 321, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
@@ -22347,23 +22366,23 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 317, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 321, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 317, __pyx_L1_error)
+    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 321, __pyx_L1_error)
   }
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_9 = __Pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_improved = __pyx_t_8;
   __pyx_v_score_trial = __pyx_t_9;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":324
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":328
  *             tmpseg,
  *         )
  *         if improved:             # <<<<<<<<<<<<<<
@@ -22372,7 +22391,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   if (__pyx_v_improved) {
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":325
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":329
  *         )
  *         if improved:
  *             return True, np.array(self._trial_buf, copy=True), score_trial             # <<<<<<<<<<<<<<
@@ -22381,9 +22400,9 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 329, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_6 = 1;
@@ -22400,34 +22419,34 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
     #endif
     {
       PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_v_self->_trial_buf};
-      __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_copy, Py_True, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 325, __pyx_L1_error)
+      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_copy, Py_True, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 329, __pyx_L1_error)
       __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_2);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_score_trial); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_score_trial); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 329, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(Py_True);
     __Pyx_GIVEREF(Py_True);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, Py_True) != (0)) __PYX_ERR(0, 325, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, Py_True) != (0)) __PYX_ERR(0, 329, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1) != (0)) __PYX_ERR(0, 325, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1) != (0)) __PYX_ERR(0, 329, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_5) != (0)) __PYX_ERR(0, 325, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_5) != (0)) __PYX_ERR(0, 329, __pyx_L1_error);
     __pyx_t_1 = 0;
     __pyx_t_5 = 0;
     __pyx_r = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":324
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":328
  *             tmpseg,
  *         )
  *         if improved:             # <<<<<<<<<<<<<<
@@ -22436,7 +22455,7 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":326
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":330
  *         if improved:
  *             return True, np.array(self._trial_buf, copy=True), score_trial
  *         return False, np.array(self._org_x_buf, copy=True), start_score             # <<<<<<<<<<<<<<
@@ -22445,9 +22464,9 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_6 = 1;
@@ -22464,34 +22483,34 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16S
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, __pyx_v_self->_org_x_buf};
-    __pyx_t_1 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_copy, Py_True, __pyx_t_1, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 326, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_copy, Py_True, __pyx_t_1, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 330, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_1);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_start_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(Py_False);
   __Pyx_GIVEREF(Py_False);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, Py_False) != (0)) __PYX_ERR(0, 326, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, Py_False) != (0)) __PYX_ERR(0, 330, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 326, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 330, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_4) != (0)) __PYX_ERR(0, 326, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_4) != (0)) __PYX_ERR(0, 330, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_4 = 0;
   __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":302
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":306
  *                 return True, score_trial
  * 
  *     cpdef tuple line_search_var_backtrack(             # <<<<<<<<<<<<<<
@@ -22575,60 +22594,60 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_x_org,&__pyx_mstate_global->__pyx_n_u_direction,&__pyx_mstate_global->__pyx_n_u_start_score,&__pyx_mstate_global->__pyx_n_u_start_grad,&__pyx_mstate_global->__pyx_n_u_tmpseg,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 302, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 306, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 302, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 306, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 302, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 306, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 302, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 306, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 302, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 306, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 302, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 306, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "line_search_var_backtrack", 0) < (0)) __PYX_ERR(0, 302, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "line_search_var_backtrack", 0) < (0)) __PYX_ERR(0, 306, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 5; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("line_search_var_backtrack", 1, 5, 5, i); __PYX_ERR(0, 302, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("line_search_var_backtrack", 1, 5, 5, i); __PYX_ERR(0, 306, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 5)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 302, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 306, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 302, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 306, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 302, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 306, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 302, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 306, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 302, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 306, __pyx_L3_error)
     }
     __pyx_v_x_org = ((PyArrayObject *)values[0]);
     __pyx_v_direction = ((PyArrayObject *)values[1]);
-    __pyx_v_start_score = __Pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_start_score == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 306, __pyx_L3_error)
+    __pyx_v_start_score = __Pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_start_score == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 310, __pyx_L3_error)
     __pyx_v_start_grad = ((PyArrayObject *)values[3]);
     __pyx_v_tmpseg = values[4];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("line_search_var_backtrack", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 302, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("line_search_var_backtrack", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 306, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22639,9 +22658,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_x_org), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "x_org", 0))) __PYX_ERR(0, 304, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "direction", 0))) __PYX_ERR(0, 305, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_start_grad), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "start_grad", 0))) __PYX_ERR(0, 307, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_x_org), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "x_org", 0))) __PYX_ERR(0, 308, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "direction", 0))) __PYX_ERR(0, 309, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_start_grad), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "start_grad", 0))) __PYX_ERR(0, 311, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_4line_search_var_backtrack(((struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self), __pyx_v_x_org, __pyx_v_direction, __pyx_v_start_score, __pyx_v_start_grad, __pyx_v_tmpseg);
 
   /* function exit code */
@@ -22689,21 +22708,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   __pyx_pybuffernd_start_grad.rcbuffer = &__pyx_pybuffer_start_grad;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x_org.rcbuffer->pybuffer, (PyObject*)__pyx_v_x_org, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 302, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x_org.rcbuffer->pybuffer, (PyObject*)__pyx_v_x_org, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
   }
   __pyx_pybuffernd_x_org.diminfo[0].strides = __pyx_pybuffernd_x_org.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_x_org.diminfo[0].shape = __pyx_pybuffernd_x_org.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_direction.rcbuffer->pybuffer, (PyObject*)__pyx_v_direction, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 302, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_direction.rcbuffer->pybuffer, (PyObject*)__pyx_v_direction, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
   }
   __pyx_pybuffernd_direction.diminfo[0].strides = __pyx_pybuffernd_direction.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_direction.diminfo[0].shape = __pyx_pybuffernd_direction.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_start_grad.rcbuffer->pybuffer, (PyObject*)__pyx_v_start_grad, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 302, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_start_grad.rcbuffer->pybuffer, (PyObject*)__pyx_v_start_grad, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
   }
   __pyx_pybuffernd_start_grad.diminfo[0].strides = __pyx_pybuffernd_start_grad.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_start_grad.diminfo[0].shape = __pyx_pybuffernd_start_grad.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_line_search_var_backtrack(__pyx_v_self, __pyx_v_x_org, __pyx_v_direction, __pyx_v_start_score, __pyx_v_start_grad, __pyx_v_tmpseg, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_line_search_var_backtrack(__pyx_v_self, __pyx_v_x_org, __pyx_v_direction, __pyx_v_start_score, __pyx_v_start_grad, __pyx_v_tmpseg, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -22733,7 +22752,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":328
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":332
  *         return False, np.array(self._org_x_buf, copy=True), start_score
  * 
  *     cpdef void fit(self, object seg):             # <<<<<<<<<<<<<<
@@ -22821,7 +22840,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_fit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_fit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void(*)(void)) __pyx_pw_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_7fit)) {
         __pyx_t_3 = NULL;
@@ -22844,7 +22863,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
           __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 328, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
         }
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -22864,7 +22883,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     #endif
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":330
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":334
  *     cpdef void fit(self, object seg):
  *         cdef:
  *             cnp.ndarray[DTYPE_t, ndim=1] x = self._x_buf             # <<<<<<<<<<<<<<
@@ -22873,19 +22892,19 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   __pyx_t_1 = __pyx_v_self->_x_buf;
   __Pyx_INCREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 330, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 334, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_x = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_x.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 330, __pyx_L1_error)
+      __PYX_ERR(0, 334, __pyx_L1_error)
     } else {__pyx_pybuffernd_x.diminfo[0].strides = __pyx_pybuffernd_x.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_x.diminfo[0].shape = __pyx_pybuffernd_x.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_x = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":331
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":335
  *         cdef:
  *             cnp.ndarray[DTYPE_t, ndim=1] x = self._x_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] g0 = self._g0_buf             # <<<<<<<<<<<<<<
@@ -22894,19 +22913,19 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   __pyx_t_1 = __pyx_v_self->_g0_buf;
   __Pyx_INCREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 335, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_g0.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_g0 = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_g0.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 331, __pyx_L1_error)
+      __PYX_ERR(0, 335, __pyx_L1_error)
     } else {__pyx_pybuffernd_g0.diminfo[0].strides = __pyx_pybuffernd_g0.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_g0.diminfo[0].shape = __pyx_pybuffernd_g0.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_g0 = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":332
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":336
  *             cnp.ndarray[DTYPE_t, ndim=1] x = self._x_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] g0 = self._g0_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] g1 = self._g1_buf             # <<<<<<<<<<<<<<
@@ -22915,19 +22934,19 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   __pyx_t_1 = __pyx_v_self->_g1_buf;
   __Pyx_INCREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 332, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 336, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_g1.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_g1 = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_g1.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 332, __pyx_L1_error)
+      __PYX_ERR(0, 336, __pyx_L1_error)
     } else {__pyx_pybuffernd_g1.diminfo[0].strides = __pyx_pybuffernd_g1.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_g1.diminfo[0].shape = __pyx_pybuffernd_g1.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_g1 = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":333
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":337
  *             cnp.ndarray[DTYPE_t, ndim=1] g0 = self._g0_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] g1 = self._g1_buf
  *             cnp.ndarray[DTYPE_t, ndim=1] update_direction = self._direction_buf             # <<<<<<<<<<<<<<
@@ -22936,31 +22955,31 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   __pyx_t_1 = __pyx_v_self->_direction_buf;
   __Pyx_INCREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 337, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_update_direction.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_update_direction = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_update_direction.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 333, __pyx_L1_error)
+      __PYX_ERR(0, 337, __pyx_L1_error)
     } else {__pyx_pybuffernd_update_direction.diminfo[0].strides = __pyx_pybuffernd_update_direction.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_update_direction.diminfo[0].shape = __pyx_pybuffernd_update_direction.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_update_direction = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":337
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":341
  *             double[:] g0_view
  *             double[:] g1_view
  *             double[:] x_view = x             # <<<<<<<<<<<<<<
  *             double final_score
  *             double dir_len
 */
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_x), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 341, __pyx_L1_error)
   __pyx_v_x_view = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":342
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":346
  *             double gnorm
  *             double new_score
  *             int iter_count = 0             # <<<<<<<<<<<<<<
@@ -22969,7 +22988,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   __pyx_v_iter_count = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":344
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":348
  *             int iter_count = 0
  *             bint improved
  *             object tmpseg = seg.copy()             # <<<<<<<<<<<<<<
@@ -22983,107 +23002,107 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_copy, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 344, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_tmpseg = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":346
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":350
  *             object tmpseg = seg.copy()
  * 
  *         x_view[0] = seg.radius             # <<<<<<<<<<<<<<
  *         x_view[1] = seg.theta
  *         x_view[2] = seg.psi
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 350, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = 0;
   *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_8 * __pyx_v_x_view.strides[0]) )) = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":347
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":351
  * 
  *         x_view[0] = seg.radius
  *         x_view[1] = seg.theta             # <<<<<<<<<<<<<<
  *         x_view[2] = seg.psi
  *         x_view[3] = seg.scale
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 347, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = 1;
   *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_8 * __pyx_v_x_view.strides[0]) )) = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":348
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":352
  *         x_view[0] = seg.radius
  *         x_view[1] = seg.theta
  *         x_view[2] = seg.psi             # <<<<<<<<<<<<<<
  *         x_view[3] = seg.scale
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 348, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = 2;
   *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_8 * __pyx_v_x_view.strides[0]) )) = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":349
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":353
  *         x_view[1] = seg.theta
  *         x_view[2] = seg.psi
  *         x_view[3] = seg.scale             # <<<<<<<<<<<<<<
  * 
  *         self._compute_fd_gradient_into(x_view, tmpseg, g0)
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = 3;
   *((double *) ( /* dim=0 */ (__pyx_v_x_view.data + __pyx_t_8 * __pyx_v_x_view.strides[0]) )) = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":351
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":355
  *         x_view[3] = seg.scale
  * 
  *         self._compute_fd_gradient_into(x_view, tmpseg, g0)             # <<<<<<<<<<<<<<
  *         SegmentOptimizer._copy4(g0, update_direction)
- *         final_score = self._score_at(x_view, tmpseg)
+ *         final_score = self._last_gradient_base_score
 */
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 351, __pyx_L1_error)
-  ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_compute_fd_gradient_into(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg, __pyx_t_6); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 355, __pyx_L1_error)
+  ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_compute_fd_gradient_into(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg, __pyx_t_6); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 355, __pyx_L1_error)
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_6, 1);
   __pyx_t_6.memview = NULL; __pyx_t_6.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":352
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":356
  * 
  *         self._compute_fd_gradient_into(x_view, tmpseg, g0)
  *         SegmentOptimizer._copy4(g0, update_direction)             # <<<<<<<<<<<<<<
- *         final_score = self._score_at(x_view, tmpseg)
+ *         final_score = self._last_gradient_base_score
  * 
 */
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 352, __pyx_L1_error)
-  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 356, __pyx_L1_error)
   __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__copy4(__pyx_t_6, __pyx_t_9);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_6, 1);
   __pyx_t_6.memview = NULL; __pyx_t_6.data = NULL;
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
   __pyx_t_9.memview = NULL; __pyx_t_9.data = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":353
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":357
  *         self._compute_fd_gradient_into(x_view, tmpseg, g0)
  *         SegmentOptimizer._copy4(g0, update_direction)
- *         final_score = self._score_at(x_view, tmpseg)             # <<<<<<<<<<<<<<
+ *         final_score = self._last_gradient_base_score             # <<<<<<<<<<<<<<
  * 
  *         while True:
 */
-  __pyx_t_7 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_score_at(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_7 = __pyx_v_self->_last_gradient_base_score;
   __pyx_v_final_score = __pyx_t_7;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":355
- *         final_score = self._score_at(x_view, tmpseg)
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":359
+ *         final_score = self._last_gradient_base_score
  * 
  *         while True:             # <<<<<<<<<<<<<<
  *             improved = False
@@ -23091,7 +23110,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
   while (1) {
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":356
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":360
  * 
  *         while True:
  *             improved = False             # <<<<<<<<<<<<<<
@@ -23100,20 +23119,20 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_v_improved = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":357
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":361
  *         while True:
  *             improved = False
  *             update_direction_view = update_direction             # <<<<<<<<<<<<<<
  *             dir_len = _vec_norm4(update_direction_view)
  *             if dir_len >= self.min_direction:
 */
-    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 361, __pyx_L1_error)
     __PYX_XCLEAR_MEMVIEW(&__pyx_v_update_direction_view, 1);
     __pyx_v_update_direction_view = __pyx_t_9;
     __pyx_t_9.memview = NULL;
     __pyx_t_9.data = NULL;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":358
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":362
  *             improved = False
  *             update_direction_view = update_direction
  *             dir_len = _vec_norm4(update_direction_view)             # <<<<<<<<<<<<<<
@@ -23122,7 +23141,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_v_dir_len = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel__vec_norm4(__pyx_v_update_direction_view);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":359
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":363
  *             update_direction_view = update_direction
  *             dir_len = _vec_norm4(update_direction_view)
  *             if dir_len >= self.min_direction:             # <<<<<<<<<<<<<<
@@ -23132,23 +23151,23 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_10 = (__pyx_v_dir_len >= __pyx_v_self->min_direction);
     if (__pyx_t_10) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":364
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":368
  *                     update_direction_view,
  *                     final_score,
  *                     g0,             # <<<<<<<<<<<<<<
  *                     tmpseg,
  *                 )
 */
-      __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 364, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 368, __pyx_L1_error)
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":360
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":364
  *             dir_len = _vec_norm4(update_direction_view)
  *             if dir_len >= self.min_direction:
  *                 improved, new_score = self._line_search_var_backtrack_impl(             # <<<<<<<<<<<<<<
  *                     x_view,
  *                     update_direction_view,
 */
-      __pyx_t_1 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_line_search_var_backtrack_impl(__pyx_v_self, __pyx_v_x_view, __pyx_v_update_direction_view, __pyx_v_final_score, __pyx_t_9, __pyx_v_tmpseg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 360, __pyx_L1_error)
+      __pyx_t_1 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_line_search_var_backtrack_impl(__pyx_v_self, __pyx_v_x_view, __pyx_v_update_direction_view, __pyx_v_final_score, __pyx_t_9, __pyx_v_tmpseg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
       __pyx_t_9.memview = NULL; __pyx_t_9.data = NULL;
@@ -23158,7 +23177,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 360, __pyx_L1_error)
+          __PYX_ERR(0, 364, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
@@ -23166,23 +23185,23 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
         __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1);
         __Pyx_INCREF(__pyx_t_4);
         #else
-        __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 360, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 364, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
-        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 360, __pyx_L1_error)
+        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 364, __pyx_L1_error)
       }
-      __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 360, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 364, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 360, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 364, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_improved = __pyx_t_10;
       __pyx_v_new_score = __pyx_t_7;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":367
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":371
  *                     tmpseg,
  *                 )
  *                 if improved:             # <<<<<<<<<<<<<<
@@ -23191,19 +23210,19 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       if (__pyx_v_improved) {
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":368
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":372
  *                 )
  *                 if improved:
  *                     SegmentOptimizer._copy4(self._trial_buf, x_view)             # <<<<<<<<<<<<<<
  *                     final_score = new_score
  *                     if self.verbose:
 */
-        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->_trial_buf, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 368, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->_trial_buf, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 372, __pyx_L1_error)
         __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__copy4(__pyx_t_9, __pyx_v_x_view);
         __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
         __pyx_t_9.memview = NULL; __pyx_t_9.data = NULL;
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":369
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":373
  *                 if improved:
  *                     SegmentOptimizer._copy4(self._trial_buf, x_view)
  *                     final_score = new_score             # <<<<<<<<<<<<<<
@@ -23212,7 +23231,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         __pyx_v_final_score = __pyx_v_new_score;
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":370
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":374
  *                     SegmentOptimizer._copy4(self._trial_buf, x_view)
  *                     final_score = new_score
  *                     if self.verbose:             # <<<<<<<<<<<<<<
@@ -23221,7 +23240,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         if (__pyx_v_self->verbose) {
 
-          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":371
+          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":375
  *                     final_score = new_score
  *                     if self.verbose:
  *                         print(f"iter {iter_count + 1}: score {final_score:.6g}")             # <<<<<<<<<<<<<<
@@ -23229,11 +23248,11 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *             if not improved:
 */
           __pyx_t_4 = NULL;
-          __pyx_t_2 = __Pyx_PyUnicode_From_long((__pyx_v_iter_count + 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 371, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyUnicode_From_long((__pyx_v_iter_count + 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_3 = PyFloat_FromDouble(__pyx_v_final_score); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 371, __pyx_L1_error)
+          __pyx_t_3 = PyFloat_FromDouble(__pyx_v_final_score); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_11 = __Pyx_PyObject_Format(__pyx_t_3, __pyx_mstate_global->__pyx_kp_u_6g); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 371, __pyx_L1_error)
+          __pyx_t_11 = __Pyx_PyObject_Format(__pyx_t_3, __pyx_mstate_global->__pyx_kp_u_6g); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_11);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __pyx_t_12[0] = __pyx_mstate_global->__pyx_kp_u_iter;
@@ -23241,7 +23260,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
           __pyx_t_12[2] = __pyx_mstate_global->__pyx_kp_u_score;
           __pyx_t_12[3] = __pyx_t_11;
           __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_12, 4, 5 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2) + 8 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_11), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_11));
-          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 371, __pyx_L1_error)
+          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 375, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
@@ -23251,12 +23270,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
             __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 371, __pyx_L1_error)
+            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
           }
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":370
+          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":374
  *                     SegmentOptimizer._copy4(self._trial_buf, x_view)
  *                     final_score = new_score
  *                     if self.verbose:             # <<<<<<<<<<<<<<
@@ -23265,7 +23284,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         }
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":367
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":371
  *                     tmpseg,
  *                 )
  *                 if improved:             # <<<<<<<<<<<<<<
@@ -23274,7 +23293,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       }
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":359
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":363
  *             update_direction_view = update_direction
  *             dir_len = _vec_norm4(update_direction_view)
  *             if dir_len >= self.min_direction:             # <<<<<<<<<<<<<<
@@ -23283,7 +23302,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":373
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":377
  *                         print(f"iter {iter_count + 1}: score {final_score:.6g}")
  * 
  *             if not improved:             # <<<<<<<<<<<<<<
@@ -23293,20 +23312,20 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_10 = (!__pyx_v_improved);
     if (__pyx_t_10) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":374
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":378
  * 
  *             if not improved:
  *                 g0_view = g0             # <<<<<<<<<<<<<<
  *                 gnorm = _vec_norm4(g0_view)
  *                 if gnorm > self.min_gradient:
 */
-      __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 374, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 378, __pyx_L1_error)
       __PYX_XCLEAR_MEMVIEW(&__pyx_v_g0_view, 1);
       __pyx_v_g0_view = __pyx_t_9;
       __pyx_t_9.memview = NULL;
       __pyx_t_9.data = NULL;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":375
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":379
  *             if not improved:
  *                 g0_view = g0
  *                 gnorm = _vec_norm4(g0_view)             # <<<<<<<<<<<<<<
@@ -23315,7 +23334,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       __pyx_v_gnorm = __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel__vec_norm4(__pyx_v_g0_view);
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":376
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":380
  *                 g0_view = g0
  *                 gnorm = _vec_norm4(g0_view)
  *                 if gnorm > self.min_gradient:             # <<<<<<<<<<<<<<
@@ -23325,48 +23344,48 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_10 = (__pyx_v_gnorm > __pyx_v_self->min_gradient);
       if (__pyx_t_10) {
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":377
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":381
  *                 gnorm = _vec_norm4(g0_view)
  *                 if gnorm > self.min_gradient:
  *                     SegmentOptimizer._copy4(g0_view, update_direction)             # <<<<<<<<<<<<<<
  *                     update_direction_view = update_direction
  *                     improved, new_score = self._line_search_var_backtrack_impl(
 */
-        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 377, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 381, __pyx_L1_error)
         __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__copy4(__pyx_v_g0_view, __pyx_t_9);
         __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
         __pyx_t_9.memview = NULL; __pyx_t_9.data = NULL;
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":378
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":382
  *                 if gnorm > self.min_gradient:
  *                     SegmentOptimizer._copy4(g0_view, update_direction)
  *                     update_direction_view = update_direction             # <<<<<<<<<<<<<<
  *                     improved, new_score = self._line_search_var_backtrack_impl(
  *                         x_view,
 */
-        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 378, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 382, __pyx_L1_error)
         __PYX_XCLEAR_MEMVIEW(&__pyx_v_update_direction_view, 1);
         __pyx_v_update_direction_view = __pyx_t_9;
         __pyx_t_9.memview = NULL;
         __pyx_t_9.data = NULL;
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":383
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":387
  *                         update_direction_view,
  *                         final_score,
  *                         g0,             # <<<<<<<<<<<<<<
  *                         tmpseg,
  *                     )
 */
-        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 383, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 387, __pyx_L1_error)
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":379
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":383
  *                     SegmentOptimizer._copy4(g0_view, update_direction)
  *                     update_direction_view = update_direction
  *                     improved, new_score = self._line_search_var_backtrack_impl(             # <<<<<<<<<<<<<<
  *                         x_view,
  *                         update_direction_view,
 */
-        __pyx_t_1 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_line_search_var_backtrack_impl(__pyx_v_self, __pyx_v_x_view, __pyx_v_update_direction_view, __pyx_v_final_score, __pyx_t_9, __pyx_v_tmpseg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L1_error)
+        __pyx_t_1 = ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_line_search_var_backtrack_impl(__pyx_v_self, __pyx_v_x_view, __pyx_v_update_direction_view, __pyx_v_final_score, __pyx_t_9, __pyx_v_tmpseg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
         __pyx_t_9.memview = NULL; __pyx_t_9.data = NULL;
@@ -23376,7 +23395,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 379, __pyx_L1_error)
+            __PYX_ERR(0, 383, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0);
@@ -23384,23 +23403,23 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
           __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1);
           __Pyx_INCREF(__pyx_t_4);
           #else
-          __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 383, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 379, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         } else {
-          __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 379, __pyx_L1_error)
+          __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 383, __pyx_L1_error)
         }
-        __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 379, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 379, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_v_improved = __pyx_t_10;
         __pyx_v_new_score = __pyx_t_7;
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":386
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":390
  *                         tmpseg,
  *                     )
  *                     if improved:             # <<<<<<<<<<<<<<
@@ -23409,19 +23428,19 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         if (__pyx_v_improved) {
 
-          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":387
+          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":391
  *                     )
  *                     if improved:
  *                         SegmentOptimizer._copy4(self._trial_buf, x_view)             # <<<<<<<<<<<<<<
  *                         final_score = new_score
  *                         if self.verbose:
 */
-          __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->_trial_buf, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 387, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_self->_trial_buf, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 391, __pyx_L1_error)
           __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__copy4(__pyx_t_9, __pyx_v_x_view);
           __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
           __pyx_t_9.memview = NULL; __pyx_t_9.data = NULL;
 
-          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":388
+          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":392
  *                     if improved:
  *                         SegmentOptimizer._copy4(self._trial_buf, x_view)
  *                         final_score = new_score             # <<<<<<<<<<<<<<
@@ -23430,7 +23449,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
           __pyx_v_final_score = __pyx_v_new_score;
 
-          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":389
+          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":393
  *                         SegmentOptimizer._copy4(self._trial_buf, x_view)
  *                         final_score = new_score
  *                         if self.verbose:             # <<<<<<<<<<<<<<
@@ -23439,7 +23458,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
           if (__pyx_v_self->verbose) {
 
-            /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":390
+            /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":394
  *                         final_score = new_score
  *                         if self.verbose:
  *                             print(f"iter {iter_count + 1} (fallback): score {final_score:.6g}")             # <<<<<<<<<<<<<<
@@ -23447,11 +23466,11 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
  *                 if not improved:
 */
             __pyx_t_4 = NULL;
-            __pyx_t_3 = __Pyx_PyUnicode_From_long((__pyx_v_iter_count + 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 390, __pyx_L1_error)
+            __pyx_t_3 = __Pyx_PyUnicode_From_long((__pyx_v_iter_count + 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_11 = PyFloat_FromDouble(__pyx_v_final_score); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 390, __pyx_L1_error)
+            __pyx_t_11 = PyFloat_FromDouble(__pyx_v_final_score); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 394, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_11);
-            __pyx_t_2 = __Pyx_PyObject_Format(__pyx_t_11, __pyx_mstate_global->__pyx_kp_u_6g); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyObject_Format(__pyx_t_11, __pyx_mstate_global->__pyx_kp_u_6g); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
             __pyx_t_12[0] = __pyx_mstate_global->__pyx_kp_u_iter;
@@ -23459,7 +23478,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
             __pyx_t_12[2] = __pyx_mstate_global->__pyx_kp_u_fallback_score;
             __pyx_t_12[3] = __pyx_t_2;
             __pyx_t_11 = __Pyx_PyUnicode_Join(__pyx_t_12, 4, 5 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 19 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
-            if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 390, __pyx_L1_error)
+            if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 394, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_11);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -23469,12 +23488,12 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
               __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
               __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
               __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
+              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_1);
             }
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":389
+            /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":393
  *                         SegmentOptimizer._copy4(self._trial_buf, x_view)
  *                         final_score = new_score
  *                         if self.verbose:             # <<<<<<<<<<<<<<
@@ -23483,7 +23502,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
           }
 
-          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":386
+          /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":390
  *                         tmpseg,
  *                     )
  *                     if improved:             # <<<<<<<<<<<<<<
@@ -23492,7 +23511,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         }
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":376
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":380
  *                 g0_view = g0
  *                 gnorm = _vec_norm4(g0_view)
  *                 if gnorm > self.min_gradient:             # <<<<<<<<<<<<<<
@@ -23501,7 +23520,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       }
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":392
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":396
  *                             print(f"iter {iter_count + 1} (fallback): score {final_score:.6g}")
  * 
  *                 if not improved:             # <<<<<<<<<<<<<<
@@ -23511,7 +23530,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
       __pyx_t_10 = (!__pyx_v_improved);
       if (__pyx_t_10) {
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":393
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":397
  * 
  *                 if not improved:
  *                     break             # <<<<<<<<<<<<<<
@@ -23520,7 +23539,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
         goto __pyx_L4_break;
 
-        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":392
+        /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":396
  *                             print(f"iter {iter_count + 1} (fallback): score {final_score:.6g}")
  * 
  *                 if not improved:             # <<<<<<<<<<<<<<
@@ -23529,7 +23548,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       }
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":373
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":377
  *                         print(f"iter {iter_count + 1}: score {final_score:.6g}")
  * 
  *             if not improved:             # <<<<<<<<<<<<<<
@@ -23538,7 +23557,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":395
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":399
  *                     break
  * 
  *             iter_count += 1             # <<<<<<<<<<<<<<
@@ -23547,7 +23566,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_v_iter_count = (__pyx_v_iter_count + 1);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":396
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":400
  * 
  *             iter_count += 1
  *             if iter_count >= self.maxiter:             # <<<<<<<<<<<<<<
@@ -23557,7 +23576,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
     __pyx_t_10 = (__pyx_v_iter_count >= __pyx_v_self->maxiter);
     if (__pyx_t_10) {
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":397
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":401
  *             iter_count += 1
  *             if iter_count >= self.maxiter:
  *                 break             # <<<<<<<<<<<<<<
@@ -23566,7 +23585,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
       goto __pyx_L4_break;
 
-      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":396
+      /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":400
  * 
  *             iter_count += 1
  *             if iter_count >= self.maxiter:             # <<<<<<<<<<<<<<
@@ -23575,58 +23594,58 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     }
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":399
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":403
  *                 break
  * 
  *             self._compute_fd_gradient_into(x_view, tmpseg, g1)             # <<<<<<<<<<<<<<
  *             g1_view = g1
  *             g0_view = g0
 */
-    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 399, __pyx_L1_error)
-    ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_compute_fd_gradient_into(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg, __pyx_t_9); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 403, __pyx_L1_error)
+    ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_self->__pyx_vtab)->_compute_fd_gradient_into(__pyx_v_self, __pyx_v_x_view, __pyx_v_tmpseg, __pyx_t_9); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 403, __pyx_L1_error)
     __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
     __pyx_t_9.memview = NULL; __pyx_t_9.data = NULL;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":400
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":404
  * 
  *             self._compute_fd_gradient_into(x_view, tmpseg, g1)
  *             g1_view = g1             # <<<<<<<<<<<<<<
  *             g0_view = g0
  *             update_direction_view = update_direction
 */
-    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 400, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 404, __pyx_L1_error)
     __PYX_XCLEAR_MEMVIEW(&__pyx_v_g1_view, 1);
     __pyx_v_g1_view = __pyx_t_9;
     __pyx_t_9.memview = NULL;
     __pyx_t_9.data = NULL;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":401
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":405
  *             self._compute_fd_gradient_into(x_view, tmpseg, g1)
  *             g1_view = g1
  *             g0_view = g0             # <<<<<<<<<<<<<<
  *             update_direction_view = update_direction
  *             SegmentOptimizer._conjugate_update_direction(g1_view, g0_view, update_direction_view)
 */
-    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_g0), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 405, __pyx_L1_error)
     __PYX_XCLEAR_MEMVIEW(&__pyx_v_g0_view, 1);
     __pyx_v_g0_view = __pyx_t_9;
     __pyx_t_9.memview = NULL;
     __pyx_t_9.data = NULL;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":402
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":406
  *             g1_view = g1
  *             g0_view = g0
  *             update_direction_view = update_direction             # <<<<<<<<<<<<<<
  *             SegmentOptimizer._conjugate_update_direction(g1_view, g0_view, update_direction_view)
  *             SegmentOptimizer._copy4(g1_view, g0_view)
 */
-    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 402, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_update_direction), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 406, __pyx_L1_error)
     __PYX_XCLEAR_MEMVIEW(&__pyx_v_update_direction_view, 1);
     __pyx_v_update_direction_view = __pyx_t_9;
     __pyx_t_9.memview = NULL;
     __pyx_t_9.data = NULL;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":403
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":407
  *             g0_view = g0
  *             update_direction_view = update_direction
  *             SegmentOptimizer._conjugate_update_direction(g1_view, g0_view, update_direction_view)             # <<<<<<<<<<<<<<
@@ -23635,7 +23654,7 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
 */
     __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__conjugate_update_direction(__pyx_v_g1_view, __pyx_v_g0_view, __pyx_v_update_direction_view);
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":404
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":408
  *             update_direction_view = update_direction
  *             SegmentOptimizer._conjugate_update_direction(g1_view, g0_view, update_direction_view)
  *             SegmentOptimizer._copy4(g1_view, g0_view)             # <<<<<<<<<<<<<<
@@ -23646,64 +23665,64 @@ static void __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16Segmen
   }
   __pyx_L4_break:;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":406
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":410
  *             SegmentOptimizer._copy4(g1_view, g0_view)
  * 
  *         SegmentOptimizer._apply_x_to_seg(seg, x_view)             # <<<<<<<<<<<<<<
  *         seg.theta = seg.theta % (2 * np.pi)
  *         seg.psi = seg.psi % (2 * np.pi)
 */
-  __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__apply_x_to_seg(__pyx_v_seg, __pyx_v_x_view); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 406, __pyx_L1_error)
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer__apply_x_to_seg(__pyx_v_seg, __pyx_v_x_view); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 410, __pyx_L1_error)
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":407
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":411
  * 
  *         SegmentOptimizer._apply_x_to_seg(seg, x_view)
  *         seg.theta = seg.theta % (2 * np.pi)             # <<<<<<<<<<<<<<
  *         seg.psi = seg.psi % (2 * np.pi)
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-  __pyx_t_11 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_4, 2, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_4, 2, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Remainder(__pyx_t_1, __pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Remainder(__pyx_t_1, __pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta, __pyx_t_4) < (0)) __PYX_ERR(0, 407, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta, __pyx_t_4) < (0)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":408
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":412
  *         SegmentOptimizer._apply_x_to_seg(seg, x_view)
  *         seg.theta = seg.theta % (2 * np.pi)
  *         seg.psi = seg.psi % (2 * np.pi)             # <<<<<<<<<<<<<<
  * 
  * 
 */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-  __pyx_t_11 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_1, 2, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_1, 2, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Remainder(__pyx_t_4, __pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Remainder(__pyx_t_4, __pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi, __pyx_t_1) < (0)) __PYX_ERR(0, 408, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi, __pyx_t_1) < (0)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":328
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":332
  *         return False, np.array(self._org_x_buf, copy=True), start_score
  * 
  *     cpdef void fit(self, object seg):             # <<<<<<<<<<<<<<
@@ -23790,32 +23809,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_seg,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 328, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 332, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 328, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 332, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "fit", 0) < (0)) __PYX_ERR(0, 328, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "fit", 0) < (0)) __PYX_ERR(0, 332, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("fit", 1, 1, 1, i); __PYX_ERR(0, 328, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("fit", 1, 1, 1, i); __PYX_ERR(0, 332, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 328, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 332, __pyx_L3_error)
     }
     __pyx_v_seg = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 328, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 332, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23845,8 +23864,8 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("fit", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_fit(__pyx_v_self, __pyx_v_seg, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_fit(__pyx_v_self, __pyx_v_seg, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23927,8 +23946,9 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   PyObject *__pyx_t_7 = NULL;
   PyObject *__pyx_t_8 = NULL;
   PyObject *__pyx_t_9 = NULL;
-  int __pyx_t_10;
+  PyObject *__pyx_t_10 = NULL;
   int __pyx_t_11;
+  int __pyx_t_12;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -23937,89 +23957,93 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   /* "(tree fragment)":5
  *     cdef object _dict
  *     cdef bint use_setstate
- *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)             # <<<<<<<<<<<<<<
+ *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._last_gradient_base_score, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)             # <<<<<<<<<<<<<<
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None and _dict:
 */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->alpha0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_last_gradient_base_score); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->c1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->alpha0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_self->maxiter); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->c1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->min_direction); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_self->maxiter); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->min_gradient); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->min_direction); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->ro); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->min_gradient); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->stop_grad); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->ro); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyBool_FromLong(__pyx_v_self->verbose); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_self->stop_grad); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = PyTuple_New(23); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyBool_FromLong(__pyx_v_self->verbose); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_10 = PyTuple_New(24); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
   __Pyx_INCREF(__pyx_v_self->_direction_buf);
   __Pyx_GIVEREF(__pyx_v_self->_direction_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_v_self->_direction_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_v_self->_direction_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->_g0_buf);
   __Pyx_GIVEREF(__pyx_v_self->_g0_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_v_self->_g0_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_v_self->_g0_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->_g1_buf);
   __Pyx_GIVEREF(__pyx_v_self->_g1_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 2, __pyx_v_self->_g1_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_v_self->_g1_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->_gradient_buf);
   __Pyx_GIVEREF(__pyx_v_self->_gradient_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 3, __pyx_v_self->_gradient_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 3, __pyx_v_self->_gradient_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_1);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 4, __pyx_t_1) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->_org_x_buf);
   __Pyx_GIVEREF(__pyx_v_self->_org_x_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 4, __pyx_v_self->_org_x_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 5, __pyx_v_self->_org_x_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->_scaled_dir_buf);
   __Pyx_GIVEREF(__pyx_v_self->_scaled_dir_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 5, __pyx_v_self->_scaled_dir_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 6, __pyx_v_self->_scaled_dir_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->_trial_buf);
   __Pyx_GIVEREF(__pyx_v_self->_trial_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 6, __pyx_v_self->_trial_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 7, __pyx_v_self->_trial_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->_x_buf);
   __Pyx_GIVEREF(__pyx_v_self->_x_buf);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 7, __pyx_v_self->_x_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 8, __pyx_t_1) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 8, __pyx_v_self->_x_buf) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 9, __pyx_t_2) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 9, __pyx_t_2) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_3);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 10, __pyx_t_3) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->delta);
   __Pyx_GIVEREF(__pyx_v_self->delta);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 10, __pyx_v_self->delta) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 11, __pyx_v_self->delta) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->high);
   __Pyx_GIVEREF(__pyx_v_self->high);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 11, __pyx_v_self->high) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 12, __pyx_v_self->high) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->image);
   __Pyx_GIVEREF(__pyx_v_self->image);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 12, __pyx_v_self->image) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 13, __pyx_v_self->image) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->low);
   __Pyx_GIVEREF(__pyx_v_self->low);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 13, __pyx_v_self->low) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 14, __pyx_t_3) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 14, __pyx_v_self->low) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 15, __pyx_t_4) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 15, __pyx_t_4) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 16, __pyx_t_5) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 16, __pyx_t_5) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 17, __pyx_t_6) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 17, __pyx_t_6) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_7);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 18, __pyx_t_7) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->score_func);
   __Pyx_GIVEREF(__pyx_v_self->score_func);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 18, __pyx_v_self->score_func) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 19, __pyx_v_self->score_func) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->seg_filter);
   __Pyx_GIVEREF(__pyx_v_self->seg_filter);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 19, __pyx_v_self->seg_filter) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 20, __pyx_t_7) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 20, __pyx_v_self->seg_filter) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_8);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 21, __pyx_t_8) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 21, __pyx_t_8) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_9);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 22, __pyx_t_9) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->weight);
   __Pyx_GIVEREF(__pyx_v_self->weight);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 22, __pyx_v_self->weight) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 23, __pyx_v_self->weight) != (0)) __PYX_ERR(1, 5, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
@@ -24028,38 +24052,39 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   __pyx_t_6 = 0;
   __pyx_t_7 = 0;
   __pyx_t_8 = 0;
-  __pyx_v_state = ((PyObject*)__pyx_t_9);
   __pyx_t_9 = 0;
+  __pyx_v_state = ((PyObject*)__pyx_t_10);
+  __pyx_t_10 = 0;
 
   /* "(tree fragment)":6
  *     cdef bint use_setstate
- *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)
+ *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._last_gradient_base_score, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)
  *     _dict = getattr(self, '__dict__', None)             # <<<<<<<<<<<<<<
  *     if _dict is not None and _dict:
  *         state += (_dict,)
 */
-  __pyx_t_9 = __Pyx_GetAttr3(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_dict, Py_None); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 6, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
-  __pyx_v__dict = __pyx_t_9;
-  __pyx_t_9 = 0;
+  __pyx_t_10 = __Pyx_GetAttr3(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_dict, Py_None); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 6, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __pyx_v__dict = __pyx_t_10;
+  __pyx_t_10 = 0;
 
   /* "(tree fragment)":7
- *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)
+ *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._last_gradient_base_score, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None and _dict:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
  *         use_setstate = True
 */
-  __pyx_t_11 = (__pyx_v__dict != Py_None);
-  if (__pyx_t_11) {
+  __pyx_t_12 = (__pyx_v__dict != Py_None);
+  if (__pyx_t_12) {
   } else {
-    __pyx_t_10 = __pyx_t_11;
+    __pyx_t_11 = __pyx_t_12;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_v__dict); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(1, 7, __pyx_L1_error)
-  __pyx_t_10 = __pyx_t_11;
+  __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_v__dict); if (unlikely((__pyx_t_12 < 0))) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_11 = __pyx_t_12;
   __pyx_L4_bool_binop_done:;
-  if (__pyx_t_10) {
+  if (__pyx_t_11) {
 
     /* "(tree fragment)":8
  *     _dict = getattr(self, '__dict__', None)
@@ -24068,16 +24093,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
  *         use_setstate = True
  *     else:
 */
-    __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
+    __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 8, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
     __Pyx_INCREF(__pyx_v__dict);
     __Pyx_GIVEREF(__pyx_v__dict);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_v__dict) != (0)) __PYX_ERR(1, 8, __pyx_L1_error);
-    __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_v_state, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF_SET(__pyx_v_state, ((PyObject*)__pyx_t_8));
-    __pyx_t_8 = 0;
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_v__dict) != (0)) __PYX_ERR(1, 8, __pyx_L1_error);
+    __pyx_t_9 = PyNumber_InPlaceAdd(__pyx_v_state, __pyx_t_10); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 8, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    __Pyx_DECREF_SET(__pyx_v_state, ((PyObject*)__pyx_t_9));
+    __pyx_t_9 = 0;
 
     /* "(tree fragment)":9
  *     if _dict is not None and _dict:
@@ -24089,7 +24114,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
     __pyx_v_use_setstate = 1;
 
     /* "(tree fragment)":7
- *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)
+ *     state = (self._direction_buf, self._g0_buf, self._g1_buf, self._gradient_buf, self._last_gradient_base_score, self._org_x_buf, self._scaled_dir_buf, self._trial_buf, self._x_buf, self.alpha0, self.c1, self.delta, self.high, self.image, self.low, self.maxiter, self.min_direction, self.min_gradient, self.ro, self.score_func, self.seg_filter, self.stop_grad, self.verbose, self.weight)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None and _dict:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
@@ -24103,97 +24128,97 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
  *     else:
  *         use_setstate = self._direction_buf is not None or self._g0_buf is not None or self._g1_buf is not None or self._gradient_buf is not None or self._org_x_buf is not None or self._scaled_dir_buf is not None or self._trial_buf is not None or self._x_buf is not None or self.delta is not None or self.high is not None or self.image is not None or self.low is not None or self.score_func is not None or self.seg_filter is not None or self.weight is not None             # <<<<<<<<<<<<<<
  *     if use_setstate:
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, None), state
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, None), state
 */
   /*else*/ {
-    __pyx_t_11 = (__pyx_v_self->_direction_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_direction_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->_g0_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_g0_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->_g1_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_g1_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->_gradient_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_gradient_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->_org_x_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_org_x_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->_scaled_dir_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_scaled_dir_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->_trial_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_trial_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->_x_buf != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->_x_buf != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->delta != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->delta != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->high != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->high != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->image != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->image != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->low != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->low != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->score_func != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->score_func != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->seg_filter != Py_None);
-    if (!__pyx_t_11) {
+    __pyx_t_12 = (__pyx_v_self->seg_filter != Py_None);
+    if (!__pyx_t_12) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_11 = __pyx_t_12;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_11 = (__pyx_v_self->weight != Py_None);
-    __pyx_t_10 = __pyx_t_11;
+    __pyx_t_12 = (__pyx_v_self->weight != Py_None);
+    __pyx_t_11 = __pyx_t_12;
     __pyx_L6_bool_binop_done:;
-    __pyx_v_use_setstate = __pyx_t_10;
+    __pyx_v_use_setstate = __pyx_t_11;
   }
   __pyx_L3:;
 
@@ -24201,7 +24226,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
  *     else:
  *         use_setstate = self._direction_buf is not None or self._g0_buf is not None or self._g1_buf is not None or self._gradient_buf is not None or self._org_x_buf is not None or self._scaled_dir_buf is not None or self._trial_buf is not None or self._x_buf is not None or self.delta is not None or self.high is not None or self.image is not None or self.low is not None or self.score_func is not None or self.seg_filter is not None or self.weight is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, None), state
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, None), state
  *     else:
 */
   if (__pyx_v_use_setstate) {
@@ -24209,80 +24234,80 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
     /* "(tree fragment)":13
  *         use_setstate = self._direction_buf is not None or self._g0_buf is not None or self._g1_buf is not None or self._gradient_buf is not None or self._org_x_buf is not None or self._scaled_dir_buf is not None or self._trial_buf is not None or self._x_buf is not None or self.delta is not None or self.high is not None or self.image is not None or self.low is not None or self.score_func is not None or self.seg_filter is not None or self.weight is not None
  *     if use_setstate:
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, None), state             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, None), state             # <<<<<<<<<<<<<<
  *     else:
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, state)
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, state)
 */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_SegmentOptimizer); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_9 = PyTuple_New(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_SegmentOptimizer); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 13, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
+    __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self)))) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_int_99562027);
-    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_99562027);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_mstate_global->__pyx_int_99562027) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self)))) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_int_146736379);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_146736379);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_mstate_global->__pyx_int_146736379) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
     __Pyx_INCREF(Py_None);
     __Pyx_GIVEREF(Py_None);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 2, Py_None) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
-    __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_GIVEREF(__pyx_t_8);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 2, Py_None) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
+    __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_9);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_9) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_9) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
+    __Pyx_GIVEREF(__pyx_t_10);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_10) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
     __Pyx_INCREF(__pyx_v_state);
     __Pyx_GIVEREF(__pyx_v_state);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_v_state) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
-    __pyx_t_8 = 0;
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_v_state) != (0)) __PYX_ERR(1, 13, __pyx_L1_error);
     __pyx_t_9 = 0;
-    __pyx_r = __pyx_t_7;
-    __pyx_t_7 = 0;
+    __pyx_t_10 = 0;
+    __pyx_r = __pyx_t_8;
+    __pyx_t_8 = 0;
     goto __pyx_L0;
 
     /* "(tree fragment)":12
  *     else:
  *         use_setstate = self._direction_buf is not None or self._g0_buf is not None or self._g1_buf is not None or self._gradient_buf is not None or self._org_x_buf is not None or self._scaled_dir_buf is not None or self._trial_buf is not None or self._x_buf is not None or self.delta is not None or self.high is not None or self.image is not None or self.low is not None or self.score_func is not None or self.seg_filter is not None or self.weight is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, None), state
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, None), state
  *     else:
 */
   }
 
   /* "(tree fragment)":15
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, None), state
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, None), state
  *     else:
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, state)             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, state)             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
  *     __pyx_unpickle_SegmentOptimizer__set_state(self, __pyx_state)
 */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_SegmentOptimizer); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_9 = PyTuple_New(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_SegmentOptimizer); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self)))) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_int_99562027);
-    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_99562027);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_mstate_global->__pyx_int_99562027) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self)))) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_int_146736379);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_int_146736379);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_mstate_global->__pyx_int_146736379) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
     __Pyx_INCREF(__pyx_v_state);
     __Pyx_GIVEREF(__pyx_v_state);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 2, __pyx_v_state) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_7);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
-    __Pyx_GIVEREF(__pyx_t_9);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_9) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
-    __pyx_t_7 = 0;
-    __pyx_t_9 = 0;
-    __pyx_r = __pyx_t_8;
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_v_state) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
+    __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    __Pyx_GIVEREF(__pyx_t_8);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
+    __Pyx_GIVEREF(__pyx_t_10);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_10) != (0)) __PYX_ERR(1, 15, __pyx_L1_error);
     __pyx_t_8 = 0;
+    __pyx_t_10 = 0;
+    __pyx_r = __pyx_t_9;
+    __pyx_t_9 = 0;
     goto __pyx_L0;
   }
 
@@ -24303,6 +24328,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("pyneutube.tracers.pyNeuTube.optimization_accel.SegmentOptimizer.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -24315,7 +24341,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
 
 /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, state)
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SegmentOptimizer__set_state(self, __pyx_state)
 */
@@ -24417,7 +24443,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   __Pyx_RefNannySetupContext("__setstate_cython__", 0);
 
   /* "(tree fragment)":17
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, state)
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, state)
  * def __setstate_cython__(self, __pyx_state):
  *     __pyx_unpickle_SegmentOptimizer__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
 */
@@ -24435,7 +24461,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
 
   /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, state)
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SegmentOptimizer__set_state(self, __pyx_state)
 */
@@ -24454,7 +24480,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16
   return __pyx_r;
 }
 
-/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":411
+/* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":415
  * 
  * 
  * def optimize_segment_C(seg, image, score_func=dot_score, var_init=None):             # <<<<<<<<<<<<<<
@@ -24472,21 +24498,21 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_4_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_self)->arg0);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_self)->arg0);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_self)->arg0) != (0)) __PYX_ERR(0, 411, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_self)->arg0) != (0)) __PYX_ERR(0, 415, __pyx_L1_error);
   __Pyx_INCREF(Py_None);
   __Pyx_GIVEREF(Py_None);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, Py_None) != (0)) __PYX_ERR(0, 411, __pyx_L1_error);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, Py_None) != (0)) __PYX_ERR(0, 415, __pyx_L1_error);
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 411, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 415, __pyx_L1_error);
   __Pyx_INCREF(Py_None);
   __Pyx_GIVEREF(Py_None);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, Py_None) != (0)) __PYX_ERR(0, 411, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, Py_None) != (0)) __PYX_ERR(0, 415, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -24548,50 +24574,50 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_seg,&__pyx_mstate_global->__pyx_n_u_image,&__pyx_mstate_global->__pyx_n_u_score_func,&__pyx_mstate_global->__pyx_n_u_var_init,0};
     struct __pyx_defaults *__pyx_dynamic_args = __Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_self);
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 411, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 415, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 415, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 415, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 415, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 415, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "optimize_segment_C", 0) < (0)) __PYX_ERR(0, 411, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "optimize_segment_C", 0) < (0)) __PYX_ERR(0, 415, __pyx_L3_error)
       if (!values[2]) values[2] = __Pyx_NewRef(__pyx_dynamic_args->arg0);
       if (!values[3]) values[3] = __Pyx_NewRef(((PyObject *)Py_None));
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("optimize_segment_C", 0, 2, 4, i); __PYX_ERR(0, 411, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("optimize_segment_C", 0, 2, 4, i); __PYX_ERR(0, 415, __pyx_L3_error) }
       }
     } else {
       switch (__pyx_nargs) {
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 415, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 415, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 415, __pyx_L3_error)
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 411, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 415, __pyx_L3_error)
         break;
         default: goto __pyx_L5_argtuple_error;
       }
@@ -24605,7 +24631,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("optimize_segment_C", 0, 2, 4, __pyx_nargs); __PYX_ERR(0, 411, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("optimize_segment_C", 0, 2, 4, __pyx_nargs); __PYX_ERR(0, 415, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24649,7 +24675,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("optimize_segment_C", 0);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":413
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":417
  * def optimize_segment_C(seg, image, score_func=dot_score, var_init=None):
  *     """Fit radius, orientation, and scale using the C-style optimizer port."""
  *     if var_init is not None:             # <<<<<<<<<<<<<<
@@ -24659,7 +24685,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
   __pyx_t_1 = (__pyx_v_var_init != Py_None);
   if (__pyx_t_1) {
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":414
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":418
  *     """Fit radius, orientation, and scale using the C-style optimizer port."""
  *     if var_init is not None:
  *         seg.radius, seg.theta, seg.psi, seg.scale = var_init             # <<<<<<<<<<<<<<
@@ -24672,7 +24698,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
       if (unlikely(size != 4)) {
         if (size > 4) __Pyx_RaiseTooManyValuesError(4);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 414, __pyx_L1_error)
+        __PYX_ERR(0, 418, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -24686,16 +24712,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
         __Pyx_INCREF(__pyx_t_5);
       } else {
         __pyx_t_2 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 414, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 418, __pyx_L1_error)
         __Pyx_XGOTREF(__pyx_t_2);
         __pyx_t_3 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 414, __pyx_L1_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 418, __pyx_L1_error)
         __Pyx_XGOTREF(__pyx_t_3);
         __pyx_t_4 = __Pyx_PyList_GetItemRefFast(sequence, 2, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 414, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 418, __pyx_L1_error)
         __Pyx_XGOTREF(__pyx_t_4);
         __pyx_t_5 = __Pyx_PyList_GetItemRefFast(sequence, 3, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 414, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 418, __pyx_L1_error)
         __Pyx_XGOTREF(__pyx_t_5);
       }
       #else
@@ -24703,7 +24729,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
         Py_ssize_t i;
         PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_3,&__pyx_t_4,&__pyx_t_5};
         for (i=0; i < 4; i++) {
-          PyObject* item = __Pyx_PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 414, __pyx_L1_error)
+          PyObject* item = __Pyx_PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 418, __pyx_L1_error)
           __Pyx_GOTREF(item);
           *(temps[i]) = item;
         }
@@ -24712,7 +24738,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
     } else {
       Py_ssize_t index = -1;
       PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_3,&__pyx_t_4,&__pyx_t_5};
-      __pyx_t_6 = PyObject_GetIter(__pyx_v_var_init); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 414, __pyx_L1_error)
+      __pyx_t_6 = PyObject_GetIter(__pyx_v_var_init); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_t_7 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_6);
       for (index=0; index < 4; index++) {
@@ -24720,7 +24746,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
         __Pyx_GOTREF(item);
         *(temps[index]) = item;
       }
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 4) < (0)) __PYX_ERR(0, 414, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 4) < (0)) __PYX_ERR(0, 418, __pyx_L1_error)
       __pyx_t_7 = NULL;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       goto __pyx_L5_unpacking_done;
@@ -24728,19 +24754,19 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 414, __pyx_L1_error)
+      __PYX_ERR(0, 418, __pyx_L1_error)
       __pyx_L5_unpacking_done:;
     }
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius, __pyx_t_2) < (0)) __PYX_ERR(0, 414, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius, __pyx_t_2) < (0)) __PYX_ERR(0, 418, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta, __pyx_t_3) < (0)) __PYX_ERR(0, 414, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta, __pyx_t_3) < (0)) __PYX_ERR(0, 418, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi, __pyx_t_4) < (0)) __PYX_ERR(0, 414, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi, __pyx_t_4) < (0)) __PYX_ERR(0, 418, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale, __pyx_t_5) < (0)) __PYX_ERR(0, 414, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale, __pyx_t_5) < (0)) __PYX_ERR(0, 418, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":413
+    /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":417
  * def optimize_segment_C(seg, image, score_func=dot_score, var_init=None):
  *     """Fit radius, orientation, and scale using the C-style optimizer port."""
  *     if var_init is not None:             # <<<<<<<<<<<<<<
@@ -24749,7 +24775,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
 */
   }
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":416
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":420
  *         seg.radius, seg.theta, seg.psi, seg.scale = var_init
  * 
  *     optimizer = SegmentOptimizer(             # <<<<<<<<<<<<<<
@@ -24758,45 +24784,45 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
 */
   __pyx_t_4 = NULL;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":419
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":423
  *         image,
  *         score_func=score_func,
  *         maxiter=Optimization.MAX_ITER,             # <<<<<<<<<<<<<<
  *     )
  *     optimizer.fit(seg)
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_ITER); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_ITER); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_8 = 1;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_4, __pyx_v_image};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_score_func, __pyx_v_score_func, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 416, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_maxiter, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 416, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_score_func, __pyx_v_score_func, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 420, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_maxiter, __pyx_t_2, __pyx_t_3, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 420, __pyx_L1_error)
     __pyx_t_5 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 416, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 420, __pyx_L1_error)
     __Pyx_GOTREF((PyObject *)__pyx_t_5);
   }
   __pyx_v_optimizer = ((struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":421
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":425
  *         maxiter=Optimization.MAX_ITER,
  *     )
  *     optimizer.fit(seg)             # <<<<<<<<<<<<<<
  *     return OptimizeResult(
  *         success=True,
 */
-  ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_optimizer->__pyx_vtab)->fit(__pyx_v_optimizer, __pyx_v_seg, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 421, __pyx_L1_error)
+  ((struct __pyx_vtabstruct_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *)__pyx_v_optimizer->__pyx_vtab)->fit(__pyx_v_optimizer, __pyx_v_seg, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 425, __pyx_L1_error)
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":422
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":426
  *     )
  *     optimizer.fit(seg)
  *     return OptimizeResult(             # <<<<<<<<<<<<<<
@@ -24805,46 +24831,46 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_OptimizeResult); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 422, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_OptimizeResult); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":424
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":428
  *     return OptimizeResult(
  *         success=True,
  *         x=np.array([seg.radius, seg.theta, seg.psi, seg.scale], dtype=np.float64),             # <<<<<<<<<<<<<<
  *     )
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_radius); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_theta); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_psi); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_seg, __pyx_mstate_global->__pyx_n_u_scale); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_14 = PyList_New(4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_14 = PyList_New(4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_GIVEREF(__pyx_t_9);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 0, __pyx_t_9) != (0)) __PYX_ERR(0, 424, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 0, __pyx_t_9) != (0)) __PYX_ERR(0, 428, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_11);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 1, __pyx_t_11) != (0)) __PYX_ERR(0, 424, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 1, __pyx_t_11) != (0)) __PYX_ERR(0, 428, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_12);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 2, __pyx_t_12) != (0)) __PYX_ERR(0, 424, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 2, __pyx_t_12) != (0)) __PYX_ERR(0, 428, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_13);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 3, __pyx_t_13) != (0)) __PYX_ERR(0, 424, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_14, 3, __pyx_t_13) != (0)) __PYX_ERR(0, 428, __pyx_L1_error);
   __pyx_t_9 = 0;
   __pyx_t_11 = 0;
   __pyx_t_12 = 0;
   __pyx_t_13 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   __pyx_t_8 = 1;
@@ -24861,16 +24887,16 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, __pyx_t_14};
-    __pyx_t_13 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 424, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 428, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_12, __pyx_t_13, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 424, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_12, __pyx_t_13, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 428, __pyx_L1_error)
     __pyx_t_4 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_13);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 424, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 428, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
   __pyx_t_8 = 1;
@@ -24887,23 +24913,23 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_3, NULL};
-    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 422, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 426, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_success, Py_True, __pyx_t_10, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 422, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_x, __pyx_t_4, __pyx_t_10, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 422, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_success, Py_True, __pyx_t_10, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 426, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_x, __pyx_t_4, __pyx_t_10, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 426, __pyx_L1_error)
     __pyx_t_5 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_8, (1-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_10);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 422, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 426, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":411
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":415
  * 
  * 
  * def optimize_segment_C(seg, image, score_func=dot_score, var_init=None):             # <<<<<<<<<<<<<<
@@ -24938,7 +24964,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_op
  *     int __Pyx_UpdateUnpickledDict(object, object, Py_ssize_t) except -1
  * def __pyx_unpickle_SegmentOptimizer(__pyx_type, long __pyx_checksum, tuple __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_result
- *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
+ *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
 */
 
 /* Python wrapper */
@@ -25070,15 +25096,15 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_2_
   /* "(tree fragment)":6
  * def __pyx_unpickle_SegmentOptimizer(__pyx_type, long __pyx_checksum, tuple __pyx_state):
  *     cdef object __pyx_result
- *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')             # <<<<<<<<<<<<<<
+ *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')             # <<<<<<<<<<<<<<
  *     __pyx_result = SegmentOptimizer.__new__(__pyx_type)
  *     if __pyx_state is not None:
 */
-  __pyx_t_1 = __Pyx_CheckUnpickleChecksum(__pyx_v___pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, __pyx_k_direction_buf__g0_buf__g1_buf); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(1, 6, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CheckUnpickleChecksum(__pyx_v___pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, __pyx_k_direction_buf__g0_buf__g1_buf); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(1, 6, __pyx_L1_error)
 
   /* "(tree fragment)":7
  *     cdef object __pyx_result
- *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
+ *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
  *     __pyx_result = SegmentOptimizer.__new__(__pyx_type)             # <<<<<<<<<<<<<<
  *     if __pyx_state is not None:
  *         __pyx_unpickle_SegmentOptimizer__set_state(<SegmentOptimizer> __pyx_result, __pyx_state)
@@ -25097,7 +25123,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_2_
   __pyx_t_2 = 0;
 
   /* "(tree fragment)":8
- *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
+ *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
  *     __pyx_result = SegmentOptimizer.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
  *         __pyx_unpickle_SegmentOptimizer__set_state(<SegmentOptimizer> __pyx_result, __pyx_state)
@@ -25122,7 +25148,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_2_
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
     /* "(tree fragment)":8
- *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
+ *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
  *     __pyx_result = SegmentOptimizer.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
  *         __pyx_unpickle_SegmentOptimizer__set_state(<SegmentOptimizer> __pyx_result, __pyx_state)
@@ -25135,7 +25161,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_2_
  *         __pyx_unpickle_SegmentOptimizer__set_state(<SegmentOptimizer> __pyx_result, __pyx_state)
  *     return __pyx_result             # <<<<<<<<<<<<<<
  * cdef __pyx_unpickle_SegmentOptimizer__set_state(SegmentOptimizer __pyx_result, __pyx_state: tuple):
- *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._org_x_buf = __pyx_state[4]; __pyx_result._scaled_dir_buf = __pyx_state[5]; __pyx_result._trial_buf = __pyx_state[6]; __pyx_result._x_buf = __pyx_state[7]; __pyx_result.alpha0 = __pyx_state[8]; __pyx_result.c1 = __pyx_state[9]; __pyx_result.delta = __pyx_state[10]; __pyx_result.high = __pyx_state[11]; __pyx_result.image = __pyx_state[12]; __pyx_result.low = __pyx_state[13]; __pyx_result.maxiter = __pyx_state[14]; __pyx_result.min_direction = __pyx_state[15]; __pyx_result.min_gradient = __pyx_state[16]; __pyx_result.ro = __pyx_state[17]; __pyx_result.score_func = __pyx_state[18]; __pyx_result.seg_filter = __pyx_state[19]; __pyx_result.stop_grad = __pyx_state[20]; __pyx_result.verbose = __pyx_state[21]; __pyx_result.weight = __pyx_state[22]
+ *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._last_gradient_base_score = __pyx_state[4]; __pyx_result._org_x_buf = __pyx_state[5]; __pyx_result._scaled_dir_buf = __pyx_state[6]; __pyx_result._trial_buf = __pyx_state[7]; __pyx_result._x_buf = __pyx_state[8]; __pyx_result.alpha0 = __pyx_state[9]; __pyx_result.c1 = __pyx_state[10]; __pyx_result.delta = __pyx_state[11]; __pyx_result.high = __pyx_state[12]; __pyx_result.image = __pyx_state[13]; __pyx_result.low = __pyx_state[14]; __pyx_result.maxiter = __pyx_state[15]; __pyx_result.min_direction = __pyx_state[16]; __pyx_result.min_gradient = __pyx_state[17]; __pyx_result.ro = __pyx_state[18]; __pyx_result.score_func = __pyx_state[19]; __pyx_result.seg_filter = __pyx_state[20]; __pyx_result.stop_grad = __pyx_state[21]; __pyx_result.verbose = __pyx_state[22]; __pyx_result.weight = __pyx_state[23]
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v___pyx_result);
@@ -25147,7 +25173,7 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_2_
  *     int __Pyx_UpdateUnpickledDict(object, object, Py_ssize_t) except -1
  * def __pyx_unpickle_SegmentOptimizer(__pyx_type, long __pyx_checksum, tuple __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_result
- *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
+ *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
 */
 
   /* function exit code */
@@ -25167,8 +25193,8 @@ static PyObject *__pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_2_
  *         __pyx_unpickle_SegmentOptimizer__set_state(<SegmentOptimizer> __pyx_result, __pyx_state)
  *     return __pyx_result
  * cdef __pyx_unpickle_SegmentOptimizer__set_state(SegmentOptimizer __pyx_result, __pyx_state: tuple):             # <<<<<<<<<<<<<<
- *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._org_x_buf = __pyx_state[4]; __pyx_result._scaled_dir_buf = __pyx_state[5]; __pyx_result._trial_buf = __pyx_state[6]; __pyx_result._x_buf = __pyx_state[7]; __pyx_result.alpha0 = __pyx_state[8]; __pyx_result.c1 = __pyx_state[9]; __pyx_result.delta = __pyx_state[10]; __pyx_result.high = __pyx_state[11]; __pyx_result.image = __pyx_state[12]; __pyx_result.low = __pyx_state[13]; __pyx_result.maxiter = __pyx_state[14]; __pyx_result.min_direction = __pyx_state[15]; __pyx_result.min_gradient = __pyx_state[16]; __pyx_result.ro = __pyx_state[17]; __pyx_result.score_func = __pyx_state[18]; __pyx_result.seg_filter = __pyx_state[19]; __pyx_result.stop_grad = __pyx_state[20]; __pyx_result.verbose = __pyx_state[21]; __pyx_result.weight = __pyx_state[22]
- *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 23)
+ *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._last_gradient_base_score = __pyx_state[4]; __pyx_result._org_x_buf = __pyx_state[5]; __pyx_result._scaled_dir_buf = __pyx_state[6]; __pyx_result._trial_buf = __pyx_state[7]; __pyx_result._x_buf = __pyx_state[8]; __pyx_result.alpha0 = __pyx_state[9]; __pyx_result.c1 = __pyx_state[10]; __pyx_result.delta = __pyx_state[11]; __pyx_result.high = __pyx_state[12]; __pyx_result.image = __pyx_state[13]; __pyx_result.low = __pyx_state[14]; __pyx_result.maxiter = __pyx_state[15]; __pyx_result.min_direction = __pyx_state[16]; __pyx_result.min_gradient = __pyx_state[17]; __pyx_result.ro = __pyx_state[18]; __pyx_result.score_func = __pyx_state[19]; __pyx_result.seg_filter = __pyx_state[20]; __pyx_result.stop_grad = __pyx_state[21]; __pyx_result.verbose = __pyx_state[22]; __pyx_result.weight = __pyx_state[23]
+ *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 24)
 */
 
 static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_unpickle_SegmentOptimizer__set_state(struct __pyx_obj_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
@@ -25186,8 +25212,8 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___p
   /* "(tree fragment)":12
  *     return __pyx_result
  * cdef __pyx_unpickle_SegmentOptimizer__set_state(SegmentOptimizer __pyx_result, __pyx_state: tuple):
- *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._org_x_buf = __pyx_state[4]; __pyx_result._scaled_dir_buf = __pyx_state[5]; __pyx_result._trial_buf = __pyx_state[6]; __pyx_result._x_buf = __pyx_state[7]; __pyx_result.alpha0 = __pyx_state[8]; __pyx_result.c1 = __pyx_state[9]; __pyx_result.delta = __pyx_state[10]; __pyx_result.high = __pyx_state[11]; __pyx_result.image = __pyx_state[12]; __pyx_result.low = __pyx_state[13]; __pyx_result.maxiter = __pyx_state[14]; __pyx_result.min_direction = __pyx_state[15]; __pyx_result.min_gradient = __pyx_state[16]; __pyx_result.ro = __pyx_state[17]; __pyx_result.score_func = __pyx_state[18]; __pyx_result.seg_filter = __pyx_state[19]; __pyx_result.stop_grad = __pyx_state[20]; __pyx_result.verbose = __pyx_state[21]; __pyx_result.weight = __pyx_state[22]             # <<<<<<<<<<<<<<
- *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 23)
+ *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._last_gradient_base_score = __pyx_state[4]; __pyx_result._org_x_buf = __pyx_state[5]; __pyx_result._scaled_dir_buf = __pyx_state[6]; __pyx_result._trial_buf = __pyx_state[7]; __pyx_result._x_buf = __pyx_state[8]; __pyx_result.alpha0 = __pyx_state[9]; __pyx_result.c1 = __pyx_state[10]; __pyx_result.delta = __pyx_state[11]; __pyx_result.high = __pyx_state[12]; __pyx_result.image = __pyx_state[13]; __pyx_result.low = __pyx_state[14]; __pyx_result.maxiter = __pyx_state[15]; __pyx_result.min_direction = __pyx_state[16]; __pyx_result.min_gradient = __pyx_state[17]; __pyx_result.ro = __pyx_state[18]; __pyx_result.score_func = __pyx_state[19]; __pyx_result.seg_filter = __pyx_state[20]; __pyx_result.stop_grad = __pyx_state[21]; __pyx_result.verbose = __pyx_state[22]; __pyx_result.weight = __pyx_state[23]             # <<<<<<<<<<<<<<
+ *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 24)
 */
   __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 0);
   __Pyx_INCREF(__pyx_t_1);
@@ -25217,93 +25243,95 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___p
   __Pyx_DECREF(__pyx_v___pyx_result->_gradient_buf);
   __pyx_v___pyx_result->_gradient_buf = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 4);
+  __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 4)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_v___pyx_result->_last_gradient_base_score = __pyx_t_2;
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 5);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->_org_x_buf);
   __Pyx_DECREF(__pyx_v___pyx_result->_org_x_buf);
   __pyx_v___pyx_result->_org_x_buf = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 5);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 6);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->_scaled_dir_buf);
   __Pyx_DECREF(__pyx_v___pyx_result->_scaled_dir_buf);
   __pyx_v___pyx_result->_scaled_dir_buf = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 6);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 7);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->_trial_buf);
   __Pyx_DECREF(__pyx_v___pyx_result->_trial_buf);
   __pyx_v___pyx_result->_trial_buf = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 7);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 8);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->_x_buf);
   __Pyx_DECREF(__pyx_v___pyx_result->_x_buf);
   __pyx_v___pyx_result->_x_buf = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 8)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
-  __pyx_v___pyx_result->alpha0 = __pyx_t_2;
   __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 9)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_v___pyx_result->alpha0 = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 10)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
   __pyx_v___pyx_result->c1 = __pyx_t_2;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 10);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 11);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->delta);
   __Pyx_DECREF(__pyx_v___pyx_result->delta);
   __pyx_v___pyx_result->delta = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 11);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 12);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->high);
   __Pyx_DECREF(__pyx_v___pyx_result->high);
   __pyx_v___pyx_result->high = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 12);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 13);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->image);
   __Pyx_DECREF(__pyx_v___pyx_result->image);
   __pyx_v___pyx_result->image = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 13);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 14);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->low);
   __Pyx_DECREF(__pyx_v___pyx_result->low);
   __pyx_v___pyx_result->low = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyLong_As_int(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 14)); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_As_int(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 15)); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
   __pyx_v___pyx_result->maxiter = __pyx_t_3;
-  __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 15)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
-  __pyx_v___pyx_result->min_direction = __pyx_t_2;
   __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 16)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
-  __pyx_v___pyx_result->min_gradient = __pyx_t_2;
+  __pyx_v___pyx_result->min_direction = __pyx_t_2;
   __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 17)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_v___pyx_result->min_gradient = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 18)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
   __pyx_v___pyx_result->ro = __pyx_t_2;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 18);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 19);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->score_func);
   __Pyx_DECREF(__pyx_v___pyx_result->score_func);
   __pyx_v___pyx_result->score_func = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 19);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 20);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->seg_filter);
   __Pyx_DECREF(__pyx_v___pyx_result->seg_filter);
   __pyx_v___pyx_result->seg_filter = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 20)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyFloat_AsDouble(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 21)); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
   __pyx_v___pyx_result->stop_grad = __pyx_t_2;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 21)); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 22)); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
   __pyx_v___pyx_result->verbose = __pyx_t_4;
-  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 22);
+  __pyx_t_1 = __Pyx_PyTuple_GET_ITEM(__pyx_v___pyx_state, 23);
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->weight);
@@ -25313,17 +25341,17 @@ static PyObject *__pyx_f_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___p
 
   /* "(tree fragment)":13
  * cdef __pyx_unpickle_SegmentOptimizer__set_state(SegmentOptimizer __pyx_result, __pyx_state: tuple):
- *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._org_x_buf = __pyx_state[4]; __pyx_result._scaled_dir_buf = __pyx_state[5]; __pyx_result._trial_buf = __pyx_state[6]; __pyx_result._x_buf = __pyx_state[7]; __pyx_result.alpha0 = __pyx_state[8]; __pyx_result.c1 = __pyx_state[9]; __pyx_result.delta = __pyx_state[10]; __pyx_result.high = __pyx_state[11]; __pyx_result.image = __pyx_state[12]; __pyx_result.low = __pyx_state[13]; __pyx_result.maxiter = __pyx_state[14]; __pyx_result.min_direction = __pyx_state[15]; __pyx_result.min_gradient = __pyx_state[16]; __pyx_result.ro = __pyx_state[17]; __pyx_result.score_func = __pyx_state[18]; __pyx_result.seg_filter = __pyx_state[19]; __pyx_result.stop_grad = __pyx_state[20]; __pyx_result.verbose = __pyx_state[21]; __pyx_result.weight = __pyx_state[22]
- *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 23)             # <<<<<<<<<<<<<<
+ *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._last_gradient_base_score = __pyx_state[4]; __pyx_result._org_x_buf = __pyx_state[5]; __pyx_result._scaled_dir_buf = __pyx_state[6]; __pyx_result._trial_buf = __pyx_state[7]; __pyx_result._x_buf = __pyx_state[8]; __pyx_result.alpha0 = __pyx_state[9]; __pyx_result.c1 = __pyx_state[10]; __pyx_result.delta = __pyx_state[11]; __pyx_result.high = __pyx_state[12]; __pyx_result.image = __pyx_state[13]; __pyx_result.low = __pyx_state[14]; __pyx_result.maxiter = __pyx_state[15]; __pyx_result.min_direction = __pyx_state[16]; __pyx_result.min_gradient = __pyx_state[17]; __pyx_result.ro = __pyx_state[18]; __pyx_result.score_func = __pyx_state[19]; __pyx_result.seg_filter = __pyx_state[20]; __pyx_result.stop_grad = __pyx_state[21]; __pyx_result.verbose = __pyx_state[22]; __pyx_result.weight = __pyx_state[23]
+ *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 24)             # <<<<<<<<<<<<<<
 */
-  __pyx_t_3 = __Pyx_UpdateUnpickledDict(((PyObject *)__pyx_v___pyx_result), __pyx_v___pyx_state, 23); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_UpdateUnpickledDict(((PyObject *)__pyx_v___pyx_result), __pyx_v___pyx_state, 24); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
 
   /* "(tree fragment)":11
  *         __pyx_unpickle_SegmentOptimizer__set_state(<SegmentOptimizer> __pyx_result, __pyx_state)
  *     return __pyx_result
  * cdef __pyx_unpickle_SegmentOptimizer__set_state(SegmentOptimizer __pyx_result, __pyx_state: tuple):             # <<<<<<<<<<<<<<
- *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._org_x_buf = __pyx_state[4]; __pyx_result._scaled_dir_buf = __pyx_state[5]; __pyx_result._trial_buf = __pyx_state[6]; __pyx_result._x_buf = __pyx_state[7]; __pyx_result.alpha0 = __pyx_state[8]; __pyx_result.c1 = __pyx_state[9]; __pyx_result.delta = __pyx_state[10]; __pyx_result.high = __pyx_state[11]; __pyx_result.image = __pyx_state[12]; __pyx_result.low = __pyx_state[13]; __pyx_result.maxiter = __pyx_state[14]; __pyx_result.min_direction = __pyx_state[15]; __pyx_result.min_gradient = __pyx_state[16]; __pyx_result.ro = __pyx_state[17]; __pyx_result.score_func = __pyx_state[18]; __pyx_result.seg_filter = __pyx_state[19]; __pyx_result.stop_grad = __pyx_state[20]; __pyx_result.verbose = __pyx_state[21]; __pyx_result.weight = __pyx_state[22]
- *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 23)
+ *     __pyx_result._direction_buf = __pyx_state[0]; __pyx_result._g0_buf = __pyx_state[1]; __pyx_result._g1_buf = __pyx_state[2]; __pyx_result._gradient_buf = __pyx_state[3]; __pyx_result._last_gradient_base_score = __pyx_state[4]; __pyx_result._org_x_buf = __pyx_state[5]; __pyx_result._scaled_dir_buf = __pyx_state[6]; __pyx_result._trial_buf = __pyx_state[7]; __pyx_result._x_buf = __pyx_state[8]; __pyx_result.alpha0 = __pyx_state[9]; __pyx_result.c1 = __pyx_state[10]; __pyx_result.delta = __pyx_state[11]; __pyx_result.high = __pyx_state[12]; __pyx_result.image = __pyx_state[13]; __pyx_result.low = __pyx_state[14]; __pyx_result.maxiter = __pyx_state[15]; __pyx_result.min_direction = __pyx_state[16]; __pyx_result.min_gradient = __pyx_state[17]; __pyx_result.ro = __pyx_state[18]; __pyx_result.score_func = __pyx_state[19]; __pyx_result.seg_filter = __pyx_state[20]; __pyx_result.stop_grad = __pyx_state[21]; __pyx_result.verbose = __pyx_state[22]; __pyx_result.weight = __pyx_state[23]
+ *     __Pyx_UpdateUnpickledDict(__pyx_result, __pyx_state, 24)
 */
 
   /* function exit code */
@@ -26693,15 +26721,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   if (PyObject_SetAttr(__pyx_m, __pyx_mstate_global->__pyx_n_u_SegmentOptimizer, (PyObject *) __pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject *) __pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults)) __PYX_ERR(0, 411, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults_spec, __pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults) < (0)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults)) __PYX_ERR(0, 415, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults_spec, __pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults) < (0)) __PYX_ERR(0, 415, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults = &__pyx_type_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults) < (0)) __PYX_ERR(0, 411, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults) < (0)) __PYX_ERR(0, 415, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults);
@@ -27926,78 +27954,78 @@ __Pyx_RefNannySetupContext("PyInit_optimization_accel", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_OPTIMIZATION_SEG_FILTER, __pyx_t_4) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":72
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":73
  *         image,
  *         *,
  *         score_func=dot_score,             # <<<<<<<<<<<<<<
  *         maxiter=Optimization.MAX_ITER,
  *         min_gradient=1e-3,
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_dot_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_dot_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_mstate_global->__pyx_k__6 = __pyx_t_4;
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":73
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":74
  *         *,
  *         score_func=dot_score,
  *         maxiter=Optimization.MAX_ITER,             # <<<<<<<<<<<<<<
  *         min_gradient=1e-3,
  *         min_direction=1e-3,
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Optimization); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_ITER); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_ITER); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_mstate_global->__pyx_k__7 = __pyx_t_10;
   __Pyx_GIVEREF(__pyx_t_10);
   __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":231
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":235
  *             gradient_view[i] = grad_i
  * 
  *     cpdef cnp.ndarray compute_fd_gradient(self, cnp.ndarray[DTYPE_t, ndim=1] x, object tmpseg):             # <<<<<<<<<<<<<<
  *         cdef:
  *             double[:] x_view = x
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_3compute_fd_gradient, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_SegmentOptimizer_compute_fd_grad, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_3compute_fd_gradient, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_SegmentOptimizer_compute_fd_grad, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_mstate_global->__pyx_n_u_compute_fd_gradient, __pyx_t_10) < (0)) __PYX_ERR(0, 231, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_mstate_global->__pyx_n_u_compute_fd_gradient, __pyx_t_10) < (0)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":302
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":306
  *                 return True, score_trial
  * 
  *     cpdef tuple line_search_var_backtrack(             # <<<<<<<<<<<<<<
  *         self,
  *         cnp.ndarray[DTYPE_t, ndim=1] x_org,
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_5line_search_var_backtrack, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_SegmentOptimizer_line_search_var, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_5line_search_var_backtrack, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_SegmentOptimizer_line_search_var, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_mstate_global->__pyx_n_u_line_search_var_backtrack, __pyx_t_10) < (0)) __PYX_ERR(0, 302, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_mstate_global->__pyx_n_u_line_search_var_backtrack, __pyx_t_10) < (0)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":328
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":332
  *         return False, np.array(self._org_x_buf, copy=True), start_score
  * 
  *     cpdef void fit(self, object seg):             # <<<<<<<<<<<<<<
  *         cdef:
  *             cnp.ndarray[DTYPE_t, ndim=1] x = self._x_buf
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_7fit, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_SegmentOptimizer_fit, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_16SegmentOptimizer_7fit, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_SegmentOptimizer_fit, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_mstate_global->__pyx_n_u_fit, __pyx_t_10) < (0)) __PYX_ERR(0, 328, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_mstate_global->__pyx_n_u_fit, __pyx_t_10) < (0)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
   /* "(tree fragment)":1
@@ -28015,7 +28043,7 @@ __Pyx_RefNannySetupContext("PyInit_optimization_accel", 0);
 
   /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x5ef322b, state)
+ *         return __pyx_unpickle_SegmentOptimizer, (type(self), 0x8bf04fb, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SegmentOptimizer__set_state(self, __pyx_state)
 */
@@ -28027,26 +28055,26 @@ __Pyx_RefNannySetupContext("PyInit_optimization_accel", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_SegmentOptimizer, __pyx_mstate_global->__pyx_n_u_setstate_cython, __pyx_t_10) < (0)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":411
+  /* "pyneutube/tracers/pyNeuTube/optimization_accel.pyx":415
  * 
  * 
  * def optimize_segment_C(seg, image, score_func=dot_score, var_init=None):             # <<<<<<<<<<<<<<
  *     """Fit radius, orientation, and scale using the C-style optimizer port."""
  *     if var_init is not None:
 */
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_1optimize_segment_C, 0, __pyx_mstate_global->__pyx_n_u_optimize_segment_C, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_1optimize_segment_C, 0, __pyx_mstate_global->__pyx_n_u_optimize_segment_C, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_10);
   #endif
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_10, __pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults)) __PYX_ERR(0, 411, __pyx_L1_error)
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_dot_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 411, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_10, __pyx_mstate_global->__pyx_ptype_9pyneutube_7tracers_9pyNeuTube_18optimization_accel___pyx_defaults)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_dot_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_t_10)->arg0 = __pyx_t_4;
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_10, __pyx_pf_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_4__defaults__);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_optimize_segment_C, __pyx_t_10) < (0)) __PYX_ERR(0, 411, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_optimize_segment_C, __pyx_t_10) < (0)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
   /* "(tree fragment)":4
@@ -28054,7 +28082,7 @@ __Pyx_RefNannySetupContext("PyInit_optimization_accel", 0);
  *     int __Pyx_UpdateUnpickledDict(object, object, Py_ssize_t) except -1
  * def __pyx_unpickle_SegmentOptimizer(__pyx_type, long __pyx_checksum, tuple __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_result
- *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x5ef322b, 0x6a8c726, 0x9f5c622, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
+ *     __Pyx_CheckUnpickleChecksum(__pyx_checksum, 0x8bf04fb, 0x5c82034, 0x73d5138, b'_direction_buf, _g0_buf, _g1_buf, _gradient_buf, _last_gradient_base_score, _org_x_buf, _scaled_dir_buf, _trial_buf, _x_buf, alpha0, c1, delta, high, image, low, maxiter, min_direction, min_gradient, ro, score_func, seg_filter, stop_grad, verbose, weight')
 */
   __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_9pyneutube_7tracers_9pyNeuTube_18optimization_accel_3__pyx_unpickle_SegmentOptimizer, 0, __pyx_mstate_global->__pyx_n_u_pyx_unpickle_SegmentOptimizer, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_tracers_pyNeuTube_opti, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
@@ -28112,7 +28140,7 @@ __Pyx_RefNannySetupContext("PyInit_optimization_accel", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_print); if (!__pyx_builtin_print) __PYX_ERR(0, 371, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_print); if (!__pyx_builtin_print) __PYX_ERR(0, 375, __pyx_L1_error)
   __pyx_builtin___import__ = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_import); if (!__pyx_builtin___import__) __PYX_ERR(1, 101, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 157, __pyx_L1_error)
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_Ellipsis); if (!__pyx_builtin_Ellipsis) __PYX_ERR(1, 409, __pyx_L1_error)
@@ -28209,25 +28237,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{2},{3},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{19},{2},{6},{35},{9},{30},{5},{50},{38},{33},{8},{34},{35},{50},{8},{20},{32},{22},{14},{30},{37},{5},{9},{12},{11},{11},{8},{8},{25},{8},{14},{16},{24},{12},{14},{20},{16},{34},{36},{36},{20},{42},{8},{15},{3},{15},{6},{5},{7},{18},{4},{1},{2},{9},{17},{18},{19},{6},{4},{5},{8},{5},{9},{9},{5},{15},{5},{6},{9},{5},{7},{3},{5},{7},{6},{7},{8},{12},{2},{5},{10},{5},{3},{13},{5},{8},{25},{8},{7},{7},{13},{12},{4},{10},{4},{8},{4},{7},{2},{5},{3},{18},{9},{4},{2},{3},{5},{3},{34},{46},{14},{12},{11},{10},{19},{31},{14},{12},{6},{10},{17},{13},{8},{2},{13},{5},{14},{10},{3},{4},{12},{10},{12},{19},{5},{4},{5},{10},{11},{5},{4},{4},{6},{7},{8},{5},{6},{6},{6},{12},{6},{8},{7},{6},{1},{5},{95},{491},{48},{795},{11},{112},{58},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2704 bytes) */
-const char* const cstring = "BZh91AY&SYu\365\204\212\000\001\352\177\377\377\377\377\377\377\377\377\377\277\377\377\377\277\377\377\377\300@@@@@@@@@@@@\000@\000`\t\177M{\273\301\036A\236\367T\356\\w6\312\2335\221\032\360<\3645OQM=Q\372S\307\351M&\023A\352z\236\250i\342C\310\312\032z\206\324\365\007\251\210\364\233Q\206\247\251\247\244i\232O&\247\2410\230\032\032'\205\006\247\244\232\006\200hSL\004\301&\324\322~M\024\323OP\006\203C#CF\2004\000\017P\030\200\006\215\00050B\002h\243@\r4\310\364i\223Q\246\2154\320h\320\0324\000\000\000\000\000\000\001\240\006!\002M55<\251\266\232\247\224\374\224\362\232=4\322\036\240\365\000\321\352\000\000\000\000\000\000\000\000\000\0100\000L\000\004`\000\021\200\0024bi\200&\000\000\230F\021\200\2311\030\201\201)\244A\251\246\246\002\211\231\t\350\302\233\023A\222=O$\323j6\204d\3020\0020\002\001\246\231\032b\0304\007\271\230f$T\257{&\030\033\246\201 \004\204\311\230?\257\367\330zu}~\210j\301AuiZ\371\332\032Zt55ik~\306\346\367\007\027/'A\231\27237F`\314\315\321\241\016\372\254j\353\212u\027\013\355\257\206\277\0272\032\346k\010\314\031\23033tn\014\315\016\355\213\204\001\002\"N\245\235\255\234\266e\353\3663\375\337\231\257\366\335\355r\273vf\377\201\246\2679\316s\235Ps\234\352\234\347Yg\027a\355\032\267k\263\362]v\232\350\355\264\323L\327v\203A\241\0104!\010B\020\356\317\0375|.{\021#\331\271%e\226Ye\226Yf\374\337\333\275\003\217\217\265\333\234\373\243\325\361$\212(\244\221)ow\"\026q{\000\271s\"\210$\302dj\t\235\004p\247$\320\243\216\307\022`\220\240\220\212d \211\002\006..1\340H\2158\034\356\2452\302 \020\267\246\310\025,\323\205P@\216!?T*\001\021\244\255\010\240\340#-\\\367\010 \245\036\345>D\207J\3552\007\360f\004\275KD\266\376_[\2253\311!\350;3\277n\260\236 \350y\002/r\007\367$1(<\343\214\230O\230\032*\376\342t\025\016/.6\307\324\261\307\236\277\266'\010R\022\220\207\032\324\005\254d{\307\241N\030b\302U\2241$\223\220A%I\307{\0264t\2424$\322\021\244B\316\204h\200((\234\031k$#D\357\274+\353\373=\353\226\260\324[\006\n\353\177\255v \361'f\340\301Zp\304\303\022""\266\010\tS\014BMe\317\316\232 >\374\313P\205\357\367>\340\356j\252\357\3309\035\202'\305\357\035\242\251\267i\320\231\263S.p\310\202-\362w\221`\205\226+U\365\201\257/\024\343\215\220\236\3150\221\312\311\270\320n\253\343\013fv\005\336\322\213\356\356E\332\374\177x\"\025\351\303\306\300\310\347[x\346\t\2527\302\372\\?\203+\332\033Z\302\021WnZ\234\025~y0)\225J\tP\323\317o\231\254\330\014K\303\303\275NA&L^\247I$Bf*\227\231\267\205\021\344a\037\332\316\"I!\023B\320f\201\214\341\352\2602\027\250S[\332!h\0072p\206w\311\3247\317\\UQ\373hwv\025B\260\005\335\327\3217/\302x[\221#\202\273m\213\221\2677\322\207\302\353\303\253B\364\356S\275\223\365^\002\366lW\300\267\266\375\352\364\263\207\227zxv>\336rm\001v\330\341\230\324q\177\021CM94)M\213)im\0236\200C \325\314\301`\346\025\242aY\202\3037\254\321\202q%\\\326\315/\271\311-\371$\344Ep\"K\320A0\363\323\313\333mn\337\003\031\202Y\270sO\325\003e\313\3515\3620\211\2073\213C\034n\3129X\315\033\257\347\237qt\032#\263#\3143\030\271\022wE\326y\272\007|\266\227\214d4\024\027\302\221\342\265\344\263w\r\017fw>'\002\325_\014\206\0231\207\034\226\302\007kr\330)5\233\274\304\213\336\022\322 \r\266n\022\032\203\260r\317\213\236\304h\254\317C\021\r\n\034\364\000\303\033\214\223\034,\0301BDG\005BhR\254\001P$\\\004\235\n\262C\313\020\330\247\030\260\244\"\225\254)y=\250]\004+'\266,[\271p\177\327\007\350F\242\031\364\357\247\266\026\313\372s\322\244\301\000\324[\000\205T\007\345\267\254\324\265\\6\333`\021<d\036\216+\3638\026\251\010\244\027\215\301\365)\006\271\271\205\2255\002A\236\032Y\346\222Z$71/\333\331\232\356a\263-\t\203a\255\010\200\235\200@e\350\353\327\322\313{\036z\022y\325M\n\246\230QAo\262 \260\010\203\272\204T\"k\320\004\205$\323\332\262=9X\331{'\337\232\322\375\242,\232O\2171c\t\230\264\310I\213\361(\014M\016-\337\222\304\230Ly\352N:\203@\3009\216d\327\2256\031&Q\326(\026\002\240\367*)\270J\200\334N'\274\370\255\004{\215\034\344\215\366\254`d\330\031\"\265\3136\360,\006P\357\272\372\244\227L\347L\342{\024cT\221Htw+\004\225\006""\345c\200E\314\032i$\205\266$\205\261VA\202\024f\301\037\215\020\225Y\204\323[\021\351$4]$\361\210t\351\027\345\030\315~\345\316\245\330\362,\301aU3:\270\315\004\343\000\254W\215\346\0238:\374\210\201\362(\314\200\211\002\220\243\3676\326\306\010\022\200\010f9E\312\205w#z%D\273\022\342:1Y\272IWx\004\022(\033\024\244/\031\206sp\345\020\235\230\374;\000\360\356mM\010\346\274\251E\325\n\300\242\001f\240\352\313GS\211\345\264oD\007\240\363w\337\261t(\002\301JB\370\023Q\007\213n\355\347j\030\266u\026\205\306\211\214\370\0014\023\006,\371\252\225\237\223>\3031Tf\343\227 \"3\271\250\342I\004\233\241\317\225\257:\0079\306\345\0064D\301=\005\350\006\2574D\004\200\3262\034\212d\344a7\317fh5\005\004\2478z\000j\005\213\330C\347\326\301#\322U\004Z\233\026\261\033\360\307B\242 \225\000vm\355\353T\307\037\027\025\200(\350\213\216=\302\333\332\372\314\025\0040\260\320h\213c\010\344\021%\"\363\222\313\2154\351\317\233\3648aL\316QXc)'\3321\277\227yt\367\310Z\301r\264\273tW\200\210\211\003\312\000Ow\010\004\317r\327\023p\221\214\261x\270\261\344\331\265d\332[U\027\336\311\004\324\310\357\005 \0231EF\243\352{F\261F\031\t\351`\334\311\247w\tL;ZE,N\363\010\004\024\021!\231$\022\010J\205H\013\0034@\204\345QeS\315\263x\246\336]\013\203E!i\r]\333\205w`\324d\033%\223@B(\244\206\355\352q\320 \211\036Y\006 \027\253\325\330\351}/<\261\204\340Wv0,\003\226\331\263'\211\361|7Y! \274\207:\326\006\357cT\355\034\016\275\233q\222\301\014\231TF\242\023\013\341{\357\332\036\300\202\323Lo\345\221\375\232i\266Jx($\211B@\304\316\250~v\320\302\224\324N~Z\277\177\207\245\341N\340p\371\014\360\334L\0307`\317k\227S\232\364P\007Q\316Nc\221C\2246\301[3\024\007dc\030\232\360h\324\325\212x:*\032\302\2439\343\0229U\221#dd\300\343\210\024\367\334\236\3333`9\232Xe\010U\232\355\3256\224\340\275\3403D\345D\311\n\351\307V\032\201\250>4D\261\001\261\326\310\320\327\300\264\266\210\030\247\237\024\005D1\252w\340d/J\t\234\251'4\324\210%!\t\242Y9\352 \242\0060hZG~\3346`<\007\202\001q\313a\035\001\001\032\343\\D\014\023I""\022\263\223\274\265\324\\\232\321\002\347\265\232\323\340\230\"S\252\265!\004\211\304\036\316,\035\034\\w<^\316\303E\014 \207$\207\346\023,\016\200Kc\025\002\343\254\246\370\\\010\2761i;\374\370\240\245\t\341U\273\034\357!\361\250CF\312\002\347\304\0212a\302oh\2730\035w\016\216B\n\211IT\034Y^\301\323!\353\360\003\272So\001\003Zi\024\r\355\240\210\254T\304\360\027\353\225|\027\302\007\224/\001z\356\312\203'\022I+\023\000\312\251\340\032\366`\224i:f\n\021\202i\311\315\177}\3610'\226B\272\013\332#\023\0100UVqp\263\223\217!\n\227\274b7\3313\204\007\036g\303\200\327\3426\206`\320)\220\225+\206\355\0333Q\267\210)S\025/\001\3348n5l,\276\202\"\2778o\364{\371\272\200v~\320\227L\375^\031$\005\020\310\004\227\341r\3621\356\327\341\372\322\351\372'\010\200\271,\013b\016\361u\327\031\204\225\374T\271\347\222e$\202iL\253\334\231<g\276\351\032;\376o\206\013h5\260D-\233\033]W\303\327[\002\253n\264\260\004\255v\"\261E\264V4X\357\311\215\033+\313\220#\246\322x0o[\250\244\246kd\252#\343z-J\2628\010\022\255\026\3134\331\024\307aK\343\316}\273h\021@|\361\0047*k5d\206\371l<\305\021!qQ\255\022\221\206|\342W\346\004<\275\217\024A$N\202\304\370\201\370\207\220\345\355\267\275\354v\332\031\265x\364\244\017\364\204Nu+v\332\223.M\373\333\320'\316y9e\377sP\356p\324\032\203\032\216_\217\027\036\372^R\217\023\253\267\302\037\361\316\rd\355\374\373\260%\337\375\235\310Dd\237*A\331\271z\237\264\322\202\272\003\321\342,\370\244\214\220\201\221\241\223\036c\230\2162\206\272\001B\021#y\030D\022Bf\203\033\236%z\203\316\225ok\324|3\357\353\231B\263\0311\")\233;\302g\014\361\020\241\342!<\004\3103\210\210v\200\311\241\335\341\234BUE\312Uf$e3\376\251\327uj\177\342\356H\247\n\022\016\276\260\221@";
-    PyObject *data = __Pyx_DecompressString(cstring, 2704, 2);
+    const struct { const unsigned int length: 10; } index[] = {{2},{3},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{19},{2},{6},{35},{9},{30},{5},{50},{38},{33},{8},{34},{35},{50},{8},{20},{32},{22},{14},{30},{37},{5},{9},{12},{11},{11},{8},{8},{25},{8},{14},{16},{24},{12},{14},{20},{16},{34},{36},{36},{20},{42},{8},{15},{3},{15},{6},{5},{7},{18},{4},{1},{2},{9},{17},{18},{19},{6},{4},{5},{8},{5},{9},{9},{5},{15},{5},{6},{9},{5},{7},{3},{5},{7},{6},{7},{8},{12},{2},{5},{10},{5},{3},{13},{5},{8},{25},{8},{7},{7},{13},{12},{4},{10},{4},{8},{4},{7},{2},{5},{3},{18},{9},{4},{2},{3},{5},{3},{34},{46},{14},{12},{11},{10},{19},{31},{14},{12},{6},{10},{17},{13},{8},{2},{13},{5},{14},{10},{3},{4},{12},{10},{12},{19},{5},{4},{5},{10},{11},{5},{4},{4},{6},{7},{8},{5},{6},{6},{6},{12},{6},{8},{7},{6},{1},{5},{95},{485},{48},{817},{11},{112},{58},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2703 bytes) */
+const char* const cstring = "BZh91AY&SY`#\037\257\000\001\362\177\377\377\377\377\377\377\377\377\377\277\367\377\377\277\377\377\377\300@@@@@@@@@@@@\000@\000`\t\177X\367'\255\333\306+\3175O\030\314R\033ekwrx\034\3645OIS\364\2231\265OBl\246\006\246\241\261\242\206\301F\236S\023 \323\3211\240\324\364\236\223'\244\3644\312z\236\247\250a\246\204\364\233S\324\364@\323J\000\003L\212h\304\323G\242&\024\365<Q\351\0006\220hz@\000\006\200\r=F\2004\323C\324\311\241\352\r\001\nz\tM\014@\000\r\033S\324z\203\020\3204\000\006 \000\323C@\006\232\000\000\0004\320\200\210\021M\224\330\233)\215M\r6\243Q\372\201\352\214M4\320\000\320\001\223\0204\006\010\323 \032\003@\203&\000L\002bd\311\200\0010&\002b`\230\000\000\000\00120\023\002\030@\tMBd\324\323L\243j4&\320\231\030\236\"L\365C&CC@\006\200\323@\000\003@\000\000\r\036\246\235\226ff&T\260\361P\3007\256\201&\001$\310\006\373N#\373\354\177\277\323\373\017x\356vu\352\\\326\331\333\245C\177~\255\216.;}6\3239\332\034\347L\3479\316\324\3478\303\353\245z\230\340\341Q\265\206\326u\233\372u\332\326\352\377-\325\311k\203\234\3279\315s\234\3479\315s\205\277\360\346 \020I\356}F\357\257\255v_\303\363\035\206\365\365\271C\273\177\335\374\300\330\306T\3061\202\2461\214\014c,\033\377\226\014\36676\177\332\376\317\017\360swY\332okr\377\256m\215\261\255\261\266\006\265\266\006\265\256r\366*\375\362m\362\366\373\233|\336\004\262\313Z\326\265\255\235\376O\232\0073\231\344b\214y\351\342\345$\241B\204\222\210N\377\312\016tE\252\001\345E\211!&\023#\246&r\010`\2116|\272\214x\264\004\304\364\204S1\004\007\222\241\363\347\235+\356\251c\303\207\314\320\256\222E5u(\223W\202\301\255Aze\235Q\244(p\026bd\200N\267\375\324\022au\242\216\276\265\026\353\362<\003\374\034\340\330[h\276O\317\277\222\374\"Z_b\354\333\036S\312\331\205\271\022\t\373\330G\255E\025\013\315Y\323\201\033\002\263\277\202iQ\324G\345\333`\3464\260\251\272\365\311#\032\302\326\025%f\240\326P\323\201\005:C\213\221\233L@\265-!\205/\267B09g\246'q\254\241V\230{X\2530\016\014\326P{\315*k\277\035%\307\334\336\37082e\201\230p\271t;""\263\223\332\224\t\373|\006\3740e*8l\337\007\333A\302^\317\271\332\305\030\020\303K\310#\177\241\233(\357l\322\373GV\314q\3340\371S\013)\327fu\276\366Q\230A V\211<\005`C\030'\017Q\200\342k\345\2743Bg\355\30127\372\333\333\001\322N\260hc\200E\333\006G\314\266\017W5\314\014\020\341\207\322\322\ta\035\026r\323\006\361\3412\010\317\221i'\n\205r\001\2106\272\325\263p\203\303\264}We\013\373S\360\264v\222\002\013\210\030\252J#\023\374So\240\244<l\204kN\304(\256#\211Y\360! \202\2124\25384y8\t'W\005\324\306u\212s?\351\n\240'\225\000k\317<U\225j\345\025\222\210\313\367\200\310\264D/\264\362U\265\320|j\302\252e\211\327]'Vl\033k\\!\347i\356\347{g+9\304\352\366o\311\204\013{Q\351\031\033\263\017\006\326\2251\3438\316\374t\367\313\200\014:\023\307_,P\261\231s\"I%f\272\250\226\240F\356\346'\r\302\362\252\343\233D\320m\367&\030\352\024Y\303=T\374_\345\030\247\237\221SyV\216\222\204\306\271\264\361[D\001rI\233I\035\366\264\000\214\253\3238zOS\021dc\244\271:k\tr6\034\026^\003\343#TV\274\316ES\001\242\310\272\217\315\234xoF_\"\300e/\341\010\242\000\271]\257\216\267\365\254\350\306\221=>\230a8\241\320\022X\277\n\013e\210\341\215\365\226\372+(@-\362\250\017\273~R\243\004\315\244\351\271\234\264\362j \250$\0365\024\024\004\016\204\206\273p\321p\347\033\n\244\030\310\242T\270\031@\241\236\t=\024\271#\320 \355lu\323\032\355\234\023%UD\2601\304\205\351\241`8\240\306\216\034#\272\370\272\344*\037\236\236\224m\013K\273\310\322\246\300\360\362\036\200\010\322\261\r\027u&[\223~\353\255\002G\314\343\326\313\247KA\231\024\206\002\371\3009\221MV\353\027\325\022\022\014\341\320\351\035\024\272\003\371\220.\267l\325\353\033e\202`\307\210 \001T\000Dh\343\327\336\351\353a\324\315Z\325R2\264c#T\017C\004\201\340\010\212 \301\034\274\370\202b\232h\331|u9y\031\266]\337\230\213\254 \311\246\356M\005\354\014\305\214\204\230\272\004\203_\251\241\303:XL\1777\223\207'\263\313\207\034\203v\377*\215bl\241\244\236^\013\004Q\331\325\005X*\0241\212\364!&\212+\"4\361l\r|\331\331\216k\373{<-\214\361\002\354\332\355""\206\004\360\3315b\361\335\311Rd\224$o\252h\t2\032\323~\020z\250X\222I\024\335\300\212Y8\005\004IV\351O\370\240&j\242%ibl\300iV\005\247\030I\336\216\037\031G\034<H\224\247>G\346\017\305]3#\007\030(\240\033\031\035\274\350\020%\344\210\241\"\274\312\010\234\"\225\207\006\213\320@\"Z\300\"\014\264\014\026\007`\225\371\022G\255\\\n\331C\216\221%<\020\"\235\001\265\021K\346\221\234\3407\210\316\376\247\025\240q`\320\2461\302\372Vk1p[#K\226a\271Ty\335\254\037Q\222a\325\205\\\021\322}\254\n\203A\324\304(\223\335\006\263\233\340\027\262\256u\215\266n:\340L\364\301\265\031,\374\2328\331\025\3436\341l\004\306\351\222c\236I\004\256\035\326\005\2654G-\206)\013\205\004B&\235\244\005\236\320w\004\201y 0J\376\013\261m\n*\272L!\004\306.\322\001&\005\021\250\035\264/i\332\366\347J\233vS \254g[\351B\t@\016\346D\264\362r\345\317\336e8\231\020>\372\271\243#\275\324\323\272i\324\017\263]\007@[/\206\351\002s.q<\260\246\236\366<=\363\203\005\014\342U\205lIm\342?\007;\211c\211\314\034z\254\273\026\000P<\002c\000G^\343\204H\353R\250\225\020G\300\366\212\242\247\205E\325\200\245\024\220U\3563:\022\001UB\205\346<\345\264aP~\352u,\034\311\264\\\340\235\003\232\372)b.\240@ \223\024\026\244\204\204Q&T\004\306\212`\202{)+\024m\324\276KgOefF\341\2510\265\r\203\016\211\203\013\332[\246\302\336\220>\010\244\177l\352\2349\002\010\020\363\307\260\360\272\277\363\037G\246\350\317pN\002\275\030<\274\016-f\315\030\033\334}\026HH0\243\237\247@\233c*U0\336n\021\2645`\242(\347\275\010\335!t\341\017m\303p\177\032\213\213%\206\371\341\303\026\255/\313\323 \222\210D\002<S\013\267/P]\224\260\242h\3438\315\316\016\346M\302\314\006\347\262\257\203\273w\016\035\321s\347\236\352\223 m\246\324f\271\264\024\036\310\343\214\265\342Hms\222c\343\003B\246\254Q{\221P\327\224\263\272\020!\226\262\004/\214\230\0348@\243\264\031\023\235\235\310k\303o\022\214\360E\025l\306b\260\213\243\\\001U\343\t\025$O\025\331\320\260\213\t\023~o$\264\356\305~\242\250\206%U\262\241\241\022\321\246m\265\221\225\024\302\260\232\212-E\226*""\212\010Rk\242~\212\020UD\020\r\207\226\\Z\032v\336o;'~1\253r\325M\254 \206#\021\010\026'P\231\226\2436E\211B\362t\341\002\363\3477N<\021\010!\031\232I\310%\022\300\324a@\305,\346\325\236\325e\032RG \215\004\rh\211\353-\000\"J\204\200\231Y8-s\004)j4\245\177\241\021\021\211\025\303\224\352\205$\036\241\004u\360V\036\253P*\337\223!\303\214\354a\250\017\271\303\217X\202\204\255(\034`\267\200z\004\2069\013};[a\0075\331\213L\232\203\234\333Z\023\200c\272\267\347\3068\203\032\341\257\255\277\242Qa~\375t;`\3445\2229\231\361\225\266\322\311\200b\360\226\206\337:&b&\001,\250N\223\332\004d@@\266i\273\300\301>\003Y\327\3150 \312\256\030\223\247\002\200\360P\260.'\202\\\370N\377l$I\004e\023I\233\332a\022R\225\014@\262\325\303\"\207\003\0000\372\243k\335\231\007`\016[A\013\264w\255\314 )\005\300$)\303,\227\372\025-\355\360\335\33242\002\336p\035\241\337!^\2704\211\007\271\010uQ#\024\302\006C>\306>}\021A^\261\243\360\265\224\375'v_\206>\267~\377\307\203\325e\365\204\257 \370f\324^2\373\251F^\202\376/<x\363fK\022\215\3363\367n\231\242\216\\\014\326BL|\276\313\342\321\002e\000\253\257YqXwQu\371\325s\307\330\010\226r\335B\025\367\240_!\312U\033\304\014B\347\334\262\307\001\302\371c2\232\320\346\324\224\300\2265]\277\367\304\013\0062Ss\332\346\024t\247\351\327\350\241$]\224\246\251\3638\273Q\366\177\264\267oO%S\351\375R\346\324Q\266\260\244)\t\037-\014\237\014\227\231\323Qpj\366y\002\334\372\336\213;\001_K\275\314?!\343\241\211\023\005\310\304\322}\250\230;`A`$\360\222\330u\214P\321P\3358\304\346\222\230{@\034c#H\032\005QbT<]\n\002s`\237\352\0335gG\341\345\252[7`\356f\310\253\006fugffvpY\224\270v`\304\2639r\356\305]]\303\206fDVF]\350Vp\310\354\021\230\"\335\025u\177\305\334\221N\024$\030\010\307\353\300";
+    PyObject *data = __Pyx_DecompressString(cstring, 2703, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2517 bytes) */
-const char* const cstring = "x\332\205VM{\323V\026&\266\354\244\255i\023\240m:efnJh\240\005\203[\006h\2072\217I\0340%_\216\023\022>F\317\265tm\337D\226d}\370\203\014-\313,\265\324RK/\265\3642\313,\265\324\322?\201\2370\347Hv\022\010\303<\217\255\367\372\352\334{\317y\317{\316\365\257${\273\226W\024\"\363\006SM\256\251&\321\r&1\231\253\265\343IrY&\r\333\264H\205\021\256\312\254\303dBU\231\250\232EL\205\203\371\003\273Ze\006iq\326&\262\306\314\350\025\353\350\232\311\210i\031\\f\346<U\211\246*]\"\031\214Z\214PR\211\027Yuj\021n\022IS-^\2635\333\204CH\20354\243\233\205U\270\0255M^S\211\245\021X,_\217\366\211-\360\310\241\321p\343\266\301-ZQ\330\320 v\252jh\215\217\255\215\302\"mn\325\211\325\325\031\231\033\316[\006U\315(\214\343%\261\031\254\340@\225u\202\273\205\223\204\361\230\204\330\250\320\320\255.1\353\024\266\266l\035\234\253j\006\221\272V]S\263\3240h\267\0309\240\331\026\321\252\244\242\331\252l\222+\264\003\273\\\226\257\026O\237\025\223o\353\272fXL.\252-\252p\310\222&\263kH<\030C\222\346\2449\002\347\314\301a\030\310\3345R\203U#\343\330\035\340::\346\336R\024\340&\006\010.,k@e\224\232\371\310K\214Gf\n\2570\003H\006\n1\255pH\224?\225\254\026V\257\337\272{+\222\205\301v\340x\023\274\253H\nd\016\344\2001\331\\\261\3400\244\327\314\222b\225t5\233\250\014\334\204\264\352`wr\201Ug*1\231\205\0032\027\345\202Z\020\267\010\313A\233sC^y\213\341\352E\252\230,\273\362\016y\340\362P`T\222\2309bs\335b:i\320n\304\037\350\371\0253\264c\2427\324H9\260%\250\261\305\014\020\206\305\032\370[\253`P\331\373sW\377EeYT\221\036\014\226\000C7;\222\246(\350\016$&K+\322\275\023ZF\243\330\331\373\357O\217$t_\346&\236\313\342\323\257T\251\242T\250\264{\365WbJ\232\301HM\"W0s\265HP\030\024\326'\353XL\265\242j9.Un\306\273\310\350\270\311_1r\3577r\363\224\3348fN\325 \245Uj+\026\021E\203\311\266\304D\221\310vD\200\252\251\327!\305-N\025x+q\225[\242\250\332\r\275\233E\237\262\rX\306\243\275H\225r%N#o\240\036OX\331\r\n\265\362\276\301\220\315\373zWe\266eWX\026\344)1\303\314\352\335ef\227q\006\270\252\362\332\307,\252 (\2309""2\27114\271qdrC\323-\336\340\257b\351\240\016\024X\337\031\321z/nM\362;9:=\207%t\224\252w\336\277;\253\326L\3156$v\337>R\021$R\223\242n\027\021%S\213f?\3606\256D\334q\330,\263\371\365\371bq\241\360\244\234\027W\327\207\203R~\241\270\261\036\217\327\347\363O\n\361\260\374\250P\316/\304y4\013\212\302u\223\233O\212\313\005q\275\220/\315?\022\327\313+\253\342C\\]X./\345\267\304b\271PZ*.\303\373\207\303M\227X\207KT}D\255\305\210Tqe\265\\\\*>\313\227\213+\261\335b\361\t\254Z9\301\347p\314J\314\204\223Eq\265\333\201\357\0024\005q\031\244Yb\325uV\003YZ#C\343\375\337\331#\325\305\322\024\305\017X@\0230\241\366?b#i\r\335\006\203\252,\326\014*sxy\312\246\312O\317)\\e\260=5\244\272\330\242\206\210%\207\022\332]gM\233\251\022\303^\230=n\213P\330\243\214\211qk\241\212^\2477\243\334Rs\010]U\342\032\212\037z9\034`V\250\311$)\007%\204\255M\024G\203\032\263\260D\361'\372\301\241\265\241|\321\211\017\004\024W\203\244\351]\t\332\033\260-#\3171\014[\241\246\312\232%F\312\226\261\311F\017\221\233b\\l\014\257 \210\nn\010\006\005\032\265qf\030\2321,#`\250\252\320\232YU4j\335\276\005\r\003Jwxq\210b\325V%\364\2756\312\206\310\241\347\320\032\016\242\222\006\304\033\214\253U<\362(\374\270\013\r[\321\377$\\\024\033\024\010\200g\007\033\023\\\265x\3176`\352(6\3741\"\003o90\326d[\001Ti\343\370\tN\301\223\265\341\241Gm\010\202\0376\001<:R\2008?\2321t8\\\347\272\246\353P\276\026\024\316q\277\211\332\227nhxw@igM\332\320!\200\217v\244\323\355F\024\241\337\210R\235I\273\246\335\210\177\031\303\202\301\361\220L\034F\351\212F\266\252si\027b+\250\2435GS\357\2538~\335\212\376\361`\202\2326Ub.\220,\333<n\354\247\212\355h\202upX\343\246\205\202\210\002ebK\3530\3054A\362\314\224\200\227Qp,RX$\010\340\323dJ5\252\321a\002`4\274RNT\256\370\201*\216Z\036\212\002\246\r+zD\371\215G\321\031\321\002\360I7-\r\276\206\r\177*\354\350.\027E|\001\317:\003\233\206\016\216\000A\220K[\207\026\313l\223\035\035\010\177ulf\242\332\360\006\203+\275\002\177\346\332\214\327\352V\247#jF\355M\376\355\2713gg\275\\\230\231\363\232a""\346Jo\354\355\304\231O\316;YO\010f\027\016\362a\346\354\311\317`\342\263}\260=\357\334v\317\271\267\275)o\326k\370\377\350\217\367\233\341\304\027\373m\247\342\246]\352Z\336o~\312\177\332\317\277\311\0172\327{e\177*\314d{\262?s\004\367\372\013\007x\322Y\3426\337~z\346\354\337\334\265A\346\242;\357\332^~0\361\371>\335\267\235y\0076\375?\303\301D&\310|\357Q\257\323\353\370\315p\372\357n\323\023\274|8\361\225#\273?xyo\253\2676\230\370$\314|\r\3132\263\360&\363\225\263\343\215y\340\321\027\373\035\307tg]\032N\376\305\275\346\311\301\017\217\017g\302\013_\236\374\014&\317;\271p\366\307^\256\267\340\237\355\257\205\027\276\363\300\346k\307rs\341\364_\3355\267\346\255y\273\3769\377\327\376Z\177\367pj\000\333Z\260\004\266\234\t'\247\335O\275\031 w2&\354\226\333\214\367*\372\260\323\265^>\274\3607W\351\315\006\331\345C\032N\177s\3623\270\200._\271\321k\372\202\277t0\025NC\230\341\364\267\321&\027g\200\372\271\336T\357G\277\024\334yr\230?|\036lm\243\263\267`\021\270\235\301\343\301\225=\367\222[\206`'\301\261\311`\362\207\336L\357\256\177\267\237C\032\350\360\201\254\\\274\333\037\353\177sp\3650\027^\274\344\345\274\"\3206\rb\350}\331\243!\344\374\027 \273\355J\3369\357'\257\004B\201\251;\316%g\003\266/\271\006L\3470\325\300~\230\271\345/\364\307BL\312\273\311\031\200@\014\347+\247\t\234\\\366\232o0\375\251\317\367\313\301\324w\240\242\035\210\362q_\016\036\224\202\322f\260)\005R-\250u\203\356\353\267g\316\3741\366{\002\340\367\304\n\302Jb\013a+\361\002\341E\202!\260\004G\340\t\025AM\030\010F\342\025\302\253\304\037\010\177$\nI\200B\262\210PL\256!\254%7\0206\222\317\021\236'E\0041\311\021x\262\201\320H\276Fx\235\314\013\000ya\025aU(#\224\205m\204m\341%\302Ka\007aGP\021Ta\017aO\370\023\341O\341\367\024\306\220ZAXIm#l\247^\"\274L\375;\025\n\231\375\207N\316Y\004%\322P\030\177\323\332\177\352\024\334\013\356Z8q\316\231\t'\276F\261\203\356\202o\177\354\335\361/\373f\177\266\317\017\332\207,X\007\276\236\005\317\200\262\235`G\0134#0Z\260k{l\021\303^L,!,%J\010\245\304\006\302Fb""\033a{D\236\202\240$\232\010\315\204\205`%:\010\235\304\220\256U\204\325\021][\010[\311\027\010/\222u\204zRC\320\222\026\202\225l#\264\223{\010{\311y$a^x\214\360XXAX\021J\010%a\023as\304\241\214 \013\034\201\013\n\202\"\350\010\272\320Bh\t\257\021^\013\017\220\274\007\251\002B!UD(\246V\021VSO\021\236\246^ \274H\211\010bJB\220Ru\204zJC\320R\026\202\225j#\264S{\010{\251\207i\200\207\351e\204\345\364:\302zz\023a3\375\014\341Y\272\212PM7\020\032i\003\301H\333\010v\272\213\320M\347\307Q1\343\217\020\036\215\027\3071\257\330(\203/r\376\005\177\315\257\365\237\037\216\037be\234\234\031{3\026\n\331\036\355\265\374\265\340L\266\267\333\237\032\300\302\2563\3564G\265\330qM\357\373^\262\367\213\237\037\010P\330\304\033\013\241\315M`\267\232\230t2.L\237\335/;S \035\341\263\375\373\356\024N\203\315\247\373\337\355/:3\240\264y\247\353%\275\273\275\237{U\177\336\357\036\244\017*x\364@\200*\016\310M\377\263\376?\017v\203\265R(\234\017\316_\002\303\034\364+\360\343?\316\035\350-\023?\3713\301\317\213\007jP\336\300\023r+\377\005\313Zd\001";
-    PyObject *data = __Pyx_DecompressString(cstring, 2517, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2506 bytes) */
+const char* const cstring = "x\332\205V\317w\323\306\026&\376\225\2645m\002\264M_y}\223\022\032(`p\313\003\332Gy\307$\0161\2078\211\343\004\010\024\235\2614\266\207\310\222,\215\374\243\224W\226Yj\251\245\226^j\351e\226Yz\251\245\377\004\376\204w\257d'\201\360x\347\330\372\306\243;3\367~\367\273w\374+\311\334\252\345T\225(\274\3014\213\353\232E\014\223\311L\341Z\355h\222\\TH\303\266\004\2510\3025\205u\230B\250\246\020M\027\304R9\230\337\267\253Uf\222\026gm\242\350\314\n_\261\216\241[\214X\302\344\n\263\026\251FtM\355\022\331dT0BI%Z$\352T\020n\021Y\327\004\257\331\272m\301!\244\301\032\272\331\315\300*\334\212Z\026\257iD\350\004\026+\327\302}\"\013<rd4\332\270mrA+*\033\031DNUM\275\361\261\265aX\244\315E\235\210\256\301\310\302h^\230T\263\3020\216\226Df\260\202\003U\342\030wK\307\t\343\021\t\221Q\276a\210.\261\352\024\266\026\266\001\316Uu\223\310]Q\327\265\0145M\332-\204\016\350\266 z\225Tt[S,r\211v`\227\213\312\345\302\311\263\"\362m\303\320M\301\224\202\326\242*\207,\351\n\273\212\304\2031$iA^ p\316\002\034\206\201,\\%5X56\216\334\001\256\303c\356\256\206\001nc\200\340BQ\007*\303\324,\206^b<\nSy\205\231@2P\210i\205C\302\374id=\277~\355\346\235\233\241,L\366\022\216\267\300\273\212\254B\346@\016\030\223\315U\001\207!\275V\206\024\252\244\253\333Dc\340&\244\325\000\273\343\013D\235i\304b\002\007d!\314\005\025\020\267\004\313A\233\013#^y\213\341\352e\252Z,\263\366\016y\340\362H`T\226\2315fsS0\2034h7\344\017\364\374\0073\365#\242\267\264P9\260%\250\261\305L\020\206`\r\374\255W0\250\314\275\205\313\377\246\212\"iH\017\006K\200\241\033\035YWUt\007\022\223\241\025\371\3561-\243Q\344\354\275\367\247\307\022\272\247p\013\317e\321\351\227\252TU+T\336\275\374+\261d\335d\244&\223K\230\271Z((\014\n\353\223u\004\323DX-G\245\312\255h\027\005\035\267\370\037\214\334\375\215\3348!7\216\231\323tHi\225\332\252 \222d2\305\226\231$\021\305\016\t\320t\355\032\244\270\305\251\noe\256q!I\232\3350\272\031\364)\323\200e<\334\213T)W\2434\362\006\352\361\230\225\335\240P+\357\033\214\330\274gt5f\013\273\3022 O\231\231V""\306\350\026\231]\306\031\340\252\312k\037\263\250\202\240`\346\320\344\372\310\344\372\241\311u\335\020\274\301\377\210\244\203:Pa}gL\353\335\2505)\357\344\350\344\034\226\320a\252\336y\377\356\254V\263t\333\224\331=\373PE\220H]\016\273]H\224B\005\315|\340mT\211\270\343\250Yfr\233\213\205\302R\376Q9'\255o\216\006\245\334Rak3\032o.\346\036\345\243ay%_\316-Ey\264\362\252\312\r\213[\217\n\305\274\264\231\317\225\026W\244\315\362\332\272\364\000W\347\213\345\325\334\023\251P\316\227V\013Ex\377`\264\351*\353p\231j+T,\207\244Jk\353\345\302ja'W.\254Ev\313\205G\260j\355\030\237\2431+1\013N\226\244\365n\007\276K\320\024\244\"H\263\304\252\233\254\006\262\024cC\363\375\337\231C\325E\322\224\244\017X@\023\260\240\366?b#\353\r\303\006\203\252\"\325L\252pxy\302\246\312O\316\251\\c\260=5\345\272\324\242\246\204%\207\022\332\335dM\233i2\303^\2309j\213P\330\343\214IQk\241\252Q\2477\302\334Rk\004]M\346:\212\037z9\034`U\250\305d9\013%\204\255M\222\306\203\032\023X\242\370\023\375\340\320\332P\276\350\304\007\002\212\252A\326\215\256\014\355\r\330V\220\347\010F\255P\327\024]H\241\262\025l\262\341C\342\226\024\025\033\303+\010\242\202\033\202A\201\206m\234\231\246n\216\312\010\030\252\252\264fUU\235\212[7\241a@\351\216.\016I\252\332\232\214\276\327\306\331\2208\364\034Z\303AX\322\200x\203q\255\212G\036\206\037u\241Q+\372\237\204KR\203\002\001\360\354`c\202\253\026\357\331\006L\035\306\206?\306d\340-\007\306\272b\253\200\032m\034=\301)x\2626<\214\260\rA\360\243&\200G\207\n\220\026\3073\246\001\207\033\334\320\r\003\312W@\341\034\365\233\260}\031\246\216w\007\224v\306\242\r\003\002\370hG:\331n$\t\372\215$\327\231\274k\331\215\350\2279*\030\034\217\310\304a\230\256pdk\006\227w!\266\2746^s8\365\276\212\243\327\255\360\037\017&\250iS5\342\002\311\262\255\243\306~\242\330\016'X\007\2075n\t\024D\030(\223Zz\207\251\226\005\222g\226\014\274\214\203c\241\302BA\000\237\026S\253a\215\216\022\000\243\321\225r\254r\245\017Tq\330\362P\0240m\212\360\021\3467\032\205g\204\013\300'\303\022:|M\033\376T""\330\341].I\370\002\236u\0066\r\003\034\001\202 \227\266\001-\226\331\026;<\020\376\352\330\314B\265\341\r\006Wz\005\376\314\265\031\257\325E\247#\351f\355M\356\355\231S\247\347\275l\220^\360\232A\372Ro\342\355\324\251O\316:\031/1\230_\332\317\005\351\323\307?\303\251\317\366\300\366\254s\313=\343\336\362f\274y\257\341\377\263?\331o\006S_\354\265\235\212\233r\251+\274\337\374\244\377\270\237{\223\033\246\257\365\312\376L\220\316\364\024\177\356\020\356\366\227\366\361\244\323\304m\276\375\364\324\351\357\334\215a\372\274\273\350\332^n8\365\371\036\335\263\235E\0076\375?\303\341Tz\220\376\301\243^\247\327\361\233\301\354?\334\246\227\360r\301\324W\216\342\316\r\247>\t\322_\303\202\364<\314\245\277r^z\023\036\370\362\305^\307\261\334y\227\006\323\177s\257z\312\340\307\207\007s\301\271/\217\177\206\323g\235l0\177\245\227\355-\371\247\373\033\301\271\357=\260\371\332\021n6\230\375\273\273\341\326\274\ro\327?\343\377\332\337\350\357\036\314\014a[\001K`\313\271`z\326\375\324\233\003Z\247#\252n\272\315h\257\202\017;]\355\345\202s\337\271jo~\220)\036\320`\366\233\343\237\3419t\371\322\365^\323O\370\253\3733\301,\004\030\314~\033nr~\016H_\350\315\364\256\370\245\301\355G\007\271\203g\203'O\321\331\233\260\010\334N\343\361\340\312+\367\202[\206`\247\301\261\351\301\364\217\275\271\336\035\377N?\2134\320\321\003Y9\177\247?\321\377f\377\362A68\177\301\313z\205\336\306p\026d\320\373\262G\003\310\366/@s\333\225\2753\336O^\t$\002S\267\235\013\316\026l_rM\230\316b\222\201\367 }\323_\352O\004\230\216w\3232\004i\230\316WN\0238\271\3505\337`\342\223\237\357\225\0073\337\203~^B\224\017\373\312\340~iP\332\036l\233\003\263\365\366\324\251\366\304R\014`)\266\202\260\022\333A\330\211\275@x\021\333E\330\215\351\010z\254\203\320\211\375\211\360g,\037\007\310\307\013\010\205x\021\241\030/!\224\342;\010;\361\027\010/\342\014\201\3059\002\2177\021\232q\033\301\216\277Bx\025\377\013\341\257x!\201\233%V\021V\023\277#\374\236\240\0104a \030\t\201 \022]\204n\3425\302\353\304\303$\300\303d\021\241""\230|\206\360,)!H\311]\204\335\244\216\240'\273\010\335\344k\204\327\311\377$\203Dz\357\201\223u\226A\2374HL\276i\355=v\362\3569w#\230:\343\314\005S_\243\370A\215\203o\257\364n\373\027}\253?\337\347\373\355\0036\330\004\026w\006;\362@~9x\251\017\364CF\227\221\240\345\330*\302j\254\204P\212m!l\305\236\"<\2151\004\026S\021\324X\023\241\031\023\010bL\363\210\330u\204\365\370\026\302V\374\t\302\223\370s\204\347\361:B=\256#\350q\201 \342m\204\366\230\330E$h1\361\020\341ab\ra-QB(%\266\021\266\3074+\010J\202#\360\204\212\240\216Io!\264\306l\337G\362\356'\363\010\371d\001\241\220\\GXO>Fx\234|\216\360|\234\002\031AN\326\021\352\343L\010\004\221l#\264\223\257\020^%\037\244\000\036\244\212\010\305\324&\302fj\033a;\265\203\260\223\252\"TS\r\204F\312D0S6\202\235\352\"tS\271I\200\334\344\n\302\312da\022\363\212\215s\360E\326?\347o\370\265\376\263\203\311\003\254\227\3433\023o&\202D\246G{-\177cp*\323\333\355\317\014aa\327\231t\232\343\n\355\270\226\367C/\336\373\305\317\r\023P\356\304\233\010\240\371Ma\017\233\232v\322.L\237\336+;3 \235\304g{\367\334\031\234\006\233O\367\276\337[v\346@i\213N\327\213{wz?\367\252\376\242\337\335O\355W\360\350a\002j{@n\370\237\365\377\265\277;\330(\005\211\263\203\263\027\3000\013]\014\374\370\323\271\r\035g\352'\177n\360\363\362\2766(o\341\t\331\265\377\002\271ke\350";
+    PyObject *data = __Pyx_DecompressString(cstring, 2506, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (4431 bytes) */
-const char* const bytes = ": .6gAll dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenable (fallback): score gc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayiter no default __reduce__ due to non-trivial __cinit__numpy.core.multiarray failed to importnumpy.core.umath failed to import object>pyneutube.tracers.pyNeuTube.configpyneutube.tracers.pyNeuTube.filterspyneutube/tracers/pyNeuTube/optimization_accel.pyx: score <strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIDELTA_PSIDELTA_RADIUSDELTA_SCALEDELTA_THETADefaultsEllipsisLINE_SEARCH_STOP_GRADIENTMAX_ITERMIN_SEG_RADIUSMexicanHatFilter_OPTIMIZATION_SEG_FILTEROptimizationOptimizeResult__Pyx_PyDict_NextRefSegmentOptimizerSegmentOptimizer.__reduce_cython__SegmentOptimizer.__setstate_cython__SegmentOptimizer.compute_fd_gradientSegmentOptimizer.fitSegmentOptimizer.line_search_var_backtrackSequenceView.MemoryViewabcallocate_bufferalpha0arrayasarrayasyncio.coroutinesbasecc1__class____class_getitem__cline_in_tracebackcompute_fd_gradientconfigcopycount__dict___dictdirectiond""ot_scoredtypedtype_is_objectemptyencodeenumerateerrorfiltersfitflagsfloat64formatfortran__func____getstate__idimage__import__indexinf_is_coroutineitemsitemsizeline_search_var_backtrack__main__maxitermemviewmin_directionmin_gradientmode__module__name__name__ndim__new__npnumpyobjoptimize_segment_Coptimizerpackpipopprintpsipyneutube.core.processing.samplingpyneutube.tracers.pyNeuTube.optimization_accel__pyx_checksum__pyx_result__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_unpickle_SegmentOptimizer__pyx_vtable____qualname__radius__reduce____reduce_cython____reduce_ex__registerrosample_voxelsscalescipy.optimizescore_funcsegself__set_name__setdefault__setstate____setstate_cython__shapesizestartstart_gradstart_scorestatestepstopstructsuccess__test__thetatmpsegunpackupdateuse_setstatevaluesvar_initverboseweightxx_org\200A\360\022\000\r$\2401\330\014'\240q\330\014(\250\001\360\010\000\t\023\220.\240\004\320$D\300A\330\014\r\330\014\r\330\014\r\330\014\r\330\014\r\340\010\013\2101\330\014\023\2206\230\022\2306\240\021\240$\240m\2605\270\007\270q\330\010\017\210w\220b\230\006\230a\230t\240=\260\005\260W\270A\200A\340\014-\250T\260\021\330\014.\250d\260!\330\014.\250d\260!\330\014<\270D\300\001\360\010\000\r \230q\360\n\000\r\036\230Q\340\014\034\230C\230u\240A\340\010\016\210a\210u\220C\220q\330\010\016\210a\210u\220C\220q\330\010\016\210a\210u\220C\220q\330\010\016\210a\210u\220C\220q\340\010\014\320\014&\240a\240x\250x\260q\330\030\037\230q\240\004\240A\330\010\026\220d\230*\240A\240X\250Q\340\010\t\330\014\027\220q\330\014$\240A\330\014\026\220j\240\001\240\021\330\014\017\210x\220s\230$\230a\330\020\032\230,\240d\320*J\310!\330\024\025\330\024\025\330\024\025\330\024\025\330\024\025\340\020\023\2201\330$+\2501\250D\260\r\270Q\330\024\"\240!\330\024\027\220t\2301\330\030\035\230Q\230g\240Q\240k\260\022\260:\270Q\270k\310\021\340\014\017\210t\2201\330\020\032\230!\330\020\030\230\n\240!\2401\330\020\023\2206\230\022\2304\230q\330$+\2501\250I\260Q\330\024,\250A\330\024\036""\230l\250$\320.N\310a\330\030\031\330\030\031\330\030\031\330\030\031\330\030\031\340\024\027\220q\330(/\250q\260\004\260M\300\021\330\030&\240a\330\030\033\2304\230q\330\034!\240\021\240'\250\021\250+\260R\3207L\310A\310[\320XY\340\020\023\2204\220q\330\024\025\340\014\032\230!\330\014\017\210{\230#\230T\240\021\330\020\021\340\014\020\320\020*\250!\2508\2608\2701\330\014\026\220a\330\014\026\220a\330\014$\240A\330\0348\270\001\270\031\300)\3101\330\034#\2401\240I\250Q\340\030(\250\001\250\025\250a\330\010\013\2109\220C\220w\230c\240\022\2402\240R\240q\330\010\013\2107\220#\220U\230#\230R\230r\240\022\2401\200A\340\014\037\230q\330\0144\260D\270\001\330\014&\240a\340\010\014\320\014&\240a\240x\250x\260q\340\010\017\210r\220\026\220q\230\n\240%\240q\200\001\360\010\000\005\016\210T\320\021\"\240$\240j\260\004\260J\270d\320BR\320RV\320Vc\320cg\320gy\320y}\360\000\000~\001K\002\360\000\000K\002O\002\360\000\000O\002X\002\360\000\000X\002\\\002\360\000\000\\\002e\002\360\000\000e\002i\002\360\000\000i\002n\002\360\000\000n\002r\002\360\000\000r\002z\002\360\000\000z\002~\002\360\000\000~\002E\003\360\000\000E\003I\003\360\000\000I\003Q\003\360\000\000Q\003U\003\360\000\000U\003[\003\360\000\000[\003_\003\360\000\000_\003i\003\360\000\000i\003m\003\360\000\000m\003}\003\360\000\000}\003A\004\360\000\000A\004P\004\360\000\000P\004T\004\360\000\000T\004Y\004\360\000\000Y\004]\004\360\000\000]\004j\004\360\000\000j\004n\004\360\000\000n\004{\004\360\000\000{\004\177\004\360\000\000\177\004K\005\360\000\000K\005O\005\360\000\000O\005Y\005\360\000\000Y\005]\005\360\000\000]\005^\005\330\004\014\210G\2201\220F\230,\240a\330\004\007\200v\210W\220E\230\024\230Q\330\010\022\220!\330\010\027\220q\340\010\027\220t\320\033+\2507\260%\260s\270$\270i\300w\310e\320SV\320VZ\320Zc\320cj\320jo\320or\320rv\360\000\000w\001F\002\360\000\000F\002M\002\360\000\000M\002R\002\360\000\000R\002U\002\360\000\000U\002Y\002\360\000\000Y\002e\002\360\000\000e\002l\002\360\000\000l\002q\002\360\000""\000q\002t\002\360\000\000t\002x\002\360\000\000x\002I\003\360\000\000I\003P\003\360\000\000P\003U\003\360\000\000U\003X\003\360\000\000X\003\\\003\360\000\000\\\003h\003\360\000\000h\003o\003\360\000\000o\003t\003\360\000\000t\003w\003\360\000\000w\003{\003\360\000\000{\003C\004\360\000\000C\004J\004\360\000\000J\004O\004\360\000\000O\004R\004\360\000\000R\004V\004\360\000\000V\004]\004\360\000\000]\004d\004\360\000\000d\004i\004\360\000\000i\004l\004\360\000\000l\004p\004\360\000\000p\004v\004\360\000\000v\004}\004\360\000\000}\004B\005\360\000\000B\005E\005\360\000\000E\005I\005\360\000\000I\005P\005\360\000\000P\005W\005\360\000\000W\005\\\005\360\000\000\\\005_\005\360\000\000_\005c\005\360\000\000c\005h\005\360\000\000h\005o\005\360\000\000o\005t\005\360\000\000t\005w\005\360\000\000w\005{\005\360\000\000{\005G\006\360\000\000G\006N\006\360\000\000N\006S\006\360\000\000S\006V\006\360\000\000V\006Z\006\360\000\000Z\006f\006\360\000\000f\006m\006\360\000\000m\006r\006\360\000\000r\006u\006\360\000\000u\006y\006\360\000\000y\006A\007\360\000\000A\007H\007\360\000\000H\007I\007\330\004\007\200q\330\010\017\320\0171\260\024\260Q\260g\270[\310\007\310q\340\010\017\320\0171\260\024\260Q\260g\270[\310\001\200\001\330\004.\250a\250v\260Q\320\000.\250k\270\021\340\004\007\200y\220\007\220q\330\010\013\2109\220C\220x\230s\240&\250\003\2509\260A\340\004\020\320\020 \240\001\330\010\t\330\010\023\2201\330\010\020\220\014\230A\340\004\r\210T\220\021\220!\330\004\013\210>\230\021\330\010\020\220\001\330\010\n\210\"\210F\220!\2201\220C\220y\240\003\2408\2503\250f\260C\260y\300\006\300b\310\001\200\001\340\004\037\230q\320 0\260\013\270;\300k\320QR\330\004\023\320\023#\2408\2501\250A\330\004\007\200|\2207\230!\330\0102\260!\3203F\300n\320TU\330\004\013\2101O";
+    #else /* compression: none (4447 bytes) */
+const char* const bytes = ": .6gAll dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenable (fallback): score gc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayiter no default __reduce__ due to non-trivial __cinit__numpy.core.multiarray failed to importnumpy.core.umath failed to import object>pyneutube.tracers.pyNeuTube.configpyneutube.tracers.pyNeuTube.filterspyneutube/tracers/pyNeuTube/optimization_accel.pyx: score <strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIDELTA_PSIDELTA_RADIUSDELTA_SCALEDELTA_THETADefaultsEllipsisLINE_SEARCH_STOP_GRADIENTMAX_ITERMIN_SEG_RADIUSMexicanHatFilter_OPTIMIZATION_SEG_FILTEROptimizationOptimizeResult__Pyx_PyDict_NextRefSegmentOptimizerSegmentOptimizer.__reduce_cython__SegmentOptimizer.__setstate_cython__SegmentOptimizer.compute_fd_gradientSegmentOptimizer.fitSegmentOptimizer.line_search_var_backtrackSequenceView.MemoryViewabcallocate_bufferalpha0arrayasarrayasyncio.coroutinesbasecc1__class____class_getitem__cline_in_tracebackcompute_fd_gradientconfigcopycount__dict___dictdirectiond""ot_scoredtypedtype_is_objectemptyencodeenumerateerrorfiltersfitflagsfloat64formatfortran__func____getstate__idimage__import__indexinf_is_coroutineitemsitemsizeline_search_var_backtrack__main__maxitermemviewmin_directionmin_gradientmode__module__name__name__ndim__new__npnumpyobjoptimize_segment_Coptimizerpackpipopprintpsipyneutube.core.processing.samplingpyneutube.tracers.pyNeuTube.optimization_accel__pyx_checksum__pyx_result__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_unpickle_SegmentOptimizer__pyx_vtable____qualname__radius__reduce____reduce_cython____reduce_ex__registerrosample_voxelsscalescipy.optimizescore_funcsegself__set_name__setdefault__setstate____setstate_cython__shapesizestartstart_gradstart_scorestatestepstopstructsuccess__test__thetatmpsegunpackupdateuse_setstatevaluesvar_initverboseweightxx_org\200A\360\022\000\r$\2401\330\014'\240q\330\014(\250\001\360\010\000\t\023\220.\240\004\320$D\300A\330\014\r\330\014\r\330\014\r\330\014\r\330\014\r\340\010\013\2101\330\014\023\2206\230\022\2306\240\021\240$\240m\2605\270\007\270q\330\010\017\210w\220b\230\006\230a\230t\240=\260\005\260W\270A\200A\340\014-\250T\260\021\330\014.\250d\260!\330\014.\250d\260!\330\014<\270D\300\001\360\010\000\r \230q\360\n\000\r\036\230Q\340\014\034\230C\230u\240A\340\010\016\210a\210u\220C\220q\330\010\016\210a\210u\220C\220q\330\010\016\210a\210u\220C\220q\330\010\016\210a\210u\220C\220q\340\010\014\320\014&\240a\240x\250x\260q\330\030\037\230q\240\004\240A\330\010\026\220d\230!\340\010\t\330\014\027\220q\330\014$\240A\330\014\026\220j\240\001\240\021\330\014\017\210x\220s\230$\230a\330\020\032\230,\240d\320*J\310!\330\024\025\330\024\025\330\024\025\330\024\025\330\024\025\340\020\023\2201\330$+\2501\250D\260\r\270Q\330\024\"\240!\330\024\027\220t\2301\330\030\035\230Q\230g\240Q\240k\260\022\260:\270Q\270k\310\021\340\014\017\210t\2201\330\020\032\230!\330\020\030\230\n\240!\2401\330\020\023\2206\230\022\2304\230q\330$+\2501\250I\260Q\330\024,\250A\330\024\036\230l\250$\320.N""\310a\330\030\031\330\030\031\330\030\031\330\030\031\330\030\031\340\024\027\220q\330(/\250q\260\004\260M\300\021\330\030&\240a\330\030\033\2304\230q\330\034!\240\021\240'\250\021\250+\260R\3207L\310A\310[\320XY\340\020\023\2204\220q\330\024\025\340\014\032\230!\330\014\017\210{\230#\230T\240\021\330\020\021\340\014\020\320\020*\250!\2508\2608\2701\330\014\026\220a\330\014\026\220a\330\014$\240A\330\0348\270\001\270\031\300)\3101\330\034#\2401\240I\250Q\340\030(\250\001\250\025\250a\330\010\013\2109\220C\220w\230c\240\022\2402\240R\240q\330\010\013\2107\220#\220U\230#\230R\230r\240\022\2401\200A\340\014\037\230q\330\0144\260D\270\001\330\014&\240a\340\010\014\320\014&\240a\240x\250x\260q\340\010\017\210r\220\026\220q\230\n\240%\240q\200\001\360\010\000\005\016\210T\320\021\"\240$\240j\260\004\260J\270d\320BR\320RV\320Vr\320rv\360\000\000w\001D\002\360\000\000D\002H\002\360\000\000H\002Z\002\360\000\000Z\002^\002\360\000\000^\002k\002\360\000\000k\002o\002\360\000\000o\002x\002\360\000\000x\002|\002\360\000\000|\002E\003\360\000\000E\003I\003\360\000\000I\003N\003\360\000\000N\003R\003\360\000\000R\003Z\003\360\000\000Z\003^\003\360\000\000^\003e\003\360\000\000e\003i\003\360\000\000i\003q\003\360\000\000q\003u\003\360\000\000u\003{\003\360\000\000{\003\177\003\360\000\000\177\003I\004\360\000\000I\004M\004\360\000\000M\004]\004\360\000\000]\004a\004\360\000\000a\004p\004\360\000\000p\004t\004\360\000\000t\004y\004\360\000\000y\004}\004\360\000\000}\004J\005\360\000\000J\005N\005\360\000\000N\005[\005\360\000\000[\005_\005\360\000\000_\005k\005\360\000\000k\005o\005\360\000\000o\005y\005\360\000\000y\005}\005\360\000\000}\005~\005\330\004\014\210G\2201\220F\230,\240a\330\004\007\200v\210W\220E\230\024\230Q\330\010\022\220!\330\010\027\220q\340\010\027\220t\320\033+\2507\260%\260s\270$\270i\300w\310e\320SV\320VZ\320Zc\320cj\320jo\320or\320rv\360\000\000w\001F\002\360\000\000F\002M\002\360\000\000M\002R\002\360\000\000R\002U\002\360\000\000U\002Y\002\360\000\000Y\002e""\002\360\000\000e\002l\002\360\000\000l\002q\002\360\000\000q\002t\002\360\000\000t\002x\002\360\000\000x\002I\003\360\000\000I\003P\003\360\000\000P\003U\003\360\000\000U\003X\003\360\000\000X\003\\\003\360\000\000\\\003h\003\360\000\000h\003o\003\360\000\000o\003t\003\360\000\000t\003w\003\360\000\000w\003{\003\360\000\000{\003C\004\360\000\000C\004J\004\360\000\000J\004O\004\360\000\000O\004R\004\360\000\000R\004V\004\360\000\000V\004]\004\360\000\000]\004d\004\360\000\000d\004i\004\360\000\000i\004l\004\360\000\000l\004p\004\360\000\000p\004v\004\360\000\000v\004}\004\360\000\000}\004B\005\360\000\000B\005E\005\360\000\000E\005I\005\360\000\000I\005P\005\360\000\000P\005W\005\360\000\000W\005\\\005\360\000\000\\\005_\005\360\000\000_\005c\005\360\000\000c\005h\005\360\000\000h\005o\005\360\000\000o\005t\005\360\000\000t\005w\005\360\000\000w\005{\005\360\000\000{\005G\006\360\000\000G\006N\006\360\000\000N\006S\006\360\000\000S\006V\006\360\000\000V\006Z\006\360\000\000Z\006f\006\360\000\000f\006m\006\360\000\000m\006r\006\360\000\000r\006u\006\360\000\000u\006y\006\360\000\000y\006A\007\360\000\000A\007H\007\360\000\000H\007I\007\330\004\007\200q\330\010\017\320\0171\260\024\260Q\260g\270[\310\007\310q\340\010\017\320\0171\260\024\260Q\260g\270[\310\001\200\001\330\004.\250a\250v\260Q\320\000.\250k\270\021\340\004\007\200y\220\007\220q\330\010\013\2109\220C\220x\230s\240&\250\003\2509\260A\340\004\020\320\020 \240\001\330\010\t\330\010\023\2201\330\010\020\220\014\230A\340\004\r\210T\220\021\220!\330\004\013\210>\230\021\330\010\020\220\001\330\010\n\210\"\210F\220!\2201\220C\220y\240\003\2408\2503\250f\260C\260y\300\006\300b\310\001\200\001\340\004\037\230q\320 0\260\013\270;\300k\320QR\330\004\023\320\023#\2408\2501\250A\330\004\007\200|\2207\230!\330\0102\260!\3203F\300n\320TU\330\004\013\2101O";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -28291,7 +28319,7 @@ const char* const bytes = ": .6gAll dimensions preceding dimension %d must be in
   {
     PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 6;
     int8_t const cint_constants_1[] = {0,-1,1,2,4};
-    int32_t const cint_constants_4[] = {99562027L,136983863L};
+    int32_t const cint_constants_4[] = {136983863L,146736379L};
     for (int i = 0; i < 7; i++) {
       numbertab[i] = PyLong_FromLong((i < 5 ? cint_constants_1[i - 0] : cint_constants_4[i - 5]));
       if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -28344,24 +28372,24 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 231};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 235};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_tmpseg};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_opti_2, __pyx_mstate->__pyx_n_u_compute_fd_gradient, __pyx_mstate->__pyx_kp_b_iso88591_A_q_4D_a_axxq_r_q_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 302};
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 306};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_x_org, __pyx_mstate->__pyx_n_u_direction, __pyx_mstate->__pyx_n_u_start_score, __pyx_mstate->__pyx_n_u_start_grad, __pyx_mstate->__pyx_n_u_tmpseg};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_opti_2, __pyx_mstate->__pyx_n_u_line_search_var_backtrack, __pyx_mstate->__pyx_kp_b_iso88591_A_1_q_DA_1_6_6_m5_q_wb_at_WA, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 328};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 332};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_seg};
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_opti_2, __pyx_mstate->__pyx_n_u_fit, __pyx_mstate->__pyx_kp_b_iso88591_A_T_d_d_D_q_Q_CuA_auCq_auCq_auCq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_state, __pyx_mstate->__pyx_n_u_dict_2, __pyx_mstate->__pyx_n_u_use_setstate};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_T_j_JdBRRVVccggyy_K_K_O_O_X_X_e, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_T_j_JdBRRVVrrv_w_D_D_H_H_Z_Z_k, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 16};
@@ -28369,7 +28397,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_avQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 411};
+    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 415};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_seg, __pyx_mstate->__pyx_n_u_image, __pyx_mstate->__pyx_n_u_score_func, __pyx_mstate->__pyx_n_u_var_init, __pyx_mstate->__pyx_n_u_optimizer};
     __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_tracers_pyNeuTube_opti_2, __pyx_mstate->__pyx_n_u_optimize_segment_C, __pyx_mstate->__pyx_kp_b_iso88591_k_y_q_9Cxs_9A_1_A_T_F_1Cy_83fCy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }

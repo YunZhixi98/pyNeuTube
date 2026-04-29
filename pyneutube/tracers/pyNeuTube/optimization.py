@@ -148,6 +148,7 @@ class SegmentOptimizer:
             self.weight = np.asarray(weight, dtype=np.float64)
         self.seg_filter = _OPTIMIZATION_SEG_FILTER
         self.stop_grad = Optimization.LINE_SEARCH_STOP_GRADIENT
+        self._last_gradient_base_score = 0.0
 
     @staticmethod
     def _apply_x_to_seg(seg: BaseTracingSegment, x: np.ndarray) -> None:
@@ -189,6 +190,7 @@ class SegmentOptimizer:
         n = int(x.size)
         gradient = np.zeros_like(x, dtype=np.float64)
         base_score = score_at(x, tmpseg)
+        self._last_gradient_base_score = float(base_score)
 
         for i in range(n):
             step = self.delta[i]
@@ -252,16 +254,16 @@ class SegmentOptimizer:
         scaled_dir = np.empty_like(direction)
 
         while True:
+            if alpha * self.ro * dir_len < self.stop_grad:
+                self._apply_x_to_seg(tmpseg, org_x)
+                return False, org_x.copy(), start_score
+
             np.multiply(direction, alpha, out=scaled_dir)
             np.add(org_x, scaled_dir, out=x_trial)
             np.clip(x_trial, low, high, out=x_trial)
             score_trial = score_at(x_trial, tmpseg)
 
             alpha *= self.ro
-            if alpha * dir_len < self.stop_grad:
-                self._apply_x_to_seg(tmpseg, org_x)
-                return False, org_x.copy(), start_score
-
             wolfe1 = max(alpha / self.ro * gd_dot_c1, 0.0)
             if score_trial >= start_score + wolfe1:
                 return True, x_trial.copy(), score_trial
@@ -273,7 +275,7 @@ class SegmentOptimizer:
         score_at = self._score_at
         g0 = self.compute_fd_gradient(x, tmpseg, score_at)
         update_direction = g0.copy()
-        final_score = score_at(x, tmpseg)
+        final_score = self._last_gradient_base_score
         iter_count = 0
 
         while True:
@@ -326,6 +328,9 @@ class SegmentOptimizer:
         self._apply_x_to_seg(seg, x)
         seg.theta = seg.theta % (2 * np.pi)
         seg.psi = seg.psi % (2 * np.pi)
+
+
+PythonSegmentOptimizer = SegmentOptimizer
 
 
 if _CythonSegmentOptimizer is not None:
