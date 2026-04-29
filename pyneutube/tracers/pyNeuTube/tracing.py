@@ -817,26 +817,6 @@ class SegmentChain:
 
                 self._check_chain_status(trace_mask, 'head')
         
-        if False:
-            # get all parameters distributions
-            scales, radii, psis, thetas = [], [], [], []
-            for seg in self._segments:
-                try:
-                    scales.append(round(seg.scale.item(), 3))
-                    radii.append(round(seg.radius.item(), 3))
-                    psis.append(round(seg.psi.item(), 3))
-                    thetas.append(round(seg.theta.item(), 3))
-                except AttributeError:
-                    scales.append(round(seg.scale, 3))
-                    radii.append(round(seg.radius, 3))
-                    psis.append(round(seg.psi, 3))
-                    thetas.append(round(seg.theta, 3))
-
-            print('scale: ', scales)
-            print('radii: ', radii)
-            print('psi: ', psis)
-            print('theta: ', thetas)
-            print('\n')
         
         if len(self) >= 2:
             if self._trace_status[1] != TraceStatus.HIT_MARK:
@@ -891,18 +871,6 @@ class SegmentChains:
         self._min_chain_score = Defaults.MIN_CHAIN_SCORE
         self._min_chain_length = Defaults.MIN_CHAIN_LENGTH
 
-    def _seed_blocked_by_trace_mask(self, seed_seg: TracingSegment) -> bool:
-        """Return True when both initial trace directions immediately hit traced voxels."""
-        for pos_ratio in (1 / 3, 2 / 3):
-            coord_xyz = seed_seg.start_coord + seed_seg.dir_v * seed_seg.length * pos_ratio
-            coord_zyx = coord_xyz[::-1]
-            coord_round = np.round(coord_zyx).astype(int)
-            if np.any(coord_zyx < 0) or np.any(coord_zyx >= self.trace_mask.shape):
-                return False
-            if self.trace_mask[coord_round[0], coord_round[1], coord_round[2]] != 1:
-                return False
-        return True
-
     def generate_neuron_trace(
         self,
         seeds,
@@ -917,17 +885,11 @@ class SegmentChains:
         total = min(len(seeds), max_seeds) if max_seeds is not None else len(seeds)
         if progress_callback is not None:
             progress_callback("generate_neuron_trace", 0, total)
-        skipped_init_hits = 0
         for seed_idx, seed in enumerate(
             tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1)
         ):
             if check_timeout is not None and seed_idx % 8 == 0:
                 check_timeout("chain generation")
-            if self._seed_blocked_by_trace_mask(seed.seg):
-                skipped_init_hits += 1
-                if progress_callback is not None:
-                    progress_callback("generate_neuron_trace", seed_idx + 1, total)
-                continue
             chain = SegmentChain(seed.seg.copy())
             chain.generate_chain_trace(signal_image, self.trace_mask)
             keep_chain = (
@@ -944,8 +906,6 @@ class SegmentChains:
                 progress_callback("generate_neuron_trace", seed_idx + 1, total)
         if verbose:
             print(f"Number of chains: {len(self)}")
-            if skipped_init_hits:
-                print(f"Seeds skipped by initial trace mask: {skipped_init_hits}")
 
     def filter_chains(self, *, verbose: int = 1):
         if len(self) > 100:
