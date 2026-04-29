@@ -19,6 +19,8 @@ from pyneutube.core.processing.local_maximum import Stack_Local_Max, Stack_Locma
 
 
 _CONNECTIVITY_18_STRUCTURE = generate_binary_structure(3, 2)
+_KERNEL_26 = np.ones((3, 3, 3), dtype=np.intc)
+_KERNEL_26[1, 1, 1] = 0
 
 
 def subtract_background(
@@ -386,6 +388,63 @@ def _actual_neighbor_count(kernel: np.ndarray, image_shape: tuple[int, int, int]
     return convolve(ones, kernel, mode="constant", cval=0)
 
 
+def _connectivity_filter_26(image: np.ndarray, min_neighbors: int) -> np.ndarray:
+    binary_image = (image > 0).astype(np.uint8)
+    depth, height, width = binary_image.shape
+    if depth < 3 or height < 3 or width < 3:
+        kernel, n_neighbors = check_kernel_and_neighbors(None, 26)
+        actual_neighbors = _actual_neighbor_count(kernel, binary_image.shape)
+        neighbor_count = convolve(binary_image, kernel, mode="constant", cval=0)
+        threshold = (min_neighbors * actual_neighbors) / n_neighbors
+        return ((binary_image > 0) & (neighbor_count >= threshold)).astype(np.uint8)
+
+    kernel, _ = check_kernel_and_neighbors(None, 26)
+    neighbor_count = convolve(binary_image, kernel, mode="constant", cval=0)
+    mask = (binary_image > 0) & (neighbor_count >= min_neighbors)
+
+    def _ceil_scaled(actual_neighbors: int) -> int:
+        return (min_neighbors * actual_neighbors + 25) // 26
+
+    face_threshold = _ceil_scaled(17)
+    edge_threshold = _ceil_scaled(11)
+    corner_threshold = _ceil_scaled(7)
+
+    b = binary_image
+    n = neighbor_count
+    face_slices = (
+        (0, slice(1, -1), slice(1, -1)),
+        (-1, slice(1, -1), slice(1, -1)),
+        (slice(1, -1), 0, slice(1, -1)),
+        (slice(1, -1), -1, slice(1, -1)),
+        (slice(1, -1), slice(1, -1), 0),
+        (slice(1, -1), slice(1, -1), -1),
+    )
+    for slc in face_slices:
+        mask[slc] = (b[slc] > 0) & (n[slc] >= face_threshold)
+
+    for z in (0, -1):
+        for slc in (
+            (z, 0, slice(1, -1)),
+            (z, -1, slice(1, -1)),
+            (z, slice(1, -1), 0),
+            (z, slice(1, -1), -1),
+        ):
+            mask[slc] = (b[slc] > 0) & (n[slc] >= edge_threshold)
+    for y in (0, -1):
+        for slc in (
+            (slice(1, -1), y, 0),
+            (slice(1, -1), y, -1),
+        ):
+            mask[slc] = (b[slc] > 0) & (n[slc] >= edge_threshold)
+
+    for z in (0, -1):
+        for y in (0, -1):
+            for x in (0, -1):
+                mask[z, y, x] = (b[z, y, x] > 0) and (n[z, y, x] >= corner_threshold)
+
+    return mask.astype(np.uint8)
+
+
 def connectivity_filter(image: np.ndarray, min_neighbors: int, 
                         kernel: Optional[np.ndarray] = None, 
                         n_neighbors: Optional[int] = None) -> np.ndarray:
@@ -412,6 +471,12 @@ def connectivity_filter(image: np.ndarray, min_neighbors: int,
     if min_neighbors <= 0:
         raise ValueError("`min_neighbors` must be a positive integer.")
     kernel, n_neighbors = check_kernel_and_neighbors(kernel, n_neighbors)
+    if (
+        kernel.shape == (3, 3, 3)
+        and np.array_equal(kernel, _KERNEL_26)
+        and min_neighbors * 26 <= np.iinfo(np.uint8).max
+    ):
+        return _connectivity_filter_26(image, min_neighbors)
 
     binary_image = (image > 0).astype(np.uint8)
     actual_neighbors = _actual_neighbor_count(kernel, binary_image.shape)
