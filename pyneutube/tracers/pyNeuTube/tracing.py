@@ -907,6 +907,72 @@ class SegmentChains:
         if verbose:
             print(f"Number of chains: {len(self)}")
 
+    def generate_neuron_trace_lazy_seed_scoring(
+        self,
+        seeds,
+        signal_image: np.ndarray,
+        *,
+        max_seeds: int | None = None,
+        verbose: int = 1,
+        check_timeout=None,
+        progress_callback=None,
+    ) -> list:
+        seed_iterable = islice(seeds, max_seeds) if max_seeds is not None else seeds
+        total = min(len(seeds), max_seeds) if max_seeds is not None else len(seeds)
+        scored_seeds = []
+        skipped_by_trace_mask = 0
+        rejected_by_seed_filter = 0
+        if progress_callback is not None:
+            progress_callback("generate_neuron_trace", 0, total)
+        for seed_idx, seed in enumerate(
+            tqdm(seed_iterable, desc="Generating chains", disable=verbose < 1)
+        ):
+            if check_timeout is not None and seed_idx % 8 == 0:
+                check_timeout("lazy seed scoring")
+            if self.trace_mask[tuple(seed.coord[::-1])]:
+                skipped_by_trace_mask += 1
+                if progress_callback is not None:
+                    progress_callback("generate_neuron_trace", seed_idx + 1, total)
+                continue
+
+            seed.score_seed(signal_image)
+            if not (
+                seed.score > seed.seg.get_norm_min_score(Defaults.MIN_SEED_SCORE)
+                and seed.seg.radius <= Defaults.MAX_SEED_RADIUS
+            ):
+                rejected_by_seed_filter += 1
+                if progress_callback is not None:
+                    progress_callback("generate_neuron_trace", seed_idx + 1, total)
+                continue
+
+            scored_seeds.append(seed)
+            chain = SegmentChain(seed.seg.copy())
+            chain.generate_chain_trace(signal_image, self.trace_mask)
+            keep_chain = (
+                not chain._blocked_by_init_hit and (
+                    chain.path_length >= self._min_chain_length
+                    or chain._trace_status[0] == TraceStatus.HIT_MARK
+                    or chain._trace_status[1] == TraceStatus.HIT_MARK
+                )
+            )
+            if keep_chain:
+                label_tracing_mask(chain, self.trace_mask, dilate=True)
+                self.append(chain)
+            if progress_callback is not None:
+                progress_callback("generate_neuron_trace", seed_idx + 1, total)
+        self.lazy_seed_scored_count = len(scored_seeds)
+        self.lazy_seed_skipped_by_trace_mask = skipped_by_trace_mask
+        self.lazy_seed_rejected_by_seed_filter = rejected_by_seed_filter
+        if verbose:
+            print(f"Number of chains: {len(self)}")
+            print(
+                "Lazy seed scoring: "
+                f"scored={len(scored_seeds)}, "
+                f"skipped_by_trace_mask={skipped_by_trace_mask}, "
+                f"rejected_by_seed_filter={rejected_by_seed_filter}"
+            )
+        return scored_seeds
+
     def filter_chains(self, *, verbose: int = 1):
         if len(self) > 100:
             # mean_intensities = []

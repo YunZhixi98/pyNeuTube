@@ -518,3 +518,21 @@ class Seeds:
         self._sort_seeds()
 
         return
+
+    def generate_seed_candidates(
+        self,
+        binary_image: np.ndarray,
+        *,
+        n_jobs: int = 1,
+        verbose: int = 1,
+        check_timeout=None,
+    ):
+        t0 = time.time()
+        if check_timeout is not None:
+            check_timeout("seed initialization")
+        self._initialize_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
+        self._reduce_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
+        self._sort_seeds()
+        _vprint(verbose, f"--> seed_candidates: {time.time() - t0:.6f}s")
+
+        return
