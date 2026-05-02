@@ -218,9 +218,17 @@ class Seeds:
     Generally, initial seeds are the position of local maxima of the distance transformed image.
     """
 
-    def __init__(self, seeds: list[Seed] | Seed | None = None):
+    def __init__(
+        self,
+        seeds: list[Seed] | Seed | None = None,
+        *,
+        seed_strategy: str = "eager",
+        scored: bool = True,
+    ):
         seeds = [] if seeds is None else ([seeds] if isinstance(seeds, Seed) else seeds)
         self._seeds: list[Seed] = list(seeds)
+        self.seed_strategy = seed_strategy
+        self.scored = scored
 
     def __len__(self):
         return len(self._seeds)
@@ -466,6 +474,7 @@ class Seeds:
                     shm.unlink()
 
         _vprint(verbose, f"Number of labeled seeds: {nlabeled}")
+        self.scored = True
 
         return
 
@@ -494,6 +503,8 @@ class Seeds:
         shared_image: SharedImageSpec | None = None,
         progress_callback=None,
     ):
+        self.seed_strategy = "eager"
+        self.scored = False
         t0 = time.time()
         if check_timeout is not None:
             check_timeout("seed initialization")
@@ -516,6 +527,7 @@ class Seeds:
         self._filter_seeds()
         _vprint(verbose, f"Number of seed after filtering: {len(self)}")
         self._sort_seeds()
+        self.scored = True
 
         return
 
@@ -527,6 +539,8 @@ class Seeds:
         verbose: int = 1,
         check_timeout=None,
     ):
+        self.seed_strategy = "lazy"
+        self.scored = False
         t0 = time.time()
         if check_timeout is not None:
             check_timeout("seed initialization")

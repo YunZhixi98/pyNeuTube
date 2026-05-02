@@ -119,6 +119,8 @@ outputs = trace_directory(
 )
 ```
 
+Tracing entry points also accept `seed_strategy="lazy"` to defer seed scoring until tracing reaches each candidate; `n_jobs` or `trace_n_jobs` still applies to EDT-based candidate generation.
+
 Command line:
 
 ```bash
@@ -251,6 +253,13 @@ For `extract_trace_seeds(...)`:
 
 This staged workflow is useful when you want to adjust tracing config between steps or inspect seeds and chains before the final morphology reconstruction.
 
+For staged lazy tracing, pass `seed_strategy="lazy"` to `extract_trace_seeds(...)`. The returned seeds are unscored candidates; `generate_trace_chains(...)` routes them through lazy seed scoring by default:
+
+```python
+seeds = extract_trace_seeds(image, seed_strategy="lazy", n_jobs=4)
+chains = generate_trace_chains(seeds, image)
+```
+
 ## Trace config
 
 Tracing APIs accept an optional `config` argument. By default, PyNeuTube uses the built-in tracer config in `pyneutube.tracers.pyNeuTube.config`. To override it, pass a Python module path that exposes `Defaults` and optionally `Optimization` with the same attribute names as the built-in config:
@@ -286,11 +295,9 @@ Recommended local checks:
 ```bash
 python Cython_setup.py build_ext --inplace
 python tools/dev/smoke_imports.py
-python -m pytest -q
-ruff check .
 ```
 
-`python Cython_setup.py build_ext --inplace` is only needed for local extension-development workflows. End users should install the published wheel or run `python -m pip install .`, not manage `Cython` manually.
+`python Cython_setup.py build_ext --inplace` is only needed for local extension-development workflows. End users should install the published wheel or run `python -m pip install .`, not manage `Cython` manually. 
 
 ## License
 

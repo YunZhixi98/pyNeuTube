@@ -26,7 +26,6 @@ class Defaults:
     # "hemisphere_uniform": 200 golden-angle upper-hemisphere axis samples.
     # "hemisphere_uniform_refine": 96 samples plus local unit-vector refinement.
     ORIENTATION_SEARCH_MODE: str = "hemisphere_uniform_refine"
-    SEED_STRATEGY: str = "eager"
 
     Max_Edge_Capacity: int = 1073741824 # 1G, maybe larger if necessary
 

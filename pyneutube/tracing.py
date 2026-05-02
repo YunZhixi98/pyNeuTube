@@ -133,15 +133,18 @@ def _resolve_n_jobs(n_jobs: int) -> int:
 
 
 def _resolve_seed_strategy(seed_strategy: str | None) -> str:
-    strategy = (
-        getattr(TraceDefaults, "SEED_STRATEGY", "eager")
-        if seed_strategy is None
-        else seed_strategy
-    )
+    strategy = "eager" if seed_strategy is None else seed_strategy
     strategy = str(strategy).lower()
     if strategy not in {"eager", "lazy"}:
         raise ValueError("`seed_strategy` must be one of {'eager', 'lazy'}.")
     return strategy
+
+
+def _resolve_chain_seed_strategy(seed_strategy: str | None, seeds: Seeds) -> str:
+    strategy = "auto" if seed_strategy is None else str(seed_strategy).lower()
+    if strategy == "auto":
+        return "lazy" if not getattr(seeds, "scored", True) else "eager"
+    return _resolve_seed_strategy(strategy)
 
 
 def _make_timeout_checker(
@@ -544,7 +547,9 @@ def _trace_volume_internal(
                         verbose=verbose,
                         check_timeout=check_timeout,
                         progress_callback=progress_callback,
-                    )
+                    ),
+                    seed_strategy="lazy",
+                    scored=True,
                 )
             else:
                 chains.generate_neuron_trace(
@@ -796,6 +801,7 @@ def _trace_file_record(
     verbose: int,
     overwrite: bool,
     config: str | None,
+    seed_strategy: str | None,
     progress_callback: Callable[[str], None] | None = None,
 ) -> dict[str, object]:
     started_at = perf_counter()
@@ -810,6 +816,7 @@ def _trace_file_record(
                 verbose=verbose,
                 overwrite=overwrite,
                 config=config,
+                seed_strategy=seed_strategy,
             )
         else:
             result = _trace_file_internal(
@@ -821,6 +828,7 @@ def _trace_file_record(
                 verbose=verbose,
                 overwrite=overwrite,
                 config=config,
+                seed_strategy=seed_strategy,
                 progress_callback=progress_callback,
             )
     except Exception as exc:
@@ -851,9 +859,9 @@ def _trace_file_record(
 
 
 def _trace_file_worker(
-    payload: tuple[str, str, str | None, int, float | None, int, bool, str | None, object | None],
+    payload: tuple[str, str, str | None, int, float | None, int, bool, str | None, str | None, object | None],
 ) -> dict[str, object]:
-    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose, overwrite, config, progress_queue = payload
+    input_path, output_swc, visualization_dir, n_jobs, timeout, verbose, overwrite, config, seed_strategy, progress_queue = payload
 
     progress_callback = None
     if progress_queue is not None:
@@ -871,6 +879,7 @@ def _trace_file_worker(
         verbose,
         overwrite,
         config,
+        seed_strategy,
         progress_callback=progress_callback,
     )
 
@@ -914,6 +923,7 @@ def trace_files(
     overwrite: bool = False,
     on_exists: str | None = None,
     config: str | None = None,
+    seed_strategy: str | None = None,
 ) -> list[Path]:
     image_paths = [Path(path) for path in input_paths]
     if not image_paths:
@@ -931,6 +941,7 @@ def trace_files(
     output_dir.mkdir(parents=True, exist_ok=True)
     resolved_batch_n_jobs = _resolve_n_jobs(batch_n_jobs)
     resolved_trace_n_jobs = _resolve_n_jobs(trace_n_jobs)
+    resolved_seed_strategy = _resolve_seed_strategy(seed_strategy)
     exists_policy = _resolve_on_exists(on_exists, default="skip")
     manifest = Path(manifest_path) if manifest_path is not None else None
 
@@ -944,7 +955,7 @@ def trace_files(
 
     show_progress = verbose >= 1
     completed_outputs: list[Path] = []
-    jobs: list[tuple[str, str, str | None, int, float | None, int, bool, str | None]] = []
+    jobs: list[tuple[str, str, str | None, int, float | None, int, bool, str | None, str | None]] = []
     progress = tqdm(
         total=len(image_paths),
         desc="Tracing files",
@@ -1004,6 +1015,7 @@ def trace_files(
                     0,
                     overwrite,
                     config,
+                    resolved_seed_strategy,
                 )
             )
 
@@ -1310,6 +1322,7 @@ def trace_directory(
     overwrite: bool = False,
     on_exists: str | None = None,
     config: str | None = None,
+    seed_strategy: str | None = None,
 ) -> list[Path]:
     input_dir = Path(input_dir)
     image_paths = sorted(
@@ -1330,6 +1343,7 @@ def trace_directory(
         overwrite=overwrite,
         on_exists=on_exists,
         config=config,
+        seed_strategy=seed_strategy,
     )
 
 
@@ -1344,9 +1358,11 @@ def extract_trace_seeds(
     output_path: str | Path | None = None,
     visualization_path: str | Path | None = None,
     config: str | ModuleType | None = None,
+    seed_strategy: str | None = None,
     check_timeout: Callable[[str | None], None] | None = None,
 ) -> Seeds:
     with _temporary_trace_config(config):
+        resolved_seed_strategy = _resolve_seed_strategy(seed_strategy)
         if check_timeout is None:
             _, check_timeout = _make_timeout_checker(timeout)
         volume = _load_image_volume(image)
@@ -1361,7 +1377,16 @@ def extract_trace_seeds(
             binary_image = np.ascontiguousarray(np.asarray(binary_image), dtype=np.uint8)
         seeds = Seeds()
         resolved_n_jobs = _resolve_n_jobs(n_jobs)
-        if resolved_n_jobs > 1:
+        if resolved_seed_strategy == "lazy":
+            seeds.generate_seed_candidates(
+                binary_image,
+                n_jobs=resolved_n_jobs,
+                verbose=verbose,
+                check_timeout=check_timeout,
+            )
+            seeds.seed_strategy = "lazy"
+            seeds.scored = False
+        elif resolved_n_jobs > 1:
             with _shared_array(signal_image) as (shared_signal_image, shared_image_spec):
                 seeds.generate_tracing_seeds(
                     shared_signal_image,
@@ -1402,21 +1427,35 @@ def generate_trace_chains(
     output_path: str | Path | None = None,
     visualization_path: str | Path | None = None,
     config: str | ModuleType | None = None,
+    seed_strategy: str | None = "auto",
     check_timeout: Callable[[str | None], None] | None = None,
 ) -> SegmentChains:
     with _temporary_trace_config(config):
+        resolved_seed_strategy = _resolve_chain_seed_strategy(seed_strategy, seeds)
+        if resolved_seed_strategy == "eager" and not getattr(seeds, "scored", True):
+            raise ValueError("Unscored seed candidates require seed_strategy='lazy' or 'auto'.")
         if check_timeout is None:
             _, check_timeout = _make_timeout_checker(timeout)
         volume = _load_image_volume(image)
         signal_image = _prepare_signal_image(volume, verbose=verbose)
         chains = SegmentChains(image_shape=signal_image.shape)
-        chains.generate_neuron_trace(
-            seeds,
-            signal_image,
-            max_seeds=max_seeds,
-            verbose=verbose,
-            check_timeout=check_timeout,
-        )
+        if resolved_seed_strategy == "lazy":
+            chains.generate_neuron_trace_lazy_seed_scoring(
+                seeds,
+                signal_image,
+                max_seeds=max_seeds,
+                verbose=verbose,
+                check_timeout=check_timeout,
+                progress_callback=None,
+            )
+        else:
+            chains.generate_neuron_trace(
+                seeds,
+                signal_image,
+                max_seeds=max_seeds,
+                verbose=verbose,
+                check_timeout=check_timeout,
+            )
         if filter_chains:
             check_timeout("filter_chains")
             chains.filter_chains(verbose=verbose)
