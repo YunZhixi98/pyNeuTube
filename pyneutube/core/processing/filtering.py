@@ -93,10 +93,9 @@ def estimate_background_level(
     """
     Estimate the common background intensity of a grayscale image.
 
-    This is the analysis half of `subtract_background`: it reports the
-    intensity that would be subtracted without allocating an output volume,
-    so callers that already own a writable buffer can do the subtraction
-    in place.
+    The analysis half of `subtract_background`: it reports the intensity that
+    would be subtracted without allocating an output volume, so callers with a
+    writable buffer can subtract in place.
 
     Parameters
     ----------
@@ -357,17 +356,19 @@ def local_max_filter(image: np.ndarray) -> np.ndarray:
     """
     Re-encapsulate `Stack_Locmax_Region` and keep one seed voxel per plateau.
     """
-    image = np.ascontiguousarray(image, dtype=np.float64)
-    # `Stack_Locmax_Region` treats out-of-volume neighbours as background, so
-    # the zero-padded copy of the volume it used to need is no longer built.
-    # `.view` reinterprets the boolean mask as uint8 rather than copying it.
+    # `Stack_Locmax_Region` is compiled for both widths and compares in double
+    # precision, so a float32 volume is passed through instead of being copied.
+    array = np.asarray(image)
+    dtype = np.float32 if array.dtype == np.float32 else np.float64
+    image = np.ascontiguousarray(array, dtype=dtype)
+    # Out-of-volume neighbours count as background, so no zero-padded copy is
+    # needed; `.view` reinterprets the boolean mask as uint8 without copying.
     loc_max_mask = (image != 0).view(np.uint8)
     loc_max_mask = Stack_Locmax_Region(image, loc_max_mask)
     if not np.any(loc_max_mask):
         return loc_max_mask
 
-    # `label` already treats any non-zero voxel as foreground; comparing against
-    # zero first would only add a full-volume boolean temporary.
+    # `label` already treats any non-zero voxel as foreground.
     labeled, _ = label(loc_max_mask, structure=_CONNECTIVITY_18_STRUCTURE)
     labeled_flat = labeled.ravel()
     nonzero_positions = np.flatnonzero(labeled_flat)
@@ -589,9 +590,8 @@ def maximum_filter_mask(image: np.ndarray, *, verbose: int = 0) -> np.ndarray:
     """
     import time
     t0 = time.time()
-    # `Stack_Local_Max` is compiled for float32 and float64 and compares in
-    # double precision either way, so a float32 volume is passed through as-is
-    # instead of being widened into a second full-volume copy.
+    # `Stack_Local_Max` is compiled for both widths and compares in double
+    # precision, so a float32 volume is passed through instead of being copied.
     array = np.asarray(image)
     dtype = np.float32 if array.dtype == np.float32 else np.float64
     binary_image = Stack_Local_Max(np.ascontiguousarray(array, dtype=dtype))

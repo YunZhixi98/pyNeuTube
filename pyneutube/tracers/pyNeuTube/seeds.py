@@ -41,8 +41,7 @@ def _resolve_n_jobs(n_jobs: int) -> int:
 
 def _seed_priority_order(coords: np.ndarray, values: np.ndarray) -> np.ndarray:
     xyz_coords = coords[:, ::-1]
-    # Widen to float64 before subtracting: `values` may be a float32 distance
-    # map, and the ordering must not depend on the storage precision.
+    # Widen first so the ordering cannot depend on the distance map's precision.
     priority = np.abs(values.astype(np.float64, copy=False) - Defaults.MAX_CONF_RADIUS)
     return np.lexsort((xyz_coords[:, 2], xyz_coords[:, 1], xyz_coords[:, 0], -priority))
 
@@ -269,10 +268,7 @@ class Seeds:
         Initialize seeds based on the local maxima of the distance transformed binary image.
         """
         self._seeds = []
-        # `edt` already computes in single precision; widening the whole volume
-        # to float64 would double the largest buffer in this stage without
-        # adding information, so the float32 map is used directly and only the
-        # handful of extracted maxima are promoted below.
+        # `edt` computes in single precision; only the extracted maxima are promoted.
         dt_image = edt.edt(
             binary_image,
             anisotropy=(1, 1, 1),
@@ -292,7 +288,7 @@ class Seeds:
 
         return
 
-    def _reduce_seeds(self, binary_image: np.ndarray, *, n_jobs: int = 1, verbose: int = 1) -> None:
+    def _reduce_seeds(self, binary_image: np.ndarray, *, verbose: int = 1) -> None:
         """
         Filter seeds based on the size of connected components in the binary image.
         """
@@ -313,10 +309,16 @@ class Seeds:
             counts = histogram1d(flat, bins=imax - imin + 1, range=(imin, imax + 1)).astype("int64")
             large_component_mask = counts >= min_seed_size
             large_component_mask[0] = False
-            valid_component_voxels = large_component_mask[image_conn_labeled]
-            self._initialize_seeds(
-                valid_component_voxels.astype(np.uint8), n_jobs=n_jobs, verbose=verbose
-            )
+
+            # Dropping whole components leaves the EDT of the survivors intact
+            # (the ball of radius EDT(p) is all-foreground and 26-connected to
+            # `p`), so re-running EDT + maximum filter on the reduced mask would
+            # return these very seeds; select them directly instead.
+            zyx = np.asarray(self.coords[:, ::-1], dtype=np.intp)
+            seed_labels = image_conn_labeled[zyx[:, 0], zyx[:, 1], zyx[:, 2]]
+            keep = large_component_mask[seed_labels]
+            self._seeds = [seed for seed, keep_seed in zip(self._seeds, keep) if keep_seed]
+            _vprint(verbose, f"{len(self)} seeds found")
 
         return
 
@@ -515,7 +517,7 @@ class Seeds:
         if check_timeout is not None:
             check_timeout("seed initialization")
         self._initialize_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
-        self._reduce_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
+        self._reduce_seeds(binary_image, verbose=verbose)
         _vprint(verbose, f"--> seed_init: {time.time() - t0:.6f}s")
         if check_timeout is not None:
             check_timeout("seed scoring")
@@ -551,7 +553,7 @@ class Seeds:
         if check_timeout is not None:
             check_timeout("seed initialization")
         self._initialize_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
-        self._reduce_seeds(binary_image, n_jobs=n_jobs, verbose=verbose)
+        self._reduce_seeds(binary_image, verbose=verbose)
         self._sort_seeds()
         _vprint(verbose, f"--> seed_candidates: {time.time() - t0:.6f}s")
 

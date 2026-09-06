@@ -24,6 +24,13 @@ cnp.import_array()
 ctypedef cnp.float64_t DTYPE_t
 ctypedef cnp.intp_t ITYPE_t
 
+# The signal volume is float32 whenever that is exact, so the samplers are
+# compiled for both widths. Every sample is widened to `double` before any
+# arithmetic, so both specialisations agree on identical values.
+ctypedef fused IMAGE_t:
+    cnp.float32_t
+    cnp.float64_t
+
 #@cython.boundscheck(False)
 #@cython.wraparound(False)
 #def sample_voxels_minor(cnp.ndarray image,
@@ -59,7 +66,7 @@ ctypedef cnp.intp_t ITYPE_t
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
-cdef inline double trilinear_interpolate(double[:, :, ::1] image, 
+cdef inline double trilinear_interpolate(IMAGE_t[:, :, ::1] image,
                                          double x, double y, double z,
                                          int width, int height, int depth) nogil:
     """Fast trilinear interpolation for 3D images."""
@@ -120,16 +127,17 @@ cdef inline double nearest_neighbor(double[:, ::1] image, double x, double y) no
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def sample_voxels(double[:, :, ::1] image,
+def sample_voxels(IMAGE_t[:, :, ::1] image,
                    double[:, ::1] coords,
                    int order=1):
     """
     Fast 3D sampling with custom interpolation.
-    
+
     Parameters
     ----------
     image : 3D array
-        Input image
+        Input image, float32 or float64. Samples are widened to double before
+        any arithmetic, so both widths agree on identical values.
     coords : array, shape (N, 3)
         Coordinates as (x, y, z)
     order : int

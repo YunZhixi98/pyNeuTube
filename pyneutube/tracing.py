@@ -305,19 +305,32 @@ class _QueuedBatchProgressReporter:
         self._last_emit_at = now
 
 
+def _signal_dtype(source: np.ndarray) -> type[np.floating]:
+    """
+    Pick the narrowest float that stores the background-subtracted volume exactly.
+
+    8/16-bit integers stay within [-32768, 65535], so every value is an integer
+    below 2**24 that float32 holds exactly, and the kernels reading the volume
+    widen each sample to double anyway. Wider integers can exceed 2**24 and a
+    float input would be rounded, so both keep double precision.
+    """
+    dtype = source.dtype
+    if dtype.kind in "iu" and dtype.itemsize <= 2:
+        return np.float32
+    return np.float64
+
+
 def _prepare_signal_image(image: np.ndarray, *, verbose: int = 1) -> np.ndarray:
     t0 = perf_counter()
     source = np.asarray(image)
-    # Histogram the source in its native dtype, then materialise exactly one
-    # float64 volume and subtract in place. Going through `subtract_background`
-    # would allocate a second full-volume float64 temporary.
+    # Histogram the source in its native dtype, then subtract in place;
+    # `subtract_background` would allocate a second full-volume temporary.
     background_level = estimate_background_level(source, verbose=max(verbose - 1, 0))
-    signal_image = source.astype(np.float64, order="C")
+    signal_image = source.astype(_signal_dtype(source), order="C")
     if background_level:
         signal_image -= background_level
-    # `subtract_background` only clips when the background level exceeds the
-    # image minimum; clamping unconditionally gives the same values, because
-    # otherwise no voxel can have gone negative in the first place.
+    # `subtract_background` only clips when the level exceeds the image minimum;
+    # clipping unconditionally is the same, since otherwise nothing went negative.
     np.maximum(signal_image, 0.0, out=signal_image)
     _time_step(verbose, "subtract_background", t0)
     return signal_image
@@ -346,7 +359,7 @@ def _estimate_threshold(signal_image: np.ndarray, *, verbose: int = 1) -> float:
     t0 = perf_counter()
     local_max_mask = local_max_filter(signal_image)
     _time_step(verbose, "local_max_filter", t0)
-    local_max_values = signal_image[local_max_mask > 0]
+    local_max_values = signal_image[local_max_mask.view(bool)]
     if local_max_values.size == 0:
         raise ValueError("No local maxima were found in the input volume.")
 

@@ -23,22 +23,25 @@ ctypedef fused IMAGE_t:
 
 @boundscheck(False)
 @wraparound(False)
-def Stack_Locmax_Region(np.ndarray[FLOAT64_t, ndim=3] image,
+def Stack_Locmax_Region(np.ndarray[IMAGE_t, ndim=3] image,
                         np.ndarray[UINT8_t, ndim=3] loc_max_mask):
     """
     Clear every entry of `loc_max_mask` whose voxel is not a regional maximum.
 
     Neighbors outside the volume count as background (value 0, mask 0), which
     reproduces the earlier zero-padded implementation without allocating a
-    padded copy of the image. The work queue stores flat indices rather than
-    (z, y, x) triples, so it costs 4 instead of 12 bytes per voxel, and it is
-    left uninitialised so untouched pages are never faulted in.
+    padded copy. The work queue stores flat indices instead of (z, y, x)
+    triples, so it costs 4 rather than 12 bytes per voxel, and it is left
+    uninitialised so untouched pages are never faulted in.
+
+    Accepts float32 or float64; comparisons are always in double precision, so
+    both specialisations return the same mask for the same values.
 
     `loc_max_mask` is modified in place and returned.
     """
 
     cdef:
-        FLOAT64_t[:, :, ::1] img = image
+        IMAGE_t[:, :, ::1] img = image
         UINT8_t[:, :, ::1] mask = loc_max_mask
         Py_ssize_t depth = img.shape[0]
         Py_ssize_t height = img.shape[1]
@@ -50,7 +53,7 @@ def Stack_Locmax_Region(np.ndarray[FLOAT64_t, ndim=3] image,
         Py_ssize_t n_neighbors = neighbors_18.shape[0]
         int dz, dy, dx
         int on_border
-        FLOAT64_t c, n_val
+        double c, n_val
         int* queue
 
     if total > 2147483647:
@@ -190,9 +193,8 @@ def Stack_Local_Max(np.ndarray[IMAGE_t, ndim=3] image):
     - center<neighbor -> zero center
     - center>=neighbor -> kill neighbor
 
-    Accepts float32 or float64 input; every comparison is carried out in double
-    precision, so a float32 volume yields the same mask as its float64 copy
-    (widening float32 to double is exact) without paying for the copy.
+    Accepts float32 or float64; comparisons are always in double precision, so
+    both specialisations return the same mask for the same values.
     """
     cdef:
         int depth = image.shape[0]
