@@ -41,7 +41,9 @@ def _resolve_n_jobs(n_jobs: int) -> int:
 
 def _seed_priority_order(coords: np.ndarray, values: np.ndarray) -> np.ndarray:
     xyz_coords = coords[:, ::-1]
-    priority = np.abs(values - Defaults.MAX_CONF_RADIUS)
+    # Widen to float64 before subtracting: `values` may be a float32 distance
+    # map, and the ordering must not depend on the storage precision.
+    priority = np.abs(values.astype(np.float64, copy=False) - Defaults.MAX_CONF_RADIUS)
     return np.lexsort((xyz_coords[:, 2], xyz_coords[:, 1], xyz_coords[:, 0], -priority))
 
 
@@ -267,16 +269,20 @@ class Seeds:
         Initialize seeds based on the local maxima of the distance transformed binary image.
         """
         self._seeds = []
+        # `edt` already computes in single precision; widening the whole volume
+        # to float64 would double the largest buffer in this stage without
+        # adding information, so the float32 map is used directly and only the
+        # handful of extracted maxima are promoted below.
         dt_image = edt.edt(
             binary_image,
             anisotropy=(1, 1, 1),
             black_border=True,
             parallel=_resolve_n_jobs(n_jobs),
-        ).astype(np.float64)
+        )
 
         dt_local_max_mask = maximum_filter_mask(dt_image, verbose=max(verbose - 1, 0))
         coords = _filter_interior_seed_coords(np.argwhere(dt_local_max_mask), dt_image.shape)
-        coords_values = dt_image[tuple(coords.T)]
+        coords_values = dt_image[tuple(coords.T)].astype(np.float64)
 
         arg_idx = _seed_priority_order(coords, coords_values)
         # arg_idx = np.arange(len(coords))

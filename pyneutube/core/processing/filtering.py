@@ -23,34 +23,16 @@ _KERNEL_26 = np.ones((3, 3, 3), dtype=np.intc)
 _KERNEL_26[1, 1, 1] = 0
 
 
-def subtract_background(
+def _background_level_and_min(
     image: np.ndarray,
     min_fraction: float = 0.5,
     max_iterations: int = 3,
     *,
     verbose: int = 0,
-) -> np.ndarray:
+) -> tuple[int, int]:
     """
-    Subtract a common background intensity from a grayscale image.
-
-    We build the intensity histogram of the image, then look for the
-    largest contiguous “background” peak such that its relative frequency
-    falls below `min_fraction`, iterating at most `max_iterations` times.
-
-    Parameters
-    ----------
-    image : np.ndarray
-        2D or 3D array of integers (int8/16/32, etc.), representing your image.
-    min_fraction : float
-        Minimum fraction of total voxels allowed in the background peak.
-    max_iterations : int
-        Maximum number of re-histogramming steps to peel away successive peaks.
-
-    Returns
-    -------
-    np.ndarray
-        A new array, same shape and dtype as `image`, with background
-        intensity subtracted and values clipped at zero.
+    Shared implementation behind `estimate_background_level` and
+    `subtract_background`; returns `(common_intensity, image_minimum)`.
     """
 
     flat = image.ravel()
@@ -97,6 +79,85 @@ def subtract_background(
 
     if verbose:
         print(f"Subtracting background: {common_intensity}")
+
+    return common_intensity, imin
+
+
+def estimate_background_level(
+    image: np.ndarray,
+    min_fraction: float = 0.5,
+    max_iterations: int = 3,
+    *,
+    verbose: int = 0,
+) -> int:
+    """
+    Estimate the common background intensity of a grayscale image.
+
+    This is the analysis half of `subtract_background`: it reports the
+    intensity that would be subtracted without allocating an output volume,
+    so callers that already own a writable buffer can do the subtraction
+    in place.
+
+    Parameters
+    ----------
+    image : np.ndarray
+        2D or 3D array representing your image.
+    min_fraction : float
+        Minimum fraction of total voxels allowed in the background peak.
+    max_iterations : int
+        Maximum number of re-histogramming steps to peel away successive peaks.
+
+    Returns
+    -------
+    int
+        The common background intensity.
+    """
+
+    return _background_level_and_min(
+        image,
+        min_fraction,
+        max_iterations,
+        verbose=verbose,
+    )[0]
+
+
+def subtract_background(
+    image: np.ndarray,
+    min_fraction: float = 0.5,
+    max_iterations: int = 3,
+    *,
+    verbose: int = 0,
+) -> np.ndarray:
+    """
+    Subtract a common background intensity from a grayscale image.
+
+    We build the intensity histogram of the image, then look for the
+    largest contiguous “background” peak such that its relative frequency
+    falls below `min_fraction`, iterating at most `max_iterations` times.
+
+    Parameters
+    ----------
+    image : np.ndarray
+        2D or 3D array of integers (int8/16/32, etc.), representing your image.
+    min_fraction : float
+        Minimum fraction of total voxels allowed in the background peak.
+    max_iterations : int
+        Maximum number of re-histogramming steps to peel away successive peaks.
+
+    Returns
+    -------
+    np.ndarray
+        A new array, same shape and dtype as `image`, with background
+        intensity subtracted and values clipped at zero.
+    """
+
+    common_intensity, imin = _background_level_and_min(
+        image,
+        min_fraction,
+        max_iterations,
+        verbose=verbose,
+    )
+
     if common_intensity <= imin:    # escape calculation if not necessary
         out = image - common_intensity
         return out
@@ -297,13 +358,17 @@ def local_max_filter(image: np.ndarray) -> np.ndarray:
     Re-encapsulate `Stack_Locmax_Region` and keep one seed voxel per plateau.
     """
     image = np.ascontiguousarray(image, dtype=np.float64)
-    img_padding = np.pad(image, ((1, 1), (1, 1), (1, 1)), mode="constant", constant_values=0)
-    loc_max_mask = (img_padding != 0).astype(np.uint8)
-    loc_max_mask = Stack_Locmax_Region(img_padding, loc_max_mask)
+    # `Stack_Locmax_Region` treats out-of-volume neighbours as background, so
+    # the zero-padded copy of the volume it used to need is no longer built.
+    # `.view` reinterprets the boolean mask as uint8 rather than copying it.
+    loc_max_mask = (image != 0).view(np.uint8)
+    loc_max_mask = Stack_Locmax_Region(image, loc_max_mask)
     if not np.any(loc_max_mask):
         return loc_max_mask
 
-    labeled, _ = label(loc_max_mask > 0, structure=_CONNECTIVITY_18_STRUCTURE)
+    # `label` already treats any non-zero voxel as foreground; comparing against
+    # zero first would only add a full-volume boolean temporary.
+    labeled, _ = label(loc_max_mask, structure=_CONNECTIVITY_18_STRUCTURE)
     labeled_flat = labeled.ravel()
     nonzero_positions = np.flatnonzero(labeled_flat)
     _, first_indices = np.unique(labeled_flat[nonzero_positions], return_index=True)
@@ -524,7 +589,12 @@ def maximum_filter_mask(image: np.ndarray, *, verbose: int = 0) -> np.ndarray:
     """
     import time
     t0 = time.time()
-    binary_image = Stack_Local_Max(np.ascontiguousarray(image, dtype=np.float64))
+    # `Stack_Local_Max` is compiled for float32 and float64 and compares in
+    # double precision either way, so a float32 volume is passed through as-is
+    # instead of being widened into a second full-volume copy.
+    array = np.asarray(image)
+    dtype = np.float32 if array.dtype == np.float32 else np.float64
+    binary_image = Stack_Local_Max(np.ascontiguousarray(array, dtype=dtype))
     if verbose:
         print(f"Stack_Local_Max: {time.time() - t0:.3f}s")
     return binary_image

@@ -29,9 +29,9 @@ from pyneutube.core.io.image_parser import ImageParser
 from pyneutube.core.io.swc_parser import Neuron
 from pyneutube.core.processing.filtering import (
     connectivity_filter,
+    estimate_background_level,
     local_max_filter,
     refine_local_max_threshold,
-    subtract_background,
     threshold_filter,
     triangle_threshold,
 )
@@ -307,10 +307,18 @@ class _QueuedBatchProgressReporter:
 
 def _prepare_signal_image(image: np.ndarray, *, verbose: int = 1) -> np.ndarray:
     t0 = perf_counter()
-    signal_image = subtract_background(
-        np.ascontiguousarray(np.asarray(image), dtype=np.float64),
-        verbose=max(verbose - 1, 0),
-    )
+    source = np.asarray(image)
+    # Histogram the source in its native dtype, then materialise exactly one
+    # float64 volume and subtract in place. Going through `subtract_background`
+    # would allocate a second full-volume float64 temporary.
+    background_level = estimate_background_level(source, verbose=max(verbose - 1, 0))
+    signal_image = source.astype(np.float64, order="C")
+    if background_level:
+        signal_image -= background_level
+    # `subtract_background` only clips when the background level exceeds the
+    # image minimum; clamping unconditionally gives the same values, because
+    # otherwise no voxel can have gone negative in the first place.
+    np.maximum(signal_image, 0.0, out=signal_image)
     _time_step(verbose, "subtract_background", t0)
     return signal_image
 
