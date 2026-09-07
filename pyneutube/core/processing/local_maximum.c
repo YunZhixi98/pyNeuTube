@@ -20076,7 +20076,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
  *             for y in range(height):
  *                 for x in range(width):             # <<<<<<<<<<<<<<
  *                     c = img[z, y, x]
- *                     on_border = (z == 0 or z == depth - 1 or
+ *                     if c == 0:
 */
         __pyx_t_16 = __pyx_v_width;
         __pyx_t_17 = __pyx_t_16;
@@ -20087,8 +20087,8 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
  *             for y in range(height):
  *                 for x in range(width):
  *                     c = img[z, y, x]             # <<<<<<<<<<<<<<
- *                     on_border = (z == 0 or z == depth - 1 or
- *                                  y == 0 or y == height - 1 or
+ *                     if c == 0:
+ *                         continue
 */
           __pyx_t_19 = __pyx_v_z;
           __pyx_t_20 = __pyx_v_y;
@@ -20098,6 +20098,34 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
           /* "pyneutube/core/processing/local_maximum.pyx":74
  *                 for x in range(width):
  *                     c = img[z, y, x]
+ *                     if c == 0:             # <<<<<<<<<<<<<<
+ *                         continue
+ *                     on_border = (z == 0 or z == depth - 1 or
+*/
+          __pyx_t_3 = (__pyx_v_c == 0.0);
+          if (__pyx_t_3) {
+
+            /* "pyneutube/core/processing/local_maximum.pyx":75
+ *                     c = img[z, y, x]
+ *                     if c == 0:
+ *                         continue             # <<<<<<<<<<<<<<
+ *                     on_border = (z == 0 or z == depth - 1 or
+ *                                  y == 0 or y == height - 1 or
+*/
+            goto __pyx_L12_continue;
+
+            /* "pyneutube/core/processing/local_maximum.pyx":74
+ *                 for x in range(width):
+ *                     c = img[z, y, x]
+ *                     if c == 0:             # <<<<<<<<<<<<<<
+ *                         continue
+ *                     on_border = (z == 0 or z == depth - 1 or
+*/
+          }
+
+          /* "pyneutube/core/processing/local_maximum.pyx":76
+ *                     if c == 0:
+ *                         continue
  *                     on_border = (z == 0 or z == depth - 1 or             # <<<<<<<<<<<<<<
  *                                  y == 0 or y == height - 1 or
  *                                  x == 0 or x == width - 1)
@@ -20106,17 +20134,17 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
           __pyx_t_3 = (__pyx_v_z == (__pyx_v_depth - 1));
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":75
- *                     c = img[z, y, x]
+          /* "pyneutube/core/processing/local_maximum.pyx":77
+ *                         continue
  *                     on_border = (z == 0 or z == depth - 1 or
  *                                  y == 0 or y == height - 1 or             # <<<<<<<<<<<<<<
  *                                  x == 0 or x == width - 1)
@@ -20126,16 +20154,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
           __pyx_t_3 = (__pyx_v_y == (__pyx_v_height - 1));
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":76
+          /* "pyneutube/core/processing/local_maximum.pyx":78
  *                     on_border = (z == 0 or z == depth - 1 or
  *                                  y == 0 or y == height - 1 or
  *                                  x == 0 or x == width - 1)             # <<<<<<<<<<<<<<
@@ -20146,14 +20174,14 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
           __pyx_t_3 = (__pyx_v_x == (__pyx_v_width - 1));
           __pyx_t_22 = __pyx_t_3;
-          __pyx_L14_bool_binop_done:;
+          __pyx_L15_bool_binop_done:;
           __pyx_v_on_border = __pyx_t_22;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":77
+          /* "pyneutube/core/processing/local_maximum.pyx":79
  *                                  y == 0 or y == height - 1 or
  *                                  x == 0 or x == width - 1)
  *                     for n in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -20165,43 +20193,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
           for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_24; __pyx_t_25+=1) {
             __pyx_v_n = __pyx_t_25;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":78
+            /* "pyneutube/core/processing/local_maximum.pyx":80
  *                                  x == 0 or x == width - 1)
  *                     for n in range(n_neighbors):
  *                         dz = neighbors_18[n, 0]             # <<<<<<<<<<<<<<
  *                         dy = neighbors_18[n, 1]
  *                         dx = neighbors_18[n, 2]
 */
-            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 78, __pyx_L6_error) }
+            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 80, __pyx_L6_error) }
             __pyx_t_21 = __pyx_v_n;
             __pyx_t_20 = 0;
             __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_21 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_20)) )));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":79
+            /* "pyneutube/core/processing/local_maximum.pyx":81
  *                     for n in range(n_neighbors):
  *                         dz = neighbors_18[n, 0]
  *                         dy = neighbors_18[n, 1]             # <<<<<<<<<<<<<<
  *                         dx = neighbors_18[n, 2]
  *                         nz = z + dz
 */
-            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 79, __pyx_L6_error) }
+            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 81, __pyx_L6_error) }
             __pyx_t_20 = __pyx_v_n;
             __pyx_t_21 = 1;
             __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_20 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_21)) )));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":80
+            /* "pyneutube/core/processing/local_maximum.pyx":82
  *                         dz = neighbors_18[n, 0]
  *                         dy = neighbors_18[n, 1]
  *                         dx = neighbors_18[n, 2]             # <<<<<<<<<<<<<<
  *                         nz = z + dz
  *                         ny = y + dy
 */
-            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 80, __pyx_L6_error) }
+            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 82, __pyx_L6_error) }
             __pyx_t_21 = __pyx_v_n;
             __pyx_t_20 = 2;
             __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_21 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_20)) )));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":81
+            /* "pyneutube/core/processing/local_maximum.pyx":83
  *                         dy = neighbors_18[n, 1]
  *                         dx = neighbors_18[n, 2]
  *                         nz = z + dz             # <<<<<<<<<<<<<<
@@ -20210,7 +20238,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
             __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":82
+            /* "pyneutube/core/processing/local_maximum.pyx":84
  *                         dx = neighbors_18[n, 2]
  *                         nz = z + dz
  *                         ny = y + dy             # <<<<<<<<<<<<<<
@@ -20219,7 +20247,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
             __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":83
+            /* "pyneutube/core/processing/local_maximum.pyx":85
  *                         nz = z + dz
  *                         ny = y + dy
  *                         nx = x + dx             # <<<<<<<<<<<<<<
@@ -20228,7 +20256,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
             __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":84
+            /* "pyneutube/core/processing/local_maximum.pyx":86
  *                         ny = y + dy
  *                         nx = x + dx
  *                         if on_border:             # <<<<<<<<<<<<<<
@@ -20238,7 +20266,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
             __pyx_t_3 = (__pyx_v_on_border != 0);
             if (__pyx_t_3) {
 
-              /* "pyneutube/core/processing/local_maximum.pyx":85
+              /* "pyneutube/core/processing/local_maximum.pyx":87
  *                         nx = x + dx
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -20249,16 +20277,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
               __pyx_t_26 = (__pyx_v_nz >= __pyx_v_depth);
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
 
-              /* "pyneutube/core/processing/local_maximum.pyx":86
+              /* "pyneutube/core/processing/local_maximum.pyx":88
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or
  *                                     ny < 0 or ny >= height or             # <<<<<<<<<<<<<<
@@ -20269,16 +20297,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
               __pyx_t_26 = (__pyx_v_ny >= __pyx_v_height);
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
 
-              /* "pyneutube/core/processing/local_maximum.pyx":87
+              /* "pyneutube/core/processing/local_maximum.pyx":89
  *                             if (nz < 0 or nz >= depth or
  *                                     ny < 0 or ny >= height or
  *                                     nx < 0 or nx >= width):             # <<<<<<<<<<<<<<
@@ -20289,13 +20317,13 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
               __pyx_t_26 = (__pyx_v_nx >= __pyx_v_width);
               __pyx_t_3 = __pyx_t_26;
-              __pyx_L24_bool_binop_done:;
+              __pyx_L25_bool_binop_done:;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":85
+              /* "pyneutube/core/processing/local_maximum.pyx":87
  *                         nx = x + dx
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -20304,7 +20332,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
               if (__pyx_t_3) {
 
-                /* "pyneutube/core/processing/local_maximum.pyx":88
+                /* "pyneutube/core/processing/local_maximum.pyx":90
  *                                     ny < 0 or ny >= height or
  *                                     nx < 0 or nx >= width):
  *                                 n_val = 0             # <<<<<<<<<<<<<<
@@ -20313,17 +20341,17 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
                 __pyx_v_n_val = 0.0;
 
-                /* "pyneutube/core/processing/local_maximum.pyx":85
+                /* "pyneutube/core/processing/local_maximum.pyx":87
  *                         nx = x + dx
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
  *                                     ny < 0 or ny >= height or
  *                                     nx < 0 or nx >= width):
 */
-                goto __pyx_L23;
+                goto __pyx_L24;
               }
 
-              /* "pyneutube/core/processing/local_maximum.pyx":90
+              /* "pyneutube/core/processing/local_maximum.pyx":92
  *                                 n_val = 0
  *                             else:
  *                                 n_val = img[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -20336,19 +20364,19 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
                 __pyx_t_19 = __pyx_v_nx;
                 __pyx_v_n_val = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_20 * __pyx_v_img.strides[0]) ) + __pyx_t_21 * __pyx_v_img.strides[1]) )) + __pyx_t_19)) )));
               }
-              __pyx_L23:;
+              __pyx_L24:;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":84
+              /* "pyneutube/core/processing/local_maximum.pyx":86
  *                         ny = y + dy
  *                         nx = x + dx
  *                         if on_border:             # <<<<<<<<<<<<<<
  *                             if (nz < 0 or nz >= depth or
  *                                     ny < 0 or ny >= height or
 */
-              goto __pyx_L22;
+              goto __pyx_L23;
             }
 
-            /* "pyneutube/core/processing/local_maximum.pyx":92
+            /* "pyneutube/core/processing/local_maximum.pyx":94
  *                                 n_val = img[nz, ny, nx]
  *                         else:
  *                             n_val = img[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -20361,9 +20389,9 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
               __pyx_t_20 = __pyx_v_nx;
               __pyx_v_n_val = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_19 * __pyx_v_img.strides[0]) ) + __pyx_t_21 * __pyx_v_img.strides[1]) )) + __pyx_t_20)) )));
             }
-            __pyx_L22:;
+            __pyx_L23:;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":93
+            /* "pyneutube/core/processing/local_maximum.pyx":95
  *                         else:
  *                             n_val = img[nz, ny, nx]
  *                         if n_val > c:             # <<<<<<<<<<<<<<
@@ -20373,7 +20401,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
             __pyx_t_3 = (__pyx_v_n_val > __pyx_v_c);
             if (__pyx_t_3) {
 
-              /* "pyneutube/core/processing/local_maximum.pyx":94
+              /* "pyneutube/core/processing/local_maximum.pyx":96
  *                             n_val = img[nz, ny, nx]
  *                         if n_val > c:
  *                             mask[z, y, x] = 0             # <<<<<<<<<<<<<<
@@ -20385,7 +20413,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
               __pyx_t_19 = __pyx_v_x;
               *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_mask.data + __pyx_t_20 * __pyx_v_mask.strides[0]) ) + __pyx_t_21 * __pyx_v_mask.strides[1]) )) + __pyx_t_19)) )) = 0;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":95
+              /* "pyneutube/core/processing/local_maximum.pyx":97
  *                         if n_val > c:
  *                             mask[z, y, x] = 0
  *                             queue[tail] = <int> (z * plane + y * width + x)             # <<<<<<<<<<<<<<
@@ -20394,7 +20422,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
               (__pyx_v_queue[__pyx_v_tail]) = ((int)(((__pyx_v_z * __pyx_v_plane) + (__pyx_v_y * __pyx_v_width)) + __pyx_v_x));
 
-              /* "pyneutube/core/processing/local_maximum.pyx":96
+              /* "pyneutube/core/processing/local_maximum.pyx":98
  *                             mask[z, y, x] = 0
  *                             queue[tail] = <int> (z * plane + y * width + x)
  *                             tail += 1             # <<<<<<<<<<<<<<
@@ -20403,16 +20431,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
               __pyx_v_tail = (__pyx_v_tail + 1);
 
-              /* "pyneutube/core/processing/local_maximum.pyx":97
+              /* "pyneutube/core/processing/local_maximum.pyx":99
  *                             queue[tail] = <int> (z * plane + y * width + x)
  *                             tail += 1
  *                             break             # <<<<<<<<<<<<<<
  * 
  *         # Step 2: propagate "not a maximum" to equal-or-lower neighbors.
 */
-              goto __pyx_L21_break;
+              goto __pyx_L22_break;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":93
+              /* "pyneutube/core/processing/local_maximum.pyx":95
  *                         else:
  *                             n_val = img[nz, ny, nx]
  *                         if n_val > c:             # <<<<<<<<<<<<<<
@@ -20421,12 +20449,13 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
             }
           }
-          __pyx_L21_break:;
+          __pyx_L22_break:;
+          __pyx_L12_continue:;
         }
       }
     }
 
-    /* "pyneutube/core/processing/local_maximum.pyx":100
+    /* "pyneutube/core/processing/local_maximum.pyx":102
  * 
  *         # Step 2: propagate "not a maximum" to equal-or-lower neighbors.
  *         while head < tail:             # <<<<<<<<<<<<<<
@@ -20437,7 +20466,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
       __pyx_t_3 = (__pyx_v_head < __pyx_v_tail);
       if (!__pyx_t_3) break;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":101
+      /* "pyneutube/core/processing/local_maximum.pyx":103
  *         # Step 2: propagate "not a maximum" to equal-or-lower neighbors.
  *         while head < tail:
  *             rest = queue[head]             # <<<<<<<<<<<<<<
@@ -20446,7 +20475,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
       __pyx_v_rest = (__pyx_v_queue[__pyx_v_head]);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":102
+      /* "pyneutube/core/processing/local_maximum.pyx":104
  *         while head < tail:
  *             rest = queue[head]
  *             head += 1             # <<<<<<<<<<<<<<
@@ -20455,7 +20484,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
       __pyx_v_head = (__pyx_v_head + 1);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":103
+      /* "pyneutube/core/processing/local_maximum.pyx":105
  *             rest = queue[head]
  *             head += 1
  *             z = rest / plane             # <<<<<<<<<<<<<<
@@ -20464,7 +20493,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
       __pyx_v_z = (__pyx_v_rest / __pyx_v_plane);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":104
+      /* "pyneutube/core/processing/local_maximum.pyx":106
  *             head += 1
  *             z = rest / plane
  *             rest = rest - z * plane             # <<<<<<<<<<<<<<
@@ -20473,7 +20502,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
       __pyx_v_rest = (__pyx_v_rest - (__pyx_v_z * __pyx_v_plane));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":105
+      /* "pyneutube/core/processing/local_maximum.pyx":107
  *             z = rest / plane
  *             rest = rest - z * plane
  *             y = rest / width             # <<<<<<<<<<<<<<
@@ -20482,7 +20511,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
       __pyx_v_y = (__pyx_v_rest / __pyx_v_width);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":106
+      /* "pyneutube/core/processing/local_maximum.pyx":108
  *             rest = rest - z * plane
  *             y = rest / width
  *             x = rest - y * width             # <<<<<<<<<<<<<<
@@ -20491,7 +20520,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
       __pyx_v_x = (__pyx_v_rest - (__pyx_v_y * __pyx_v_width));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":107
+      /* "pyneutube/core/processing/local_maximum.pyx":109
  *             y = rest / width
  *             x = rest - y * width
  *             c = img[z, y, x]             # <<<<<<<<<<<<<<
@@ -20503,7 +20532,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
       __pyx_t_20 = __pyx_v_x;
       __pyx_v_c = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_19 * __pyx_v_img.strides[0]) ) + __pyx_t_21 * __pyx_v_img.strides[1]) )) + __pyx_t_20)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":108
+      /* "pyneutube/core/processing/local_maximum.pyx":110
  *             x = rest - y * width
  *             c = img[z, y, x]
  *             for n in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -20515,43 +20544,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
       for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
         __pyx_v_n = __pyx_t_12;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":109
+        /* "pyneutube/core/processing/local_maximum.pyx":111
  *             c = img[z, y, x]
  *             for n in range(n_neighbors):
  *                 dz = neighbors_18[n, 0]             # <<<<<<<<<<<<<<
  *                 dy = neighbors_18[n, 1]
  *                 dx = neighbors_18[n, 2]
 */
-        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 109, __pyx_L6_error) }
+        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 111, __pyx_L6_error) }
         __pyx_t_20 = __pyx_v_n;
         __pyx_t_21 = 0;
         __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_20 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_21)) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":110
+        /* "pyneutube/core/processing/local_maximum.pyx":112
  *             for n in range(n_neighbors):
  *                 dz = neighbors_18[n, 0]
  *                 dy = neighbors_18[n, 1]             # <<<<<<<<<<<<<<
  *                 dx = neighbors_18[n, 2]
  *                 nz = z + dz
 */
-        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 110, __pyx_L6_error) }
+        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 112, __pyx_L6_error) }
         __pyx_t_21 = __pyx_v_n;
         __pyx_t_20 = 1;
         __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_21 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_20)) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":111
+        /* "pyneutube/core/processing/local_maximum.pyx":113
  *                 dz = neighbors_18[n, 0]
  *                 dy = neighbors_18[n, 1]
  *                 dx = neighbors_18[n, 2]             # <<<<<<<<<<<<<<
  *                 nz = z + dz
  *                 ny = y + dy
 */
-        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 111, __pyx_L6_error) }
+        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 113, __pyx_L6_error) }
         __pyx_t_20 = __pyx_v_n;
         __pyx_t_21 = 2;
         __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_20 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_21)) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":112
+        /* "pyneutube/core/processing/local_maximum.pyx":114
  *                 dy = neighbors_18[n, 1]
  *                 dx = neighbors_18[n, 2]
  *                 nz = z + dz             # <<<<<<<<<<<<<<
@@ -20560,7 +20589,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
         __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-        /* "pyneutube/core/processing/local_maximum.pyx":113
+        /* "pyneutube/core/processing/local_maximum.pyx":115
  *                 dx = neighbors_18[n, 2]
  *                 nz = z + dz
  *                 ny = y + dy             # <<<<<<<<<<<<<<
@@ -20569,7 +20598,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
         __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-        /* "pyneutube/core/processing/local_maximum.pyx":114
+        /* "pyneutube/core/processing/local_maximum.pyx":116
  *                 nz = z + dz
  *                 ny = y + dy
  *                 nx = x + dx             # <<<<<<<<<<<<<<
@@ -20578,7 +20607,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
         __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-        /* "pyneutube/core/processing/local_maximum.pyx":115
+        /* "pyneutube/core/processing/local_maximum.pyx":117
  *                 ny = y + dy
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -20589,16 +20618,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
         __pyx_t_26 = (__pyx_v_nz >= __pyx_v_depth);
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":116
+        /* "pyneutube/core/processing/local_maximum.pyx":118
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or
  *                         ny < 0 or ny >= height or             # <<<<<<<<<<<<<<
@@ -20609,16 +20638,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
         __pyx_t_26 = (__pyx_v_ny >= __pyx_v_height);
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":117
+        /* "pyneutube/core/processing/local_maximum.pyx":119
  *                 if (nz < 0 or nz >= depth or
  *                         ny < 0 or ny >= height or
  *                         nx < 0 or nx >= width):             # <<<<<<<<<<<<<<
@@ -20629,13 +20658,13 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
         __pyx_t_26 = (__pyx_v_nx >= __pyx_v_width);
         __pyx_t_3 = __pyx_t_26;
-        __pyx_L36_bool_binop_done:;
+        __pyx_L37_bool_binop_done:;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":115
+        /* "pyneutube/core/processing/local_maximum.pyx":117
  *                 ny = y + dy
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -20644,16 +20673,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
         if (__pyx_t_3) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":118
+          /* "pyneutube/core/processing/local_maximum.pyx":120
  *                         ny < 0 or ny >= height or
  *                         nx < 0 or nx >= width):
  *                     continue             # <<<<<<<<<<<<<<
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]
 */
-          goto __pyx_L33_continue;
+          goto __pyx_L34_continue;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":115
+          /* "pyneutube/core/processing/local_maximum.pyx":117
  *                 ny = y + dy
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -20662,7 +20691,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":119
+        /* "pyneutube/core/processing/local_maximum.pyx":121
  *                         nx < 0 or nx >= width):
  *                     continue
  *                 if mask[nz, ny, nx]:             # <<<<<<<<<<<<<<
@@ -20675,7 +20704,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
         __pyx_t_3 = ((*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_mask.data + __pyx_t_21 * __pyx_v_mask.strides[0]) ) + __pyx_t_20 * __pyx_v_mask.strides[1]) )) + __pyx_t_19)) ))) != 0);
         if (__pyx_t_3) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":120
+          /* "pyneutube/core/processing/local_maximum.pyx":122
  *                     continue
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -20687,7 +20716,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
           __pyx_t_21 = __pyx_v_nx;
           __pyx_v_n_val = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_19 * __pyx_v_img.strides[0]) ) + __pyx_t_20 * __pyx_v_img.strides[1]) )) + __pyx_t_21)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":121
+          /* "pyneutube/core/processing/local_maximum.pyx":123
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]
  *                     if n_val <= c:             # <<<<<<<<<<<<<<
@@ -20697,7 +20726,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
           __pyx_t_3 = (__pyx_v_n_val <= __pyx_v_c);
           if (__pyx_t_3) {
 
-            /* "pyneutube/core/processing/local_maximum.pyx":122
+            /* "pyneutube/core/processing/local_maximum.pyx":124
  *                     n_val = img[nz, ny, nx]
  *                     if n_val <= c:
  *                         mask[nz, ny, nx] = 0             # <<<<<<<<<<<<<<
@@ -20709,7 +20738,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
             __pyx_t_19 = __pyx_v_nx;
             *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_mask.data + __pyx_t_21 * __pyx_v_mask.strides[0]) ) + __pyx_t_20 * __pyx_v_mask.strides[1]) )) + __pyx_t_19)) )) = 0;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":123
+            /* "pyneutube/core/processing/local_maximum.pyx":125
  *                     if n_val <= c:
  *                         mask[nz, ny, nx] = 0
  *                         queue[tail] = <int> (nz * plane + ny * width + nx)             # <<<<<<<<<<<<<<
@@ -20718,7 +20747,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
             (__pyx_v_queue[__pyx_v_tail]) = ((int)(((__pyx_v_nz * __pyx_v_plane) + (__pyx_v_ny * __pyx_v_width)) + __pyx_v_nx));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":124
+            /* "pyneutube/core/processing/local_maximum.pyx":126
  *                         mask[nz, ny, nx] = 0
  *                         queue[tail] = <int> (nz * plane + ny * width + nx)
  *                         tail += 1             # <<<<<<<<<<<<<<
@@ -20727,7 +20756,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
             __pyx_v_tail = (__pyx_v_tail + 1);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":121
+            /* "pyneutube/core/processing/local_maximum.pyx":123
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]
  *                     if n_val <= c:             # <<<<<<<<<<<<<<
@@ -20736,7 +20765,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
 */
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":119
+          /* "pyneutube/core/processing/local_maximum.pyx":121
  *                         nx < 0 or nx >= width):
  *                     continue
  *                 if mask[nz, ny, nx]:             # <<<<<<<<<<<<<<
@@ -20744,12 +20773,12 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
  *                     if n_val <= c:
 */
         }
-        __pyx_L33_continue:;
+        __pyx_L34_continue:;
       }
     }
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":126
+  /* "pyneutube/core/processing/local_maximum.pyx":128
  *                         tail += 1
  *     finally:
  *         free(queue)             # <<<<<<<<<<<<<<
@@ -20801,7 +20830,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_4Stack_L
     __pyx_L7:;
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":128
+  /* "pyneutube/core/processing/local_maximum.pyx":130
  *         free(queue)
  * 
  *     return loc_max_mask             # <<<<<<<<<<<<<<
@@ -21259,7 +21288,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
  *             for y in range(height):
  *                 for x in range(width):             # <<<<<<<<<<<<<<
  *                     c = img[z, y, x]
- *                     on_border = (z == 0 or z == depth - 1 or
+ *                     if c == 0:
 */
         __pyx_t_16 = __pyx_v_width;
         __pyx_t_17 = __pyx_t_16;
@@ -21270,8 +21299,8 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
  *             for y in range(height):
  *                 for x in range(width):
  *                     c = img[z, y, x]             # <<<<<<<<<<<<<<
- *                     on_border = (z == 0 or z == depth - 1 or
- *                                  y == 0 or y == height - 1 or
+ *                     if c == 0:
+ *                         continue
 */
           __pyx_t_19 = __pyx_v_z;
           __pyx_t_20 = __pyx_v_y;
@@ -21281,6 +21310,34 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
           /* "pyneutube/core/processing/local_maximum.pyx":74
  *                 for x in range(width):
  *                     c = img[z, y, x]
+ *                     if c == 0:             # <<<<<<<<<<<<<<
+ *                         continue
+ *                     on_border = (z == 0 or z == depth - 1 or
+*/
+          __pyx_t_3 = (__pyx_v_c == 0.0);
+          if (__pyx_t_3) {
+
+            /* "pyneutube/core/processing/local_maximum.pyx":75
+ *                     c = img[z, y, x]
+ *                     if c == 0:
+ *                         continue             # <<<<<<<<<<<<<<
+ *                     on_border = (z == 0 or z == depth - 1 or
+ *                                  y == 0 or y == height - 1 or
+*/
+            goto __pyx_L12_continue;
+
+            /* "pyneutube/core/processing/local_maximum.pyx":74
+ *                 for x in range(width):
+ *                     c = img[z, y, x]
+ *                     if c == 0:             # <<<<<<<<<<<<<<
+ *                         continue
+ *                     on_border = (z == 0 or z == depth - 1 or
+*/
+          }
+
+          /* "pyneutube/core/processing/local_maximum.pyx":76
+ *                     if c == 0:
+ *                         continue
  *                     on_border = (z == 0 or z == depth - 1 or             # <<<<<<<<<<<<<<
  *                                  y == 0 or y == height - 1 or
  *                                  x == 0 or x == width - 1)
@@ -21289,17 +21346,17 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
           __pyx_t_3 = (__pyx_v_z == (__pyx_v_depth - 1));
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":75
- *                     c = img[z, y, x]
+          /* "pyneutube/core/processing/local_maximum.pyx":77
+ *                         continue
  *                     on_border = (z == 0 or z == depth - 1 or
  *                                  y == 0 or y == height - 1 or             # <<<<<<<<<<<<<<
  *                                  x == 0 or x == width - 1)
@@ -21309,16 +21366,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
           __pyx_t_3 = (__pyx_v_y == (__pyx_v_height - 1));
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":76
+          /* "pyneutube/core/processing/local_maximum.pyx":78
  *                     on_border = (z == 0 or z == depth - 1 or
  *                                  y == 0 or y == height - 1 or
  *                                  x == 0 or x == width - 1)             # <<<<<<<<<<<<<<
@@ -21329,14 +21386,14 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
           if (!__pyx_t_3) {
           } else {
             __pyx_t_22 = __pyx_t_3;
-            goto __pyx_L14_bool_binop_done;
+            goto __pyx_L15_bool_binop_done;
           }
           __pyx_t_3 = (__pyx_v_x == (__pyx_v_width - 1));
           __pyx_t_22 = __pyx_t_3;
-          __pyx_L14_bool_binop_done:;
+          __pyx_L15_bool_binop_done:;
           __pyx_v_on_border = __pyx_t_22;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":77
+          /* "pyneutube/core/processing/local_maximum.pyx":79
  *                                  y == 0 or y == height - 1 or
  *                                  x == 0 or x == width - 1)
  *                     for n in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -21348,43 +21405,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
           for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_24; __pyx_t_25+=1) {
             __pyx_v_n = __pyx_t_25;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":78
+            /* "pyneutube/core/processing/local_maximum.pyx":80
  *                                  x == 0 or x == width - 1)
  *                     for n in range(n_neighbors):
  *                         dz = neighbors_18[n, 0]             # <<<<<<<<<<<<<<
  *                         dy = neighbors_18[n, 1]
  *                         dx = neighbors_18[n, 2]
 */
-            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 78, __pyx_L6_error) }
+            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 80, __pyx_L6_error) }
             __pyx_t_21 = __pyx_v_n;
             __pyx_t_20 = 0;
             __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_21 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_20)) )));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":79
+            /* "pyneutube/core/processing/local_maximum.pyx":81
  *                     for n in range(n_neighbors):
  *                         dz = neighbors_18[n, 0]
  *                         dy = neighbors_18[n, 1]             # <<<<<<<<<<<<<<
  *                         dx = neighbors_18[n, 2]
  *                         nz = z + dz
 */
-            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 79, __pyx_L6_error) }
+            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 81, __pyx_L6_error) }
             __pyx_t_20 = __pyx_v_n;
             __pyx_t_21 = 1;
             __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_20 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_21)) )));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":80
+            /* "pyneutube/core/processing/local_maximum.pyx":82
  *                         dz = neighbors_18[n, 0]
  *                         dy = neighbors_18[n, 1]
  *                         dx = neighbors_18[n, 2]             # <<<<<<<<<<<<<<
  *                         nz = z + dz
  *                         ny = y + dy
 */
-            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 80, __pyx_L6_error) }
+            if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 82, __pyx_L6_error) }
             __pyx_t_21 = __pyx_v_n;
             __pyx_t_20 = 2;
             __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_21 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_20)) )));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":81
+            /* "pyneutube/core/processing/local_maximum.pyx":83
  *                         dy = neighbors_18[n, 1]
  *                         dx = neighbors_18[n, 2]
  *                         nz = z + dz             # <<<<<<<<<<<<<<
@@ -21393,7 +21450,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
             __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":82
+            /* "pyneutube/core/processing/local_maximum.pyx":84
  *                         dx = neighbors_18[n, 2]
  *                         nz = z + dz
  *                         ny = y + dy             # <<<<<<<<<<<<<<
@@ -21402,7 +21459,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
             __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":83
+            /* "pyneutube/core/processing/local_maximum.pyx":85
  *                         nz = z + dz
  *                         ny = y + dy
  *                         nx = x + dx             # <<<<<<<<<<<<<<
@@ -21411,7 +21468,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
             __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":84
+            /* "pyneutube/core/processing/local_maximum.pyx":86
  *                         ny = y + dy
  *                         nx = x + dx
  *                         if on_border:             # <<<<<<<<<<<<<<
@@ -21421,7 +21478,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
             __pyx_t_3 = (__pyx_v_on_border != 0);
             if (__pyx_t_3) {
 
-              /* "pyneutube/core/processing/local_maximum.pyx":85
+              /* "pyneutube/core/processing/local_maximum.pyx":87
  *                         nx = x + dx
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -21432,16 +21489,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
               __pyx_t_26 = (__pyx_v_nz >= __pyx_v_depth);
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
 
-              /* "pyneutube/core/processing/local_maximum.pyx":86
+              /* "pyneutube/core/processing/local_maximum.pyx":88
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or
  *                                     ny < 0 or ny >= height or             # <<<<<<<<<<<<<<
@@ -21452,16 +21509,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
               __pyx_t_26 = (__pyx_v_ny >= __pyx_v_height);
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
 
-              /* "pyneutube/core/processing/local_maximum.pyx":87
+              /* "pyneutube/core/processing/local_maximum.pyx":89
  *                             if (nz < 0 or nz >= depth or
  *                                     ny < 0 or ny >= height or
  *                                     nx < 0 or nx >= width):             # <<<<<<<<<<<<<<
@@ -21472,13 +21529,13 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
               if (!__pyx_t_26) {
               } else {
                 __pyx_t_3 = __pyx_t_26;
-                goto __pyx_L24_bool_binop_done;
+                goto __pyx_L25_bool_binop_done;
               }
               __pyx_t_26 = (__pyx_v_nx >= __pyx_v_width);
               __pyx_t_3 = __pyx_t_26;
-              __pyx_L24_bool_binop_done:;
+              __pyx_L25_bool_binop_done:;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":85
+              /* "pyneutube/core/processing/local_maximum.pyx":87
  *                         nx = x + dx
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -21487,7 +21544,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
               if (__pyx_t_3) {
 
-                /* "pyneutube/core/processing/local_maximum.pyx":88
+                /* "pyneutube/core/processing/local_maximum.pyx":90
  *                                     ny < 0 or ny >= height or
  *                                     nx < 0 or nx >= width):
  *                                 n_val = 0             # <<<<<<<<<<<<<<
@@ -21496,17 +21553,17 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
                 __pyx_v_n_val = 0.0;
 
-                /* "pyneutube/core/processing/local_maximum.pyx":85
+                /* "pyneutube/core/processing/local_maximum.pyx":87
  *                         nx = x + dx
  *                         if on_border:
  *                             if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
  *                                     ny < 0 or ny >= height or
  *                                     nx < 0 or nx >= width):
 */
-                goto __pyx_L23;
+                goto __pyx_L24;
               }
 
-              /* "pyneutube/core/processing/local_maximum.pyx":90
+              /* "pyneutube/core/processing/local_maximum.pyx":92
  *                                 n_val = 0
  *                             else:
  *                                 n_val = img[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -21519,19 +21576,19 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
                 __pyx_t_19 = __pyx_v_nx;
                 __pyx_v_n_val = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_20 * __pyx_v_img.strides[0]) ) + __pyx_t_21 * __pyx_v_img.strides[1]) )) + __pyx_t_19)) )));
               }
-              __pyx_L23:;
+              __pyx_L24:;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":84
+              /* "pyneutube/core/processing/local_maximum.pyx":86
  *                         ny = y + dy
  *                         nx = x + dx
  *                         if on_border:             # <<<<<<<<<<<<<<
  *                             if (nz < 0 or nz >= depth or
  *                                     ny < 0 or ny >= height or
 */
-              goto __pyx_L22;
+              goto __pyx_L23;
             }
 
-            /* "pyneutube/core/processing/local_maximum.pyx":92
+            /* "pyneutube/core/processing/local_maximum.pyx":94
  *                                 n_val = img[nz, ny, nx]
  *                         else:
  *                             n_val = img[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -21544,9 +21601,9 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
               __pyx_t_20 = __pyx_v_nx;
               __pyx_v_n_val = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_19 * __pyx_v_img.strides[0]) ) + __pyx_t_21 * __pyx_v_img.strides[1]) )) + __pyx_t_20)) )));
             }
-            __pyx_L22:;
+            __pyx_L23:;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":93
+            /* "pyneutube/core/processing/local_maximum.pyx":95
  *                         else:
  *                             n_val = img[nz, ny, nx]
  *                         if n_val > c:             # <<<<<<<<<<<<<<
@@ -21556,7 +21613,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
             __pyx_t_3 = (__pyx_v_n_val > __pyx_v_c);
             if (__pyx_t_3) {
 
-              /* "pyneutube/core/processing/local_maximum.pyx":94
+              /* "pyneutube/core/processing/local_maximum.pyx":96
  *                             n_val = img[nz, ny, nx]
  *                         if n_val > c:
  *                             mask[z, y, x] = 0             # <<<<<<<<<<<<<<
@@ -21568,7 +21625,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
               __pyx_t_19 = __pyx_v_x;
               *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_mask.data + __pyx_t_20 * __pyx_v_mask.strides[0]) ) + __pyx_t_21 * __pyx_v_mask.strides[1]) )) + __pyx_t_19)) )) = 0;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":95
+              /* "pyneutube/core/processing/local_maximum.pyx":97
  *                         if n_val > c:
  *                             mask[z, y, x] = 0
  *                             queue[tail] = <int> (z * plane + y * width + x)             # <<<<<<<<<<<<<<
@@ -21577,7 +21634,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
               (__pyx_v_queue[__pyx_v_tail]) = ((int)(((__pyx_v_z * __pyx_v_plane) + (__pyx_v_y * __pyx_v_width)) + __pyx_v_x));
 
-              /* "pyneutube/core/processing/local_maximum.pyx":96
+              /* "pyneutube/core/processing/local_maximum.pyx":98
  *                             mask[z, y, x] = 0
  *                             queue[tail] = <int> (z * plane + y * width + x)
  *                             tail += 1             # <<<<<<<<<<<<<<
@@ -21586,16 +21643,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
               __pyx_v_tail = (__pyx_v_tail + 1);
 
-              /* "pyneutube/core/processing/local_maximum.pyx":97
+              /* "pyneutube/core/processing/local_maximum.pyx":99
  *                             queue[tail] = <int> (z * plane + y * width + x)
  *                             tail += 1
  *                             break             # <<<<<<<<<<<<<<
  * 
  *         # Step 2: propagate "not a maximum" to equal-or-lower neighbors.
 */
-              goto __pyx_L21_break;
+              goto __pyx_L22_break;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":93
+              /* "pyneutube/core/processing/local_maximum.pyx":95
  *                         else:
  *                             n_val = img[nz, ny, nx]
  *                         if n_val > c:             # <<<<<<<<<<<<<<
@@ -21604,12 +21661,13 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
             }
           }
-          __pyx_L21_break:;
+          __pyx_L22_break:;
+          __pyx_L12_continue:;
         }
       }
     }
 
-    /* "pyneutube/core/processing/local_maximum.pyx":100
+    /* "pyneutube/core/processing/local_maximum.pyx":102
  * 
  *         # Step 2: propagate "not a maximum" to equal-or-lower neighbors.
  *         while head < tail:             # <<<<<<<<<<<<<<
@@ -21620,7 +21678,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
       __pyx_t_3 = (__pyx_v_head < __pyx_v_tail);
       if (!__pyx_t_3) break;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":101
+      /* "pyneutube/core/processing/local_maximum.pyx":103
  *         # Step 2: propagate "not a maximum" to equal-or-lower neighbors.
  *         while head < tail:
  *             rest = queue[head]             # <<<<<<<<<<<<<<
@@ -21629,7 +21687,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
       __pyx_v_rest = (__pyx_v_queue[__pyx_v_head]);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":102
+      /* "pyneutube/core/processing/local_maximum.pyx":104
  *         while head < tail:
  *             rest = queue[head]
  *             head += 1             # <<<<<<<<<<<<<<
@@ -21638,7 +21696,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
       __pyx_v_head = (__pyx_v_head + 1);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":103
+      /* "pyneutube/core/processing/local_maximum.pyx":105
  *             rest = queue[head]
  *             head += 1
  *             z = rest / plane             # <<<<<<<<<<<<<<
@@ -21647,7 +21705,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
       __pyx_v_z = (__pyx_v_rest / __pyx_v_plane);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":104
+      /* "pyneutube/core/processing/local_maximum.pyx":106
  *             head += 1
  *             z = rest / plane
  *             rest = rest - z * plane             # <<<<<<<<<<<<<<
@@ -21656,7 +21714,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
       __pyx_v_rest = (__pyx_v_rest - (__pyx_v_z * __pyx_v_plane));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":105
+      /* "pyneutube/core/processing/local_maximum.pyx":107
  *             z = rest / plane
  *             rest = rest - z * plane
  *             y = rest / width             # <<<<<<<<<<<<<<
@@ -21665,7 +21723,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
       __pyx_v_y = (__pyx_v_rest / __pyx_v_width);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":106
+      /* "pyneutube/core/processing/local_maximum.pyx":108
  *             rest = rest - z * plane
  *             y = rest / width
  *             x = rest - y * width             # <<<<<<<<<<<<<<
@@ -21674,7 +21732,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
       __pyx_v_x = (__pyx_v_rest - (__pyx_v_y * __pyx_v_width));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":107
+      /* "pyneutube/core/processing/local_maximum.pyx":109
  *             y = rest / width
  *             x = rest - y * width
  *             c = img[z, y, x]             # <<<<<<<<<<<<<<
@@ -21686,7 +21744,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
       __pyx_t_20 = __pyx_v_x;
       __pyx_v_c = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_19 * __pyx_v_img.strides[0]) ) + __pyx_t_21 * __pyx_v_img.strides[1]) )) + __pyx_t_20)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":108
+      /* "pyneutube/core/processing/local_maximum.pyx":110
  *             x = rest - y * width
  *             c = img[z, y, x]
  *             for n in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -21698,43 +21756,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
       for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
         __pyx_v_n = __pyx_t_12;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":109
+        /* "pyneutube/core/processing/local_maximum.pyx":111
  *             c = img[z, y, x]
  *             for n in range(n_neighbors):
  *                 dz = neighbors_18[n, 0]             # <<<<<<<<<<<<<<
  *                 dy = neighbors_18[n, 1]
  *                 dx = neighbors_18[n, 2]
 */
-        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 109, __pyx_L6_error) }
+        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 111, __pyx_L6_error) }
         __pyx_t_20 = __pyx_v_n;
         __pyx_t_21 = 0;
         __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_20 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_21)) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":110
+        /* "pyneutube/core/processing/local_maximum.pyx":112
  *             for n in range(n_neighbors):
  *                 dz = neighbors_18[n, 0]
  *                 dy = neighbors_18[n, 1]             # <<<<<<<<<<<<<<
  *                 dx = neighbors_18[n, 2]
  *                 nz = z + dz
 */
-        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 110, __pyx_L6_error) }
+        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 112, __pyx_L6_error) }
         __pyx_t_21 = __pyx_v_n;
         __pyx_t_20 = 1;
         __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_21 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_20)) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":111
+        /* "pyneutube/core/processing/local_maximum.pyx":113
  *                 dz = neighbors_18[n, 0]
  *                 dy = neighbors_18[n, 1]
  *                 dx = neighbors_18[n, 2]             # <<<<<<<<<<<<<<
  *                 nz = z + dz
  *                 ny = y + dy
 */
-        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 111, __pyx_L6_error) }
+        if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_18"); __PYX_ERR(0, 113, __pyx_L6_error) }
         __pyx_t_20 = __pyx_v_n;
         __pyx_t_21 = 2;
         __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.data + __pyx_t_20 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_18.strides[0]) )) + __pyx_t_21)) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":112
+        /* "pyneutube/core/processing/local_maximum.pyx":114
  *                 dy = neighbors_18[n, 1]
  *                 dx = neighbors_18[n, 2]
  *                 nz = z + dz             # <<<<<<<<<<<<<<
@@ -21743,7 +21801,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
         __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-        /* "pyneutube/core/processing/local_maximum.pyx":113
+        /* "pyneutube/core/processing/local_maximum.pyx":115
  *                 dx = neighbors_18[n, 2]
  *                 nz = z + dz
  *                 ny = y + dy             # <<<<<<<<<<<<<<
@@ -21752,7 +21810,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
         __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-        /* "pyneutube/core/processing/local_maximum.pyx":114
+        /* "pyneutube/core/processing/local_maximum.pyx":116
  *                 nz = z + dz
  *                 ny = y + dy
  *                 nx = x + dx             # <<<<<<<<<<<<<<
@@ -21761,7 +21819,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
         __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-        /* "pyneutube/core/processing/local_maximum.pyx":115
+        /* "pyneutube/core/processing/local_maximum.pyx":117
  *                 ny = y + dy
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -21772,16 +21830,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
         __pyx_t_26 = (__pyx_v_nz >= __pyx_v_depth);
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":116
+        /* "pyneutube/core/processing/local_maximum.pyx":118
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or
  *                         ny < 0 or ny >= height or             # <<<<<<<<<<<<<<
@@ -21792,16 +21850,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
         __pyx_t_26 = (__pyx_v_ny >= __pyx_v_height);
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":117
+        /* "pyneutube/core/processing/local_maximum.pyx":119
  *                 if (nz < 0 or nz >= depth or
  *                         ny < 0 or ny >= height or
  *                         nx < 0 or nx >= width):             # <<<<<<<<<<<<<<
@@ -21812,13 +21870,13 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
         if (!__pyx_t_26) {
         } else {
           __pyx_t_3 = __pyx_t_26;
-          goto __pyx_L36_bool_binop_done;
+          goto __pyx_L37_bool_binop_done;
         }
         __pyx_t_26 = (__pyx_v_nx >= __pyx_v_width);
         __pyx_t_3 = __pyx_t_26;
-        __pyx_L36_bool_binop_done:;
+        __pyx_L37_bool_binop_done:;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":115
+        /* "pyneutube/core/processing/local_maximum.pyx":117
  *                 ny = y + dy
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -21827,16 +21885,16 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
         if (__pyx_t_3) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":118
+          /* "pyneutube/core/processing/local_maximum.pyx":120
  *                         ny < 0 or ny >= height or
  *                         nx < 0 or nx >= width):
  *                     continue             # <<<<<<<<<<<<<<
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]
 */
-          goto __pyx_L33_continue;
+          goto __pyx_L34_continue;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":115
+          /* "pyneutube/core/processing/local_maximum.pyx":117
  *                 ny = y + dy
  *                 nx = x + dx
  *                 if (nz < 0 or nz >= depth or             # <<<<<<<<<<<<<<
@@ -21845,7 +21903,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":119
+        /* "pyneutube/core/processing/local_maximum.pyx":121
  *                         nx < 0 or nx >= width):
  *                     continue
  *                 if mask[nz, ny, nx]:             # <<<<<<<<<<<<<<
@@ -21858,7 +21916,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
         __pyx_t_3 = ((*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_mask.data + __pyx_t_21 * __pyx_v_mask.strides[0]) ) + __pyx_t_20 * __pyx_v_mask.strides[1]) )) + __pyx_t_19)) ))) != 0);
         if (__pyx_t_3) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":120
+          /* "pyneutube/core/processing/local_maximum.pyx":122
  *                     continue
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]             # <<<<<<<<<<<<<<
@@ -21870,7 +21928,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
           __pyx_t_21 = __pyx_v_nx;
           __pyx_v_n_val = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_19 * __pyx_v_img.strides[0]) ) + __pyx_t_20 * __pyx_v_img.strides[1]) )) + __pyx_t_21)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":121
+          /* "pyneutube/core/processing/local_maximum.pyx":123
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]
  *                     if n_val <= c:             # <<<<<<<<<<<<<<
@@ -21880,7 +21938,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
           __pyx_t_3 = (__pyx_v_n_val <= __pyx_v_c);
           if (__pyx_t_3) {
 
-            /* "pyneutube/core/processing/local_maximum.pyx":122
+            /* "pyneutube/core/processing/local_maximum.pyx":124
  *                     n_val = img[nz, ny, nx]
  *                     if n_val <= c:
  *                         mask[nz, ny, nx] = 0             # <<<<<<<<<<<<<<
@@ -21892,7 +21950,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
             __pyx_t_19 = __pyx_v_nx;
             *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ ((char *) (((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_mask.data + __pyx_t_21 * __pyx_v_mask.strides[0]) ) + __pyx_t_20 * __pyx_v_mask.strides[1]) )) + __pyx_t_19)) )) = 0;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":123
+            /* "pyneutube/core/processing/local_maximum.pyx":125
  *                     if n_val <= c:
  *                         mask[nz, ny, nx] = 0
  *                         queue[tail] = <int> (nz * plane + ny * width + nx)             # <<<<<<<<<<<<<<
@@ -21901,7 +21959,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
             (__pyx_v_queue[__pyx_v_tail]) = ((int)(((__pyx_v_nz * __pyx_v_plane) + (__pyx_v_ny * __pyx_v_width)) + __pyx_v_nx));
 
-            /* "pyneutube/core/processing/local_maximum.pyx":124
+            /* "pyneutube/core/processing/local_maximum.pyx":126
  *                         mask[nz, ny, nx] = 0
  *                         queue[tail] = <int> (nz * plane + ny * width + nx)
  *                         tail += 1             # <<<<<<<<<<<<<<
@@ -21910,7 +21968,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
             __pyx_v_tail = (__pyx_v_tail + 1);
 
-            /* "pyneutube/core/processing/local_maximum.pyx":121
+            /* "pyneutube/core/processing/local_maximum.pyx":123
  *                 if mask[nz, ny, nx]:
  *                     n_val = img[nz, ny, nx]
  *                     if n_val <= c:             # <<<<<<<<<<<<<<
@@ -21919,7 +21977,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
 */
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":119
+          /* "pyneutube/core/processing/local_maximum.pyx":121
  *                         nx < 0 or nx >= width):
  *                     continue
  *                 if mask[nz, ny, nx]:             # <<<<<<<<<<<<<<
@@ -21927,12 +21985,12 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
  *                     if n_val <= c:
 */
         }
-        __pyx_L33_continue:;
+        __pyx_L34_continue:;
       }
     }
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":126
+  /* "pyneutube/core/processing/local_maximum.pyx":128
  *                         tail += 1
  *     finally:
  *         free(queue)             # <<<<<<<<<<<<<<
@@ -21984,7 +22042,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
     __pyx_L7:;
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":128
+  /* "pyneutube/core/processing/local_maximum.pyx":130
  *         free(queue)
  * 
  *     return loc_max_mask             # <<<<<<<<<<<<<<
@@ -22033,7 +22091,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_6Stack_L
   return __pyx_r;
 }
 
-/* "pyneutube/core/processing/local_maximum.pyx":189
+/* "pyneutube/core/processing/local_maximum.pyx":191
  * 
  * 
  * def Stack_Local_Max(np.ndarray[IMAGE_t, ndim=3] image):             # <<<<<<<<<<<<<<
@@ -22070,53 +22128,53 @@ static PyObject *__pyx_pw_9pyneutube_4core_10processing_13local_maximum_3Stack_L
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_signatures,&__pyx_mstate_global->__pyx_n_u_args,&__pyx_mstate_global->__pyx_n_u_kwargs,&__pyx_mstate_global->__pyx_n_u_defaults,&__pyx_mstate_global->__pyx_n_u_fused_sigindex,0};
     struct __pyx_defaults *__pyx_dynamic_args = __Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_self);
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_VARARGS(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 189, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 191, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_VARARGS(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_VARARGS(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_VARARGS(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_VARARGS(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__pyx_fused_cpdef", 0) < (0)) __PYX_ERR(0, 189, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__pyx_fused_cpdef", 0) < (0)) __PYX_ERR(0, 191, __pyx_L3_error)
       if (!values[4]) values[4] = __Pyx_NewRef(__pyx_dynamic_args->arg0);
       for (Py_ssize_t i = __pyx_nargs; i < 4; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 0, 4, 5, i); __PYX_ERR(0, 189, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 0, 4, 5, i); __PYX_ERR(0, 191, __pyx_L3_error) }
       }
     } else {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_VARARGS(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_VARARGS(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 191, __pyx_L3_error)
         values[2] = __Pyx_ArgRef_VARARGS(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 191, __pyx_L3_error)
         values[1] = __Pyx_ArgRef_VARARGS(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 191, __pyx_L3_error)
         values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
         break;
         default: goto __pyx_L5_argtuple_error;
       }
@@ -22130,7 +22188,7 @@ static PyObject *__pyx_pw_9pyneutube_4core_10processing_13local_maximum_3Stack_L
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 0, 4, 5, __pyx_nargs); __PYX_ERR(0, 189, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 0, 4, 5, __pyx_nargs); __PYX_ERR(0, 191, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22179,7 +22237,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_2Stack_L
     __pyx_t_1 = __pyx_t_2;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_kwargs); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_kwargs); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 191, __pyx_L1_error)
   __pyx_t_3 = (!__pyx_t_2);
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
@@ -22187,20 +22245,20 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_2Stack_L
     __Pyx_INCREF(Py_None);
     __Pyx_DECREF_SET(__pyx_v_kwargs, Py_None);
   }
-  __pyx_t_4 = ((PyObject *)__Pyx_ImportNumPyArrayTypeIfAvailable()); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = ((PyObject *)__Pyx_ImportNumPyArrayTypeIfAvailable()); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_ndarray = ((PyTypeObject*)__pyx_t_4);
   __pyx_t_4 = 0;
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 189, __pyx_L1_error)
+    __PYX_ERR(0, 191, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 191, __pyx_L1_error)
   __pyx_t_1 = (0 < __pyx_t_5);
   if (__pyx_t_1) {
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 189, __pyx_L1_error)
+      __PYX_ERR(0, 191, __pyx_L1_error)
     }
     __pyx_t_4 = __Pyx_PyTuple_GET_ITEM(((PyObject*)__pyx_v_args), 0);
     __Pyx_INCREF(__pyx_t_4);
@@ -22216,17 +22274,17 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_2Stack_L
   }
   if (unlikely(__pyx_v_kwargs == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 189, __pyx_L1_error)
+    __PYX_ERR(0, 191, __pyx_L1_error)
   }
-  __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_mstate_global->__pyx_n_u_image, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_mstate_global->__pyx_n_u_image, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 191, __pyx_L1_error)
   __pyx_t_1 = __pyx_t_3;
   __pyx_L7_bool_binop_done:;
   if (likely(__pyx_t_1)) {
     if (unlikely(__pyx_v_kwargs == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 189, __pyx_L1_error)
+      __PYX_ERR(0, 191, __pyx_L1_error)
     }
-    __pyx_t_4 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_mstate_global->__pyx_n_u_image); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_mstate_global->__pyx_n_u_image); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_v_arg = __pyx_t_4;
     __pyx_t_4 = 0;
@@ -22234,21 +22292,21 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_2Stack_L
   }
   /*else*/ {
     __pyx_t_6 = NULL;
-    __pyx_t_7 = __Pyx_PyUnicode_From_long(1, 0, ' ', 'd'); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyUnicode_From_long(1, 0, ' ', 'd'); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 191, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 189, __pyx_L1_error)
+      __PYX_ERR(0, 191, __pyx_L1_error)
     }
-    __pyx_t_5 = __Pyx_PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 189, __pyx_L1_error)
-    __pyx_t_8 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_5, 0, ' ', 'd'); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 191, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_5, 0, ' ', 'd'); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 191, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __pyx_t_9[0] = __pyx_mstate_global->__pyx_kp_u_Expected_at_least;
     __pyx_t_9[1] = __pyx_t_7;
     __pyx_t_9[2] = __pyx_mstate_global->__pyx_kp_u_argument_got;
     __pyx_t_9[3] = __pyx_t_8;
     __pyx_t_10 = __Pyx_PyUnicode_Join(__pyx_t_9, 4, 18 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_7) + 15 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_8), 127);
-    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 189, __pyx_L1_error)
+    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 191, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -22258,20 +22316,20 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_2Stack_L
       __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_TypeError)), __pyx_callargs+__pyx_t_11, (2-__pyx_t_11) | (__pyx_t_11*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 189, __pyx_L1_error)
+    __PYX_ERR(0, 191, __pyx_L1_error)
   }
   __pyx_L6:;
-  __pyx_t_4 = __pyx_ff_map_fused_55fd50_2_2_b06ba5__d13c95__5numpy__dunder_pyx_t_9pyneutube_4core___etc(__pyx_v_arg, __pyx_v_ndarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = __pyx_ff_map_fused_55fd50_2_2_b06ba5__d13c95__5numpy__dunder_pyx_t_9pyneutube_4core___etc(__pyx_v_arg, __pyx_v_ndarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_dest_sig0 = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __pyx_ff_match_signatures_single(((PyObject*)__pyx_v_signatures), __pyx_v_dest_sig0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = __pyx_ff_match_signatures_single(((PyObject*)__pyx_v_signatures), __pyx_v_dest_sig0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
@@ -22319,32 +22377,32 @@ static PyObject *__pyx_fuse_0__pyx_pw_9pyneutube_4core_10processing_13local_maxi
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_image,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_VARARGS(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 189, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 191, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "Stack_Local_Max", 0) < (0)) __PYX_ERR(0, 189, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "Stack_Local_Max", 0) < (0)) __PYX_ERR(0, 191, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, i); __PYX_ERR(0, 189, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, i); __PYX_ERR(0, 191, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 189, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
     }
     __pyx_v_image = ((PyArrayObject *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 189, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 191, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22355,7 +22413,7 @@ static PyObject *__pyx_fuse_0__pyx_pw_9pyneutube_4core_10processing_13local_maxi
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image", 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image", 0))) __PYX_ERR(0, 191, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_Local_Max(__pyx_self, __pyx_v_image);
 
   /* function exit code */
@@ -22448,41 +22506,41 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
   __pyx_pybuffernd_image.rcbuffer = &__pyx_pybuffer_image;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image.rcbuffer->pybuffer, (PyObject*)__pyx_v_image, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 189, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image.rcbuffer->pybuffer, (PyObject*)__pyx_v_image, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 191, __pyx_L1_error)
   }
   __pyx_pybuffernd_image.diminfo[0].strides = __pyx_pybuffernd_image.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image.diminfo[0].shape = __pyx_pybuffernd_image.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_image.diminfo[1].strides = __pyx_pybuffernd_image.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_image.diminfo[1].shape = __pyx_pybuffernd_image.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_image.diminfo[2].strides = __pyx_pybuffernd_image.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_image.diminfo[2].shape = __pyx_pybuffernd_image.rcbuffer->pybuffer.shape[2];
 
-  /* "pyneutube/core/processing/local_maximum.pyx":200
+  /* "pyneutube/core/processing/local_maximum.pyx":202
  *     """
  *     cdef:
  *         int depth = image.shape[0]             # <<<<<<<<<<<<<<
  *         int height = image.shape[1]
  *         int width = image.shape[2]
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L1_error)
   __pyx_v_depth = (__pyx_t_1[0]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":201
+  /* "pyneutube/core/processing/local_maximum.pyx":203
  *     cdef:
  *         int depth = image.shape[0]
  *         int height = image.shape[1]             # <<<<<<<<<<<<<<
  *         int width = image.shape[2]
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 203, __pyx_L1_error)
   __pyx_v_height = (__pyx_t_1[1]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":202
+  /* "pyneutube/core/processing/local_maximum.pyx":204
  *         int depth = image.shape[0]
  *         int height = image.shape[1]
  *         int width = image.shape[2]             # <<<<<<<<<<<<<<
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
  *         IMAGE_t[:,:,:] img = image
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 204, __pyx_L1_error)
   __pyx_v_width = (__pyx_t_1[2]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":203
+  /* "pyneutube/core/processing/local_maximum.pyx":205
  *         int height = image.shape[1]
  *         int width = image.shape[2]
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)             # <<<<<<<<<<<<<<
@@ -22490,14 +22548,14 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
  *         UINT8_t[:,:,:] res = out
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ones_like); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ones_like); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uint8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uint8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_7 = 1;
@@ -22514,54 +22572,54 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, ((PyObject *)__pyx_v_image)};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 203, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 205, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 203, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 205, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_out.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) {
       __pyx_v_out = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_out.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 203, __pyx_L1_error)
+      __PYX_ERR(0, 205, __pyx_L1_error)
     } else {__pyx_pybuffernd_out.diminfo[0].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out.diminfo[0].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_out.diminfo[1].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_out.diminfo[1].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_out.diminfo[2].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_out.diminfo[2].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[2];
     }
   }
   __pyx_v_out = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":204
+  /* "pyneutube/core/processing/local_maximum.pyx":206
  *         int width = image.shape[2]
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
  *         IMAGE_t[:,:,:] img = image             # <<<<<<<<<<<<<<
  *         UINT8_t[:,:,:] res = out
  *         int z, y, x, i, j
 */
-  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t(((PyObject *)__pyx_v_image), PyBUF_WRITABLE); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t(((PyObject *)__pyx_v_image), PyBUF_WRITABLE); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 206, __pyx_L1_error)
   __pyx_v_img = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":205
+  /* "pyneutube/core/processing/local_maximum.pyx":207
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
  *         IMAGE_t[:,:,:] img = image
  *         UINT8_t[:,:,:] res = out             # <<<<<<<<<<<<<<
  *         int z, y, x, i, j
  *         int dz, dy, dx, nz, ny, nx
 */
-  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t(((PyObject *)__pyx_v_out), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t(((PyObject *)__pyx_v_out), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 207, __pyx_L1_error)
   __pyx_v_res = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":212
+  /* "pyneutube/core/processing/local_maximum.pyx":214
  * 
  *     # process boundaries first
  *     boundaries = neighbors.get_boundary_indices((depth, height, width))             # <<<<<<<<<<<<<<
@@ -22569,25 +22627,25 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
  *     cdef int n_boundaries = bview.shape[0]
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_neighbors); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_neighbors); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_get_boundary_indices); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_get_boundary_indices); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_depth); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_depth); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_height); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_height); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_PyLong_From_int(__pyx_v_width); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyLong_From_int(__pyx_v_width); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = PyTuple_New(3); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_11 = PyTuple_New(3); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 214, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 214, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_10);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 2, __pyx_t_10) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 2, __pyx_t_10) != (0)) __PYX_ERR(0, 214, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_3 = 0;
   __pyx_t_10 = 0;
@@ -22609,25 +22667,25 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __pyx_v_boundaries = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":213
+  /* "pyneutube/core/processing/local_maximum.pyx":215
  *     # process boundaries first
  *     boundaries = neighbors.get_boundary_indices((depth, height, width))
  *     cdef int[:, :] bview = boundaries   # Cython memoryview             # <<<<<<<<<<<<<<
  *     cdef int n_boundaries = bview.shape[0]
  *     cdef int n_neighbors = neighbors_26_forward.shape[0]
 */
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_boundaries, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_boundaries, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 215, __pyx_L1_error)
   __pyx_v_bview = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":214
+  /* "pyneutube/core/processing/local_maximum.pyx":216
  *     boundaries = neighbors.get_boundary_indices((depth, height, width))
  *     cdef int[:, :] bview = boundaries   # Cython memoryview
  *     cdef int n_boundaries = bview.shape[0]             # <<<<<<<<<<<<<<
@@ -22636,17 +22694,17 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
   __pyx_v_n_boundaries = (__pyx_v_bview.shape[0]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":215
+  /* "pyneutube/core/processing/local_maximum.pyx":217
  *     cdef int[:, :] bview = boundaries   # Cython memoryview
  *     cdef int n_boundaries = bview.shape[0]
  *     cdef int n_neighbors = neighbors_26_forward.shape[0]             # <<<<<<<<<<<<<<
  * 
  *     for i in range(n_boundaries):
 */
-  if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 215, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 217, __pyx_L1_error) }
   __pyx_v_n_neighbors = (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.shape[0]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":217
+  /* "pyneutube/core/processing/local_maximum.pyx":219
  *     cdef int n_neighbors = neighbors_26_forward.shape[0]
  * 
  *     for i in range(n_boundaries):             # <<<<<<<<<<<<<<
@@ -22658,7 +22716,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
   for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
     __pyx_v_i = __pyx_t_15;
 
-    /* "pyneutube/core/processing/local_maximum.pyx":218
+    /* "pyneutube/core/processing/local_maximum.pyx":220
  * 
  *     for i in range(n_boundaries):
  *         z = bview[i,0]             # <<<<<<<<<<<<<<
@@ -22669,7 +22727,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     __pyx_t_17 = 0;
     __pyx_v_z = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bview.data + __pyx_t_16 * __pyx_v_bview.strides[0]) ) + __pyx_t_17 * __pyx_v_bview.strides[1]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":219
+    /* "pyneutube/core/processing/local_maximum.pyx":221
  *     for i in range(n_boundaries):
  *         z = bview[i,0]
  *         y = bview[i,1]             # <<<<<<<<<<<<<<
@@ -22680,7 +22738,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     __pyx_t_16 = 1;
     __pyx_v_y = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bview.data + __pyx_t_17 * __pyx_v_bview.strides[0]) ) + __pyx_t_16 * __pyx_v_bview.strides[1]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":220
+    /* "pyneutube/core/processing/local_maximum.pyx":222
  *         z = bview[i,0]
  *         y = bview[i,1]
  *         x = bview[i,2]             # <<<<<<<<<<<<<<
@@ -22691,7 +22749,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     __pyx_t_17 = 2;
     __pyx_v_x = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bview.data + __pyx_t_16 * __pyx_v_bview.strides[0]) ) + __pyx_t_17 * __pyx_v_bview.strides[1]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":221
+    /* "pyneutube/core/processing/local_maximum.pyx":223
  *         y = bview[i,1]
  *         x = bview[i,2]
  *         c = img[z,y,x]             # <<<<<<<<<<<<<<
@@ -22703,7 +22761,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     __pyx_t_18 = __pyx_v_x;
     __pyx_v_c = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_17 * __pyx_v_img.strides[0]) ) + __pyx_t_16 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":222
+    /* "pyneutube/core/processing/local_maximum.pyx":224
  *         x = bview[i,2]
  *         c = img[z,y,x]
  *         if c == 0:             # <<<<<<<<<<<<<<
@@ -22713,7 +22771,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     __pyx_t_19 = (__pyx_v_c == 0.0);
     if (__pyx_t_19) {
 
-      /* "pyneutube/core/processing/local_maximum.pyx":223
+      /* "pyneutube/core/processing/local_maximum.pyx":225
  *         c = img[z,y,x]
  *         if c == 0:
  *             res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -22725,7 +22783,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
       __pyx_t_17 = __pyx_v_x;
       *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_16 * __pyx_v_res.strides[1]) ) + __pyx_t_17 * __pyx_v_res.strides[2]) )) = 0;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":224
+      /* "pyneutube/core/processing/local_maximum.pyx":226
  *         if c == 0:
  *             res[z,y,x] = 0
  *             continue             # <<<<<<<<<<<<<<
@@ -22734,7 +22792,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
       goto __pyx_L3_continue;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":222
+      /* "pyneutube/core/processing/local_maximum.pyx":224
  *         x = bview[i,2]
  *         c = img[z,y,x]
  *         if c == 0:             # <<<<<<<<<<<<<<
@@ -22743,7 +22801,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
     }
 
-    /* "pyneutube/core/processing/local_maximum.pyx":225
+    /* "pyneutube/core/processing/local_maximum.pyx":227
  *             res[z,y,x] = 0
  *             continue
  *         for j in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -22755,43 +22813,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
       __pyx_v_j = __pyx_t_22;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":226
+      /* "pyneutube/core/processing/local_maximum.pyx":228
  *             continue
  *         for j in range(n_neighbors):
  *             dz = neighbors_26_forward[j,0]             # <<<<<<<<<<<<<<
  *             dy = neighbors_26_forward[j,1]
  *             dx = neighbors_26_forward[j,2]
 */
-      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 226, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 228, __pyx_L1_error) }
       __pyx_t_17 = __pyx_v_j;
       __pyx_t_16 = 0;
       __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_17 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_16)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":227
+      /* "pyneutube/core/processing/local_maximum.pyx":229
  *         for j in range(n_neighbors):
  *             dz = neighbors_26_forward[j,0]
  *             dy = neighbors_26_forward[j,1]             # <<<<<<<<<<<<<<
  *             dx = neighbors_26_forward[j,2]
  *             nz = z + dz
 */
-      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 227, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 229, __pyx_L1_error) }
       __pyx_t_16 = __pyx_v_j;
       __pyx_t_17 = 1;
       __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_16 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_17)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":228
+      /* "pyneutube/core/processing/local_maximum.pyx":230
  *             dz = neighbors_26_forward[j,0]
  *             dy = neighbors_26_forward[j,1]
  *             dx = neighbors_26_forward[j,2]             # <<<<<<<<<<<<<<
  *             nz = z + dz
  *             ny = y + dy
 */
-      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 228, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 230, __pyx_L1_error) }
       __pyx_t_17 = __pyx_v_j;
       __pyx_t_16 = 2;
       __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_17 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_16)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":229
+      /* "pyneutube/core/processing/local_maximum.pyx":231
  *             dy = neighbors_26_forward[j,1]
  *             dx = neighbors_26_forward[j,2]
  *             nz = z + dz             # <<<<<<<<<<<<<<
@@ -22800,7 +22858,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
       __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":230
+      /* "pyneutube/core/processing/local_maximum.pyx":232
  *             dx = neighbors_26_forward[j,2]
  *             nz = z + dz
  *             ny = y + dy             # <<<<<<<<<<<<<<
@@ -22809,7 +22867,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
       __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":231
+      /* "pyneutube/core/processing/local_maximum.pyx":233
  *             nz = z + dz
  *             ny = y + dy
  *             nx = x + dx             # <<<<<<<<<<<<<<
@@ -22818,7 +22876,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
       __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":233
+      /* "pyneutube/core/processing/local_maximum.pyx":235
  *             nx = x + dx
  *             # bounds check
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):             # <<<<<<<<<<<<<<
@@ -22851,7 +22909,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
       __pyx_L9_bool_binop_done:;
       if (__pyx_t_19) {
 
-        /* "pyneutube/core/processing/local_maximum.pyx":234
+        /* "pyneutube/core/processing/local_maximum.pyx":236
  *             # bounds check
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                 n = img[nz,ny,nx]             # <<<<<<<<<<<<<<
@@ -22863,7 +22921,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
         __pyx_t_18 = __pyx_v_nx;
         __pyx_v_n = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_16 * __pyx_v_img.strides[0]) ) + __pyx_t_17 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":235
+        /* "pyneutube/core/processing/local_maximum.pyx":237
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                 n = img[nz,ny,nx]
  *                 if n > 0:             # <<<<<<<<<<<<<<
@@ -22873,7 +22931,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
         __pyx_t_19 = (__pyx_v_n > 0.0);
         if (__pyx_t_19) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":236
+          /* "pyneutube/core/processing/local_maximum.pyx":238
  *                 n = img[nz,ny,nx]
  *                 if n > 0:
  *                     if c < n:             # <<<<<<<<<<<<<<
@@ -22883,7 +22941,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
           __pyx_t_19 = (__pyx_v_c < __pyx_v_n);
           if (__pyx_t_19) {
 
-            /* "pyneutube/core/processing/local_maximum.pyx":238
+            /* "pyneutube/core/processing/local_maximum.pyx":240
  *                     if c < n:
  *                         # center is smaller: kill center
  *                         res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -22895,7 +22953,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
             __pyx_t_16 = __pyx_v_x;
             *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_17 * __pyx_v_res.strides[1]) ) + __pyx_t_16 * __pyx_v_res.strides[2]) )) = 0;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":236
+            /* "pyneutube/core/processing/local_maximum.pyx":238
  *                 n = img[nz,ny,nx]
  *                 if n > 0:
  *                     if c < n:             # <<<<<<<<<<<<<<
@@ -22905,7 +22963,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
             goto __pyx_L13;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":241
+          /* "pyneutube/core/processing/local_maximum.pyx":243
  *                     else:
  *                         # center >= neighbor: kill neighbor
  *                         res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -22920,7 +22978,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
           }
           __pyx_L13:;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":235
+          /* "pyneutube/core/processing/local_maximum.pyx":237
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                 n = img[nz,ny,nx]
  *                 if n > 0:             # <<<<<<<<<<<<<<
@@ -22930,7 +22988,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
           goto __pyx_L12;
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":243
+        /* "pyneutube/core/processing/local_maximum.pyx":245
  *                         res[nz,ny,nx] = 0
  *                 else:
  *                     res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -22945,7 +23003,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
         }
         __pyx_L12:;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":233
+        /* "pyneutube/core/processing/local_maximum.pyx":235
  *             nx = x + dx
  *             # bounds check
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):             # <<<<<<<<<<<<<<
@@ -22957,7 +23015,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     __pyx_L3_continue:;
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":247
+  /* "pyneutube/core/processing/local_maximum.pyx":249
  * 
  *     # internal voxels
  *     for z in range(1, depth-1):             # <<<<<<<<<<<<<<
@@ -22969,7 +23027,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
   for (__pyx_t_13 = 1; __pyx_t_13 < __pyx_t_25; __pyx_t_13+=1) {
     __pyx_v_z = __pyx_t_13;
 
-    /* "pyneutube/core/processing/local_maximum.pyx":248
+    /* "pyneutube/core/processing/local_maximum.pyx":250
  *     # internal voxels
  *     for z in range(1, depth-1):
  *         for y in range(1, height-1):             # <<<<<<<<<<<<<<
@@ -22981,7 +23039,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     for (__pyx_t_14 = 1; __pyx_t_14 < __pyx_t_27; __pyx_t_14+=1) {
       __pyx_v_y = __pyx_t_14;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":249
+      /* "pyneutube/core/processing/local_maximum.pyx":251
  *     for z in range(1, depth-1):
  *         for y in range(1, height-1):
  *             for x in range(1, width-1):             # <<<<<<<<<<<<<<
@@ -22993,7 +23051,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
       for (__pyx_t_15 = 1; __pyx_t_15 < __pyx_t_29; __pyx_t_15+=1) {
         __pyx_v_x = __pyx_t_15;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":250
+        /* "pyneutube/core/processing/local_maximum.pyx":252
  *         for y in range(1, height-1):
  *             for x in range(1, width-1):
  *                 c = img[z,y,x]             # <<<<<<<<<<<<<<
@@ -23005,7 +23063,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
         __pyx_t_18 = __pyx_v_x;
         __pyx_v_c = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_16 * __pyx_v_img.strides[0]) ) + __pyx_t_17 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":251
+        /* "pyneutube/core/processing/local_maximum.pyx":253
  *             for x in range(1, width-1):
  *                 c = img[z,y,x]
  *                 if c == 0:             # <<<<<<<<<<<<<<
@@ -23015,7 +23073,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
         __pyx_t_19 = (__pyx_v_c == 0.0);
         if (__pyx_t_19) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":252
+          /* "pyneutube/core/processing/local_maximum.pyx":254
  *                 c = img[z,y,x]
  *                 if c == 0:
  *                     res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -23027,7 +23085,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
           __pyx_t_16 = __pyx_v_x;
           *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_17 * __pyx_v_res.strides[1]) ) + __pyx_t_16 * __pyx_v_res.strides[2]) )) = 0;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":253
+          /* "pyneutube/core/processing/local_maximum.pyx":255
  *                 if c == 0:
  *                     res[z,y,x] = 0
  *                     continue             # <<<<<<<<<<<<<<
@@ -23036,7 +23094,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
           goto __pyx_L18_continue;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":251
+          /* "pyneutube/core/processing/local_maximum.pyx":253
  *             for x in range(1, width-1):
  *                 c = img[z,y,x]
  *                 if c == 0:             # <<<<<<<<<<<<<<
@@ -23045,7 +23103,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":254
+        /* "pyneutube/core/processing/local_maximum.pyx":256
  *                     res[z,y,x] = 0
  *                     continue
  *                 for i in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -23057,43 +23115,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
         for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
           __pyx_v_i = __pyx_t_22;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":255
+          /* "pyneutube/core/processing/local_maximum.pyx":257
  *                     continue
  *                 for i in range(n_neighbors):
  *                     dz = neighbors_26_forward[i,0]             # <<<<<<<<<<<<<<
  *                     dy = neighbors_26_forward[i,1]
  *                     dx = neighbors_26_forward[i,2]
 */
-          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 255, __pyx_L1_error) }
+          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 257, __pyx_L1_error) }
           __pyx_t_16 = __pyx_v_i;
           __pyx_t_17 = 0;
           __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_16 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_17)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":256
+          /* "pyneutube/core/processing/local_maximum.pyx":258
  *                 for i in range(n_neighbors):
  *                     dz = neighbors_26_forward[i,0]
  *                     dy = neighbors_26_forward[i,1]             # <<<<<<<<<<<<<<
  *                     dx = neighbors_26_forward[i,2]
  *                     nz = z + dz
 */
-          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 256, __pyx_L1_error) }
+          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 258, __pyx_L1_error) }
           __pyx_t_17 = __pyx_v_i;
           __pyx_t_16 = 1;
           __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_17 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_16)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":257
+          /* "pyneutube/core/processing/local_maximum.pyx":259
  *                     dz = neighbors_26_forward[i,0]
  *                     dy = neighbors_26_forward[i,1]
  *                     dx = neighbors_26_forward[i,2]             # <<<<<<<<<<<<<<
  *                     nz = z + dz
  *                     ny = y + dy
 */
-          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 257, __pyx_L1_error) }
+          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 259, __pyx_L1_error) }
           __pyx_t_16 = __pyx_v_i;
           __pyx_t_17 = 2;
           __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_16 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_17)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":258
+          /* "pyneutube/core/processing/local_maximum.pyx":260
  *                     dy = neighbors_26_forward[i,1]
  *                     dx = neighbors_26_forward[i,2]
  *                     nz = z + dz             # <<<<<<<<<<<<<<
@@ -23102,7 +23160,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
           __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-          /* "pyneutube/core/processing/local_maximum.pyx":259
+          /* "pyneutube/core/processing/local_maximum.pyx":261
  *                     dx = neighbors_26_forward[i,2]
  *                     nz = z + dz
  *                     ny = y + dy             # <<<<<<<<<<<<<<
@@ -23111,7 +23169,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
           __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-          /* "pyneutube/core/processing/local_maximum.pyx":260
+          /* "pyneutube/core/processing/local_maximum.pyx":262
  *                     nz = z + dz
  *                     ny = y + dy
  *                     nx = x + dx             # <<<<<<<<<<<<<<
@@ -23120,7 +23178,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
 */
           __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-          /* "pyneutube/core/processing/local_maximum.pyx":263
+          /* "pyneutube/core/processing/local_maximum.pyx":265
  *                     # bounds check (no need)
  *                     # if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                     n = img[nz,ny,nx]             # <<<<<<<<<<<<<<
@@ -23132,7 +23190,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
           __pyx_t_18 = __pyx_v_nx;
           __pyx_v_n = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT32_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_17 * __pyx_v_img.strides[0]) ) + __pyx_t_16 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":264
+          /* "pyneutube/core/processing/local_maximum.pyx":266
  *                     # if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                     n = img[nz,ny,nx]
  *                     if n > 0:             # <<<<<<<<<<<<<<
@@ -23142,7 +23200,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
           __pyx_t_19 = (__pyx_v_n > 0.0);
           if (__pyx_t_19) {
 
-            /* "pyneutube/core/processing/local_maximum.pyx":265
+            /* "pyneutube/core/processing/local_maximum.pyx":267
  *                     n = img[nz,ny,nx]
  *                     if n > 0:
  *                         if c < n:             # <<<<<<<<<<<<<<
@@ -23152,7 +23210,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
             __pyx_t_19 = (__pyx_v_c < __pyx_v_n);
             if (__pyx_t_19) {
 
-              /* "pyneutube/core/processing/local_maximum.pyx":267
+              /* "pyneutube/core/processing/local_maximum.pyx":269
  *                         if c < n:
  *                             # center is smaller: kill center
  *                             res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -23164,7 +23222,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
               __pyx_t_17 = __pyx_v_x;
               *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_16 * __pyx_v_res.strides[1]) ) + __pyx_t_17 * __pyx_v_res.strides[2]) )) = 0;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":265
+              /* "pyneutube/core/processing/local_maximum.pyx":267
  *                     n = img[nz,ny,nx]
  *                     if n > 0:
  *                         if c < n:             # <<<<<<<<<<<<<<
@@ -23174,7 +23232,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
               goto __pyx_L24;
             }
 
-            /* "pyneutube/core/processing/local_maximum.pyx":270
+            /* "pyneutube/core/processing/local_maximum.pyx":272
  *                         else:
  *                             # center >= neighbor: kill neighbor
  *                             res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -23189,7 +23247,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
             }
             __pyx_L24:;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":264
+            /* "pyneutube/core/processing/local_maximum.pyx":266
  *                     # if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                     n = img[nz,ny,nx]
  *                     if n > 0:             # <<<<<<<<<<<<<<
@@ -23199,7 +23257,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
             goto __pyx_L23;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":272
+          /* "pyneutube/core/processing/local_maximum.pyx":274
  *                             res[nz,ny,nx] = 0
  *                     else:
  *                         res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -23219,7 +23277,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
     }
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":274
+  /* "pyneutube/core/processing/local_maximum.pyx":276
  *                         res[nz,ny,nx] = 0
  * 
  *     return out             # <<<<<<<<<<<<<<
@@ -23231,7 +23289,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_10Stack_
   __pyx_r = ((PyObject *)__pyx_v_out);
   goto __pyx_L0;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":189
+  /* "pyneutube/core/processing/local_maximum.pyx":191
  * 
  * 
  * def Stack_Local_Max(np.ndarray[IMAGE_t, ndim=3] image):             # <<<<<<<<<<<<<<
@@ -23298,32 +23356,32 @@ static PyObject *__pyx_fuse_1__pyx_pw_9pyneutube_4core_10processing_13local_maxi
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_image,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_VARARGS(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 189, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 191, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 189, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "Stack_Local_Max", 0) < (0)) __PYX_ERR(0, 189, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "Stack_Local_Max", 0) < (0)) __PYX_ERR(0, 191, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, i); __PYX_ERR(0, 189, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, i); __PYX_ERR(0, 191, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_VARARGS(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 189, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
     }
     __pyx_v_image = ((PyArrayObject *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 189, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("Stack_Local_Max", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 191, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23334,7 +23392,7 @@ static PyObject *__pyx_fuse_1__pyx_pw_9pyneutube_4core_10processing_13local_maxi
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image", 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "image", 0))) __PYX_ERR(0, 191, __pyx_L1_error)
   __pyx_r = __pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_Local_Max(__pyx_self, __pyx_v_image);
 
   /* function exit code */
@@ -23427,41 +23485,41 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
   __pyx_pybuffernd_image.rcbuffer = &__pyx_pybuffer_image;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image.rcbuffer->pybuffer, (PyObject*)__pyx_v_image, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 189, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image.rcbuffer->pybuffer, (PyObject*)__pyx_v_image, &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 191, __pyx_L1_error)
   }
   __pyx_pybuffernd_image.diminfo[0].strides = __pyx_pybuffernd_image.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image.diminfo[0].shape = __pyx_pybuffernd_image.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_image.diminfo[1].strides = __pyx_pybuffernd_image.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_image.diminfo[1].shape = __pyx_pybuffernd_image.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_image.diminfo[2].strides = __pyx_pybuffernd_image.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_image.diminfo[2].shape = __pyx_pybuffernd_image.rcbuffer->pybuffer.shape[2];
 
-  /* "pyneutube/core/processing/local_maximum.pyx":200
+  /* "pyneutube/core/processing/local_maximum.pyx":202
  *     """
  *     cdef:
  *         int depth = image.shape[0]             # <<<<<<<<<<<<<<
  *         int height = image.shape[1]
  *         int width = image.shape[2]
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L1_error)
   __pyx_v_depth = (__pyx_t_1[0]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":201
+  /* "pyneutube/core/processing/local_maximum.pyx":203
  *     cdef:
  *         int depth = image.shape[0]
  *         int height = image.shape[1]             # <<<<<<<<<<<<<<
  *         int width = image.shape[2]
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 203, __pyx_L1_error)
   __pyx_v_height = (__pyx_t_1[1]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":202
+  /* "pyneutube/core/processing/local_maximum.pyx":204
  *         int depth = image.shape[0]
  *         int height = image.shape[1]
  *         int width = image.shape[2]             # <<<<<<<<<<<<<<
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
  *         IMAGE_t[:,:,:] img = image
 */
-  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_image)); if (unlikely(__pyx_t_1 == ((void *)NULL) && PyErr_Occurred())) __PYX_ERR(0, 204, __pyx_L1_error)
   __pyx_v_width = (__pyx_t_1[2]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":203
+  /* "pyneutube/core/processing/local_maximum.pyx":205
  *         int height = image.shape[1]
  *         int width = image.shape[2]
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)             # <<<<<<<<<<<<<<
@@ -23469,14 +23527,14 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
  *         UINT8_t[:,:,:] res = out
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ones_like); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ones_like); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uint8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uint8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_7 = 1;
@@ -23493,54 +23551,54 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, ((PyObject *)__pyx_v_image)};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 203, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 205, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 203, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 205, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_out.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) {
       __pyx_v_out = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_out.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 203, __pyx_L1_error)
+      __PYX_ERR(0, 205, __pyx_L1_error)
     } else {__pyx_pybuffernd_out.diminfo[0].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out.diminfo[0].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_out.diminfo[1].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_out.diminfo[1].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_out.diminfo[2].strides = __pyx_pybuffernd_out.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_out.diminfo[2].shape = __pyx_pybuffernd_out.rcbuffer->pybuffer.shape[2];
     }
   }
   __pyx_v_out = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":204
+  /* "pyneutube/core/processing/local_maximum.pyx":206
  *         int width = image.shape[2]
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
  *         IMAGE_t[:,:,:] img = image             # <<<<<<<<<<<<<<
  *         UINT8_t[:,:,:] res = out
  *         int z, y, x, i, j
 */
-  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t(((PyObject *)__pyx_v_image), PyBUF_WRITABLE); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t(((PyObject *)__pyx_v_image), PyBUF_WRITABLE); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 206, __pyx_L1_error)
   __pyx_v_img = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":205
+  /* "pyneutube/core/processing/local_maximum.pyx":207
  *         np.ndarray[UINT8_t, ndim=3] out = np.ones_like(image, dtype=np.uint8)
  *         IMAGE_t[:,:,:] img = image
  *         UINT8_t[:,:,:] res = out             # <<<<<<<<<<<<<<
  *         int z, y, x, i, j
  *         int dz, dy, dx, nz, ny, nx
 */
-  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t(((PyObject *)__pyx_v_out), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_nn___pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t(((PyObject *)__pyx_v_out), PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 207, __pyx_L1_error)
   __pyx_v_res = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":212
+  /* "pyneutube/core/processing/local_maximum.pyx":214
  * 
  *     # process boundaries first
  *     boundaries = neighbors.get_boundary_indices((depth, height, width))             # <<<<<<<<<<<<<<
@@ -23548,25 +23606,25 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
  *     cdef int n_boundaries = bview.shape[0]
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_neighbors); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_neighbors); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_get_boundary_indices); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_get_boundary_indices); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_depth); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_depth); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_height); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_height); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_PyLong_From_int(__pyx_v_width); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyLong_From_int(__pyx_v_width); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = PyTuple_New(3); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_11 = PyTuple_New(3); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 214, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 214, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_10);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 2, __pyx_t_10) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 2, __pyx_t_10) != (0)) __PYX_ERR(0, 214, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_3 = 0;
   __pyx_t_10 = 0;
@@ -23588,25 +23646,25 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __pyx_v_boundaries = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":213
+  /* "pyneutube/core/processing/local_maximum.pyx":215
  *     # process boundaries first
  *     boundaries = neighbors.get_boundary_indices((depth, height, width))
  *     cdef int[:, :] bview = boundaries   # Cython memoryview             # <<<<<<<<<<<<<<
  *     cdef int n_boundaries = bview.shape[0]
  *     cdef int n_neighbors = neighbors_26_forward.shape[0]
 */
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_boundaries, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_boundaries, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 215, __pyx_L1_error)
   __pyx_v_bview = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":214
+  /* "pyneutube/core/processing/local_maximum.pyx":216
  *     boundaries = neighbors.get_boundary_indices((depth, height, width))
  *     cdef int[:, :] bview = boundaries   # Cython memoryview
  *     cdef int n_boundaries = bview.shape[0]             # <<<<<<<<<<<<<<
@@ -23615,17 +23673,17 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
   __pyx_v_n_boundaries = (__pyx_v_bview.shape[0]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":215
+  /* "pyneutube/core/processing/local_maximum.pyx":217
  *     cdef int[:, :] bview = boundaries   # Cython memoryview
  *     cdef int n_boundaries = bview.shape[0]
  *     cdef int n_neighbors = neighbors_26_forward.shape[0]             # <<<<<<<<<<<<<<
  * 
  *     for i in range(n_boundaries):
 */
-  if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 215, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 217, __pyx_L1_error) }
   __pyx_v_n_neighbors = (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.shape[0]);
 
-  /* "pyneutube/core/processing/local_maximum.pyx":217
+  /* "pyneutube/core/processing/local_maximum.pyx":219
  *     cdef int n_neighbors = neighbors_26_forward.shape[0]
  * 
  *     for i in range(n_boundaries):             # <<<<<<<<<<<<<<
@@ -23637,7 +23695,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
   for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
     __pyx_v_i = __pyx_t_15;
 
-    /* "pyneutube/core/processing/local_maximum.pyx":218
+    /* "pyneutube/core/processing/local_maximum.pyx":220
  * 
  *     for i in range(n_boundaries):
  *         z = bview[i,0]             # <<<<<<<<<<<<<<
@@ -23648,7 +23706,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     __pyx_t_17 = 0;
     __pyx_v_z = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bview.data + __pyx_t_16 * __pyx_v_bview.strides[0]) ) + __pyx_t_17 * __pyx_v_bview.strides[1]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":219
+    /* "pyneutube/core/processing/local_maximum.pyx":221
  *     for i in range(n_boundaries):
  *         z = bview[i,0]
  *         y = bview[i,1]             # <<<<<<<<<<<<<<
@@ -23659,7 +23717,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     __pyx_t_16 = 1;
     __pyx_v_y = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bview.data + __pyx_t_17 * __pyx_v_bview.strides[0]) ) + __pyx_t_16 * __pyx_v_bview.strides[1]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":220
+    /* "pyneutube/core/processing/local_maximum.pyx":222
  *         z = bview[i,0]
  *         y = bview[i,1]
  *         x = bview[i,2]             # <<<<<<<<<<<<<<
@@ -23670,7 +23728,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     __pyx_t_17 = 2;
     __pyx_v_x = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bview.data + __pyx_t_16 * __pyx_v_bview.strides[0]) ) + __pyx_t_17 * __pyx_v_bview.strides[1]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":221
+    /* "pyneutube/core/processing/local_maximum.pyx":223
  *         y = bview[i,1]
  *         x = bview[i,2]
  *         c = img[z,y,x]             # <<<<<<<<<<<<<<
@@ -23682,7 +23740,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     __pyx_t_18 = __pyx_v_x;
     __pyx_v_c = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_17 * __pyx_v_img.strides[0]) ) + __pyx_t_16 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-    /* "pyneutube/core/processing/local_maximum.pyx":222
+    /* "pyneutube/core/processing/local_maximum.pyx":224
  *         x = bview[i,2]
  *         c = img[z,y,x]
  *         if c == 0:             # <<<<<<<<<<<<<<
@@ -23692,7 +23750,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     __pyx_t_19 = (__pyx_v_c == 0.0);
     if (__pyx_t_19) {
 
-      /* "pyneutube/core/processing/local_maximum.pyx":223
+      /* "pyneutube/core/processing/local_maximum.pyx":225
  *         c = img[z,y,x]
  *         if c == 0:
  *             res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -23704,7 +23762,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
       __pyx_t_17 = __pyx_v_x;
       *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_16 * __pyx_v_res.strides[1]) ) + __pyx_t_17 * __pyx_v_res.strides[2]) )) = 0;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":224
+      /* "pyneutube/core/processing/local_maximum.pyx":226
  *         if c == 0:
  *             res[z,y,x] = 0
  *             continue             # <<<<<<<<<<<<<<
@@ -23713,7 +23771,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
       goto __pyx_L3_continue;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":222
+      /* "pyneutube/core/processing/local_maximum.pyx":224
  *         x = bview[i,2]
  *         c = img[z,y,x]
  *         if c == 0:             # <<<<<<<<<<<<<<
@@ -23722,7 +23780,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
     }
 
-    /* "pyneutube/core/processing/local_maximum.pyx":225
+    /* "pyneutube/core/processing/local_maximum.pyx":227
  *             res[z,y,x] = 0
  *             continue
  *         for j in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -23734,43 +23792,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
       __pyx_v_j = __pyx_t_22;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":226
+      /* "pyneutube/core/processing/local_maximum.pyx":228
  *             continue
  *         for j in range(n_neighbors):
  *             dz = neighbors_26_forward[j,0]             # <<<<<<<<<<<<<<
  *             dy = neighbors_26_forward[j,1]
  *             dx = neighbors_26_forward[j,2]
 */
-      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 226, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 228, __pyx_L1_error) }
       __pyx_t_17 = __pyx_v_j;
       __pyx_t_16 = 0;
       __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_17 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_16)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":227
+      /* "pyneutube/core/processing/local_maximum.pyx":229
  *         for j in range(n_neighbors):
  *             dz = neighbors_26_forward[j,0]
  *             dy = neighbors_26_forward[j,1]             # <<<<<<<<<<<<<<
  *             dx = neighbors_26_forward[j,2]
  *             nz = z + dz
 */
-      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 227, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 229, __pyx_L1_error) }
       __pyx_t_16 = __pyx_v_j;
       __pyx_t_17 = 1;
       __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_16 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_17)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":228
+      /* "pyneutube/core/processing/local_maximum.pyx":230
  *             dz = neighbors_26_forward[j,0]
  *             dy = neighbors_26_forward[j,1]
  *             dx = neighbors_26_forward[j,2]             # <<<<<<<<<<<<<<
  *             nz = z + dz
  *             ny = y + dy
 */
-      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 228, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 230, __pyx_L1_error) }
       __pyx_t_17 = __pyx_v_j;
       __pyx_t_16 = 2;
       __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_17 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_16)) )));
 
-      /* "pyneutube/core/processing/local_maximum.pyx":229
+      /* "pyneutube/core/processing/local_maximum.pyx":231
  *             dy = neighbors_26_forward[j,1]
  *             dx = neighbors_26_forward[j,2]
  *             nz = z + dz             # <<<<<<<<<<<<<<
@@ -23779,7 +23837,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
       __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":230
+      /* "pyneutube/core/processing/local_maximum.pyx":232
  *             dx = neighbors_26_forward[j,2]
  *             nz = z + dz
  *             ny = y + dy             # <<<<<<<<<<<<<<
@@ -23788,7 +23846,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
       __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":231
+      /* "pyneutube/core/processing/local_maximum.pyx":233
  *             nz = z + dz
  *             ny = y + dy
  *             nx = x + dx             # <<<<<<<<<<<<<<
@@ -23797,7 +23855,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
       __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-      /* "pyneutube/core/processing/local_maximum.pyx":233
+      /* "pyneutube/core/processing/local_maximum.pyx":235
  *             nx = x + dx
  *             # bounds check
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):             # <<<<<<<<<<<<<<
@@ -23830,7 +23888,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
       __pyx_L9_bool_binop_done:;
       if (__pyx_t_19) {
 
-        /* "pyneutube/core/processing/local_maximum.pyx":234
+        /* "pyneutube/core/processing/local_maximum.pyx":236
  *             # bounds check
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                 n = img[nz,ny,nx]             # <<<<<<<<<<<<<<
@@ -23842,7 +23900,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
         __pyx_t_18 = __pyx_v_nx;
         __pyx_v_n = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_16 * __pyx_v_img.strides[0]) ) + __pyx_t_17 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":235
+        /* "pyneutube/core/processing/local_maximum.pyx":237
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                 n = img[nz,ny,nx]
  *                 if n > 0:             # <<<<<<<<<<<<<<
@@ -23852,7 +23910,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
         __pyx_t_19 = (__pyx_v_n > 0.0);
         if (__pyx_t_19) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":236
+          /* "pyneutube/core/processing/local_maximum.pyx":238
  *                 n = img[nz,ny,nx]
  *                 if n > 0:
  *                     if c < n:             # <<<<<<<<<<<<<<
@@ -23862,7 +23920,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
           __pyx_t_19 = (__pyx_v_c < __pyx_v_n);
           if (__pyx_t_19) {
 
-            /* "pyneutube/core/processing/local_maximum.pyx":238
+            /* "pyneutube/core/processing/local_maximum.pyx":240
  *                     if c < n:
  *                         # center is smaller: kill center
  *                         res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -23874,7 +23932,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
             __pyx_t_16 = __pyx_v_x;
             *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_17 * __pyx_v_res.strides[1]) ) + __pyx_t_16 * __pyx_v_res.strides[2]) )) = 0;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":236
+            /* "pyneutube/core/processing/local_maximum.pyx":238
  *                 n = img[nz,ny,nx]
  *                 if n > 0:
  *                     if c < n:             # <<<<<<<<<<<<<<
@@ -23884,7 +23942,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
             goto __pyx_L13;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":241
+          /* "pyneutube/core/processing/local_maximum.pyx":243
  *                     else:
  *                         # center >= neighbor: kill neighbor
  *                         res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -23899,7 +23957,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
           }
           __pyx_L13:;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":235
+          /* "pyneutube/core/processing/local_maximum.pyx":237
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                 n = img[nz,ny,nx]
  *                 if n > 0:             # <<<<<<<<<<<<<<
@@ -23909,7 +23967,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
           goto __pyx_L12;
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":243
+        /* "pyneutube/core/processing/local_maximum.pyx":245
  *                         res[nz,ny,nx] = 0
  *                 else:
  *                     res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -23924,7 +23982,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
         }
         __pyx_L12:;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":233
+        /* "pyneutube/core/processing/local_maximum.pyx":235
  *             nx = x + dx
  *             # bounds check
  *             if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):             # <<<<<<<<<<<<<<
@@ -23936,7 +23994,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     __pyx_L3_continue:;
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":247
+  /* "pyneutube/core/processing/local_maximum.pyx":249
  * 
  *     # internal voxels
  *     for z in range(1, depth-1):             # <<<<<<<<<<<<<<
@@ -23948,7 +24006,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
   for (__pyx_t_13 = 1; __pyx_t_13 < __pyx_t_25; __pyx_t_13+=1) {
     __pyx_v_z = __pyx_t_13;
 
-    /* "pyneutube/core/processing/local_maximum.pyx":248
+    /* "pyneutube/core/processing/local_maximum.pyx":250
  *     # internal voxels
  *     for z in range(1, depth-1):
  *         for y in range(1, height-1):             # <<<<<<<<<<<<<<
@@ -23960,7 +24018,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     for (__pyx_t_14 = 1; __pyx_t_14 < __pyx_t_27; __pyx_t_14+=1) {
       __pyx_v_y = __pyx_t_14;
 
-      /* "pyneutube/core/processing/local_maximum.pyx":249
+      /* "pyneutube/core/processing/local_maximum.pyx":251
  *     for z in range(1, depth-1):
  *         for y in range(1, height-1):
  *             for x in range(1, width-1):             # <<<<<<<<<<<<<<
@@ -23972,7 +24030,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
       for (__pyx_t_15 = 1; __pyx_t_15 < __pyx_t_29; __pyx_t_15+=1) {
         __pyx_v_x = __pyx_t_15;
 
-        /* "pyneutube/core/processing/local_maximum.pyx":250
+        /* "pyneutube/core/processing/local_maximum.pyx":252
  *         for y in range(1, height-1):
  *             for x in range(1, width-1):
  *                 c = img[z,y,x]             # <<<<<<<<<<<<<<
@@ -23984,7 +24042,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
         __pyx_t_18 = __pyx_v_x;
         __pyx_v_c = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_16 * __pyx_v_img.strides[0]) ) + __pyx_t_17 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-        /* "pyneutube/core/processing/local_maximum.pyx":251
+        /* "pyneutube/core/processing/local_maximum.pyx":253
  *             for x in range(1, width-1):
  *                 c = img[z,y,x]
  *                 if c == 0:             # <<<<<<<<<<<<<<
@@ -23994,7 +24052,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
         __pyx_t_19 = (__pyx_v_c == 0.0);
         if (__pyx_t_19) {
 
-          /* "pyneutube/core/processing/local_maximum.pyx":252
+          /* "pyneutube/core/processing/local_maximum.pyx":254
  *                 c = img[z,y,x]
  *                 if c == 0:
  *                     res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -24006,7 +24064,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
           __pyx_t_16 = __pyx_v_x;
           *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_17 * __pyx_v_res.strides[1]) ) + __pyx_t_16 * __pyx_v_res.strides[2]) )) = 0;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":253
+          /* "pyneutube/core/processing/local_maximum.pyx":255
  *                 if c == 0:
  *                     res[z,y,x] = 0
  *                     continue             # <<<<<<<<<<<<<<
@@ -24015,7 +24073,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
           goto __pyx_L18_continue;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":251
+          /* "pyneutube/core/processing/local_maximum.pyx":253
  *             for x in range(1, width-1):
  *                 c = img[z,y,x]
  *                 if c == 0:             # <<<<<<<<<<<<<<
@@ -24024,7 +24082,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
         }
 
-        /* "pyneutube/core/processing/local_maximum.pyx":254
+        /* "pyneutube/core/processing/local_maximum.pyx":256
  *                     res[z,y,x] = 0
  *                     continue
  *                 for i in range(n_neighbors):             # <<<<<<<<<<<<<<
@@ -24036,43 +24094,43 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
         for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
           __pyx_v_i = __pyx_t_22;
 
-          /* "pyneutube/core/processing/local_maximum.pyx":255
+          /* "pyneutube/core/processing/local_maximum.pyx":257
  *                     continue
  *                 for i in range(n_neighbors):
  *                     dz = neighbors_26_forward[i,0]             # <<<<<<<<<<<<<<
  *                     dy = neighbors_26_forward[i,1]
  *                     dx = neighbors_26_forward[i,2]
 */
-          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 255, __pyx_L1_error) }
+          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 257, __pyx_L1_error) }
           __pyx_t_16 = __pyx_v_i;
           __pyx_t_17 = 0;
           __pyx_v_dz = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_16 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_17)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":256
+          /* "pyneutube/core/processing/local_maximum.pyx":258
  *                 for i in range(n_neighbors):
  *                     dz = neighbors_26_forward[i,0]
  *                     dy = neighbors_26_forward[i,1]             # <<<<<<<<<<<<<<
  *                     dx = neighbors_26_forward[i,2]
  *                     nz = z + dz
 */
-          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 256, __pyx_L1_error) }
+          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 258, __pyx_L1_error) }
           __pyx_t_17 = __pyx_v_i;
           __pyx_t_16 = 1;
           __pyx_v_dy = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_17 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_16)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":257
+          /* "pyneutube/core/processing/local_maximum.pyx":259
  *                     dz = neighbors_26_forward[i,0]
  *                     dy = neighbors_26_forward[i,1]
  *                     dx = neighbors_26_forward[i,2]             # <<<<<<<<<<<<<<
  *                     nz = z + dz
  *                     ny = y + dy
 */
-          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 257, __pyx_L1_error) }
+          if (unlikely(!__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.memview)) { __Pyx_RaiseUnboundLocalError("neighbors_26_forward"); __PYX_ERR(0, 259, __pyx_L1_error) }
           __pyx_t_16 = __pyx_v_i;
           __pyx_t_17 = 2;
           __pyx_v_dx = (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.data + __pyx_t_16 * __pyx_v_9pyneutube_4core_10processing_13local_maximum_neighbors_26_forward.strides[0]) )) + __pyx_t_17)) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":258
+          /* "pyneutube/core/processing/local_maximum.pyx":260
  *                     dy = neighbors_26_forward[i,1]
  *                     dx = neighbors_26_forward[i,2]
  *                     nz = z + dz             # <<<<<<<<<<<<<<
@@ -24081,7 +24139,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
           __pyx_v_nz = (__pyx_v_z + __pyx_v_dz);
 
-          /* "pyneutube/core/processing/local_maximum.pyx":259
+          /* "pyneutube/core/processing/local_maximum.pyx":261
  *                     dx = neighbors_26_forward[i,2]
  *                     nz = z + dz
  *                     ny = y + dy             # <<<<<<<<<<<<<<
@@ -24090,7 +24148,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
           __pyx_v_ny = (__pyx_v_y + __pyx_v_dy);
 
-          /* "pyneutube/core/processing/local_maximum.pyx":260
+          /* "pyneutube/core/processing/local_maximum.pyx":262
  *                     nz = z + dz
  *                     ny = y + dy
  *                     nx = x + dx             # <<<<<<<<<<<<<<
@@ -24099,7 +24157,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
 */
           __pyx_v_nx = (__pyx_v_x + __pyx_v_dx);
 
-          /* "pyneutube/core/processing/local_maximum.pyx":263
+          /* "pyneutube/core/processing/local_maximum.pyx":265
  *                     # bounds check (no need)
  *                     # if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                     n = img[nz,ny,nx]             # <<<<<<<<<<<<<<
@@ -24111,7 +24169,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
           __pyx_t_18 = __pyx_v_nx;
           __pyx_v_n = (*((__pyx_t_9pyneutube_4core_10processing_13local_maximum_FLOAT64_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_img.data + __pyx_t_17 * __pyx_v_img.strides[0]) ) + __pyx_t_16 * __pyx_v_img.strides[1]) ) + __pyx_t_18 * __pyx_v_img.strides[2]) )));
 
-          /* "pyneutube/core/processing/local_maximum.pyx":264
+          /* "pyneutube/core/processing/local_maximum.pyx":266
  *                     # if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                     n = img[nz,ny,nx]
  *                     if n > 0:             # <<<<<<<<<<<<<<
@@ -24121,7 +24179,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
           __pyx_t_19 = (__pyx_v_n > 0.0);
           if (__pyx_t_19) {
 
-            /* "pyneutube/core/processing/local_maximum.pyx":265
+            /* "pyneutube/core/processing/local_maximum.pyx":267
  *                     n = img[nz,ny,nx]
  *                     if n > 0:
  *                         if c < n:             # <<<<<<<<<<<<<<
@@ -24131,7 +24189,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
             __pyx_t_19 = (__pyx_v_c < __pyx_v_n);
             if (__pyx_t_19) {
 
-              /* "pyneutube/core/processing/local_maximum.pyx":267
+              /* "pyneutube/core/processing/local_maximum.pyx":269
  *                         if c < n:
  *                             # center is smaller: kill center
  *                             res[z,y,x] = 0             # <<<<<<<<<<<<<<
@@ -24143,7 +24201,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
               __pyx_t_17 = __pyx_v_x;
               *((__pyx_t_9pyneutube_4core_10processing_13local_maximum_UINT8_t *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_res.data + __pyx_t_18 * __pyx_v_res.strides[0]) ) + __pyx_t_16 * __pyx_v_res.strides[1]) ) + __pyx_t_17 * __pyx_v_res.strides[2]) )) = 0;
 
-              /* "pyneutube/core/processing/local_maximum.pyx":265
+              /* "pyneutube/core/processing/local_maximum.pyx":267
  *                     n = img[nz,ny,nx]
  *                     if n > 0:
  *                         if c < n:             # <<<<<<<<<<<<<<
@@ -24153,7 +24211,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
               goto __pyx_L24;
             }
 
-            /* "pyneutube/core/processing/local_maximum.pyx":270
+            /* "pyneutube/core/processing/local_maximum.pyx":272
  *                         else:
  *                             # center >= neighbor: kill neighbor
  *                             res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -24168,7 +24226,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
             }
             __pyx_L24:;
 
-            /* "pyneutube/core/processing/local_maximum.pyx":264
+            /* "pyneutube/core/processing/local_maximum.pyx":266
  *                     # if (0 <= nz < depth and 0 <= ny < height and 0 <= nx < width):
  *                     n = img[nz,ny,nx]
  *                     if n > 0:             # <<<<<<<<<<<<<<
@@ -24178,7 +24236,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
             goto __pyx_L23;
           }
 
-          /* "pyneutube/core/processing/local_maximum.pyx":272
+          /* "pyneutube/core/processing/local_maximum.pyx":274
  *                             res[nz,ny,nx] = 0
  *                     else:
  *                         res[nz,ny,nx] = 0             # <<<<<<<<<<<<<<
@@ -24198,7 +24256,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
     }
   }
 
-  /* "pyneutube/core/processing/local_maximum.pyx":274
+  /* "pyneutube/core/processing/local_maximum.pyx":276
  *                         res[nz,ny,nx] = 0
  * 
  *     return out             # <<<<<<<<<<<<<<
@@ -24210,7 +24268,7 @@ static PyObject *__pyx_pf_9pyneutube_4core_10processing_13local_maximum_12Stack_
   __pyx_r = ((PyObject *)__pyx_v_out);
   goto __pyx_L0;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":189
+  /* "pyneutube/core/processing/local_maximum.pyx":191
  * 
  * 
  * def Stack_Local_Max(np.ndarray[IMAGE_t, ndim=3] image):             # <<<<<<<<<<<<<<
@@ -26591,38 +26649,38 @@ __Pyx_RefNannySetupContext("PyInit_local_maximum", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_Stack_Locmax_Region, __pyx_t_13) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-  /* "pyneutube/core/processing/local_maximum.pyx":189
+  /* "pyneutube/core/processing/local_maximum.pyx":191
  * 
  * 
  * def Stack_Local_Max(np.ndarray[IMAGE_t, ndim=3] image):             # <<<<<<<<<<<<<<
  *     """
  *     Cythonized maximum filter mask:
 */
-  __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_4 = __pyx_FusedFunction_New(&__pyx_fuse_0__pyx_mdef_9pyneutube_4core_10processing_13local_maximum_11Stack_Local_Max, 0, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max_ndarray, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_core_processing_local, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_New(&__pyx_fuse_0__pyx_mdef_9pyneutube_4core_10processing_13local_maximum_11Stack_Local_Max, 0, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max_ndarray, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_core_processing_local, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_mstate_global->__pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_FLOAT32_t, __pyx_t_4) < (0)) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_FLOAT32_t, __pyx_t_4) < (0)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_New(&__pyx_fuse_1__pyx_mdef_9pyneutube_4core_10processing_13local_maximum_13Stack_Local_Max, 0, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max_ndarray, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_core_processing_local, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_New(&__pyx_fuse_1__pyx_mdef_9pyneutube_4core_10processing_13local_maximum_13Stack_Local_Max, 0, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max_ndarray, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_core_processing_local, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_mstate_global->__pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_FLOAT64_t, __pyx_t_4) < (0)) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_FLOAT64_t, __pyx_t_4) < (0)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_New(&__pyx_mdef_9pyneutube_4core_10processing_13local_maximum_3Stack_Local_Max, 0, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_core_processing_local, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_New(&__pyx_mdef_9pyneutube_4core_10processing_13local_maximum_3Stack_Local_Max, 0, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max, NULL, __pyx_mstate_global->__pyx_n_u_pyneutube_core_processing_local, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_4, __pyx_mstate_global->__pyx_ptype_9pyneutube_4core_10processing_13local_maximum___pyx_defaults)) __PYX_ERR(0, 189, __pyx_L1_error)
-  __pyx_t_10 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_4, __pyx_mstate_global->__pyx_ptype_9pyneutube_4core_10processing_13local_maximum___pyx_defaults)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_CyFunction_Defaults(struct __pyx_defaults, __pyx_t_4)->arg0 = __pyx_t_10;
   __Pyx_GIVEREF(__pyx_t_10);
@@ -26631,7 +26689,7 @@ __Pyx_RefNannySetupContext("PyInit_local_maximum", 0);
   ((__pyx_FusedFunctionObject *) __pyx_t_4)->__signatures__ = __pyx_t_13;
   __Pyx_GIVEREF(__pyx_t_13);
   __pyx_t_13 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max, __pyx_t_4) < (0)) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_Stack_Local_Max, __pyx_t_4) < (0)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "pyneutube/core/processing/local_maximum.pyx":1
@@ -26784,25 +26842,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{18},{29},{33},{45},{22},{15},{27},{179},{37},{57},{30},{51},{32},{1},{1},{1},{1},{1},{1},{8},{5},{15},{16},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{38},{33},{8},{43},{20},{32},{22},{30},{37},{5},{8},{9},{9},{20},{8},{15},{24},{19},{28},{15},{3},{15},{4},{17},{18},{4},{10},{5},{1},{9},{17},{18},{5},{1},{8},{5},{8},{5},{15},{2},{2},{2},{6},{9},{5},{5},{6},{7},{8},{15},{3},{20},{12},{4},{6},{1},{2},{5},{3},{10},{5},{5},{13},{5},{8},{1},{4},{6},{12},{8},{4},{7},{4},{10},{1},{12},{11},{5},{4},{8},{4},{9},{12},{20},{7},{2},{5},{2},{2},{2},{3},{9},{9},{3},{4},{5},{3},{14},{39},{14},{11},{10},{19},{14},{12},{5},{10},{17},{13},{8},{3},{4},{12},{10},{12},{19},{5},{10},{4},{5},{4},{4},{6},{4},{8},{5},{5},{6},{6},{6},{5},{1},{1},{1},{769},{613},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2238 bytes) */
-const char* const cstring = "BZh91AY&SY}D\304\266\000\001\220\377\377\377\357\377\376\377\367\377\327\277\267\377\016\277\377\377\364@@@@@@@@@@@@@\000@\000`\010Y\3677\253\236\353\336\273=\325\235aBq\214\326owl\203\332\032i\024\024\366\224\365\036\247\211\351'\211=O\321\200\224hh\375H\321\240h44h\000\006\232\003C\304\32444\332\202I\010\323#A\023\322\232yS\324\332\236iO$\310\365\014\232\r\000\320\000\000\000\001\240\320\003@\006\232M\031D\nz\2154\3202\003j\032\000\320z\206\206\200\003@\000\000\000\0324\365=# \323\"&\204\310i\250j\237\243T\330M!\243 \006\200\001\240\000\000\006\200\321\372\221\241\2434\324\016\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000d\tD\324\304\232aA\232\243\320L\365\031'\251\243&\200\000\0004\000h\000\000\000\000\002\305Qh\352\362U;\210?Z\t\207\006\t\002\2401\303\205&L\211\0328C\243\244\305\0343\000\301\300\322\322(Q\2303\352@\377\010\tJk4\320:,,\252\254\200HBB\027\241<\350\314]\214\010\252\000\300>\267\261\222\317\021\024\017\362*T\225\025\006\n\t\303\331\220\301\242\026\326\252J\245\003\034M\365\"\242\005\253\006B\205H\276\274\260\202\203+\225\305\333L\236K8\"\373\313\304\236SB\342x\256}\355\306f\300\360\220\261Q\000\356'\024\245\253\023`Be\017v\001\2360\017\220l\022\320?K\267{5\212\251\235(\364\320\353]7\376\215.\243+\346I\036\323\371`\324\242U\300\260.\262\212\371ghO\021\327\242\264kC\321\376\357z\255\037\2337s\2148\017l5\261%\213\226\203\\R\241\377\216\306\310\245\016\213\305\202\013\313!\016)\231\371g.\322\344\311ei[\205\211\342\261\023\313\005\324\026\022\006\212\017\223\021\243.\265T\315-k\253fr\330h\232h\333-\014)\"\232\233\226\212\n\233\210@\203\371\343 \301\031\211\214\001\312Ka\023o\227\245\337\311\224:e\033\266\022\326i\177\263\255M\334\214\373\361[=\332N\n\263$\372%\367\334\014\236\032\302b\262\241\363\236X{\332\356\217/\237C\252!\315\to9\3464\364J4\302\336\n\266*\254WPI\204\244%udcg\304\004\200 ?\236\347\231\3226\253R_\332S\303XG\030\320;\035\n\0012\255\021E\332v\005@\025B\252\213\016\222\246\026\206Z\311\0058D\264\245\002b\231\307'\276\363\241""\367\351\340\262b\232$Jq\265\365\350\363\255\353\326|\331\273\037\270\305.\343iJz\377a-\222\230\321\234\013[2\017\213&B\033\010x:*iI\232\003K\2347~\337\033\271\340\277\263\322u\305\327\\`\213G\343\273\246\302\304U\275sNr\245,V(\232\005\274c\326A\304\030\265\320\241A9*\nHVob\034\276tR\"2\347f\214\230\347&u\211\002l\233\241\032\257H\027\214\215\221\302\007\242\203\226s\233\240\361\0239\354\010Vl\"\362*,\031U_B\004\340\222n\246\254\312@\023a\227\245\014;]1\230l8\347\237\000~Kq\003\372P\216v\256\315\326\240\031[LR\322\005\014\032\222<.9`d\013MlV\351\331\253\3065^\022\317c\257\030\224j\3155\251\315\201UC\364\032\227\352A/|\233X=\221\300\270\014\374\032,1U\336\031\260'\025/q\002D\014\352\302W\021\005Yf\234L)9\2073/\231\316\301\017`\302\031\003\262\305\266Ve\255\254\210\253h\264=y\216\261G\213\2753\315\270\027a\250{\330\0273\013\301b[;\211\215:t\213\352\014Xl\254\240\213\263\215\001\007\327\302\356\302\3369\356m\013\030\311\350\264Y1[\n\034\263\202\301\355!1b<\247w\"\036d\006\261c\027oo#NbF\365\311k\345u\350\244nX\014gg\304y\310T\204\343\301%\305\\b\036\267\241y\223\214\2502Q\tZ\240\267\372@$\031\211\273\322\326\314\2444X\371\272\022\220Z\371G\371r{\225EAv\327?Di%\201\317\03194\257\303)T\225m\016s\356kn\360\372\020efn\234j\236\255\333\314\3535^l\203a\004\304\355\312Y\260\30338\222\252\304\234\312f\306[\016\313t\372;{\375\001\325\316#-H\300)\246\243.\216\214\2401E\307~\221k\277\212[\362/\025Hej9p\261\224\002\356I\243\020c\232\014[\273\251\321a\007\rk\232'\334\377j\370\005\205\375\024(;d\220H\236,2\201k\n\360Z\353\271\221\026\317CjL\245d\036hp\340\333me\230qi\300\316\230\271\352\212L\341\3159\210\210\\\241B\017\216\272>X\327f\341\n\336\266\252\306}\021\006\325\310\347\262\227\t\236L\242\306\376\344A\255F\246\317)H\202\302\226\233\226\307\302\341\352\326(\362\362\304'U\352\214\343uBm\001\231UE\206\250`\241\326b\251\203#E\202\212a\374\332\346\223\340\262\255\241\262\303I\356\026B$\024\357\252!\303\024\206\\\035\325c\266(#\013\211\260N]\371\265\200v\345\007\237\221\205\022`""\340\337wN}\344\253\275di&ge\014\"\231\211\"\250\244\223\013\000\240H\254\243\344\0061\226\031\271U\020\236\305\310\202\024)\244\241EE\275:\370\242\211hrc\231k\237(3\355\r\201\305\016\034)\201\303\337\2320E\013\225>\370\267\336\204\266=\211\002 \302\255(\216\0270)EQT&R\345\330\312\204\266\005(k\343km\252\271\357&5\214:\247p\324\37312f\337\225f\365\274;y\223\251\246\232}'\307}\035J\346\376C\274GE\035\321\340B\010\201\313\007_&L\267A\226\264\271\260\334`\241\260\323\270#\023\"\2475r\263\230\371\205\302b\355\367\300}\307j\351@\212O\034\001,\312i\202-\2036f\304h\351x[X\216vt0\027 R\277Y\232\224\341whA3\316'\016\222\024\346\270\302\274\005\217:\2506\367\033M\256\316!Z\205\301\2677\231\355!,j%p\361\025)u\014\225\023\251M\026\367\250\243\224\261H\332\274^\022\365\004\230\252P\304\242\333\300\201\030\020s\210\201a\301\310,\330p$j\302\313Mb\330\342\361XgH\241\253\245\226\276\0143$\342\327\023E'*\332\225\222h\233\232E\265\032\362\3009\356\322J\226\2663H\276\370\264\010@\\\214\373b\323\222\204$\254\231{\255\240\347h\377\250\\H\005\265\234}\na?J3\3506\n\2516.\3070pam\014A51\235\020\263\036`\206\201A\305\354\024\254\227j\007\031q\205\321q,Re\017\210\275z8\251\240\027+\255zAH\215E\372\201,\222 };\321\264d\304\201\212\360\313q\363$\010;\253(\341\036\264\234\020M\270\324\236\326\343!x\335\270IW6G?x\272N\236\2373\315\352z\335\206\367\277\005\351\001\370\370\3753\321\353\230\376\3435{|\341\2426\200\027\323\324\2056\365F6\241\033{3\204\207 aM\335\300>@g*\216\271\333\003l\027d\213.\311\r\324\334\377\t\372\264\370\000\206q\001\327&\255H\376[\023\037'\251\257\262\376 j\230\300\034\306\361\367\367\331\335\327W\177\253\302\016\303\305\304\n \026\204\356\034\264pp\002\244\003\370b\342\017!%\010\216K\355K\303\301|\224\033\337\301\375\322\202\001\010\n\010)\272\032\370\370D\306\265J\235|\251j\033&\373\351\020\234\335Ls\332\374[\350\206\363#F\000b\241\020\213\220\245|\202\226I?-\225fY\353&$\2248\222\340Q4`H\222\235l\021\341\022\2540\244\222\3100\206\244\351\322\244\022\210\361\335} r\366\"""\217\215\227\357\300\377\275.\246\301y&y8\243\231\253\264.'\022\341 =h[\317\262\356\014\314\305\301b\276\\\266\010\255\315\254 \352U\233\204*\352VZ\226\355}p\rg4o;\311\337\276\377}\031I\232\0072\377$l\370\300\036\242\312\250]\213\317d$Vs&&\316\036\224pC)q9\363\315 \272\023g\251\315(\211\022\004\"\361(x\017\002L\245R\006\n\320\302\227s~r\222\322\014\206l\305L\025\207\374]\311\024\341BA\365\023\022\330";
-    PyObject *data = __Pyx_DecompressString(cstring, 2238, 2);
+    const struct { const unsigned int length: 10; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{18},{29},{33},{45},{22},{15},{27},{179},{37},{57},{30},{51},{32},{1},{1},{1},{1},{1},{1},{8},{5},{15},{16},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{38},{33},{8},{43},{20},{32},{22},{30},{37},{5},{8},{9},{9},{20},{8},{15},{24},{19},{28},{15},{3},{15},{4},{17},{18},{4},{10},{5},{1},{9},{17},{18},{5},{1},{8},{5},{8},{5},{15},{2},{2},{2},{6},{9},{5},{5},{6},{7},{8},{15},{3},{20},{12},{4},{6},{1},{2},{5},{3},{10},{5},{5},{13},{5},{8},{1},{4},{6},{12},{8},{4},{7},{4},{10},{1},{12},{11},{5},{4},{8},{4},{9},{12},{20},{7},{2},{5},{2},{2},{2},{3},{9},{9},{3},{4},{5},{3},{14},{39},{14},{11},{10},{19},{14},{12},{5},{10},{17},{13},{8},{3},{4},{12},{10},{12},{19},{5},{10},{4},{5},{4},{4},{6},{4},{8},{5},{5},{6},{6},{6},{5},{1},{1},{1},{781},{613},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2230 bytes) */
+const char* const cstring = "BZh91AY&SY\001\001;Y\000\001\223\177\377\377\357\377\376\377\367\377\327\277\267\377\016\277\377\377\364@@@@@@@@@@@@@\000@\000`\010O\261x\356\255\035\226\246&\265I\260eMnH\020i\250!\032\246L\236\246\310\233(\336\211\344z%\030\231=\010h\311\240\311\221\240\r\000h\r\031\220OS\3212\t$\023L\201\003HiO\325=\250\362S\311=LFF\232\000\000\000\000\032\000\006\200\000\003\200\000\000\000\000\000\000\000\000\000\000\000\000\000\000\031\003L\210  \232\n~\223F\232d4\215\2504\r\032\000h\006\200\000\032\003G\244i\240\314\223C\200\000\000\000\000\000\000\000\000\000\000\000\000\000\000\031\002SQ\032h\231S\306\251\351\250bz\207\250f\243j\032\036\240\0004\000\000\000\000\000\001\352\007\244\206t\027\307\nE'\231\007\007\n^\273u`\250\006\033\327\221\244\254\221\305x>\217\243C\317\2060$&\014\231\023&\222BI\253\017\361\021\241\rV\233\0233\242\347\317B\004\206HG\005V\332\236\363\031TI\220\017\002:b\363\205\361\022`?\344\313\005\201\200`\240\234=\231\014\031\241eJ)E@\311\220\330\246UQ\022\305\203\tF\244_V\\ \240\312\325B\335\306W\223\306\002\276\353\306\022yve\306\361[\311\014\031\306,\017\022\035\031\320,\022\306\020\252\304\262\010m\003\325\214\372\230\317q&7\376\027\302\335\276\255\004\360\353=}T;8M\377\243\\*\313\031\222G\270\375@h\242V@\264.\312\213;\323\270'\210\355U`mc\325\343\340\366\242\275\273\363u\215h\0051\021\210u\\\230\010\310\212\024\356R\r\342s<T\213D\027\225\3448\256W\357N]\325\305}\266%v{S\305\202'\222\013\250,$\014\ny\254\300[\360z9\267\363\340\242ub\252b\022\216\242-\322XF\021\223\230\267\320\024\313y\340\363u\207\241\341*\0248\303\312V\004\216\246\276\217c\206\260\365\013\272\317\024\366\033\275\277f\374um\335&\213s\247\010\301\264\217@c\216\020\267\203\026M\2145\010\316AY\361\354R\036\255\234\276\340\257\210\022\237F\252\330\336\033(Dw \347Y:\024\230\242*\253T\237\026\377\345]b\254+%\360\341\330\222\257k\246\335=\313\377}A\277\276:G\356\352P7}TW^\375Q\210\t\004\221:\272\344\243\316\200\373=\276m\274\2075\327\\\024\025\016I\275\367\234\335\234\374\372\350*\"d\351+\037V""o6\317\252\243\344\305\331>\323\"\\\030\2725k\373\310\366cQ\237(X\2628~\204\344\342\0134\037\006\317%\030\245\001G\2668~\317\023\243\317\277\370\352\272\322\333m0E\203\362o\347\254\255\021\327kR\223\272\352\325jFakKZLoK\264A2bW\271\210<\241g\334X\264\243\010\3068\245\246\0225\345\235-\003\302o8B4\305 ^/k\334 x\020r\316r\364^\"g5\241\013\r\244bE\013\006T\263\243\002pI8WNU \t\264\313\324\206\035\336\250\3128N\214\323\345\207\342\261p2\0253\235\317\320t\360\014\3346\311\330*xh\311(\\r\201\226-E\327\227]K\337\2471\246\360\236<.\274br\216)\254Nl\010\304~cJ\375\010%\357\024j\307\262/\265\363c\263\332\274yg+\212^)\023k8\301#\005\373\241\027\023\002Q\242\221\2605'/\026\275\356,\020\366\014!\224\035\227#p\324e\324\325\310U4\232\036\265\007V\245\307\3241\305\271\353\356j\333\232\005\311\027\214\231\226W\225\033\373\373\345\362\023#\2636p\346zy\234p}\255\307v\027oO_TZ\306OU\251l\305\214*rN\013\007\270\204\305\210\363]\334\210y\020\"\353\265\267\261\345w\344\034\363\262>\313\346\244\321\033\360\006\305\"\232)'\0261<\232\222h)\274!\354z\227\231:%Q}P\225\312\013\177\304\002A\230\233\275nl\252&z>\216\204\346\026>r\376\\\236\345\022!n\347?4\256\232\300\350\014\234\232w\341\226qJ\246\207\023\355k-\360y\240\312\274]IF\232w\3571\250\323y\303\006\302\t\212Y\226x\260\302I\304\355,Y\234\232\20316a\372X\260\354\267\325\207\013*a5\326,\205Z\231Kxk\313\001\213\227%\371\305\252\3769\354\231x\242\206V#\247\205l\240\026\362\321\031\001\216\000\021v\316\227E\204\034\373KtO\223\376,`\026\030\360!Q\306I\004\211\350a\220\013\221<\313UV\262$\330\346m)\224\353\203\314\316\034\033\254\250\257\016<\370\030\335\221\317W)\224\021\266\320\302\200^\321\200\207\246\234\036\314\263\256\201\023v\335i\202\3700\203\255\317NT\366\230\345e&6h\2205\210\322\330\345\234\310,.\260\321d\273\375\276\005B\227O\247 \244oW3\215\365\n4\006e\033\226\032a\202\207\220\304h\014\214\325\212I\207\360UD\237\r\232m\r\222\032O\200\266\021 \247}1\016\030\2442gwV\0161Q\031\360&\3219xf\346\001\333\274\017B\366\025I\203\203\216\035Y""\357\312\314U\355$\314\354\241\204V\322HHD\224\n\001P\323(\222\310\017+P\327\346\331!N\301e\301\212\221\266Av\005\235->(\302\230\345\234\326\333k\007\306c\370\334\\\341\303\034n#\035\203\302H\321\204w\r\272(\257\235\027\220\t\003\306k\322p\334Azf\031\202\214h\306U\242|!u\306\256F\262\310\325Mi\215C\016\213\266\305\365\3442\263l\235F\2736\356\336\244Z\211\251\325|\266#\255U\037\312wH\356\021\322:\360\202 t\340\353\346\311\226\3702\324\227\00440\\p\231\364\010\310e\"\346\252u\357>\201h\230\267c\340>\323\265t\340I3\204\001,\312i\202-\234\001\225\264\rO/\306\325\3209\271\220\3160@\245\216\321\232\224\341s\320\202g\230N\035$+\272\343=\231\305\257:Tkk\266\305\316\316!\\\206\001\267\273D\373\n\253\226\005n\"&W\272\347\254\013X\276\353:\351\2071\316bS\3408\005\301\200\214\304\241\240\242\334\200@\214\344\034\302 Zs\271\005\233?-#L\366\334l\027Cox\214n\222\032\253\253\261\360a\231'\0268\242.\244\352k\252&\3224g\026\344j\313\200t\035\234\235\3266J$_|\232\004 .V}\222jMB\023U\320\275\326\\9\325\351\324\\h\005\205I-H\300\177\020\371j/$\324[\317\327\016\014\017\316\2646\215n\2309\331\3501\000\225\216\362\331g[/,~\267\266\361\255cG\313\3506\355\350r\332\203^\207h\240\210\337C\035 \226I\020>\256Dj\2311 h]\"\333\334\251\002\016\312\3107\007\261'\004\023\016\003Qf\034\t\301;r\0019\036\236P:\240\346NT\372\035\377\005\257&\341\331\335Mp\005\275\034\301\255\370\0277\006\"\2749\3434m\2001\323\334\2057\265\005\306!\033\333M\022\235\360\262\234w@\373\201\311Hv\216\260\032\300\273$Yw\010n\276\277\372O\327\261\342\002\031\304\022\353\213N\224\177>\024\307\314\353\355w\037\307\rF\"\000\3457\225\267\266\316\356\273\033}\215\300xO3\230\n \026\204\356\026Q\221EX\251d\003\300\265[\025\220\222\204:X\330\230\343\313\031(9/\016.\275z\342\300\n\004\024\343\014\220}\\\2661EGc\225)\330\3031\310\216\rf\235\307\231#\2478r.TX\005\317\270;)E^\221?~^\026L\253*yR\333I\204)5\225\013N\002T\230\353\331v\350\231U\353\244\263J7C\021\255\231$\230:\3464i$5\255\224\214mG\217$\177D\306O\221\252\226\252\244C\255\251""\266*'J\241 U\305\024\3620\351Y\243EVp\271\374\274\270DP\316\240$\322\301\265\316\030:t\025\177O\027\365dk\303\233Z\226U\363\3719\020L\232@h\347\366DY\300\035U.t\n\250\373q\202\312\232\322`k\037\017\316t\004B.'>\201\254\027Bl\364sZ\224\210\220!\033\253:J\223\017\002\214\2454\014\0253b4\241\351\311\335N\245\307\245!d\005\003\377\027rE8P\220\001\001;Y";
+    PyObject *data = __Pyx_DecompressString(cstring, 2230, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2108 bytes) */
-const char* const cstring = "x\332}V\317s\023G\026\366\317`*N\202\215M \230\332\226\t\230P\261\210d\226\245\266X\266\204\021\224\267\022\3006pIR]\255\231\226\324\361hf4\335#K\324\036r\324q\216s\234\343\034u\364\321\307\0349\352\350?\201?a\277\356\031Y2\206\255\262\307\257{^\277~\357\373\276\367\306\377$\025\307!\266hqW\n\317\225\304\017\270\305m\3416\306\233\344\226MZ\241T\244\306\211pm\336\3456a\256M\\O\021\351\010\270?\t\353u\036\220\216\340\207\304\366\2704\257x\327\367$'R\005\302\346r\233\271\304s\235\036\261\002\316\024'\214\324\262C\252\311\024\021\222X\236\253D#\364B\211KH\213\267\274\240W\304)\035\212I)\032.Q\036\301a{\323\304\311<\364\225\271S\036\3700\020\212\325\034\236;dI\325\003\257\365\377\316\232\262\310\241PM\242z>'\033\371\276\n\230+M\031\343#\231\033N\010@\245&\260{:\t\230\310@\310\234\252-_\365\210l2\204V\241\217\344\352^@\254\236jzn\221\005\001\353U\273>\3744\260\2128\234\001\354\035\223\222\027*\342\325I\315\013][\222;\254\213\270\267\354\037v\316\337\236\321\021\372\276\027 \316\216\333a\216\000o\236\315\177\324Td\3217\254\r\202\2337p\275.m\343G\322\360\364U\231s\226 \3207\327<\372\305\224\374V\227\214\024^x\244\305\224\325\324\322\320l0\025\006\272\016$\366\302\003\356\206\307mS\222.\336\346\216\250\361\000\214\000o\255\001\334o\310v\311\253\352\253\315\373\017\357\033\r\005\374\017d&\221x\315r@3\264\243\313\r\205\243\220\207\346B\026\311N\235\364\274\220\270\034\025@\003>\374&\017\250&w\211\344J\033d\303\020\307\024 \2418\216l7r\022D\207\353\323\317\230#y\361\345\031\\\221r\256FfY\\\216\200\336W\314:\240?{V\213u\351\036ohjs\204\245&\252\345\201\247\362\335\273[\245\315\022\351x]\356\310\014\320}\305}\240\3253\234\240k\336\361\300\033\223\367\3065\372D.\314q<\213\031\3608\240\320\0270g\023\267\211V\330\"\207^p@\332!\017yq|\004m\322\341\001\024\253xK\257\275\232\006\260\370x\343\207\377\376\233\3316u5\027\032Y\302\202F\010q\250,\245\323\245\034\255\025\371\251ky\216\243\241\201~\212\254f=\232hB\035#\003\356\361\307\333#\355?\266\205\324yq\223]\303\"wt\344\206\221\275FSK""\205w\225\276T\253j<P\204\314\216\330\272\n)\336q\362\350_\344\247sM\341z\220Q\235\205\216\"\224\006\334\016-N)\261C\003\204\353\271\233\220UG0\007o-\341\nE\251\033\266\374^\321\362\002^l\341\2300aH\235\t'\223\216hi\362&\274Bh\272y\316!G\365\261\337sy\250\302\032\277\247\235\357\371\201\247\325\201\262\356i\336\034\2323U\364{\335G\331\234\263\317\340v~Ow\337)|g\336\237\356\206\347\345\221\225a3\305\212\237x\233\265\255\216\221\317\332be\177{g\247\3528\302\227B>\373\371e\345\365V\231*c<\270O\201\323\253^\027\277O\321\224\364\005\030\332\343\365}\016\245\271\026?\325<\312\373\205u?Z\376\352\332&\227\337?\321\032\237\330:u\327C\2448\236'\220\332({\2325\036\324)\231\034\353\314\034c\262\347Z\302\323La\016\n\227\313\032\223\334\364,\013\004Vz\034[ _\017\002JGF\203+\255+\275\304\031*0\010\002f\361\032\322\263pV\331\271\250\244\315}\325\244\324\3260P[\017\033\363\240B\322L\000v\327\356\331\357\000\013\246(\207j\314<\343A\340\005u\2075$\364\n\371\344\263\224\322z\350\"\031\374\221\334\246\030\221\346\243\202d\360C\363\244{T\323\014\021Q\235\245T\032\000\332\304w\251\311E\243\251\204@\217\260\006\027\255\006\245\231\024)5a\204\253@!\022;\305\"k\235\274\177\3768\200\327\301\241F\021\260j]\342W\036P<Q\276\261\361\001\323p\351\017\0026<;t\360\327u\351\030N\227\272:\213\232\027\300\304\027\301e-\355\222=\221\330\370\355\310\240\245\207c\273\374\200\002\n\344`\303\235\037\342\341\233Fs\273n\317}\007@=}Y`c\026\202I\352\210\003\216J|\260\342;\314\345\276\347\237\266\233\351\315\263\253\342\270\371\212g\232\217Rt\037\265\232\334:\220\243U\016\2546\r\241\306\n]_X\007\250\272\352\216\374:\346?\005\255\234v8\252\327\014\334\361\2709\265\262\3014\261\301\273\332l\010\211\017[\300%~@\026>C9b\260r\235\031;Oi\302\036\0054\355{\372E\225\232N8\340\023\203\217\210T\036~\203\320R\n#\212Re.Q\370\3009!$\361\0205\001\277\320\307h\340`,\344\362P\330\252\331\355\275\373s\372\303\235\251\213\353\311\322pa=)\014\027\256\307[q=\251$\273\303\205\265x;\356$\273\t;\263{=\376G\262\236T\264\361 YNJ'\013""\337\305w\365\272\220\254\245o\007\245A\345\303\342\324\374\302\237\235\376^\277=\\\370\272\177\020/\r\027\237\037\267\377\232\376\360\305\324\374W\375\347\321\203x)\276\235\314\340\272\271\013\360\333\217\246s\277\270p27\177\262\260\330\257F\253\021\213\332\303\305K\321|\364&.\304\245\341\245\225\250\032\257\306,n\017W\256\306\263q\t\331I\204X) \213\255\244\226\316\246\345t\177\360\305\240v4sT\030\026nNl^\030\004G\313G\245\263\233\332sZ\307\232\217\337$\205\2444\274z#\376-]Jo\246\273\2377\367\342\000P}\302\270\216\024\327H2\233\224\223\275D\302]_\300\206\337o$A\272\234n\245\326\340\362\3409R8\263Q\031\222;\351\364\t\036\263i)}:\230\033TN\326\276O\266\223v:\207\345\264\016k@\326\241\247\223\313x\023\246\225\341Z!YJ\356\244\033\203\345Ay\360\366\250|\264w\024\034_9\016\376Z\032\3424\336\337\000\322\027\277\351\363\250\034\355\016\027/G\177\217\2475\t+Q%CtOC\253\267g\342\365\370I\314&v3#\210\227Q\017\026\263Q)\332\216d\\8C\305j\364\0332\270\t9|\326\3241\226>e\254 \236\016\277\025[(\350YZ\320E\226\001\243\304\321\375\364B\332>\273\001\212V\207\227.G\367\243v<\027?M\260\326\302l's\311S\375\362\333\250\023\357c\367\352Z\\\211_'+\311\333\324P\271\0337\223\006X\230\031\334\206 n\002\243\316\361\3361\202\003I-\261J\177\367d\356\313~\t\rpe\352\342*\304u\005A\241\304UTy\033h\243#V\306\273w\323\365\364?\00368<\252\037?9FK\340\006\363\370\360\365\324\374rt\355\375w\367\322`\360\355\321\302\361\364pN\213an-\256&W\300\244^\277\277~/\355\014v\007\354dn\241?\337\177\023\025\242\322\320\350|)Z\007+\2375\267\373\355h&[|\331/\233VY\374&\337\253jN\277\032N\266\313\322\373\245[\350\330\032.\375\274\035-g\272\370\3308\001\3053\321MS\376\\\362$\261\322\325\2641x\215\316\331:\342\307\245\214\2726Zo\013\212\001#e\243\030\020`\324r\242[\000b\252%\363\311.\364wm-o\321\333P8\234\262\203\030\"\037\026\246\346/\346 lE\034^\225q\r2\207\376Tm[1OJ\320t~\271\026l%\273|?6\354g{U\234\321:\231\030\022\327\336_\333Lw\323\032\332\350\36362/\203\310s\006\nX\27569e\362*G\332l\237\254\375\r\302\230\301(""\254\246K\360\276A\260\234\305x\251\247\225\014\212Q\355Zd/\377\007[\261\3426";
-    PyObject *data = __Pyx_DecompressString(cstring, 2108, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2121 bytes) */
+const char* const cstring = "x\332}V\317s\323H\026\316\017g\0105\231\031\034\022 C\250m'\003a\250\211\031;,Km\261l\231\020\250l\315\000I\200\313\316VW[j\333=\221%Y\335rlj\017s\364QG\035u\324\321\307\034s\234#G\037\363'\360'\354\327-%N\010lU\242\274n\275~\375\336\367}\357)\177'5\307!\266hsW\n\317\225\304\017\270\305m\3416\307\233\344\266M\332\241T\244\316\211pm\336\3436a\256M\\O\021\351\010\270?\r\033\r\036\220\256\340\007\304\366\2704\257x\317\367$'R\005\302\346r\223\271\304s\235>\261\002\316\024'\214\324\263C\252\305\024\021\222X\236\253D3\364B\211KH\233\267\275\240_\306)\035\212I)\232.Q\036\301a{\335\304\311<\364\225\271S\036\370 \020\212\325\035\236;dI5\002\257\375\377\316\232\262\310\201P-\242\372>'k\371\276\n\230+M\031\343#\231\033N\010@\245\316`\367\354,`\"\003!s\332j\373\252Od\213!\264\n}$\327\360\002b\365U\313s\313,\010X\177\253\347\303O\003\253\210\303\031\300\3366)y\241\"^\203\324\275\320\265%\271\313z\210{\333\376q\373\342\355\031\035\241\357{\001\342l\273]\346\010\360\346\331\374'ME\026}\315Z#\270y\r\327\353\322\326~\"MO_\2259g\t\002}s\315\343_M\311\357t\311H\341\245G\332LY--\r\315\006Sa\240\353@b/=\340nx\3344%\351\342m\356\210:\017\300\010\360\326\032\300\375\206l\227\274\336z\275\376\340\321\003\243\241\200\377\216\314$\022\257[\016h\206vt\271\241p\024\362\320\\\3102\331n\220\276\027\022\227\243\002h\300\207\337\331\003\252\305]\"\271\322\006Y3\3041\005H(\216#\333\265\234\004\321\345\372\364s\346H^~u\016W\244\234\253\221Y\026\227'@\357)f\355\323_<\253\315zt\22775\2659\302R\023\325\366\300S\365\336\275\215\312z\205t\275\036wd\006\350\236\342>\320\352\033N\3205\357y\340\215\311{\353\032}\"\027\3468\236\305\014x\034P\350\013\230\263\216\333D;l\223\003/\330'\235\220\207\274<>\2026\351\362\000\212U\274\255\327^]\003X~\262\366\343\177\377\311l\233\272\232\013\215,aA3\2048T\226\322\351R\236\254\025\371\271gy\216\243\241\201~\312\254n=>\323\204:F\006\334\223O\267O\264\377\304\026R\347\305MvM\213\334\325\221\233F\366\032M-\025\336S\372R\255\252\361@\0212;b\353*\244x\317\311\343\177\220""\237/4\205\353AF\r\026:\212P\032p;\2648\245\304\016\r\020\256\347\256CV]\301\034\274\265\204+\024\245n\330\366\373e\313\013x\271\215c\302\204!\r&\234L:\242\255\311;\343\025B\323\255\013\0169\252O\374\276\313C\025\326\371}\355|\337\017<\255\016\224u_\363\346\320\234\251\262\337\357=\316\346\234}\016\267\213{\272\373N\341;\367\376t7\274(\217\254\014\233)V\376\314\333\254mu\214|\326\226k{\233\333\333[\216#|)\344\363_^\325\336lT\2512\306\303\007\0248\275\356\367\360\373\014MI_\202\241]\336\330\343P\232k\361S\315\243\274_Y\357\223\345\277]\333\344\362\237\317\264\306g\266N\335\365\020)\217\347\t\244v\222=\315\032\017\352\224L\216uf\2161\331w-\341i\2460\007\205\313e\235Inz\226\005\002+=\216-\220\257\007\001\245'F\223+\255+\275\304\031*0\010\002f\361:\322\263pV\331\271\250\244\315}\325\242\324\3260P[\017\033\363\240B\322L\000v\317\356\333\357\001\013\246(\207j\314<\343A\340\005\r\2075%\364\n\371\344\263\224\322F\350\"\031\374\221\334\246\030\221\346\243\202d\360C\363\244\373T\323\014\021Q\235\245T\032\000\332\302w\251\305E\263\245\204@\217\260&\027\355&\245\231\024)5a\204\253@!\022;\305\"k\235\274\177~\337\207\327\376\201F\021\260j]\342W\356S<Q\276\261\361\001\323p\351\017\0026<;t\360\327u\351\030N\227\272:\213\272\027\300\304\027\301em\355\222=\221\330\370\355\211A+\217\306v\365!\005\024\310\301\206;?\300\3037\215\346\366\334\276\373\036\200z\372\262\300\306,\004\223\324\021\373\034\225\370`\305w\230\313}\317?m7\323\233\347W\345q\363\225\3175\037\245\350>j\265\270\265/OV9\260\3324\204\032+t}a\355\243\352-\367\304\257k\376S\320\312\351\204'\365\232\201;\0367\247V6\230\316l\360\2366\233B\342\303\026p\211\037\220\205\317P\216\030\254\\g\306\316S:c\237\0044\355{\372E\225\232N8\340\023\203\217\210T\036~\203\320R\n#\212Re.Q\370\3009!$\361\0105\001\277\320\307h\340`,\344\362@\330\252\325\353\277\377c\362\343\335\211\313+Iq4\273\222\224F\2637\343\215\270\221\324\222\235\321\354r\274\031w\223\235\204\235\333\275\031\377-YIj\332x\230\314'\225\343\331\357\343{z]J\226\323w\303\312""\260\366qnbf\366\217\356`w\320\031\315~;\330\217\213\243\271\027G\235?'?~51\363\315\340E\3640.\306w\222)\\W\270\004\277\275h2\367\213K\307\205\231\343\331\271\301V\264\030\261\2503\232\273\022\315Do\343R\\\031]Y\210\266\342\305\230\305\235\321\302\215x:\256 ;\211\020\013\327\243 \276\032\327F7\226F\013%d\264\221\324\323\351\264\232\356\r\277\032\326\017\247\016K\243\322\352\231\315K\303\340p\376\260r~S{N\352\2703\361\333\244\224TF7n\305\277\245\305t5\335\371\262\271\033\007\200\3553\306M\244\273L\222\351\244\232\354&\022\356\372\0026\372a-\t\322\371t#\265\206W\207/\220\302\271\215\332\210\334M'\217\361\230N+\351\263aaX;^\376!\331L:i\001\313I\035\326\000\256CO&W\361&Lk\243\345RRL\356\246k\303\371au\370\356\260z\270{\030\034];\n\376,\216p\032\357o\001\365\313\337\rxT\215vFsW\243\277\306\223\232\220\205\250\226\241\273\253a\326\333S\361J\3744fgv3#\210\347Q\017\026\323Q%\332\214d\\:G\313b\364\0332X\2054\276h\352\030\305\317\031\013\210\247\303o\304\026\nz\236\226t\221U\300(qt/\275\224v\316o\200\242\305\321\225\253\321\203\250\023\027\342g\t\326Z\244\235\244\220<\323/\257G\335x\017\2737\226\343Z\374&YH\336\245\206\312\235\270\2254\301\302\324\360\016\004\261\n\214\272G\273G\010\016$\265\334j\203\235\343\302\327\203\n\232\341\332\304\345E\010\355\032\202B\225\213\250\362\016\320Fw,\214w\357\245+\351\277\206lxp\3308zz\204\366\300\r\346\361\361\333\211\231\371h\351\303\367\367\323`x\375p\366hrT\320b(,\307[\31150\251\327\037n\336O\273\303\235!;.\314\016f\006o\243RT\031\031\315\027\243\025\260\362Ess\320\211\246\262\305\327\203\252i\233\271\357\362\275-\315\3517\243\263\255S\374P\274\215\356\255\343\322/\333\321|\246\213O\215cP<\025\255\232\362\013\311\323\304J\027\323\346\360\r:g\343\220\037U2\352:h\303\r(\006\214T\215bL/B-\307\272\005 \246z2\223\354@\177K\313y\273\336\201\302\341\224\035\304@\3718;1s9\007a#\342\360\252\215k\2209\364\247j\333\210yR\201\246\363\313\265`k\331\345{\261a?\333\333\302\031\255\2233\003c\351\303\322z\272\223\326\321F_\266\221y\025D^0P\300\342\322""\247\023G\367D\256\315\316\361\362_ \214)\214\305\255\264\010\357[\004\313i\214\227FZ\313\2408\251]\213\354\325\377\000\215\212\346\310";
+    PyObject *data = __Pyx_DecompressString(cstring, 2121, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (3904 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayExpected at least Index out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of No matching signature foundNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Stack_Locmax_Region supports at most 2**31-1 voxels, got Step may not be zero (axis %d)Unable to allocate the regional-maximum work queue.Unable to convert item to object.>')|?add_note and  argument, got  arguments, got  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__numpy.core.multiarray failed to importnumpy.core.umath failed to import object>pyneutube/core/processing/local_maximum.pyx<strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisFLOAT32_tFLOAT64_t__Pyx_PyDict_NextRefSequenceStack_Local_MaxStack_Local_Max[ndarray]Stack_Locmax_RegionStack_Locmax_Region[ndarray]View.MemoryViewabcallocate_bufferargsascontiguousarrayasyncio.coroutinesbaseboundariesbviewc__class____class_getitem__cline_in_tracebackcountddefaultsdepth__dict__dtypedtype_is_objectdxdydzencodeenumerateerrorflagsformatfortran__func___fused_sigindexgetget_boundary_indices__getstate__headheightiidimageimg__import__indexint32_is_coroutineitemsitemsizejkindkwar""gsloc_max_mask__main__maskmemviewmode__module__nn_boundariesn_neighborsn_valname__name__ndimneighborsneighbors_18neighbors_26_forward__new__npnumpynxnynzobjon_borderones_likeoutpackplanepoppyneutube.corepyneutube.core.processing.local_maximum__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__queue__reduce____reduce_cython____reduce_ex__registerresrest__set_name__setdefault__setstate____setstate_cython__shapesignaturessizestartstepstopstructtail__test__totaluint8unpackupdatevalueswidthxyz\200\001\360(\000\t\"\240\021\330\010\"\240!\330\010\033\2303\230f\240A\240Q\330\010\034\230C\230v\240Q\240a\330\010\033\2303\230f\240A\240Q\330\010\033\2307\240\"\240A\330\010\033\2306\240\022\2401\340\010\032\230*\240A\330\010!\240\034\250V\2601\260A\360\014\000\005\010\200v\210R\210q\330\010\016\210k\230\021\330\014G\300q\310\001\360\006\000\005\r\210G\2206\230\021\230&\240\002\240!\330\004\007\200v\210S\220\001\330\010\016\210k\230\021\230!\340\004\005\340\010\014\210E\220\025\220a\220q\330\014\020\220\005\220U\230!\2301\330\020\024\220E\230\025\230a\230q\330\024\030\230\003\2301\230C\230s\240!\330\024!\240\022\2403\240b\250\003\2502\250S\260\006\260b\270\002\270!\330!#\2403\240b\250\003\2502\250S\260\007\260r\270\022\2701\330!#\2403\240b\250\003\2502\250S\260\006\260b\270\001\330\024\030\230\005\230U\240!\2401\330\030\035\230\\\250\021\250#\250Q\330\030\035\230\\\250\021\250#\250Q\330\030\035\230\\\250\021\250#\250Q\330\030\035\230R\230r\240\021\330\030\035\230R\230r\240\021\330\030\035\230R\230r\240\021\330\030\033\2301\330\034 \240\003\2402\240R\240s\250#\250S\260\006\260a\330$'\240r\250\022\2503\250c\260\023\260G\2701\330$'\240r\250\022\2503\250c\260\023\260A\330 (\250\001\340 (\250\003\2501\250D\260\004\260A\340\034$\240C\240q\250\004\250D\260\001\330\030\033\2306\240\022\2401\330\034 \240\001\240\023\240C\240u\250A\330\034!\240\021\240(\250'\260\022\2602\260V\2702\270R\270r\300\026\300r\310\021\330\034$\240A\330\034\035\360\006\000\t\017\210e""\2202\220Q\330\014\023\2205\230\001\230\021\330\014\024\220A\330\014\020\220\005\220R\220q\330\014\023\2205\230\002\230\"\230B\230a\330\014\020\220\005\220R\220q\330\014\020\220\005\220R\220r\230\022\2301\330\014\020\220\003\2201\220C\220s\230!\330\014\020\220\005\220U\230!\2301\330\020\025\220\\\240\021\240#\240Q\330\020\025\220\\\240\021\240#\240Q\330\020\025\220\\\240\021\240#\240Q\330\020\025\220R\220r\230\021\330\020\025\220R\220r\230\021\330\020\025\220R\220r\230\021\330\020\024\220C\220r\230\022\2303\230c\240\023\240F\250!\330\030\033\2302\230R\230s\240#\240S\250\007\250q\330\030\033\2302\230R\230s\240#\240S\250\001\330\024\025\330\020\023\2204\220q\230\004\230D\240\001\330\024\034\230C\230q\240\004\240D\250\001\330\024\027\220v\230S\240\001\330\030\034\230A\230T\240\024\240V\2501\330\030\035\230Q\230h\240g\250S\260\002\260&\270\002\270#\270R\270v\300R\300q\330\030 \240\001\340\010\014\210A\210Q\340\004\013\2101\200\001\360\026\000\t\025\220E\230\026\230q\240\001\330\010\025\220U\230&\240\001\240\021\330\010\024\220E\230\026\230q\240\001\330\010*\250\"\250J\260a\260w\270f\300B\300a\330\010\035\230Q\330\010\035\230Q\360\016\000\005\022\220\031\320\032/\250r\260\027\270\010\300\001\330\004\033\2301\330\004\034\230E\240\026\240q\250\001\330\004\033\320\033/\250v\260Q\260a\340\004\010\210\005\210U\220!\2201\330\010\014\210E\220\021\220\"\220A\330\010\014\210E\220\021\220\"\220A\330\010\014\210E\220\021\220\"\220A\330\010\014\210C\210q\220\002\220\"\220A\330\010\013\2102\210S\220\001\330\014\017\210q\220\002\220\"\220E\230\021\330\014\r\330\010\014\210E\220\025\220a\220q\330\014\021\320\021%\240Q\240b\250\001\330\014\021\320\021%\240Q\240b\250\001\330\014\021\320\021%\240Q\240b\250\001\330\014\021\220\022\2202\220Q\330\014\021\220\022\2202\220Q\330\014\021\220\022\2202\220Q\340\014\020\220\002\220#\220U\230&\240\004\240B\240c\250\025\250g\260T\270\022\2703\270e\3001\330\020\024\220C\220q\230\003\2303\230a\330\020\023\2202\220R\220q\330\024\027\220r\230\022\2301""\340\030\033\2301\230B\230b\240\005\240Q\360\006\000\031\034\2301\230C\230s\240&\250\001\340\024\027\220q\230\003\2303\230f\240A\360\010\000\005\t\210\005\210U\220!\2203\220e\2301\230A\330\010\014\210E\220\025\220a\220s\230&\240\001\240\021\330\014\020\220\005\220U\230!\2303\230e\2401\240A\330\020\024\220C\220q\230\002\230\"\230A\330\020\023\2202\220S\230\001\330\024\027\220q\230\002\230\"\230E\240\021\330\024\025\330\020\024\220E\230\025\230a\230q\330\024\031\320\031-\250Q\250b\260\001\330\024\031\320\031-\250Q\250b\260\001\330\024\031\320\031-\250Q\250b\260\001\330\024\031\230\022\2302\230Q\330\024\031\230\022\2302\230Q\330\024\031\230\022\2302\230Q\360\006\000\025\031\230\003\2301\230C\230s\240!\330\024\027\220r\230\022\2301\330\030\033\2302\230R\230q\340\034\037\230q\240\002\240\"\240E\250\021\360\006\000\035 \230q\240\003\2403\240f\250A\340\030\033\2301\230C\230s\240&\250\001\340\004\013\2101O";
+    #else /* compression: none (3916 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayExpected at least Index out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of No matching signature foundNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Stack_Locmax_Region supports at most 2**31-1 voxels, got Step may not be zero (axis %d)Unable to allocate the regional-maximum work queue.Unable to convert item to object.>')|?add_note and  argument, got  arguments, got  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__numpy.core.multiarray failed to importnumpy.core.umath failed to import object>pyneutube/core/processing/local_maximum.pyx<strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisFLOAT32_tFLOAT64_t__Pyx_PyDict_NextRefSequenceStack_Local_MaxStack_Local_Max[ndarray]Stack_Locmax_RegionStack_Locmax_Region[ndarray]View.MemoryViewabcallocate_bufferargsascontiguousarrayasyncio.coroutinesbaseboundariesbviewc__class____class_getitem__cline_in_tracebackcountddefaultsdepth__dict__dtypedtype_is_objectdxdydzencodeenumerateerrorflagsformatfortran__func___fused_sigindexgetget_boundary_indices__getstate__headheightiidimageimg__import__indexint32_is_coroutineitemsitemsizejkindkwar""gsloc_max_mask__main__maskmemviewmode__module__nn_boundariesn_neighborsn_valname__name__ndimneighborsneighbors_18neighbors_26_forward__new__npnumpynxnynzobjon_borderones_likeoutpackplanepoppyneutube.corepyneutube.core.processing.local_maximum__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__queue__reduce____reduce_cython____reduce_ex__registerresrest__set_name__setdefault__setstate____setstate_cython__shapesignaturessizestartstepstopstructtail__test__totaluint8unpackupdatevalueswidthxyz\200\001\360(\000\t\"\240\021\330\010\"\240!\330\010\033\2303\230f\240A\240Q\330\010\034\230C\230v\240Q\240a\330\010\033\2303\230f\240A\240Q\330\010\033\2307\240\"\240A\330\010\033\2306\240\022\2401\340\010\032\230*\240A\330\010!\240\034\250V\2601\260A\360\014\000\005\010\200v\210R\210q\330\010\016\210k\230\021\330\014G\300q\310\001\360\006\000\005\r\210G\2206\230\021\230&\240\002\240!\330\004\007\200v\210S\220\001\330\010\016\210k\230\021\230!\340\004\005\340\010\014\210E\220\025\220a\220q\330\014\020\220\005\220U\230!\2301\330\020\024\220E\230\025\230a\230q\330\024\030\230\003\2301\230C\230s\240!\330\024\027\220r\230\023\230A\330\030\031\330\024!\240\022\2403\240b\250\003\2502\250S\260\006\260b\270\002\270!\330!#\2403\240b\250\003\2502\250S\260\007\260r\270\022\2701\330!#\2403\240b\250\003\2502\250S\260\006\260b\270\001\330\024\030\230\005\230U\240!\2401\330\030\035\230\\\250\021\250#\250Q\330\030\035\230\\\250\021\250#\250Q\330\030\035\230\\\250\021\250#\250Q\330\030\035\230R\230r\240\021\330\030\035\230R\230r\240\021\330\030\035\230R\230r\240\021\330\030\033\2301\330\034 \240\003\2402\240R\240s\250#\250S\260\006\260a\330$'\240r\250\022\2503\250c\260\023\260G\2701\330$'\240r\250\022\2503\250c\260\023\260A\330 (\250\001\340 (\250\003\2501\250D\260\004\260A\340\034$\240C\240q\250\004\250D\260\001\330\030\033\2306\240\022\2401\330\034 \240\001\240\023\240C\240u\250A\330\034!\240\021\240(\250'\260\022\2602\260V\2702\270R\270r\300\026\300r\310\021\330\034$""\240A\330\034\035\360\006\000\t\017\210e\2202\220Q\330\014\023\2205\230\001\230\021\330\014\024\220A\330\014\020\220\005\220R\220q\330\014\023\2205\230\002\230\"\230B\230a\330\014\020\220\005\220R\220q\330\014\020\220\005\220R\220r\230\022\2301\330\014\020\220\003\2201\220C\220s\230!\330\014\020\220\005\220U\230!\2301\330\020\025\220\\\240\021\240#\240Q\330\020\025\220\\\240\021\240#\240Q\330\020\025\220\\\240\021\240#\240Q\330\020\025\220R\220r\230\021\330\020\025\220R\220r\230\021\330\020\025\220R\220r\230\021\330\020\024\220C\220r\230\022\2303\230c\240\023\240F\250!\330\030\033\2302\230R\230s\240#\240S\250\007\250q\330\030\033\2302\230R\230s\240#\240S\250\001\330\024\025\330\020\023\2204\220q\230\004\230D\240\001\330\024\034\230C\230q\240\004\240D\250\001\330\024\027\220v\230S\240\001\330\030\034\230A\230T\240\024\240V\2501\330\030\035\230Q\230h\240g\250S\260\002\260&\270\002\270#\270R\270v\300R\300q\330\030 \240\001\340\010\014\210A\210Q\340\004\013\2101\200\001\360\026\000\t\025\220E\230\026\230q\240\001\330\010\025\220U\230&\240\001\240\021\330\010\024\220E\230\026\230q\240\001\330\010*\250\"\250J\260a\260w\270f\300B\300a\330\010\035\230Q\330\010\035\230Q\360\016\000\005\022\220\031\320\032/\250r\260\027\270\010\300\001\330\004\033\2301\330\004\034\230E\240\026\240q\250\001\330\004\033\320\033/\250v\260Q\260a\340\004\010\210\005\210U\220!\2201\330\010\014\210E\220\021\220\"\220A\330\010\014\210E\220\021\220\"\220A\330\010\014\210E\220\021\220\"\220A\330\010\014\210C\210q\220\002\220\"\220A\330\010\013\2102\210S\220\001\330\014\017\210q\220\002\220\"\220E\230\021\330\014\r\330\010\014\210E\220\025\220a\220q\330\014\021\320\021%\240Q\240b\250\001\330\014\021\320\021%\240Q\240b\250\001\330\014\021\320\021%\240Q\240b\250\001\330\014\021\220\022\2202\220Q\330\014\021\220\022\2202\220Q\330\014\021\220\022\2202\220Q\340\014\020\220\002\220#\220U\230&\240\004\240B\240c\250\025\250g\260T\270\022\2703\270e\3001\330\020\024\220C\220q\230\003\2303\230a\330\020\023\2202""\220R\220q\330\024\027\220r\230\022\2301\340\030\033\2301\230B\230b\240\005\240Q\360\006\000\031\034\2301\230C\230s\240&\250\001\340\024\027\220q\230\003\2303\230f\240A\360\010\000\005\t\210\005\210U\220!\2203\220e\2301\230A\330\010\014\210E\220\025\220a\220s\230&\240\001\240\021\330\014\020\220\005\220U\230!\2303\230e\2401\240A\330\020\024\220C\220q\230\002\230\"\230A\330\020\023\2202\220S\230\001\330\024\027\220q\230\002\230\"\230E\240\021\330\024\025\330\020\024\220E\230\025\230a\230q\330\024\031\320\031-\250Q\250b\260\001\330\024\031\320\031-\250Q\250b\260\001\330\024\031\320\031-\250Q\250b\260\001\330\024\031\230\022\2302\230Q\330\024\031\230\022\2302\230Q\330\024\031\230\022\2302\230Q\360\006\000\025\031\230\003\2301\230C\230s\240!\330\024\027\220r\230\022\2301\330\030\033\2302\230R\230q\340\034\037\230q\240\002\240\"\240E\250\021\360\006\000\035 \230q\240\003\2403\240f\250A\340\030\033\2301\230C\230s\240&\250\001\340\004\013\2101O";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -26926,17 +26984,17 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_core_processing_local_2, __pyx_mstate->__pyx_n_u_Stack_Locmax_Region_ndarray, __pyx_mstate->__pyx_kp_b_iso88591_3fAQ_CvQa_3fAQ_7_A_6_1_A_V1A_vR, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 189};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 191};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_image};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_core_processing_local_2, __pyx_mstate->__pyx_n_u_Stack_Local_Max_ndarray, __pyx_mstate->__pyx_kp_b_iso88591_E_q_U_E_q_JawfBa_Q_Q_r_1_E_q_vQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 189};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 191};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_image};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_core_processing_local_2, __pyx_mstate->__pyx_n_u_Stack_Local_Max_ndarray, __pyx_mstate->__pyx_kp_b_iso88591_E_q_U_E_q_JawfBa_Q_Q_r_1_E_q_vQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 24, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 189};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 24, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 191};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_image, __pyx_mstate->__pyx_n_u_depth, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_out, __pyx_mstate->__pyx_n_u_img, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_z, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_j, __pyx_mstate->__pyx_n_u_dz, __pyx_mstate->__pyx_n_u_dy, __pyx_mstate->__pyx_n_u_dx, __pyx_mstate->__pyx_n_u_nz, __pyx_mstate->__pyx_n_u_ny, __pyx_mstate->__pyx_n_u_nx, __pyx_mstate->__pyx_n_u_c, __pyx_mstate->__pyx_n_u_n, __pyx_mstate->__pyx_n_u_boundaries, __pyx_mstate->__pyx_n_u_bview, __pyx_mstate->__pyx_n_u_n_boundaries, __pyx_mstate->__pyx_n_u_n_neighbors};
     __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_pyneutube_core_processing_local_2, __pyx_mstate->__pyx_n_u_Stack_Local_Max_ndarray, __pyx_mstate->__pyx_kp_b_iso88591_E_q_U_E_q_JawfBa_Q_Q_r_1_E_q_vQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }

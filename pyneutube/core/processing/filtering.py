@@ -35,7 +35,7 @@ def _background_level_and_min(
     `subtract_background`; returns `(common_intensity, image_minimum)`.
     """
 
-    flat = image.ravel()
+    flat = image.ravel(order="K")
     total = flat.size
 
     # Build histogram over [minV…maxV]

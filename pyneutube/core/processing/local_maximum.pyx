@@ -71,6 +71,8 @@ def Stack_Locmax_Region(np.ndarray[IMAGE_t, ndim=3] image,
             for y in range(height):
                 for x in range(width):
                     c = img[z, y, x]
+                    if c == 0:
+                        continue
                     on_border = (z == 0 or z == depth - 1 or
                                  y == 0 or y == height - 1 or
                                  x == 0 or x == width - 1)
